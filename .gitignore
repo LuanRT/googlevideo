@@ -70,8 +70,5 @@ bundle/*.cjs
 bundle/*.cjs.*
 deno/
 
-# VSCode files
-.vscode/
-
 # MacOS
 .DS_Store
