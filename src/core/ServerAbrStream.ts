@@ -1,5 +1,5 @@
 /**
- * TODO: Use camelCase for all variables and functions here (except for protobuf generated stuff)
+ * TODO: Use camelCase for all variables and functions here (except for protobuf generated stuff).
  * I was originally planning to implement this into YouTube.js, but as I started implementing more
  * googlevideo related things, I realized this would be better suited as a separate module :).
  */
