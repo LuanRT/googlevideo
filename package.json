@@ -1,0 +1,58 @@
+{
+  "name": "googlevideo",
+  "version": "1.0.0",
+  "description": "A set of utilities for working with Google Video APIs.",
+  "main": "dist/index.js",
+  "type": "module",
+  "types": "./dist/src/index.d.ts",
+  "module": "./dist/src/index.js",
+  "scripts": {
+    "lint": "npx eslint ./src/**/*.ts",
+    "lint:fix": "npx eslint --fix ./src/**/*.ts",
+    "clean": "npx rimraf ./dist ./bundle ./protos/generated",
+    "build": "npm run clean && npm run lint && npm run build:proto && npm run build:esm && npm run bundle:node",
+    "build:esm": "npx tsc",
+    "build:proto": "node ./dev-scripts/generate-proto.mjs",
+    "bundle:node": "npx esbuild ./dist/src/index.js --bundle --outfile=./bundle/index.cjs --platform=node --target=node10 --format=cjs --sourcemap --banner:js=\"/* eslint-disable */\"",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuanRT/GoogleVideo.git"
+  },
+  "keywords": [
+    "BotGuard",
+    "PoToken",
+    "YouTube"
+  ],
+  "author": "LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LuanRT/GoogleVideo/issues"
+  },
+  "homepage": "https://github.com/LuanRT/GoogleVideo#readme",
+  "funding": [
+    "https://github.com/sponsors/LuanRT"
+  ],
+  "devDependencies": {
+    "@eslint/js": "^9.9.0",
+    "@stylistic/eslint-plugin": "^2.6.4",
+    "@types/eslint__js": "^8.42.3",
+    "eslint": "^9.9.0",
+    "globals": "^15.9.0",
+    "ts-proto": "^2.2.0",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.2.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js",
+      "require": "./bundle/index.cjs"
+    }
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.0.0",
+    "youtubei.js": "^10.4.0"
+  }
+}

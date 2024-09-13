@@ -1,0 +1,21 @@
+{
+  "name": "downloader",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "module": "main.js",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "shaka-player": "^4.11.2",
+    "youtubei.js": "github:LuanRT/YouTube.js#refactor/update-protos"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.2"
+  }
+}
