@@ -1,7 +1,7 @@
 import type { WriteStream } from 'node:fs';
 import { createWriteStream } from 'node:fs';
 import { Innertube, UniversalCache } from 'youtubei.js';
-import GoogleVideo, { MediaType } from '../../dist/src/index.js';
+import GoogleVideo, { type Format, MediaType } from '../../dist/src/index.js';
 
 const innertube = await Innertube.create({ cache: new UniversalCache(true) });
 
@@ -31,17 +31,22 @@ let videoOutput: WriteStream | undefined;
 
 const durationMs = info.basic_info?.duration ? info.basic_info.duration * 1000 : 0;
 
-const audioFormat = info.chooseFormat({
-  quality: 'best',
-  format: 'webm',
-  type: 'audio'
-});
+const audioFormat = info.chooseFormat({ quality: 'best', format: 'webm', type: 'audio' });
+const videoFormat = info.chooseFormat({ quality: '720p', format: 'webm', type: 'video' });
 
-const videoFormat = info.chooseFormat({
-  quality: '720p',
-  format: 'mp4',
-  type: 'video'
-});
+const selectedAudioFormat: Format = {
+  itag: audioFormat.itag,
+  lastModified: audioFormat.last_modified_ms,
+  xtags: audioFormat.xtags
+};
+
+const selectedVideoFormat: Format = {
+  itag: videoFormat.itag,
+  lastModified: videoFormat.last_modified_ms,
+  width: videoFormat.width,
+  height: videoFormat.height,
+  xtags: videoFormat.xtags
+};
 
 console.info(`Selected audio format: ${audioFormat.itag} (${audioFormat.audio_quality})`);
 console.info(`Selected video format: ${videoFormat.itag} (${videoFormat.quality_label})`);
@@ -59,45 +64,45 @@ if (!serverAbrStreamingUrl)
 
 const serverAbrStream = new GoogleVideo.ServerAbrStream({
   fetch: innertube.session.http.fetch_function,
-  server_abr_streaming_url: serverAbrStreamingUrl,
-  video_playback_ustreamer_config: videoPlaybackUstreamerConfig,
-  duration_ms: durationMs
+  serverAbrStreamingUrl,
+  videoPlaybackUstreamerConfig: videoPlaybackUstreamerConfig,
+  durationMs
 });
 
 serverAbrStream.on('data', (data) => {
   let progressText = '';
 
-  for (const initializedFormat of data.initialized_formats) {
-    const isVideo = initializedFormat.mime_type?.includes('video');
-    const mediaFormat = info.streaming_data?.adaptive_formats.find((f) => f.itag === initializedFormat.format_id.itag);
+  for (const initializedFormat of data.initializedFormats) {
+    const isVideo = initializedFormat.mimeType?.includes('video');
+    const mediaFormat = info.streaming_data?.adaptive_formats.find((f) => f.itag === initializedFormat.formatId.itag);
 
-    if (isVideo && initializedFormat.media_data) {
+    if (isVideo && initializedFormat.mediaData) {
       if (!videoOutput)
-        videoOutput = createWriteStream(`${sanitizedTitle}.${initializedFormat.format_id.itag}.${determineFileExtension(initializedFormat.mime_type || '')}`);
+        videoOutput = createWriteStream(`${sanitizedTitle}.${initializedFormat.formatId.itag}.${determineFileExtension(initializedFormat.mimeType || '')}`);
 
-      if (initializedFormat.init_segment && !wroteVideoInitSegment) {
-        videoOutput.write(initializedFormat.init_segment);
+      if (initializedFormat.initSegment && !wroteVideoInitSegment) {
+        videoOutput.write(initializedFormat.initSegment);
         wroteVideoInitSegment = true;
       }
 
-      videoOutput.write(initializedFormat.media_data);
-    } else if (initializedFormat.media_data) {
+      videoOutput.write(initializedFormat.mediaData);
+    } else if (initializedFormat.mediaData) {
       if (!audioOutput)
-        audioOutput = createWriteStream(`${sanitizedTitle}.${initializedFormat.format_id.itag}.${determineFileExtension(initializedFormat.mime_type || '')}`);
+        audioOutput = createWriteStream(`${sanitizedTitle}.${initializedFormat.formatId.itag}.${determineFileExtension(initializedFormat.mimeType || '')}`);
 
-      if (initializedFormat.init_segment && !wroteAudioInitSegment) {
-        audioOutput.write(initializedFormat.init_segment);
+      if (initializedFormat.initSegment && !wroteAudioInitSegment) {
+        audioOutput.write(initializedFormat.initSegment);
         wroteAudioInitSegment = true;
       }
 
-      audioOutput.write(initializedFormat.media_data);
+      audioOutput.write(initializedFormat.mediaData);
     }
 
-    const fmtIdentifier = `${initializedFormat.format_id.itag}_${initializedFormat.mime_type?.split(';')[0]}`;
+    const fmtIdentifier = `${initializedFormat.formatId.itag}_${initializedFormat.mimeType?.split(';')[0]}`;
 
-    const percentage = Math.round((initializedFormat.sequence_list.at(-1)?.start_data_range ?? 0) / (mediaFormat?.content_length ?? 0) * 100);
+    const percentage = Math.round((initializedFormat.sequenceList.at(-1)?.startDataRange ?? 0) / (mediaFormat?.content_length ?? 0) * 100);
 
-    if (percentage !== undefined)
+    if (percentage)
       progressText += `${fmtIdentifier}: ${percentage}% | `;
   }
 
@@ -111,9 +116,14 @@ serverAbrStream.on('error', (error) => {
 });
 
 await serverAbrStream.init({
-  audio_formats: [ audioFormat ],
-  video_formats: [ videoFormat ],
-  media_info: {
+  audioFormats: [ selectedAudioFormat ],
+  videoFormats: [ selectedVideoFormat ],
+  mediaInfo: {
+    /**
+     * MEDIA_TYPE_DEFAULT = 0,
+     * MEDIA_TYPE_AUDIO = 1,
+     * MEDIA_TYPE_VIDEO = 2,
+     */
     mediaType: MediaType.MEDIA_TYPE_DEFAULT,
     startTimeMs: 0
   }
