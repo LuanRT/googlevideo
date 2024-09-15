@@ -41,6 +41,7 @@ export type Sequence = {
 
 export type InitializedFormat = {
   formatId: FormatId;
+  formatKey: string;
   durationMs?: number;
   mimeType?: string;
   sequenceCount?: number;

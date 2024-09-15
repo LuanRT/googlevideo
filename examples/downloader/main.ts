@@ -1,10 +1,18 @@
+import cliProgress from 'cli-progress';
 import type { WriteStream } from 'node:fs';
 import { createWriteStream } from 'node:fs';
 import { Innertube, UniversalCache } from 'youtubei.js';
-import GoogleVideo, { concatenateChunks, type Format, MediaType } from '../../dist/src/index.js';
+import GoogleVideo, { type Format, MediaType } from '../../dist/src/index.js';
+
+const progressBars = new cliProgress.MultiBar({
+  clearOnComplete: false,
+  hideCursor: true
+}, cliProgress.Presets.rect);
+
+const formatProgressBars = new Map<string, cliProgress.SingleBar>();
 
 const innertube = await Innertube.create({ cache: new UniversalCache(true) });
-const info = await innertube.getBasicInfo('el68RBQBlCs');
+const info = await innertube.getBasicInfo('mzqO7oKTJKI');
 
 console.info(`
   Title: ${info.basic_info.title}
@@ -14,14 +22,14 @@ console.info(`
   Video ID: ${info.basic_info.id}
 `);
 
-const durationMs = info.basic_info?.duration ? info.basic_info.duration * 1000 : 0;
+const durationMs = (info.basic_info?.duration ?? 0) * 1000;
 const sanitizedTitle = info.basic_info.title?.replace(/[^a-z0-9]/gi, '_');
 
 let audioOutput: WriteStream | undefined;
 let videoOutput: WriteStream | undefined;
 
 const audioFormat = info.chooseFormat({ quality: 'best', format: 'webm', type: 'audio' });
-const videoFormat = info.chooseFormat({ quality: '1080p', format: 'webm', type: 'video' });
+const videoFormat = info.chooseFormat({ quality: '720p', format: 'webm', type: 'video' });
 
 const selectedAudioFormat: Format = {
   itag: audioFormat.itag,
@@ -47,10 +55,19 @@ if (!serverAbrStreamingUrl)
   throw new Error('serverAbrStreamingUrl not found');
 
 const determineFileExtension = (mimeType: string) => {
-  if (mimeType.includes('video'))
+  if (mimeType.includes('video')) {
     return mimeType.includes('webm') ? 'webm' : 'mp4';
-  else if (mimeType.includes('audio'))
+  } else if (mimeType.includes('audio')) {
     return mimeType.includes('webm') ? 'webm' : 'm4a';
+  }
+  return 'bin';
+};
+
+const getOutputStream = (isVideo: boolean, mimeType: string, formatId?: number) => {
+  const type = isVideo ? 'video' : 'audio';
+  const extension = determineFileExtension(mimeType);
+  const stream = createWriteStream(`${sanitizedTitle}.${formatId}.${type}.${extension}`);
+  return stream;
 };
 
 const serverAbrStream = new GoogleVideo.ServerAbrStream({
@@ -60,46 +77,57 @@ const serverAbrStream = new GoogleVideo.ServerAbrStream({
   durationMs
 });
 
-serverAbrStream.on('data', (data) => {
-  let progressText = '';
+let downloadedBytesAudio = 0;
+let downloadedBytesVideo = 0;
 
-  for (const initializedFormat of data.initializedFormats) {
-    const isVideo = initializedFormat.mimeType?.includes('video');
-    const mediaFormat = info.streaming_data?.adaptive_formats.find((f) => f.itag === initializedFormat.formatId.itag);
+serverAbrStream.on('data', (streamData) => {
+  for (const formatData of streamData.initializedFormats) {
+    const isVideo = formatData.mimeType?.includes('video');
+    const mediaFormat = info.streaming_data?.adaptive_formats.find((f) => f.itag === formatData.formatId.itag);
+    const formatKey = formatData.formatKey;
 
-    const data = concatenateChunks(initializedFormat.mediaChunks);
+    let bar = formatProgressBars.get(formatKey);
 
-    if (isVideo && data.length) {
-      if (!videoOutput)
-        videoOutput = createWriteStream(`${sanitizedTitle}.${initializedFormat.formatId.itag}.${determineFileExtension(initializedFormat.mimeType || '')}`);
-      videoOutput.write(data);
-    } else if (data.length) {
-      if (!audioOutput)
-        audioOutput = createWriteStream(`${sanitizedTitle}.${initializedFormat.formatId.itag}.${determineFileExtension(initializedFormat.mimeType || '')}`);
-      audioOutput.write(data);
+    if (!bar) {
+      bar = progressBars.create(100, 0, undefined, { format: `${isVideo ? 'video' : 'audio'} (${formatData.formatId.itag}) [{bar}] {percentage}% | ETA: {eta}s` });
+      formatProgressBars.set(formatKey, bar);
     }
 
-    const fmtIdentifier = `${initializedFormat.formatId.itag}_${initializedFormat.mimeType?.split(';')[0]}`;
+    const mediaChunks = formatData.mediaChunks;
 
-    const percentage = Math.round((initializedFormat.sequenceList.at(-1)?.startDataRange ?? 0) / (mediaFormat?.content_length ?? 0) * 100);
+    if (isVideo && mediaChunks.length) {
+      if (!videoOutput)
+        videoOutput = getOutputStream(true, formatData.mimeType || '', formatData.formatId?.itag);
+      for (const chunk of mediaChunks) {
+        downloadedBytesVideo += chunk.length;
+        videoOutput.write(chunk);
+      }
+    } else if (mediaChunks.length) {
+      if (!audioOutput)
+        audioOutput = getOutputStream(false, formatData.mimeType || '', formatData.formatId?.itag);
+      for (const chunk of mediaChunks) {
+        downloadedBytesAudio += chunk.length;
+        audioOutput.write(chunk);
+      }
+    }
 
-    if (percentage)
-      progressText += `${fmtIdentifier}: ${percentage}% | `;
+    const contentLength = mediaFormat?.content_length ?? 0;
+    const downloadedBytes = isVideo ? downloadedBytesVideo : downloadedBytesAudio;
+
+    if (contentLength > 0) {
+      const percentage = (downloadedBytes / contentLength) * 100;
+      bar.update(percentage);
+    }
   }
-
-  process.stdout.clearLine(0);
-  process.stdout.cursorTo(0);
-  process.stdout.write(progressText);
 });
 
 serverAbrStream.on('error', (error) => {
+  progressBars.stop();
   console.error(error);
 });
 
 serverAbrStream.on('end', () => {
-  process.stdout.clearLine(0);
-  process.stdout.cursorTo(0);
-  process.stdout.write('Done!');
+  progressBars.stop();
 
   if (audioOutput)
     audioOutput.end();

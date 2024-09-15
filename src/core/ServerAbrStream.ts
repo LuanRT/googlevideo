@@ -39,15 +39,15 @@ export class ServerAbrStream extends EventEmitterLike {
     this.totalDurationMs = args.durationMs;
   }
 
-  public on(event: 'end', listener: (data: ServerAbrResponse) => void): void;
-  public on(event: 'data', listener: (data: ServerAbrResponse) => void): void;
+  public on(event: 'end', listener: (streamData: ServerAbrResponse) => void): void;
+  public on(event: 'data', listener: (streamData: ServerAbrResponse) => void): void;
   public on(event: 'error', listener: (error: Error) => void): void;
   public on(event: string, listener: (...data: any[]) => void): void {
     super.on(event, listener);
   }
 
-  public once(event: 'end', listener: (data: ServerAbrResponse) => void): void;
-  public once(event: 'data', listener: (data: ServerAbrResponse) => void): void;
+  public once(event: 'end', listener: (streamData: ServerAbrResponse) => void): void;
+  public once(event: 'data', listener: (streamData: ServerAbrResponse) => void): void;
   public once(event: 'error', listener: (error: Error) => void): void;
   public once(event: string, listener: (...args: any[]) => void): void {
     super.once(event, listener);
@@ -88,8 +88,8 @@ export class ServerAbrStream extends EventEmitterLike {
     if (typeof mediaInfo.startTimeMs !== 'number')
       throw new Error('Invalid media start time');
 
-    while (mediaInfo.startTimeMs < this.totalDurationMs) {
-      try {
+    try {
+      while (mediaInfo.startTimeMs < this.totalDurationMs) {
         const data = await this.fetchMedia({ mediaInfo, audioFormatIds, videoFormatIds });
 
         this.emit('data', data);
@@ -115,10 +115,9 @@ export class ServerAbrStream extends EventEmitterLike {
         }
 
         mediaInfo.startTimeMs += mainFormat.sequenceList.reduce((acc, seq) => acc + (seq.durationMs || 0), 0);
-      } catch (error) {
-        this.emit('error', error);
-        break;
       }
+    } catch (error) {
+      this.emit('error', error);
     }
   }
 
@@ -283,6 +282,7 @@ export class ServerAbrStream extends EventEmitterLike {
     if (!this.formatsByKey.has(formatKey)) {
       this.initializedFormats.push({
         formatId: formatInitializationMetadata.formatId,
+        formatKey: getFormatKey(formatInitializationMetadata.formatId),
         durationMs: formatInitializationMetadata.durationMs,
         mimeType: formatInitializationMetadata.mimeType,
         sequenceCount: formatInitializationMetadata.field4,

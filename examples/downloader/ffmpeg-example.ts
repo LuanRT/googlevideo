@@ -1,8 +1,16 @@
+import ffmpeg from 'fluent-ffmpeg';
+import cliProgress from 'cli-progress';
 import type { WriteStream } from 'node:fs';
 import { createWriteStream, unlink } from 'node:fs';
 import { Innertube, UniversalCache } from 'youtubei.js';
-import GoogleVideo, { concatenateChunks, type Format, MediaType } from '../../dist/src/index.js';
-import ffmpeg from 'fluent-ffmpeg';
+import GoogleVideo, { type Format, MediaType } from '../../dist/src/index.js';
+
+const progressBars = new cliProgress.MultiBar({
+  clearOnComplete: false,
+  hideCursor: true
+}, cliProgress.Presets.rect);
+
+const formatProgressBars = new Map<string, cliProgress.SingleBar>();
 
 const innertube = await Innertube.create({ cache: new UniversalCache(true) });
 const info = await innertube.getBasicInfo('wRNnMQEKo7o');
@@ -15,7 +23,7 @@ console.info(`
   Video ID: ${info.basic_info.id}
 `);
 
-const durationMs = info.basic_info?.duration ? info.basic_info.duration * 1000 : 0;
+const durationMs = (info.basic_info?.duration ?? 0) * 1000;
 const sanitizedTitle = info.basic_info.title?.replace(/[^a-z0-9]/gi, '_');
 
 let audioOutput: WriteStream | undefined;
@@ -56,39 +64,53 @@ const serverAbrStream = new GoogleVideo.ServerAbrStream({
   durationMs
 });
 
-serverAbrStream.on('data', (data) => {
-  let progressText = '';
+let downloadedBytesAudio = 0;
+let downloadedBytesVideo = 0;
 
-  for (const initializedFormat of data.initializedFormats) {
-    const isVideo = initializedFormat.mimeType?.includes('video');
-    const mediaFormat = info.streaming_data?.adaptive_formats.find((f) => f.itag === initializedFormat.formatId.itag);
+serverAbrStream.on('data', (streamData) => {
+  for (const formatData of streamData.initializedFormats) {
+    const isVideo = formatData.mimeType?.includes('video');
+    const mediaFormat = info.streaming_data?.adaptive_formats.find((f) => f.itag === formatData.formatId.itag);
+    const formatKey = formatData.formatKey;
 
-    const data = concatenateChunks(initializedFormat.mediaChunks);
+    let bar = formatProgressBars.get(formatKey);
 
-    if (isVideo && data.length) {
-      if (!videoOutput) {
-        videoOutputFilename = `${sanitizedTitle}.${initializedFormat.formatId.itag}.webm`;
-        videoOutput = createWriteStream(videoOutputFilename);
-      }
-      videoOutput.write(data);
-    } else if (data.length) {
-      if (!audioOutput) {
-        audioOutputFilename = `${sanitizedTitle}.${initializedFormat.formatId.itag}.webm`;
-        audioOutput = createWriteStream(audioOutputFilename);
-      }
-      audioOutput.write(data);
+    if (!bar) {
+      bar = progressBars.create(100, 0, undefined, { format: `${isVideo ? 'video' : 'audio'} (${formatData.formatId.itag}) [{bar}] {percentage}% | ETA: {eta}s` });
+      formatProgressBars.set(formatKey, bar);
     }
 
-    const fmtIdentifier = `${initializedFormat.formatId.itag}_${initializedFormat.mimeType?.split(';')[0]}`;
-    const percentage = Math.round((initializedFormat.sequenceList.at(-1)?.startDataRange ?? 0) / (mediaFormat?.content_length ?? 0) * 100);
+    const mediaChunks = formatData.mediaChunks;
 
-    if (percentage)
-      progressText += `${fmtIdentifier}: ${percentage}% | `;
+    if (isVideo && mediaChunks.length) {
+      if (!videoOutput) {
+        videoOutputFilename = `${sanitizedTitle}.${formatData.formatId.itag}.webm`;
+        videoOutput = createWriteStream(videoOutputFilename);
+      }
+
+      for (const chunk of mediaChunks) {
+        downloadedBytesVideo += chunk.length;
+        videoOutput.write(chunk);
+      }
+    } else if (mediaChunks.length) {
+      if (!audioOutput) {
+        audioOutputFilename = `${sanitizedTitle}.${formatData.formatId.itag}.webm`;
+        audioOutput = createWriteStream(audioOutputFilename);
+      }
+      for (const chunk of mediaChunks) {
+        downloadedBytesAudio += chunk.length;
+        audioOutput.write(chunk);
+      }
+    }
+
+    const contentLength = mediaFormat?.content_length ?? 0;
+    const downloadedBytes = isVideo ? downloadedBytesVideo : downloadedBytesAudio;
+
+    if (contentLength > 0) {
+      const percentage = (downloadedBytes / contentLength) * 100;
+      bar.update(percentage);
+    }
   }
-
-  process.stdout.clearLine(0);
-  process.stdout.cursorTo(0);
-  process.stdout.write(progressText);
 });
 
 serverAbrStream.on('error', (error) => {
@@ -121,11 +143,6 @@ await new Promise<void>((resolve, reject) => {
     .input(audioOutputFilename)
     .videoCodec('copy')
     .audioCodec('copy')
-    .on('progress', (progress) => {
-      process.stdout.clearLine(0);
-      process.stdout.cursorTo(0);
-      process.stdout.write(`Processing: ${progress.timemark} (${progress.percent?.toFixed(2)}%)`);
-    })
     .on('end', () => {
       if (videoOutputFilename) {
         unlink(videoOutputFilename, (err) => {
