@@ -1,5 +1,5 @@
 import { UMP } from './UMP.js';
-import { EventEmitterLike, PART, base64ToU8 } from '../utils/index.js';
+import { EventEmitterLike, PART, base64ToU8, getFormatKey } from '../utils/index.js';
 
 import { MediaInfo_MediaType } from '../../protos/generated/video_streaming/video_playback_abr_request.js';
 import { VideoPlaybackAbrRequest } from '../../protos/generated/video_streaming/video_playback_abr_request.js';
@@ -16,37 +16,47 @@ import type { MediaInfo } from '../../protos/generated/video_streaming/video_pla
 import type { FetchFunction, InitializedFormat, InitOptions, MediaArgs, ServerAbrResponse, ServerAbrStreamOptions } from '../utils/types.js';
 import { ChunkedDataBuffer } from './ChunkedDataBuffer.js';
 
+const DEFAULT_VIDEO_WIDTH = 720;
+
 export class ServerAbrStream extends EventEmitterLike {
-  private fetchFn: FetchFunction;
+  private fetchFunction: FetchFunction;
   private serverAbrStreamingUrl: string;
   private videoPlaybackUstreamerConfig: string;
   private poToken?: string;
   private playbackCookie?: PlaybackCookie;
-  private initializedFormats: InitializedFormat[] = [];
   private totalDurationMs: number;
-  private prevSeqs: Map<string, number[]> = new Map();
+  private initializedFormats: InitializedFormat[] = [];
+  private formatsByKey: Map<string, InitializedFormat> = new Map();
+  private headerIdToFormatKeyMap: Map<number, string> = new Map();
+  private previousSequences: Map<string, number[]> = new Map();
 
   constructor(args: ServerAbrStreamOptions) {
     super();
-    this.fetchFn = args.fetch || fetch;
+    this.fetchFunction = args.fetch || fetch;
     this.serverAbrStreamingUrl = args.serverAbrStreamingUrl;
     this.videoPlaybackUstreamerConfig = args.videoPlaybackUstreamerConfig;
     this.poToken = args.poToken;
     this.totalDurationMs = args.durationMs;
   }
 
+  public on(event: 'end', listener: (data: ServerAbrResponse) => void): void;
   public on(event: 'data', listener: (data: ServerAbrResponse) => void): void;
   public on(event: 'error', listener: (error: Error) => void): void;
-  public on(event: string, listener: (...args: any[]) => void): void {
+  public on(event: string, listener: (...data: any[]) => void): void {
     super.on(event, listener);
   }
 
+  public once(event: 'end', listener: (data: ServerAbrResponse) => void): void;
   public once(event: 'data', listener: (data: ServerAbrResponse) => void): void;
   public once(event: 'error', listener: (error: Error) => void): void;
   public once(event: string, listener: (...args: any[]) => void): void {
     super.once(event, listener);
   }
 
+  /**
+   * Initializes the server ABR stream with the provided options.
+   * @param args - The initialization options.
+   */
   public async init(args: InitOptions) {
     const { audioFormats, videoFormats, mediaInfo: initialMediaInfo } = args;
 
@@ -55,8 +65,8 @@ export class ServerAbrStream extends EventEmitterLike {
     const mediaInfo: MediaInfo = {
       lastManualDirection: 0,
       timeSinceLastManualFormatSelectionMs: 0,
-      videoWidth: videoFormats.length === 1 ? firstVideoFormat?.width : 720,
-      iea: videoFormats.length === 1 ? firstVideoFormat?.width : 720,
+      videoWidth: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_VIDEO_WIDTH,
+      iea: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_VIDEO_WIDTH,
       startTimeMs: 0,
       visibility: 0,
       mediaType: MediaInfo_MediaType.MEDIA_TYPE_DEFAULT,
@@ -78,8 +88,8 @@ export class ServerAbrStream extends EventEmitterLike {
     if (typeof mediaInfo.startTimeMs !== 'number')
       throw new Error('Invalid media start time');
 
-    try {
-      while (mediaInfo.startTimeMs < this.totalDurationMs) {
+    while (mediaInfo.startTimeMs < this.totalDurationMs) {
+      try {
         const data = await this.fetchMedia({ mediaInfo, audioFormatIds, videoFormatIds });
 
         this.emit('data', data);
@@ -92,30 +102,28 @@ export class ServerAbrStream extends EventEmitterLike {
             : data.initializedFormats[0];
 
         for (const fmt of data.initializedFormats) {
-          this.prevSeqs.set(`${fmt.formatId.itag};${fmt.formatId.lastModified};`, fmt.sequenceList.map((seq) => seq.sequenceNumber || 0));
+          this.previousSequences.set(`${fmt.formatId.itag};${fmt.formatId.lastModified};`, fmt.sequenceList.map((seq) => seq.sequenceNumber || 0));
         }
 
-        if (!mainFormat) break;
         if (
-          mainFormat?.sequenceCount ===
+          !mainFormat ||
+          mainFormat.sequenceCount ===
           mainFormat.sequenceList[mainFormat.sequenceList.length - 1].sequenceNumber
-        )
+        ) {
+          this.emit('end', data);
           break;
+        }
 
         mediaInfo.startTimeMs += mainFormat.sequenceList.reduce((acc, seq) => acc + (seq.durationMs || 0), 0);
+      } catch (error) {
+        this.emit('error', error);
+        break;
       }
-    } catch (error) {
-      this.emit('error', error);
     }
   }
 
   private async fetchMedia(args: MediaArgs): Promise<ServerAbrResponse> {
     const { mediaInfo, audioFormatIds, videoFormatIds } = args;
-
-    this.initializedFormats.forEach((format) => {
-      format.sequenceList = [];
-      format.mediaData = new Uint8Array(0);
-    });
 
     const body = VideoPlaybackAbrRequest.encode({
       mediaInfo: mediaInfo,
@@ -139,13 +147,24 @@ export class ServerAbrStream extends EventEmitterLike {
       field1000: []
     }).finish();
 
-    const response = await this.fetchFn(this.serverAbrStreamingUrl, { method: 'POST', body });
+    const response = await this.fetchFunction(this.serverAbrStreamingUrl, { method: 'POST', body });
     const data = await response.arrayBuffer();
 
-    return this.processUMPResponse(new Uint8Array(data));
+    return this.parseUMPResponse(new Uint8Array(data));
   }
 
-  public async processUMPResponse(data: Uint8Array): Promise<ServerAbrResponse> {
+  /**
+   * Parses the UMP response data and updates the initialized formats.
+   * @param data - The UMP response data as a byte array.
+   */
+  public async parseUMPResponse(data: Uint8Array): Promise<ServerAbrResponse> {
+    this.headerIdToFormatKeyMap.clear();
+
+    this.initializedFormats.forEach((format) => {
+      format.sequenceList = [];
+      format.mediaChunks = [];
+    });
+
     let sabrError: SabrError | undefined;
     let sabrRedirect: SabrRedirect | undefined;
     let streamProtectionStatus: StreamProtectionStatus | undefined;
@@ -194,32 +213,29 @@ export class ServerAbrStream extends EventEmitterLike {
 
   private processMediaHeader(data: Uint8Array) {
     const mediaHeader = MediaHeader.decode(data);
-    const targetFormat = this.initializedFormats.find((fmt) => fmt.formatId.itag === mediaHeader.itag);
+    if (!mediaHeader.formatId) return;
 
-    if (!targetFormat) return;
+    const formatKey = getFormatKey(mediaHeader.formatId);
 
-    // Skip processing if this is an init segment and we've already received it.
-    if (mediaHeader.isInitSeg) {
-      if (!targetFormat.initSegment) {
-        targetFormat._initSegmentMediaId = mediaHeader.headerId;
-      } else return;
-    }
+    const currentFormat = this.formatsByKey.get(formatKey);
+    if (!currentFormat) return;
 
     // FIXME: This is a hacky workaround to prevent duplicate sequences from being added. This should be fixed in the future (preferably by figuring out how to make the server not send duplicates).
-    if (mediaHeader.sequenceNumber && this.prevSeqs.get(`${targetFormat.formatId.itag};${targetFormat.formatId.lastModified};`)?.includes(mediaHeader.sequenceNumber))
+    if (mediaHeader.sequenceNumber !== undefined && this.previousSequences.get(formatKey)?.includes(mediaHeader.sequenceNumber))
       return;
 
-    // Save the header's ID so we can identify its media data later.
-    if (!targetFormat._headerIds.has(mediaHeader.headerId || 0))
-      targetFormat._headerIds.add(mediaHeader.headerId || 0);
+    // Save the header's ID so we can identify its stream data later.
+    if (mediaHeader.headerId !== undefined) {
+      if (!this.headerIdToFormatKeyMap.has(mediaHeader.headerId)) {
+        this.headerIdToFormatKeyMap.set(mediaHeader.headerId, formatKey);
+      }
+    }
 
-    if (
-      mediaHeader.sequenceNumber &&
-      !targetFormat.sequenceList.some((seq) => seq.sequenceNumber === mediaHeader.sequenceNumber)
-    ) {
-      targetFormat.sequenceList.push({
+    if (!currentFormat.sequenceList.some((seq) => seq.sequenceNumber === (mediaHeader.sequenceNumber || 0))) {
+      currentFormat.sequenceList.push({
         itag: mediaHeader.itag,
         formatId: mediaHeader.formatId,
+        isInitSegment: mediaHeader.isInitSeg,
         durationMs: mediaHeader.durationMs,
         startMs: mediaHeader.startMs,
         startDataRange: mediaHeader.startDataRange,
@@ -228,12 +244,10 @@ export class ServerAbrStream extends EventEmitterLike {
         timeRange: mediaHeader.timeRange
       });
 
-      this.initializedFormats.forEach((item) => {
-        if (item._state && item.formatId.itag === mediaHeader.itag) {
-          item._state.durationMs += mediaHeader.durationMs || 0;
-          item._state.field5 += 1;
-        }
-      });
+      if (typeof mediaHeader.sequenceNumber === 'number') {
+        currentFormat._state.durationMs += mediaHeader.durationMs || 0;
+        currentFormat._state.sequenceNumber += 1;
+      }
     }
   }
 
@@ -241,33 +255,18 @@ export class ServerAbrStream extends EventEmitterLike {
     const headerId = data.getUint8(0);
     const streamData = data.split(1).remainingBuffer;
 
-    const targetFormat = this.initializedFormats.find((fmt) => fmt._headerIds.has(headerId));
-    if (!targetFormat)
-      return;
+    const formatKey = this.headerIdToFormatKeyMap.get(headerId);
+    if (!formatKey) return;
 
-    const isInitSegData = targetFormat._initSegmentMediaId === headerId;
-    if (targetFormat.initSegment && isInitSegData)
-      return;
+    const currentFormat = this.formatsByKey.get(formatKey);
+    if (!currentFormat) return;
 
-    if (isInitSegData) {
-      targetFormat.initSegment = streamData.chunks[0];
-      delete targetFormat._initSegmentMediaId;
-      return;
-    }
-
-    const combinedLength = targetFormat.mediaData.length + streamData.chunks[0].length;
-    const tempMediaData = new Uint8Array(combinedLength);
-
-    tempMediaData.set(targetFormat.mediaData);
-    tempMediaData.set(streamData.chunks[0], targetFormat.mediaData.length);
-
-    targetFormat.mediaData = tempMediaData;
+    currentFormat.mediaChunks.push(streamData.chunks[0]);
   }
 
   private processEndOfMedia(data: ChunkedDataBuffer) {
     const headerId = data.getUint8(0);
-    const targetFormat = this.initializedFormats.find((fmt) => fmt._headerIds.has(headerId));
-    if (targetFormat) targetFormat._headerIds.delete(headerId);
+    this.headerIdToFormatKeyMap.delete(headerId);
   }
 
   private processNextRequestPolicy(data: Uint8Array) {
@@ -277,27 +276,28 @@ export class ServerAbrStream extends EventEmitterLike {
 
   private processFormatInitialization(data: Uint8Array) {
     const formatInitializationMetadata = FormatInitializationMetadata.decode(data);
-    if (
-      formatInitializationMetadata.formatId &&
-      !this.initializedFormats.some((item) => item.formatId.itag === formatInitializationMetadata.formatId?.itag)
-    ) {
+    if (!formatInitializationMetadata.formatId) return;
+
+    const formatKey = getFormatKey(formatInitializationMetadata.formatId);
+
+    if (!this.formatsByKey.has(formatKey)) {
       this.initializedFormats.push({
         formatId: formatInitializationMetadata.formatId,
         durationMs: formatInitializationMetadata.durationMs,
         mimeType: formatInitializationMetadata.mimeType,
         sequenceCount: formatInitializationMetadata.field4,
         sequenceList: [],
-        mediaData: new Uint8Array(),
-        // Only meant to be used internally.
-        _headerIds: new Set<number>(),
+        mediaChunks: [],
         _state: {
           formatId: formatInitializationMetadata.formatId,
           startTimeMs: 0,
           durationMs: 0,
           field4: 1,
-          field5: 0
+          sequenceNumber: 0
         }
       });
+
+      this.formatsByKey.set(formatKey, this.initializedFormats[this.initializedFormats.length - 1]);
     }
   }
 

@@ -1,3 +1,5 @@
+import type { FormatId } from '../../protos/generated/misc/common.js';
+
 export enum PART {
   ONESIE_HEADER = 10,
   ONESIE_DATA = 11,
@@ -48,6 +50,21 @@ export function base64ToU8(base64: string): Uint8Array {
   const standard_base64 = base64.replace(/-/g, '+').replace(/_/g, '/');
   const padded_base64 = standard_base64.padEnd(standard_base64.length + (4 - standard_base64.length % 4) % 4, '=');
   return new Uint8Array(atob(padded_base64).split('').map((char) => char.charCodeAt(0)));
+}
+
+export function getFormatKey(formatId: FormatId): string {
+  return `${formatId.itag};${formatId.lastModified};`;
+}
+
+export function concatenateChunks(chunks: Uint8Array[]): Uint8Array {
+  const totalLength = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
+  const result = new Uint8Array(totalLength);
+  let offset = 0;
+  for (const chunk of chunks) {
+    result.set(chunk, offset);
+    offset += chunk.length;
+  }
+  return result;
 }
 
 // See https://github.com/nodejs/node/issues/40678#issuecomment-1126944677

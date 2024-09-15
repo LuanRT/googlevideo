@@ -30,6 +30,7 @@ export type ServerAbrResponse = {
 export type Sequence = {
   itag?: number;
   formatId?: FormatId;
+  isInitSegment?: boolean;
   durationMs?: number;
   startMs?: number;
   startDataRange?: number;
@@ -43,11 +44,8 @@ export type InitializedFormat = {
   durationMs?: number;
   mimeType?: string;
   sequenceCount?: number;
-  initSegment?: Uint8Array;
   sequenceList: Sequence[];
-  mediaData: Uint8Array;
-  _initSegmentMediaId?: number;
-  _headerIds: Set<number>;
+  mediaChunks: Uint8Array[];
   _state: Zpa;
 }
 

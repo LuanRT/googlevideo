@@ -22,4 +22,7 @@ deno run --allow-net --allow-read examples/browser/proxy/deno.ts
 cd examples/downloader
 npm install
 npx tsx main.ts
+
+## Example with ffmpeg
+npx tsx ffmpeg-example.ts
 ```

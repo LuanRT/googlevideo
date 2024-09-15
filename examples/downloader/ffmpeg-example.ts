@@ -1,10 +1,11 @@
 import type { WriteStream } from 'node:fs';
-import { createWriteStream } from 'node:fs';
+import { createWriteStream, unlink } from 'node:fs';
 import { Innertube, UniversalCache } from 'youtubei.js';
 import GoogleVideo, { concatenateChunks, type Format, MediaType } from '../../dist/src/index.js';
+import ffmpeg from 'fluent-ffmpeg';
 
 const innertube = await Innertube.create({ cache: new UniversalCache(true) });
-const info = await innertube.getBasicInfo('el68RBQBlCs');
+const info = await innertube.getBasicInfo('wRNnMQEKo7o');
 
 console.info(`
   Title: ${info.basic_info.title}
@@ -19,6 +20,8 @@ const sanitizedTitle = info.basic_info.title?.replace(/[^a-z0-9]/gi, '_');
 
 let audioOutput: WriteStream | undefined;
 let videoOutput: WriteStream | undefined;
+let audioOutputFilename: string | undefined;
+let videoOutputFilename: string | undefined;
 
 const audioFormat = info.chooseFormat({ quality: 'best', format: 'webm', type: 'audio' });
 const videoFormat = info.chooseFormat({ quality: '1080p', format: 'webm', type: 'video' });
@@ -46,13 +49,6 @@ if (!videoPlaybackUstreamerConfig)
 if (!serverAbrStreamingUrl)
   throw new Error('serverAbrStreamingUrl not found');
 
-const determineFileExtension = (mimeType: string) => {
-  if (mimeType.includes('video'))
-    return mimeType.includes('webm') ? 'webm' : 'mp4';
-  else if (mimeType.includes('audio'))
-    return mimeType.includes('webm') ? 'webm' : 'm4a';
-};
-
 const serverAbrStream = new GoogleVideo.ServerAbrStream({
   fetch: innertube.session.http.fetch_function,
   serverAbrStreamingUrl,
@@ -70,17 +66,20 @@ serverAbrStream.on('data', (data) => {
     const data = concatenateChunks(initializedFormat.mediaChunks);
 
     if (isVideo && data.length) {
-      if (!videoOutput)
-        videoOutput = createWriteStream(`${sanitizedTitle}.${initializedFormat.formatId.itag}.${determineFileExtension(initializedFormat.mimeType || '')}`);
+      if (!videoOutput) {
+        videoOutputFilename = `${sanitizedTitle}.${initializedFormat.formatId.itag}.webm`;
+        videoOutput = createWriteStream(videoOutputFilename);
+      }
       videoOutput.write(data);
     } else if (data.length) {
-      if (!audioOutput)
-        audioOutput = createWriteStream(`${sanitizedTitle}.${initializedFormat.formatId.itag}.${determineFileExtension(initializedFormat.mimeType || '')}`);
+      if (!audioOutput) {
+        audioOutputFilename = `${sanitizedTitle}.${initializedFormat.formatId.itag}.webm`;
+        audioOutput = createWriteStream(audioOutputFilename);
+      }
       audioOutput.write(data);
     }
 
     const fmtIdentifier = `${initializedFormat.formatId.itag}_${initializedFormat.mimeType?.split(';')[0]}`;
-
     const percentage = Math.round((initializedFormat.sequenceList.at(-1)?.startDataRange ?? 0) / (mediaFormat?.content_length ?? 0) * 100);
 
     if (percentage)
@@ -96,28 +95,53 @@ serverAbrStream.on('error', (error) => {
   console.error(error);
 });
 
-serverAbrStream.on('end', () => {
-  process.stdout.clearLine(0);
-  process.stdout.cursorTo(0);
-  process.stdout.write('Done!');
-
-  if (audioOutput)
-    audioOutput.end();
-
-  if (videoOutput)
-    videoOutput.end();
-});
-
 await serverAbrStream.init({
   audioFormats: [ selectedAudioFormat ],
   videoFormats: [ selectedVideoFormat ],
   mediaInfo: {
-    /**
-     * MEDIA_TYPE_DEFAULT = 0,
-     * MEDIA_TYPE_AUDIO = 1,
-     * MEDIA_TYPE_VIDEO = 2,
-     */
     mediaType: MediaType.MEDIA_TYPE_DEFAULT,
     startTimeMs: 0
   }
+});
+
+if (audioOutput)
+  audioOutput.end();
+
+if (videoOutput)
+  videoOutput.end();
+
+const outputFilename = `${sanitizedTitle}_final.webm`;
+
+await new Promise<void>((resolve, reject) => {
+  if (!videoOutputFilename || !audioOutputFilename)
+    return reject(new Error('No video or audio output filename'));
+
+  ffmpeg()
+    .input(videoOutputFilename)
+    .input(audioOutputFilename)
+    .videoCodec('copy')
+    .audioCodec('copy')
+    .on('progress', (progress) => {
+      process.stdout.clearLine(0);
+      process.stdout.cursorTo(0);
+      process.stdout.write(`Processing: ${progress.timemark} (${progress.percent?.toFixed(2)}%)`);
+    })
+    .on('end', () => {
+      if (videoOutputFilename) {
+        unlink(videoOutputFilename, (err) => {
+          if (err) console.error(`Error deleting video temp file: ${err}`);
+        });
+      }
+      if (audioOutputFilename) {
+        unlink(audioOutputFilename, (err) => {
+          if (err) console.error(`Error deleting audio temp file: ${err}`);
+        });
+      }
+      resolve();
+    })
+    .on('error', (err: Error) => {
+      console.error('Error processing video:', err);
+      reject(err);
+    })
+    .save(outputFilename);
 });
