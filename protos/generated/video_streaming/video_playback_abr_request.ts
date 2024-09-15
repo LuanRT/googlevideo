@@ -7,6 +7,7 @@
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { FormatId } from "../misc/common.js";
+import { TimeRange } from "./time_range.js";
 
 export const protobufPackage = "video_streaming";
 
@@ -159,7 +160,8 @@ export interface Zpa {
   startTimeMs: number;
   durationMs: number;
   field4: number;
-  field5: number;
+  sequenceNumber: number;
+  timeRange?: TimeRange | undefined;
   field9?: Kob | undefined;
   field11?: YPa | undefined;
   field12?: YPa | undefined;
@@ -1864,7 +1866,8 @@ function createBaseZpa(): Zpa {
     startTimeMs: 0,
     durationMs: 0,
     field4: 0,
-    field5: 0,
+    sequenceNumber: 0,
+    timeRange: undefined,
     field9: undefined,
     field11: undefined,
     field12: undefined,
@@ -1877,16 +1880,19 @@ export const Zpa: MessageFns<Zpa> = {
       FormatId.encode(message.formatId, writer.uint32(10).fork()).join();
     }
     if (message.startTimeMs !== 0) {
-      writer.uint32(16).int32(message.startTimeMs);
+      writer.uint32(16).int64(message.startTimeMs);
     }
     if (message.durationMs !== 0) {
-      writer.uint32(24).int32(message.durationMs);
+      writer.uint32(24).int64(message.durationMs);
     }
     if (message.field4 !== 0) {
       writer.uint32(32).int32(message.field4);
     }
-    if (message.field5 !== 0) {
-      writer.uint32(40).int32(message.field5);
+    if (message.sequenceNumber !== 0) {
+      writer.uint32(40).int32(message.sequenceNumber);
+    }
+    if (message.timeRange !== undefined) {
+      TimeRange.encode(message.timeRange, writer.uint32(50).fork()).join();
     }
     if (message.field9 !== undefined) {
       Kob.encode(message.field9, writer.uint32(74).fork()).join();
@@ -1919,14 +1925,14 @@ export const Zpa: MessageFns<Zpa> = {
             break;
           }
 
-          message.startTimeMs = reader.int32();
+          message.startTimeMs = longToNumber(reader.int64());
           continue;
         case 3:
           if (tag !== 24) {
             break;
           }
 
-          message.durationMs = reader.int32();
+          message.durationMs = longToNumber(reader.int64());
           continue;
         case 4:
           if (tag !== 32) {
@@ -1940,7 +1946,14 @@ export const Zpa: MessageFns<Zpa> = {
             break;
           }
 
-          message.field5 = reader.int32();
+          message.sequenceNumber = reader.int32();
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.timeRange = TimeRange.decode(reader, reader.uint32());
           continue;
         case 9:
           if (tag !== 74) {
@@ -1978,7 +1991,8 @@ export const Zpa: MessageFns<Zpa> = {
       startTimeMs: isSet(object.startTimeMs) ? globalThis.Number(object.startTimeMs) : 0,
       durationMs: isSet(object.durationMs) ? globalThis.Number(object.durationMs) : 0,
       field4: isSet(object.field4) ? globalThis.Number(object.field4) : 0,
-      field5: isSet(object.field5) ? globalThis.Number(object.field5) : 0,
+      sequenceNumber: isSet(object.sequenceNumber) ? globalThis.Number(object.sequenceNumber) : 0,
+      timeRange: isSet(object.timeRange) ? TimeRange.fromJSON(object.timeRange) : undefined,
       field9: isSet(object.field9) ? Kob.fromJSON(object.field9) : undefined,
       field11: isSet(object.field11) ? YPa.fromJSON(object.field11) : undefined,
       field12: isSet(object.field12) ? YPa.fromJSON(object.field12) : undefined,
@@ -1999,8 +2013,11 @@ export const Zpa: MessageFns<Zpa> = {
     if (message.field4 !== 0) {
       obj.field4 = Math.round(message.field4);
     }
-    if (message.field5 !== 0) {
-      obj.field5 = Math.round(message.field5);
+    if (message.sequenceNumber !== 0) {
+      obj.sequenceNumber = Math.round(message.sequenceNumber);
+    }
+    if (message.timeRange !== undefined) {
+      obj.timeRange = TimeRange.toJSON(message.timeRange);
     }
     if (message.field9 !== undefined) {
       obj.field9 = Kob.toJSON(message.field9);
@@ -2025,7 +2042,10 @@ export const Zpa: MessageFns<Zpa> = {
     message.startTimeMs = object.startTimeMs ?? 0;
     message.durationMs = object.durationMs ?? 0;
     message.field4 = object.field4 ?? 0;
-    message.field5 = object.field5 ?? 0;
+    message.sequenceNumber = object.sequenceNumber ?? 0;
+    message.timeRange = (object.timeRange !== undefined && object.timeRange !== null)
+      ? TimeRange.fromPartial(object.timeRange)
+      : undefined;
     message.field9 = (object.field9 !== undefined && object.field9 !== null)
       ? Kob.fromPartial(object.field9)
       : undefined;

@@ -2,6 +2,7 @@ syntax = "proto3";
 package video_streaming;
 
 import "misc/common.proto";
+import "video_streaming/time_range.proto";
 
 message MediaHeader {
   optional uint32 header_id = 1; 
@@ -19,12 +20,6 @@ message MediaHeader {
   optional .misc.FormatId format_id = 13;
   optional int64 content_length = 14;
   optional TimeRange time_range = 15; 
-  
-  message TimeRange {
-    optional int64 start = 1;
-    optional int64 duration = 2;
-    optional int32 timescale = 3;
-  }
 
   enum Compression {
     VAL0 = 0;
