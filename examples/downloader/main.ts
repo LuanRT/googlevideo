@@ -5,7 +5,7 @@ import { Innertube, UniversalCache } from 'youtubei.js';
 import GoogleVideo, { type Format, MediaType } from '../../dist/src/index.js';
 
 const progressBars = new cliProgress.MultiBar({
-  clearOnComplete: false,
+  stopOnComplete: true,
   hideCursor: true
 }, cliProgress.Presets.rect);
 
@@ -126,16 +126,6 @@ serverAbrStream.on('error', (error) => {
   console.error(error);
 });
 
-serverAbrStream.on('end', () => {
-  progressBars.stop();
-
-  if (audioOutput)
-    audioOutput.end();
-
-  if (videoOutput)
-    videoOutput.end();
-});
-
 await serverAbrStream.init({
   audioFormats: [ selectedAudioFormat ],
   videoFormats: [ selectedVideoFormat ],
@@ -149,3 +139,11 @@ await serverAbrStream.init({
     startTimeMs: 0
   }
 });
+
+progressBars.stop();
+
+if (audioOutput)
+  audioOutput.end();
+
+if (videoOutput)
+  videoOutput.end();

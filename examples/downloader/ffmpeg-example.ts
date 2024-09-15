@@ -6,7 +6,7 @@ import { Innertube, UniversalCache } from 'youtubei.js';
 import GoogleVideo, { type Format, MediaType } from '../../dist/src/index.js';
 
 const progressBars = new cliProgress.MultiBar({
-  clearOnComplete: false,
+  stopOnComplete: true,
   hideCursor: true
 }, cliProgress.Presets.rect);
 
@@ -131,6 +131,8 @@ if (audioOutput)
 
 if (videoOutput)
   videoOutput.end();
+
+progressBars.stop();
 
 const outputFilename = `${sanitizedTitle}_final.webm`;
 
