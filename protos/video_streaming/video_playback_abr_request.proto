@@ -44,18 +44,18 @@ message MediaInfo {
 
   optional int32 time_since_last_manual_format_selection_ms = 13;
   optional int32 last_manual_direction = 14;
-  optional int32 video_width = 16;
+  optional int32 quality = 16;
   optional int32 detailed_network_type = 17;
-  optional int32 B7 = 18;
-  optional int32 A7 = 19;
+  optional int32 adjusted_width = 18;
+  optional int32 adjusted_height = 19;
   optional int32 iea = 21;
   optional int32 r7 = 23;
-  optional int32 startTimeMs = 28;
-  optional int32 zea = 29;
+  optional int64 start_time_ms = 28;
+  optional int64 time_since_last_seek = 29;
   optional int32 visibility = 34;
   optional int32 d8 = 36;
   optional MediaCapabilities media_capabilities = 38;
-  optional int32 yea = 39;
+  optional int32 lact = 39;
   // optional int32 Gw = 40;
   optional MediaType media_type = 40;
   optional int32 player_state = 44;
@@ -72,8 +72,8 @@ message MediaInfo {
   optional bool is_prefetch = 61;
   optional int32 Iz = 62;
   optional bytes sabr_license_constraint = 63;
-  optional int32 l2 = 64;
-  optional int32 k2 = 66;
+  optional int32 allow_proxima_live_latency = 64;
+  optional int32 sabr_force_proxima = 66;
   optional int32 Tqb = 67;
   optional int32 c = 68;
 

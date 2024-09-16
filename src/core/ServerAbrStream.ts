@@ -65,7 +65,7 @@ export class ServerAbrStream extends EventEmitterLike {
     const mediaInfo: MediaInfo = {
       lastManualDirection: 0,
       timeSinceLastManualFormatSelectionMs: 0,
-      videoWidth: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_VIDEO_WIDTH,
+      quality: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_VIDEO_WIDTH,
       iea: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_VIDEO_WIDTH,
       startTimeMs: 0,
       visibility: 0,

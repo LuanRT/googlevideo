@@ -1,5 +1,20 @@
 import type { FormatId } from '../../protos/generated/misc/common.js';
 
+export const qualities = {
+  auto: 0,
+  tiny: 144,
+  small: 240,
+  medium: 360,
+  light: 144,
+  large: 480,
+  hd720: 720,
+  hd1080: 1080,
+  hd1440: 1440,
+  hd2160: 2160,
+  hd2880: 2880,
+  highres: 4320
+};
+
 export enum PART {
   ONESIE_HEADER = 10,
   ONESIE_DATA = 11,

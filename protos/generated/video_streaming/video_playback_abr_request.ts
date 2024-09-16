@@ -29,18 +29,18 @@ export interface VideoPlaybackAbrRequest {
 export interface MediaInfo {
   timeSinceLastManualFormatSelectionMs?: number | undefined;
   lastManualDirection?: number | undefined;
-  videoWidth?: number | undefined;
+  quality?: number | undefined;
   detailedNetworkType?: number | undefined;
-  B7?: number | undefined;
-  A7?: number | undefined;
+  adjustedWidth?: number | undefined;
+  adjustedHeight?: number | undefined;
   iea?: number | undefined;
   r7?: number | undefined;
   startTimeMs?: number | undefined;
-  zea?: number | undefined;
+  timeSinceLastSeek?: number | undefined;
   visibility?: number | undefined;
   d8?: number | undefined;
   mediaCapabilities?: MediaInfo_MediaCapabilities | undefined;
-  yea?:
+  lact?:
     | number
     | undefined;
   /** optional int32 Gw = 40; */
@@ -59,8 +59,8 @@ export interface MediaInfo {
   isPrefetch?: boolean | undefined;
   Iz?: number | undefined;
   sabrLicenseConstraint?: Uint8Array | undefined;
-  l2?: number | undefined;
-  k2?: number | undefined;
+  allowProximaLiveLatency?: number | undefined;
+  sabrForceProxima?: number | undefined;
   Tqb?: number | undefined;
   c?: number | undefined;
 }
@@ -472,18 +472,18 @@ function createBaseMediaInfo(): MediaInfo {
   return {
     timeSinceLastManualFormatSelectionMs: undefined,
     lastManualDirection: undefined,
-    videoWidth: undefined,
+    quality: undefined,
     detailedNetworkType: undefined,
-    B7: undefined,
-    A7: undefined,
+    adjustedWidth: undefined,
+    adjustedHeight: undefined,
     iea: undefined,
     r7: undefined,
     startTimeMs: undefined,
-    zea: undefined,
+    timeSinceLastSeek: undefined,
     visibility: undefined,
     d8: undefined,
     mediaCapabilities: undefined,
-    yea: undefined,
+    lact: undefined,
     mediaType: undefined,
     playerState: undefined,
     a8: undefined,
@@ -499,8 +499,8 @@ function createBaseMediaInfo(): MediaInfo {
     isPrefetch: undefined,
     Iz: undefined,
     sabrLicenseConstraint: undefined,
-    l2: undefined,
-    k2: undefined,
+    allowProximaLiveLatency: undefined,
+    sabrForceProxima: undefined,
     Tqb: undefined,
     c: undefined,
   };
@@ -514,17 +514,17 @@ export const MediaInfo: MessageFns<MediaInfo> = {
     if (message.lastManualDirection !== undefined) {
       writer.uint32(112).int32(message.lastManualDirection);
     }
-    if (message.videoWidth !== undefined) {
-      writer.uint32(128).int32(message.videoWidth);
+    if (message.quality !== undefined) {
+      writer.uint32(128).int32(message.quality);
     }
     if (message.detailedNetworkType !== undefined) {
       writer.uint32(136).int32(message.detailedNetworkType);
     }
-    if (message.B7 !== undefined) {
-      writer.uint32(144).int32(message.B7);
+    if (message.adjustedWidth !== undefined) {
+      writer.uint32(144).int32(message.adjustedWidth);
     }
-    if (message.A7 !== undefined) {
-      writer.uint32(152).int32(message.A7);
+    if (message.adjustedHeight !== undefined) {
+      writer.uint32(152).int32(message.adjustedHeight);
     }
     if (message.iea !== undefined) {
       writer.uint32(168).int32(message.iea);
@@ -533,10 +533,10 @@ export const MediaInfo: MessageFns<MediaInfo> = {
       writer.uint32(184).int32(message.r7);
     }
     if (message.startTimeMs !== undefined) {
-      writer.uint32(224).int32(message.startTimeMs);
+      writer.uint32(224).int64(message.startTimeMs);
     }
-    if (message.zea !== undefined) {
-      writer.uint32(232).int32(message.zea);
+    if (message.timeSinceLastSeek !== undefined) {
+      writer.uint32(232).int64(message.timeSinceLastSeek);
     }
     if (message.visibility !== undefined) {
       writer.uint32(272).int32(message.visibility);
@@ -547,8 +547,8 @@ export const MediaInfo: MessageFns<MediaInfo> = {
     if (message.mediaCapabilities !== undefined) {
       MediaInfo_MediaCapabilities.encode(message.mediaCapabilities, writer.uint32(306).fork()).join();
     }
-    if (message.yea !== undefined) {
-      writer.uint32(312).int32(message.yea);
+    if (message.lact !== undefined) {
+      writer.uint32(312).int32(message.lact);
     }
     if (message.mediaType !== undefined) {
       writer.uint32(320).int32(message.mediaType);
@@ -595,11 +595,11 @@ export const MediaInfo: MessageFns<MediaInfo> = {
     if (message.sabrLicenseConstraint !== undefined) {
       writer.uint32(506).bytes(message.sabrLicenseConstraint);
     }
-    if (message.l2 !== undefined) {
-      writer.uint32(512).int32(message.l2);
+    if (message.allowProximaLiveLatency !== undefined) {
+      writer.uint32(512).int32(message.allowProximaLiveLatency);
     }
-    if (message.k2 !== undefined) {
-      writer.uint32(528).int32(message.k2);
+    if (message.sabrForceProxima !== undefined) {
+      writer.uint32(528).int32(message.sabrForceProxima);
     }
     if (message.Tqb !== undefined) {
       writer.uint32(536).int32(message.Tqb);
@@ -636,7 +636,7 @@ export const MediaInfo: MessageFns<MediaInfo> = {
             break;
           }
 
-          message.videoWidth = reader.int32();
+          message.quality = reader.int32();
           continue;
         case 17:
           if (tag !== 136) {
@@ -650,14 +650,14 @@ export const MediaInfo: MessageFns<MediaInfo> = {
             break;
           }
 
-          message.B7 = reader.int32();
+          message.adjustedWidth = reader.int32();
           continue;
         case 19:
           if (tag !== 152) {
             break;
           }
 
-          message.A7 = reader.int32();
+          message.adjustedHeight = reader.int32();
           continue;
         case 21:
           if (tag !== 168) {
@@ -678,14 +678,14 @@ export const MediaInfo: MessageFns<MediaInfo> = {
             break;
           }
 
-          message.startTimeMs = reader.int32();
+          message.startTimeMs = longToNumber(reader.int64());
           continue;
         case 29:
           if (tag !== 232) {
             break;
           }
 
-          message.zea = reader.int32();
+          message.timeSinceLastSeek = longToNumber(reader.int64());
           continue;
         case 34:
           if (tag !== 272) {
@@ -713,7 +713,7 @@ export const MediaInfo: MessageFns<MediaInfo> = {
             break;
           }
 
-          message.yea = reader.int32();
+          message.lact = reader.int32();
           continue;
         case 40:
           if (tag !== 320) {
@@ -825,14 +825,14 @@ export const MediaInfo: MessageFns<MediaInfo> = {
             break;
           }
 
-          message.l2 = reader.int32();
+          message.allowProximaLiveLatency = reader.int32();
           continue;
         case 66:
           if (tag !== 528) {
             break;
           }
 
-          message.k2 = reader.int32();
+          message.sabrForceProxima = reader.int32();
           continue;
         case 67:
           if (tag !== 536) {
@@ -865,22 +865,22 @@ export const MediaInfo: MessageFns<MediaInfo> = {
       lastManualDirection: isSet(object.lastManualDirection)
         ? globalThis.Number(object.lastManualDirection)
         : undefined,
-      videoWidth: isSet(object.videoWidth) ? globalThis.Number(object.videoWidth) : undefined,
+      quality: isSet(object.quality) ? globalThis.Number(object.quality) : undefined,
       detailedNetworkType: isSet(object.detailedNetworkType)
         ? globalThis.Number(object.detailedNetworkType)
         : undefined,
-      B7: isSet(object.B7) ? globalThis.Number(object.B7) : undefined,
-      A7: isSet(object.A7) ? globalThis.Number(object.A7) : undefined,
+      adjustedWidth: isSet(object.adjustedWidth) ? globalThis.Number(object.adjustedWidth) : undefined,
+      adjustedHeight: isSet(object.adjustedHeight) ? globalThis.Number(object.adjustedHeight) : undefined,
       iea: isSet(object.iea) ? globalThis.Number(object.iea) : undefined,
       r7: isSet(object.r7) ? globalThis.Number(object.r7) : undefined,
       startTimeMs: isSet(object.startTimeMs) ? globalThis.Number(object.startTimeMs) : undefined,
-      zea: isSet(object.zea) ? globalThis.Number(object.zea) : undefined,
+      timeSinceLastSeek: isSet(object.timeSinceLastSeek) ? globalThis.Number(object.timeSinceLastSeek) : undefined,
       visibility: isSet(object.visibility) ? globalThis.Number(object.visibility) : undefined,
       d8: isSet(object.d8) ? globalThis.Number(object.d8) : undefined,
       mediaCapabilities: isSet(object.mediaCapabilities)
         ? MediaInfo_MediaCapabilities.fromJSON(object.mediaCapabilities)
         : undefined,
-      yea: isSet(object.yea) ? globalThis.Number(object.yea) : undefined,
+      lact: isSet(object.lact) ? globalThis.Number(object.lact) : undefined,
       mediaType: isSet(object.mediaType) ? mediaInfo_MediaTypeFromJSON(object.mediaType) : undefined,
       playerState: isSet(object.playerState) ? globalThis.Number(object.playerState) : undefined,
       a8: isSet(object.a8) ? globalThis.Boolean(object.a8) : undefined,
@@ -898,8 +898,10 @@ export const MediaInfo: MessageFns<MediaInfo> = {
       sabrLicenseConstraint: isSet(object.sabrLicenseConstraint)
         ? bytesFromBase64(object.sabrLicenseConstraint)
         : undefined,
-      l2: isSet(object.l2) ? globalThis.Number(object.l2) : undefined,
-      k2: isSet(object.k2) ? globalThis.Number(object.k2) : undefined,
+      allowProximaLiveLatency: isSet(object.allowProximaLiveLatency)
+        ? globalThis.Number(object.allowProximaLiveLatency)
+        : undefined,
+      sabrForceProxima: isSet(object.sabrForceProxima) ? globalThis.Number(object.sabrForceProxima) : undefined,
       Tqb: isSet(object.Tqb) ? globalThis.Number(object.Tqb) : undefined,
       c: isSet(object.c) ? globalThis.Number(object.c) : undefined,
     };
@@ -913,17 +915,17 @@ export const MediaInfo: MessageFns<MediaInfo> = {
     if (message.lastManualDirection !== undefined) {
       obj.lastManualDirection = Math.round(message.lastManualDirection);
     }
-    if (message.videoWidth !== undefined) {
-      obj.videoWidth = Math.round(message.videoWidth);
+    if (message.quality !== undefined) {
+      obj.quality = Math.round(message.quality);
     }
     if (message.detailedNetworkType !== undefined) {
       obj.detailedNetworkType = Math.round(message.detailedNetworkType);
     }
-    if (message.B7 !== undefined) {
-      obj.B7 = Math.round(message.B7);
+    if (message.adjustedWidth !== undefined) {
+      obj.adjustedWidth = Math.round(message.adjustedWidth);
     }
-    if (message.A7 !== undefined) {
-      obj.A7 = Math.round(message.A7);
+    if (message.adjustedHeight !== undefined) {
+      obj.adjustedHeight = Math.round(message.adjustedHeight);
     }
     if (message.iea !== undefined) {
       obj.iea = Math.round(message.iea);
@@ -934,8 +936,8 @@ export const MediaInfo: MessageFns<MediaInfo> = {
     if (message.startTimeMs !== undefined) {
       obj.startTimeMs = Math.round(message.startTimeMs);
     }
-    if (message.zea !== undefined) {
-      obj.zea = Math.round(message.zea);
+    if (message.timeSinceLastSeek !== undefined) {
+      obj.timeSinceLastSeek = Math.round(message.timeSinceLastSeek);
     }
     if (message.visibility !== undefined) {
       obj.visibility = Math.round(message.visibility);
@@ -946,8 +948,8 @@ export const MediaInfo: MessageFns<MediaInfo> = {
     if (message.mediaCapabilities !== undefined) {
       obj.mediaCapabilities = MediaInfo_MediaCapabilities.toJSON(message.mediaCapabilities);
     }
-    if (message.yea !== undefined) {
-      obj.yea = Math.round(message.yea);
+    if (message.lact !== undefined) {
+      obj.lact = Math.round(message.lact);
     }
     if (message.mediaType !== undefined) {
       obj.mediaType = mediaInfo_MediaTypeToJSON(message.mediaType);
@@ -994,11 +996,11 @@ export const MediaInfo: MessageFns<MediaInfo> = {
     if (message.sabrLicenseConstraint !== undefined) {
       obj.sabrLicenseConstraint = base64FromBytes(message.sabrLicenseConstraint);
     }
-    if (message.l2 !== undefined) {
-      obj.l2 = Math.round(message.l2);
+    if (message.allowProximaLiveLatency !== undefined) {
+      obj.allowProximaLiveLatency = Math.round(message.allowProximaLiveLatency);
     }
-    if (message.k2 !== undefined) {
-      obj.k2 = Math.round(message.k2);
+    if (message.sabrForceProxima !== undefined) {
+      obj.sabrForceProxima = Math.round(message.sabrForceProxima);
     }
     if (message.Tqb !== undefined) {
       obj.Tqb = Math.round(message.Tqb);
@@ -1016,20 +1018,20 @@ export const MediaInfo: MessageFns<MediaInfo> = {
     const message = createBaseMediaInfo();
     message.timeSinceLastManualFormatSelectionMs = object.timeSinceLastManualFormatSelectionMs ?? undefined;
     message.lastManualDirection = object.lastManualDirection ?? undefined;
-    message.videoWidth = object.videoWidth ?? undefined;
+    message.quality = object.quality ?? undefined;
     message.detailedNetworkType = object.detailedNetworkType ?? undefined;
-    message.B7 = object.B7 ?? undefined;
-    message.A7 = object.A7 ?? undefined;
+    message.adjustedWidth = object.adjustedWidth ?? undefined;
+    message.adjustedHeight = object.adjustedHeight ?? undefined;
     message.iea = object.iea ?? undefined;
     message.r7 = object.r7 ?? undefined;
     message.startTimeMs = object.startTimeMs ?? undefined;
-    message.zea = object.zea ?? undefined;
+    message.timeSinceLastSeek = object.timeSinceLastSeek ?? undefined;
     message.visibility = object.visibility ?? undefined;
     message.d8 = object.d8 ?? undefined;
     message.mediaCapabilities = (object.mediaCapabilities !== undefined && object.mediaCapabilities !== null)
       ? MediaInfo_MediaCapabilities.fromPartial(object.mediaCapabilities)
       : undefined;
-    message.yea = object.yea ?? undefined;
+    message.lact = object.lact ?? undefined;
     message.mediaType = object.mediaType ?? undefined;
     message.playerState = object.playerState ?? undefined;
     message.a8 = object.a8 ?? undefined;
@@ -1045,8 +1047,8 @@ export const MediaInfo: MessageFns<MediaInfo> = {
     message.isPrefetch = object.isPrefetch ?? undefined;
     message.Iz = object.Iz ?? undefined;
     message.sabrLicenseConstraint = object.sabrLicenseConstraint ?? undefined;
-    message.l2 = object.l2 ?? undefined;
-    message.k2 = object.k2 ?? undefined;
+    message.allowProximaLiveLatency = object.allowProximaLiveLatency ?? undefined;
+    message.sabrForceProxima = object.sabrForceProxima ?? undefined;
     message.Tqb = object.Tqb ?? undefined;
     message.c = object.c ?? undefined;
     return message;
