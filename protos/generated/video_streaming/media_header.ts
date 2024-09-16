@@ -7,6 +7,7 @@
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { FormatId } from "../misc/common.js";
+import { TimeRange } from "./time_range.js";
 
 export const protobufPackage = "video_streaming";
 
@@ -25,7 +26,7 @@ export interface MediaHeader {
   durationMs?: number | undefined;
   formatId?: FormatId | undefined;
   contentLength?: number | undefined;
-  timeRange?: MediaHeader_TimeRange | undefined;
+  timeRange?: TimeRange | undefined;
 }
 
 export enum MediaHeader_Compression {
@@ -65,12 +66,6 @@ export function mediaHeader_CompressionToJSON(object: MediaHeader_Compression): 
     default:
       return "UNRECOGNIZED";
   }
-}
-
-export interface MediaHeader_TimeRange {
-  start?: number | undefined;
-  duration?: number | undefined;
-  timescale?: number | undefined;
 }
 
 function createBaseMediaHeader(): MediaHeader {
@@ -138,7 +133,7 @@ export const MediaHeader: MessageFns<MediaHeader> = {
       writer.uint32(112).int64(message.contentLength);
     }
     if (message.timeRange !== undefined) {
-      MediaHeader_TimeRange.encode(message.timeRange, writer.uint32(122).fork()).join();
+      TimeRange.encode(message.timeRange, writer.uint32(122).fork()).join();
     }
     return writer;
   },
@@ -253,7 +248,7 @@ export const MediaHeader: MessageFns<MediaHeader> = {
             break;
           }
 
-          message.timeRange = MediaHeader_TimeRange.decode(reader, reader.uint32());
+          message.timeRange = TimeRange.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -280,7 +275,7 @@ export const MediaHeader: MessageFns<MediaHeader> = {
       durationMs: isSet(object.durationMs) ? globalThis.Number(object.durationMs) : undefined,
       formatId: isSet(object.formatId) ? FormatId.fromJSON(object.formatId) : undefined,
       contentLength: isSet(object.contentLength) ? globalThis.Number(object.contentLength) : undefined,
-      timeRange: isSet(object.timeRange) ? MediaHeader_TimeRange.fromJSON(object.timeRange) : undefined,
+      timeRange: isSet(object.timeRange) ? TimeRange.fromJSON(object.timeRange) : undefined,
     };
   },
 
@@ -329,7 +324,7 @@ export const MediaHeader: MessageFns<MediaHeader> = {
       obj.contentLength = Math.round(message.contentLength);
     }
     if (message.timeRange !== undefined) {
-      obj.timeRange = MediaHeader_TimeRange.toJSON(message.timeRange);
+      obj.timeRange = TimeRange.toJSON(message.timeRange);
     }
     return obj;
   },
@@ -356,97 +351,8 @@ export const MediaHeader: MessageFns<MediaHeader> = {
       : undefined;
     message.contentLength = object.contentLength ?? undefined;
     message.timeRange = (object.timeRange !== undefined && object.timeRange !== null)
-      ? MediaHeader_TimeRange.fromPartial(object.timeRange)
+      ? TimeRange.fromPartial(object.timeRange)
       : undefined;
-    return message;
-  },
-};
-
-function createBaseMediaHeader_TimeRange(): MediaHeader_TimeRange {
-  return { start: undefined, duration: undefined, timescale: undefined };
-}
-
-export const MediaHeader_TimeRange: MessageFns<MediaHeader_TimeRange> = {
-  encode(message: MediaHeader_TimeRange, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.start !== undefined) {
-      writer.uint32(8).int64(message.start);
-    }
-    if (message.duration !== undefined) {
-      writer.uint32(16).int64(message.duration);
-    }
-    if (message.timescale !== undefined) {
-      writer.uint32(24).int32(message.timescale);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): MediaHeader_TimeRange {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMediaHeader_TimeRange();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 8) {
-            break;
-          }
-
-          message.start = longToNumber(reader.int64());
-          continue;
-        case 2:
-          if (tag !== 16) {
-            break;
-          }
-
-          message.duration = longToNumber(reader.int64());
-          continue;
-        case 3:
-          if (tag !== 24) {
-            break;
-          }
-
-          message.timescale = reader.int32();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): MediaHeader_TimeRange {
-    return {
-      start: isSet(object.start) ? globalThis.Number(object.start) : undefined,
-      duration: isSet(object.duration) ? globalThis.Number(object.duration) : undefined,
-      timescale: isSet(object.timescale) ? globalThis.Number(object.timescale) : undefined,
-    };
-  },
-
-  toJSON(message: MediaHeader_TimeRange): unknown {
-    const obj: any = {};
-    if (message.start !== undefined) {
-      obj.start = Math.round(message.start);
-    }
-    if (message.duration !== undefined) {
-      obj.duration = Math.round(message.duration);
-    }
-    if (message.timescale !== undefined) {
-      obj.timescale = Math.round(message.timescale);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MediaHeader_TimeRange>, I>>(base?: I): MediaHeader_TimeRange {
-    return MediaHeader_TimeRange.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MediaHeader_TimeRange>, I>>(object: I): MediaHeader_TimeRange {
-    const message = createBaseMediaHeader_TimeRange();
-    message.start = object.start ?? undefined;
-    message.duration = object.duration ?? undefined;
-    message.timescale = object.timescale ?? undefined;
     return message;
   },
 };

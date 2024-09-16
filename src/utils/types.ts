@@ -1,8 +1,8 @@
 import type { FormatId } from '../../protos/generated/misc/common.js';
-import type { MediaHeader_TimeRange } from '../../protos/generated/video_streaming/media_header.js';
 import type { SabrError } from '../../protos/generated/video_streaming/sabr_error.js';
 import type { SabrRedirect } from '../../protos/generated/video_streaming/sabr_redirect.js';
 import type { StreamProtectionStatus } from '../../protos/generated/video_streaming/stream_protection_status.js';
+import type { TimeRange } from '../../protos/generated/video_streaming/time_range.js';
 import type { Zpa, MediaInfo } from '../../protos/generated/video_streaming/video_playback_abr_request.js';
 import type { ChunkedDataBuffer } from '../core/index.js';
 
@@ -36,7 +36,7 @@ export type Sequence = {
   startDataRange?: number;
   sequenceNumber?: number;
   contentLength?: number;
-  timeRange?: MediaHeader_TimeRange;
+  timeRange?: TimeRange;
 }
 
 export type InitializedFormat = {
