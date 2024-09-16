@@ -15,6 +15,6 @@
   "dependencies": {
     "bgutils-js": "^2.0.1",
     "shaka-player": "^4.11.2",
-    "youtubei.js": "github:LuanRT/YouTube.js#do-not-merge/ump-debugging"
+    "youtubei.js": "github:LuanRT/YouTube.js"
   }
 }

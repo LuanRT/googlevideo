@@ -1,6 +1,6 @@
 import { BG } from 'bgutils-js';
 import GoogleVideo, { PART, Protos } from '../../../..';
-import { Innertube, Proto, UniversalCache, Utils, YTNodes } from 'youtubei.js/web';
+import { Innertube, ProtoUtils, UniversalCache, Utils, YTNodes } from 'youtubei.js/web';
 
 // @ts-expect-error - x
 import shaka from 'shaka-player/dist/shaka-player.ui';
@@ -97,7 +97,7 @@ async function main() {
   //   Expiry_date: '2024-08-13T04:41:34.757Z'
   // };
 
-  const visitorData = Proto.encodeVisitorData(Utils.generateRandomString(11), Math.floor(Date.now() / 1000));
+  const visitorData = ProtoUtils.encodeVisitorData(Utils.generateRandomString(11), Math.floor(Date.now() / 1000));
   const poToken = await getPo(visitorData);
 
   let yt = await Innertube.create({
