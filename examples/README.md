@@ -23,6 +23,14 @@ cd examples/downloader
 npm install
 npx tsx main.ts
 
-## Example with ffmpeg
+# Example with ffmpeg
 npx tsx ffmpeg-example.ts
+```
+
+## "Onesie" Request Example
+
+```bash
+cd examples/onesie-request
+npm install
+npx tsx main.ts
 ```
