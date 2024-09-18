@@ -3,7 +3,8 @@ import type { SabrError } from '../../protos/generated/video_streaming/sabr_erro
 import type { SabrRedirect } from '../../protos/generated/video_streaming/sabr_redirect.js';
 import type { StreamProtectionStatus } from '../../protos/generated/video_streaming/stream_protection_status.js';
 import type { TimeRange } from '../../protos/generated/video_streaming/time_range.js';
-import type { Zpa, MediaInfo } from '../../protos/generated/video_streaming/video_playback_abr_request.js';
+import type { Zpa } from '../../protos/generated/video_streaming/video_playback_abr_request.js';
+import type { MediaInfo } from '../../protos/generated/video_streaming/media_info.js';
 import type { ChunkedDataBuffer } from '../core/index.js';
 
 export type Part = {

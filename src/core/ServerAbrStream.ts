@@ -1,7 +1,8 @@
 import { UMP } from './UMP.js';
-import { EventEmitterLike, PART, base64ToU8, getFormatKey } from '../utils/index.js';
+import { ChunkedDataBuffer } from './ChunkedDataBuffer.js';
+import { EventEmitterLike, PART, QUALITY, base64ToU8, getFormatKey } from '../utils/index.js';
 
-import { MediaInfo_MediaType } from '../../protos/generated/video_streaming/video_playback_abr_request.js';
+import { MediaInfo_MediaType } from '../../protos/generated/video_streaming/media_info.js';
 import { VideoPlaybackAbrRequest } from '../../protos/generated/video_streaming/video_playback_abr_request.js';
 import { MediaHeader } from '../../protos/generated/video_streaming/media_header.js';
 import { NextRequestPolicy } from '../../protos/generated/video_streaming/next_request_policy.js';
@@ -12,11 +13,10 @@ import { StreamProtectionStatus } from '../../protos/generated/video_streaming/s
 import { PlaybackCookie } from '../../protos/generated/video_streaming/playback_cookie.js';
 
 import type { FormatId } from '../../protos/generated/misc/common.js';
-import type { MediaInfo } from '../../protos/generated/video_streaming/video_playback_abr_request.js';
+import type { MediaInfo } from '../../protos/generated/video_streaming/media_info.js';
 import type { FetchFunction, InitializedFormat, InitOptions, MediaArgs, ServerAbrResponse, ServerAbrStreamOptions } from '../utils/types.js';
-import { ChunkedDataBuffer } from './ChunkedDataBuffer.js';
 
-const DEFAULT_VIDEO_WIDTH = 720;
+const DEFAULT_QUALITY = QUALITY.HD720;
 
 export class ServerAbrStream extends EventEmitterLike {
   private fetchFunction: FetchFunction;
@@ -65,8 +65,8 @@ export class ServerAbrStream extends EventEmitterLike {
     const mediaInfo: MediaInfo = {
       lastManualDirection: 0,
       timeSinceLastManualFormatSelectionMs: 0,
-      quality: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_VIDEO_WIDTH,
-      iea: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_VIDEO_WIDTH,
+      quality: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_QUALITY,
+      iea: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_QUALITY,
       startTimeMs: 0,
       visibility: 0,
       mediaType: MediaInfo_MediaType.MEDIA_TYPE_DEFAULT,
@@ -130,7 +130,7 @@ export class ServerAbrStream extends EventEmitterLike {
       audioFormatIds: audioFormatIds,
       videoFormatIds: videoFormatIds,
       videoPlaybackUstreamerConfig: base64ToU8(this.videoPlaybackUstreamerConfig),
-      sc: {
+      streamerContext: {
         field5: [],
         field6: [],
         poToken: this.poToken ? base64ToU8(this.poToken) : undefined,
@@ -216,8 +216,29 @@ export class ServerAbrStream extends EventEmitterLike {
 
     const formatKey = getFormatKey(mediaHeader.formatId);
 
-    const currentFormat = this.formatsByKey.get(formatKey);
-    if (!currentFormat) return;
+    let currentFormat = this.formatsByKey.get(formatKey);
+    if (!currentFormat) {
+      this.initializedFormats.push({
+        formatId: mediaHeader.formatId,
+        formatKey,
+        durationMs: mediaHeader.durationMs,
+        mimeType: undefined,
+        sequenceCount: undefined,
+        sequenceList: [],
+        mediaChunks: [],
+        _state: {
+          formatId: mediaHeader.formatId,
+          startTimeMs: 0,
+          durationMs: 0,
+          field4: 1,
+          sequenceNumber: 0
+        }
+      });
+
+      this.formatsByKey.set(formatKey, this.initializedFormats[this.initializedFormats.length - 1]);
+
+      currentFormat = this.formatsByKey.get(formatKey)!;
+    }
 
     // FIXME: This is a hacky workaround to prevent duplicate sequences from being added. This should be fixed in the future (preferably by figuring out how to make the server not send duplicates).
     if (mediaHeader.sequenceNumber !== undefined && this.previousSequences.get(formatKey)?.includes(mediaHeader.sequenceNumber))

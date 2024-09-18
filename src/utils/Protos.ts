@@ -8,3 +8,14 @@ export { SabrError } from '../../protos/generated/video_streaming/sabr_error.js'
 export { SabrRedirect } from '../../protos/generated/video_streaming/sabr_redirect.js';
 export { StreamProtectionStatus } from '../../protos/generated/video_streaming/stream_protection_status.js';
 export { VideoPlaybackAbrRequest } from '../../protos/generated/video_streaming/video_playback_abr_request.js';
+export { OnesieRequest } from '../../protos/generated/video_streaming/onesie_request.js';
+export { EncryptedRequest } from '../../protos/generated/video_streaming/encrypted_request.js';
+export { OnesieHeader } from '../../protos/generated/video_streaming/onesie_header.js';
+export { OnesieHeaderType } from '../../protos/generated/video_streaming/onesie_header_type.js';
+export { OnesieInnertubeRequest } from '../../protos/generated/video_streaming/onesie_innertube_request.js';
+export { OnesieInnertubeResponse } from '../../protos/generated/video_streaming/onesie_innertube_response.js';
+export { MediaInfo } from '../../protos/generated/video_streaming/media_info.js';
+export { StreamerContext } from '../../protos/generated/video_streaming/streamer_context.js';
+export { ProxyStatus } from '../../protos/generated/video_streaming/proxy_status.js';
+export { MediaCapabilities } from '../../protos/generated/video_streaming/media_capabilities.js';
+export { CryptoParams } from '../../protos/generated/video_streaming/crypto_params.js';

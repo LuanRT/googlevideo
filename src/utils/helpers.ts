@@ -1,19 +1,20 @@
 import type { FormatId } from '../../protos/generated/misc/common.js';
 
-export const qualities = {
-  auto: 0,
-  tiny: 144,
-  small: 240,
-  medium: 360,
-  light: 144,
-  large: 480,
-  hd720: 720,
-  hd1080: 1080,
-  hd1440: 1440,
-  hd2160: 2160,
-  hd2880: 2880,
-  highres: 4320
-};
+export enum QUALITY {
+  AUTO = 0,
+  TINY = 144,
+  SMALL = 240,
+  MEDIUM = 360,
+  // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
+  LIGHT = 144,
+  LARGE = 480,
+  HD720 = 720,
+  HD1080 = 1080,
+  HD1440 = 1440,
+  HD2160 = 2160,
+  HD2880 = 2880,
+  HIGHRES= 4320
+}
 
 export enum PART {
   ONESIE_HEADER = 10,
@@ -55,7 +56,7 @@ export enum PART {
   PREWARM_CONNECTION = 65
 }
 
-export { MediaInfo_MediaType as MediaType } from '../../protos/generated/video_streaming/video_playback_abr_request.js';
+export { MediaInfo_MediaType as MediaType } from '../../protos/generated/video_streaming/media_info.js';
 
 export function u8ToBase64(u8: Uint8Array): string {
   return btoa(String.fromCharCode.apply(null, Array.from(u8)));
