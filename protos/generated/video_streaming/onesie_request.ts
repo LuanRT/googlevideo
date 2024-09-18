@@ -10,7 +10,6 @@ import { HttpHeader } from "../misc/common.js";
 
 export const protobufPackage = "video_streaming";
 
-/** @TODO: Add the rest of the request. */
 export interface OnesieRequest {
   url?: string | undefined;
   headers: HttpHeader[];

@@ -1,0 +1,48 @@
+syntax = "proto3";
+package video_streaming;
+
+import "video_streaming/media_capabilities.proto";
+
+message MediaInfo {
+  optional int32 time_since_last_manual_format_selection_ms = 13;
+  optional int32 last_manual_direction = 14;
+  optional int32 quality = 16;
+  optional int32 detailed_network_type = 17;
+  optional int32 max_width = 18;
+  optional int32 max_height = 19;
+  optional int32 iea = 21;
+  optional int32 r7 = 23;
+  optional int64 start_time_ms = 28;
+  optional int64 time_since_last_seek = 29;
+  optional int32 visibility = 34;
+  optional int64 d8 = 36;
+  optional MediaCapabilities media_capabilities = 38;
+  optional int32 lact = 39;
+  // optional int32 Gw = 40;
+  optional MediaType media_type = 40;
+  optional int32 player_state = 44;
+  optional bool a8 = 46;
+  optional int32 Jda = 48;
+  optional int32 qw = 50;
+  optional int32 Ky = 51;
+  optional int32 Eq = 54;
+  optional bool l = 56;
+  optional int32 G7 = 57;
+  optional bool No = 58;
+  optional int32 qj = 59;
+  optional int32 Hx = 60;
+  optional bool is_prefetch = 61;
+  optional int32 Iz = 62;
+  optional bytes sabr_license_constraint = 63;
+  optional int32 allow_proxima_live_latency = 64;
+  optional int32 sabr_force_proxima = 66;
+  optional int32 Tqb = 67;
+  optional int32 c = 68;
+
+  enum MediaType {
+    MEDIA_TYPE_DEFAULT = 0;
+    MEDIA_TYPE_AUDIO = 1;
+    MEDIA_TYPE_VIDEO = 2;
+    USE_SERVER_FORMAT_FILTER = 3;
+  }
+}

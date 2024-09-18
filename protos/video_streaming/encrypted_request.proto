@@ -1,0 +1,13 @@
+syntax = "proto3";
+package video_streaming;
+
+message EncryptedRequest {
+  optional bytes encrypted_onesie_request = 2;
+  optional bytes encrypted_client_key = 5;
+  optional bytes iv = 6;
+  optional bytes hmac = 7;
+  optional bool YP = 10;
+  optional bool pM = 13;
+  optional bool enable_compression = 14;
+  optional bool TQ = 17;
+}

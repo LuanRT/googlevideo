@@ -1,0 +1,13 @@
+syntax = "proto3";
+package video_streaming;
+
+message CryptoParams {
+  enum CompressionType {
+		VAL_0 = 0;
+		VAL_1 = 1;
+		VAL_2 = 2;
+	}
+	optional bytes hmac = 4;
+	optional bytes iv = 5;
+	optional CompressionType compression_type = 6;
+}

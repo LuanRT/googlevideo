@@ -1,0 +1,13 @@
+syntax = "proto3";
+package video_streaming;
+
+import "video_streaming/media_info.proto";
+import "video_streaming/encrypted_request.proto";
+import "video_streaming/streamer_context.proto";
+
+message OnesieInnertubeRequest {
+  optional MediaInfo media_info = 2;
+  optional EncryptedRequest encrypted_request = 3;
+  optional bytes onesie_ustreamer_config = 4;
+  optional StreamerContext streamer_context = 10; 
+}
