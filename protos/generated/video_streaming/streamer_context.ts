@@ -20,6 +20,45 @@ export interface StreamerContext {
   field8?: StreamerContext_Gqa | undefined;
 }
 
+export enum StreamerContext_ClientFormFactor {
+  UNKNOWN_FORM_FACTOR = 0,
+  FORM_FACTOR_VAL1 = 1,
+  FORM_FACTOR_VAL2 = 2,
+  UNRECOGNIZED = -1,
+}
+
+export function streamerContext_ClientFormFactorFromJSON(object: any): StreamerContext_ClientFormFactor {
+  switch (object) {
+    case 0:
+    case "UNKNOWN_FORM_FACTOR":
+      return StreamerContext_ClientFormFactor.UNKNOWN_FORM_FACTOR;
+    case 1:
+    case "FORM_FACTOR_VAL1":
+      return StreamerContext_ClientFormFactor.FORM_FACTOR_VAL1;
+    case 2:
+    case "FORM_FACTOR_VAL2":
+      return StreamerContext_ClientFormFactor.FORM_FACTOR_VAL2;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return StreamerContext_ClientFormFactor.UNRECOGNIZED;
+  }
+}
+
+export function streamerContext_ClientFormFactorToJSON(object: StreamerContext_ClientFormFactor): string {
+  switch (object) {
+    case StreamerContext_ClientFormFactor.UNKNOWN_FORM_FACTOR:
+      return "UNKNOWN_FORM_FACTOR";
+    case StreamerContext_ClientFormFactor.FORM_FACTOR_VAL1:
+      return "FORM_FACTOR_VAL1";
+    case StreamerContext_ClientFormFactor.FORM_FACTOR_VAL2:
+      return "FORM_FACTOR_VAL2";
+    case StreamerContext_ClientFormFactor.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
 export interface StreamerContext_ClientInfo {
   deviceMake?: string | undefined;
   deviceModel?: string | undefined;
@@ -27,6 +66,35 @@ export interface StreamerContext_ClientInfo {
   clientVersion?: string | undefined;
   osName?: string | undefined;
   osVersion?: string | undefined;
+  acceptLanguage?: string | undefined;
+  acceptRegion?: string | undefined;
+  screenWidthPoints?: number | undefined;
+  screenHeightPoints?: number | undefined;
+  screenWidthInches?: number | undefined;
+  screenHeightInches?: number | undefined;
+  screenPixelDensity?: number | undefined;
+  clientFormFactor?:
+    | StreamerContext_ClientFormFactor
+    | undefined;
+  /** e.g. 243731017 */
+  gmscoreVersionCode?: number | undefined;
+  windowWidthPoints?: number | undefined;
+  windowHeightPoints?: number | undefined;
+  androidSdkVersion?: number | undefined;
+  screenDensityFloat?: number | undefined;
+  utcOffsetMinutes?: number | undefined;
+  timeZone?:
+    | string
+    | undefined;
+  /** e.g. "qcom;taro" */
+  chipset?: string | undefined;
+  glDeviceInfo?: StreamerContext_GLDeviceInfo | undefined;
+}
+
+export interface StreamerContext_GLDeviceInfo {
+  glRenderer?: string | undefined;
+  glEsVersionMajor?: number | undefined;
+  glEsVersionMinor?: number | undefined;
 }
 
 export interface StreamerContext_Fqa {
@@ -243,6 +311,23 @@ function createBaseStreamerContext_ClientInfo(): StreamerContext_ClientInfo {
     clientVersion: undefined,
     osName: undefined,
     osVersion: undefined,
+    acceptLanguage: undefined,
+    acceptRegion: undefined,
+    screenWidthPoints: undefined,
+    screenHeightPoints: undefined,
+    screenWidthInches: undefined,
+    screenHeightInches: undefined,
+    screenPixelDensity: undefined,
+    clientFormFactor: undefined,
+    gmscoreVersionCode: undefined,
+    windowWidthPoints: undefined,
+    windowHeightPoints: undefined,
+    androidSdkVersion: undefined,
+    screenDensityFloat: undefined,
+    utcOffsetMinutes: undefined,
+    timeZone: undefined,
+    chipset: undefined,
+    glDeviceInfo: undefined,
   };
 }
 
@@ -265,6 +350,57 @@ export const StreamerContext_ClientInfo: MessageFns<StreamerContext_ClientInfo> 
     }
     if (message.osVersion !== undefined) {
       writer.uint32(154).string(message.osVersion);
+    }
+    if (message.acceptLanguage !== undefined) {
+      writer.uint32(170).string(message.acceptLanguage);
+    }
+    if (message.acceptRegion !== undefined) {
+      writer.uint32(178).string(message.acceptRegion);
+    }
+    if (message.screenWidthPoints !== undefined) {
+      writer.uint32(296).int32(message.screenWidthPoints);
+    }
+    if (message.screenHeightPoints !== undefined) {
+      writer.uint32(304).int32(message.screenHeightPoints);
+    }
+    if (message.screenWidthInches !== undefined) {
+      writer.uint32(317).float(message.screenWidthInches);
+    }
+    if (message.screenHeightInches !== undefined) {
+      writer.uint32(325).float(message.screenHeightInches);
+    }
+    if (message.screenPixelDensity !== undefined) {
+      writer.uint32(328).int32(message.screenPixelDensity);
+    }
+    if (message.clientFormFactor !== undefined) {
+      writer.uint32(368).int32(message.clientFormFactor);
+    }
+    if (message.gmscoreVersionCode !== undefined) {
+      writer.uint32(400).int32(message.gmscoreVersionCode);
+    }
+    if (message.windowWidthPoints !== undefined) {
+      writer.uint32(440).int32(message.windowWidthPoints);
+    }
+    if (message.windowHeightPoints !== undefined) {
+      writer.uint32(448).int32(message.windowHeightPoints);
+    }
+    if (message.androidSdkVersion !== undefined) {
+      writer.uint32(512).int32(message.androidSdkVersion);
+    }
+    if (message.screenDensityFloat !== undefined) {
+      writer.uint32(525).float(message.screenDensityFloat);
+    }
+    if (message.utcOffsetMinutes !== undefined) {
+      writer.uint32(536).int64(message.utcOffsetMinutes);
+    }
+    if (message.timeZone !== undefined) {
+      writer.uint32(642).string(message.timeZone);
+    }
+    if (message.chipset !== undefined) {
+      writer.uint32(738).string(message.chipset);
+    }
+    if (message.glDeviceInfo !== undefined) {
+      StreamerContext_GLDeviceInfo.encode(message.glDeviceInfo, writer.uint32(818).fork()).join();
     }
     return writer;
   },
@@ -318,6 +454,125 @@ export const StreamerContext_ClientInfo: MessageFns<StreamerContext_ClientInfo> 
 
           message.osVersion = reader.string();
           continue;
+        case 21:
+          if (tag !== 170) {
+            break;
+          }
+
+          message.acceptLanguage = reader.string();
+          continue;
+        case 22:
+          if (tag !== 178) {
+            break;
+          }
+
+          message.acceptRegion = reader.string();
+          continue;
+        case 37:
+          if (tag !== 296) {
+            break;
+          }
+
+          message.screenWidthPoints = reader.int32();
+          continue;
+        case 38:
+          if (tag !== 304) {
+            break;
+          }
+
+          message.screenHeightPoints = reader.int32();
+          continue;
+        case 39:
+          if (tag !== 317) {
+            break;
+          }
+
+          message.screenWidthInches = reader.float();
+          continue;
+        case 40:
+          if (tag !== 325) {
+            break;
+          }
+
+          message.screenHeightInches = reader.float();
+          continue;
+        case 41:
+          if (tag !== 328) {
+            break;
+          }
+
+          message.screenPixelDensity = reader.int32();
+          continue;
+        case 46:
+          if (tag !== 368) {
+            break;
+          }
+
+          message.clientFormFactor = reader.int32() as any;
+          continue;
+        case 50:
+          if (tag !== 400) {
+            break;
+          }
+
+          message.gmscoreVersionCode = reader.int32();
+          continue;
+        case 55:
+          if (tag !== 440) {
+            break;
+          }
+
+          message.windowWidthPoints = reader.int32();
+          continue;
+        case 56:
+          if (tag !== 448) {
+            break;
+          }
+
+          message.windowHeightPoints = reader.int32();
+          continue;
+        case 64:
+          if (tag !== 512) {
+            break;
+          }
+
+          message.androidSdkVersion = reader.int32();
+          continue;
+        case 65:
+          if (tag !== 525) {
+            break;
+          }
+
+          message.screenDensityFloat = reader.float();
+          continue;
+        case 67:
+          if (tag !== 536) {
+            break;
+          }
+
+          message.utcOffsetMinutes = longToNumber(reader.int64());
+          continue;
+        case 80:
+          if (tag !== 642) {
+            break;
+          }
+
+          message.timeZone = reader.string();
+          continue;
+        case 92:
+          if (tag !== 738) {
+            break;
+          }
+
+          message.chipset = reader.string();
+          continue;
+        case 102:
+          if (tag !== 818) {
+            break;
+          }
+
+          message.glDeviceInfo = StreamerContext_GLDeviceInfo.decode(reader, reader.uint32());
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -335,6 +590,25 @@ export const StreamerContext_ClientInfo: MessageFns<StreamerContext_ClientInfo> 
       clientVersion: isSet(object.clientVersion) ? globalThis.String(object.clientVersion) : undefined,
       osName: isSet(object.osName) ? globalThis.String(object.osName) : undefined,
       osVersion: isSet(object.osVersion) ? globalThis.String(object.osVersion) : undefined,
+      acceptLanguage: isSet(object.acceptLanguage) ? globalThis.String(object.acceptLanguage) : undefined,
+      acceptRegion: isSet(object.acceptRegion) ? globalThis.String(object.acceptRegion) : undefined,
+      screenWidthPoints: isSet(object.screenWidthPoints) ? globalThis.Number(object.screenWidthPoints) : undefined,
+      screenHeightPoints: isSet(object.screenHeightPoints) ? globalThis.Number(object.screenHeightPoints) : undefined,
+      screenWidthInches: isSet(object.screenWidthInches) ? globalThis.Number(object.screenWidthInches) : undefined,
+      screenHeightInches: isSet(object.screenHeightInches) ? globalThis.Number(object.screenHeightInches) : undefined,
+      screenPixelDensity: isSet(object.screenPixelDensity) ? globalThis.Number(object.screenPixelDensity) : undefined,
+      clientFormFactor: isSet(object.clientFormFactor)
+        ? streamerContext_ClientFormFactorFromJSON(object.clientFormFactor)
+        : undefined,
+      gmscoreVersionCode: isSet(object.gmscoreVersionCode) ? globalThis.Number(object.gmscoreVersionCode) : undefined,
+      windowWidthPoints: isSet(object.windowWidthPoints) ? globalThis.Number(object.windowWidthPoints) : undefined,
+      windowHeightPoints: isSet(object.windowHeightPoints) ? globalThis.Number(object.windowHeightPoints) : undefined,
+      androidSdkVersion: isSet(object.androidSdkVersion) ? globalThis.Number(object.androidSdkVersion) : undefined,
+      screenDensityFloat: isSet(object.screenDensityFloat) ? globalThis.Number(object.screenDensityFloat) : undefined,
+      utcOffsetMinutes: isSet(object.utcOffsetMinutes) ? globalThis.Number(object.utcOffsetMinutes) : undefined,
+      timeZone: isSet(object.timeZone) ? globalThis.String(object.timeZone) : undefined,
+      chipset: isSet(object.chipset) ? globalThis.String(object.chipset) : undefined,
+      glDeviceInfo: isSet(object.glDeviceInfo) ? StreamerContext_GLDeviceInfo.fromJSON(object.glDeviceInfo) : undefined,
     };
   },
 
@@ -358,6 +632,57 @@ export const StreamerContext_ClientInfo: MessageFns<StreamerContext_ClientInfo> 
     if (message.osVersion !== undefined) {
       obj.osVersion = message.osVersion;
     }
+    if (message.acceptLanguage !== undefined) {
+      obj.acceptLanguage = message.acceptLanguage;
+    }
+    if (message.acceptRegion !== undefined) {
+      obj.acceptRegion = message.acceptRegion;
+    }
+    if (message.screenWidthPoints !== undefined) {
+      obj.screenWidthPoints = Math.round(message.screenWidthPoints);
+    }
+    if (message.screenHeightPoints !== undefined) {
+      obj.screenHeightPoints = Math.round(message.screenHeightPoints);
+    }
+    if (message.screenWidthInches !== undefined) {
+      obj.screenWidthInches = message.screenWidthInches;
+    }
+    if (message.screenHeightInches !== undefined) {
+      obj.screenHeightInches = message.screenHeightInches;
+    }
+    if (message.screenPixelDensity !== undefined) {
+      obj.screenPixelDensity = Math.round(message.screenPixelDensity);
+    }
+    if (message.clientFormFactor !== undefined) {
+      obj.clientFormFactor = streamerContext_ClientFormFactorToJSON(message.clientFormFactor);
+    }
+    if (message.gmscoreVersionCode !== undefined) {
+      obj.gmscoreVersionCode = Math.round(message.gmscoreVersionCode);
+    }
+    if (message.windowWidthPoints !== undefined) {
+      obj.windowWidthPoints = Math.round(message.windowWidthPoints);
+    }
+    if (message.windowHeightPoints !== undefined) {
+      obj.windowHeightPoints = Math.round(message.windowHeightPoints);
+    }
+    if (message.androidSdkVersion !== undefined) {
+      obj.androidSdkVersion = Math.round(message.androidSdkVersion);
+    }
+    if (message.screenDensityFloat !== undefined) {
+      obj.screenDensityFloat = message.screenDensityFloat;
+    }
+    if (message.utcOffsetMinutes !== undefined) {
+      obj.utcOffsetMinutes = Math.round(message.utcOffsetMinutes);
+    }
+    if (message.timeZone !== undefined) {
+      obj.timeZone = message.timeZone;
+    }
+    if (message.chipset !== undefined) {
+      obj.chipset = message.chipset;
+    }
+    if (message.glDeviceInfo !== undefined) {
+      obj.glDeviceInfo = StreamerContext_GLDeviceInfo.toJSON(message.glDeviceInfo);
+    }
     return obj;
   },
 
@@ -372,6 +697,114 @@ export const StreamerContext_ClientInfo: MessageFns<StreamerContext_ClientInfo> 
     message.clientVersion = object.clientVersion ?? undefined;
     message.osName = object.osName ?? undefined;
     message.osVersion = object.osVersion ?? undefined;
+    message.acceptLanguage = object.acceptLanguage ?? undefined;
+    message.acceptRegion = object.acceptRegion ?? undefined;
+    message.screenWidthPoints = object.screenWidthPoints ?? undefined;
+    message.screenHeightPoints = object.screenHeightPoints ?? undefined;
+    message.screenWidthInches = object.screenWidthInches ?? undefined;
+    message.screenHeightInches = object.screenHeightInches ?? undefined;
+    message.screenPixelDensity = object.screenPixelDensity ?? undefined;
+    message.clientFormFactor = object.clientFormFactor ?? undefined;
+    message.gmscoreVersionCode = object.gmscoreVersionCode ?? undefined;
+    message.windowWidthPoints = object.windowWidthPoints ?? undefined;
+    message.windowHeightPoints = object.windowHeightPoints ?? undefined;
+    message.androidSdkVersion = object.androidSdkVersion ?? undefined;
+    message.screenDensityFloat = object.screenDensityFloat ?? undefined;
+    message.utcOffsetMinutes = object.utcOffsetMinutes ?? undefined;
+    message.timeZone = object.timeZone ?? undefined;
+    message.chipset = object.chipset ?? undefined;
+    message.glDeviceInfo = (object.glDeviceInfo !== undefined && object.glDeviceInfo !== null)
+      ? StreamerContext_GLDeviceInfo.fromPartial(object.glDeviceInfo)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseStreamerContext_GLDeviceInfo(): StreamerContext_GLDeviceInfo {
+  return { glRenderer: undefined, glEsVersionMajor: undefined, glEsVersionMinor: undefined };
+}
+
+export const StreamerContext_GLDeviceInfo: MessageFns<StreamerContext_GLDeviceInfo> = {
+  encode(message: StreamerContext_GLDeviceInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.glRenderer !== undefined) {
+      writer.uint32(10).string(message.glRenderer);
+    }
+    if (message.glEsVersionMajor !== undefined) {
+      writer.uint32(16).int32(message.glEsVersionMajor);
+    }
+    if (message.glEsVersionMinor !== undefined) {
+      writer.uint32(24).int32(message.glEsVersionMinor);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): StreamerContext_GLDeviceInfo {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseStreamerContext_GLDeviceInfo();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.glRenderer = reader.string();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.glEsVersionMajor = reader.int32();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.glEsVersionMinor = reader.int32();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): StreamerContext_GLDeviceInfo {
+    return {
+      glRenderer: isSet(object.glRenderer) ? globalThis.String(object.glRenderer) : undefined,
+      glEsVersionMajor: isSet(object.glEsVersionMajor) ? globalThis.Number(object.glEsVersionMajor) : undefined,
+      glEsVersionMinor: isSet(object.glEsVersionMinor) ? globalThis.Number(object.glEsVersionMinor) : undefined,
+    };
+  },
+
+  toJSON(message: StreamerContext_GLDeviceInfo): unknown {
+    const obj: any = {};
+    if (message.glRenderer !== undefined) {
+      obj.glRenderer = message.glRenderer;
+    }
+    if (message.glEsVersionMajor !== undefined) {
+      obj.glEsVersionMajor = Math.round(message.glEsVersionMajor);
+    }
+    if (message.glEsVersionMinor !== undefined) {
+      obj.glEsVersionMinor = Math.round(message.glEsVersionMinor);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<StreamerContext_GLDeviceInfo>, I>>(base?: I): StreamerContext_GLDeviceInfo {
+    return StreamerContext_GLDeviceInfo.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<StreamerContext_GLDeviceInfo>, I>>(object: I): StreamerContext_GLDeviceInfo {
+    const message = createBaseStreamerContext_GLDeviceInfo();
+    message.glRenderer = object.glRenderer ?? undefined;
+    message.glEsVersionMajor = object.glEsVersionMajor ?? undefined;
+    message.glEsVersionMinor = object.glEsVersionMinor ?? undefined;
     return message;
   },
 };
@@ -628,6 +1061,17 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+function longToNumber(int64: { toString(): string }): number {
+  const num = globalThis.Number(int64.toString());
+  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
+    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
+  }
+  return num;
+}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;
