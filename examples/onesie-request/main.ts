@@ -40,8 +40,8 @@ const headers = [
     name: 'X-Goog-Visitor-Id',
     value: innertube.session.context.client.visitorData
   }
-]
-;
+];
+
 const videoId = 'JAs6WyK-Kr0';
 
 const playerRequest = {
@@ -57,7 +57,7 @@ playerRequest.context.client.clientName = 'TVHTML5';
 playerRequest.context.client.clientVersion = '7.20240717.18.00';
 
 const onesieRequest = Protos.OnesieRequest.encode({
-  url: 'https://youtubei.googleapis.com/youtubei/v1/next?key=AIzaSyDCU8hByM-4DrUqRUYnGn-3llEO78bcxq8',
+  url: 'https://youtubei.googleapis.com/youtubei/v1/player?key=AIzaSyDCU8hByM-4DrUqRUYnGn-3llEO78bcxq8',
   headers,
   body: JSON.stringify(playerRequest),
   field4: false,
