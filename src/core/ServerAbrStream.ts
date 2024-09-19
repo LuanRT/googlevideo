@@ -108,7 +108,7 @@ export class ServerAbrStream extends EventEmitterLike {
         if (
           !mainFormat ||
           mainFormat.sequenceCount ===
-          mainFormat.sequenceList[mainFormat.sequenceList.length - 1].sequenceNumber
+          mainFormat.sequenceList[mainFormat.sequenceList.length - 1]?.sequenceNumber
         ) {
           this.emit('end', data);
           break;
