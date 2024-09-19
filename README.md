@@ -39,7 +39,7 @@ googUmp.parse((part) => {
     case PART.MEDIA: {
       const headerId = part.data.getUint8(0);
       const streamData = part.data.split(1).remainingBuffer;
-      console.log('[Media]:', `Header ID: ${headerId}`, `length: ${streamData.byteLength}`);
+      console.log('[Media]:', `Header ID: ${headerId}`, `length: ${streamData.getLength()}`);
       break;
     }
     case PART.MEDIA_END: {
