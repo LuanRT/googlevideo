@@ -149,14 +149,17 @@ export class ServerAbrStream extends EventEmitterLike {
     const response = await this.fetchFunction(this.serverAbrStreamingUrl, { method: 'POST', body });
     const data = await response.arrayBuffer();
 
+    if (response.status !== 200 || !data.byteLength)
+      throw new Error(`Received an invalid response from the server: ${response.status}`);
+
     return this.parseUMPResponse(new Uint8Array(data));
   }
 
   /**
    * Parses the UMP response data and updates the initialized formats.
-   * @param data - The UMP response data as a byte array.
+   * @param response - The UMP response data as a byte array.
    */
-  public async parseUMPResponse(data: Uint8Array): Promise<ServerAbrResponse> {
+  public async parseUMPResponse(response: Uint8Array): Promise<ServerAbrResponse> {
     this.headerIdToFormatKeyMap.clear();
 
     this.initializedFormats.forEach((format) => {
@@ -168,7 +171,7 @@ export class ServerAbrStream extends EventEmitterLike {
     let sabrRedirect: SabrRedirect | undefined;
     let streamProtectionStatus: StreamProtectionStatus | undefined;
 
-    const ump = new UMP(new ChunkedDataBuffer([ data ]));
+    const ump = new UMP(new ChunkedDataBuffer([ response ]));
 
     ump.parse((part) => {
       const data = part.data.chunks[0];
