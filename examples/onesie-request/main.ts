@@ -27,6 +27,20 @@ const encryptedClientKey = base64ToU8(onesieHotConfig.encryptedClientKey);
 const onesieUstreamerConfig = base64ToU8(onesieHotConfig.onesieUstreamerConfig);
 const baseUrl = onesieHotConfig.baseUrl;
 
+const videoId = 'JAs6WyK-Kr0';
+
+const playerRequest = {
+  context: innertube.session.context,
+  ...Endpoints.PlayerEndpoint.build({
+    video_id: videoId,
+    sts: innertube.session.player?.sts
+  })
+};
+
+// Change or remove these if you want to use a different client. I chose TVHTML5 purely for testing.
+playerRequest.context.client.clientName = 'TVHTML5';
+playerRequest.context.client.clientVersion = '7.20240717.18.00';
+
 const headers = [
   {
     name: 'Content-Type',
@@ -41,20 +55,6 @@ const headers = [
     value: innertube.session.context.client.visitorData
   }
 ];
-
-const videoId = 'JAs6WyK-Kr0';
-
-const playerRequest = {
-  context: innertube.session.context,
-  ...Endpoints.PlayerEndpoint.build({
-    video_id: videoId,
-    sts: innertube.session.player?.sts
-  })
-};
-
-// Change or remove these if you want to use a different client. I chose TVHTML5 purely for testing.
-playerRequest.context.client.clientName = 'TVHTML5';
-playerRequest.context.client.clientVersion = '7.20240717.18.00';
 
 const onesieRequest = Protos.OnesieRequest.encode({
   url: 'https://youtubei.googleapis.com/youtubei/v1/player?key=AIzaSyDCU8hByM-4DrUqRUYnGn-3llEO78bcxq8',
@@ -111,7 +111,7 @@ if (!redirectorResponseUrl)
 
 let url = `${redirectorResponseUrl.split('/initplayback')[0]}${baseUrl}`;
 
-const searchParams = [];
+const queryParams = [];
 
 const videoIdBytes = base64ToU8(videoId);
 const encodedVideoId = [];
@@ -120,10 +120,10 @@ for (const byte of videoIdBytes) {
   encodedVideoId.push(byte.toString(16).padStart(2, '0'));
 }
 
-searchParams.push(`id=${encodedVideoId.join('')}`);
-searchParams.push('&opr=1');
-searchParams.push('&por=1');
-searchParams.push('rn=1');
+queryParams.push(`id=${encodedVideoId.join('')}`);
+queryParams.push('&opr=1');
+queryParams.push('&por=1');
+queryParams.push('rn=1');
 
 /**
  * Add the following search params to get media data parts along with the onesie response:
@@ -131,7 +131,7 @@ searchParams.push('rn=1');
  * Audio: searchParams.push('pai=141,140,149,251,250');
  */
 
-url += `&${searchParams.join('&')}`;
+url += `&${queryParams.join('&')}`;
 
 const response = await fetch(url, {
   method: 'POST',
