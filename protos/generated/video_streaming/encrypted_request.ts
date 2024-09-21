@@ -22,41 +22,41 @@ export interface EncryptedRequest {
 
 function createBaseEncryptedRequest(): EncryptedRequest {
   return {
-    encryptedOnesieRequest: undefined,
-    encryptedClientKey: undefined,
-    iv: undefined,
-    hmac: undefined,
-    YP: undefined,
-    pM: undefined,
-    enableCompression: undefined,
-    TQ: undefined,
+    encryptedOnesieRequest: new Uint8Array(0),
+    encryptedClientKey: new Uint8Array(0),
+    iv: new Uint8Array(0),
+    hmac: new Uint8Array(0),
+    YP: false,
+    pM: false,
+    enableCompression: false,
+    TQ: false,
   };
 }
 
 export const EncryptedRequest: MessageFns<EncryptedRequest> = {
   encode(message: EncryptedRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.encryptedOnesieRequest !== undefined) {
+    if (message.encryptedOnesieRequest !== undefined && message.encryptedOnesieRequest.length !== 0) {
       writer.uint32(18).bytes(message.encryptedOnesieRequest);
     }
-    if (message.encryptedClientKey !== undefined) {
+    if (message.encryptedClientKey !== undefined && message.encryptedClientKey.length !== 0) {
       writer.uint32(42).bytes(message.encryptedClientKey);
     }
-    if (message.iv !== undefined) {
+    if (message.iv !== undefined && message.iv.length !== 0) {
       writer.uint32(50).bytes(message.iv);
     }
-    if (message.hmac !== undefined) {
+    if (message.hmac !== undefined && message.hmac.length !== 0) {
       writer.uint32(58).bytes(message.hmac);
     }
-    if (message.YP !== undefined) {
+    if (message.YP !== undefined && message.YP !== false) {
       writer.uint32(80).bool(message.YP);
     }
-    if (message.pM !== undefined) {
+    if (message.pM !== undefined && message.pM !== false) {
       writer.uint32(104).bool(message.pM);
     }
-    if (message.enableCompression !== undefined) {
+    if (message.enableCompression !== undefined && message.enableCompression !== false) {
       writer.uint32(112).bool(message.enableCompression);
     }
-    if (message.TQ !== undefined) {
+    if (message.TQ !== undefined && message.TQ !== false) {
       writer.uint32(136).bool(message.TQ);
     }
     return writer;
@@ -138,41 +138,43 @@ export const EncryptedRequest: MessageFns<EncryptedRequest> = {
     return {
       encryptedOnesieRequest: isSet(object.encryptedOnesieRequest)
         ? bytesFromBase64(object.encryptedOnesieRequest)
-        : undefined,
-      encryptedClientKey: isSet(object.encryptedClientKey) ? bytesFromBase64(object.encryptedClientKey) : undefined,
-      iv: isSet(object.iv) ? bytesFromBase64(object.iv) : undefined,
-      hmac: isSet(object.hmac) ? bytesFromBase64(object.hmac) : undefined,
-      YP: isSet(object.YP) ? globalThis.Boolean(object.YP) : undefined,
-      pM: isSet(object.pM) ? globalThis.Boolean(object.pM) : undefined,
-      enableCompression: isSet(object.enableCompression) ? globalThis.Boolean(object.enableCompression) : undefined,
-      TQ: isSet(object.TQ) ? globalThis.Boolean(object.TQ) : undefined,
+        : new Uint8Array(0),
+      encryptedClientKey: isSet(object.encryptedClientKey)
+        ? bytesFromBase64(object.encryptedClientKey)
+        : new Uint8Array(0),
+      iv: isSet(object.iv) ? bytesFromBase64(object.iv) : new Uint8Array(0),
+      hmac: isSet(object.hmac) ? bytesFromBase64(object.hmac) : new Uint8Array(0),
+      YP: isSet(object.YP) ? globalThis.Boolean(object.YP) : false,
+      pM: isSet(object.pM) ? globalThis.Boolean(object.pM) : false,
+      enableCompression: isSet(object.enableCompression) ? globalThis.Boolean(object.enableCompression) : false,
+      TQ: isSet(object.TQ) ? globalThis.Boolean(object.TQ) : false,
     };
   },
 
   toJSON(message: EncryptedRequest): unknown {
     const obj: any = {};
-    if (message.encryptedOnesieRequest !== undefined) {
+    if (message.encryptedOnesieRequest !== undefined && message.encryptedOnesieRequest.length !== 0) {
       obj.encryptedOnesieRequest = base64FromBytes(message.encryptedOnesieRequest);
     }
-    if (message.encryptedClientKey !== undefined) {
+    if (message.encryptedClientKey !== undefined && message.encryptedClientKey.length !== 0) {
       obj.encryptedClientKey = base64FromBytes(message.encryptedClientKey);
     }
-    if (message.iv !== undefined) {
+    if (message.iv !== undefined && message.iv.length !== 0) {
       obj.iv = base64FromBytes(message.iv);
     }
-    if (message.hmac !== undefined) {
+    if (message.hmac !== undefined && message.hmac.length !== 0) {
       obj.hmac = base64FromBytes(message.hmac);
     }
-    if (message.YP !== undefined) {
+    if (message.YP !== undefined && message.YP !== false) {
       obj.YP = message.YP;
     }
-    if (message.pM !== undefined) {
+    if (message.pM !== undefined && message.pM !== false) {
       obj.pM = message.pM;
     }
-    if (message.enableCompression !== undefined) {
+    if (message.enableCompression !== undefined && message.enableCompression !== false) {
       obj.enableCompression = message.enableCompression;
     }
-    if (message.TQ !== undefined) {
+    if (message.TQ !== undefined && message.TQ !== false) {
       obj.TQ = message.TQ;
     }
     return obj;
@@ -183,14 +185,14 @@ export const EncryptedRequest: MessageFns<EncryptedRequest> = {
   },
   fromPartial<I extends Exact<DeepPartial<EncryptedRequest>, I>>(object: I): EncryptedRequest {
     const message = createBaseEncryptedRequest();
-    message.encryptedOnesieRequest = object.encryptedOnesieRequest ?? undefined;
-    message.encryptedClientKey = object.encryptedClientKey ?? undefined;
-    message.iv = object.iv ?? undefined;
-    message.hmac = object.hmac ?? undefined;
-    message.YP = object.YP ?? undefined;
-    message.pM = object.pM ?? undefined;
-    message.enableCompression = object.enableCompression ?? undefined;
-    message.TQ = object.TQ ?? undefined;
+    message.encryptedOnesieRequest = object.encryptedOnesieRequest ?? new Uint8Array(0);
+    message.encryptedClientKey = object.encryptedClientKey ?? new Uint8Array(0);
+    message.iv = object.iv ?? new Uint8Array(0);
+    message.hmac = object.hmac ?? new Uint8Array(0);
+    message.YP = object.YP ?? false;
+    message.pM = object.pM ?? false;
+    message.enableCompression = object.enableCompression ?? false;
+    message.TQ = object.TQ ?? false;
     return message;
   },
 };

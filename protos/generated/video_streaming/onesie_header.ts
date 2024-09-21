@@ -35,15 +35,15 @@ export interface OnesieHeader_Field34 {
 
 function createBaseOnesieHeader(): OnesieHeader {
   return {
-    type: undefined,
-    videoId: undefined,
-    itag: undefined,
+    type: 0,
+    videoId: "",
+    itag: "",
     cryptoParams: undefined,
-    lastModified: undefined,
-    mediaSizeBytes: undefined,
+    lastModified: 0,
+    mediaSizeBytes: 0,
     restrictedFormats: [],
-    xtags: undefined,
-    sequenceNumber: undefined,
+    xtags: "",
+    sequenceNumber: 0,
     field23: undefined,
     field34: undefined,
   };
@@ -51,31 +51,31 @@ function createBaseOnesieHeader(): OnesieHeader {
 
 export const OnesieHeader: MessageFns<OnesieHeader> = {
   encode(message: OnesieHeader, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.type !== undefined) {
+    if (message.type !== undefined && message.type !== 0) {
       writer.uint32(8).int32(message.type);
     }
-    if (message.videoId !== undefined) {
+    if (message.videoId !== undefined && message.videoId !== "") {
       writer.uint32(18).string(message.videoId);
     }
-    if (message.itag !== undefined) {
+    if (message.itag !== undefined && message.itag !== "") {
       writer.uint32(26).string(message.itag);
     }
     if (message.cryptoParams !== undefined) {
       CryptoParams.encode(message.cryptoParams, writer.uint32(34).fork()).join();
     }
-    if (message.lastModified !== undefined) {
+    if (message.lastModified !== undefined && message.lastModified !== 0) {
       writer.uint32(40).uint64(message.lastModified);
     }
-    if (message.mediaSizeBytes !== undefined) {
+    if (message.mediaSizeBytes !== undefined && message.mediaSizeBytes !== 0) {
       writer.uint32(56).int64(message.mediaSizeBytes);
     }
     for (const v of message.restrictedFormats) {
       writer.uint32(90).string(v!);
     }
-    if (message.xtags !== undefined) {
+    if (message.xtags !== undefined && message.xtags !== "") {
       writer.uint32(122).string(message.xtags);
     }
-    if (message.sequenceNumber !== undefined) {
+    if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
       writer.uint32(144).int64(message.sequenceNumber);
     }
     if (message.field23 !== undefined) {
@@ -182,17 +182,17 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
 
   fromJSON(object: any): OnesieHeader {
     return {
-      type: isSet(object.type) ? onesieHeaderTypeFromJSON(object.type) : undefined,
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : undefined,
-      itag: isSet(object.itag) ? globalThis.String(object.itag) : undefined,
+      type: isSet(object.type) ? onesieHeaderTypeFromJSON(object.type) : 0,
+      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
+      itag: isSet(object.itag) ? globalThis.String(object.itag) : "",
       cryptoParams: isSet(object.cryptoParams) ? CryptoParams.fromJSON(object.cryptoParams) : undefined,
-      lastModified: isSet(object.lastModified) ? globalThis.Number(object.lastModified) : undefined,
-      mediaSizeBytes: isSet(object.mediaSizeBytes) ? globalThis.Number(object.mediaSizeBytes) : undefined,
+      lastModified: isSet(object.lastModified) ? globalThis.Number(object.lastModified) : 0,
+      mediaSizeBytes: isSet(object.mediaSizeBytes) ? globalThis.Number(object.mediaSizeBytes) : 0,
       restrictedFormats: globalThis.Array.isArray(object?.restrictedFormats)
         ? object.restrictedFormats.map((e: any) => globalThis.String(e))
         : [],
-      xtags: isSet(object.xtags) ? globalThis.String(object.xtags) : undefined,
-      sequenceNumber: isSet(object.sequenceNumber) ? globalThis.Number(object.sequenceNumber) : undefined,
+      xtags: isSet(object.xtags) ? globalThis.String(object.xtags) : "",
+      sequenceNumber: isSet(object.sequenceNumber) ? globalThis.Number(object.sequenceNumber) : 0,
       field23: isSet(object.field23) ? OnesieHeader_Field23.fromJSON(object.field23) : undefined,
       field34: isSet(object.field34) ? OnesieHeader_Field34.fromJSON(object.field34) : undefined,
     };
@@ -200,31 +200,31 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
 
   toJSON(message: OnesieHeader): unknown {
     const obj: any = {};
-    if (message.type !== undefined) {
+    if (message.type !== undefined && message.type !== 0) {
       obj.type = onesieHeaderTypeToJSON(message.type);
     }
-    if (message.videoId !== undefined) {
+    if (message.videoId !== undefined && message.videoId !== "") {
       obj.videoId = message.videoId;
     }
-    if (message.itag !== undefined) {
+    if (message.itag !== undefined && message.itag !== "") {
       obj.itag = message.itag;
     }
     if (message.cryptoParams !== undefined) {
       obj.cryptoParams = CryptoParams.toJSON(message.cryptoParams);
     }
-    if (message.lastModified !== undefined) {
+    if (message.lastModified !== undefined && message.lastModified !== 0) {
       obj.lastModified = Math.round(message.lastModified);
     }
-    if (message.mediaSizeBytes !== undefined) {
+    if (message.mediaSizeBytes !== undefined && message.mediaSizeBytes !== 0) {
       obj.mediaSizeBytes = Math.round(message.mediaSizeBytes);
     }
     if (message.restrictedFormats?.length) {
       obj.restrictedFormats = message.restrictedFormats;
     }
-    if (message.xtags !== undefined) {
+    if (message.xtags !== undefined && message.xtags !== "") {
       obj.xtags = message.xtags;
     }
-    if (message.sequenceNumber !== undefined) {
+    if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
       obj.sequenceNumber = Math.round(message.sequenceNumber);
     }
     if (message.field23 !== undefined) {
@@ -241,17 +241,17 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
   },
   fromPartial<I extends Exact<DeepPartial<OnesieHeader>, I>>(object: I): OnesieHeader {
     const message = createBaseOnesieHeader();
-    message.type = object.type ?? undefined;
-    message.videoId = object.videoId ?? undefined;
-    message.itag = object.itag ?? undefined;
+    message.type = object.type ?? 0;
+    message.videoId = object.videoId ?? "";
+    message.itag = object.itag ?? "";
     message.cryptoParams = (object.cryptoParams !== undefined && object.cryptoParams !== null)
       ? CryptoParams.fromPartial(object.cryptoParams)
       : undefined;
-    message.lastModified = object.lastModified ?? undefined;
-    message.mediaSizeBytes = object.mediaSizeBytes ?? undefined;
+    message.lastModified = object.lastModified ?? 0;
+    message.mediaSizeBytes = object.mediaSizeBytes ?? 0;
     message.restrictedFormats = object.restrictedFormats?.map((e) => e) || [];
-    message.xtags = object.xtags ?? undefined;
-    message.sequenceNumber = object.sequenceNumber ?? undefined;
+    message.xtags = object.xtags ?? "";
+    message.sequenceNumber = object.sequenceNumber ?? 0;
     message.field23 = (object.field23 !== undefined && object.field23 !== null)
       ? OnesieHeader_Field23.fromPartial(object.field23)
       : undefined;
@@ -263,12 +263,12 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
 };
 
 function createBaseOnesieHeader_Field23(): OnesieHeader_Field23 {
-  return { videoId: undefined };
+  return { videoId: "" };
 }
 
 export const OnesieHeader_Field23: MessageFns<OnesieHeader_Field23> = {
   encode(message: OnesieHeader_Field23, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.videoId !== undefined) {
+    if (message.videoId !== undefined && message.videoId !== "") {
       writer.uint32(18).string(message.videoId);
     }
     return writer;
@@ -298,12 +298,12 @@ export const OnesieHeader_Field23: MessageFns<OnesieHeader_Field23> = {
   },
 
   fromJSON(object: any): OnesieHeader_Field23 {
-    return { videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : undefined };
+    return { videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "" };
   },
 
   toJSON(message: OnesieHeader_Field23): unknown {
     const obj: any = {};
-    if (message.videoId !== undefined) {
+    if (message.videoId !== undefined && message.videoId !== "") {
       obj.videoId = message.videoId;
     }
     return obj;
@@ -314,7 +314,7 @@ export const OnesieHeader_Field23: MessageFns<OnesieHeader_Field23> = {
   },
   fromPartial<I extends Exact<DeepPartial<OnesieHeader_Field23>, I>>(object: I): OnesieHeader_Field23 {
     const message = createBaseOnesieHeader_Field23();
-    message.videoId = object.videoId ?? undefined;
+    message.videoId = object.videoId ?? "";
     return message;
   },
 };

@@ -15,15 +15,15 @@ export interface SabrError {
 }
 
 function createBaseSabrError(): SabrError {
-  return { type: undefined, code: undefined };
+  return { type: "", code: 0 };
 }
 
 export const SabrError: MessageFns<SabrError> = {
   encode(message: SabrError, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.type !== undefined) {
+    if (message.type !== undefined && message.type !== "") {
       writer.uint32(10).string(message.type);
     }
-    if (message.code !== undefined) {
+    if (message.code !== undefined && message.code !== 0) {
       writer.uint32(16).int32(message.code);
     }
     return writer;
@@ -61,17 +61,17 @@ export const SabrError: MessageFns<SabrError> = {
 
   fromJSON(object: any): SabrError {
     return {
-      type: isSet(object.type) ? globalThis.String(object.type) : undefined,
-      code: isSet(object.code) ? globalThis.Number(object.code) : undefined,
+      type: isSet(object.type) ? globalThis.String(object.type) : "",
+      code: isSet(object.code) ? globalThis.Number(object.code) : 0,
     };
   },
 
   toJSON(message: SabrError): unknown {
     const obj: any = {};
-    if (message.type !== undefined) {
+    if (message.type !== undefined && message.type !== "") {
       obj.type = message.type;
     }
-    if (message.code !== undefined) {
+    if (message.code !== undefined && message.code !== 0) {
       obj.code = Math.round(message.code);
     }
     return obj;
@@ -82,8 +82,8 @@ export const SabrError: MessageFns<SabrError> = {
   },
   fromPartial<I extends Exact<DeepPartial<SabrError>, I>>(object: I): SabrError {
     const message = createBaseSabrError();
-    message.type = object.type ?? undefined;
-    message.code = object.code ?? undefined;
+    message.type = object.type ?? "";
+    message.code = object.code ?? 0;
     return message;
   },
 };

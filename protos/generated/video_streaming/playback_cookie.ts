@@ -19,15 +19,15 @@ export interface PlaybackCookie {
 }
 
 function createBasePlaybackCookie(): PlaybackCookie {
-  return { field1: undefined, field2: undefined, videoFmt: undefined, audioFmt: undefined };
+  return { field1: 0, field2: 0, videoFmt: undefined, audioFmt: undefined };
 }
 
 export const PlaybackCookie: MessageFns<PlaybackCookie> = {
   encode(message: PlaybackCookie, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.field1 !== undefined) {
+    if (message.field1 !== undefined && message.field1 !== 0) {
       writer.uint32(8).int32(message.field1);
     }
-    if (message.field2 !== undefined) {
+    if (message.field2 !== undefined && message.field2 !== 0) {
       writer.uint32(16).int32(message.field2);
     }
     if (message.videoFmt !== undefined) {
@@ -85,8 +85,8 @@ export const PlaybackCookie: MessageFns<PlaybackCookie> = {
 
   fromJSON(object: any): PlaybackCookie {
     return {
-      field1: isSet(object.field1) ? globalThis.Number(object.field1) : undefined,
-      field2: isSet(object.field2) ? globalThis.Number(object.field2) : undefined,
+      field1: isSet(object.field1) ? globalThis.Number(object.field1) : 0,
+      field2: isSet(object.field2) ? globalThis.Number(object.field2) : 0,
       videoFmt: isSet(object.videoFmt) ? FormatId.fromJSON(object.videoFmt) : undefined,
       audioFmt: isSet(object.audioFmt) ? FormatId.fromJSON(object.audioFmt) : undefined,
     };
@@ -94,10 +94,10 @@ export const PlaybackCookie: MessageFns<PlaybackCookie> = {
 
   toJSON(message: PlaybackCookie): unknown {
     const obj: any = {};
-    if (message.field1 !== undefined) {
+    if (message.field1 !== undefined && message.field1 !== 0) {
       obj.field1 = Math.round(message.field1);
     }
-    if (message.field2 !== undefined) {
+    if (message.field2 !== undefined && message.field2 !== 0) {
       obj.field2 = Math.round(message.field2);
     }
     if (message.videoFmt !== undefined) {
@@ -114,8 +114,8 @@ export const PlaybackCookie: MessageFns<PlaybackCookie> = {
   },
   fromPartial<I extends Exact<DeepPartial<PlaybackCookie>, I>>(object: I): PlaybackCookie {
     const message = createBasePlaybackCookie();
-    message.field1 = object.field1 ?? undefined;
-    message.field2 = object.field2 ?? undefined;
+    message.field1 = object.field1 ?? 0;
+    message.field2 = object.field2 ?? 0;
     message.videoFmt = (object.videoFmt !== undefined && object.videoFmt !== null)
       ? FormatId.fromPartial(object.videoFmt)
       : undefined;

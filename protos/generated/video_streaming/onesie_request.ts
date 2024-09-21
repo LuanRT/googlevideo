@@ -19,24 +19,24 @@ export interface OnesieRequest {
 }
 
 function createBaseOnesieRequest(): OnesieRequest {
-  return { url: undefined, headers: [], body: undefined, field4: undefined, field6: undefined };
+  return { url: "", headers: [], body: "", field4: false, field6: false };
 }
 
 export const OnesieRequest: MessageFns<OnesieRequest> = {
   encode(message: OnesieRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.url !== undefined) {
+    if (message.url !== undefined && message.url !== "") {
       writer.uint32(10).string(message.url);
     }
     for (const v of message.headers) {
       HttpHeader.encode(v!, writer.uint32(18).fork()).join();
     }
-    if (message.body !== undefined) {
+    if (message.body !== undefined && message.body !== "") {
       writer.uint32(26).string(message.body);
     }
-    if (message.field4 !== undefined) {
+    if (message.field4 !== undefined && message.field4 !== false) {
       writer.uint32(32).bool(message.field4);
     }
-    if (message.field6 !== undefined) {
+    if (message.field6 !== undefined && message.field6 !== false) {
       writer.uint32(48).bool(message.field6);
     }
     return writer;
@@ -95,29 +95,29 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
 
   fromJSON(object: any): OnesieRequest {
     return {
-      url: isSet(object.url) ? globalThis.String(object.url) : undefined,
+      url: isSet(object.url) ? globalThis.String(object.url) : "",
       headers: globalThis.Array.isArray(object?.headers) ? object.headers.map((e: any) => HttpHeader.fromJSON(e)) : [],
-      body: isSet(object.body) ? globalThis.String(object.body) : undefined,
-      field4: isSet(object.field4) ? globalThis.Boolean(object.field4) : undefined,
-      field6: isSet(object.field6) ? globalThis.Boolean(object.field6) : undefined,
+      body: isSet(object.body) ? globalThis.String(object.body) : "",
+      field4: isSet(object.field4) ? globalThis.Boolean(object.field4) : false,
+      field6: isSet(object.field6) ? globalThis.Boolean(object.field6) : false,
     };
   },
 
   toJSON(message: OnesieRequest): unknown {
     const obj: any = {};
-    if (message.url !== undefined) {
+    if (message.url !== undefined && message.url !== "") {
       obj.url = message.url;
     }
     if (message.headers?.length) {
       obj.headers = message.headers.map((e) => HttpHeader.toJSON(e));
     }
-    if (message.body !== undefined) {
+    if (message.body !== undefined && message.body !== "") {
       obj.body = message.body;
     }
-    if (message.field4 !== undefined) {
+    if (message.field4 !== undefined && message.field4 !== false) {
       obj.field4 = message.field4;
     }
-    if (message.field6 !== undefined) {
+    if (message.field6 !== undefined && message.field6 !== false) {
       obj.field6 = message.field6;
     }
     return obj;
@@ -128,11 +128,11 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
   },
   fromPartial<I extends Exact<DeepPartial<OnesieRequest>, I>>(object: I): OnesieRequest {
     const message = createBaseOnesieRequest();
-    message.url = object.url ?? undefined;
+    message.url = object.url ?? "";
     message.headers = object.headers?.map((e) => HttpHeader.fromPartial(e)) || [];
-    message.body = object.body ?? undefined;
-    message.field4 = object.field4 ?? undefined;
-    message.field6 = object.field6 ?? undefined;
+    message.body = object.body ?? "";
+    message.field4 = object.field4 ?? false;
+    message.field6 = object.field6 ?? false;
     return message;
   },
 };

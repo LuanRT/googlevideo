@@ -16,18 +16,18 @@ export interface TimeRange {
 }
 
 function createBaseTimeRange(): TimeRange {
-  return { start: undefined, duration: undefined, timescale: undefined };
+  return { start: 0, duration: 0, timescale: 0 };
 }
 
 export const TimeRange: MessageFns<TimeRange> = {
   encode(message: TimeRange, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.start !== undefined) {
+    if (message.start !== undefined && message.start !== 0) {
       writer.uint32(8).int64(message.start);
     }
-    if (message.duration !== undefined) {
+    if (message.duration !== undefined && message.duration !== 0) {
       writer.uint32(16).int64(message.duration);
     }
-    if (message.timescale !== undefined) {
+    if (message.timescale !== undefined && message.timescale !== 0) {
       writer.uint32(24).int32(message.timescale);
     }
     return writer;
@@ -72,21 +72,21 @@ export const TimeRange: MessageFns<TimeRange> = {
 
   fromJSON(object: any): TimeRange {
     return {
-      start: isSet(object.start) ? globalThis.Number(object.start) : undefined,
-      duration: isSet(object.duration) ? globalThis.Number(object.duration) : undefined,
-      timescale: isSet(object.timescale) ? globalThis.Number(object.timescale) : undefined,
+      start: isSet(object.start) ? globalThis.Number(object.start) : 0,
+      duration: isSet(object.duration) ? globalThis.Number(object.duration) : 0,
+      timescale: isSet(object.timescale) ? globalThis.Number(object.timescale) : 0,
     };
   },
 
   toJSON(message: TimeRange): unknown {
     const obj: any = {};
-    if (message.start !== undefined) {
+    if (message.start !== undefined && message.start !== 0) {
       obj.start = Math.round(message.start);
     }
-    if (message.duration !== undefined) {
+    if (message.duration !== undefined && message.duration !== 0) {
       obj.duration = Math.round(message.duration);
     }
-    if (message.timescale !== undefined) {
+    if (message.timescale !== undefined && message.timescale !== 0) {
       obj.timescale = Math.round(message.timescale);
     }
     return obj;
@@ -97,9 +97,9 @@ export const TimeRange: MessageFns<TimeRange> = {
   },
   fromPartial<I extends Exact<DeepPartial<TimeRange>, I>>(object: I): TimeRange {
     const message = createBaseTimeRange();
-    message.start = object.start ?? undefined;
-    message.duration = object.duration ?? undefined;
-    message.timescale = object.timescale ?? undefined;
+    message.start = object.start ?? 0;
+    message.duration = object.duration ?? 0;
+    message.timescale = object.timescale ?? 0;
     return message;
   },
 };

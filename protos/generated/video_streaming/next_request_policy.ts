@@ -20,29 +20,29 @@ export interface NextRequestPolicy {
 
 function createBaseNextRequestPolicy(): NextRequestPolicy {
   return {
-    targetAudioReadaheadMs: undefined,
-    targetVideoReadaheadMs: undefined,
-    backoffTimeMs: undefined,
+    targetAudioReadaheadMs: 0,
+    targetVideoReadaheadMs: 0,
+    backoffTimeMs: 0,
     playbackCookie: undefined,
-    videoId: undefined,
+    videoId: "",
   };
 }
 
 export const NextRequestPolicy: MessageFns<NextRequestPolicy> = {
   encode(message: NextRequestPolicy, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.targetAudioReadaheadMs !== undefined) {
+    if (message.targetAudioReadaheadMs !== undefined && message.targetAudioReadaheadMs !== 0) {
       writer.uint32(8).int32(message.targetAudioReadaheadMs);
     }
-    if (message.targetVideoReadaheadMs !== undefined) {
+    if (message.targetVideoReadaheadMs !== undefined && message.targetVideoReadaheadMs !== 0) {
       writer.uint32(16).int32(message.targetVideoReadaheadMs);
     }
-    if (message.backoffTimeMs !== undefined) {
+    if (message.backoffTimeMs !== undefined && message.backoffTimeMs !== 0) {
       writer.uint32(32).int32(message.backoffTimeMs);
     }
     if (message.playbackCookie !== undefined) {
       PlaybackCookie.encode(message.playbackCookie, writer.uint32(58).fork()).join();
     }
-    if (message.videoId !== undefined) {
+    if (message.videoId !== undefined && message.videoId !== "") {
       writer.uint32(66).string(message.videoId);
     }
     return writer;
@@ -103,31 +103,31 @@ export const NextRequestPolicy: MessageFns<NextRequestPolicy> = {
     return {
       targetAudioReadaheadMs: isSet(object.targetAudioReadaheadMs)
         ? globalThis.Number(object.targetAudioReadaheadMs)
-        : undefined,
+        : 0,
       targetVideoReadaheadMs: isSet(object.targetVideoReadaheadMs)
         ? globalThis.Number(object.targetVideoReadaheadMs)
-        : undefined,
-      backoffTimeMs: isSet(object.backoffTimeMs) ? globalThis.Number(object.backoffTimeMs) : undefined,
+        : 0,
+      backoffTimeMs: isSet(object.backoffTimeMs) ? globalThis.Number(object.backoffTimeMs) : 0,
       playbackCookie: isSet(object.playbackCookie) ? PlaybackCookie.fromJSON(object.playbackCookie) : undefined,
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : undefined,
+      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
     };
   },
 
   toJSON(message: NextRequestPolicy): unknown {
     const obj: any = {};
-    if (message.targetAudioReadaheadMs !== undefined) {
+    if (message.targetAudioReadaheadMs !== undefined && message.targetAudioReadaheadMs !== 0) {
       obj.targetAudioReadaheadMs = Math.round(message.targetAudioReadaheadMs);
     }
-    if (message.targetVideoReadaheadMs !== undefined) {
+    if (message.targetVideoReadaheadMs !== undefined && message.targetVideoReadaheadMs !== 0) {
       obj.targetVideoReadaheadMs = Math.round(message.targetVideoReadaheadMs);
     }
-    if (message.backoffTimeMs !== undefined) {
+    if (message.backoffTimeMs !== undefined && message.backoffTimeMs !== 0) {
       obj.backoffTimeMs = Math.round(message.backoffTimeMs);
     }
     if (message.playbackCookie !== undefined) {
       obj.playbackCookie = PlaybackCookie.toJSON(message.playbackCookie);
     }
-    if (message.videoId !== undefined) {
+    if (message.videoId !== undefined && message.videoId !== "") {
       obj.videoId = message.videoId;
     }
     return obj;
@@ -138,13 +138,13 @@ export const NextRequestPolicy: MessageFns<NextRequestPolicy> = {
   },
   fromPartial<I extends Exact<DeepPartial<NextRequestPolicy>, I>>(object: I): NextRequestPolicy {
     const message = createBaseNextRequestPolicy();
-    message.targetAudioReadaheadMs = object.targetAudioReadaheadMs ?? undefined;
-    message.targetVideoReadaheadMs = object.targetVideoReadaheadMs ?? undefined;
-    message.backoffTimeMs = object.backoffTimeMs ?? undefined;
+    message.targetAudioReadaheadMs = object.targetAudioReadaheadMs ?? 0;
+    message.targetVideoReadaheadMs = object.targetVideoReadaheadMs ?? 0;
+    message.backoffTimeMs = object.backoffTimeMs ?? 0;
     message.playbackCookie = (object.playbackCookie !== undefined && object.playbackCookie !== null)
       ? PlaybackCookie.fromPartial(object.playbackCookie)
       : undefined;
-    message.videoId = object.videoId ?? undefined;
+    message.videoId = object.videoId ?? "";
     return message;
   },
 };

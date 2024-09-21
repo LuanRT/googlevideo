@@ -36,15 +36,15 @@ export interface KeyValuePair {
 }
 
 function createBaseHttpHeader(): HttpHeader {
-  return { name: undefined, value: undefined };
+  return { name: "", value: "" };
 }
 
 export const HttpHeader: MessageFns<HttpHeader> = {
   encode(message: HttpHeader, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.name !== undefined) {
+    if (message.name !== undefined && message.name !== "") {
       writer.uint32(10).string(message.name);
     }
-    if (message.value !== undefined) {
+    if (message.value !== undefined && message.value !== "") {
       writer.uint32(18).string(message.value);
     }
     return writer;
@@ -82,17 +82,17 @@ export const HttpHeader: MessageFns<HttpHeader> = {
 
   fromJSON(object: any): HttpHeader {
     return {
-      name: isSet(object.name) ? globalThis.String(object.name) : undefined,
-      value: isSet(object.value) ? globalThis.String(object.value) : undefined,
+      name: isSet(object.name) ? globalThis.String(object.name) : "",
+      value: isSet(object.value) ? globalThis.String(object.value) : "",
     };
   },
 
   toJSON(message: HttpHeader): unknown {
     const obj: any = {};
-    if (message.name !== undefined) {
+    if (message.name !== undefined && message.name !== "") {
       obj.name = message.name;
     }
-    if (message.value !== undefined) {
+    if (message.value !== undefined && message.value !== "") {
       obj.value = message.value;
     }
     return obj;
@@ -103,25 +103,25 @@ export const HttpHeader: MessageFns<HttpHeader> = {
   },
   fromPartial<I extends Exact<DeepPartial<HttpHeader>, I>>(object: I): HttpHeader {
     const message = createBaseHttpHeader();
-    message.name = object.name ?? undefined;
-    message.value = object.value ?? undefined;
+    message.name = object.name ?? "";
+    message.value = object.value ?? "";
     return message;
   },
 };
 
 function createBaseFormatId(): FormatId {
-  return { itag: undefined, lastModified: undefined, xtags: undefined };
+  return { itag: 0, lastModified: 0, xtags: "" };
 }
 
 export const FormatId: MessageFns<FormatId> = {
   encode(message: FormatId, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.itag !== undefined) {
+    if (message.itag !== undefined && message.itag !== 0) {
       writer.uint32(8).int32(message.itag);
     }
-    if (message.lastModified !== undefined) {
+    if (message.lastModified !== undefined && message.lastModified !== 0) {
       writer.uint32(16).uint64(message.lastModified);
     }
-    if (message.xtags !== undefined) {
+    if (message.xtags !== undefined && message.xtags !== "") {
       writer.uint32(26).string(message.xtags);
     }
     return writer;
@@ -166,21 +166,21 @@ export const FormatId: MessageFns<FormatId> = {
 
   fromJSON(object: any): FormatId {
     return {
-      itag: isSet(object.itag) ? globalThis.Number(object.itag) : undefined,
-      lastModified: isSet(object.lastModified) ? globalThis.Number(object.lastModified) : undefined,
-      xtags: isSet(object.xtags) ? globalThis.String(object.xtags) : undefined,
+      itag: isSet(object.itag) ? globalThis.Number(object.itag) : 0,
+      lastModified: isSet(object.lastModified) ? globalThis.Number(object.lastModified) : 0,
+      xtags: isSet(object.xtags) ? globalThis.String(object.xtags) : "",
     };
   },
 
   toJSON(message: FormatId): unknown {
     const obj: any = {};
-    if (message.itag !== undefined) {
+    if (message.itag !== undefined && message.itag !== 0) {
       obj.itag = Math.round(message.itag);
     }
-    if (message.lastModified !== undefined) {
+    if (message.lastModified !== undefined && message.lastModified !== 0) {
       obj.lastModified = Math.round(message.lastModified);
     }
-    if (message.xtags !== undefined) {
+    if (message.xtags !== undefined && message.xtags !== "") {
       obj.xtags = message.xtags;
     }
     return obj;
@@ -191,23 +191,23 @@ export const FormatId: MessageFns<FormatId> = {
   },
   fromPartial<I extends Exact<DeepPartial<FormatId>, I>>(object: I): FormatId {
     const message = createBaseFormatId();
-    message.itag = object.itag ?? undefined;
-    message.lastModified = object.lastModified ?? undefined;
-    message.xtags = object.xtags ?? undefined;
+    message.itag = object.itag ?? 0;
+    message.lastModified = object.lastModified ?? 0;
+    message.xtags = object.xtags ?? "";
     return message;
   },
 };
 
 function createBaseInitRange(): InitRange {
-  return { start: undefined, end: undefined };
+  return { start: 0, end: 0 };
 }
 
 export const InitRange: MessageFns<InitRange> = {
   encode(message: InitRange, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.start !== undefined) {
+    if (message.start !== undefined && message.start !== 0) {
       writer.uint32(8).int32(message.start);
     }
-    if (message.end !== undefined) {
+    if (message.end !== undefined && message.end !== 0) {
       writer.uint32(16).int32(message.end);
     }
     return writer;
@@ -245,17 +245,17 @@ export const InitRange: MessageFns<InitRange> = {
 
   fromJSON(object: any): InitRange {
     return {
-      start: isSet(object.start) ? globalThis.Number(object.start) : undefined,
-      end: isSet(object.end) ? globalThis.Number(object.end) : undefined,
+      start: isSet(object.start) ? globalThis.Number(object.start) : 0,
+      end: isSet(object.end) ? globalThis.Number(object.end) : 0,
     };
   },
 
   toJSON(message: InitRange): unknown {
     const obj: any = {};
-    if (message.start !== undefined) {
+    if (message.start !== undefined && message.start !== 0) {
       obj.start = Math.round(message.start);
     }
-    if (message.end !== undefined) {
+    if (message.end !== undefined && message.end !== 0) {
       obj.end = Math.round(message.end);
     }
     return obj;
@@ -266,22 +266,22 @@ export const InitRange: MessageFns<InitRange> = {
   },
   fromPartial<I extends Exact<DeepPartial<InitRange>, I>>(object: I): InitRange {
     const message = createBaseInitRange();
-    message.start = object.start ?? undefined;
-    message.end = object.end ?? undefined;
+    message.start = object.start ?? 0;
+    message.end = object.end ?? 0;
     return message;
   },
 };
 
 function createBaseIndexRange(): IndexRange {
-  return { start: undefined, end: undefined };
+  return { start: 0, end: 0 };
 }
 
 export const IndexRange: MessageFns<IndexRange> = {
   encode(message: IndexRange, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.start !== undefined) {
+    if (message.start !== undefined && message.start !== 0) {
       writer.uint32(8).int32(message.start);
     }
-    if (message.end !== undefined) {
+    if (message.end !== undefined && message.end !== 0) {
       writer.uint32(16).int32(message.end);
     }
     return writer;
@@ -319,17 +319,17 @@ export const IndexRange: MessageFns<IndexRange> = {
 
   fromJSON(object: any): IndexRange {
     return {
-      start: isSet(object.start) ? globalThis.Number(object.start) : undefined,
-      end: isSet(object.end) ? globalThis.Number(object.end) : undefined,
+      start: isSet(object.start) ? globalThis.Number(object.start) : 0,
+      end: isSet(object.end) ? globalThis.Number(object.end) : 0,
     };
   },
 
   toJSON(message: IndexRange): unknown {
     const obj: any = {};
-    if (message.start !== undefined) {
+    if (message.start !== undefined && message.start !== 0) {
       obj.start = Math.round(message.start);
     }
-    if (message.end !== undefined) {
+    if (message.end !== undefined && message.end !== 0) {
       obj.end = Math.round(message.end);
     }
     return obj;
@@ -340,22 +340,22 @@ export const IndexRange: MessageFns<IndexRange> = {
   },
   fromPartial<I extends Exact<DeepPartial<IndexRange>, I>>(object: I): IndexRange {
     const message = createBaseIndexRange();
-    message.start = object.start ?? undefined;
-    message.end = object.end ?? undefined;
+    message.start = object.start ?? 0;
+    message.end = object.end ?? 0;
     return message;
   },
 };
 
 function createBaseKeyValuePair(): KeyValuePair {
-  return { key: undefined, value: undefined };
+  return { key: "", value: "" };
 }
 
 export const KeyValuePair: MessageFns<KeyValuePair> = {
   encode(message: KeyValuePair, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.key !== undefined) {
+    if (message.key !== undefined && message.key !== "") {
       writer.uint32(10).string(message.key);
     }
-    if (message.value !== undefined) {
+    if (message.value !== undefined && message.value !== "") {
       writer.uint32(18).string(message.value);
     }
     return writer;
@@ -393,17 +393,17 @@ export const KeyValuePair: MessageFns<KeyValuePair> = {
 
   fromJSON(object: any): KeyValuePair {
     return {
-      key: isSet(object.key) ? globalThis.String(object.key) : undefined,
-      value: isSet(object.value) ? globalThis.String(object.value) : undefined,
+      key: isSet(object.key) ? globalThis.String(object.key) : "",
+      value: isSet(object.value) ? globalThis.String(object.value) : "",
     };
   },
 
   toJSON(message: KeyValuePair): unknown {
     const obj: any = {};
-    if (message.key !== undefined) {
+    if (message.key !== undefined && message.key !== "") {
       obj.key = message.key;
     }
-    if (message.value !== undefined) {
+    if (message.value !== undefined && message.value !== "") {
       obj.value = message.value;
     }
     return obj;
@@ -414,8 +414,8 @@ export const KeyValuePair: MessageFns<KeyValuePair> = {
   },
   fromPartial<I extends Exact<DeepPartial<KeyValuePair>, I>>(object: I): KeyValuePair {
     const message = createBaseKeyValuePair();
-    message.key = object.key ?? undefined;
-    message.value = object.value ?? undefined;
+    message.key = object.key ?? "";
+    message.value = object.value ?? "";
     return message;
   },
 };

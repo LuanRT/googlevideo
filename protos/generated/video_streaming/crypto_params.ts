@@ -55,18 +55,18 @@ export function cryptoParams_CompressionTypeToJSON(object: CryptoParams_Compress
 }
 
 function createBaseCryptoParams(): CryptoParams {
-  return { hmac: undefined, iv: undefined, compressionType: undefined };
+  return { hmac: new Uint8Array(0), iv: new Uint8Array(0), compressionType: 0 };
 }
 
 export const CryptoParams: MessageFns<CryptoParams> = {
   encode(message: CryptoParams, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.hmac !== undefined) {
+    if (message.hmac !== undefined && message.hmac.length !== 0) {
       writer.uint32(34).bytes(message.hmac);
     }
-    if (message.iv !== undefined) {
+    if (message.iv !== undefined && message.iv.length !== 0) {
       writer.uint32(42).bytes(message.iv);
     }
-    if (message.compressionType !== undefined) {
+    if (message.compressionType !== undefined && message.compressionType !== 0) {
       writer.uint32(48).int32(message.compressionType);
     }
     return writer;
@@ -111,23 +111,21 @@ export const CryptoParams: MessageFns<CryptoParams> = {
 
   fromJSON(object: any): CryptoParams {
     return {
-      hmac: isSet(object.hmac) ? bytesFromBase64(object.hmac) : undefined,
-      iv: isSet(object.iv) ? bytesFromBase64(object.iv) : undefined,
-      compressionType: isSet(object.compressionType)
-        ? cryptoParams_CompressionTypeFromJSON(object.compressionType)
-        : undefined,
+      hmac: isSet(object.hmac) ? bytesFromBase64(object.hmac) : new Uint8Array(0),
+      iv: isSet(object.iv) ? bytesFromBase64(object.iv) : new Uint8Array(0),
+      compressionType: isSet(object.compressionType) ? cryptoParams_CompressionTypeFromJSON(object.compressionType) : 0,
     };
   },
 
   toJSON(message: CryptoParams): unknown {
     const obj: any = {};
-    if (message.hmac !== undefined) {
+    if (message.hmac !== undefined && message.hmac.length !== 0) {
       obj.hmac = base64FromBytes(message.hmac);
     }
-    if (message.iv !== undefined) {
+    if (message.iv !== undefined && message.iv.length !== 0) {
       obj.iv = base64FromBytes(message.iv);
     }
-    if (message.compressionType !== undefined) {
+    if (message.compressionType !== undefined && message.compressionType !== 0) {
       obj.compressionType = cryptoParams_CompressionTypeToJSON(message.compressionType);
     }
     return obj;
@@ -138,9 +136,9 @@ export const CryptoParams: MessageFns<CryptoParams> = {
   },
   fromPartial<I extends Exact<DeepPartial<CryptoParams>, I>>(object: I): CryptoParams {
     const message = createBaseCryptoParams();
-    message.hmac = object.hmac ?? undefined;
-    message.iv = object.iv ?? undefined;
-    message.compressionType = object.compressionType ?? undefined;
+    message.hmac = object.hmac ?? new Uint8Array(0);
+    message.iv = object.iv ?? new Uint8Array(0);
+    message.compressionType = object.compressionType ?? 0;
     return message;
   },
 };

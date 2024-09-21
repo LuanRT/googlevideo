@@ -115,12 +115,12 @@ export interface StreamerContext_Gqa_Hqa {
 function createBaseStreamerContext(): StreamerContext {
   return {
     clientInfo: undefined,
-    poToken: undefined,
-    playbackCookie: undefined,
-    gp: undefined,
+    poToken: new Uint8Array(0),
+    playbackCookie: new Uint8Array(0),
+    gp: new Uint8Array(0),
     field5: [],
     field6: [],
-    field7: undefined,
+    field7: "",
     field8: undefined,
   };
 }
@@ -130,13 +130,13 @@ export const StreamerContext: MessageFns<StreamerContext> = {
     if (message.clientInfo !== undefined) {
       StreamerContext_ClientInfo.encode(message.clientInfo, writer.uint32(10).fork()).join();
     }
-    if (message.poToken !== undefined) {
+    if (message.poToken !== undefined && message.poToken.length !== 0) {
       writer.uint32(18).bytes(message.poToken);
     }
-    if (message.playbackCookie !== undefined) {
+    if (message.playbackCookie !== undefined && message.playbackCookie.length !== 0) {
       writer.uint32(26).bytes(message.playbackCookie);
     }
-    if (message.gp !== undefined) {
+    if (message.gp !== undefined && message.gp.length !== 0) {
       writer.uint32(34).bytes(message.gp);
     }
     for (const v of message.field5) {
@@ -147,7 +147,7 @@ export const StreamerContext: MessageFns<StreamerContext> = {
       writer.int32(v);
     }
     writer.join();
-    if (message.field7 !== undefined) {
+    if (message.field7 !== undefined && message.field7 !== "") {
       writer.uint32(58).string(message.field7);
     }
     if (message.field8 !== undefined) {
@@ -241,14 +241,14 @@ export const StreamerContext: MessageFns<StreamerContext> = {
   fromJSON(object: any): StreamerContext {
     return {
       clientInfo: isSet(object.clientInfo) ? StreamerContext_ClientInfo.fromJSON(object.clientInfo) : undefined,
-      poToken: isSet(object.poToken) ? bytesFromBase64(object.poToken) : undefined,
-      playbackCookie: isSet(object.playbackCookie) ? bytesFromBase64(object.playbackCookie) : undefined,
-      gp: isSet(object.gp) ? bytesFromBase64(object.gp) : undefined,
+      poToken: isSet(object.poToken) ? bytesFromBase64(object.poToken) : new Uint8Array(0),
+      playbackCookie: isSet(object.playbackCookie) ? bytesFromBase64(object.playbackCookie) : new Uint8Array(0),
+      gp: isSet(object.gp) ? bytesFromBase64(object.gp) : new Uint8Array(0),
       field5: globalThis.Array.isArray(object?.field5)
         ? object.field5.map((e: any) => StreamerContext_Fqa.fromJSON(e))
         : [],
       field6: globalThis.Array.isArray(object?.field6) ? object.field6.map((e: any) => globalThis.Number(e)) : [],
-      field7: isSet(object.field7) ? globalThis.String(object.field7) : undefined,
+      field7: isSet(object.field7) ? globalThis.String(object.field7) : "",
       field8: isSet(object.field8) ? StreamerContext_Gqa.fromJSON(object.field8) : undefined,
     };
   },
@@ -258,13 +258,13 @@ export const StreamerContext: MessageFns<StreamerContext> = {
     if (message.clientInfo !== undefined) {
       obj.clientInfo = StreamerContext_ClientInfo.toJSON(message.clientInfo);
     }
-    if (message.poToken !== undefined) {
+    if (message.poToken !== undefined && message.poToken.length !== 0) {
       obj.poToken = base64FromBytes(message.poToken);
     }
-    if (message.playbackCookie !== undefined) {
+    if (message.playbackCookie !== undefined && message.playbackCookie.length !== 0) {
       obj.playbackCookie = base64FromBytes(message.playbackCookie);
     }
-    if (message.gp !== undefined) {
+    if (message.gp !== undefined && message.gp.length !== 0) {
       obj.gp = base64FromBytes(message.gp);
     }
     if (message.field5?.length) {
@@ -273,7 +273,7 @@ export const StreamerContext: MessageFns<StreamerContext> = {
     if (message.field6?.length) {
       obj.field6 = message.field6.map((e) => Math.round(e));
     }
-    if (message.field7 !== undefined) {
+    if (message.field7 !== undefined && message.field7 !== "") {
       obj.field7 = message.field7;
     }
     if (message.field8 !== undefined) {
@@ -290,12 +290,12 @@ export const StreamerContext: MessageFns<StreamerContext> = {
     message.clientInfo = (object.clientInfo !== undefined && object.clientInfo !== null)
       ? StreamerContext_ClientInfo.fromPartial(object.clientInfo)
       : undefined;
-    message.poToken = object.poToken ?? undefined;
-    message.playbackCookie = object.playbackCookie ?? undefined;
-    message.gp = object.gp ?? undefined;
+    message.poToken = object.poToken ?? new Uint8Array(0);
+    message.playbackCookie = object.playbackCookie ?? new Uint8Array(0);
+    message.gp = object.gp ?? new Uint8Array(0);
     message.field5 = object.field5?.map((e) => StreamerContext_Fqa.fromPartial(e)) || [];
     message.field6 = object.field6?.map((e) => e) || [];
-    message.field7 = object.field7 ?? undefined;
+    message.field7 = object.field7 ?? "";
     message.field8 = (object.field8 !== undefined && object.field8 !== null)
       ? StreamerContext_Gqa.fromPartial(object.field8)
       : undefined;
@@ -305,98 +305,98 @@ export const StreamerContext: MessageFns<StreamerContext> = {
 
 function createBaseStreamerContext_ClientInfo(): StreamerContext_ClientInfo {
   return {
-    deviceMake: undefined,
-    deviceModel: undefined,
-    clientName: undefined,
-    clientVersion: undefined,
-    osName: undefined,
-    osVersion: undefined,
-    acceptLanguage: undefined,
-    acceptRegion: undefined,
-    screenWidthPoints: undefined,
-    screenHeightPoints: undefined,
-    screenWidthInches: undefined,
-    screenHeightInches: undefined,
-    screenPixelDensity: undefined,
-    clientFormFactor: undefined,
-    gmscoreVersionCode: undefined,
-    windowWidthPoints: undefined,
-    windowHeightPoints: undefined,
-    androidSdkVersion: undefined,
-    screenDensityFloat: undefined,
-    utcOffsetMinutes: undefined,
-    timeZone: undefined,
-    chipset: undefined,
+    deviceMake: "",
+    deviceModel: "",
+    clientName: 0,
+    clientVersion: "",
+    osName: "",
+    osVersion: "",
+    acceptLanguage: "",
+    acceptRegion: "",
+    screenWidthPoints: 0,
+    screenHeightPoints: 0,
+    screenWidthInches: 0,
+    screenHeightInches: 0,
+    screenPixelDensity: 0,
+    clientFormFactor: 0,
+    gmscoreVersionCode: 0,
+    windowWidthPoints: 0,
+    windowHeightPoints: 0,
+    androidSdkVersion: 0,
+    screenDensityFloat: 0,
+    utcOffsetMinutes: 0,
+    timeZone: "",
+    chipset: "",
     glDeviceInfo: undefined,
   };
 }
 
 export const StreamerContext_ClientInfo: MessageFns<StreamerContext_ClientInfo> = {
   encode(message: StreamerContext_ClientInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.deviceMake !== undefined) {
+    if (message.deviceMake !== undefined && message.deviceMake !== "") {
       writer.uint32(98).string(message.deviceMake);
     }
-    if (message.deviceModel !== undefined) {
+    if (message.deviceModel !== undefined && message.deviceModel !== "") {
       writer.uint32(106).string(message.deviceModel);
     }
-    if (message.clientName !== undefined) {
+    if (message.clientName !== undefined && message.clientName !== 0) {
       writer.uint32(128).int32(message.clientName);
     }
-    if (message.clientVersion !== undefined) {
+    if (message.clientVersion !== undefined && message.clientVersion !== "") {
       writer.uint32(138).string(message.clientVersion);
     }
-    if (message.osName !== undefined) {
+    if (message.osName !== undefined && message.osName !== "") {
       writer.uint32(146).string(message.osName);
     }
-    if (message.osVersion !== undefined) {
+    if (message.osVersion !== undefined && message.osVersion !== "") {
       writer.uint32(154).string(message.osVersion);
     }
-    if (message.acceptLanguage !== undefined) {
+    if (message.acceptLanguage !== undefined && message.acceptLanguage !== "") {
       writer.uint32(170).string(message.acceptLanguage);
     }
-    if (message.acceptRegion !== undefined) {
+    if (message.acceptRegion !== undefined && message.acceptRegion !== "") {
       writer.uint32(178).string(message.acceptRegion);
     }
-    if (message.screenWidthPoints !== undefined) {
+    if (message.screenWidthPoints !== undefined && message.screenWidthPoints !== 0) {
       writer.uint32(296).int32(message.screenWidthPoints);
     }
-    if (message.screenHeightPoints !== undefined) {
+    if (message.screenHeightPoints !== undefined && message.screenHeightPoints !== 0) {
       writer.uint32(304).int32(message.screenHeightPoints);
     }
-    if (message.screenWidthInches !== undefined) {
+    if (message.screenWidthInches !== undefined && message.screenWidthInches !== 0) {
       writer.uint32(317).float(message.screenWidthInches);
     }
-    if (message.screenHeightInches !== undefined) {
+    if (message.screenHeightInches !== undefined && message.screenHeightInches !== 0) {
       writer.uint32(325).float(message.screenHeightInches);
     }
-    if (message.screenPixelDensity !== undefined) {
+    if (message.screenPixelDensity !== undefined && message.screenPixelDensity !== 0) {
       writer.uint32(328).int32(message.screenPixelDensity);
     }
-    if (message.clientFormFactor !== undefined) {
+    if (message.clientFormFactor !== undefined && message.clientFormFactor !== 0) {
       writer.uint32(368).int32(message.clientFormFactor);
     }
-    if (message.gmscoreVersionCode !== undefined) {
+    if (message.gmscoreVersionCode !== undefined && message.gmscoreVersionCode !== 0) {
       writer.uint32(400).int32(message.gmscoreVersionCode);
     }
-    if (message.windowWidthPoints !== undefined) {
+    if (message.windowWidthPoints !== undefined && message.windowWidthPoints !== 0) {
       writer.uint32(440).int32(message.windowWidthPoints);
     }
-    if (message.windowHeightPoints !== undefined) {
+    if (message.windowHeightPoints !== undefined && message.windowHeightPoints !== 0) {
       writer.uint32(448).int32(message.windowHeightPoints);
     }
-    if (message.androidSdkVersion !== undefined) {
+    if (message.androidSdkVersion !== undefined && message.androidSdkVersion !== 0) {
       writer.uint32(512).int32(message.androidSdkVersion);
     }
-    if (message.screenDensityFloat !== undefined) {
+    if (message.screenDensityFloat !== undefined && message.screenDensityFloat !== 0) {
       writer.uint32(525).float(message.screenDensityFloat);
     }
-    if (message.utcOffsetMinutes !== undefined) {
+    if (message.utcOffsetMinutes !== undefined && message.utcOffsetMinutes !== 0) {
       writer.uint32(536).int64(message.utcOffsetMinutes);
     }
-    if (message.timeZone !== undefined) {
+    if (message.timeZone !== undefined && message.timeZone !== "") {
       writer.uint32(642).string(message.timeZone);
     }
-    if (message.chipset !== undefined) {
+    if (message.chipset !== undefined && message.chipset !== "") {
       writer.uint32(738).string(message.chipset);
     }
     if (message.glDeviceInfo !== undefined) {
@@ -584,100 +584,100 @@ export const StreamerContext_ClientInfo: MessageFns<StreamerContext_ClientInfo> 
 
   fromJSON(object: any): StreamerContext_ClientInfo {
     return {
-      deviceMake: isSet(object.deviceMake) ? globalThis.String(object.deviceMake) : undefined,
-      deviceModel: isSet(object.deviceModel) ? globalThis.String(object.deviceModel) : undefined,
-      clientName: isSet(object.clientName) ? globalThis.Number(object.clientName) : undefined,
-      clientVersion: isSet(object.clientVersion) ? globalThis.String(object.clientVersion) : undefined,
-      osName: isSet(object.osName) ? globalThis.String(object.osName) : undefined,
-      osVersion: isSet(object.osVersion) ? globalThis.String(object.osVersion) : undefined,
-      acceptLanguage: isSet(object.acceptLanguage) ? globalThis.String(object.acceptLanguage) : undefined,
-      acceptRegion: isSet(object.acceptRegion) ? globalThis.String(object.acceptRegion) : undefined,
-      screenWidthPoints: isSet(object.screenWidthPoints) ? globalThis.Number(object.screenWidthPoints) : undefined,
-      screenHeightPoints: isSet(object.screenHeightPoints) ? globalThis.Number(object.screenHeightPoints) : undefined,
-      screenWidthInches: isSet(object.screenWidthInches) ? globalThis.Number(object.screenWidthInches) : undefined,
-      screenHeightInches: isSet(object.screenHeightInches) ? globalThis.Number(object.screenHeightInches) : undefined,
-      screenPixelDensity: isSet(object.screenPixelDensity) ? globalThis.Number(object.screenPixelDensity) : undefined,
+      deviceMake: isSet(object.deviceMake) ? globalThis.String(object.deviceMake) : "",
+      deviceModel: isSet(object.deviceModel) ? globalThis.String(object.deviceModel) : "",
+      clientName: isSet(object.clientName) ? globalThis.Number(object.clientName) : 0,
+      clientVersion: isSet(object.clientVersion) ? globalThis.String(object.clientVersion) : "",
+      osName: isSet(object.osName) ? globalThis.String(object.osName) : "",
+      osVersion: isSet(object.osVersion) ? globalThis.String(object.osVersion) : "",
+      acceptLanguage: isSet(object.acceptLanguage) ? globalThis.String(object.acceptLanguage) : "",
+      acceptRegion: isSet(object.acceptRegion) ? globalThis.String(object.acceptRegion) : "",
+      screenWidthPoints: isSet(object.screenWidthPoints) ? globalThis.Number(object.screenWidthPoints) : 0,
+      screenHeightPoints: isSet(object.screenHeightPoints) ? globalThis.Number(object.screenHeightPoints) : 0,
+      screenWidthInches: isSet(object.screenWidthInches) ? globalThis.Number(object.screenWidthInches) : 0,
+      screenHeightInches: isSet(object.screenHeightInches) ? globalThis.Number(object.screenHeightInches) : 0,
+      screenPixelDensity: isSet(object.screenPixelDensity) ? globalThis.Number(object.screenPixelDensity) : 0,
       clientFormFactor: isSet(object.clientFormFactor)
         ? streamerContext_ClientFormFactorFromJSON(object.clientFormFactor)
-        : undefined,
-      gmscoreVersionCode: isSet(object.gmscoreVersionCode) ? globalThis.Number(object.gmscoreVersionCode) : undefined,
-      windowWidthPoints: isSet(object.windowWidthPoints) ? globalThis.Number(object.windowWidthPoints) : undefined,
-      windowHeightPoints: isSet(object.windowHeightPoints) ? globalThis.Number(object.windowHeightPoints) : undefined,
-      androidSdkVersion: isSet(object.androidSdkVersion) ? globalThis.Number(object.androidSdkVersion) : undefined,
-      screenDensityFloat: isSet(object.screenDensityFloat) ? globalThis.Number(object.screenDensityFloat) : undefined,
-      utcOffsetMinutes: isSet(object.utcOffsetMinutes) ? globalThis.Number(object.utcOffsetMinutes) : undefined,
-      timeZone: isSet(object.timeZone) ? globalThis.String(object.timeZone) : undefined,
-      chipset: isSet(object.chipset) ? globalThis.String(object.chipset) : undefined,
+        : 0,
+      gmscoreVersionCode: isSet(object.gmscoreVersionCode) ? globalThis.Number(object.gmscoreVersionCode) : 0,
+      windowWidthPoints: isSet(object.windowWidthPoints) ? globalThis.Number(object.windowWidthPoints) : 0,
+      windowHeightPoints: isSet(object.windowHeightPoints) ? globalThis.Number(object.windowHeightPoints) : 0,
+      androidSdkVersion: isSet(object.androidSdkVersion) ? globalThis.Number(object.androidSdkVersion) : 0,
+      screenDensityFloat: isSet(object.screenDensityFloat) ? globalThis.Number(object.screenDensityFloat) : 0,
+      utcOffsetMinutes: isSet(object.utcOffsetMinutes) ? globalThis.Number(object.utcOffsetMinutes) : 0,
+      timeZone: isSet(object.timeZone) ? globalThis.String(object.timeZone) : "",
+      chipset: isSet(object.chipset) ? globalThis.String(object.chipset) : "",
       glDeviceInfo: isSet(object.glDeviceInfo) ? StreamerContext_GLDeviceInfo.fromJSON(object.glDeviceInfo) : undefined,
     };
   },
 
   toJSON(message: StreamerContext_ClientInfo): unknown {
     const obj: any = {};
-    if (message.deviceMake !== undefined) {
+    if (message.deviceMake !== undefined && message.deviceMake !== "") {
       obj.deviceMake = message.deviceMake;
     }
-    if (message.deviceModel !== undefined) {
+    if (message.deviceModel !== undefined && message.deviceModel !== "") {
       obj.deviceModel = message.deviceModel;
     }
-    if (message.clientName !== undefined) {
+    if (message.clientName !== undefined && message.clientName !== 0) {
       obj.clientName = Math.round(message.clientName);
     }
-    if (message.clientVersion !== undefined) {
+    if (message.clientVersion !== undefined && message.clientVersion !== "") {
       obj.clientVersion = message.clientVersion;
     }
-    if (message.osName !== undefined) {
+    if (message.osName !== undefined && message.osName !== "") {
       obj.osName = message.osName;
     }
-    if (message.osVersion !== undefined) {
+    if (message.osVersion !== undefined && message.osVersion !== "") {
       obj.osVersion = message.osVersion;
     }
-    if (message.acceptLanguage !== undefined) {
+    if (message.acceptLanguage !== undefined && message.acceptLanguage !== "") {
       obj.acceptLanguage = message.acceptLanguage;
     }
-    if (message.acceptRegion !== undefined) {
+    if (message.acceptRegion !== undefined && message.acceptRegion !== "") {
       obj.acceptRegion = message.acceptRegion;
     }
-    if (message.screenWidthPoints !== undefined) {
+    if (message.screenWidthPoints !== undefined && message.screenWidthPoints !== 0) {
       obj.screenWidthPoints = Math.round(message.screenWidthPoints);
     }
-    if (message.screenHeightPoints !== undefined) {
+    if (message.screenHeightPoints !== undefined && message.screenHeightPoints !== 0) {
       obj.screenHeightPoints = Math.round(message.screenHeightPoints);
     }
-    if (message.screenWidthInches !== undefined) {
+    if (message.screenWidthInches !== undefined && message.screenWidthInches !== 0) {
       obj.screenWidthInches = message.screenWidthInches;
     }
-    if (message.screenHeightInches !== undefined) {
+    if (message.screenHeightInches !== undefined && message.screenHeightInches !== 0) {
       obj.screenHeightInches = message.screenHeightInches;
     }
-    if (message.screenPixelDensity !== undefined) {
+    if (message.screenPixelDensity !== undefined && message.screenPixelDensity !== 0) {
       obj.screenPixelDensity = Math.round(message.screenPixelDensity);
     }
-    if (message.clientFormFactor !== undefined) {
+    if (message.clientFormFactor !== undefined && message.clientFormFactor !== 0) {
       obj.clientFormFactor = streamerContext_ClientFormFactorToJSON(message.clientFormFactor);
     }
-    if (message.gmscoreVersionCode !== undefined) {
+    if (message.gmscoreVersionCode !== undefined && message.gmscoreVersionCode !== 0) {
       obj.gmscoreVersionCode = Math.round(message.gmscoreVersionCode);
     }
-    if (message.windowWidthPoints !== undefined) {
+    if (message.windowWidthPoints !== undefined && message.windowWidthPoints !== 0) {
       obj.windowWidthPoints = Math.round(message.windowWidthPoints);
     }
-    if (message.windowHeightPoints !== undefined) {
+    if (message.windowHeightPoints !== undefined && message.windowHeightPoints !== 0) {
       obj.windowHeightPoints = Math.round(message.windowHeightPoints);
     }
-    if (message.androidSdkVersion !== undefined) {
+    if (message.androidSdkVersion !== undefined && message.androidSdkVersion !== 0) {
       obj.androidSdkVersion = Math.round(message.androidSdkVersion);
     }
-    if (message.screenDensityFloat !== undefined) {
+    if (message.screenDensityFloat !== undefined && message.screenDensityFloat !== 0) {
       obj.screenDensityFloat = message.screenDensityFloat;
     }
-    if (message.utcOffsetMinutes !== undefined) {
+    if (message.utcOffsetMinutes !== undefined && message.utcOffsetMinutes !== 0) {
       obj.utcOffsetMinutes = Math.round(message.utcOffsetMinutes);
     }
-    if (message.timeZone !== undefined) {
+    if (message.timeZone !== undefined && message.timeZone !== "") {
       obj.timeZone = message.timeZone;
     }
-    if (message.chipset !== undefined) {
+    if (message.chipset !== undefined && message.chipset !== "") {
       obj.chipset = message.chipset;
     }
     if (message.glDeviceInfo !== undefined) {
@@ -691,28 +691,28 @@ export const StreamerContext_ClientInfo: MessageFns<StreamerContext_ClientInfo> 
   },
   fromPartial<I extends Exact<DeepPartial<StreamerContext_ClientInfo>, I>>(object: I): StreamerContext_ClientInfo {
     const message = createBaseStreamerContext_ClientInfo();
-    message.deviceMake = object.deviceMake ?? undefined;
-    message.deviceModel = object.deviceModel ?? undefined;
-    message.clientName = object.clientName ?? undefined;
-    message.clientVersion = object.clientVersion ?? undefined;
-    message.osName = object.osName ?? undefined;
-    message.osVersion = object.osVersion ?? undefined;
-    message.acceptLanguage = object.acceptLanguage ?? undefined;
-    message.acceptRegion = object.acceptRegion ?? undefined;
-    message.screenWidthPoints = object.screenWidthPoints ?? undefined;
-    message.screenHeightPoints = object.screenHeightPoints ?? undefined;
-    message.screenWidthInches = object.screenWidthInches ?? undefined;
-    message.screenHeightInches = object.screenHeightInches ?? undefined;
-    message.screenPixelDensity = object.screenPixelDensity ?? undefined;
-    message.clientFormFactor = object.clientFormFactor ?? undefined;
-    message.gmscoreVersionCode = object.gmscoreVersionCode ?? undefined;
-    message.windowWidthPoints = object.windowWidthPoints ?? undefined;
-    message.windowHeightPoints = object.windowHeightPoints ?? undefined;
-    message.androidSdkVersion = object.androidSdkVersion ?? undefined;
-    message.screenDensityFloat = object.screenDensityFloat ?? undefined;
-    message.utcOffsetMinutes = object.utcOffsetMinutes ?? undefined;
-    message.timeZone = object.timeZone ?? undefined;
-    message.chipset = object.chipset ?? undefined;
+    message.deviceMake = object.deviceMake ?? "";
+    message.deviceModel = object.deviceModel ?? "";
+    message.clientName = object.clientName ?? 0;
+    message.clientVersion = object.clientVersion ?? "";
+    message.osName = object.osName ?? "";
+    message.osVersion = object.osVersion ?? "";
+    message.acceptLanguage = object.acceptLanguage ?? "";
+    message.acceptRegion = object.acceptRegion ?? "";
+    message.screenWidthPoints = object.screenWidthPoints ?? 0;
+    message.screenHeightPoints = object.screenHeightPoints ?? 0;
+    message.screenWidthInches = object.screenWidthInches ?? 0;
+    message.screenHeightInches = object.screenHeightInches ?? 0;
+    message.screenPixelDensity = object.screenPixelDensity ?? 0;
+    message.clientFormFactor = object.clientFormFactor ?? 0;
+    message.gmscoreVersionCode = object.gmscoreVersionCode ?? 0;
+    message.windowWidthPoints = object.windowWidthPoints ?? 0;
+    message.windowHeightPoints = object.windowHeightPoints ?? 0;
+    message.androidSdkVersion = object.androidSdkVersion ?? 0;
+    message.screenDensityFloat = object.screenDensityFloat ?? 0;
+    message.utcOffsetMinutes = object.utcOffsetMinutes ?? 0;
+    message.timeZone = object.timeZone ?? "";
+    message.chipset = object.chipset ?? "";
     message.glDeviceInfo = (object.glDeviceInfo !== undefined && object.glDeviceInfo !== null)
       ? StreamerContext_GLDeviceInfo.fromPartial(object.glDeviceInfo)
       : undefined;
@@ -721,18 +721,18 @@ export const StreamerContext_ClientInfo: MessageFns<StreamerContext_ClientInfo> 
 };
 
 function createBaseStreamerContext_GLDeviceInfo(): StreamerContext_GLDeviceInfo {
-  return { glRenderer: undefined, glEsVersionMajor: undefined, glEsVersionMinor: undefined };
+  return { glRenderer: "", glEsVersionMajor: 0, glEsVersionMinor: 0 };
 }
 
 export const StreamerContext_GLDeviceInfo: MessageFns<StreamerContext_GLDeviceInfo> = {
   encode(message: StreamerContext_GLDeviceInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.glRenderer !== undefined) {
+    if (message.glRenderer !== undefined && message.glRenderer !== "") {
       writer.uint32(10).string(message.glRenderer);
     }
-    if (message.glEsVersionMajor !== undefined) {
+    if (message.glEsVersionMajor !== undefined && message.glEsVersionMajor !== 0) {
       writer.uint32(16).int32(message.glEsVersionMajor);
     }
-    if (message.glEsVersionMinor !== undefined) {
+    if (message.glEsVersionMinor !== undefined && message.glEsVersionMinor !== 0) {
       writer.uint32(24).int32(message.glEsVersionMinor);
     }
     return writer;
@@ -777,21 +777,21 @@ export const StreamerContext_GLDeviceInfo: MessageFns<StreamerContext_GLDeviceIn
 
   fromJSON(object: any): StreamerContext_GLDeviceInfo {
     return {
-      glRenderer: isSet(object.glRenderer) ? globalThis.String(object.glRenderer) : undefined,
-      glEsVersionMajor: isSet(object.glEsVersionMajor) ? globalThis.Number(object.glEsVersionMajor) : undefined,
-      glEsVersionMinor: isSet(object.glEsVersionMinor) ? globalThis.Number(object.glEsVersionMinor) : undefined,
+      glRenderer: isSet(object.glRenderer) ? globalThis.String(object.glRenderer) : "",
+      glEsVersionMajor: isSet(object.glEsVersionMajor) ? globalThis.Number(object.glEsVersionMajor) : 0,
+      glEsVersionMinor: isSet(object.glEsVersionMinor) ? globalThis.Number(object.glEsVersionMinor) : 0,
     };
   },
 
   toJSON(message: StreamerContext_GLDeviceInfo): unknown {
     const obj: any = {};
-    if (message.glRenderer !== undefined) {
+    if (message.glRenderer !== undefined && message.glRenderer !== "") {
       obj.glRenderer = message.glRenderer;
     }
-    if (message.glEsVersionMajor !== undefined) {
+    if (message.glEsVersionMajor !== undefined && message.glEsVersionMajor !== 0) {
       obj.glEsVersionMajor = Math.round(message.glEsVersionMajor);
     }
-    if (message.glEsVersionMinor !== undefined) {
+    if (message.glEsVersionMinor !== undefined && message.glEsVersionMinor !== 0) {
       obj.glEsVersionMinor = Math.round(message.glEsVersionMinor);
     }
     return obj;
@@ -802,23 +802,23 @@ export const StreamerContext_GLDeviceInfo: MessageFns<StreamerContext_GLDeviceIn
   },
   fromPartial<I extends Exact<DeepPartial<StreamerContext_GLDeviceInfo>, I>>(object: I): StreamerContext_GLDeviceInfo {
     const message = createBaseStreamerContext_GLDeviceInfo();
-    message.glRenderer = object.glRenderer ?? undefined;
-    message.glEsVersionMajor = object.glEsVersionMajor ?? undefined;
-    message.glEsVersionMinor = object.glEsVersionMinor ?? undefined;
+    message.glRenderer = object.glRenderer ?? "";
+    message.glEsVersionMajor = object.glEsVersionMajor ?? 0;
+    message.glEsVersionMinor = object.glEsVersionMinor ?? 0;
     return message;
   },
 };
 
 function createBaseStreamerContext_Fqa(): StreamerContext_Fqa {
-  return { type: undefined, value: undefined };
+  return { type: 0, value: new Uint8Array(0) };
 }
 
 export const StreamerContext_Fqa: MessageFns<StreamerContext_Fqa> = {
   encode(message: StreamerContext_Fqa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.type !== undefined) {
+    if (message.type !== undefined && message.type !== 0) {
       writer.uint32(8).int32(message.type);
     }
-    if (message.value !== undefined) {
+    if (message.value !== undefined && message.value.length !== 0) {
       writer.uint32(18).bytes(message.value);
     }
     return writer;
@@ -856,17 +856,17 @@ export const StreamerContext_Fqa: MessageFns<StreamerContext_Fqa> = {
 
   fromJSON(object: any): StreamerContext_Fqa {
     return {
-      type: isSet(object.type) ? globalThis.Number(object.type) : undefined,
-      value: isSet(object.value) ? bytesFromBase64(object.value) : undefined,
+      type: isSet(object.type) ? globalThis.Number(object.type) : 0,
+      value: isSet(object.value) ? bytesFromBase64(object.value) : new Uint8Array(0),
     };
   },
 
   toJSON(message: StreamerContext_Fqa): unknown {
     const obj: any = {};
-    if (message.type !== undefined) {
+    if (message.type !== undefined && message.type !== 0) {
       obj.type = Math.round(message.type);
     }
-    if (message.value !== undefined) {
+    if (message.value !== undefined && message.value.length !== 0) {
       obj.value = base64FromBytes(message.value);
     }
     return obj;
@@ -877,19 +877,19 @@ export const StreamerContext_Fqa: MessageFns<StreamerContext_Fqa> = {
   },
   fromPartial<I extends Exact<DeepPartial<StreamerContext_Fqa>, I>>(object: I): StreamerContext_Fqa {
     const message = createBaseStreamerContext_Fqa();
-    message.type = object.type ?? undefined;
-    message.value = object.value ?? undefined;
+    message.type = object.type ?? 0;
+    message.value = object.value ?? new Uint8Array(0);
     return message;
   },
 };
 
 function createBaseStreamerContext_Gqa(): StreamerContext_Gqa {
-  return { field1: undefined, field2: undefined };
+  return { field1: new Uint8Array(0), field2: undefined };
 }
 
 export const StreamerContext_Gqa: MessageFns<StreamerContext_Gqa> = {
   encode(message: StreamerContext_Gqa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.field1 !== undefined) {
+    if (message.field1 !== undefined && message.field1.length !== 0) {
       writer.uint32(10).bytes(message.field1);
     }
     if (message.field2 !== undefined) {
@@ -930,14 +930,14 @@ export const StreamerContext_Gqa: MessageFns<StreamerContext_Gqa> = {
 
   fromJSON(object: any): StreamerContext_Gqa {
     return {
-      field1: isSet(object.field1) ? bytesFromBase64(object.field1) : undefined,
+      field1: isSet(object.field1) ? bytesFromBase64(object.field1) : new Uint8Array(0),
       field2: isSet(object.field2) ? StreamerContext_Gqa_Hqa.fromJSON(object.field2) : undefined,
     };
   },
 
   toJSON(message: StreamerContext_Gqa): unknown {
     const obj: any = {};
-    if (message.field1 !== undefined) {
+    if (message.field1 !== undefined && message.field1.length !== 0) {
       obj.field1 = base64FromBytes(message.field1);
     }
     if (message.field2 !== undefined) {
@@ -951,7 +951,7 @@ export const StreamerContext_Gqa: MessageFns<StreamerContext_Gqa> = {
   },
   fromPartial<I extends Exact<DeepPartial<StreamerContext_Gqa>, I>>(object: I): StreamerContext_Gqa {
     const message = createBaseStreamerContext_Gqa();
-    message.field1 = object.field1 ?? undefined;
+    message.field1 = object.field1 ?? new Uint8Array(0);
     message.field2 = (object.field2 !== undefined && object.field2 !== null)
       ? StreamerContext_Gqa_Hqa.fromPartial(object.field2)
       : undefined;
@@ -960,15 +960,15 @@ export const StreamerContext_Gqa: MessageFns<StreamerContext_Gqa> = {
 };
 
 function createBaseStreamerContext_Gqa_Hqa(): StreamerContext_Gqa_Hqa {
-  return { code: undefined, message: undefined };
+  return { code: 0, message: "" };
 }
 
 export const StreamerContext_Gqa_Hqa: MessageFns<StreamerContext_Gqa_Hqa> = {
   encode(message: StreamerContext_Gqa_Hqa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.code !== undefined) {
+    if (message.code !== undefined && message.code !== 0) {
       writer.uint32(8).int32(message.code);
     }
-    if (message.message !== undefined) {
+    if (message.message !== undefined && message.message !== "") {
       writer.uint32(18).string(message.message);
     }
     return writer;
@@ -1006,17 +1006,17 @@ export const StreamerContext_Gqa_Hqa: MessageFns<StreamerContext_Gqa_Hqa> = {
 
   fromJSON(object: any): StreamerContext_Gqa_Hqa {
     return {
-      code: isSet(object.code) ? globalThis.Number(object.code) : undefined,
-      message: isSet(object.message) ? globalThis.String(object.message) : undefined,
+      code: isSet(object.code) ? globalThis.Number(object.code) : 0,
+      message: isSet(object.message) ? globalThis.String(object.message) : "",
     };
   },
 
   toJSON(message: StreamerContext_Gqa_Hqa): unknown {
     const obj: any = {};
-    if (message.code !== undefined) {
+    if (message.code !== undefined && message.code !== 0) {
       obj.code = Math.round(message.code);
     }
-    if (message.message !== undefined) {
+    if (message.message !== undefined && message.message !== "") {
       obj.message = message.message;
     }
     return obj;
@@ -1027,8 +1027,8 @@ export const StreamerContext_Gqa_Hqa: MessageFns<StreamerContext_Gqa_Hqa> = {
   },
   fromPartial<I extends Exact<DeepPartial<StreamerContext_Gqa_Hqa>, I>>(object: I): StreamerContext_Gqa_Hqa {
     const message = createBaseStreamerContext_Gqa_Hqa();
-    message.code = object.code ?? undefined;
-    message.message = object.message ?? undefined;
+    message.code = object.code ?? 0;
+    message.message = object.message ?? "";
     return message;
   },
 };

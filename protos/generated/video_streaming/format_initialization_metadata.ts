@@ -25,34 +25,34 @@ export interface FormatInitializationMetadata {
 
 function createBaseFormatInitializationMetadata(): FormatInitializationMetadata {
   return {
-    videoId: undefined,
+    videoId: "",
     formatId: undefined,
-    endTimeMs: undefined,
-    field4: undefined,
-    mimeType: undefined,
+    endTimeMs: 0,
+    field4: 0,
+    mimeType: "",
     initRange: undefined,
     indexRange: undefined,
-    field8: undefined,
-    durationMs: undefined,
-    field10: undefined,
+    field8: 0,
+    durationMs: 0,
+    field10: 0,
   };
 }
 
 export const FormatInitializationMetadata: MessageFns<FormatInitializationMetadata> = {
   encode(message: FormatInitializationMetadata, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.videoId !== undefined) {
+    if (message.videoId !== undefined && message.videoId !== "") {
       writer.uint32(10).string(message.videoId);
     }
     if (message.formatId !== undefined) {
       FormatId.encode(message.formatId, writer.uint32(18).fork()).join();
     }
-    if (message.endTimeMs !== undefined) {
+    if (message.endTimeMs !== undefined && message.endTimeMs !== 0) {
       writer.uint32(24).int32(message.endTimeMs);
     }
-    if (message.field4 !== undefined) {
+    if (message.field4 !== undefined && message.field4 !== 0) {
       writer.uint32(32).int32(message.field4);
     }
-    if (message.mimeType !== undefined) {
+    if (message.mimeType !== undefined && message.mimeType !== "") {
       writer.uint32(42).string(message.mimeType);
     }
     if (message.initRange !== undefined) {
@@ -61,13 +61,13 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
     if (message.indexRange !== undefined) {
       IndexRange.encode(message.indexRange, writer.uint32(58).fork()).join();
     }
-    if (message.field8 !== undefined) {
+    if (message.field8 !== undefined && message.field8 !== 0) {
       writer.uint32(64).int32(message.field8);
     }
-    if (message.durationMs !== undefined) {
+    if (message.durationMs !== undefined && message.durationMs !== 0) {
       writer.uint32(72).int32(message.durationMs);
     }
-    if (message.field10 !== undefined) {
+    if (message.field10 !== undefined && message.field10 !== 0) {
       writer.uint32(80).int32(message.field10);
     }
     return writer;
@@ -161,34 +161,34 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
 
   fromJSON(object: any): FormatInitializationMetadata {
     return {
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : undefined,
+      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
       formatId: isSet(object.formatId) ? FormatId.fromJSON(object.formatId) : undefined,
-      endTimeMs: isSet(object.endTimeMs) ? globalThis.Number(object.endTimeMs) : undefined,
-      field4: isSet(object.field4) ? globalThis.Number(object.field4) : undefined,
-      mimeType: isSet(object.mimeType) ? globalThis.String(object.mimeType) : undefined,
+      endTimeMs: isSet(object.endTimeMs) ? globalThis.Number(object.endTimeMs) : 0,
+      field4: isSet(object.field4) ? globalThis.Number(object.field4) : 0,
+      mimeType: isSet(object.mimeType) ? globalThis.String(object.mimeType) : "",
       initRange: isSet(object.initRange) ? InitRange.fromJSON(object.initRange) : undefined,
       indexRange: isSet(object.indexRange) ? IndexRange.fromJSON(object.indexRange) : undefined,
-      field8: isSet(object.field8) ? globalThis.Number(object.field8) : undefined,
-      durationMs: isSet(object.durationMs) ? globalThis.Number(object.durationMs) : undefined,
-      field10: isSet(object.field10) ? globalThis.Number(object.field10) : undefined,
+      field8: isSet(object.field8) ? globalThis.Number(object.field8) : 0,
+      durationMs: isSet(object.durationMs) ? globalThis.Number(object.durationMs) : 0,
+      field10: isSet(object.field10) ? globalThis.Number(object.field10) : 0,
     };
   },
 
   toJSON(message: FormatInitializationMetadata): unknown {
     const obj: any = {};
-    if (message.videoId !== undefined) {
+    if (message.videoId !== undefined && message.videoId !== "") {
       obj.videoId = message.videoId;
     }
     if (message.formatId !== undefined) {
       obj.formatId = FormatId.toJSON(message.formatId);
     }
-    if (message.endTimeMs !== undefined) {
+    if (message.endTimeMs !== undefined && message.endTimeMs !== 0) {
       obj.endTimeMs = Math.round(message.endTimeMs);
     }
-    if (message.field4 !== undefined) {
+    if (message.field4 !== undefined && message.field4 !== 0) {
       obj.field4 = Math.round(message.field4);
     }
-    if (message.mimeType !== undefined) {
+    if (message.mimeType !== undefined && message.mimeType !== "") {
       obj.mimeType = message.mimeType;
     }
     if (message.initRange !== undefined) {
@@ -197,13 +197,13 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
     if (message.indexRange !== undefined) {
       obj.indexRange = IndexRange.toJSON(message.indexRange);
     }
-    if (message.field8 !== undefined) {
+    if (message.field8 !== undefined && message.field8 !== 0) {
       obj.field8 = Math.round(message.field8);
     }
-    if (message.durationMs !== undefined) {
+    if (message.durationMs !== undefined && message.durationMs !== 0) {
       obj.durationMs = Math.round(message.durationMs);
     }
-    if (message.field10 !== undefined) {
+    if (message.field10 !== undefined && message.field10 !== 0) {
       obj.field10 = Math.round(message.field10);
     }
     return obj;
@@ -214,22 +214,22 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
   },
   fromPartial<I extends Exact<DeepPartial<FormatInitializationMetadata>, I>>(object: I): FormatInitializationMetadata {
     const message = createBaseFormatInitializationMetadata();
-    message.videoId = object.videoId ?? undefined;
+    message.videoId = object.videoId ?? "";
     message.formatId = (object.formatId !== undefined && object.formatId !== null)
       ? FormatId.fromPartial(object.formatId)
       : undefined;
-    message.endTimeMs = object.endTimeMs ?? undefined;
-    message.field4 = object.field4 ?? undefined;
-    message.mimeType = object.mimeType ?? undefined;
+    message.endTimeMs = object.endTimeMs ?? 0;
+    message.field4 = object.field4 ?? 0;
+    message.mimeType = object.mimeType ?? "";
     message.initRange = (object.initRange !== undefined && object.initRange !== null)
       ? InitRange.fromPartial(object.initRange)
       : undefined;
     message.indexRange = (object.indexRange !== undefined && object.indexRange !== null)
       ? IndexRange.fromPartial(object.indexRange)
       : undefined;
-    message.field8 = object.field8 ?? undefined;
-    message.durationMs = object.durationMs ?? undefined;
-    message.field10 = object.field10 ?? undefined;
+    message.field8 = object.field8 ?? 0;
+    message.durationMs = object.durationMs ?? 0;
+    message.field10 = object.field10 ?? 0;
     return message;
   },
 };

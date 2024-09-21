@@ -22,18 +22,18 @@ export interface RequestCancellationPolicy_Item {
 }
 
 function createBaseRequestCancellationPolicy(): RequestCancellationPolicy {
-  return { N0: undefined, items: [], jq: undefined };
+  return { N0: 0, items: [], jq: 0 };
 }
 
 export const RequestCancellationPolicy: MessageFns<RequestCancellationPolicy> = {
   encode(message: RequestCancellationPolicy, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.N0 !== undefined) {
+    if (message.N0 !== undefined && message.N0 !== 0) {
       writer.uint32(8).int32(message.N0);
     }
     for (const v of message.items) {
       RequestCancellationPolicy_Item.encode(v!, writer.uint32(18).fork()).join();
     }
-    if (message.jq !== undefined) {
+    if (message.jq !== undefined && message.jq !== 0) {
       writer.uint32(24).int32(message.jq);
     }
     return writer;
@@ -78,23 +78,23 @@ export const RequestCancellationPolicy: MessageFns<RequestCancellationPolicy> = 
 
   fromJSON(object: any): RequestCancellationPolicy {
     return {
-      N0: isSet(object.N0) ? globalThis.Number(object.N0) : undefined,
+      N0: isSet(object.N0) ? globalThis.Number(object.N0) : 0,
       items: globalThis.Array.isArray(object?.items)
         ? object.items.map((e: any) => RequestCancellationPolicy_Item.fromJSON(e))
         : [],
-      jq: isSet(object.jq) ? globalThis.Number(object.jq) : undefined,
+      jq: isSet(object.jq) ? globalThis.Number(object.jq) : 0,
     };
   },
 
   toJSON(message: RequestCancellationPolicy): unknown {
     const obj: any = {};
-    if (message.N0 !== undefined) {
+    if (message.N0 !== undefined && message.N0 !== 0) {
       obj.N0 = Math.round(message.N0);
     }
     if (message.items?.length) {
       obj.items = message.items.map((e) => RequestCancellationPolicy_Item.toJSON(e));
     }
-    if (message.jq !== undefined) {
+    if (message.jq !== undefined && message.jq !== 0) {
       obj.jq = Math.round(message.jq);
     }
     return obj;
@@ -105,26 +105,26 @@ export const RequestCancellationPolicy: MessageFns<RequestCancellationPolicy> = 
   },
   fromPartial<I extends Exact<DeepPartial<RequestCancellationPolicy>, I>>(object: I): RequestCancellationPolicy {
     const message = createBaseRequestCancellationPolicy();
-    message.N0 = object.N0 ?? undefined;
+    message.N0 = object.N0 ?? 0;
     message.items = object.items?.map((e) => RequestCancellationPolicy_Item.fromPartial(e)) || [];
-    message.jq = object.jq ?? undefined;
+    message.jq = object.jq ?? 0;
     return message;
   },
 };
 
 function createBaseRequestCancellationPolicy_Item(): RequestCancellationPolicy_Item {
-  return { fR: undefined, NK: undefined, minReadaheadMs: undefined };
+  return { fR: 0, NK: 0, minReadaheadMs: 0 };
 }
 
 export const RequestCancellationPolicy_Item: MessageFns<RequestCancellationPolicy_Item> = {
   encode(message: RequestCancellationPolicy_Item, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.fR !== undefined) {
+    if (message.fR !== undefined && message.fR !== 0) {
       writer.uint32(8).int32(message.fR);
     }
-    if (message.NK !== undefined) {
+    if (message.NK !== undefined && message.NK !== 0) {
       writer.uint32(16).int32(message.NK);
     }
-    if (message.minReadaheadMs !== undefined) {
+    if (message.minReadaheadMs !== undefined && message.minReadaheadMs !== 0) {
       writer.uint32(24).int32(message.minReadaheadMs);
     }
     return writer;
@@ -169,21 +169,21 @@ export const RequestCancellationPolicy_Item: MessageFns<RequestCancellationPolic
 
   fromJSON(object: any): RequestCancellationPolicy_Item {
     return {
-      fR: isSet(object.fR) ? globalThis.Number(object.fR) : undefined,
-      NK: isSet(object.NK) ? globalThis.Number(object.NK) : undefined,
-      minReadaheadMs: isSet(object.minReadaheadMs) ? globalThis.Number(object.minReadaheadMs) : undefined,
+      fR: isSet(object.fR) ? globalThis.Number(object.fR) : 0,
+      NK: isSet(object.NK) ? globalThis.Number(object.NK) : 0,
+      minReadaheadMs: isSet(object.minReadaheadMs) ? globalThis.Number(object.minReadaheadMs) : 0,
     };
   },
 
   toJSON(message: RequestCancellationPolicy_Item): unknown {
     const obj: any = {};
-    if (message.fR !== undefined) {
+    if (message.fR !== undefined && message.fR !== 0) {
       obj.fR = Math.round(message.fR);
     }
-    if (message.NK !== undefined) {
+    if (message.NK !== undefined && message.NK !== 0) {
       obj.NK = Math.round(message.NK);
     }
-    if (message.minReadaheadMs !== undefined) {
+    if (message.minReadaheadMs !== undefined && message.minReadaheadMs !== 0) {
       obj.minReadaheadMs = Math.round(message.minReadaheadMs);
     }
     return obj;
@@ -196,9 +196,9 @@ export const RequestCancellationPolicy_Item: MessageFns<RequestCancellationPolic
     object: I,
   ): RequestCancellationPolicy_Item {
     const message = createBaseRequestCancellationPolicy_Item();
-    message.fR = object.fR ?? undefined;
-    message.NK = object.NK ?? undefined;
-    message.minReadaheadMs = object.minReadaheadMs ?? undefined;
+    message.fR = object.fR ?? 0;
+    message.NK = object.NK ?? 0;
+    message.minReadaheadMs = object.minReadaheadMs ?? 0;
     return message;
   },
 };

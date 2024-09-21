@@ -14,12 +14,12 @@ export interface SabrRedirect {
 }
 
 function createBaseSabrRedirect(): SabrRedirect {
-  return { url: undefined };
+  return { url: "" };
 }
 
 export const SabrRedirect: MessageFns<SabrRedirect> = {
   encode(message: SabrRedirect, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.url !== undefined) {
+    if (message.url !== undefined && message.url !== "") {
       writer.uint32(10).string(message.url);
     }
     return writer;
@@ -49,12 +49,12 @@ export const SabrRedirect: MessageFns<SabrRedirect> = {
   },
 
   fromJSON(object: any): SabrRedirect {
-    return { url: isSet(object.url) ? globalThis.String(object.url) : undefined };
+    return { url: isSet(object.url) ? globalThis.String(object.url) : "" };
   },
 
   toJSON(message: SabrRedirect): unknown {
     const obj: any = {};
-    if (message.url !== undefined) {
+    if (message.url !== undefined && message.url !== "") {
       obj.url = message.url;
     }
     return obj;
@@ -65,7 +65,7 @@ export const SabrRedirect: MessageFns<SabrRedirect> = {
   },
   fromPartial<I extends Exact<DeepPartial<SabrRedirect>, I>>(object: I): SabrRedirect {
     const message = createBaseSabrRedirect();
-    message.url = object.url ?? undefined;
+    message.url = object.url ?? "";
     return message;
   },
 };

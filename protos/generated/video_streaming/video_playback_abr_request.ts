@@ -89,14 +89,14 @@ function createBaseVideoPlaybackAbrRequest(): VideoPlaybackAbrRequest {
     mediaInfo: undefined,
     formatIds: [],
     ud: [],
-    videoPlaybackUstreamerConfig: undefined,
+    videoPlaybackUstreamerConfig: new Uint8Array(0),
     lo: undefined,
     audioFormatIds: [],
     videoFormatIds: [],
     streamerContext: undefined,
     field21: undefined,
-    field22: undefined,
-    field23: undefined,
+    field22: 0,
+    field23: 0,
     field1000: [],
   };
 }
@@ -112,7 +112,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     for (const v of message.ud) {
       Zpa.encode(v!, writer.uint32(26).fork()).join();
     }
-    if (message.videoPlaybackUstreamerConfig !== undefined) {
+    if (message.videoPlaybackUstreamerConfig !== undefined && message.videoPlaybackUstreamerConfig.length !== 0) {
       writer.uint32(42).bytes(message.videoPlaybackUstreamerConfig);
     }
     if (message.lo !== undefined) {
@@ -130,10 +130,10 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     if (message.field21 !== undefined) {
       OQa.encode(message.field21, writer.uint32(170).fork()).join();
     }
-    if (message.field22 !== undefined) {
+    if (message.field22 !== undefined && message.field22 !== 0) {
       writer.uint32(176).int32(message.field22);
     }
-    if (message.field23 !== undefined) {
+    if (message.field23 !== undefined && message.field23 !== 0) {
       writer.uint32(184).int32(message.field23);
     }
     for (const v of message.field1000) {
@@ -251,7 +251,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
       ud: globalThis.Array.isArray(object?.ud) ? object.ud.map((e: any) => Zpa.fromJSON(e)) : [],
       videoPlaybackUstreamerConfig: isSet(object.videoPlaybackUstreamerConfig)
         ? bytesFromBase64(object.videoPlaybackUstreamerConfig)
-        : undefined,
+        : new Uint8Array(0),
       lo: isSet(object.lo) ? Lo.fromJSON(object.lo) : undefined,
       audioFormatIds: globalThis.Array.isArray(object?.audioFormatIds)
         ? object.audioFormatIds.map((e: any) => FormatId.fromJSON(e))
@@ -261,8 +261,8 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
         : [],
       streamerContext: isSet(object.streamerContext) ? StreamerContext.fromJSON(object.streamerContext) : undefined,
       field21: isSet(object.field21) ? OQa.fromJSON(object.field21) : undefined,
-      field22: isSet(object.field22) ? globalThis.Number(object.field22) : undefined,
-      field23: isSet(object.field23) ? globalThis.Number(object.field23) : undefined,
+      field22: isSet(object.field22) ? globalThis.Number(object.field22) : 0,
+      field23: isSet(object.field23) ? globalThis.Number(object.field23) : 0,
       field1000: globalThis.Array.isArray(object?.field1000) ? object.field1000.map((e: any) => Pqa.fromJSON(e)) : [],
     };
   },
@@ -278,7 +278,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     if (message.ud?.length) {
       obj.ud = message.ud.map((e) => Zpa.toJSON(e));
     }
-    if (message.videoPlaybackUstreamerConfig !== undefined) {
+    if (message.videoPlaybackUstreamerConfig !== undefined && message.videoPlaybackUstreamerConfig.length !== 0) {
       obj.videoPlaybackUstreamerConfig = base64FromBytes(message.videoPlaybackUstreamerConfig);
     }
     if (message.lo !== undefined) {
@@ -296,10 +296,10 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     if (message.field21 !== undefined) {
       obj.field21 = OQa.toJSON(message.field21);
     }
-    if (message.field22 !== undefined) {
+    if (message.field22 !== undefined && message.field22 !== 0) {
       obj.field22 = Math.round(message.field22);
     }
-    if (message.field23 !== undefined) {
+    if (message.field23 !== undefined && message.field23 !== 0) {
       obj.field23 = Math.round(message.field23);
     }
     if (message.field1000?.length) {
@@ -318,7 +318,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
       : undefined;
     message.formatIds = object.formatIds?.map((e) => FormatId.fromPartial(e)) || [];
     message.ud = object.ud?.map((e) => Zpa.fromPartial(e)) || [];
-    message.videoPlaybackUstreamerConfig = object.videoPlaybackUstreamerConfig ?? undefined;
+    message.videoPlaybackUstreamerConfig = object.videoPlaybackUstreamerConfig ?? new Uint8Array(0);
     message.lo = (object.lo !== undefined && object.lo !== null) ? Lo.fromPartial(object.lo) : undefined;
     message.audioFormatIds = object.audioFormatIds?.map((e) => FormatId.fromPartial(e)) || [];
     message.videoFormatIds = object.videoFormatIds?.map((e) => FormatId.fromPartial(e)) || [];
@@ -328,15 +328,15 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     message.field21 = (object.field21 !== undefined && object.field21 !== null)
       ? OQa.fromPartial(object.field21)
       : undefined;
-    message.field22 = object.field22 ?? undefined;
-    message.field23 = object.field23 ?? undefined;
+    message.field22 = object.field22 ?? 0;
+    message.field23 = object.field23 ?? 0;
     message.field1000 = object.field1000?.map((e) => Pqa.fromPartial(e)) || [];
     return message;
   },
 };
 
 function createBaseLo(): Lo {
-  return { formatId: undefined, Lj: undefined, sequenceNumber: undefined, field4: undefined, MZ: undefined };
+  return { formatId: undefined, Lj: 0, sequenceNumber: 0, field4: undefined, MZ: 0 };
 }
 
 export const Lo: MessageFns<Lo> = {
@@ -344,16 +344,16 @@ export const Lo: MessageFns<Lo> = {
     if (message.formatId !== undefined) {
       FormatId.encode(message.formatId, writer.uint32(10).fork()).join();
     }
-    if (message.Lj !== undefined) {
+    if (message.Lj !== undefined && message.Lj !== 0) {
       writer.uint32(16).int32(message.Lj);
     }
-    if (message.sequenceNumber !== undefined) {
+    if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
       writer.uint32(24).int32(message.sequenceNumber);
     }
     if (message.field4 !== undefined) {
       Lo_Field4.encode(message.field4, writer.uint32(34).fork()).join();
     }
-    if (message.MZ !== undefined) {
+    if (message.MZ !== undefined && message.MZ !== 0) {
       writer.uint32(40).int32(message.MZ);
     }
     return writer;
@@ -413,10 +413,10 @@ export const Lo: MessageFns<Lo> = {
   fromJSON(object: any): Lo {
     return {
       formatId: isSet(object.formatId) ? FormatId.fromJSON(object.formatId) : undefined,
-      Lj: isSet(object.Lj) ? globalThis.Number(object.Lj) : undefined,
-      sequenceNumber: isSet(object.sequenceNumber) ? globalThis.Number(object.sequenceNumber) : undefined,
+      Lj: isSet(object.Lj) ? globalThis.Number(object.Lj) : 0,
+      sequenceNumber: isSet(object.sequenceNumber) ? globalThis.Number(object.sequenceNumber) : 0,
       field4: isSet(object.field4) ? Lo_Field4.fromJSON(object.field4) : undefined,
-      MZ: isSet(object.MZ) ? globalThis.Number(object.MZ) : undefined,
+      MZ: isSet(object.MZ) ? globalThis.Number(object.MZ) : 0,
     };
   },
 
@@ -425,16 +425,16 @@ export const Lo: MessageFns<Lo> = {
     if (message.formatId !== undefined) {
       obj.formatId = FormatId.toJSON(message.formatId);
     }
-    if (message.Lj !== undefined) {
+    if (message.Lj !== undefined && message.Lj !== 0) {
       obj.Lj = Math.round(message.Lj);
     }
-    if (message.sequenceNumber !== undefined) {
+    if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
       obj.sequenceNumber = Math.round(message.sequenceNumber);
     }
     if (message.field4 !== undefined) {
       obj.field4 = Lo_Field4.toJSON(message.field4);
     }
-    if (message.MZ !== undefined) {
+    if (message.MZ !== undefined && message.MZ !== 0) {
       obj.MZ = Math.round(message.MZ);
     }
     return obj;
@@ -448,29 +448,29 @@ export const Lo: MessageFns<Lo> = {
     message.formatId = (object.formatId !== undefined && object.formatId !== null)
       ? FormatId.fromPartial(object.formatId)
       : undefined;
-    message.Lj = object.Lj ?? undefined;
-    message.sequenceNumber = object.sequenceNumber ?? undefined;
+    message.Lj = object.Lj ?? 0;
+    message.sequenceNumber = object.sequenceNumber ?? 0;
     message.field4 = (object.field4 !== undefined && object.field4 !== null)
       ? Lo_Field4.fromPartial(object.field4)
       : undefined;
-    message.MZ = object.MZ ?? undefined;
+    message.MZ = object.MZ ?? 0;
     return message;
   },
 };
 
 function createBaseLo_Field4(): Lo_Field4 {
-  return { field1: undefined, field2: undefined, field3: undefined };
+  return { field1: 0, field2: 0, field3: 0 };
 }
 
 export const Lo_Field4: MessageFns<Lo_Field4> = {
   encode(message: Lo_Field4, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.field1 !== undefined) {
+    if (message.field1 !== undefined && message.field1 !== 0) {
       writer.uint32(8).int32(message.field1);
     }
-    if (message.field2 !== undefined) {
+    if (message.field2 !== undefined && message.field2 !== 0) {
       writer.uint32(16).int32(message.field2);
     }
-    if (message.field3 !== undefined) {
+    if (message.field3 !== undefined && message.field3 !== 0) {
       writer.uint32(24).int32(message.field3);
     }
     return writer;
@@ -515,21 +515,21 @@ export const Lo_Field4: MessageFns<Lo_Field4> = {
 
   fromJSON(object: any): Lo_Field4 {
     return {
-      field1: isSet(object.field1) ? globalThis.Number(object.field1) : undefined,
-      field2: isSet(object.field2) ? globalThis.Number(object.field2) : undefined,
-      field3: isSet(object.field3) ? globalThis.Number(object.field3) : undefined,
+      field1: isSet(object.field1) ? globalThis.Number(object.field1) : 0,
+      field2: isSet(object.field2) ? globalThis.Number(object.field2) : 0,
+      field3: isSet(object.field3) ? globalThis.Number(object.field3) : 0,
     };
   },
 
   toJSON(message: Lo_Field4): unknown {
     const obj: any = {};
-    if (message.field1 !== undefined) {
+    if (message.field1 !== undefined && message.field1 !== 0) {
       obj.field1 = Math.round(message.field1);
     }
-    if (message.field2 !== undefined) {
+    if (message.field2 !== undefined && message.field2 !== 0) {
       obj.field2 = Math.round(message.field2);
     }
-    if (message.field3 !== undefined) {
+    if (message.field3 !== undefined && message.field3 !== 0) {
       obj.field3 = Math.round(message.field3);
     }
     return obj;
@@ -540,9 +540,9 @@ export const Lo_Field4: MessageFns<Lo_Field4> = {
   },
   fromPartial<I extends Exact<DeepPartial<Lo_Field4>, I>>(object: I): Lo_Field4 {
     const message = createBaseLo_Field4();
-    message.field1 = object.field1 ?? undefined;
-    message.field2 = object.field2 ?? undefined;
-    message.field3 = object.field3 ?? undefined;
+    message.field1 = object.field1 ?? 0;
+    message.field2 = object.field2 ?? 0;
+    message.field3 = object.field3 ?? 0;
     return message;
   },
 };
@@ -605,15 +605,15 @@ export const Kob: MessageFns<Kob> = {
 };
 
 function createBaseKob_Pa(): Kob_Pa {
-  return { videoId: undefined, lmt: undefined };
+  return { videoId: "", lmt: 0 };
 }
 
 export const Kob_Pa: MessageFns<Kob_Pa> = {
   encode(message: Kob_Pa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.videoId !== undefined) {
+    if (message.videoId !== undefined && message.videoId !== "") {
       writer.uint32(10).string(message.videoId);
     }
-    if (message.lmt !== undefined) {
+    if (message.lmt !== undefined && message.lmt !== 0) {
       writer.uint32(16).uint64(message.lmt);
     }
     return writer;
@@ -651,17 +651,17 @@ export const Kob_Pa: MessageFns<Kob_Pa> = {
 
   fromJSON(object: any): Kob_Pa {
     return {
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : undefined,
-      lmt: isSet(object.lmt) ? globalThis.Number(object.lmt) : undefined,
+      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
+      lmt: isSet(object.lmt) ? globalThis.Number(object.lmt) : 0,
     };
   },
 
   toJSON(message: Kob_Pa): unknown {
     const obj: any = {};
-    if (message.videoId !== undefined) {
+    if (message.videoId !== undefined && message.videoId !== "") {
       obj.videoId = message.videoId;
     }
-    if (message.lmt !== undefined) {
+    if (message.lmt !== undefined && message.lmt !== 0) {
       obj.lmt = Math.round(message.lmt);
     }
     return obj;
@@ -672,25 +672,25 @@ export const Kob_Pa: MessageFns<Kob_Pa> = {
   },
   fromPartial<I extends Exact<DeepPartial<Kob_Pa>, I>>(object: I): Kob_Pa {
     const message = createBaseKob_Pa();
-    message.videoId = object.videoId ?? undefined;
-    message.lmt = object.lmt ?? undefined;
+    message.videoId = object.videoId ?? "";
+    message.lmt = object.lmt ?? 0;
     return message;
   },
 };
 
 function createBaseYPa(): YPa {
-  return { field1: undefined, field2: undefined, field3: undefined };
+  return { field1: 0, field2: 0, field3: 0 };
 }
 
 export const YPa: MessageFns<YPa> = {
   encode(message: YPa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.field1 !== undefined) {
+    if (message.field1 !== undefined && message.field1 !== 0) {
       writer.uint32(8).int32(message.field1);
     }
-    if (message.field2 !== undefined) {
+    if (message.field2 !== undefined && message.field2 !== 0) {
       writer.uint32(16).int32(message.field2);
     }
-    if (message.field3 !== undefined) {
+    if (message.field3 !== undefined && message.field3 !== 0) {
       writer.uint32(24).int32(message.field3);
     }
     return writer;
@@ -735,21 +735,21 @@ export const YPa: MessageFns<YPa> = {
 
   fromJSON(object: any): YPa {
     return {
-      field1: isSet(object.field1) ? globalThis.Number(object.field1) : undefined,
-      field2: isSet(object.field2) ? globalThis.Number(object.field2) : undefined,
-      field3: isSet(object.field3) ? globalThis.Number(object.field3) : undefined,
+      field1: isSet(object.field1) ? globalThis.Number(object.field1) : 0,
+      field2: isSet(object.field2) ? globalThis.Number(object.field2) : 0,
+      field3: isSet(object.field3) ? globalThis.Number(object.field3) : 0,
     };
   },
 
   toJSON(message: YPa): unknown {
     const obj: any = {};
-    if (message.field1 !== undefined) {
+    if (message.field1 !== undefined && message.field1 !== 0) {
       obj.field1 = Math.round(message.field1);
     }
-    if (message.field2 !== undefined) {
+    if (message.field2 !== undefined && message.field2 !== 0) {
       obj.field2 = Math.round(message.field2);
     }
-    if (message.field3 !== undefined) {
+    if (message.field3 !== undefined && message.field3 !== 0) {
       obj.field3 = Math.round(message.field3);
     }
     return obj;
@@ -760,9 +760,9 @@ export const YPa: MessageFns<YPa> = {
   },
   fromPartial<I extends Exact<DeepPartial<YPa>, I>>(object: I): YPa {
     const message = createBaseYPa();
-    message.field1 = object.field1 ?? undefined;
-    message.field2 = object.field2 ?? undefined;
-    message.field3 = object.field3 ?? undefined;
+    message.field1 = object.field1 ?? 0;
+    message.field2 = object.field2 ?? 0;
+    message.field3 = object.field3 ?? 0;
     return message;
   },
 };
@@ -967,7 +967,7 @@ export const Zpa: MessageFns<Zpa> = {
 };
 
 function createBaseOQa(): OQa {
-  return { field1: [], field2: undefined, field3: undefined, field4: undefined, field5: undefined, field6: undefined };
+  return { field1: [], field2: new Uint8Array(0), field3: "", field4: 0, field5: 0, field6: "" };
 }
 
 export const OQa: MessageFns<OQa> = {
@@ -975,19 +975,19 @@ export const OQa: MessageFns<OQa> = {
     for (const v of message.field1) {
       writer.uint32(10).string(v!);
     }
-    if (message.field2 !== undefined) {
+    if (message.field2 !== undefined && message.field2.length !== 0) {
       writer.uint32(18).bytes(message.field2);
     }
-    if (message.field3 !== undefined) {
+    if (message.field3 !== undefined && message.field3 !== "") {
       writer.uint32(26).string(message.field3);
     }
-    if (message.field4 !== undefined) {
+    if (message.field4 !== undefined && message.field4 !== 0) {
       writer.uint32(32).int32(message.field4);
     }
-    if (message.field5 !== undefined) {
+    if (message.field5 !== undefined && message.field5 !== 0) {
       writer.uint32(40).int32(message.field5);
     }
-    if (message.field6 !== undefined) {
+    if (message.field6 !== undefined && message.field6 !== "") {
       writer.uint32(50).string(message.field6);
     }
     return writer;
@@ -1054,11 +1054,11 @@ export const OQa: MessageFns<OQa> = {
   fromJSON(object: any): OQa {
     return {
       field1: globalThis.Array.isArray(object?.field1) ? object.field1.map((e: any) => globalThis.String(e)) : [],
-      field2: isSet(object.field2) ? bytesFromBase64(object.field2) : undefined,
-      field3: isSet(object.field3) ? globalThis.String(object.field3) : undefined,
-      field4: isSet(object.field4) ? globalThis.Number(object.field4) : undefined,
-      field5: isSet(object.field5) ? globalThis.Number(object.field5) : undefined,
-      field6: isSet(object.field6) ? globalThis.String(object.field6) : undefined,
+      field2: isSet(object.field2) ? bytesFromBase64(object.field2) : new Uint8Array(0),
+      field3: isSet(object.field3) ? globalThis.String(object.field3) : "",
+      field4: isSet(object.field4) ? globalThis.Number(object.field4) : 0,
+      field5: isSet(object.field5) ? globalThis.Number(object.field5) : 0,
+      field6: isSet(object.field6) ? globalThis.String(object.field6) : "",
     };
   },
 
@@ -1067,19 +1067,19 @@ export const OQa: MessageFns<OQa> = {
     if (message.field1?.length) {
       obj.field1 = message.field1;
     }
-    if (message.field2 !== undefined) {
+    if (message.field2 !== undefined && message.field2.length !== 0) {
       obj.field2 = base64FromBytes(message.field2);
     }
-    if (message.field3 !== undefined) {
+    if (message.field3 !== undefined && message.field3 !== "") {
       obj.field3 = message.field3;
     }
-    if (message.field4 !== undefined) {
+    if (message.field4 !== undefined && message.field4 !== 0) {
       obj.field4 = Math.round(message.field4);
     }
-    if (message.field5 !== undefined) {
+    if (message.field5 !== undefined && message.field5 !== 0) {
       obj.field5 = Math.round(message.field5);
     }
-    if (message.field6 !== undefined) {
+    if (message.field6 !== undefined && message.field6 !== "") {
       obj.field6 = message.field6;
     }
     return obj;
@@ -1091,17 +1091,17 @@ export const OQa: MessageFns<OQa> = {
   fromPartial<I extends Exact<DeepPartial<OQa>, I>>(object: I): OQa {
     const message = createBaseOQa();
     message.field1 = object.field1?.map((e) => e) || [];
-    message.field2 = object.field2 ?? undefined;
-    message.field3 = object.field3 ?? undefined;
-    message.field4 = object.field4 ?? undefined;
-    message.field5 = object.field5 ?? undefined;
-    message.field6 = object.field6 ?? undefined;
+    message.field2 = object.field2 ?? new Uint8Array(0);
+    message.field3 = object.field3 ?? "";
+    message.field4 = object.field4 ?? 0;
+    message.field5 = object.field5 ?? 0;
+    message.field6 = object.field6 ?? "";
     return message;
   },
 };
 
 function createBasePqa(): Pqa {
-  return { formatIds: [], ud: [], clipId: undefined };
+  return { formatIds: [], ud: [], clipId: "" };
 }
 
 export const Pqa: MessageFns<Pqa> = {
@@ -1112,7 +1112,7 @@ export const Pqa: MessageFns<Pqa> = {
     for (const v of message.ud) {
       Zpa.encode(v!, writer.uint32(18).fork()).join();
     }
-    if (message.clipId !== undefined) {
+    if (message.clipId !== undefined && message.clipId !== "") {
       writer.uint32(26).string(message.clipId);
     }
     return writer;
@@ -1161,7 +1161,7 @@ export const Pqa: MessageFns<Pqa> = {
         ? object.formatIds.map((e: any) => FormatId.fromJSON(e))
         : [],
       ud: globalThis.Array.isArray(object?.ud) ? object.ud.map((e: any) => Zpa.fromJSON(e)) : [],
-      clipId: isSet(object.clipId) ? globalThis.String(object.clipId) : undefined,
+      clipId: isSet(object.clipId) ? globalThis.String(object.clipId) : "",
     };
   },
 
@@ -1173,7 +1173,7 @@ export const Pqa: MessageFns<Pqa> = {
     if (message.ud?.length) {
       obj.ud = message.ud.map((e) => Zpa.toJSON(e));
     }
-    if (message.clipId !== undefined) {
+    if (message.clipId !== undefined && message.clipId !== "") {
       obj.clipId = message.clipId;
     }
     return obj;
@@ -1186,7 +1186,7 @@ export const Pqa: MessageFns<Pqa> = {
     const message = createBasePqa();
     message.formatIds = object.formatIds?.map((e) => FormatId.fromPartial(e)) || [];
     message.ud = object.ud?.map((e) => Zpa.fromPartial(e)) || [];
-    message.clipId = object.clipId ?? undefined;
+    message.clipId = object.clipId ?? "";
     return message;
   },
 };

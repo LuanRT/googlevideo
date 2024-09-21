@@ -32,7 +32,7 @@ export interface MediaCapabilities_AudioFormatCapability {
 }
 
 function createBaseMediaCapabilities(): MediaCapabilities {
-  return { videoFormatCapabilities: [], audioFormatCapabilities: [], hdrModeBitmask: undefined };
+  return { videoFormatCapabilities: [], audioFormatCapabilities: [], hdrModeBitmask: 0 };
 }
 
 export const MediaCapabilities: MessageFns<MediaCapabilities> = {
@@ -43,7 +43,7 @@ export const MediaCapabilities: MessageFns<MediaCapabilities> = {
     for (const v of message.audioFormatCapabilities) {
       MediaCapabilities_AudioFormatCapability.encode(v!, writer.uint32(18).fork()).join();
     }
-    if (message.hdrModeBitmask !== undefined) {
+    if (message.hdrModeBitmask !== undefined && message.hdrModeBitmask !== 0) {
       writer.uint32(40).int32(message.hdrModeBitmask);
     }
     return writer;
@@ -94,7 +94,7 @@ export const MediaCapabilities: MessageFns<MediaCapabilities> = {
       audioFormatCapabilities: globalThis.Array.isArray(object?.audioFormatCapabilities)
         ? object.audioFormatCapabilities.map((e: any) => MediaCapabilities_AudioFormatCapability.fromJSON(e))
         : [],
-      hdrModeBitmask: isSet(object.hdrModeBitmask) ? globalThis.Number(object.hdrModeBitmask) : undefined,
+      hdrModeBitmask: isSet(object.hdrModeBitmask) ? globalThis.Number(object.hdrModeBitmask) : 0,
     };
   },
 
@@ -110,7 +110,7 @@ export const MediaCapabilities: MessageFns<MediaCapabilities> = {
         MediaCapabilities_AudioFormatCapability.toJSON(e)
       );
     }
-    if (message.hdrModeBitmask !== undefined) {
+    if (message.hdrModeBitmask !== undefined && message.hdrModeBitmask !== 0) {
       obj.hdrModeBitmask = Math.round(message.hdrModeBitmask);
     }
     return obj;
@@ -125,40 +125,33 @@ export const MediaCapabilities: MessageFns<MediaCapabilities> = {
       object.videoFormatCapabilities?.map((e) => MediaCapabilities_VideoFormatCapability.fromPartial(e)) || [];
     message.audioFormatCapabilities =
       object.audioFormatCapabilities?.map((e) => MediaCapabilities_AudioFormatCapability.fromPartial(e)) || [];
-    message.hdrModeBitmask = object.hdrModeBitmask ?? undefined;
+    message.hdrModeBitmask = object.hdrModeBitmask ?? 0;
     return message;
   },
 };
 
 function createBaseMediaCapabilities_VideoFormatCapability(): MediaCapabilities_VideoFormatCapability {
-  return {
-    videoCodec: undefined,
-    maxHeight: undefined,
-    maxWidth: undefined,
-    maxFramerate: undefined,
-    maxBitrateBps: undefined,
-    is10BitSupported: undefined,
-  };
+  return { videoCodec: 0, maxHeight: 0, maxWidth: 0, maxFramerate: 0, maxBitrateBps: 0, is10BitSupported: false };
 }
 
 export const MediaCapabilities_VideoFormatCapability: MessageFns<MediaCapabilities_VideoFormatCapability> = {
   encode(message: MediaCapabilities_VideoFormatCapability, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.videoCodec !== undefined) {
+    if (message.videoCodec !== undefined && message.videoCodec !== 0) {
       writer.uint32(8).int32(message.videoCodec);
     }
-    if (message.maxHeight !== undefined) {
+    if (message.maxHeight !== undefined && message.maxHeight !== 0) {
       writer.uint32(24).int32(message.maxHeight);
     }
-    if (message.maxWidth !== undefined) {
+    if (message.maxWidth !== undefined && message.maxWidth !== 0) {
       writer.uint32(32).int32(message.maxWidth);
     }
-    if (message.maxFramerate !== undefined) {
+    if (message.maxFramerate !== undefined && message.maxFramerate !== 0) {
       writer.uint32(88).int32(message.maxFramerate);
     }
-    if (message.maxBitrateBps !== undefined) {
+    if (message.maxBitrateBps !== undefined && message.maxBitrateBps !== 0) {
       writer.uint32(96).int32(message.maxBitrateBps);
     }
-    if (message.is10BitSupported !== undefined) {
+    if (message.is10BitSupported !== undefined && message.is10BitSupported !== false) {
       writer.uint32(120).bool(message.is10BitSupported);
     }
     return writer;
@@ -224,33 +217,33 @@ export const MediaCapabilities_VideoFormatCapability: MessageFns<MediaCapabiliti
 
   fromJSON(object: any): MediaCapabilities_VideoFormatCapability {
     return {
-      videoCodec: isSet(object.videoCodec) ? globalThis.Number(object.videoCodec) : undefined,
-      maxHeight: isSet(object.maxHeight) ? globalThis.Number(object.maxHeight) : undefined,
-      maxWidth: isSet(object.maxWidth) ? globalThis.Number(object.maxWidth) : undefined,
-      maxFramerate: isSet(object.maxFramerate) ? globalThis.Number(object.maxFramerate) : undefined,
-      maxBitrateBps: isSet(object.maxBitrateBps) ? globalThis.Number(object.maxBitrateBps) : undefined,
-      is10BitSupported: isSet(object.is10BitSupported) ? globalThis.Boolean(object.is10BitSupported) : undefined,
+      videoCodec: isSet(object.videoCodec) ? globalThis.Number(object.videoCodec) : 0,
+      maxHeight: isSet(object.maxHeight) ? globalThis.Number(object.maxHeight) : 0,
+      maxWidth: isSet(object.maxWidth) ? globalThis.Number(object.maxWidth) : 0,
+      maxFramerate: isSet(object.maxFramerate) ? globalThis.Number(object.maxFramerate) : 0,
+      maxBitrateBps: isSet(object.maxBitrateBps) ? globalThis.Number(object.maxBitrateBps) : 0,
+      is10BitSupported: isSet(object.is10BitSupported) ? globalThis.Boolean(object.is10BitSupported) : false,
     };
   },
 
   toJSON(message: MediaCapabilities_VideoFormatCapability): unknown {
     const obj: any = {};
-    if (message.videoCodec !== undefined) {
+    if (message.videoCodec !== undefined && message.videoCodec !== 0) {
       obj.videoCodec = Math.round(message.videoCodec);
     }
-    if (message.maxHeight !== undefined) {
+    if (message.maxHeight !== undefined && message.maxHeight !== 0) {
       obj.maxHeight = Math.round(message.maxHeight);
     }
-    if (message.maxWidth !== undefined) {
+    if (message.maxWidth !== undefined && message.maxWidth !== 0) {
       obj.maxWidth = Math.round(message.maxWidth);
     }
-    if (message.maxFramerate !== undefined) {
+    if (message.maxFramerate !== undefined && message.maxFramerate !== 0) {
       obj.maxFramerate = Math.round(message.maxFramerate);
     }
-    if (message.maxBitrateBps !== undefined) {
+    if (message.maxBitrateBps !== undefined && message.maxBitrateBps !== 0) {
       obj.maxBitrateBps = Math.round(message.maxBitrateBps);
     }
-    if (message.is10BitSupported !== undefined) {
+    if (message.is10BitSupported !== undefined && message.is10BitSupported !== false) {
       obj.is10BitSupported = message.is10BitSupported;
     }
     return obj;
@@ -265,37 +258,32 @@ export const MediaCapabilities_VideoFormatCapability: MessageFns<MediaCapabiliti
     object: I,
   ): MediaCapabilities_VideoFormatCapability {
     const message = createBaseMediaCapabilities_VideoFormatCapability();
-    message.videoCodec = object.videoCodec ?? undefined;
-    message.maxHeight = object.maxHeight ?? undefined;
-    message.maxWidth = object.maxWidth ?? undefined;
-    message.maxFramerate = object.maxFramerate ?? undefined;
-    message.maxBitrateBps = object.maxBitrateBps ?? undefined;
-    message.is10BitSupported = object.is10BitSupported ?? undefined;
+    message.videoCodec = object.videoCodec ?? 0;
+    message.maxHeight = object.maxHeight ?? 0;
+    message.maxWidth = object.maxWidth ?? 0;
+    message.maxFramerate = object.maxFramerate ?? 0;
+    message.maxBitrateBps = object.maxBitrateBps ?? 0;
+    message.is10BitSupported = object.is10BitSupported ?? false;
     return message;
   },
 };
 
 function createBaseMediaCapabilities_AudioFormatCapability(): MediaCapabilities_AudioFormatCapability {
-  return {
-    audioCodec: undefined,
-    numChannels: undefined,
-    maxBitrateBps: undefined,
-    spatialCapabilityBitmask: undefined,
-  };
+  return { audioCodec: 0, numChannels: 0, maxBitrateBps: 0, spatialCapabilityBitmask: 0 };
 }
 
 export const MediaCapabilities_AudioFormatCapability: MessageFns<MediaCapabilities_AudioFormatCapability> = {
   encode(message: MediaCapabilities_AudioFormatCapability, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.audioCodec !== undefined) {
+    if (message.audioCodec !== undefined && message.audioCodec !== 0) {
       writer.uint32(8).int32(message.audioCodec);
     }
-    if (message.numChannels !== undefined) {
+    if (message.numChannels !== undefined && message.numChannels !== 0) {
       writer.uint32(16).int32(message.numChannels);
     }
-    if (message.maxBitrateBps !== undefined) {
+    if (message.maxBitrateBps !== undefined && message.maxBitrateBps !== 0) {
       writer.uint32(24).int32(message.maxBitrateBps);
     }
-    if (message.spatialCapabilityBitmask !== undefined) {
+    if (message.spatialCapabilityBitmask !== undefined && message.spatialCapabilityBitmask !== 0) {
       writer.uint32(48).int32(message.spatialCapabilityBitmask);
     }
     return writer;
@@ -347,27 +335,27 @@ export const MediaCapabilities_AudioFormatCapability: MessageFns<MediaCapabiliti
 
   fromJSON(object: any): MediaCapabilities_AudioFormatCapability {
     return {
-      audioCodec: isSet(object.audioCodec) ? globalThis.Number(object.audioCodec) : undefined,
-      numChannels: isSet(object.numChannels) ? globalThis.Number(object.numChannels) : undefined,
-      maxBitrateBps: isSet(object.maxBitrateBps) ? globalThis.Number(object.maxBitrateBps) : undefined,
+      audioCodec: isSet(object.audioCodec) ? globalThis.Number(object.audioCodec) : 0,
+      numChannels: isSet(object.numChannels) ? globalThis.Number(object.numChannels) : 0,
+      maxBitrateBps: isSet(object.maxBitrateBps) ? globalThis.Number(object.maxBitrateBps) : 0,
       spatialCapabilityBitmask: isSet(object.spatialCapabilityBitmask)
         ? globalThis.Number(object.spatialCapabilityBitmask)
-        : undefined,
+        : 0,
     };
   },
 
   toJSON(message: MediaCapabilities_AudioFormatCapability): unknown {
     const obj: any = {};
-    if (message.audioCodec !== undefined) {
+    if (message.audioCodec !== undefined && message.audioCodec !== 0) {
       obj.audioCodec = Math.round(message.audioCodec);
     }
-    if (message.numChannels !== undefined) {
+    if (message.numChannels !== undefined && message.numChannels !== 0) {
       obj.numChannels = Math.round(message.numChannels);
     }
-    if (message.maxBitrateBps !== undefined) {
+    if (message.maxBitrateBps !== undefined && message.maxBitrateBps !== 0) {
       obj.maxBitrateBps = Math.round(message.maxBitrateBps);
     }
-    if (message.spatialCapabilityBitmask !== undefined) {
+    if (message.spatialCapabilityBitmask !== undefined && message.spatialCapabilityBitmask !== 0) {
       obj.spatialCapabilityBitmask = Math.round(message.spatialCapabilityBitmask);
     }
     return obj;
@@ -382,10 +370,10 @@ export const MediaCapabilities_AudioFormatCapability: MessageFns<MediaCapabiliti
     object: I,
   ): MediaCapabilities_AudioFormatCapability {
     const message = createBaseMediaCapabilities_AudioFormatCapability();
-    message.audioCodec = object.audioCodec ?? undefined;
-    message.numChannels = object.numChannels ?? undefined;
-    message.maxBitrateBps = object.maxBitrateBps ?? undefined;
-    message.spatialCapabilityBitmask = object.spatialCapabilityBitmask ?? undefined;
+    message.audioCodec = object.audioCodec ?? 0;
+    message.numChannels = object.numChannels ?? 0;
+    message.maxBitrateBps = object.maxBitrateBps ?? 0;
+    message.spatialCapabilityBitmask = object.spatialCapabilityBitmask ?? 0;
     return message;
   },
 };

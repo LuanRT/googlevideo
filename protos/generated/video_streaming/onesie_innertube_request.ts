@@ -23,7 +23,7 @@ function createBaseOnesieInnertubeRequest(): OnesieInnertubeRequest {
   return {
     mediaInfo: undefined,
     encryptedRequest: undefined,
-    onesieUstreamerConfig: undefined,
+    onesieUstreamerConfig: new Uint8Array(0),
     streamerContext: undefined,
   };
 }
@@ -36,7 +36,7 @@ export const OnesieInnertubeRequest: MessageFns<OnesieInnertubeRequest> = {
     if (message.encryptedRequest !== undefined) {
       EncryptedRequest.encode(message.encryptedRequest, writer.uint32(26).fork()).join();
     }
-    if (message.onesieUstreamerConfig !== undefined) {
+    if (message.onesieUstreamerConfig !== undefined && message.onesieUstreamerConfig.length !== 0) {
       writer.uint32(34).bytes(message.onesieUstreamerConfig);
     }
     if (message.streamerContext !== undefined) {
@@ -95,7 +95,7 @@ export const OnesieInnertubeRequest: MessageFns<OnesieInnertubeRequest> = {
       encryptedRequest: isSet(object.encryptedRequest) ? EncryptedRequest.fromJSON(object.encryptedRequest) : undefined,
       onesieUstreamerConfig: isSet(object.onesieUstreamerConfig)
         ? bytesFromBase64(object.onesieUstreamerConfig)
-        : undefined,
+        : new Uint8Array(0),
       streamerContext: isSet(object.streamerContext) ? StreamerContext.fromJSON(object.streamerContext) : undefined,
     };
   },
@@ -108,7 +108,7 @@ export const OnesieInnertubeRequest: MessageFns<OnesieInnertubeRequest> = {
     if (message.encryptedRequest !== undefined) {
       obj.encryptedRequest = EncryptedRequest.toJSON(message.encryptedRequest);
     }
-    if (message.onesieUstreamerConfig !== undefined) {
+    if (message.onesieUstreamerConfig !== undefined && message.onesieUstreamerConfig.length !== 0) {
       obj.onesieUstreamerConfig = base64FromBytes(message.onesieUstreamerConfig);
     }
     if (message.streamerContext !== undefined) {
@@ -128,7 +128,7 @@ export const OnesieInnertubeRequest: MessageFns<OnesieInnertubeRequest> = {
     message.encryptedRequest = (object.encryptedRequest !== undefined && object.encryptedRequest !== null)
       ? EncryptedRequest.fromPartial(object.encryptedRequest)
       : undefined;
-    message.onesieUstreamerConfig = object.onesieUstreamerConfig ?? undefined;
+    message.onesieUstreamerConfig = object.onesieUstreamerConfig ?? new Uint8Array(0);
     message.streamerContext = (object.streamerContext !== undefined && object.streamerContext !== null)
       ? StreamerContext.fromPartial(object.streamerContext)
       : undefined;

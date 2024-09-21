@@ -15,15 +15,15 @@ export interface StreamProtectionStatus {
 }
 
 function createBaseStreamProtectionStatus(): StreamProtectionStatus {
-  return { status: undefined, field2: undefined };
+  return { status: 0, field2: 0 };
 }
 
 export const StreamProtectionStatus: MessageFns<StreamProtectionStatus> = {
   encode(message: StreamProtectionStatus, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.status !== undefined) {
+    if (message.status !== undefined && message.status !== 0) {
       writer.uint32(8).int32(message.status);
     }
-    if (message.field2 !== undefined) {
+    if (message.field2 !== undefined && message.field2 !== 0) {
       writer.uint32(16).int32(message.field2);
     }
     return writer;
@@ -61,17 +61,17 @@ export const StreamProtectionStatus: MessageFns<StreamProtectionStatus> = {
 
   fromJSON(object: any): StreamProtectionStatus {
     return {
-      status: isSet(object.status) ? globalThis.Number(object.status) : undefined,
-      field2: isSet(object.field2) ? globalThis.Number(object.field2) : undefined,
+      status: isSet(object.status) ? globalThis.Number(object.status) : 0,
+      field2: isSet(object.field2) ? globalThis.Number(object.field2) : 0,
     };
   },
 
   toJSON(message: StreamProtectionStatus): unknown {
     const obj: any = {};
-    if (message.status !== undefined) {
+    if (message.status !== undefined && message.status !== 0) {
       obj.status = Math.round(message.status);
     }
-    if (message.field2 !== undefined) {
+    if (message.field2 !== undefined && message.field2 !== 0) {
       obj.field2 = Math.round(message.field2);
     }
     return obj;
@@ -82,8 +82,8 @@ export const StreamProtectionStatus: MessageFns<StreamProtectionStatus> = {
   },
   fromPartial<I extends Exact<DeepPartial<StreamProtectionStatus>, I>>(object: I): StreamProtectionStatus {
     const message = createBaseStreamProtectionStatus();
-    message.status = object.status ?? undefined;
-    message.field2 = object.field2 ?? undefined;
+    message.status = object.status ?? 0;
+    message.field2 = object.field2 ?? 0;
     return message;
   },
 };

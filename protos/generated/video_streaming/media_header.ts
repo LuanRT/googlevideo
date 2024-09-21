@@ -70,66 +70,66 @@ export function mediaHeader_CompressionToJSON(object: MediaHeader_Compression): 
 
 function createBaseMediaHeader(): MediaHeader {
   return {
-    headerId: undefined,
-    videoId: undefined,
-    itag: undefined,
-    lmt: undefined,
-    xtags: undefined,
-    startDataRange: undefined,
-    compression: undefined,
-    isInitSeg: undefined,
-    sequenceNumber: undefined,
-    field10: undefined,
-    startMs: undefined,
-    durationMs: undefined,
+    headerId: 0,
+    videoId: "",
+    itag: 0,
+    lmt: 0,
+    xtags: "",
+    startDataRange: 0,
+    compression: 0,
+    isInitSeg: false,
+    sequenceNumber: 0,
+    field10: 0,
+    startMs: 0,
+    durationMs: 0,
     formatId: undefined,
-    contentLength: undefined,
+    contentLength: 0,
     timeRange: undefined,
   };
 }
 
 export const MediaHeader: MessageFns<MediaHeader> = {
   encode(message: MediaHeader, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.headerId !== undefined) {
+    if (message.headerId !== undefined && message.headerId !== 0) {
       writer.uint32(8).uint32(message.headerId);
     }
-    if (message.videoId !== undefined) {
+    if (message.videoId !== undefined && message.videoId !== "") {
       writer.uint32(18).string(message.videoId);
     }
-    if (message.itag !== undefined) {
+    if (message.itag !== undefined && message.itag !== 0) {
       writer.uint32(24).int32(message.itag);
     }
-    if (message.lmt !== undefined) {
+    if (message.lmt !== undefined && message.lmt !== 0) {
       writer.uint32(32).uint64(message.lmt);
     }
-    if (message.xtags !== undefined) {
+    if (message.xtags !== undefined && message.xtags !== "") {
       writer.uint32(42).string(message.xtags);
     }
-    if (message.startDataRange !== undefined) {
+    if (message.startDataRange !== undefined && message.startDataRange !== 0) {
       writer.uint32(48).int32(message.startDataRange);
     }
-    if (message.compression !== undefined) {
+    if (message.compression !== undefined && message.compression !== 0) {
       writer.uint32(56).int32(message.compression);
     }
-    if (message.isInitSeg !== undefined) {
+    if (message.isInitSeg !== undefined && message.isInitSeg !== false) {
       writer.uint32(64).bool(message.isInitSeg);
     }
-    if (message.sequenceNumber !== undefined) {
+    if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
       writer.uint32(72).int64(message.sequenceNumber);
     }
-    if (message.field10 !== undefined) {
+    if (message.field10 !== undefined && message.field10 !== 0) {
       writer.uint32(80).int64(message.field10);
     }
-    if (message.startMs !== undefined) {
+    if (message.startMs !== undefined && message.startMs !== 0) {
       writer.uint32(88).int32(message.startMs);
     }
-    if (message.durationMs !== undefined) {
+    if (message.durationMs !== undefined && message.durationMs !== 0) {
       writer.uint32(96).int32(message.durationMs);
     }
     if (message.formatId !== undefined) {
       FormatId.encode(message.formatId, writer.uint32(106).fork()).join();
     }
-    if (message.contentLength !== undefined) {
+    if (message.contentLength !== undefined && message.contentLength !== 0) {
       writer.uint32(112).int64(message.contentLength);
     }
     if (message.timeRange !== undefined) {
@@ -261,66 +261,66 @@ export const MediaHeader: MessageFns<MediaHeader> = {
 
   fromJSON(object: any): MediaHeader {
     return {
-      headerId: isSet(object.headerId) ? globalThis.Number(object.headerId) : undefined,
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : undefined,
-      itag: isSet(object.itag) ? globalThis.Number(object.itag) : undefined,
-      lmt: isSet(object.lmt) ? globalThis.Number(object.lmt) : undefined,
-      xtags: isSet(object.xtags) ? globalThis.String(object.xtags) : undefined,
-      startDataRange: isSet(object.startDataRange) ? globalThis.Number(object.startDataRange) : undefined,
-      compression: isSet(object.compression) ? mediaHeader_CompressionFromJSON(object.compression) : undefined,
-      isInitSeg: isSet(object.isInitSeg) ? globalThis.Boolean(object.isInitSeg) : undefined,
-      sequenceNumber: isSet(object.sequenceNumber) ? globalThis.Number(object.sequenceNumber) : undefined,
-      field10: isSet(object.field10) ? globalThis.Number(object.field10) : undefined,
-      startMs: isSet(object.startMs) ? globalThis.Number(object.startMs) : undefined,
-      durationMs: isSet(object.durationMs) ? globalThis.Number(object.durationMs) : undefined,
+      headerId: isSet(object.headerId) ? globalThis.Number(object.headerId) : 0,
+      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
+      itag: isSet(object.itag) ? globalThis.Number(object.itag) : 0,
+      lmt: isSet(object.lmt) ? globalThis.Number(object.lmt) : 0,
+      xtags: isSet(object.xtags) ? globalThis.String(object.xtags) : "",
+      startDataRange: isSet(object.startDataRange) ? globalThis.Number(object.startDataRange) : 0,
+      compression: isSet(object.compression) ? mediaHeader_CompressionFromJSON(object.compression) : 0,
+      isInitSeg: isSet(object.isInitSeg) ? globalThis.Boolean(object.isInitSeg) : false,
+      sequenceNumber: isSet(object.sequenceNumber) ? globalThis.Number(object.sequenceNumber) : 0,
+      field10: isSet(object.field10) ? globalThis.Number(object.field10) : 0,
+      startMs: isSet(object.startMs) ? globalThis.Number(object.startMs) : 0,
+      durationMs: isSet(object.durationMs) ? globalThis.Number(object.durationMs) : 0,
       formatId: isSet(object.formatId) ? FormatId.fromJSON(object.formatId) : undefined,
-      contentLength: isSet(object.contentLength) ? globalThis.Number(object.contentLength) : undefined,
+      contentLength: isSet(object.contentLength) ? globalThis.Number(object.contentLength) : 0,
       timeRange: isSet(object.timeRange) ? TimeRange.fromJSON(object.timeRange) : undefined,
     };
   },
 
   toJSON(message: MediaHeader): unknown {
     const obj: any = {};
-    if (message.headerId !== undefined) {
+    if (message.headerId !== undefined && message.headerId !== 0) {
       obj.headerId = Math.round(message.headerId);
     }
-    if (message.videoId !== undefined) {
+    if (message.videoId !== undefined && message.videoId !== "") {
       obj.videoId = message.videoId;
     }
-    if (message.itag !== undefined) {
+    if (message.itag !== undefined && message.itag !== 0) {
       obj.itag = Math.round(message.itag);
     }
-    if (message.lmt !== undefined) {
+    if (message.lmt !== undefined && message.lmt !== 0) {
       obj.lmt = Math.round(message.lmt);
     }
-    if (message.xtags !== undefined) {
+    if (message.xtags !== undefined && message.xtags !== "") {
       obj.xtags = message.xtags;
     }
-    if (message.startDataRange !== undefined) {
+    if (message.startDataRange !== undefined && message.startDataRange !== 0) {
       obj.startDataRange = Math.round(message.startDataRange);
     }
-    if (message.compression !== undefined) {
+    if (message.compression !== undefined && message.compression !== 0) {
       obj.compression = mediaHeader_CompressionToJSON(message.compression);
     }
-    if (message.isInitSeg !== undefined) {
+    if (message.isInitSeg !== undefined && message.isInitSeg !== false) {
       obj.isInitSeg = message.isInitSeg;
     }
-    if (message.sequenceNumber !== undefined) {
+    if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
       obj.sequenceNumber = Math.round(message.sequenceNumber);
     }
-    if (message.field10 !== undefined) {
+    if (message.field10 !== undefined && message.field10 !== 0) {
       obj.field10 = Math.round(message.field10);
     }
-    if (message.startMs !== undefined) {
+    if (message.startMs !== undefined && message.startMs !== 0) {
       obj.startMs = Math.round(message.startMs);
     }
-    if (message.durationMs !== undefined) {
+    if (message.durationMs !== undefined && message.durationMs !== 0) {
       obj.durationMs = Math.round(message.durationMs);
     }
     if (message.formatId !== undefined) {
       obj.formatId = FormatId.toJSON(message.formatId);
     }
-    if (message.contentLength !== undefined) {
+    if (message.contentLength !== undefined && message.contentLength !== 0) {
       obj.contentLength = Math.round(message.contentLength);
     }
     if (message.timeRange !== undefined) {
@@ -334,22 +334,22 @@ export const MediaHeader: MessageFns<MediaHeader> = {
   },
   fromPartial<I extends Exact<DeepPartial<MediaHeader>, I>>(object: I): MediaHeader {
     const message = createBaseMediaHeader();
-    message.headerId = object.headerId ?? undefined;
-    message.videoId = object.videoId ?? undefined;
-    message.itag = object.itag ?? undefined;
-    message.lmt = object.lmt ?? undefined;
-    message.xtags = object.xtags ?? undefined;
-    message.startDataRange = object.startDataRange ?? undefined;
-    message.compression = object.compression ?? undefined;
-    message.isInitSeg = object.isInitSeg ?? undefined;
-    message.sequenceNumber = object.sequenceNumber ?? undefined;
-    message.field10 = object.field10 ?? undefined;
-    message.startMs = object.startMs ?? undefined;
-    message.durationMs = object.durationMs ?? undefined;
+    message.headerId = object.headerId ?? 0;
+    message.videoId = object.videoId ?? "";
+    message.itag = object.itag ?? 0;
+    message.lmt = object.lmt ?? 0;
+    message.xtags = object.xtags ?? "";
+    message.startDataRange = object.startDataRange ?? 0;
+    message.compression = object.compression ?? 0;
+    message.isInitSeg = object.isInitSeg ?? false;
+    message.sequenceNumber = object.sequenceNumber ?? 0;
+    message.field10 = object.field10 ?? 0;
+    message.startMs = object.startMs ?? 0;
+    message.durationMs = object.durationMs ?? 0;
     message.formatId = (object.formatId !== undefined && object.formatId !== null)
       ? FormatId.fromPartial(object.formatId)
       : undefined;
-    message.contentLength = object.contentLength ?? undefined;
+    message.contentLength = object.contentLength ?? 0;
     message.timeRange = (object.timeRange !== undefined && object.timeRange !== null)
       ? TimeRange.fromPartial(object.timeRange)
       : undefined;

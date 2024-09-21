@@ -96,141 +96,143 @@ export function mediaInfo_MediaTypeToJSON(object: MediaInfo_MediaType): string {
 
 function createBaseMediaInfo(): MediaInfo {
   return {
-    timeSinceLastManualFormatSelectionMs: undefined,
-    lastManualDirection: undefined,
-    quality: undefined,
-    detailedNetworkType: undefined,
-    maxWidth: undefined,
-    maxHeight: undefined,
-    iea: undefined,
-    r7: undefined,
-    startTimeMs: undefined,
-    timeSinceLastSeek: undefined,
-    visibility: undefined,
-    d8: undefined,
+    timeSinceLastManualFormatSelectionMs: 0,
+    lastManualDirection: 0,
+    quality: 0,
+    detailedNetworkType: 0,
+    maxWidth: 0,
+    maxHeight: 0,
+    iea: 0,
+    r7: 0,
+    startTimeMs: 0,
+    timeSinceLastSeek: 0,
+    visibility: 0,
+    d8: 0,
     mediaCapabilities: undefined,
-    lact: undefined,
-    mediaType: undefined,
-    playerState: undefined,
-    a8: undefined,
-    Jda: undefined,
-    qw: undefined,
-    Ky: undefined,
-    Eq: undefined,
-    l: undefined,
-    G7: undefined,
-    No: undefined,
-    qj: undefined,
-    Hx: undefined,
-    isPrefetch: undefined,
-    Iz: undefined,
-    sabrLicenseConstraint: undefined,
-    allowProximaLiveLatency: undefined,
-    sabrForceProxima: undefined,
-    Tqb: undefined,
-    c: undefined,
+    lact: 0,
+    mediaType: 0,
+    playerState: 0,
+    a8: false,
+    Jda: 0,
+    qw: 0,
+    Ky: 0,
+    Eq: 0,
+    l: false,
+    G7: 0,
+    No: false,
+    qj: 0,
+    Hx: 0,
+    isPrefetch: false,
+    Iz: 0,
+    sabrLicenseConstraint: new Uint8Array(0),
+    allowProximaLiveLatency: 0,
+    sabrForceProxima: 0,
+    Tqb: 0,
+    c: 0,
   };
 }
 
 export const MediaInfo: MessageFns<MediaInfo> = {
   encode(message: MediaInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.timeSinceLastManualFormatSelectionMs !== undefined) {
+    if (
+      message.timeSinceLastManualFormatSelectionMs !== undefined && message.timeSinceLastManualFormatSelectionMs !== 0
+    ) {
       writer.uint32(104).int32(message.timeSinceLastManualFormatSelectionMs);
     }
-    if (message.lastManualDirection !== undefined) {
+    if (message.lastManualDirection !== undefined && message.lastManualDirection !== 0) {
       writer.uint32(112).int32(message.lastManualDirection);
     }
-    if (message.quality !== undefined) {
+    if (message.quality !== undefined && message.quality !== 0) {
       writer.uint32(128).int32(message.quality);
     }
-    if (message.detailedNetworkType !== undefined) {
+    if (message.detailedNetworkType !== undefined && message.detailedNetworkType !== 0) {
       writer.uint32(136).int32(message.detailedNetworkType);
     }
-    if (message.maxWidth !== undefined) {
+    if (message.maxWidth !== undefined && message.maxWidth !== 0) {
       writer.uint32(144).int32(message.maxWidth);
     }
-    if (message.maxHeight !== undefined) {
+    if (message.maxHeight !== undefined && message.maxHeight !== 0) {
       writer.uint32(152).int32(message.maxHeight);
     }
-    if (message.iea !== undefined) {
+    if (message.iea !== undefined && message.iea !== 0) {
       writer.uint32(168).int32(message.iea);
     }
-    if (message.r7 !== undefined) {
+    if (message.r7 !== undefined && message.r7 !== 0) {
       writer.uint32(184).int32(message.r7);
     }
-    if (message.startTimeMs !== undefined) {
+    if (message.startTimeMs !== undefined && message.startTimeMs !== 0) {
       writer.uint32(224).int64(message.startTimeMs);
     }
-    if (message.timeSinceLastSeek !== undefined) {
+    if (message.timeSinceLastSeek !== undefined && message.timeSinceLastSeek !== 0) {
       writer.uint32(232).int64(message.timeSinceLastSeek);
     }
-    if (message.visibility !== undefined) {
+    if (message.visibility !== undefined && message.visibility !== 0) {
       writer.uint32(272).int32(message.visibility);
     }
-    if (message.d8 !== undefined) {
+    if (message.d8 !== undefined && message.d8 !== 0) {
       writer.uint32(288).int64(message.d8);
     }
     if (message.mediaCapabilities !== undefined) {
       MediaCapabilities.encode(message.mediaCapabilities, writer.uint32(306).fork()).join();
     }
-    if (message.lact !== undefined) {
+    if (message.lact !== undefined && message.lact !== 0) {
       writer.uint32(312).int32(message.lact);
     }
-    if (message.mediaType !== undefined) {
+    if (message.mediaType !== undefined && message.mediaType !== 0) {
       writer.uint32(320).int32(message.mediaType);
     }
-    if (message.playerState !== undefined) {
+    if (message.playerState !== undefined && message.playerState !== 0) {
       writer.uint32(352).int32(message.playerState);
     }
-    if (message.a8 !== undefined) {
+    if (message.a8 !== undefined && message.a8 !== false) {
       writer.uint32(368).bool(message.a8);
     }
-    if (message.Jda !== undefined) {
+    if (message.Jda !== undefined && message.Jda !== 0) {
       writer.uint32(384).int32(message.Jda);
     }
-    if (message.qw !== undefined) {
+    if (message.qw !== undefined && message.qw !== 0) {
       writer.uint32(400).int32(message.qw);
     }
-    if (message.Ky !== undefined) {
+    if (message.Ky !== undefined && message.Ky !== 0) {
       writer.uint32(408).int32(message.Ky);
     }
-    if (message.Eq !== undefined) {
+    if (message.Eq !== undefined && message.Eq !== 0) {
       writer.uint32(432).int32(message.Eq);
     }
-    if (message.l !== undefined) {
+    if (message.l !== undefined && message.l !== false) {
       writer.uint32(448).bool(message.l);
     }
-    if (message.G7 !== undefined) {
+    if (message.G7 !== undefined && message.G7 !== 0) {
       writer.uint32(456).int32(message.G7);
     }
-    if (message.No !== undefined) {
+    if (message.No !== undefined && message.No !== false) {
       writer.uint32(464).bool(message.No);
     }
-    if (message.qj !== undefined) {
+    if (message.qj !== undefined && message.qj !== 0) {
       writer.uint32(472).int32(message.qj);
     }
-    if (message.Hx !== undefined) {
+    if (message.Hx !== undefined && message.Hx !== 0) {
       writer.uint32(480).int32(message.Hx);
     }
-    if (message.isPrefetch !== undefined) {
+    if (message.isPrefetch !== undefined && message.isPrefetch !== false) {
       writer.uint32(488).bool(message.isPrefetch);
     }
-    if (message.Iz !== undefined) {
+    if (message.Iz !== undefined && message.Iz !== 0) {
       writer.uint32(496).int32(message.Iz);
     }
-    if (message.sabrLicenseConstraint !== undefined) {
+    if (message.sabrLicenseConstraint !== undefined && message.sabrLicenseConstraint.length !== 0) {
       writer.uint32(506).bytes(message.sabrLicenseConstraint);
     }
-    if (message.allowProximaLiveLatency !== undefined) {
+    if (message.allowProximaLiveLatency !== undefined && message.allowProximaLiveLatency !== 0) {
       writer.uint32(512).int32(message.allowProximaLiveLatency);
     }
-    if (message.sabrForceProxima !== undefined) {
+    if (message.sabrForceProxima !== undefined && message.sabrForceProxima !== 0) {
       writer.uint32(528).int32(message.sabrForceProxima);
     }
-    if (message.Tqb !== undefined) {
+    if (message.Tqb !== undefined && message.Tqb !== 0) {
       writer.uint32(536).int32(message.Tqb);
     }
-    if (message.c !== undefined) {
+    if (message.c !== undefined && message.c !== 0) {
       writer.uint32(544).int32(message.c);
     }
     return writer;
@@ -487,151 +489,149 @@ export const MediaInfo: MessageFns<MediaInfo> = {
     return {
       timeSinceLastManualFormatSelectionMs: isSet(object.timeSinceLastManualFormatSelectionMs)
         ? globalThis.Number(object.timeSinceLastManualFormatSelectionMs)
-        : undefined,
-      lastManualDirection: isSet(object.lastManualDirection)
-        ? globalThis.Number(object.lastManualDirection)
-        : undefined,
-      quality: isSet(object.quality) ? globalThis.Number(object.quality) : undefined,
-      detailedNetworkType: isSet(object.detailedNetworkType)
-        ? globalThis.Number(object.detailedNetworkType)
-        : undefined,
-      maxWidth: isSet(object.maxWidth) ? globalThis.Number(object.maxWidth) : undefined,
-      maxHeight: isSet(object.maxHeight) ? globalThis.Number(object.maxHeight) : undefined,
-      iea: isSet(object.iea) ? globalThis.Number(object.iea) : undefined,
-      r7: isSet(object.r7) ? globalThis.Number(object.r7) : undefined,
-      startTimeMs: isSet(object.startTimeMs) ? globalThis.Number(object.startTimeMs) : undefined,
-      timeSinceLastSeek: isSet(object.timeSinceLastSeek) ? globalThis.Number(object.timeSinceLastSeek) : undefined,
-      visibility: isSet(object.visibility) ? globalThis.Number(object.visibility) : undefined,
-      d8: isSet(object.d8) ? globalThis.Number(object.d8) : undefined,
+        : 0,
+      lastManualDirection: isSet(object.lastManualDirection) ? globalThis.Number(object.lastManualDirection) : 0,
+      quality: isSet(object.quality) ? globalThis.Number(object.quality) : 0,
+      detailedNetworkType: isSet(object.detailedNetworkType) ? globalThis.Number(object.detailedNetworkType) : 0,
+      maxWidth: isSet(object.maxWidth) ? globalThis.Number(object.maxWidth) : 0,
+      maxHeight: isSet(object.maxHeight) ? globalThis.Number(object.maxHeight) : 0,
+      iea: isSet(object.iea) ? globalThis.Number(object.iea) : 0,
+      r7: isSet(object.r7) ? globalThis.Number(object.r7) : 0,
+      startTimeMs: isSet(object.startTimeMs) ? globalThis.Number(object.startTimeMs) : 0,
+      timeSinceLastSeek: isSet(object.timeSinceLastSeek) ? globalThis.Number(object.timeSinceLastSeek) : 0,
+      visibility: isSet(object.visibility) ? globalThis.Number(object.visibility) : 0,
+      d8: isSet(object.d8) ? globalThis.Number(object.d8) : 0,
       mediaCapabilities: isSet(object.mediaCapabilities)
         ? MediaCapabilities.fromJSON(object.mediaCapabilities)
         : undefined,
-      lact: isSet(object.lact) ? globalThis.Number(object.lact) : undefined,
-      mediaType: isSet(object.mediaType) ? mediaInfo_MediaTypeFromJSON(object.mediaType) : undefined,
-      playerState: isSet(object.playerState) ? globalThis.Number(object.playerState) : undefined,
-      a8: isSet(object.a8) ? globalThis.Boolean(object.a8) : undefined,
-      Jda: isSet(object.Jda) ? globalThis.Number(object.Jda) : undefined,
-      qw: isSet(object.qw) ? globalThis.Number(object.qw) : undefined,
-      Ky: isSet(object.Ky) ? globalThis.Number(object.Ky) : undefined,
-      Eq: isSet(object.Eq) ? globalThis.Number(object.Eq) : undefined,
-      l: isSet(object.l) ? globalThis.Boolean(object.l) : undefined,
-      G7: isSet(object.G7) ? globalThis.Number(object.G7) : undefined,
-      No: isSet(object.No) ? globalThis.Boolean(object.No) : undefined,
-      qj: isSet(object.qj) ? globalThis.Number(object.qj) : undefined,
-      Hx: isSet(object.Hx) ? globalThis.Number(object.Hx) : undefined,
-      isPrefetch: isSet(object.isPrefetch) ? globalThis.Boolean(object.isPrefetch) : undefined,
-      Iz: isSet(object.Iz) ? globalThis.Number(object.Iz) : undefined,
+      lact: isSet(object.lact) ? globalThis.Number(object.lact) : 0,
+      mediaType: isSet(object.mediaType) ? mediaInfo_MediaTypeFromJSON(object.mediaType) : 0,
+      playerState: isSet(object.playerState) ? globalThis.Number(object.playerState) : 0,
+      a8: isSet(object.a8) ? globalThis.Boolean(object.a8) : false,
+      Jda: isSet(object.Jda) ? globalThis.Number(object.Jda) : 0,
+      qw: isSet(object.qw) ? globalThis.Number(object.qw) : 0,
+      Ky: isSet(object.Ky) ? globalThis.Number(object.Ky) : 0,
+      Eq: isSet(object.Eq) ? globalThis.Number(object.Eq) : 0,
+      l: isSet(object.l) ? globalThis.Boolean(object.l) : false,
+      G7: isSet(object.G7) ? globalThis.Number(object.G7) : 0,
+      No: isSet(object.No) ? globalThis.Boolean(object.No) : false,
+      qj: isSet(object.qj) ? globalThis.Number(object.qj) : 0,
+      Hx: isSet(object.Hx) ? globalThis.Number(object.Hx) : 0,
+      isPrefetch: isSet(object.isPrefetch) ? globalThis.Boolean(object.isPrefetch) : false,
+      Iz: isSet(object.Iz) ? globalThis.Number(object.Iz) : 0,
       sabrLicenseConstraint: isSet(object.sabrLicenseConstraint)
         ? bytesFromBase64(object.sabrLicenseConstraint)
-        : undefined,
+        : new Uint8Array(0),
       allowProximaLiveLatency: isSet(object.allowProximaLiveLatency)
         ? globalThis.Number(object.allowProximaLiveLatency)
-        : undefined,
-      sabrForceProxima: isSet(object.sabrForceProxima) ? globalThis.Number(object.sabrForceProxima) : undefined,
-      Tqb: isSet(object.Tqb) ? globalThis.Number(object.Tqb) : undefined,
-      c: isSet(object.c) ? globalThis.Number(object.c) : undefined,
+        : 0,
+      sabrForceProxima: isSet(object.sabrForceProxima) ? globalThis.Number(object.sabrForceProxima) : 0,
+      Tqb: isSet(object.Tqb) ? globalThis.Number(object.Tqb) : 0,
+      c: isSet(object.c) ? globalThis.Number(object.c) : 0,
     };
   },
 
   toJSON(message: MediaInfo): unknown {
     const obj: any = {};
-    if (message.timeSinceLastManualFormatSelectionMs !== undefined) {
+    if (
+      message.timeSinceLastManualFormatSelectionMs !== undefined && message.timeSinceLastManualFormatSelectionMs !== 0
+    ) {
       obj.timeSinceLastManualFormatSelectionMs = Math.round(message.timeSinceLastManualFormatSelectionMs);
     }
-    if (message.lastManualDirection !== undefined) {
+    if (message.lastManualDirection !== undefined && message.lastManualDirection !== 0) {
       obj.lastManualDirection = Math.round(message.lastManualDirection);
     }
-    if (message.quality !== undefined) {
+    if (message.quality !== undefined && message.quality !== 0) {
       obj.quality = Math.round(message.quality);
     }
-    if (message.detailedNetworkType !== undefined) {
+    if (message.detailedNetworkType !== undefined && message.detailedNetworkType !== 0) {
       obj.detailedNetworkType = Math.round(message.detailedNetworkType);
     }
-    if (message.maxWidth !== undefined) {
+    if (message.maxWidth !== undefined && message.maxWidth !== 0) {
       obj.maxWidth = Math.round(message.maxWidth);
     }
-    if (message.maxHeight !== undefined) {
+    if (message.maxHeight !== undefined && message.maxHeight !== 0) {
       obj.maxHeight = Math.round(message.maxHeight);
     }
-    if (message.iea !== undefined) {
+    if (message.iea !== undefined && message.iea !== 0) {
       obj.iea = Math.round(message.iea);
     }
-    if (message.r7 !== undefined) {
+    if (message.r7 !== undefined && message.r7 !== 0) {
       obj.r7 = Math.round(message.r7);
     }
-    if (message.startTimeMs !== undefined) {
+    if (message.startTimeMs !== undefined && message.startTimeMs !== 0) {
       obj.startTimeMs = Math.round(message.startTimeMs);
     }
-    if (message.timeSinceLastSeek !== undefined) {
+    if (message.timeSinceLastSeek !== undefined && message.timeSinceLastSeek !== 0) {
       obj.timeSinceLastSeek = Math.round(message.timeSinceLastSeek);
     }
-    if (message.visibility !== undefined) {
+    if (message.visibility !== undefined && message.visibility !== 0) {
       obj.visibility = Math.round(message.visibility);
     }
-    if (message.d8 !== undefined) {
+    if (message.d8 !== undefined && message.d8 !== 0) {
       obj.d8 = Math.round(message.d8);
     }
     if (message.mediaCapabilities !== undefined) {
       obj.mediaCapabilities = MediaCapabilities.toJSON(message.mediaCapabilities);
     }
-    if (message.lact !== undefined) {
+    if (message.lact !== undefined && message.lact !== 0) {
       obj.lact = Math.round(message.lact);
     }
-    if (message.mediaType !== undefined) {
+    if (message.mediaType !== undefined && message.mediaType !== 0) {
       obj.mediaType = mediaInfo_MediaTypeToJSON(message.mediaType);
     }
-    if (message.playerState !== undefined) {
+    if (message.playerState !== undefined && message.playerState !== 0) {
       obj.playerState = Math.round(message.playerState);
     }
-    if (message.a8 !== undefined) {
+    if (message.a8 !== undefined && message.a8 !== false) {
       obj.a8 = message.a8;
     }
-    if (message.Jda !== undefined) {
+    if (message.Jda !== undefined && message.Jda !== 0) {
       obj.Jda = Math.round(message.Jda);
     }
-    if (message.qw !== undefined) {
+    if (message.qw !== undefined && message.qw !== 0) {
       obj.qw = Math.round(message.qw);
     }
-    if (message.Ky !== undefined) {
+    if (message.Ky !== undefined && message.Ky !== 0) {
       obj.Ky = Math.round(message.Ky);
     }
-    if (message.Eq !== undefined) {
+    if (message.Eq !== undefined && message.Eq !== 0) {
       obj.Eq = Math.round(message.Eq);
     }
-    if (message.l !== undefined) {
+    if (message.l !== undefined && message.l !== false) {
       obj.l = message.l;
     }
-    if (message.G7 !== undefined) {
+    if (message.G7 !== undefined && message.G7 !== 0) {
       obj.G7 = Math.round(message.G7);
     }
-    if (message.No !== undefined) {
+    if (message.No !== undefined && message.No !== false) {
       obj.No = message.No;
     }
-    if (message.qj !== undefined) {
+    if (message.qj !== undefined && message.qj !== 0) {
       obj.qj = Math.round(message.qj);
     }
-    if (message.Hx !== undefined) {
+    if (message.Hx !== undefined && message.Hx !== 0) {
       obj.Hx = Math.round(message.Hx);
     }
-    if (message.isPrefetch !== undefined) {
+    if (message.isPrefetch !== undefined && message.isPrefetch !== false) {
       obj.isPrefetch = message.isPrefetch;
     }
-    if (message.Iz !== undefined) {
+    if (message.Iz !== undefined && message.Iz !== 0) {
       obj.Iz = Math.round(message.Iz);
     }
-    if (message.sabrLicenseConstraint !== undefined) {
+    if (message.sabrLicenseConstraint !== undefined && message.sabrLicenseConstraint.length !== 0) {
       obj.sabrLicenseConstraint = base64FromBytes(message.sabrLicenseConstraint);
     }
-    if (message.allowProximaLiveLatency !== undefined) {
+    if (message.allowProximaLiveLatency !== undefined && message.allowProximaLiveLatency !== 0) {
       obj.allowProximaLiveLatency = Math.round(message.allowProximaLiveLatency);
     }
-    if (message.sabrForceProxima !== undefined) {
+    if (message.sabrForceProxima !== undefined && message.sabrForceProxima !== 0) {
       obj.sabrForceProxima = Math.round(message.sabrForceProxima);
     }
-    if (message.Tqb !== undefined) {
+    if (message.Tqb !== undefined && message.Tqb !== 0) {
       obj.Tqb = Math.round(message.Tqb);
     }
-    if (message.c !== undefined) {
+    if (message.c !== undefined && message.c !== 0) {
       obj.c = Math.round(message.c);
     }
     return obj;
@@ -642,41 +642,41 @@ export const MediaInfo: MessageFns<MediaInfo> = {
   },
   fromPartial<I extends Exact<DeepPartial<MediaInfo>, I>>(object: I): MediaInfo {
     const message = createBaseMediaInfo();
-    message.timeSinceLastManualFormatSelectionMs = object.timeSinceLastManualFormatSelectionMs ?? undefined;
-    message.lastManualDirection = object.lastManualDirection ?? undefined;
-    message.quality = object.quality ?? undefined;
-    message.detailedNetworkType = object.detailedNetworkType ?? undefined;
-    message.maxWidth = object.maxWidth ?? undefined;
-    message.maxHeight = object.maxHeight ?? undefined;
-    message.iea = object.iea ?? undefined;
-    message.r7 = object.r7 ?? undefined;
-    message.startTimeMs = object.startTimeMs ?? undefined;
-    message.timeSinceLastSeek = object.timeSinceLastSeek ?? undefined;
-    message.visibility = object.visibility ?? undefined;
-    message.d8 = object.d8 ?? undefined;
+    message.timeSinceLastManualFormatSelectionMs = object.timeSinceLastManualFormatSelectionMs ?? 0;
+    message.lastManualDirection = object.lastManualDirection ?? 0;
+    message.quality = object.quality ?? 0;
+    message.detailedNetworkType = object.detailedNetworkType ?? 0;
+    message.maxWidth = object.maxWidth ?? 0;
+    message.maxHeight = object.maxHeight ?? 0;
+    message.iea = object.iea ?? 0;
+    message.r7 = object.r7 ?? 0;
+    message.startTimeMs = object.startTimeMs ?? 0;
+    message.timeSinceLastSeek = object.timeSinceLastSeek ?? 0;
+    message.visibility = object.visibility ?? 0;
+    message.d8 = object.d8 ?? 0;
     message.mediaCapabilities = (object.mediaCapabilities !== undefined && object.mediaCapabilities !== null)
       ? MediaCapabilities.fromPartial(object.mediaCapabilities)
       : undefined;
-    message.lact = object.lact ?? undefined;
-    message.mediaType = object.mediaType ?? undefined;
-    message.playerState = object.playerState ?? undefined;
-    message.a8 = object.a8 ?? undefined;
-    message.Jda = object.Jda ?? undefined;
-    message.qw = object.qw ?? undefined;
-    message.Ky = object.Ky ?? undefined;
-    message.Eq = object.Eq ?? undefined;
-    message.l = object.l ?? undefined;
-    message.G7 = object.G7 ?? undefined;
-    message.No = object.No ?? undefined;
-    message.qj = object.qj ?? undefined;
-    message.Hx = object.Hx ?? undefined;
-    message.isPrefetch = object.isPrefetch ?? undefined;
-    message.Iz = object.Iz ?? undefined;
-    message.sabrLicenseConstraint = object.sabrLicenseConstraint ?? undefined;
-    message.allowProximaLiveLatency = object.allowProximaLiveLatency ?? undefined;
-    message.sabrForceProxima = object.sabrForceProxima ?? undefined;
-    message.Tqb = object.Tqb ?? undefined;
-    message.c = object.c ?? undefined;
+    message.lact = object.lact ?? 0;
+    message.mediaType = object.mediaType ?? 0;
+    message.playerState = object.playerState ?? 0;
+    message.a8 = object.a8 ?? false;
+    message.Jda = object.Jda ?? 0;
+    message.qw = object.qw ?? 0;
+    message.Ky = object.Ky ?? 0;
+    message.Eq = object.Eq ?? 0;
+    message.l = object.l ?? false;
+    message.G7 = object.G7 ?? 0;
+    message.No = object.No ?? false;
+    message.qj = object.qj ?? 0;
+    message.Hx = object.Hx ?? 0;
+    message.isPrefetch = object.isPrefetch ?? false;
+    message.Iz = object.Iz ?? 0;
+    message.sabrLicenseConstraint = object.sabrLicenseConstraint ?? new Uint8Array(0);
+    message.allowProximaLiveLatency = object.allowProximaLiveLatency ?? 0;
+    message.sabrForceProxima = object.sabrForceProxima ?? 0;
+    message.Tqb = object.Tqb ?? 0;
+    message.c = object.c ?? 0;
     return message;
   },
 };

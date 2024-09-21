@@ -104,15 +104,15 @@ export const PlaybackStartPolicy: MessageFns<PlaybackStartPolicy> = {
 };
 
 function createBasePlaybackStartPolicy_ReadaheadPolicy(): PlaybackStartPolicy_ReadaheadPolicy {
-  return { minReadaheadMs: undefined, minBandwidthBytesPerSec: undefined };
+  return { minReadaheadMs: 0, minBandwidthBytesPerSec: 0 };
 }
 
 export const PlaybackStartPolicy_ReadaheadPolicy: MessageFns<PlaybackStartPolicy_ReadaheadPolicy> = {
   encode(message: PlaybackStartPolicy_ReadaheadPolicy, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.minReadaheadMs !== undefined) {
+    if (message.minReadaheadMs !== undefined && message.minReadaheadMs !== 0) {
       writer.uint32(16).int32(message.minReadaheadMs);
     }
-    if (message.minBandwidthBytesPerSec !== undefined) {
+    if (message.minBandwidthBytesPerSec !== undefined && message.minBandwidthBytesPerSec !== 0) {
       writer.uint32(8).int32(message.minBandwidthBytesPerSec);
     }
     return writer;
@@ -150,19 +150,19 @@ export const PlaybackStartPolicy_ReadaheadPolicy: MessageFns<PlaybackStartPolicy
 
   fromJSON(object: any): PlaybackStartPolicy_ReadaheadPolicy {
     return {
-      minReadaheadMs: isSet(object.minReadaheadMs) ? globalThis.Number(object.minReadaheadMs) : undefined,
+      minReadaheadMs: isSet(object.minReadaheadMs) ? globalThis.Number(object.minReadaheadMs) : 0,
       minBandwidthBytesPerSec: isSet(object.minBandwidthBytesPerSec)
         ? globalThis.Number(object.minBandwidthBytesPerSec)
-        : undefined,
+        : 0,
     };
   },
 
   toJSON(message: PlaybackStartPolicy_ReadaheadPolicy): unknown {
     const obj: any = {};
-    if (message.minReadaheadMs !== undefined) {
+    if (message.minReadaheadMs !== undefined && message.minReadaheadMs !== 0) {
       obj.minReadaheadMs = Math.round(message.minReadaheadMs);
     }
-    if (message.minBandwidthBytesPerSec !== undefined) {
+    if (message.minBandwidthBytesPerSec !== undefined && message.minBandwidthBytesPerSec !== 0) {
       obj.minBandwidthBytesPerSec = Math.round(message.minBandwidthBytesPerSec);
     }
     return obj;
@@ -177,8 +177,8 @@ export const PlaybackStartPolicy_ReadaheadPolicy: MessageFns<PlaybackStartPolicy
     object: I,
   ): PlaybackStartPolicy_ReadaheadPolicy {
     const message = createBasePlaybackStartPolicy_ReadaheadPolicy();
-    message.minReadaheadMs = object.minReadaheadMs ?? undefined;
-    message.minBandwidthBytesPerSec = object.minBandwidthBytesPerSec ?? undefined;
+    message.minReadaheadMs = object.minReadaheadMs ?? 0;
+    message.minBandwidthBytesPerSec = object.minBandwidthBytesPerSec ?? 0;
     return message;
   },
 };
