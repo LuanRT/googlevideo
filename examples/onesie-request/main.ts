@@ -29,8 +29,9 @@ const baseUrl = onesieHotConfig.baseUrl;
 
 const videoId = 'JAs6WyK-Kr0';
 
+const clonedContext = JSON.parse(JSON.stringify(innertube.session.context)); // Clone the context to avoid modifying the original one
 const playerRequest = {
-  context: innertube.session.context,
+  context: clonedContext,
   ...Endpoints.PlayerEndpoint.build({
     video_id: videoId,
     sts: innertube.session.player?.sts
@@ -38,8 +39,8 @@ const playerRequest = {
 };
 
 // Change or remove these if you want to use a different client. I chose TVHTML5 purely for testing.
-playerRequest.context.client.clientName = 'TVHTML5';
-playerRequest.context.client.clientVersion = '7.20240717.18.00';
+clonedContext.client.clientName = 'TVHTML5';
+clonedContext.client.clientVersion = '7.20240717.18.00';
 
 const headers = [
   {
