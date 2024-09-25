@@ -8,12 +8,12 @@ import "video_streaming/streamer_context.proto";
  
 message VideoPlaybackAbrRequest {
   optional MediaInfo media_info = 1;
-  repeated .misc.FormatId format_ids = 2;
-  repeated Zpa ud = 3;
+  repeated .misc.FormatId selected_formats = 2;
+  repeated BufferedRange buffered_range = 3;
   optional bytes video_playback_ustreamer_config = 5;
   optional Lo lo = 6;
-  repeated .misc.FormatId audio_format_ids = 16;
-  repeated .misc.FormatId video_format_ids = 17;
+  repeated .misc.FormatId audio_formats = 16;
+  repeated .misc.FormatId video_formats = 17;
   optional StreamerContext streamer_context = 19; 
   optional OQa field21 = 21;
   optional int32 field22 = 22;
@@ -48,12 +48,12 @@ message YPa {
   optional int32 field3 = 3;
 }
 
-message Zpa {
+message BufferedRange {
   required .misc.FormatId format_id = 1;
   required int64 start_time_ms = 2;
   required int64 duration_ms = 3;
-  required int32 field4 = 4;
-  required int32 sequence_number = 5;
+  required int32 start_segment_index = 4;
+  required int32 end_segment_index = 5;
   optional TimeRange time_range = 6;
   optional Kob field9 = 9;
   optional YPa field11 = 11;
@@ -70,7 +70,7 @@ message OQa {
 }
 
 message Pqa {
-  repeated .misc.FormatId format_ids = 1;
-  repeated Zpa ud = 2;
+  repeated .misc.FormatId formats = 1;
+  repeated BufferedRange ud = 2;
   optional string clip_id = 3;
 }

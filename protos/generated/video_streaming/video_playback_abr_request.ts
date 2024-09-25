@@ -15,12 +15,12 @@ export const protobufPackage = "video_streaming";
 
 export interface VideoPlaybackAbrRequest {
   mediaInfo?: MediaInfo | undefined;
-  formatIds: FormatId[];
-  ud: Zpa[];
+  selectedFormats: FormatId[];
+  bufferedRange: BufferedRange[];
   videoPlaybackUstreamerConfig?: Uint8Array | undefined;
   lo?: Lo | undefined;
-  audioFormatIds: FormatId[];
-  videoFormatIds: FormatId[];
+  audioFormats: FormatId[];
+  videoFormats: FormatId[];
   streamerContext?: StreamerContext | undefined;
   field21?: OQa | undefined;
   field22?: number | undefined;
@@ -57,12 +57,12 @@ export interface YPa {
   field3?: number | undefined;
 }
 
-export interface Zpa {
+export interface BufferedRange {
   formatId: FormatId | undefined;
   startTimeMs: number;
   durationMs: number;
-  field4: number;
-  sequenceNumber: number;
+  startSegmentIndex: number;
+  endSegmentIndex: number;
   timeRange?: TimeRange | undefined;
   field9?: Kob | undefined;
   field11?: YPa | undefined;
@@ -79,20 +79,20 @@ export interface OQa {
 }
 
 export interface Pqa {
-  formatIds: FormatId[];
-  ud: Zpa[];
+  formats: FormatId[];
+  ud: BufferedRange[];
   clipId?: string | undefined;
 }
 
 function createBaseVideoPlaybackAbrRequest(): VideoPlaybackAbrRequest {
   return {
     mediaInfo: undefined,
-    formatIds: [],
-    ud: [],
+    selectedFormats: [],
+    bufferedRange: [],
     videoPlaybackUstreamerConfig: new Uint8Array(0),
     lo: undefined,
-    audioFormatIds: [],
-    videoFormatIds: [],
+    audioFormats: [],
+    videoFormats: [],
     streamerContext: undefined,
     field21: undefined,
     field22: 0,
@@ -106,11 +106,11 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     if (message.mediaInfo !== undefined) {
       MediaInfo.encode(message.mediaInfo, writer.uint32(10).fork()).join();
     }
-    for (const v of message.formatIds) {
+    for (const v of message.selectedFormats) {
       FormatId.encode(v!, writer.uint32(18).fork()).join();
     }
-    for (const v of message.ud) {
-      Zpa.encode(v!, writer.uint32(26).fork()).join();
+    for (const v of message.bufferedRange) {
+      BufferedRange.encode(v!, writer.uint32(26).fork()).join();
     }
     if (message.videoPlaybackUstreamerConfig !== undefined && message.videoPlaybackUstreamerConfig.length !== 0) {
       writer.uint32(42).bytes(message.videoPlaybackUstreamerConfig);
@@ -118,10 +118,10 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     if (message.lo !== undefined) {
       Lo.encode(message.lo, writer.uint32(50).fork()).join();
     }
-    for (const v of message.audioFormatIds) {
+    for (const v of message.audioFormats) {
       FormatId.encode(v!, writer.uint32(130).fork()).join();
     }
-    for (const v of message.videoFormatIds) {
+    for (const v of message.videoFormats) {
       FormatId.encode(v!, writer.uint32(138).fork()).join();
     }
     if (message.streamerContext !== undefined) {
@@ -161,14 +161,14 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
             break;
           }
 
-          message.formatIds.push(FormatId.decode(reader, reader.uint32()));
+          message.selectedFormats.push(FormatId.decode(reader, reader.uint32()));
           continue;
         case 3:
           if (tag !== 26) {
             break;
           }
 
-          message.ud.push(Zpa.decode(reader, reader.uint32()));
+          message.bufferedRange.push(BufferedRange.decode(reader, reader.uint32()));
           continue;
         case 5:
           if (tag !== 42) {
@@ -189,14 +189,14 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
             break;
           }
 
-          message.audioFormatIds.push(FormatId.decode(reader, reader.uint32()));
+          message.audioFormats.push(FormatId.decode(reader, reader.uint32()));
           continue;
         case 17:
           if (tag !== 138) {
             break;
           }
 
-          message.videoFormatIds.push(FormatId.decode(reader, reader.uint32()));
+          message.videoFormats.push(FormatId.decode(reader, reader.uint32()));
           continue;
         case 19:
           if (tag !== 154) {
@@ -245,19 +245,21 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
   fromJSON(object: any): VideoPlaybackAbrRequest {
     return {
       mediaInfo: isSet(object.mediaInfo) ? MediaInfo.fromJSON(object.mediaInfo) : undefined,
-      formatIds: globalThis.Array.isArray(object?.formatIds)
-        ? object.formatIds.map((e: any) => FormatId.fromJSON(e))
+      selectedFormats: globalThis.Array.isArray(object?.selectedFormats)
+        ? object.selectedFormats.map((e: any) => FormatId.fromJSON(e))
         : [],
-      ud: globalThis.Array.isArray(object?.ud) ? object.ud.map((e: any) => Zpa.fromJSON(e)) : [],
+      bufferedRange: globalThis.Array.isArray(object?.bufferedRange)
+        ? object.bufferedRange.map((e: any) => BufferedRange.fromJSON(e))
+        : [],
       videoPlaybackUstreamerConfig: isSet(object.videoPlaybackUstreamerConfig)
         ? bytesFromBase64(object.videoPlaybackUstreamerConfig)
         : new Uint8Array(0),
       lo: isSet(object.lo) ? Lo.fromJSON(object.lo) : undefined,
-      audioFormatIds: globalThis.Array.isArray(object?.audioFormatIds)
-        ? object.audioFormatIds.map((e: any) => FormatId.fromJSON(e))
+      audioFormats: globalThis.Array.isArray(object?.audioFormats)
+        ? object.audioFormats.map((e: any) => FormatId.fromJSON(e))
         : [],
-      videoFormatIds: globalThis.Array.isArray(object?.videoFormatIds)
-        ? object.videoFormatIds.map((e: any) => FormatId.fromJSON(e))
+      videoFormats: globalThis.Array.isArray(object?.videoFormats)
+        ? object.videoFormats.map((e: any) => FormatId.fromJSON(e))
         : [],
       streamerContext: isSet(object.streamerContext) ? StreamerContext.fromJSON(object.streamerContext) : undefined,
       field21: isSet(object.field21) ? OQa.fromJSON(object.field21) : undefined,
@@ -272,11 +274,11 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     if (message.mediaInfo !== undefined) {
       obj.mediaInfo = MediaInfo.toJSON(message.mediaInfo);
     }
-    if (message.formatIds?.length) {
-      obj.formatIds = message.formatIds.map((e) => FormatId.toJSON(e));
+    if (message.selectedFormats?.length) {
+      obj.selectedFormats = message.selectedFormats.map((e) => FormatId.toJSON(e));
     }
-    if (message.ud?.length) {
-      obj.ud = message.ud.map((e) => Zpa.toJSON(e));
+    if (message.bufferedRange?.length) {
+      obj.bufferedRange = message.bufferedRange.map((e) => BufferedRange.toJSON(e));
     }
     if (message.videoPlaybackUstreamerConfig !== undefined && message.videoPlaybackUstreamerConfig.length !== 0) {
       obj.videoPlaybackUstreamerConfig = base64FromBytes(message.videoPlaybackUstreamerConfig);
@@ -284,11 +286,11 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     if (message.lo !== undefined) {
       obj.lo = Lo.toJSON(message.lo);
     }
-    if (message.audioFormatIds?.length) {
-      obj.audioFormatIds = message.audioFormatIds.map((e) => FormatId.toJSON(e));
+    if (message.audioFormats?.length) {
+      obj.audioFormats = message.audioFormats.map((e) => FormatId.toJSON(e));
     }
-    if (message.videoFormatIds?.length) {
-      obj.videoFormatIds = message.videoFormatIds.map((e) => FormatId.toJSON(e));
+    if (message.videoFormats?.length) {
+      obj.videoFormats = message.videoFormats.map((e) => FormatId.toJSON(e));
     }
     if (message.streamerContext !== undefined) {
       obj.streamerContext = StreamerContext.toJSON(message.streamerContext);
@@ -316,12 +318,12 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     message.mediaInfo = (object.mediaInfo !== undefined && object.mediaInfo !== null)
       ? MediaInfo.fromPartial(object.mediaInfo)
       : undefined;
-    message.formatIds = object.formatIds?.map((e) => FormatId.fromPartial(e)) || [];
-    message.ud = object.ud?.map((e) => Zpa.fromPartial(e)) || [];
+    message.selectedFormats = object.selectedFormats?.map((e) => FormatId.fromPartial(e)) || [];
+    message.bufferedRange = object.bufferedRange?.map((e) => BufferedRange.fromPartial(e)) || [];
     message.videoPlaybackUstreamerConfig = object.videoPlaybackUstreamerConfig ?? new Uint8Array(0);
     message.lo = (object.lo !== undefined && object.lo !== null) ? Lo.fromPartial(object.lo) : undefined;
-    message.audioFormatIds = object.audioFormatIds?.map((e) => FormatId.fromPartial(e)) || [];
-    message.videoFormatIds = object.videoFormatIds?.map((e) => FormatId.fromPartial(e)) || [];
+    message.audioFormats = object.audioFormats?.map((e) => FormatId.fromPartial(e)) || [];
+    message.videoFormats = object.videoFormats?.map((e) => FormatId.fromPartial(e)) || [];
     message.streamerContext = (object.streamerContext !== undefined && object.streamerContext !== null)
       ? StreamerContext.fromPartial(object.streamerContext)
       : undefined;
@@ -767,13 +769,13 @@ export const YPa: MessageFns<YPa> = {
   },
 };
 
-function createBaseZpa(): Zpa {
+function createBaseBufferedRange(): BufferedRange {
   return {
     formatId: undefined,
     startTimeMs: 0,
     durationMs: 0,
-    field4: 0,
-    sequenceNumber: 0,
+    startSegmentIndex: 0,
+    endSegmentIndex: 0,
     timeRange: undefined,
     field9: undefined,
     field11: undefined,
@@ -781,8 +783,8 @@ function createBaseZpa(): Zpa {
   };
 }
 
-export const Zpa: MessageFns<Zpa> = {
-  encode(message: Zpa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const BufferedRange: MessageFns<BufferedRange> = {
+  encode(message: BufferedRange, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.formatId !== undefined) {
       FormatId.encode(message.formatId, writer.uint32(10).fork()).join();
     }
@@ -792,11 +794,11 @@ export const Zpa: MessageFns<Zpa> = {
     if (message.durationMs !== 0) {
       writer.uint32(24).int64(message.durationMs);
     }
-    if (message.field4 !== 0) {
-      writer.uint32(32).int32(message.field4);
+    if (message.startSegmentIndex !== 0) {
+      writer.uint32(32).int32(message.startSegmentIndex);
     }
-    if (message.sequenceNumber !== 0) {
-      writer.uint32(40).int32(message.sequenceNumber);
+    if (message.endSegmentIndex !== 0) {
+      writer.uint32(40).int32(message.endSegmentIndex);
     }
     if (message.timeRange !== undefined) {
       TimeRange.encode(message.timeRange, writer.uint32(50).fork()).join();
@@ -813,10 +815,10 @@ export const Zpa: MessageFns<Zpa> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): Zpa {
+  decode(input: BinaryReader | Uint8Array, length?: number): BufferedRange {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseZpa();
+    const message = createBaseBufferedRange();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -846,14 +848,14 @@ export const Zpa: MessageFns<Zpa> = {
             break;
           }
 
-          message.field4 = reader.int32();
+          message.startSegmentIndex = reader.int32();
           continue;
         case 5:
           if (tag !== 40) {
             break;
           }
 
-          message.sequenceNumber = reader.int32();
+          message.endSegmentIndex = reader.int32();
           continue;
         case 6:
           if (tag !== 50) {
@@ -892,13 +894,13 @@ export const Zpa: MessageFns<Zpa> = {
     return message;
   },
 
-  fromJSON(object: any): Zpa {
+  fromJSON(object: any): BufferedRange {
     return {
       formatId: isSet(object.formatId) ? FormatId.fromJSON(object.formatId) : undefined,
       startTimeMs: isSet(object.startTimeMs) ? globalThis.Number(object.startTimeMs) : 0,
       durationMs: isSet(object.durationMs) ? globalThis.Number(object.durationMs) : 0,
-      field4: isSet(object.field4) ? globalThis.Number(object.field4) : 0,
-      sequenceNumber: isSet(object.sequenceNumber) ? globalThis.Number(object.sequenceNumber) : 0,
+      startSegmentIndex: isSet(object.startSegmentIndex) ? globalThis.Number(object.startSegmentIndex) : 0,
+      endSegmentIndex: isSet(object.endSegmentIndex) ? globalThis.Number(object.endSegmentIndex) : 0,
       timeRange: isSet(object.timeRange) ? TimeRange.fromJSON(object.timeRange) : undefined,
       field9: isSet(object.field9) ? Kob.fromJSON(object.field9) : undefined,
       field11: isSet(object.field11) ? YPa.fromJSON(object.field11) : undefined,
@@ -906,7 +908,7 @@ export const Zpa: MessageFns<Zpa> = {
     };
   },
 
-  toJSON(message: Zpa): unknown {
+  toJSON(message: BufferedRange): unknown {
     const obj: any = {};
     if (message.formatId !== undefined) {
       obj.formatId = FormatId.toJSON(message.formatId);
@@ -917,11 +919,11 @@ export const Zpa: MessageFns<Zpa> = {
     if (message.durationMs !== 0) {
       obj.durationMs = Math.round(message.durationMs);
     }
-    if (message.field4 !== 0) {
-      obj.field4 = Math.round(message.field4);
+    if (message.startSegmentIndex !== 0) {
+      obj.startSegmentIndex = Math.round(message.startSegmentIndex);
     }
-    if (message.sequenceNumber !== 0) {
-      obj.sequenceNumber = Math.round(message.sequenceNumber);
+    if (message.endSegmentIndex !== 0) {
+      obj.endSegmentIndex = Math.round(message.endSegmentIndex);
     }
     if (message.timeRange !== undefined) {
       obj.timeRange = TimeRange.toJSON(message.timeRange);
@@ -938,18 +940,18 @@ export const Zpa: MessageFns<Zpa> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Zpa>, I>>(base?: I): Zpa {
-    return Zpa.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<BufferedRange>, I>>(base?: I): BufferedRange {
+    return BufferedRange.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<Zpa>, I>>(object: I): Zpa {
-    const message = createBaseZpa();
+  fromPartial<I extends Exact<DeepPartial<BufferedRange>, I>>(object: I): BufferedRange {
+    const message = createBaseBufferedRange();
     message.formatId = (object.formatId !== undefined && object.formatId !== null)
       ? FormatId.fromPartial(object.formatId)
       : undefined;
     message.startTimeMs = object.startTimeMs ?? 0;
     message.durationMs = object.durationMs ?? 0;
-    message.field4 = object.field4 ?? 0;
-    message.sequenceNumber = object.sequenceNumber ?? 0;
+    message.startSegmentIndex = object.startSegmentIndex ?? 0;
+    message.endSegmentIndex = object.endSegmentIndex ?? 0;
     message.timeRange = (object.timeRange !== undefined && object.timeRange !== null)
       ? TimeRange.fromPartial(object.timeRange)
       : undefined;
@@ -1101,16 +1103,16 @@ export const OQa: MessageFns<OQa> = {
 };
 
 function createBasePqa(): Pqa {
-  return { formatIds: [], ud: [], clipId: "" };
+  return { formats: [], ud: [], clipId: "" };
 }
 
 export const Pqa: MessageFns<Pqa> = {
   encode(message: Pqa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.formatIds) {
+    for (const v of message.formats) {
       FormatId.encode(v!, writer.uint32(10).fork()).join();
     }
     for (const v of message.ud) {
-      Zpa.encode(v!, writer.uint32(18).fork()).join();
+      BufferedRange.encode(v!, writer.uint32(18).fork()).join();
     }
     if (message.clipId !== undefined && message.clipId !== "") {
       writer.uint32(26).string(message.clipId);
@@ -1130,14 +1132,14 @@ export const Pqa: MessageFns<Pqa> = {
             break;
           }
 
-          message.formatIds.push(FormatId.decode(reader, reader.uint32()));
+          message.formats.push(FormatId.decode(reader, reader.uint32()));
           continue;
         case 2:
           if (tag !== 18) {
             break;
           }
 
-          message.ud.push(Zpa.decode(reader, reader.uint32()));
+          message.ud.push(BufferedRange.decode(reader, reader.uint32()));
           continue;
         case 3:
           if (tag !== 26) {
@@ -1157,21 +1159,19 @@ export const Pqa: MessageFns<Pqa> = {
 
   fromJSON(object: any): Pqa {
     return {
-      formatIds: globalThis.Array.isArray(object?.formatIds)
-        ? object.formatIds.map((e: any) => FormatId.fromJSON(e))
-        : [],
-      ud: globalThis.Array.isArray(object?.ud) ? object.ud.map((e: any) => Zpa.fromJSON(e)) : [],
+      formats: globalThis.Array.isArray(object?.formats) ? object.formats.map((e: any) => FormatId.fromJSON(e)) : [],
+      ud: globalThis.Array.isArray(object?.ud) ? object.ud.map((e: any) => BufferedRange.fromJSON(e)) : [],
       clipId: isSet(object.clipId) ? globalThis.String(object.clipId) : "",
     };
   },
 
   toJSON(message: Pqa): unknown {
     const obj: any = {};
-    if (message.formatIds?.length) {
-      obj.formatIds = message.formatIds.map((e) => FormatId.toJSON(e));
+    if (message.formats?.length) {
+      obj.formats = message.formats.map((e) => FormatId.toJSON(e));
     }
     if (message.ud?.length) {
-      obj.ud = message.ud.map((e) => Zpa.toJSON(e));
+      obj.ud = message.ud.map((e) => BufferedRange.toJSON(e));
     }
     if (message.clipId !== undefined && message.clipId !== "") {
       obj.clipId = message.clipId;
@@ -1184,8 +1184,8 @@ export const Pqa: MessageFns<Pqa> = {
   },
   fromPartial<I extends Exact<DeepPartial<Pqa>, I>>(object: I): Pqa {
     const message = createBasePqa();
-    message.formatIds = object.formatIds?.map((e) => FormatId.fromPartial(e)) || [];
-    message.ud = object.ud?.map((e) => Zpa.fromPartial(e)) || [];
+    message.formats = object.formats?.map((e) => FormatId.fromPartial(e)) || [];
+    message.ud = object.ud?.map((e) => BufferedRange.fromPartial(e)) || [];
     message.clipId = object.clipId ?? "";
     return message;
   },

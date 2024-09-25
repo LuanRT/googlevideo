@@ -66,7 +66,7 @@ export class ServerAbrStream extends EventEmitterLike {
       lastManualDirection: 0,
       timeSinceLastManualFormatSelectionMs: 0,
       quality: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_QUALITY,
-      iea: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_QUALITY,
+      selectedQualityHeight: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_QUALITY,
       startTimeMs: 0,
       visibility: 0,
       mediaType: MediaInfo_MediaType.MEDIA_TYPE_DEFAULT,
@@ -126,9 +126,9 @@ export class ServerAbrStream extends EventEmitterLike {
 
     const body = VideoPlaybackAbrRequest.encode({
       mediaInfo: mediaInfo,
-      formatIds: this.initializedFormats.map((fmt) => fmt.formatId),
-      audioFormatIds: audioFormatIds,
-      videoFormatIds: videoFormatIds,
+      audioFormats: audioFormatIds,
+      videoFormats: videoFormatIds,
+      selectedFormats: this.initializedFormats.map((fmt) => fmt.formatId),
       videoPlaybackUstreamerConfig: base64ToU8(this.videoPlaybackUstreamerConfig),
       streamerContext: {
         field5: [],
@@ -142,7 +142,7 @@ export class ServerAbrStream extends EventEmitterLike {
           osVersion: '10.0'
         }
       },
-      ud: this.initializedFormats.map((fmt) => fmt._state),
+      bufferedRange: this.initializedFormats.map((fmt) => fmt._state),
       field1000: []
     }).finish();
 
@@ -233,8 +233,8 @@ export class ServerAbrStream extends EventEmitterLike {
           formatId: mediaHeader.formatId,
           startTimeMs: 0,
           durationMs: 0,
-          field4: 1,
-          sequenceNumber: 0
+          startSegmentIndex: 1,
+          endSegmentIndex: 0
         }
       });
 
@@ -269,7 +269,7 @@ export class ServerAbrStream extends EventEmitterLike {
 
       if (typeof mediaHeader.sequenceNumber === 'number') {
         currentFormat._state.durationMs += mediaHeader.durationMs || 0;
-        currentFormat._state.sequenceNumber += 1;
+        currentFormat._state.endSegmentIndex += 1;
       }
     }
   }
@@ -316,8 +316,8 @@ export class ServerAbrStream extends EventEmitterLike {
           formatId: formatInitializationMetadata.formatId,
           startTimeMs: 0,
           durationMs: 0,
-          field4: 1,
-          sequenceNumber: 0
+          startSegmentIndex: 1,
+          endSegmentIndex: 0
         }
       });
 

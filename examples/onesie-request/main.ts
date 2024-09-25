@@ -81,9 +81,7 @@ const body = Protos.OnesieInnertubeRequest.encode({
     timeSinceLastManualFormatSelectionMs: 0,
     lastManualDirection: 0,
     quality: QUALITY.HD720,
-    maxWidth: 640,
-    maxHeight: 360,
-    iea: 720,
+    selectedQualityHeight: QUALITY.HD720,
     startTimeMs: 0,
     visibility: 0
   },
