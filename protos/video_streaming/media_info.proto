@@ -37,7 +37,7 @@ message MediaInfo {
   optional int32 allow_proxima_live_latency = 64;
   optional int32 sabr_force_proxima = 66;
   optional int32 Tqb = 67;
-  optional int32 c = 68;
+  optional int64 sabr_force_max_network_interruption_duration_ms = 68;
 
   enum MediaType {
     MEDIA_TYPE_DEFAULT = 0;
