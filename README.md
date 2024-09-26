@@ -6,7 +6,9 @@ This is a collection of utilities for working with Google Video APIs, with a pri
 * [ServerAbrStream (SABR Client)](./src/core/ServerAbrStream.ts)
 * [ChunkedDataBuffer (Buffer Manager)](./src/core/ChunkedDataBuffer.ts)
 
-You can find usage examples [here](./examples/).
+The protobuf definitions were extracted from YouTube's Android and iOS clients, and the UMP parser and buffer manager are based on the implementation currently found on youtube.com.
+
+Usage examples can be found [here](./examples/).
 
 ## Installation
 
