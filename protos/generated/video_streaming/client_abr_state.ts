@@ -2,7 +2,7 @@
 // versions:
 //   protoc-gen-ts_proto  v2.2.0
 //   protoc               v5.28.0
-// source: video_streaming/media_info.proto
+// source: video_streaming/client_abr_state.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
@@ -10,7 +10,7 @@ import { MediaCapabilities } from "./media_capabilities.js";
 
 export const protobufPackage = "video_streaming";
 
-export interface MediaInfo {
+export interface ClientAbrState {
   timeSinceLastManualFormatSelectionMs?: number | undefined;
   lastManualDirection?: number | undefined;
   quality?: number | undefined;
@@ -28,7 +28,7 @@ export interface MediaInfo {
     | number
     | undefined;
   /** optional int32 Gw = 40; */
-  mediaType?: MediaInfo_MediaType | undefined;
+  mediaType?: ClientAbrState_MediaType | undefined;
   playerState?: number | undefined;
   rangeCompression?: boolean | undefined;
   Jda?: number | undefined;
@@ -50,7 +50,7 @@ export interface MediaInfo {
   playbackRate?: number | undefined;
 }
 
-export enum MediaInfo_MediaType {
+export enum ClientAbrState_MediaType {
   MEDIA_TYPE_DEFAULT = 0,
   MEDIA_TYPE_AUDIO = 1,
   MEDIA_TYPE_VIDEO = 2,
@@ -58,44 +58,44 @@ export enum MediaInfo_MediaType {
   UNRECOGNIZED = -1,
 }
 
-export function mediaInfo_MediaTypeFromJSON(object: any): MediaInfo_MediaType {
+export function clientAbrState_MediaTypeFromJSON(object: any): ClientAbrState_MediaType {
   switch (object) {
     case 0:
     case "MEDIA_TYPE_DEFAULT":
-      return MediaInfo_MediaType.MEDIA_TYPE_DEFAULT;
+      return ClientAbrState_MediaType.MEDIA_TYPE_DEFAULT;
     case 1:
     case "MEDIA_TYPE_AUDIO":
-      return MediaInfo_MediaType.MEDIA_TYPE_AUDIO;
+      return ClientAbrState_MediaType.MEDIA_TYPE_AUDIO;
     case 2:
     case "MEDIA_TYPE_VIDEO":
-      return MediaInfo_MediaType.MEDIA_TYPE_VIDEO;
+      return ClientAbrState_MediaType.MEDIA_TYPE_VIDEO;
     case 3:
     case "USE_SERVER_FORMAT_FILTER":
-      return MediaInfo_MediaType.USE_SERVER_FORMAT_FILTER;
+      return ClientAbrState_MediaType.USE_SERVER_FORMAT_FILTER;
     case -1:
     case "UNRECOGNIZED":
     default:
-      return MediaInfo_MediaType.UNRECOGNIZED;
+      return ClientAbrState_MediaType.UNRECOGNIZED;
   }
 }
 
-export function mediaInfo_MediaTypeToJSON(object: MediaInfo_MediaType): string {
+export function clientAbrState_MediaTypeToJSON(object: ClientAbrState_MediaType): string {
   switch (object) {
-    case MediaInfo_MediaType.MEDIA_TYPE_DEFAULT:
+    case ClientAbrState_MediaType.MEDIA_TYPE_DEFAULT:
       return "MEDIA_TYPE_DEFAULT";
-    case MediaInfo_MediaType.MEDIA_TYPE_AUDIO:
+    case ClientAbrState_MediaType.MEDIA_TYPE_AUDIO:
       return "MEDIA_TYPE_AUDIO";
-    case MediaInfo_MediaType.MEDIA_TYPE_VIDEO:
+    case ClientAbrState_MediaType.MEDIA_TYPE_VIDEO:
       return "MEDIA_TYPE_VIDEO";
-    case MediaInfo_MediaType.USE_SERVER_FORMAT_FILTER:
+    case ClientAbrState_MediaType.USE_SERVER_FORMAT_FILTER:
       return "USE_SERVER_FORMAT_FILTER";
-    case MediaInfo_MediaType.UNRECOGNIZED:
+    case ClientAbrState_MediaType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
   }
 }
 
-function createBaseMediaInfo(): MediaInfo {
+function createBaseClientAbrState(): ClientAbrState {
   return {
     timeSinceLastManualFormatSelectionMs: 0,
     lastManualDirection: 0,
@@ -134,8 +134,8 @@ function createBaseMediaInfo(): MediaInfo {
   };
 }
 
-export const MediaInfo: MessageFns<MediaInfo> = {
-  encode(message: MediaInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const ClientAbrState: MessageFns<ClientAbrState> = {
+  encode(message: ClientAbrState, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (
       message.timeSinceLastManualFormatSelectionMs !== undefined && message.timeSinceLastManualFormatSelectionMs !== 0
     ) {
@@ -246,10 +246,10 @@ export const MediaInfo: MessageFns<MediaInfo> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): MediaInfo {
+  decode(input: BinaryReader | Uint8Array, length?: number): ClientAbrState {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMediaInfo();
+    const message = createBaseClientAbrState();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -500,7 +500,7 @@ export const MediaInfo: MessageFns<MediaInfo> = {
     return message;
   },
 
-  fromJSON(object: any): MediaInfo {
+  fromJSON(object: any): ClientAbrState {
     return {
       timeSinceLastManualFormatSelectionMs: isSet(object.timeSinceLastManualFormatSelectionMs)
         ? globalThis.Number(object.timeSinceLastManualFormatSelectionMs)
@@ -520,7 +520,7 @@ export const MediaInfo: MessageFns<MediaInfo> = {
         ? MediaCapabilities.fromJSON(object.mediaCapabilities)
         : undefined,
       timeSinceLastAction: isSet(object.timeSinceLastAction) ? globalThis.Number(object.timeSinceLastAction) : 0,
-      mediaType: isSet(object.mediaType) ? mediaInfo_MediaTypeFromJSON(object.mediaType) : 0,
+      mediaType: isSet(object.mediaType) ? clientAbrState_MediaTypeFromJSON(object.mediaType) : 0,
       playerState: isSet(object.playerState) ? globalThis.Number(object.playerState) : 0,
       rangeCompression: isSet(object.rangeCompression) ? globalThis.Boolean(object.rangeCompression) : false,
       Jda: isSet(object.Jda) ? globalThis.Number(object.Jda) : 0,
@@ -553,7 +553,7 @@ export const MediaInfo: MessageFns<MediaInfo> = {
     };
   },
 
-  toJSON(message: MediaInfo): unknown {
+  toJSON(message: ClientAbrState): unknown {
     const obj: any = {};
     if (
       message.timeSinceLastManualFormatSelectionMs !== undefined && message.timeSinceLastManualFormatSelectionMs !== 0
@@ -600,7 +600,7 @@ export const MediaInfo: MessageFns<MediaInfo> = {
       obj.timeSinceLastAction = Math.round(message.timeSinceLastAction);
     }
     if (message.mediaType !== undefined && message.mediaType !== 0) {
-      obj.mediaType = mediaInfo_MediaTypeToJSON(message.mediaType);
+      obj.mediaType = clientAbrState_MediaTypeToJSON(message.mediaType);
     }
     if (message.playerState !== undefined && message.playerState !== 0) {
       obj.playerState = Math.round(message.playerState);
@@ -665,11 +665,11 @@ export const MediaInfo: MessageFns<MediaInfo> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<MediaInfo>, I>>(base?: I): MediaInfo {
-    return MediaInfo.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<ClientAbrState>, I>>(base?: I): ClientAbrState {
+    return ClientAbrState.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<MediaInfo>, I>>(object: I): MediaInfo {
-    const message = createBaseMediaInfo();
+  fromPartial<I extends Exact<DeepPartial<ClientAbrState>, I>>(object: I): ClientAbrState {
+    const message = createBaseClientAbrState();
     message.timeSinceLastManualFormatSelectionMs = object.timeSinceLastManualFormatSelectionMs ?? 0;
     message.lastManualDirection = object.lastManualDirection ?? 0;
     message.quality = object.quality ?? 0;

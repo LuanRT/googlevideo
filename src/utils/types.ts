@@ -4,7 +4,7 @@ import type { SabrRedirect } from '../../protos/generated/video_streaming/sabr_r
 import type { StreamProtectionStatus } from '../../protos/generated/video_streaming/stream_protection_status.js';
 import type { TimeRange } from '../../protos/generated/video_streaming/time_range.js';
 import type { BufferedRange } from '../../protos/generated/video_streaming/video_playback_abr_request.js';
-import type { MediaInfo } from '../../protos/generated/video_streaming/media_info.js';
+import type { ClientAbrState } from '../../protos/generated/video_streaming/client_abr_state.js';
 import type { ChunkedDataBuffer } from '../core/index.js';
 
 export type Part = {
@@ -54,11 +54,11 @@ export type InitializedFormat = {
 export type InitOptions = {
   audioFormats: Format[];
   videoFormats: Format[];
-  mediaInfo?: MediaInfo;
+  clientAbrState?: ClientAbrState;
 };
 
 export type MediaArgs = {
-  mediaInfo: MediaInfo;
+  clientAbrState: ClientAbrState;
   audioFormatIds: FormatId[];
   videoFormatIds: FormatId[];
 }

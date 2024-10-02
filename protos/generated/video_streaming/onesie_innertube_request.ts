@@ -6,14 +6,14 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { ClientAbrState } from "./client_abr_state.js";
 import { EncryptedRequest } from "./encrypted_request.js";
-import { MediaInfo } from "./media_info.js";
 import { StreamerContext } from "./streamer_context.js";
 
 export const protobufPackage = "video_streaming";
 
 export interface OnesieInnertubeRequest {
-  mediaInfo?: MediaInfo | undefined;
+  clientAbrState?: ClientAbrState | undefined;
   encryptedRequest?: EncryptedRequest | undefined;
   onesieUstreamerConfig?: Uint8Array | undefined;
   streamerContext?: StreamerContext | undefined;
@@ -21,7 +21,7 @@ export interface OnesieInnertubeRequest {
 
 function createBaseOnesieInnertubeRequest(): OnesieInnertubeRequest {
   return {
-    mediaInfo: undefined,
+    clientAbrState: undefined,
     encryptedRequest: undefined,
     onesieUstreamerConfig: new Uint8Array(0),
     streamerContext: undefined,
@@ -30,8 +30,8 @@ function createBaseOnesieInnertubeRequest(): OnesieInnertubeRequest {
 
 export const OnesieInnertubeRequest: MessageFns<OnesieInnertubeRequest> = {
   encode(message: OnesieInnertubeRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.mediaInfo !== undefined) {
-      MediaInfo.encode(message.mediaInfo, writer.uint32(18).fork()).join();
+    if (message.clientAbrState !== undefined) {
+      ClientAbrState.encode(message.clientAbrState, writer.uint32(18).fork()).join();
     }
     if (message.encryptedRequest !== undefined) {
       EncryptedRequest.encode(message.encryptedRequest, writer.uint32(26).fork()).join();
@@ -57,7 +57,7 @@ export const OnesieInnertubeRequest: MessageFns<OnesieInnertubeRequest> = {
             break;
           }
 
-          message.mediaInfo = MediaInfo.decode(reader, reader.uint32());
+          message.clientAbrState = ClientAbrState.decode(reader, reader.uint32());
           continue;
         case 3:
           if (tag !== 26) {
@@ -91,7 +91,7 @@ export const OnesieInnertubeRequest: MessageFns<OnesieInnertubeRequest> = {
 
   fromJSON(object: any): OnesieInnertubeRequest {
     return {
-      mediaInfo: isSet(object.mediaInfo) ? MediaInfo.fromJSON(object.mediaInfo) : undefined,
+      clientAbrState: isSet(object.clientAbrState) ? ClientAbrState.fromJSON(object.clientAbrState) : undefined,
       encryptedRequest: isSet(object.encryptedRequest) ? EncryptedRequest.fromJSON(object.encryptedRequest) : undefined,
       onesieUstreamerConfig: isSet(object.onesieUstreamerConfig)
         ? bytesFromBase64(object.onesieUstreamerConfig)
@@ -102,8 +102,8 @@ export const OnesieInnertubeRequest: MessageFns<OnesieInnertubeRequest> = {
 
   toJSON(message: OnesieInnertubeRequest): unknown {
     const obj: any = {};
-    if (message.mediaInfo !== undefined) {
-      obj.mediaInfo = MediaInfo.toJSON(message.mediaInfo);
+    if (message.clientAbrState !== undefined) {
+      obj.clientAbrState = ClientAbrState.toJSON(message.clientAbrState);
     }
     if (message.encryptedRequest !== undefined) {
       obj.encryptedRequest = EncryptedRequest.toJSON(message.encryptedRequest);
@@ -122,8 +122,8 @@ export const OnesieInnertubeRequest: MessageFns<OnesieInnertubeRequest> = {
   },
   fromPartial<I extends Exact<DeepPartial<OnesieInnertubeRequest>, I>>(object: I): OnesieInnertubeRequest {
     const message = createBaseOnesieInnertubeRequest();
-    message.mediaInfo = (object.mediaInfo !== undefined && object.mediaInfo !== null)
-      ? MediaInfo.fromPartial(object.mediaInfo)
+    message.clientAbrState = (object.clientAbrState !== undefined && object.clientAbrState !== null)
+      ? ClientAbrState.fromPartial(object.clientAbrState)
       : undefined;
     message.encryptedRequest = (object.encryptedRequest !== undefined && object.encryptedRequest !== null)
       ? EncryptedRequest.fromPartial(object.encryptedRequest)

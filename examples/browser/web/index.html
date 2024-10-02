@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -8,11 +9,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>YouTube.js Example</title>
 </head>
+
 <body>
   <form>
-    <input type="text" name="id" placeholder="Video ID or URL" />
+    <input type="text" name="id" placeholder="Enter Video ID or URL" />
     <input type="submit" value="Play" />
   </form>
+  <div id="error-message" class="error-message" style="display: none;"></div>
   <div class="loader" id="loader"></div>
   <div id="video-container">
     <div class="shaka-container" id="shaka-container" data-shaka-player-container>
@@ -24,8 +27,9 @@
     <div id="description"></div>
   </div>
   <footer>
-    <p>Powered by <a href="https://github.com/LuanRT/YouTube.js">YouTube.js</a></p>
+    <p>Powered by <a href="https://github.com/LuanRT/YouTube.js" target="_blank">YouTube.js</a></p>
   </footer>
   <script type="module" src="/src/main.ts"></script>
 </body>
+
 </html>

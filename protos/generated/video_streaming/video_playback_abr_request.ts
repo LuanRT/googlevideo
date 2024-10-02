@@ -7,14 +7,14 @@
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { FormatId } from "../misc/common.js";
-import { MediaInfo } from "./media_info.js";
+import { ClientAbrState } from "./client_abr_state.js";
 import { StreamerContext } from "./streamer_context.js";
 import { TimeRange } from "./time_range.js";
 
 export const protobufPackage = "video_streaming";
 
 export interface VideoPlaybackAbrRequest {
-  mediaInfo?: MediaInfo | undefined;
+  clientAbrState?: ClientAbrState | undefined;
   selectedFormats: FormatId[];
   bufferedRange: BufferedRange[];
   videoPlaybackUstreamerConfig?: Uint8Array | undefined;
@@ -86,7 +86,7 @@ export interface Pqa {
 
 function createBaseVideoPlaybackAbrRequest(): VideoPlaybackAbrRequest {
   return {
-    mediaInfo: undefined,
+    clientAbrState: undefined,
     selectedFormats: [],
     bufferedRange: [],
     videoPlaybackUstreamerConfig: new Uint8Array(0),
@@ -103,8 +103,8 @@ function createBaseVideoPlaybackAbrRequest(): VideoPlaybackAbrRequest {
 
 export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
   encode(message: VideoPlaybackAbrRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.mediaInfo !== undefined) {
-      MediaInfo.encode(message.mediaInfo, writer.uint32(10).fork()).join();
+    if (message.clientAbrState !== undefined) {
+      ClientAbrState.encode(message.clientAbrState, writer.uint32(10).fork()).join();
     }
     for (const v of message.selectedFormats) {
       FormatId.encode(v!, writer.uint32(18).fork()).join();
@@ -154,7 +154,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
             break;
           }
 
-          message.mediaInfo = MediaInfo.decode(reader, reader.uint32());
+          message.clientAbrState = ClientAbrState.decode(reader, reader.uint32());
           continue;
         case 2:
           if (tag !== 18) {
@@ -244,7 +244,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
 
   fromJSON(object: any): VideoPlaybackAbrRequest {
     return {
-      mediaInfo: isSet(object.mediaInfo) ? MediaInfo.fromJSON(object.mediaInfo) : undefined,
+      clientAbrState: isSet(object.clientAbrState) ? ClientAbrState.fromJSON(object.clientAbrState) : undefined,
       selectedFormats: globalThis.Array.isArray(object?.selectedFormats)
         ? object.selectedFormats.map((e: any) => FormatId.fromJSON(e))
         : [],
@@ -271,8 +271,8 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
 
   toJSON(message: VideoPlaybackAbrRequest): unknown {
     const obj: any = {};
-    if (message.mediaInfo !== undefined) {
-      obj.mediaInfo = MediaInfo.toJSON(message.mediaInfo);
+    if (message.clientAbrState !== undefined) {
+      obj.clientAbrState = ClientAbrState.toJSON(message.clientAbrState);
     }
     if (message.selectedFormats?.length) {
       obj.selectedFormats = message.selectedFormats.map((e) => FormatId.toJSON(e));
@@ -315,8 +315,8 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
   },
   fromPartial<I extends Exact<DeepPartial<VideoPlaybackAbrRequest>, I>>(object: I): VideoPlaybackAbrRequest {
     const message = createBaseVideoPlaybackAbrRequest();
-    message.mediaInfo = (object.mediaInfo !== undefined && object.mediaInfo !== null)
-      ? MediaInfo.fromPartial(object.mediaInfo)
+    message.clientAbrState = (object.clientAbrState !== undefined && object.clientAbrState !== null)
+      ? ClientAbrState.fromPartial(object.clientAbrState)
       : undefined;
     message.selectedFormats = object.selectedFormats?.map((e) => FormatId.fromPartial(e)) || [];
     message.bufferedRange = object.bufferedRange?.map((e) => BufferedRange.fromPartial(e)) || [];

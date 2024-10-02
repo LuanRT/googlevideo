@@ -2,7 +2,7 @@ import cliProgress from 'cli-progress';
 import type { WriteStream } from 'node:fs';
 import { createWriteStream } from 'node:fs';
 import { Innertube, UniversalCache } from 'youtubei.js';
-import GoogleVideo, { type Format, MediaType } from '../../dist/src/index.js';
+import GoogleVideo, { type Format, Protos } from '../../dist/src/index.js';
 
 const progressBars = new cliProgress.MultiBar({
   stopOnComplete: true,
@@ -129,13 +129,13 @@ serverAbrStream.on('error', (error) => {
 await serverAbrStream.init({
   audioFormats: [ selectedAudioFormat ],
   videoFormats: [ selectedVideoFormat ],
-  mediaInfo: {
+  clientAbrState: {
     /**
      * MEDIA_TYPE_DEFAULT = 0,
      * MEDIA_TYPE_AUDIO = 1,
      * MEDIA_TYPE_VIDEO = 2,
      */
-    mediaType: MediaType.MEDIA_TYPE_DEFAULT,
+    mediaType: Protos.MediaType.MEDIA_TYPE_DEFAULT,
     startTimeMs: 0
   }
 });

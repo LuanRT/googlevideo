@@ -2,12 +2,12 @@ syntax = "proto2";
 package video_streaming;
 
 import "misc/common.proto";
-import "video_streaming/media_info.proto";
+import "video_streaming/client_abr_state.proto";
 import "video_streaming/time_range.proto";
 import "video_streaming/streamer_context.proto";
  
 message VideoPlaybackAbrRequest {
-  optional MediaInfo media_info = 1;
+  optional ClientAbrState client_abr_state = 1;
   repeated .misc.FormatId selected_formats = 2;
   repeated BufferedRange buffered_range = 3;
   optional bytes video_playback_ustreamer_config = 5;

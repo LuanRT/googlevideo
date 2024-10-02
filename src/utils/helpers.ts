@@ -56,8 +56,6 @@ export enum PART {
   PREWARM_CONNECTION = 65
 }
 
-export { MediaInfo_MediaType as MediaType } from '../../protos/generated/video_streaming/media_info.js';
-
 export function u8ToBase64(u8: Uint8Array): string {
   return btoa(String.fromCharCode.apply(null, Array.from(u8)));
 }

@@ -2,7 +2,7 @@ import { UMP } from './UMP.js';
 import { ChunkedDataBuffer } from './ChunkedDataBuffer.js';
 import { EventEmitterLike, PART, QUALITY, base64ToU8, getFormatKey } from '../utils/index.js';
 
-import { MediaInfo_MediaType } from '../../protos/generated/video_streaming/media_info.js';
+import { ClientAbrState_MediaType } from '../../protos/generated/video_streaming/client_abr_state.js';
 import { VideoPlaybackAbrRequest } from '../../protos/generated/video_streaming/video_playback_abr_request.js';
 import { MediaHeader } from '../../protos/generated/video_streaming/media_header.js';
 import { NextRequestPolicy } from '../../protos/generated/video_streaming/next_request_policy.js';
@@ -13,7 +13,7 @@ import { StreamProtectionStatus } from '../../protos/generated/video_streaming/s
 import { PlaybackCookie } from '../../protos/generated/video_streaming/playback_cookie.js';
 
 import type { FormatId } from '../../protos/generated/misc/common.js';
-import type { MediaInfo } from '../../protos/generated/video_streaming/media_info.js';
+import type { ClientAbrState } from '../../protos/generated/video_streaming/client_abr_state.js';
 import type { FetchFunction, InitializedFormat, InitOptions, MediaArgs, ServerAbrResponse, ServerAbrStreamOptions } from '../utils/types.js';
 
 const DEFAULT_QUALITY = QUALITY.HD720;
@@ -58,19 +58,19 @@ export class ServerAbrStream extends EventEmitterLike {
    * @param args - The initialization options.
    */
   public async init(args: InitOptions) {
-    const { audioFormats, videoFormats, mediaInfo: initialMediaInfo } = args;
+    const { audioFormats, videoFormats, clientAbrState: initialState } = args;
 
     const firstVideoFormat = videoFormats ? videoFormats[0] : undefined;
 
-    const mediaInfo: MediaInfo = {
+    const clientAbrState: ClientAbrState = {
       lastManualDirection: 0,
       timeSinceLastManualFormatSelectionMs: 0,
       quality: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_QUALITY,
       selectedQualityHeight: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_QUALITY,
       startTimeMs: 0,
       visibility: 0,
-      mediaType: MediaInfo_MediaType.MEDIA_TYPE_DEFAULT,
-      ...initialMediaInfo
+      mediaType: ClientAbrState_MediaType.MEDIA_TYPE_DEFAULT,
+      ...initialState
     };
 
     const audioFormatIds = audioFormats.map<FormatId>((fmt) => ({
@@ -85,21 +85,21 @@ export class ServerAbrStream extends EventEmitterLike {
       xtags: fmt.xtags
     }));
 
-    if (typeof mediaInfo.startTimeMs !== 'number')
+    if (typeof clientAbrState.startTimeMs !== 'number')
       throw new Error('Invalid media start time');
 
     try {
-      while (mediaInfo.startTimeMs < this.totalDurationMs) {
-        const data = await this.fetchMedia({ mediaInfo, audioFormatIds, videoFormatIds });
+      while (clientAbrState.startTimeMs < this.totalDurationMs) {
+        const data = await this.fetchMedia({ clientAbrState, audioFormatIds, videoFormatIds });
 
         this.emit('data', data);
 
         if (data.sabrError) break;
 
         const mainFormat =
-          mediaInfo.mediaType === MediaInfo_MediaType.MEDIA_TYPE_DEFAULT
-            ? data.initializedFormats.find((fmt) => fmt.mimeType?.includes('video'))
-            : data.initializedFormats[0];
+        clientAbrState.mediaType === ClientAbrState_MediaType.MEDIA_TYPE_DEFAULT
+          ? data.initializedFormats.find((fmt) => fmt.mimeType?.includes('video'))
+          : data.initializedFormats[0];
 
         for (const fmt of data.initializedFormats) {
           this.previousSequences.set(`${fmt.formatId.itag};${fmt.formatId.lastModified};`, fmt.sequenceList.map((seq) => seq.sequenceNumber || 0));
@@ -114,7 +114,7 @@ export class ServerAbrStream extends EventEmitterLike {
           break;
         }
 
-        mediaInfo.startTimeMs += mainFormat.sequenceList.reduce((acc, seq) => acc + (seq.durationMs || 0), 0);
+        clientAbrState.startTimeMs += mainFormat.sequenceList.reduce((acc, seq) => acc + (seq.durationMs || 0), 0);
       }
     } catch (error) {
       this.emit('error', error);
@@ -122,10 +122,10 @@ export class ServerAbrStream extends EventEmitterLike {
   }
 
   private async fetchMedia(args: MediaArgs): Promise<ServerAbrResponse> {
-    const { mediaInfo, audioFormatIds, videoFormatIds } = args;
+    const { clientAbrState, audioFormatIds, videoFormatIds } = args;
 
     const body = VideoPlaybackAbrRequest.encode({
-      mediaInfo: mediaInfo,
+      clientAbrState: clientAbrState,
       audioFormats: audioFormatIds,
       videoFormats: videoFormatIds,
       selectedFormats: this.initializedFormats.map((fmt) => fmt.formatId),

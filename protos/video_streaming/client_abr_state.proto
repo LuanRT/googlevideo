@@ -3,7 +3,7 @@ package video_streaming;
 
 import "video_streaming/media_capabilities.proto";
 
-message MediaInfo {
+message ClientAbrState {
   optional int32 time_since_last_manual_format_selection_ms = 13;
   optional int32 last_manual_direction = 14;
   optional int32 quality = 16;
