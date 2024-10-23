@@ -1,11 +1,13 @@
 syntax = "proto2";
 package video_streaming;
 
-message EncryptedRequest {
-  optional bytes encrypted_onesie_request = 2;
+message EncryptedPlayerRequest {
+  optional bytes context = 1; // InnerTubeContext proto?
+  optional bytes encrypted_onesie_player_request = 2;
   optional bytes encrypted_client_key = 5;
   optional bytes iv = 6;
   optional bytes hmac = 7;
+  optional string reverse_proxy_config = 9;
   optional bool YP = 10;
   optional bool pM = 13;
   optional bool enable_compression = 14;

@@ -126,9 +126,9 @@ export class ServerAbrStream extends EventEmitterLike {
 
     const body = VideoPlaybackAbrRequest.encode({
       clientAbrState: clientAbrState,
-      audioFormats: audioFormatIds,
-      videoFormats: videoFormatIds,
-      selectedFormats: this.initializedFormats.map((fmt) => fmt.formatId),
+      selectedAudioFormatIds: audioFormatIds,
+      selectedVideoFormatIds: videoFormatIds,
+      selectedFormatIds: this.initializedFormats.map((fmt) => fmt.formatId),
       videoPlaybackUstreamerConfig: base64ToU8(this.videoPlaybackUstreamerConfig),
       streamerContext: {
         field5: [],
@@ -142,7 +142,7 @@ export class ServerAbrStream extends EventEmitterLike {
           osVersion: '10.0'
         }
       },
-      bufferedRange: this.initializedFormats.map((fmt) => fmt._state),
+      bufferedRanges: this.initializedFormats.map((fmt) => fmt._state),
       field1000: []
     }).finish();
 

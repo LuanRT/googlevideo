@@ -2,30 +2,35 @@
 // versions:
 //   protoc-gen-ts_proto  v2.2.0
 //   protoc               v5.28.0
-// source: video_streaming/encrypted_request.proto
+// source: video_streaming/encrypted_player_request.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 
 export const protobufPackage = "video_streaming";
 
-export interface EncryptedRequest {
-  encryptedOnesieRequest?: Uint8Array | undefined;
+export interface EncryptedPlayerRequest {
+  /** InnerTubeContext proto? */
+  context?: Uint8Array | undefined;
+  encryptedOnesiePlayerRequest?: Uint8Array | undefined;
   encryptedClientKey?: Uint8Array | undefined;
   iv?: Uint8Array | undefined;
   hmac?: Uint8Array | undefined;
+  reverseProxyConfig?: string | undefined;
   YP?: boolean | undefined;
   pM?: boolean | undefined;
   enableCompression?: boolean | undefined;
   TQ?: boolean | undefined;
 }
 
-function createBaseEncryptedRequest(): EncryptedRequest {
+function createBaseEncryptedPlayerRequest(): EncryptedPlayerRequest {
   return {
-    encryptedOnesieRequest: new Uint8Array(0),
+    context: new Uint8Array(0),
+    encryptedOnesiePlayerRequest: new Uint8Array(0),
     encryptedClientKey: new Uint8Array(0),
     iv: new Uint8Array(0),
     hmac: new Uint8Array(0),
+    reverseProxyConfig: "",
     YP: false,
     pM: false,
     enableCompression: false,
@@ -33,10 +38,13 @@ function createBaseEncryptedRequest(): EncryptedRequest {
   };
 }
 
-export const EncryptedRequest: MessageFns<EncryptedRequest> = {
-  encode(message: EncryptedRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.encryptedOnesieRequest !== undefined && message.encryptedOnesieRequest.length !== 0) {
-      writer.uint32(18).bytes(message.encryptedOnesieRequest);
+export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
+  encode(message: EncryptedPlayerRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.context !== undefined && message.context.length !== 0) {
+      writer.uint32(10).bytes(message.context);
+    }
+    if (message.encryptedOnesiePlayerRequest !== undefined && message.encryptedOnesiePlayerRequest.length !== 0) {
+      writer.uint32(18).bytes(message.encryptedOnesiePlayerRequest);
     }
     if (message.encryptedClientKey !== undefined && message.encryptedClientKey.length !== 0) {
       writer.uint32(42).bytes(message.encryptedClientKey);
@@ -46,6 +54,9 @@ export const EncryptedRequest: MessageFns<EncryptedRequest> = {
     }
     if (message.hmac !== undefined && message.hmac.length !== 0) {
       writer.uint32(58).bytes(message.hmac);
+    }
+    if (message.reverseProxyConfig !== undefined && message.reverseProxyConfig !== "") {
+      writer.uint32(74).string(message.reverseProxyConfig);
     }
     if (message.YP !== undefined && message.YP !== false) {
       writer.uint32(80).bool(message.YP);
@@ -62,19 +73,26 @@ export const EncryptedRequest: MessageFns<EncryptedRequest> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): EncryptedRequest {
+  decode(input: BinaryReader | Uint8Array, length?: number): EncryptedPlayerRequest {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseEncryptedRequest();
+    const message = createBaseEncryptedPlayerRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.context = reader.bytes();
+          continue;
         case 2:
           if (tag !== 18) {
             break;
           }
 
-          message.encryptedOnesieRequest = reader.bytes();
+          message.encryptedOnesiePlayerRequest = reader.bytes();
           continue;
         case 5:
           if (tag !== 42) {
@@ -96,6 +114,13 @@ export const EncryptedRequest: MessageFns<EncryptedRequest> = {
           }
 
           message.hmac = reader.bytes();
+          continue;
+        case 9:
+          if (tag !== 74) {
+            break;
+          }
+
+          message.reverseProxyConfig = reader.string();
           continue;
         case 10:
           if (tag !== 80) {
@@ -134,16 +159,18 @@ export const EncryptedRequest: MessageFns<EncryptedRequest> = {
     return message;
   },
 
-  fromJSON(object: any): EncryptedRequest {
+  fromJSON(object: any): EncryptedPlayerRequest {
     return {
-      encryptedOnesieRequest: isSet(object.encryptedOnesieRequest)
-        ? bytesFromBase64(object.encryptedOnesieRequest)
+      context: isSet(object.context) ? bytesFromBase64(object.context) : new Uint8Array(0),
+      encryptedOnesiePlayerRequest: isSet(object.encryptedOnesiePlayerRequest)
+        ? bytesFromBase64(object.encryptedOnesiePlayerRequest)
         : new Uint8Array(0),
       encryptedClientKey: isSet(object.encryptedClientKey)
         ? bytesFromBase64(object.encryptedClientKey)
         : new Uint8Array(0),
       iv: isSet(object.iv) ? bytesFromBase64(object.iv) : new Uint8Array(0),
       hmac: isSet(object.hmac) ? bytesFromBase64(object.hmac) : new Uint8Array(0),
+      reverseProxyConfig: isSet(object.reverseProxyConfig) ? globalThis.String(object.reverseProxyConfig) : "",
       YP: isSet(object.YP) ? globalThis.Boolean(object.YP) : false,
       pM: isSet(object.pM) ? globalThis.Boolean(object.pM) : false,
       enableCompression: isSet(object.enableCompression) ? globalThis.Boolean(object.enableCompression) : false,
@@ -151,10 +178,13 @@ export const EncryptedRequest: MessageFns<EncryptedRequest> = {
     };
   },
 
-  toJSON(message: EncryptedRequest): unknown {
+  toJSON(message: EncryptedPlayerRequest): unknown {
     const obj: any = {};
-    if (message.encryptedOnesieRequest !== undefined && message.encryptedOnesieRequest.length !== 0) {
-      obj.encryptedOnesieRequest = base64FromBytes(message.encryptedOnesieRequest);
+    if (message.context !== undefined && message.context.length !== 0) {
+      obj.context = base64FromBytes(message.context);
+    }
+    if (message.encryptedOnesiePlayerRequest !== undefined && message.encryptedOnesiePlayerRequest.length !== 0) {
+      obj.encryptedOnesiePlayerRequest = base64FromBytes(message.encryptedOnesiePlayerRequest);
     }
     if (message.encryptedClientKey !== undefined && message.encryptedClientKey.length !== 0) {
       obj.encryptedClientKey = base64FromBytes(message.encryptedClientKey);
@@ -164,6 +194,9 @@ export const EncryptedRequest: MessageFns<EncryptedRequest> = {
     }
     if (message.hmac !== undefined && message.hmac.length !== 0) {
       obj.hmac = base64FromBytes(message.hmac);
+    }
+    if (message.reverseProxyConfig !== undefined && message.reverseProxyConfig !== "") {
+      obj.reverseProxyConfig = message.reverseProxyConfig;
     }
     if (message.YP !== undefined && message.YP !== false) {
       obj.YP = message.YP;
@@ -180,15 +213,17 @@ export const EncryptedRequest: MessageFns<EncryptedRequest> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<EncryptedRequest>, I>>(base?: I): EncryptedRequest {
-    return EncryptedRequest.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<EncryptedPlayerRequest>, I>>(base?: I): EncryptedPlayerRequest {
+    return EncryptedPlayerRequest.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<EncryptedRequest>, I>>(object: I): EncryptedRequest {
-    const message = createBaseEncryptedRequest();
-    message.encryptedOnesieRequest = object.encryptedOnesieRequest ?? new Uint8Array(0);
+  fromPartial<I extends Exact<DeepPartial<EncryptedPlayerRequest>, I>>(object: I): EncryptedPlayerRequest {
+    const message = createBaseEncryptedPlayerRequest();
+    message.context = object.context ?? new Uint8Array(0);
+    message.encryptedOnesiePlayerRequest = object.encryptedOnesiePlayerRequest ?? new Uint8Array(0);
     message.encryptedClientKey = object.encryptedClientKey ?? new Uint8Array(0);
     message.iv = object.iv ?? new Uint8Array(0);
     message.hmac = object.hmac ?? new Uint8Array(0);
+    message.reverseProxyConfig = object.reverseProxyConfig ?? "";
     message.YP = object.YP ?? false;
     message.pM = object.pM ?? false;
     message.enableCompression = object.enableCompression ?? false;

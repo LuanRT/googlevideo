@@ -1,4 +1,5 @@
 export { FormatInitializationMetadata } from '../../protos/generated/video_streaming/format_initialization_metadata.js';
+export { BufferedRange } from '../../protos/generated/video_streaming/buffered_range.js';
 export { MediaHeader } from '../../protos/generated/video_streaming/media_header.js';
 export { NextRequestPolicy } from '../../protos/generated/video_streaming/next_request_policy.js';
 export { PlaybackCookie } from '../../protos/generated/video_streaming/playback_cookie.js';
@@ -9,11 +10,11 @@ export { SabrRedirect } from '../../protos/generated/video_streaming/sabr_redire
 export { StreamProtectionStatus } from '../../protos/generated/video_streaming/stream_protection_status.js';
 export { VideoPlaybackAbrRequest } from '../../protos/generated/video_streaming/video_playback_abr_request.js';
 export { OnesieRequest } from '../../protos/generated/video_streaming/onesie_request.js';
-export { EncryptedRequest } from '../../protos/generated/video_streaming/encrypted_request.js';
+export { EncryptedPlayerRequest } from '../../protos/generated/video_streaming/encrypted_player_request.js';
 export { OnesieHeader } from '../../protos/generated/video_streaming/onesie_header.js';
 export { OnesieHeaderType } from '../../protos/generated/video_streaming/onesie_header_type.js';
-export { OnesieInnertubeRequest } from '../../protos/generated/video_streaming/onesie_innertube_request.js';
-export { OnesieInnertubeResponse } from '../../protos/generated/video_streaming/onesie_innertube_response.js';
+export { OnesiePlayerRequest } from '../../protos/generated/video_streaming/onesie_player_request.js';
+export { OnesiePlayerResponse } from '../../protos/generated/video_streaming/onesie_player_response.js';
 export { ClientAbrState } from '../../protos/generated/video_streaming/client_abr_state.js';
 export { StreamerContext } from '../../protos/generated/video_streaming/streamer_context.js';
 export { ProxyStatus } from '../../protos/generated/video_streaming/proxy_status.js';

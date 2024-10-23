@@ -1,0 +1,11 @@
+syntax = "proto2";
+package video_streaming;
+
+import "misc/common.proto";
+
+message OnesiePlayerResponse {
+	optional int32 onesie_proxy_status = 1;
+	optional int32 http_status = 2;
+	repeated .misc.HttpHeader headers = 3;
+	optional bytes body = 4;
+}

@@ -6,38 +6,62 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { HttpHeader } from "../misc/common.js";
+import { BufferedRange } from "./buffered_range.js";
+import { ClientAbrState } from "./client_abr_state.js";
+import { EncryptedPlayerRequest } from "./encrypted_player_request.js";
+import { StreamerContext } from "./streamer_context.js";
 
 export const protobufPackage = "video_streaming";
 
 export interface OnesieRequest {
-  url?: string | undefined;
-  headers: HttpHeader[];
-  body?: string | undefined;
-  field4?: boolean | undefined;
-  field6?: boolean | undefined;
+  urls: string[];
+  clientAbrState?: ClientAbrState | undefined;
+  playerRequest?: EncryptedPlayerRequest | undefined;
+  onesieUstreamerConfig?: Uint8Array | undefined;
+  maxVp9Height?: number | undefined;
+  clientDisplayHeight?: number | undefined;
+  streamerContext?: StreamerContext | undefined;
+  bufferedRanges: BufferedRange[];
 }
 
 function createBaseOnesieRequest(): OnesieRequest {
-  return { url: "", headers: [], body: "", field4: false, field6: false };
+  return {
+    urls: [],
+    clientAbrState: undefined,
+    playerRequest: undefined,
+    onesieUstreamerConfig: new Uint8Array(0),
+    maxVp9Height: 0,
+    clientDisplayHeight: 0,
+    streamerContext: undefined,
+    bufferedRanges: [],
+  };
 }
 
 export const OnesieRequest: MessageFns<OnesieRequest> = {
   encode(message: OnesieRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.url !== undefined && message.url !== "") {
-      writer.uint32(10).string(message.url);
+    for (const v of message.urls) {
+      writer.uint32(10).string(v!);
     }
-    for (const v of message.headers) {
-      HttpHeader.encode(v!, writer.uint32(18).fork()).join();
+    if (message.clientAbrState !== undefined) {
+      ClientAbrState.encode(message.clientAbrState, writer.uint32(18).fork()).join();
     }
-    if (message.body !== undefined && message.body !== "") {
-      writer.uint32(26).string(message.body);
+    if (message.playerRequest !== undefined) {
+      EncryptedPlayerRequest.encode(message.playerRequest, writer.uint32(26).fork()).join();
     }
-    if (message.field4 !== undefined && message.field4 !== false) {
-      writer.uint32(32).bool(message.field4);
+    if (message.onesieUstreamerConfig !== undefined && message.onesieUstreamerConfig.length !== 0) {
+      writer.uint32(34).bytes(message.onesieUstreamerConfig);
     }
-    if (message.field6 !== undefined && message.field6 !== false) {
-      writer.uint32(48).bool(message.field6);
+    if (message.maxVp9Height !== undefined && message.maxVp9Height !== 0) {
+      writer.uint32(40).int32(message.maxVp9Height);
+    }
+    if (message.clientDisplayHeight !== undefined && message.clientDisplayHeight !== 0) {
+      writer.uint32(48).int32(message.clientDisplayHeight);
+    }
+    if (message.streamerContext !== undefined) {
+      StreamerContext.encode(message.streamerContext, writer.uint32(82).fork()).join();
+    }
+    for (const v of message.bufferedRanges) {
+      BufferedRange.encode(v!, writer.uint32(114).fork()).join();
     }
     return writer;
   },
@@ -54,35 +78,56 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
             break;
           }
 
-          message.url = reader.string();
+          message.urls.push(reader.string());
           continue;
         case 2:
           if (tag !== 18) {
             break;
           }
 
-          message.headers.push(HttpHeader.decode(reader, reader.uint32()));
+          message.clientAbrState = ClientAbrState.decode(reader, reader.uint32());
           continue;
         case 3:
           if (tag !== 26) {
             break;
           }
 
-          message.body = reader.string();
+          message.playerRequest = EncryptedPlayerRequest.decode(reader, reader.uint32());
           continue;
         case 4:
-          if (tag !== 32) {
+          if (tag !== 34) {
             break;
           }
 
-          message.field4 = reader.bool();
+          message.onesieUstreamerConfig = reader.bytes();
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.maxVp9Height = reader.int32();
           continue;
         case 6:
           if (tag !== 48) {
             break;
           }
 
-          message.field6 = reader.bool();
+          message.clientDisplayHeight = reader.int32();
+          continue;
+        case 10:
+          if (tag !== 82) {
+            break;
+          }
+
+          message.streamerContext = StreamerContext.decode(reader, reader.uint32());
+          continue;
+        case 14:
+          if (tag !== 114) {
+            break;
+          }
+
+          message.bufferedRanges.push(BufferedRange.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -95,30 +140,46 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
 
   fromJSON(object: any): OnesieRequest {
     return {
-      url: isSet(object.url) ? globalThis.String(object.url) : "",
-      headers: globalThis.Array.isArray(object?.headers) ? object.headers.map((e: any) => HttpHeader.fromJSON(e)) : [],
-      body: isSet(object.body) ? globalThis.String(object.body) : "",
-      field4: isSet(object.field4) ? globalThis.Boolean(object.field4) : false,
-      field6: isSet(object.field6) ? globalThis.Boolean(object.field6) : false,
+      urls: globalThis.Array.isArray(object?.urls) ? object.urls.map((e: any) => globalThis.String(e)) : [],
+      clientAbrState: isSet(object.clientAbrState) ? ClientAbrState.fromJSON(object.clientAbrState) : undefined,
+      playerRequest: isSet(object.playerRequest) ? EncryptedPlayerRequest.fromJSON(object.playerRequest) : undefined,
+      onesieUstreamerConfig: isSet(object.onesieUstreamerConfig)
+        ? bytesFromBase64(object.onesieUstreamerConfig)
+        : new Uint8Array(0),
+      maxVp9Height: isSet(object.maxVp9Height) ? globalThis.Number(object.maxVp9Height) : 0,
+      clientDisplayHeight: isSet(object.clientDisplayHeight) ? globalThis.Number(object.clientDisplayHeight) : 0,
+      streamerContext: isSet(object.streamerContext) ? StreamerContext.fromJSON(object.streamerContext) : undefined,
+      bufferedRanges: globalThis.Array.isArray(object?.bufferedRanges)
+        ? object.bufferedRanges.map((e: any) => BufferedRange.fromJSON(e))
+        : [],
     };
   },
 
   toJSON(message: OnesieRequest): unknown {
     const obj: any = {};
-    if (message.url !== undefined && message.url !== "") {
-      obj.url = message.url;
+    if (message.urls?.length) {
+      obj.urls = message.urls;
     }
-    if (message.headers?.length) {
-      obj.headers = message.headers.map((e) => HttpHeader.toJSON(e));
+    if (message.clientAbrState !== undefined) {
+      obj.clientAbrState = ClientAbrState.toJSON(message.clientAbrState);
     }
-    if (message.body !== undefined && message.body !== "") {
-      obj.body = message.body;
+    if (message.playerRequest !== undefined) {
+      obj.playerRequest = EncryptedPlayerRequest.toJSON(message.playerRequest);
     }
-    if (message.field4 !== undefined && message.field4 !== false) {
-      obj.field4 = message.field4;
+    if (message.onesieUstreamerConfig !== undefined && message.onesieUstreamerConfig.length !== 0) {
+      obj.onesieUstreamerConfig = base64FromBytes(message.onesieUstreamerConfig);
     }
-    if (message.field6 !== undefined && message.field6 !== false) {
-      obj.field6 = message.field6;
+    if (message.maxVp9Height !== undefined && message.maxVp9Height !== 0) {
+      obj.maxVp9Height = Math.round(message.maxVp9Height);
+    }
+    if (message.clientDisplayHeight !== undefined && message.clientDisplayHeight !== 0) {
+      obj.clientDisplayHeight = Math.round(message.clientDisplayHeight);
+    }
+    if (message.streamerContext !== undefined) {
+      obj.streamerContext = StreamerContext.toJSON(message.streamerContext);
+    }
+    if (message.bufferedRanges?.length) {
+      obj.bufferedRanges = message.bufferedRanges.map((e) => BufferedRange.toJSON(e));
     }
     return obj;
   },
@@ -128,14 +189,40 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
   },
   fromPartial<I extends Exact<DeepPartial<OnesieRequest>, I>>(object: I): OnesieRequest {
     const message = createBaseOnesieRequest();
-    message.url = object.url ?? "";
-    message.headers = object.headers?.map((e) => HttpHeader.fromPartial(e)) || [];
-    message.body = object.body ?? "";
-    message.field4 = object.field4 ?? false;
-    message.field6 = object.field6 ?? false;
+    message.urls = object.urls?.map((e) => e) || [];
+    message.clientAbrState = (object.clientAbrState !== undefined && object.clientAbrState !== null)
+      ? ClientAbrState.fromPartial(object.clientAbrState)
+      : undefined;
+    message.playerRequest = (object.playerRequest !== undefined && object.playerRequest !== null)
+      ? EncryptedPlayerRequest.fromPartial(object.playerRequest)
+      : undefined;
+    message.onesieUstreamerConfig = object.onesieUstreamerConfig ?? new Uint8Array(0);
+    message.maxVp9Height = object.maxVp9Height ?? 0;
+    message.clientDisplayHeight = object.clientDisplayHeight ?? 0;
+    message.streamerContext = (object.streamerContext !== undefined && object.streamerContext !== null)
+      ? StreamerContext.fromPartial(object.streamerContext)
+      : undefined;
+    message.bufferedRanges = object.bufferedRanges?.map((e) => BufferedRange.fromPartial(e)) || [];
     return message;
   },
 };
+
+function bytesFromBase64(b64: string): Uint8Array {
+  const bin = globalThis.atob(b64);
+  const arr = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; ++i) {
+    arr[i] = bin.charCodeAt(i);
+  }
+  return arr;
+}
+
+function base64FromBytes(arr: Uint8Array): string {
+  const bin: string[] = [];
+  arr.forEach((byte) => {
+    bin.push(globalThis.String.fromCharCode(byte));
+  });
+  return globalThis.btoa(bin.join(""));
+}
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 

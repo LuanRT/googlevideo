@@ -2,33 +2,32 @@
 // versions:
 //   protoc-gen-ts_proto  v2.2.0
 //   protoc               v5.28.0
-// source: video_streaming/onesie_innertube_response.proto
+// source: video_streaming/onesie_player_response.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { HttpHeader } from "../misc/common.js";
-import { ProxyStatus, proxyStatusFromJSON, proxyStatusToJSON } from "./proxy_status.js";
 
 export const protobufPackage = "video_streaming";
 
-export interface OnesieInnertubeResponse {
-  proxyStatus?: ProxyStatus | undefined;
-  status?: number | undefined;
+export interface OnesiePlayerResponse {
+  onesieProxyStatus?: number | undefined;
+  httpStatus?: number | undefined;
   headers: HttpHeader[];
   body?: Uint8Array | undefined;
 }
 
-function createBaseOnesieInnertubeResponse(): OnesieInnertubeResponse {
-  return { proxyStatus: 0, status: 0, headers: [], body: new Uint8Array(0) };
+function createBaseOnesiePlayerResponse(): OnesiePlayerResponse {
+  return { onesieProxyStatus: 0, httpStatus: 0, headers: [], body: new Uint8Array(0) };
 }
 
-export const OnesieInnertubeResponse: MessageFns<OnesieInnertubeResponse> = {
-  encode(message: OnesieInnertubeResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.proxyStatus !== undefined && message.proxyStatus !== 0) {
-      writer.uint32(8).int32(message.proxyStatus);
+export const OnesiePlayerResponse: MessageFns<OnesiePlayerResponse> = {
+  encode(message: OnesiePlayerResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.onesieProxyStatus !== undefined && message.onesieProxyStatus !== 0) {
+      writer.uint32(8).int32(message.onesieProxyStatus);
     }
-    if (message.status !== undefined && message.status !== 0) {
-      writer.uint32(16).int32(message.status);
+    if (message.httpStatus !== undefined && message.httpStatus !== 0) {
+      writer.uint32(16).int32(message.httpStatus);
     }
     for (const v of message.headers) {
       HttpHeader.encode(v!, writer.uint32(26).fork()).join();
@@ -39,10 +38,10 @@ export const OnesieInnertubeResponse: MessageFns<OnesieInnertubeResponse> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): OnesieInnertubeResponse {
+  decode(input: BinaryReader | Uint8Array, length?: number): OnesiePlayerResponse {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseOnesieInnertubeResponse();
+    const message = createBaseOnesiePlayerResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -51,14 +50,14 @@ export const OnesieInnertubeResponse: MessageFns<OnesieInnertubeResponse> = {
             break;
           }
 
-          message.proxyStatus = reader.int32() as any;
+          message.onesieProxyStatus = reader.int32();
           continue;
         case 2:
           if (tag !== 16) {
             break;
           }
 
-          message.status = reader.int32();
+          message.httpStatus = reader.int32();
           continue;
         case 3:
           if (tag !== 26) {
@@ -83,22 +82,22 @@ export const OnesieInnertubeResponse: MessageFns<OnesieInnertubeResponse> = {
     return message;
   },
 
-  fromJSON(object: any): OnesieInnertubeResponse {
+  fromJSON(object: any): OnesiePlayerResponse {
     return {
-      proxyStatus: isSet(object.proxyStatus) ? proxyStatusFromJSON(object.proxyStatus) : 0,
-      status: isSet(object.status) ? globalThis.Number(object.status) : 0,
+      onesieProxyStatus: isSet(object.onesieProxyStatus) ? globalThis.Number(object.onesieProxyStatus) : 0,
+      httpStatus: isSet(object.httpStatus) ? globalThis.Number(object.httpStatus) : 0,
       headers: globalThis.Array.isArray(object?.headers) ? object.headers.map((e: any) => HttpHeader.fromJSON(e)) : [],
       body: isSet(object.body) ? bytesFromBase64(object.body) : new Uint8Array(0),
     };
   },
 
-  toJSON(message: OnesieInnertubeResponse): unknown {
+  toJSON(message: OnesiePlayerResponse): unknown {
     const obj: any = {};
-    if (message.proxyStatus !== undefined && message.proxyStatus !== 0) {
-      obj.proxyStatus = proxyStatusToJSON(message.proxyStatus);
+    if (message.onesieProxyStatus !== undefined && message.onesieProxyStatus !== 0) {
+      obj.onesieProxyStatus = Math.round(message.onesieProxyStatus);
     }
-    if (message.status !== undefined && message.status !== 0) {
-      obj.status = Math.round(message.status);
+    if (message.httpStatus !== undefined && message.httpStatus !== 0) {
+      obj.httpStatus = Math.round(message.httpStatus);
     }
     if (message.headers?.length) {
       obj.headers = message.headers.map((e) => HttpHeader.toJSON(e));
@@ -109,13 +108,13 @@ export const OnesieInnertubeResponse: MessageFns<OnesieInnertubeResponse> = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<OnesieInnertubeResponse>, I>>(base?: I): OnesieInnertubeResponse {
-    return OnesieInnertubeResponse.fromPartial(base ?? ({} as any));
+  create<I extends Exact<DeepPartial<OnesiePlayerResponse>, I>>(base?: I): OnesiePlayerResponse {
+    return OnesiePlayerResponse.fromPartial(base ?? ({} as any));
   },
-  fromPartial<I extends Exact<DeepPartial<OnesieInnertubeResponse>, I>>(object: I): OnesieInnertubeResponse {
-    const message = createBaseOnesieInnertubeResponse();
-    message.proxyStatus = object.proxyStatus ?? 0;
-    message.status = object.status ?? 0;
+  fromPartial<I extends Exact<DeepPartial<OnesiePlayerResponse>, I>>(object: I): OnesiePlayerResponse {
+    const message = createBaseOnesiePlayerResponse();
+    message.onesieProxyStatus = object.onesieProxyStatus ?? 0;
+    message.httpStatus = object.httpStatus ?? 0;
     message.headers = object.headers?.map((e) => HttpHeader.fromPartial(e)) || [];
     message.body = object.body ?? new Uint8Array(0);
     return message;

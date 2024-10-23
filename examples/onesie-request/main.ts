@@ -91,20 +91,21 @@ async function prepareOnesieRequest(args: OnesieRequestArgs): Promise<OnesieRequ
     value: innertube.session.context.client.visitorData
   } ];
 
-  const onesieRequest = Protos.OnesieRequest.encode({
+  const onesieRequest = Protos.OnesiePlayerRequest.encode({
     url: 'https://youtubei.googleapis.com/youtubei/v1/player?key=AIzaSyDCU8hByM-4DrUqRUYnGn-3llEO78bcxq8',
     headers,
     body: JSON.stringify(playerRequestJson),
-    field4: false,
+    proxiedByTrustedBandaid: true,
     field6: false
   }).finish();
 
   const { encrypted, hmac, iv } = await encryptRequest(clientKeyData, onesieRequest);
 
-  const body = Protos.OnesieInnertubeRequest.encode({
-    encryptedRequest: {
+  const body = Protos.OnesieRequest.encode({
+    urls: [],
+    playerRequest: {
       encryptedClientKey,
-      encryptedOnesieRequest: encrypted,
+      encryptedOnesiePlayerRequest: encrypted,
       enableCompression: false,
       hmac: hmac,
       iv: iv,
@@ -129,6 +130,7 @@ async function prepareOnesieRequest(args: OnesieRequestArgs): Promise<OnesieRequ
         clientVersion: innertube.session.context.client.clientVersion
       }
     },
+    bufferedRanges: [],
     onesieUstreamerConfig
   }).finish();
 
@@ -214,13 +216,13 @@ async function getBasicInfo(innertube: Innertube, videoId: string): Promise<YT.V
     const encrypted = onesiePlayerResponse.data;
 
     const decryptedData = await decryptResponse(iv, hmac, encrypted, clientConfig.clientKeyData);
-    const response = Protos.OnesieInnertubeResponse.decode(decryptedData);
+    const response = Protos.OnesiePlayerResponse.decode(decryptedData);
 
-    if (response.proxyStatus !== 1)
-      throw new Error('Proxy status not OK');
+    if (response.onesieProxyStatus !== 1)
+      throw new Error('Onesie proxy status not OK');
 
-    if (response.status !== 200)
-      throw new Error('Status not OK');
+    if (response.httpStatus !== 200)
+      throw new Error('Http status not OK');
 
     const playerResponse = {
       success: true,

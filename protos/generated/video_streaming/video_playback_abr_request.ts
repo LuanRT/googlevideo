@@ -7,20 +7,20 @@
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { FormatId } from "../misc/common.js";
+import { BufferedRange } from "./buffered_range.js";
 import { ClientAbrState } from "./client_abr_state.js";
 import { StreamerContext } from "./streamer_context.js";
-import { TimeRange } from "./time_range.js";
 
 export const protobufPackage = "video_streaming";
 
 export interface VideoPlaybackAbrRequest {
   clientAbrState?: ClientAbrState | undefined;
-  selectedFormats: FormatId[];
-  bufferedRange: BufferedRange[];
+  selectedFormatIds: FormatId[];
+  bufferedRanges: BufferedRange[];
   videoPlaybackUstreamerConfig?: Uint8Array | undefined;
   lo?: Lo | undefined;
-  audioFormats: FormatId[];
-  videoFormats: FormatId[];
+  selectedAudioFormatIds: FormatId[];
+  selectedVideoFormatIds: FormatId[];
   streamerContext?: StreamerContext | undefined;
   field21?: OQa | undefined;
   field22?: number | undefined;
@@ -42,33 +42,6 @@ export interface Lo_Field4 {
   field3?: number | undefined;
 }
 
-export interface Kob {
-  EW: Kob_Pa[];
-}
-
-export interface Kob_Pa {
-  videoId?: string | undefined;
-  lmt?: number | undefined;
-}
-
-export interface YPa {
-  field1?: number | undefined;
-  field2?: number | undefined;
-  field3?: number | undefined;
-}
-
-export interface BufferedRange {
-  formatId: FormatId | undefined;
-  startTimeMs: number;
-  durationMs: number;
-  startSegmentIndex: number;
-  endSegmentIndex: number;
-  timeRange?: TimeRange | undefined;
-  field9?: Kob | undefined;
-  field11?: YPa | undefined;
-  field12?: YPa | undefined;
-}
-
 export interface OQa {
   field1: string[];
   field2?: Uint8Array | undefined;
@@ -87,12 +60,12 @@ export interface Pqa {
 function createBaseVideoPlaybackAbrRequest(): VideoPlaybackAbrRequest {
   return {
     clientAbrState: undefined,
-    selectedFormats: [],
-    bufferedRange: [],
+    selectedFormatIds: [],
+    bufferedRanges: [],
     videoPlaybackUstreamerConfig: new Uint8Array(0),
     lo: undefined,
-    audioFormats: [],
-    videoFormats: [],
+    selectedAudioFormatIds: [],
+    selectedVideoFormatIds: [],
     streamerContext: undefined,
     field21: undefined,
     field22: 0,
@@ -106,10 +79,10 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     if (message.clientAbrState !== undefined) {
       ClientAbrState.encode(message.clientAbrState, writer.uint32(10).fork()).join();
     }
-    for (const v of message.selectedFormats) {
+    for (const v of message.selectedFormatIds) {
       FormatId.encode(v!, writer.uint32(18).fork()).join();
     }
-    for (const v of message.bufferedRange) {
+    for (const v of message.bufferedRanges) {
       BufferedRange.encode(v!, writer.uint32(26).fork()).join();
     }
     if (message.videoPlaybackUstreamerConfig !== undefined && message.videoPlaybackUstreamerConfig.length !== 0) {
@@ -118,10 +91,10 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     if (message.lo !== undefined) {
       Lo.encode(message.lo, writer.uint32(50).fork()).join();
     }
-    for (const v of message.audioFormats) {
+    for (const v of message.selectedAudioFormatIds) {
       FormatId.encode(v!, writer.uint32(130).fork()).join();
     }
-    for (const v of message.videoFormats) {
+    for (const v of message.selectedVideoFormatIds) {
       FormatId.encode(v!, writer.uint32(138).fork()).join();
     }
     if (message.streamerContext !== undefined) {
@@ -161,14 +134,14 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
             break;
           }
 
-          message.selectedFormats.push(FormatId.decode(reader, reader.uint32()));
+          message.selectedFormatIds.push(FormatId.decode(reader, reader.uint32()));
           continue;
         case 3:
           if (tag !== 26) {
             break;
           }
 
-          message.bufferedRange.push(BufferedRange.decode(reader, reader.uint32()));
+          message.bufferedRanges.push(BufferedRange.decode(reader, reader.uint32()));
           continue;
         case 5:
           if (tag !== 42) {
@@ -189,14 +162,14 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
             break;
           }
 
-          message.audioFormats.push(FormatId.decode(reader, reader.uint32()));
+          message.selectedAudioFormatIds.push(FormatId.decode(reader, reader.uint32()));
           continue;
         case 17:
           if (tag !== 138) {
             break;
           }
 
-          message.videoFormats.push(FormatId.decode(reader, reader.uint32()));
+          message.selectedVideoFormatIds.push(FormatId.decode(reader, reader.uint32()));
           continue;
         case 19:
           if (tag !== 154) {
@@ -245,21 +218,21 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
   fromJSON(object: any): VideoPlaybackAbrRequest {
     return {
       clientAbrState: isSet(object.clientAbrState) ? ClientAbrState.fromJSON(object.clientAbrState) : undefined,
-      selectedFormats: globalThis.Array.isArray(object?.selectedFormats)
-        ? object.selectedFormats.map((e: any) => FormatId.fromJSON(e))
+      selectedFormatIds: globalThis.Array.isArray(object?.selectedFormatIds)
+        ? object.selectedFormatIds.map((e: any) => FormatId.fromJSON(e))
         : [],
-      bufferedRange: globalThis.Array.isArray(object?.bufferedRange)
-        ? object.bufferedRange.map((e: any) => BufferedRange.fromJSON(e))
+      bufferedRanges: globalThis.Array.isArray(object?.bufferedRanges)
+        ? object.bufferedRanges.map((e: any) => BufferedRange.fromJSON(e))
         : [],
       videoPlaybackUstreamerConfig: isSet(object.videoPlaybackUstreamerConfig)
         ? bytesFromBase64(object.videoPlaybackUstreamerConfig)
         : new Uint8Array(0),
       lo: isSet(object.lo) ? Lo.fromJSON(object.lo) : undefined,
-      audioFormats: globalThis.Array.isArray(object?.audioFormats)
-        ? object.audioFormats.map((e: any) => FormatId.fromJSON(e))
+      selectedAudioFormatIds: globalThis.Array.isArray(object?.selectedAudioFormatIds)
+        ? object.selectedAudioFormatIds.map((e: any) => FormatId.fromJSON(e))
         : [],
-      videoFormats: globalThis.Array.isArray(object?.videoFormats)
-        ? object.videoFormats.map((e: any) => FormatId.fromJSON(e))
+      selectedVideoFormatIds: globalThis.Array.isArray(object?.selectedVideoFormatIds)
+        ? object.selectedVideoFormatIds.map((e: any) => FormatId.fromJSON(e))
         : [],
       streamerContext: isSet(object.streamerContext) ? StreamerContext.fromJSON(object.streamerContext) : undefined,
       field21: isSet(object.field21) ? OQa.fromJSON(object.field21) : undefined,
@@ -274,11 +247,11 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     if (message.clientAbrState !== undefined) {
       obj.clientAbrState = ClientAbrState.toJSON(message.clientAbrState);
     }
-    if (message.selectedFormats?.length) {
-      obj.selectedFormats = message.selectedFormats.map((e) => FormatId.toJSON(e));
+    if (message.selectedFormatIds?.length) {
+      obj.selectedFormatIds = message.selectedFormatIds.map((e) => FormatId.toJSON(e));
     }
-    if (message.bufferedRange?.length) {
-      obj.bufferedRange = message.bufferedRange.map((e) => BufferedRange.toJSON(e));
+    if (message.bufferedRanges?.length) {
+      obj.bufferedRanges = message.bufferedRanges.map((e) => BufferedRange.toJSON(e));
     }
     if (message.videoPlaybackUstreamerConfig !== undefined && message.videoPlaybackUstreamerConfig.length !== 0) {
       obj.videoPlaybackUstreamerConfig = base64FromBytes(message.videoPlaybackUstreamerConfig);
@@ -286,11 +259,11 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     if (message.lo !== undefined) {
       obj.lo = Lo.toJSON(message.lo);
     }
-    if (message.audioFormats?.length) {
-      obj.audioFormats = message.audioFormats.map((e) => FormatId.toJSON(e));
+    if (message.selectedAudioFormatIds?.length) {
+      obj.selectedAudioFormatIds = message.selectedAudioFormatIds.map((e) => FormatId.toJSON(e));
     }
-    if (message.videoFormats?.length) {
-      obj.videoFormats = message.videoFormats.map((e) => FormatId.toJSON(e));
+    if (message.selectedVideoFormatIds?.length) {
+      obj.selectedVideoFormatIds = message.selectedVideoFormatIds.map((e) => FormatId.toJSON(e));
     }
     if (message.streamerContext !== undefined) {
       obj.streamerContext = StreamerContext.toJSON(message.streamerContext);
@@ -318,12 +291,12 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     message.clientAbrState = (object.clientAbrState !== undefined && object.clientAbrState !== null)
       ? ClientAbrState.fromPartial(object.clientAbrState)
       : undefined;
-    message.selectedFormats = object.selectedFormats?.map((e) => FormatId.fromPartial(e)) || [];
-    message.bufferedRange = object.bufferedRange?.map((e) => BufferedRange.fromPartial(e)) || [];
+    message.selectedFormatIds = object.selectedFormatIds?.map((e) => FormatId.fromPartial(e)) || [];
+    message.bufferedRanges = object.bufferedRanges?.map((e) => BufferedRange.fromPartial(e)) || [];
     message.videoPlaybackUstreamerConfig = object.videoPlaybackUstreamerConfig ?? new Uint8Array(0);
     message.lo = (object.lo !== undefined && object.lo !== null) ? Lo.fromPartial(object.lo) : undefined;
-    message.audioFormats = object.audioFormats?.map((e) => FormatId.fromPartial(e)) || [];
-    message.videoFormats = object.videoFormats?.map((e) => FormatId.fromPartial(e)) || [];
+    message.selectedAudioFormatIds = object.selectedAudioFormatIds?.map((e) => FormatId.fromPartial(e)) || [];
+    message.selectedVideoFormatIds = object.selectedVideoFormatIds?.map((e) => FormatId.fromPartial(e)) || [];
     message.streamerContext = (object.streamerContext !== undefined && object.streamerContext !== null)
       ? StreamerContext.fromPartial(object.streamerContext)
       : undefined;
@@ -545,425 +518,6 @@ export const Lo_Field4: MessageFns<Lo_Field4> = {
     message.field1 = object.field1 ?? 0;
     message.field2 = object.field2 ?? 0;
     message.field3 = object.field3 ?? 0;
-    return message;
-  },
-};
-
-function createBaseKob(): Kob {
-  return { EW: [] };
-}
-
-export const Kob: MessageFns<Kob> = {
-  encode(message: Kob, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.EW) {
-      Kob_Pa.encode(v!, writer.uint32(10).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): Kob {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseKob();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.EW.push(Kob_Pa.decode(reader, reader.uint32()));
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): Kob {
-    return { EW: globalThis.Array.isArray(object?.EW) ? object.EW.map((e: any) => Kob_Pa.fromJSON(e)) : [] };
-  },
-
-  toJSON(message: Kob): unknown {
-    const obj: any = {};
-    if (message.EW?.length) {
-      obj.EW = message.EW.map((e) => Kob_Pa.toJSON(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Kob>, I>>(base?: I): Kob {
-    return Kob.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Kob>, I>>(object: I): Kob {
-    const message = createBaseKob();
-    message.EW = object.EW?.map((e) => Kob_Pa.fromPartial(e)) || [];
-    return message;
-  },
-};
-
-function createBaseKob_Pa(): Kob_Pa {
-  return { videoId: "", lmt: 0 };
-}
-
-export const Kob_Pa: MessageFns<Kob_Pa> = {
-  encode(message: Kob_Pa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.videoId !== undefined && message.videoId !== "") {
-      writer.uint32(10).string(message.videoId);
-    }
-    if (message.lmt !== undefined && message.lmt !== 0) {
-      writer.uint32(16).uint64(message.lmt);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): Kob_Pa {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseKob_Pa();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.videoId = reader.string();
-          continue;
-        case 2:
-          if (tag !== 16) {
-            break;
-          }
-
-          message.lmt = longToNumber(reader.uint64());
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): Kob_Pa {
-    return {
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
-      lmt: isSet(object.lmt) ? globalThis.Number(object.lmt) : 0,
-    };
-  },
-
-  toJSON(message: Kob_Pa): unknown {
-    const obj: any = {};
-    if (message.videoId !== undefined && message.videoId !== "") {
-      obj.videoId = message.videoId;
-    }
-    if (message.lmt !== undefined && message.lmt !== 0) {
-      obj.lmt = Math.round(message.lmt);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Kob_Pa>, I>>(base?: I): Kob_Pa {
-    return Kob_Pa.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Kob_Pa>, I>>(object: I): Kob_Pa {
-    const message = createBaseKob_Pa();
-    message.videoId = object.videoId ?? "";
-    message.lmt = object.lmt ?? 0;
-    return message;
-  },
-};
-
-function createBaseYPa(): YPa {
-  return { field1: 0, field2: 0, field3: 0 };
-}
-
-export const YPa: MessageFns<YPa> = {
-  encode(message: YPa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.field1 !== undefined && message.field1 !== 0) {
-      writer.uint32(8).int32(message.field1);
-    }
-    if (message.field2 !== undefined && message.field2 !== 0) {
-      writer.uint32(16).int32(message.field2);
-    }
-    if (message.field3 !== undefined && message.field3 !== 0) {
-      writer.uint32(24).int32(message.field3);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): YPa {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseYPa();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 8) {
-            break;
-          }
-
-          message.field1 = reader.int32();
-          continue;
-        case 2:
-          if (tag !== 16) {
-            break;
-          }
-
-          message.field2 = reader.int32();
-          continue;
-        case 3:
-          if (tag !== 24) {
-            break;
-          }
-
-          message.field3 = reader.int32();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): YPa {
-    return {
-      field1: isSet(object.field1) ? globalThis.Number(object.field1) : 0,
-      field2: isSet(object.field2) ? globalThis.Number(object.field2) : 0,
-      field3: isSet(object.field3) ? globalThis.Number(object.field3) : 0,
-    };
-  },
-
-  toJSON(message: YPa): unknown {
-    const obj: any = {};
-    if (message.field1 !== undefined && message.field1 !== 0) {
-      obj.field1 = Math.round(message.field1);
-    }
-    if (message.field2 !== undefined && message.field2 !== 0) {
-      obj.field2 = Math.round(message.field2);
-    }
-    if (message.field3 !== undefined && message.field3 !== 0) {
-      obj.field3 = Math.round(message.field3);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<YPa>, I>>(base?: I): YPa {
-    return YPa.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<YPa>, I>>(object: I): YPa {
-    const message = createBaseYPa();
-    message.field1 = object.field1 ?? 0;
-    message.field2 = object.field2 ?? 0;
-    message.field3 = object.field3 ?? 0;
-    return message;
-  },
-};
-
-function createBaseBufferedRange(): BufferedRange {
-  return {
-    formatId: undefined,
-    startTimeMs: 0,
-    durationMs: 0,
-    startSegmentIndex: 0,
-    endSegmentIndex: 0,
-    timeRange: undefined,
-    field9: undefined,
-    field11: undefined,
-    field12: undefined,
-  };
-}
-
-export const BufferedRange: MessageFns<BufferedRange> = {
-  encode(message: BufferedRange, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.formatId !== undefined) {
-      FormatId.encode(message.formatId, writer.uint32(10).fork()).join();
-    }
-    if (message.startTimeMs !== 0) {
-      writer.uint32(16).int64(message.startTimeMs);
-    }
-    if (message.durationMs !== 0) {
-      writer.uint32(24).int64(message.durationMs);
-    }
-    if (message.startSegmentIndex !== 0) {
-      writer.uint32(32).int32(message.startSegmentIndex);
-    }
-    if (message.endSegmentIndex !== 0) {
-      writer.uint32(40).int32(message.endSegmentIndex);
-    }
-    if (message.timeRange !== undefined) {
-      TimeRange.encode(message.timeRange, writer.uint32(50).fork()).join();
-    }
-    if (message.field9 !== undefined) {
-      Kob.encode(message.field9, writer.uint32(74).fork()).join();
-    }
-    if (message.field11 !== undefined) {
-      YPa.encode(message.field11, writer.uint32(90).fork()).join();
-    }
-    if (message.field12 !== undefined) {
-      YPa.encode(message.field12, writer.uint32(98).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): BufferedRange {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseBufferedRange();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.formatId = FormatId.decode(reader, reader.uint32());
-          continue;
-        case 2:
-          if (tag !== 16) {
-            break;
-          }
-
-          message.startTimeMs = longToNumber(reader.int64());
-          continue;
-        case 3:
-          if (tag !== 24) {
-            break;
-          }
-
-          message.durationMs = longToNumber(reader.int64());
-          continue;
-        case 4:
-          if (tag !== 32) {
-            break;
-          }
-
-          message.startSegmentIndex = reader.int32();
-          continue;
-        case 5:
-          if (tag !== 40) {
-            break;
-          }
-
-          message.endSegmentIndex = reader.int32();
-          continue;
-        case 6:
-          if (tag !== 50) {
-            break;
-          }
-
-          message.timeRange = TimeRange.decode(reader, reader.uint32());
-          continue;
-        case 9:
-          if (tag !== 74) {
-            break;
-          }
-
-          message.field9 = Kob.decode(reader, reader.uint32());
-          continue;
-        case 11:
-          if (tag !== 90) {
-            break;
-          }
-
-          message.field11 = YPa.decode(reader, reader.uint32());
-          continue;
-        case 12:
-          if (tag !== 98) {
-            break;
-          }
-
-          message.field12 = YPa.decode(reader, reader.uint32());
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): BufferedRange {
-    return {
-      formatId: isSet(object.formatId) ? FormatId.fromJSON(object.formatId) : undefined,
-      startTimeMs: isSet(object.startTimeMs) ? globalThis.Number(object.startTimeMs) : 0,
-      durationMs: isSet(object.durationMs) ? globalThis.Number(object.durationMs) : 0,
-      startSegmentIndex: isSet(object.startSegmentIndex) ? globalThis.Number(object.startSegmentIndex) : 0,
-      endSegmentIndex: isSet(object.endSegmentIndex) ? globalThis.Number(object.endSegmentIndex) : 0,
-      timeRange: isSet(object.timeRange) ? TimeRange.fromJSON(object.timeRange) : undefined,
-      field9: isSet(object.field9) ? Kob.fromJSON(object.field9) : undefined,
-      field11: isSet(object.field11) ? YPa.fromJSON(object.field11) : undefined,
-      field12: isSet(object.field12) ? YPa.fromJSON(object.field12) : undefined,
-    };
-  },
-
-  toJSON(message: BufferedRange): unknown {
-    const obj: any = {};
-    if (message.formatId !== undefined) {
-      obj.formatId = FormatId.toJSON(message.formatId);
-    }
-    if (message.startTimeMs !== 0) {
-      obj.startTimeMs = Math.round(message.startTimeMs);
-    }
-    if (message.durationMs !== 0) {
-      obj.durationMs = Math.round(message.durationMs);
-    }
-    if (message.startSegmentIndex !== 0) {
-      obj.startSegmentIndex = Math.round(message.startSegmentIndex);
-    }
-    if (message.endSegmentIndex !== 0) {
-      obj.endSegmentIndex = Math.round(message.endSegmentIndex);
-    }
-    if (message.timeRange !== undefined) {
-      obj.timeRange = TimeRange.toJSON(message.timeRange);
-    }
-    if (message.field9 !== undefined) {
-      obj.field9 = Kob.toJSON(message.field9);
-    }
-    if (message.field11 !== undefined) {
-      obj.field11 = YPa.toJSON(message.field11);
-    }
-    if (message.field12 !== undefined) {
-      obj.field12 = YPa.toJSON(message.field12);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<BufferedRange>, I>>(base?: I): BufferedRange {
-    return BufferedRange.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<BufferedRange>, I>>(object: I): BufferedRange {
-    const message = createBaseBufferedRange();
-    message.formatId = (object.formatId !== undefined && object.formatId !== null)
-      ? FormatId.fromPartial(object.formatId)
-      : undefined;
-    message.startTimeMs = object.startTimeMs ?? 0;
-    message.durationMs = object.durationMs ?? 0;
-    message.startSegmentIndex = object.startSegmentIndex ?? 0;
-    message.endSegmentIndex = object.endSegmentIndex ?? 0;
-    message.timeRange = (object.timeRange !== undefined && object.timeRange !== null)
-      ? TimeRange.fromPartial(object.timeRange)
-      : undefined;
-    message.field9 = (object.field9 !== undefined && object.field9 !== null)
-      ? Kob.fromPartial(object.field9)
-      : undefined;
-    message.field11 = (object.field11 !== undefined && object.field11 !== null)
-      ? YPa.fromPartial(object.field11)
-      : undefined;
-    message.field12 = (object.field12 !== undefined && object.field12 !== null)
-      ? YPa.fromPartial(object.field12)
-      : undefined;
     return message;
   },
 };
@@ -1219,17 +773,6 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
-}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

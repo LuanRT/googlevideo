@@ -1,12 +1,18 @@
 syntax = "proto2";
 package video_streaming;
 
-import "misc/common.proto";
+import "video_streaming/client_abr_state.proto";
+import "video_streaming/encrypted_player_request.proto";
+import "video_streaming/streamer_context.proto";
+import "video_streaming/buffered_range.proto";
 
 message OnesieRequest {
-	optional string url = 1;
-	repeated misc.HttpHeader headers = 2; 
-	optional string body = 3;
-	optional bool field4 = 4;
-	optional bool field6 = 6;
+	repeated string urls = 1;
+  optional ClientAbrState client_abr_state = 2;
+  optional EncryptedPlayerRequest player_request = 3;
+  optional bytes onesie_ustreamer_config = 4;
+	optional int32 max_vp9_height = 5;
+	optional int32 client_display_height = 6;
+  optional StreamerContext streamer_context = 10; 
+	repeated BufferedRange buffered_ranges = 14;
 }
