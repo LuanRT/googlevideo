@@ -97,12 +97,12 @@ export class ServerAbrStream extends EventEmitterLike {
         if (data.sabrError) break;
 
         const mainFormat =
-        clientAbrState.mediaType === ClientAbrState_MediaType.MEDIA_TYPE_DEFAULT
-          ? data.initializedFormats.find((fmt) => fmt.mimeType?.includes('video'))
-          : data.initializedFormats[0];
+          clientAbrState.mediaType === ClientAbrState_MediaType.MEDIA_TYPE_DEFAULT
+            ? data.initializedFormats.find((fmt) => fmt.mimeType?.includes('video'))
+            : data.initializedFormats[0];
 
         for (const fmt of data.initializedFormats) {
-          this.previousSequences.set(`${fmt.formatId.itag};${fmt.formatId.lastModified};`, fmt.sequenceList.map((seq) => seq.sequenceNumber || 0));
+          this.previousSequences.set(fmt.formatKey, fmt.sequenceList.map((seq) => seq.sequenceNumber || 0));
         }
 
         if (

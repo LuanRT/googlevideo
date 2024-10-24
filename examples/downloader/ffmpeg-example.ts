@@ -3,7 +3,7 @@ import cliProgress from 'cli-progress';
 import type { WriteStream } from 'node:fs';
 import { createWriteStream, unlink } from 'node:fs';
 import { Innertube, UniversalCache } from 'youtubei.js';
-import GoogleVideo, { type Format, Protos } from '../../dist/src/index.js';
+import GoogleVideo, { type Format } from '../../dist/src/index.js';
 
 const progressBars = new cliProgress.MultiBar({
   stopOnComplete: true,
@@ -121,8 +121,8 @@ await serverAbrStream.init({
   audioFormats: [ selectedAudioFormat ],
   videoFormats: [ selectedVideoFormat ],
   clientAbrState: {
-    mediaType: Protos.MediaType.MEDIA_TYPE_DEFAULT,
-    startTimeMs: 0
+    startTimeMs: 0,
+    mediaType: 0 // 0 = BOTH, 1 = AUDIO (video-only is no longer supported by YouTube)
   }
 });
 
