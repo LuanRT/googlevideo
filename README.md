@@ -13,7 +13,7 @@ Usage examples can be found [here](./examples/).
 ## Installation
 
 ```bash
-npm install github:LuanRT/googlevideo
+npm install googlevideo
 ```
 
 ## Basic Usage
