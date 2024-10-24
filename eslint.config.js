@@ -67,7 +67,7 @@ export default [
         max: 1,
         maxEOF: 0,
       }],
-      "no-tabs": "error",
+      "no-tabs": "warn",
       "brace-style": "error",
       "new-parens": "error",
       "space-infix-ops": "error",
