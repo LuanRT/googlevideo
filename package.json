@@ -1,6 +1,6 @@
 {
   "name": "googlevideo",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A set of utilities for working with Google Video APIs.",
   "main": "dist/index.js",
   "type": "module",
