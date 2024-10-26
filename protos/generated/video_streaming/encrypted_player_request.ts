@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { OnesiePlayerRequest } from "./onesie_player_request.js";
 
 export const protobufPackage = "video_streaming";
 
@@ -20,6 +21,7 @@ export interface EncryptedPlayerRequest {
   YP?: boolean | undefined;
   pM?: boolean | undefined;
   enableCompression?: boolean | undefined;
+  onesiePlayerRequest?: OnesiePlayerRequest | undefined;
   TQ?: boolean | undefined;
 }
 
@@ -34,6 +36,7 @@ function createBaseEncryptedPlayerRequest(): EncryptedPlayerRequest {
     YP: false,
     pM: false,
     enableCompression: false,
+    onesiePlayerRequest: undefined,
     TQ: false,
   };
 }
@@ -66,6 +69,9 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
     }
     if (message.enableCompression !== undefined && message.enableCompression !== false) {
       writer.uint32(112).bool(message.enableCompression);
+    }
+    if (message.onesiePlayerRequest !== undefined) {
+      OnesiePlayerRequest.encode(message.onesiePlayerRequest, writer.uint32(130).fork()).join();
     }
     if (message.TQ !== undefined && message.TQ !== false) {
       writer.uint32(136).bool(message.TQ);
@@ -143,6 +149,13 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
 
           message.enableCompression = reader.bool();
           continue;
+        case 16:
+          if (tag !== 130) {
+            break;
+          }
+
+          message.onesiePlayerRequest = OnesiePlayerRequest.decode(reader, reader.uint32());
+          continue;
         case 17:
           if (tag !== 136) {
             break;
@@ -174,6 +187,9 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
       YP: isSet(object.YP) ? globalThis.Boolean(object.YP) : false,
       pM: isSet(object.pM) ? globalThis.Boolean(object.pM) : false,
       enableCompression: isSet(object.enableCompression) ? globalThis.Boolean(object.enableCompression) : false,
+      onesiePlayerRequest: isSet(object.onesiePlayerRequest)
+        ? OnesiePlayerRequest.fromJSON(object.onesiePlayerRequest)
+        : undefined,
       TQ: isSet(object.TQ) ? globalThis.Boolean(object.TQ) : false,
     };
   },
@@ -207,6 +223,9 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
     if (message.enableCompression !== undefined && message.enableCompression !== false) {
       obj.enableCompression = message.enableCompression;
     }
+    if (message.onesiePlayerRequest !== undefined) {
+      obj.onesiePlayerRequest = OnesiePlayerRequest.toJSON(message.onesiePlayerRequest);
+    }
     if (message.TQ !== undefined && message.TQ !== false) {
       obj.TQ = message.TQ;
     }
@@ -227,6 +246,9 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
     message.YP = object.YP ?? false;
     message.pM = object.pM ?? false;
     message.enableCompression = object.enableCompression ?? false;
+    message.onesiePlayerRequest = (object.onesiePlayerRequest !== undefined && object.onesiePlayerRequest !== null)
+      ? OnesiePlayerRequest.fromPartial(object.onesiePlayerRequest)
+      : undefined;
     message.TQ = object.TQ ?? false;
     return message;
   },

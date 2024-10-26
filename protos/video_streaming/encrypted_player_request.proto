@@ -1,6 +1,8 @@
 syntax = "proto2";
 package video_streaming;
 
+import "video_streaming/onesie_player_request.proto";
+
 message EncryptedPlayerRequest {
   optional bytes context = 1; // InnerTubeContext proto?
   optional bytes encrypted_onesie_player_request = 2;
@@ -11,5 +13,6 @@ message EncryptedPlayerRequest {
   optional bool YP = 10;
   optional bool pM = 13;
   optional bool enable_compression = 14;
+  optional OnesiePlayerRequest onesie_player_request = 16;
   optional bool TQ = 17;
 }
