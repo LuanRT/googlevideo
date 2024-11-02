@@ -1,5 +1,10 @@
 # What Is This?
+[![JSR](https://jsr.io/badges/@luanrt/googlevideo)](https://jsr.io/@luanrt/googlevideo)
+[![NPM](https://img.shields.io/npm/v/googlevideo)](https://www.npmjs.com/package/googlevideo)
+[![License](https://img.shields.io/github/license/LuanRT/googlevideo)](./LICENSE)
+
 This is a collection of utilities for working with Google Video APIs, with a primary focus on UMP.
+
 
 * [Video Streaming Protos](./protos/video_streaming/)
 * [UMP (Parser)](./src/core/UMP.ts)
@@ -13,7 +18,15 @@ Usage examples can be found [here](./examples/).
 ## Installation
 
 ```bash
+# NPM
 npm install googlevideo
+
+# JSR / Deno
+npx jsr add @luanrt/googlevideo
+deno add jsr:@luanrt/googlevideo
+
+# GitHub
+npm install LuanRT/googlevideo
 ```
 
 ## Basic Usage
