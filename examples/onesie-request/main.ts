@@ -166,10 +166,10 @@ async function getBasicInfo(innertube: Innertube, videoId: string): Promise<YT.V
 
   const queryParams = [];
   queryParams.push(`id=${onesieRequest.encodedVideoId}`);
-  queryParams.push('&opr=1');
-  queryParams.push('&por=1');
-  queryParams.push('&rn=1');
-  queryParams.push('&cmo:sensitive_content=yes');
+  queryParams.push('opr=1');
+  queryParams.push('por=1');
+  queryParams.push('rn=1');
+  queryParams.push('cmo:sensitive_content=yes');
 
   url += `&${queryParams.join('&')}`;
 
