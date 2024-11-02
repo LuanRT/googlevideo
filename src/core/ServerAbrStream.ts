@@ -65,8 +65,8 @@ export class ServerAbrStream extends EventEmitterLike {
     const clientAbrState: ClientAbrState = {
       lastManualDirection: 0,
       timeSinceLastManualFormatSelectionMs: 0,
-      quality: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_QUALITY,
-      selectedQualityHeight: videoFormats.length === 1 ? firstVideoFormat?.width : DEFAULT_QUALITY,
+      quality: videoFormats.length === 1 ? firstVideoFormat?.height : DEFAULT_QUALITY,
+      selectedQualityHeight: videoFormats.length === 1 ? firstVideoFormat?.height : DEFAULT_QUALITY,
       startTimeMs: 0,
       visibility: 0,
       mediaType: ClientAbrState_MediaType.MEDIA_TYPE_DEFAULT,
@@ -118,6 +118,7 @@ export class ServerAbrStream extends EventEmitterLike {
       }
     } catch (error) {
       this.emit('error', error);
+      clientAbrState.startTimeMs = Infinity;
     }
   }
 
@@ -219,29 +220,8 @@ export class ServerAbrStream extends EventEmitterLike {
 
     const formatKey = getFormatKey(mediaHeader.formatId);
 
-    let currentFormat = this.formatsByKey.get(formatKey);
-    if (!currentFormat) {
-      this.initializedFormats.push({
-        formatId: mediaHeader.formatId,
-        formatKey,
-        durationMs: mediaHeader.durationMs,
-        mimeType: undefined,
-        sequenceCount: undefined,
-        sequenceList: [],
-        mediaChunks: [],
-        _state: {
-          formatId: mediaHeader.formatId,
-          startTimeMs: 0,
-          durationMs: 0,
-          startSegmentIndex: 1,
-          endSegmentIndex: 0
-        }
-      });
-
-      this.formatsByKey.set(formatKey, this.initializedFormats[this.initializedFormats.length - 1]);
-
-      currentFormat = this.formatsByKey.get(formatKey)!;
-    }
+    const currentFormat = this.formatsByKey.get(formatKey) || this.registerFormat(mediaHeader);
+    if (!currentFormat) return;
 
     // FIXME: This is a hacky workaround to prevent duplicate sequences from being added. This should be fixed in the future (preferably by figuring out how to make the server not send duplicates).
     if (mediaHeader.sequenceNumber !== undefined && this.previousSequences.get(formatKey)?.includes(mediaHeader.sequenceNumber))
@@ -299,30 +279,7 @@ export class ServerAbrStream extends EventEmitterLike {
 
   private processFormatInitialization(data: Uint8Array) {
     const formatInitializationMetadata = FormatInitializationMetadata.decode(data);
-    if (!formatInitializationMetadata.formatId) return;
-
-    const formatKey = getFormatKey(formatInitializationMetadata.formatId);
-
-    if (!this.formatsByKey.has(formatKey)) {
-      this.initializedFormats.push({
-        formatId: formatInitializationMetadata.formatId,
-        formatKey: getFormatKey(formatInitializationMetadata.formatId),
-        durationMs: formatInitializationMetadata.durationMs,
-        mimeType: formatInitializationMetadata.mimeType,
-        sequenceCount: formatInitializationMetadata.field4,
-        sequenceList: [],
-        mediaChunks: [],
-        _state: {
-          formatId: formatInitializationMetadata.formatId,
-          startTimeMs: 0,
-          durationMs: 0,
-          startSegmentIndex: 1,
-          endSegmentIndex: 0
-        }
-      });
-
-      this.formatsByKey.set(formatKey, this.initializedFormats[this.initializedFormats.length - 1]);
-    }
+    this.registerFormat(formatInitializationMetadata);
   }
 
   private processSabrRedirect(data: Uint8Array): SabrRedirect {
@@ -330,5 +287,36 @@ export class ServerAbrStream extends EventEmitterLike {
     if (!sabrRedirect.url) throw new Error('Invalid SABR redirect');
     this.serverAbrStreamingUrl = sabrRedirect.url;
     return sabrRedirect;
+  }
+
+  private registerFormat(data: MediaHeader | FormatInitializationMetadata): InitializedFormat | undefined {
+    if (!data.formatId)
+      return;
+
+    const formatKey = getFormatKey(data.formatId);
+
+    if (!this.formatsByKey.has(formatKey)) {
+      const format: InitializedFormat = {
+        formatId: data.formatId,
+        formatKey: formatKey,
+        durationMs: data.durationMs,
+        mimeType: 'mimeType' in data ? data.mimeType : undefined,
+        sequenceCount: 'field4' in data ? data.field4 : undefined,
+        sequenceList: [],
+        mediaChunks: [],
+        _state: {
+          formatId: data.formatId,
+          startTimeMs: 0,
+          durationMs: 0,
+          startSegmentIndex: 1,
+          endSegmentIndex: 0
+        }
+      };
+
+      this.initializedFormats.push(format);
+      this.formatsByKey.set(formatKey, this.initializedFormats[this.initializedFormats.length - 1]);
+
+      return format;
+    }
   }
 }
