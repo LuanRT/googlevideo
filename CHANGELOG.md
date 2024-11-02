@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v1.1.0...googlevideo-v2.0.0) (2024-11-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* drop `cjs` support
+
+### Code Refactoring
+
+* drop `cjs` support ([ec64dd5](https://github.com/LuanRT/googlevideo/commit/ec64dd5183cd4ca755d9ea5efae3ffeade875f75))
+
 ## 1.1.0 (2024-10-24)
 
 
