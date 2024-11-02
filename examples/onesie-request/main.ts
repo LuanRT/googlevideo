@@ -1,4 +1,4 @@
-import Innertube, { UniversalCache } from 'youtubei.js';
+import Innertube, { Constants, UniversalCache } from 'youtubei.js';
 import { type Context, Endpoints, YT } from 'youtubei.js';
 import GoogleVideo, { base64ToU8, PART, Protos, QUALITY } from '../../dist/src/index.js';
 import { decryptResponse, encryptRequest } from './utils.js';
@@ -62,12 +62,11 @@ type OnesieRequest = {
 async function prepareOnesieRequest(args: OnesieRequestArgs): Promise<OnesieRequest> {
   const { videoId, poToken, clientConfig, innertube } = args;
   const { clientKeyData, encryptedClientKey, onesieUstreamerConfig } = clientConfig;
-
-  const clonedInnerTubeContext: Context = JSON.parse(JSON.stringify(innertube.session.context));
+  const clonedInnerTubeContext: Context = structuredClone(innertube.session.context);
 
   // Change or remove these if you want to use a different client. I chose TVHTML5 purely for testing.
-  clonedInnerTubeContext.client.clientName = 'TVHTML5';
-  clonedInnerTubeContext.client.clientVersion = '7.20240717.18.00';
+  clonedInnerTubeContext.client.clientName = Constants.CLIENTS.TV.NAME;
+  clonedInnerTubeContext.client.clientVersion = Constants.CLIENTS.TV.VERSION;
 
   const playerRequestJson = {
     context: clonedInnerTubeContext,
@@ -126,8 +125,8 @@ async function prepareOnesieRequest(args: OnesieRequestArgs): Promise<OnesieRequ
       poToken: poToken ? base64ToU8(poToken) : undefined,
       playbackCookie: undefined,
       clientInfo: {
-        clientName: 7,
-        clientVersion: innertube.session.context.client.clientVersion
+        clientName: parseInt(Constants.CLIENTS.TV.NAME_ID),
+        clientVersion: clonedInnerTubeContext.client.clientVersion
       }
     },
     bufferedRanges: [],
@@ -169,7 +168,8 @@ async function getBasicInfo(innertube: Innertube, videoId: string): Promise<YT.V
   queryParams.push(`id=${onesieRequest.encodedVideoId}`);
   queryParams.push('&opr=1');
   queryParams.push('&por=1');
-  queryParams.push('rn=1');
+  queryParams.push('&rn=1');
+  queryParams.push('&cmo:sensitive_content=yes');
 
   url += `&${queryParams.join('&')}`;
 
