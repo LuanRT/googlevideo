@@ -149,14 +149,10 @@ async function prepareOnesieRequest(args: OnesieRequestArgs): Promise<OnesieRequ
  * Fetches basic video info (streaming data, video details, etc.) using a Onesie request (/initplayback).
  */
 async function getBasicInfo(innertube: Innertube, videoId: string): Promise<YT.VideoInfo> {
-  const redirectorResponse = await fetch(`https://redirector.googlevideo.com/initplayback?source=youtube&itag=0&pvi=0&pai=0&owc=yes&id=${Math.round(Math.random() * 1E5)}`, {
-    method: 'GET',
-    redirect: 'manual'
-  });
+  const redirectorResponse = await fetch(`https://redirector.googlevideo.com/initplayback?source=youtube&itag=0&pvi=0&pai=0&owc=yes&cmo:sensitive_content=yes&alr=yes&id=${Math.round(Math.random() * 1E5)}`, { method: 'GET' });
+  const redirectorResponseUrl = await redirectorResponse.text();
 
-  const redirectorResponseUrl = redirectorResponse.headers.get('location');
-
-  if (!redirectorResponseUrl)
+  if (!redirectorResponseUrl.startsWith('https://'))
     throw new Error('Invalid redirector response');
 
   const clientConfig = await getYouTubeTVClientConfig();
