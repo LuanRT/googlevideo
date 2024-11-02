@@ -38,24 +38,13 @@ export class UMP {
     }
   }
 
-  public readVarInt(offset: number): [ number, number ] {
+  public readVarInt(offset: number): [number, number] {
     let byteLength: number;
 
+    // Determine the length of the val
     if (this.chunkedDataBuffer.canReadBytes(offset, 1)) {
       const firstByte = this.chunkedDataBuffer.getUint8(offset);
-
-      // Determine the length of the val
-      if (firstByte < 128) {
-        byteLength = 1;
-      } else if (firstByte < 192) {
-        byteLength = 2;
-      } else if (firstByte < 224) {
-        byteLength = 3;
-      } else if (firstByte < 240) {
-        byteLength = 4;
-      } else {
-        byteLength = 5;
-      }
+      byteLength = firstByte < 128 ? 1 : firstByte < 192 ? 2 : firstByte < 224 ? 3 : firstByte < 240 ? 4 : 5;
     } else {
       byteLength = 0;
     }
