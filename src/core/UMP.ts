@@ -113,7 +113,6 @@ export class UMP {
   }
 
   public canReadFromCurrentChunk(offset: number, length: number): boolean {
-    this.chunkedDataBuffer.isFocused(offset);
     return offset - this.chunkedDataBuffer.currentChunkOffset + length <= this.chunkedDataBuffer.chunks[this.chunkedDataBuffer.currentChunkIndex].length;
   }
 

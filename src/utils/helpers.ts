@@ -90,7 +90,7 @@ export class CustomEvent extends Event {
     this.#detail = options?.detail ?? null;
   }
 
-  get detail() {
+  get detail(): any[] | null {
     return this.#detail;
   }
 }
