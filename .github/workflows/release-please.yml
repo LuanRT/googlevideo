@@ -5,6 +5,11 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
 jobs:
   release-please:
     permissions:
@@ -12,19 +17,23 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: google-github-actions/release-please-action@v3
+      - uses: googleapis/release-please-action@v4
         id: release
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: node
-          package-name: googlevideo
-      - uses: actions/checkout@v2
+
+      - uses: actions/checkout@v4
         if: ${{ steps.release.outputs.release_created }}
-      - uses: actions/setup-node@v3
+  
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: "20"
           registry-url: "https://registry.npmjs.org"
         if: ${{ steps.release.outputs.release_created }}
+
+      - run: npm ci
+        if: ${{ steps.release.outputs.release_created }}
+
       - name: Install protoc
         run: |
           sudo apt-get update
@@ -33,9 +42,9 @@ jobs:
           unzip protoc-21.12-linux-x86_64.zip -d protoc21
           sudo mv protoc21/bin/protoc /usr/local/bin/
         if: ${{ steps.release.outputs.release_created }}
+
       - name: Publish to NPM
         run: |
-          npm ci
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
