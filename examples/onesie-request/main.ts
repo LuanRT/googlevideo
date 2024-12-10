@@ -1,5 +1,5 @@
 import Innertube, { Constants, UniversalCache } from 'youtubei.js';
-import { type Context, Endpoints, YT } from 'youtubei.js';
+import { type Context, YT } from 'youtubei.js';
 import GoogleVideo, { base64ToU8, PART, Protos, QUALITY } from '../../dist/src/index.js';
 import { decryptResponse, encryptRequest } from './utils.js';
 
@@ -67,14 +67,27 @@ async function prepareOnesieRequest(args: OnesieRequestArgs): Promise<OnesieRequ
   // Change or remove these if you want to use a different client. I chose TVHTML5 purely for testing.
   clonedInnerTubeContext.client.clientName = Constants.CLIENTS.TV.NAME;
   clonedInnerTubeContext.client.clientVersion = Constants.CLIENTS.TV.VERSION;
-
+  
+  const params: Record<string, any> = {
+    playbackContext: {
+      contentPlaybackContext: {
+        vis: 0,
+        splay: false,
+        lactMilliseconds: '-1',
+        signatureTimestamp: innertube.session.player?.sts
+      }
+    },
+    videoId
+  };
+  
+  if (poToken) {
+    params.serviceIntegrityDimensions = {};
+    params.serviceIntegrityDimensions.poToken = poToken;
+  }
+  
   const playerRequestJson = {
     context: clonedInnerTubeContext,
-    ...Endpoints.PlayerEndpoint.build({
-      video_id: videoId,
-      po_token: poToken,
-      sts: innertube.session.player?.sts
-    })
+    ...params
   };
 
   const headers = [ {
