@@ -20,4 +20,3 @@ export { StreamerContext } from '../../protos/generated/video_streaming/streamer
 export { ProxyStatus } from '../../protos/generated/video_streaming/proxy_status.js';
 export { MediaCapabilities } from '../../protos/generated/video_streaming/media_capabilities.js';
 export { CryptoParams } from '../../protos/generated/video_streaming/crypto_params.js';
-export { ClientAbrState_MediaType as MediaType } from '../../protos/generated/video_streaming/client_abr_state.js';

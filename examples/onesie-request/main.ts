@@ -127,9 +127,9 @@ async function prepareOnesieRequest(args: OnesieRequestArgs): Promise<OnesieRequ
     clientAbrState: {
       timeSinceLastManualFormatSelectionMs: 0,
       lastManualDirection: 0,
-      quality: QUALITY.HD720,
-      selectedQualityHeight: QUALITY.HD720,
-      startTimeMs: 0,
+      lastManualSelectedResolution: QUALITY.HD720,
+      stickyResolution: QUALITY.HD720,
+      playerTimeMs: 0,
       visibility: 0
     },
     streamerContext: {

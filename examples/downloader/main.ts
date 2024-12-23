@@ -3,6 +3,7 @@ import type { WriteStream } from 'node:fs';
 import { createWriteStream } from 'node:fs';
 import { Innertube, UniversalCache } from 'youtubei.js';
 import GoogleVideo, { type Format } from '../../dist/src/index.js';
+import { generateWebPoToken } from './utils.js';
 
 const progressBars = new cliProgress.MultiBar({
   stopOnComplete: true,
@@ -12,6 +13,7 @@ const progressBars = new cliProgress.MultiBar({
 const formatProgressBars = new Map<string, cliProgress.SingleBar>();
 
 const innertube = await Innertube.create({ cache: new UniversalCache(true) });
+const webPoTokenResult = await generateWebPoToken(innertube.session.context.client.visitorData || '');
 const info = await innertube.getBasicInfo('mzqO7oKTJKI');
 
 console.info(`
@@ -20,6 +22,7 @@ console.info(`
   Views: ${info.basic_info.view_count}
   Author: ${info.basic_info.author}
   Video ID: ${info.basic_info.id}
+  WebPoToken: ${webPoTokenResult.poToken}
 `);
 
 const durationMs = (info.basic_info?.duration ?? 0) * 1000;
@@ -66,12 +69,12 @@ const determineFileExtension = (mimeType: string) => {
 const getOutputStream = (isVideo: boolean, mimeType: string, formatId?: number) => {
   const type = isVideo ? 'video' : 'audio';
   const extension = determineFileExtension(mimeType);
-  const stream = createWriteStream(`${sanitizedTitle}.${formatId}.${type}.${extension}`);
-  return stream;
+  return createWriteStream(`${sanitizedTitle}.${formatId}.${type}.${extension}`);
 };
 
 const serverAbrStream = new GoogleVideo.ServerAbrStream({
   fetch: innertube.session.http.fetch_function,
+  poToken: webPoTokenResult.poToken,
   serverAbrStreamingUrl,
   videoPlaybackUstreamerConfig: videoPlaybackUstreamerConfig,
   durationMs
@@ -126,12 +129,12 @@ serverAbrStream.on('error', (error) => {
   console.error(error);
 });
 
-await serverAbrStream.init({
+await serverAbrStream.init({ 
   audioFormats: [ selectedAudioFormat ],
   videoFormats: [ selectedVideoFormat ],
   clientAbrState: {
-    startTimeMs: 0,
-    mediaType: 0 // 0 = BOTH, 1 = AUDIO (video-only is no longer supported by YouTube)
+    playerTimeMs: 0,
+    enabledTrackTypesBitfield: 0 // 0 = BOTH, 1 = AUDIO (video-only is no longer supported by YouTube)
   }
 });
 

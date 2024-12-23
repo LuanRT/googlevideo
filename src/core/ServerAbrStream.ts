@@ -2,7 +2,6 @@ import { UMP } from './UMP.js';
 import { ChunkedDataBuffer } from './ChunkedDataBuffer.js';
 import { EventEmitterLike, PART, QUALITY, base64ToU8, getFormatKey } from '../utils/index.js';
 
-import { ClientAbrState_MediaType } from '../../protos/generated/video_streaming/client_abr_state.js';
 import { VideoPlaybackAbrRequest } from '../../protos/generated/video_streaming/video_playback_abr_request.js';
 import { MediaHeader } from '../../protos/generated/video_streaming/media_header.js';
 import { NextRequestPolicy } from '../../protos/generated/video_streaming/next_request_policy.js';
@@ -65,11 +64,11 @@ export class ServerAbrStream extends EventEmitterLike {
     const clientAbrState: ClientAbrState = {
       lastManualDirection: 0,
       timeSinceLastManualFormatSelectionMs: 0,
-      quality: videoFormats.length === 1 ? firstVideoFormat?.height : DEFAULT_QUALITY,
-      selectedQualityHeight: videoFormats.length === 1 ? firstVideoFormat?.height : DEFAULT_QUALITY,
-      startTimeMs: 0,
+      lastManualSelectedResolution: videoFormats.length === 1 ? firstVideoFormat?.height : DEFAULT_QUALITY,
+      stickyResolution: videoFormats.length === 1 ? firstVideoFormat?.height : DEFAULT_QUALITY,
+      playerTimeMs: 0,
       visibility: 0,
-      mediaType: ClientAbrState_MediaType.MEDIA_TYPE_DEFAULT,
+      enabledTrackTypesBitfield: 0,
       ...initialState
     };
 
@@ -85,11 +84,11 @@ export class ServerAbrStream extends EventEmitterLike {
       xtags: fmt.xtags
     }));
 
-    if (typeof clientAbrState.startTimeMs !== 'number')
+    if (typeof clientAbrState.playerTimeMs !== 'number')
       throw new Error('Invalid media start time');
 
     try {
-      while (clientAbrState.startTimeMs < this.totalDurationMs) {
+      while (clientAbrState.playerTimeMs < this.totalDurationMs) {
         const data = await this.fetchMedia({ clientAbrState, audioFormatIds, videoFormatIds });
 
         this.emit('data', data);
@@ -97,7 +96,7 @@ export class ServerAbrStream extends EventEmitterLike {
         if (data.sabrError) break;
 
         const mainFormat =
-          clientAbrState.mediaType === ClientAbrState_MediaType.MEDIA_TYPE_DEFAULT
+          clientAbrState.enabledTrackTypesBitfield === 0
             ? data.initializedFormats.find((fmt) => fmt.mimeType?.includes('video'))
             : data.initializedFormats[0];
 
@@ -114,11 +113,11 @@ export class ServerAbrStream extends EventEmitterLike {
           break;
         }
 
-        clientAbrState.startTimeMs += mainFormat.sequenceList.reduce((acc, seq) => acc + (seq.durationMs || 0), 0);
+        clientAbrState.playerTimeMs += mainFormat.sequenceList.reduce((acc, seq) => acc + (seq.durationMs || 0), 0);
       }
     } catch (error) {
       this.emit('error', error);
-      clientAbrState.startTimeMs = Infinity;
+      clientAbrState.playerTimeMs = Infinity;
     }
   }
 

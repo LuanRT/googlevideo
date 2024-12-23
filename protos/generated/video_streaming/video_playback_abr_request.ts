@@ -17,6 +17,7 @@ export interface VideoPlaybackAbrRequest {
   clientAbrState?: ClientAbrState | undefined;
   selectedFormatIds: FormatId[];
   bufferedRanges: BufferedRange[];
+  playerTimeMs?: number | undefined;
   videoPlaybackUstreamerConfig?: Uint8Array | undefined;
   lo?: Lo | undefined;
   selectedAudioFormatIds: FormatId[];
@@ -62,6 +63,7 @@ function createBaseVideoPlaybackAbrRequest(): VideoPlaybackAbrRequest {
     clientAbrState: undefined,
     selectedFormatIds: [],
     bufferedRanges: [],
+    playerTimeMs: 0,
     videoPlaybackUstreamerConfig: new Uint8Array(0),
     lo: undefined,
     selectedAudioFormatIds: [],
@@ -84,6 +86,9 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     }
     for (const v of message.bufferedRanges) {
       BufferedRange.encode(v!, writer.uint32(26).fork()).join();
+    }
+    if (message.playerTimeMs !== undefined && message.playerTimeMs !== 0) {
+      writer.uint32(32).int64(message.playerTimeMs);
     }
     if (message.videoPlaybackUstreamerConfig !== undefined && message.videoPlaybackUstreamerConfig.length !== 0) {
       writer.uint32(42).bytes(message.videoPlaybackUstreamerConfig);
@@ -142,6 +147,13 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
           }
 
           message.bufferedRanges.push(BufferedRange.decode(reader, reader.uint32()));
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+
+          message.playerTimeMs = longToNumber(reader.int64());
           continue;
         case 5:
           if (tag !== 42) {
@@ -224,6 +236,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
       bufferedRanges: globalThis.Array.isArray(object?.bufferedRanges)
         ? object.bufferedRanges.map((e: any) => BufferedRange.fromJSON(e))
         : [],
+      playerTimeMs: isSet(object.playerTimeMs) ? globalThis.Number(object.playerTimeMs) : 0,
       videoPlaybackUstreamerConfig: isSet(object.videoPlaybackUstreamerConfig)
         ? bytesFromBase64(object.videoPlaybackUstreamerConfig)
         : new Uint8Array(0),
@@ -252,6 +265,9 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     }
     if (message.bufferedRanges?.length) {
       obj.bufferedRanges = message.bufferedRanges.map((e) => BufferedRange.toJSON(e));
+    }
+    if (message.playerTimeMs !== undefined && message.playerTimeMs !== 0) {
+      obj.playerTimeMs = Math.round(message.playerTimeMs);
     }
     if (message.videoPlaybackUstreamerConfig !== undefined && message.videoPlaybackUstreamerConfig.length !== 0) {
       obj.videoPlaybackUstreamerConfig = base64FromBytes(message.videoPlaybackUstreamerConfig);
@@ -293,6 +309,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
       : undefined;
     message.selectedFormatIds = object.selectedFormatIds?.map((e) => FormatId.fromPartial(e)) || [];
     message.bufferedRanges = object.bufferedRanges?.map((e) => BufferedRange.fromPartial(e)) || [];
+    message.playerTimeMs = object.playerTimeMs ?? 0;
     message.videoPlaybackUstreamerConfig = object.videoPlaybackUstreamerConfig ?? new Uint8Array(0);
     message.lo = (object.lo !== undefined && object.lo !== null) ? Lo.fromPartial(object.lo) : undefined;
     message.selectedAudioFormatIds = object.selectedAudioFormatIds?.map((e) => FormatId.fromPartial(e)) || [];
@@ -773,6 +790,17 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+function longToNumber(int64: { toString(): string }): number {
+  const num = globalThis.Number(int64.toString());
+  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
+    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
+  }
+  return num;
+}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;

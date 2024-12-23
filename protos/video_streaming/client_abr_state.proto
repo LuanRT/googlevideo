@@ -1,27 +1,29 @@
 syntax = "proto2";
 package video_streaming;
 
-import "video_streaming/media_capabilities.proto";
-
 message ClientAbrState {
   optional int32 time_since_last_manual_format_selection_ms = 13;
   optional int32 last_manual_direction = 14;
-  optional int32 quality = 16;
+  optional int32 last_manual_selected_resolution = 16;
   optional int32 detailed_network_type = 17;
-  optional int32 max_width = 18;
-  optional int32 max_height = 19;
-  optional int32 selected_quality_height = 21;
-  optional int32 r7 = 23;
-  optional int64 start_time_ms = 28;
+  optional int32 client_viewport_width = 18;
+  optional int32 client_viewport_height = 19;
+  optional int64 client_bitrate_cap = 20;
+  optional int32 sticky_resolution = 21;
+  optional bool client_viewport_is_flexible = 22;
+  optional int32 bandwidth_estimate = 23;
+  optional int64 player_time_ms = 28;
   optional int64 time_since_last_seek = 29;
+  optional bool data_saver_mode = 30;
   optional int32 visibility = 34;
-  optional int64 time_since_last_req = 36;
-  optional MediaCapabilities media_capabilities = 38;
-  optional int64 time_since_last_action = 39;
-  // optional int32 Gw = 40;
-  optional MediaType media_type = 40;
+  optional float playback_rate = 35;
+  optional int64 elapsed_wall_time_ms = 36;
+  optional bytes media_capabilities = 38;
+  optional int64 time_since_last_action_ms = 39;
+  optional int32 enabled_track_types_bitfield = 40;
+  optional int32 max_pacing_rate = 43;
   optional int64 player_state = 44;
-  optional bool range_compression = 46;
+  optional bool drc_enabled = 46;
   optional int32 Jda = 48;
   optional int32 qw = 50;
   optional int32 Ky = 51;
@@ -38,12 +40,4 @@ message ClientAbrState {
   optional int32 sabr_force_proxima = 66;
   optional int32 Tqb = 67;
   optional int64 sabr_force_max_network_interruption_duration_ms = 68;
-  optional float playback_rate = 285;
-
-  enum MediaType {
-    MEDIA_TYPE_DEFAULT = 0;
-    MEDIA_TYPE_AUDIO = 1;
-    MEDIA_TYPE_VIDEO = 2;
-    USE_SERVER_FORMAT_FILTER = 3;
-  }
 }

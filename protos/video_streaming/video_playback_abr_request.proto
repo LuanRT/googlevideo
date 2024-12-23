@@ -10,6 +10,7 @@ message VideoPlaybackAbrRequest {
   optional ClientAbrState client_abr_state = 1;
   repeated .misc.FormatId selected_format_ids = 2;
   repeated BufferedRange buffered_ranges = 3;
+  optional int64 player_time_ms = 4;
   optional bytes video_playback_ustreamer_config = 5;
   optional Lo lo = 6;
   repeated .misc.FormatId selected_audio_format_ids = 16;
