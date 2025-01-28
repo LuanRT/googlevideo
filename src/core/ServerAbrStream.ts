@@ -101,7 +101,10 @@ export class ServerAbrStream extends EventEmitterLike {
             : data.initializedFormats[0];
 
         for (const fmt of data.initializedFormats) {
-          this.previousSequences.set(fmt.formatKey, fmt.sequenceList.map((seq) => seq.sequenceNumber || 0));
+          if (this.previousSequences.has(fmt.formatKey))
+            this.previousSequences.get(fmt.formatKey).push(...fmt.sequenceList.map((seq) => seq.sequenceNumber || 0))
+          else
+            this.previousSequences.set(fmt.formatKey, fmt.sequenceList.map((seq) => seq.sequenceNumber || 0));
         }
 
         if (
