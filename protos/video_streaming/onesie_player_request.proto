@@ -8,5 +8,5 @@ message OnesiePlayerRequest {
 	repeated misc.HttpHeader headers = 2; 
 	optional string body = 3;
 	optional bool proxied_by_trusted_bandaid  = 4;
-	optional bool field6 = 6; // Seen this on youtube.com and the YTMusic protos. Not sure what it is yet.
+	optional bool skip_response_encryption = 6;
 }
