@@ -20,7 +20,11 @@ export interface OnesieRequest {
   onesieUstreamerConfig?: Uint8Array | undefined;
   maxVp9Height?: number | undefined;
   clientDisplayHeight?: number | undefined;
-  streamerContext?: StreamerContext | undefined;
+  streamerContext?:
+    | StreamerContext
+    | undefined;
+  /** MLOnesieRequestTarget */
+  requestTarget?: number | undefined;
   bufferedRanges: BufferedRange[];
 }
 
@@ -33,6 +37,7 @@ function createBaseOnesieRequest(): OnesieRequest {
     maxVp9Height: 0,
     clientDisplayHeight: 0,
     streamerContext: undefined,
+    requestTarget: 0,
     bufferedRanges: [],
   };
 }
@@ -59,6 +64,9 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
     }
     if (message.streamerContext !== undefined) {
       StreamerContext.encode(message.streamerContext, writer.uint32(82).fork()).join();
+    }
+    if (message.requestTarget !== undefined && message.requestTarget !== 0) {
+      writer.uint32(104).int32(message.requestTarget);
     }
     for (const v of message.bufferedRanges) {
       BufferedRange.encode(v!, writer.uint32(114).fork()).join();
@@ -122,6 +130,13 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
 
           message.streamerContext = StreamerContext.decode(reader, reader.uint32());
           continue;
+        case 13:
+          if (tag !== 104) {
+            break;
+          }
+
+          message.requestTarget = reader.int32();
+          continue;
         case 14:
           if (tag !== 114) {
             break;
@@ -149,6 +164,7 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
       maxVp9Height: isSet(object.maxVp9Height) ? globalThis.Number(object.maxVp9Height) : 0,
       clientDisplayHeight: isSet(object.clientDisplayHeight) ? globalThis.Number(object.clientDisplayHeight) : 0,
       streamerContext: isSet(object.streamerContext) ? StreamerContext.fromJSON(object.streamerContext) : undefined,
+      requestTarget: isSet(object.requestTarget) ? globalThis.Number(object.requestTarget) : 0,
       bufferedRanges: globalThis.Array.isArray(object?.bufferedRanges)
         ? object.bufferedRanges.map((e: any) => BufferedRange.fromJSON(e))
         : [],
@@ -178,6 +194,9 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
     if (message.streamerContext !== undefined) {
       obj.streamerContext = StreamerContext.toJSON(message.streamerContext);
     }
+    if (message.requestTarget !== undefined && message.requestTarget !== 0) {
+      obj.requestTarget = Math.round(message.requestTarget);
+    }
     if (message.bufferedRanges?.length) {
       obj.bufferedRanges = message.bufferedRanges.map((e) => BufferedRange.toJSON(e));
     }
@@ -202,6 +221,7 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
     message.streamerContext = (object.streamerContext !== undefined && object.streamerContext !== null)
       ? StreamerContext.fromPartial(object.streamerContext)
       : undefined;
+    message.requestTarget = object.requestTarget ?? 0;
     message.bufferedRanges = object.bufferedRanges?.map((e) => BufferedRange.fromPartial(e)) || [];
     return message;
   },

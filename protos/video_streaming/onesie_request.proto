@@ -14,5 +14,6 @@ message OnesieRequest {
 	optional int32 max_vp9_height = 5;
 	optional int32 client_display_height = 6;
   optional StreamerContext streamer_context = 10; 
+	optional int32 request_target = 13; // MLOnesieRequestTarget
 	repeated BufferedRange buffered_ranges = 14;
 }

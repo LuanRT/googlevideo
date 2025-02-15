@@ -14,7 +14,7 @@ export { EncryptedPlayerRequest } from '../../protos/generated/video_streaming/e
 export { OnesieHeader } from '../../protos/generated/video_streaming/onesie_header.js';
 export { OnesieHeaderType } from '../../protos/generated/video_streaming/onesie_header_type.js';
 export { OnesiePlayerRequest } from '../../protos/generated/video_streaming/onesie_player_request.js';
-export { OnesiePlayerResponse } from '../../protos/generated/video_streaming/onesie_player_response.js';
+export { OnesiePlayerResponse, OnesieProxyStatus } from '../../protos/generated/video_streaming/onesie_player_response.js';
 export { ClientAbrState } from '../../protos/generated/video_streaming/client_abr_state.js';
 export { StreamerContext } from '../../protos/generated/video_streaming/streamer_context.js';
 export { ProxyStatus } from '../../protos/generated/video_streaming/proxy_status.js';

@@ -10,8 +10,113 @@ import { HttpHeader } from "../misc/common.js";
 
 export const protobufPackage = "video_streaming";
 
+export enum OnesieProxyStatus {
+  ONESIE_PROXY_STATUS_UNKNOWN = 0,
+  ONESIE_PROXY_STATUS_OK = 1,
+  ONESIE_PROXY_STATUS_DECRYPTION_FAILED = 2,
+  ONESIE_PROXY_STATUS_PARSING_FAILED = 3,
+  ONESIE_PROXY_STATUS_MISSING_X_FORWARDED_FOR = 4,
+  ONESIE_PROXY_STATUS_INVALID_X_FORWARDED_FOR = 5,
+  ONESIE_PROXY_STATUS_INVALID_CONTENT_TYPE = 6,
+  ONESIE_PROXY_STATUS_BACKEND_ERROR = 7,
+  ONESIE_PROXY_STATUS_CLIENT_ERROR = 8,
+  ONESIE_PROXY_STATUS_MISSING_CRYPTER = 9,
+  ONESIE_PROXY_STATUS_RESPONSE_JSON_SERIALIZATION_FAILED = 10,
+  ONESIE_PROXY_STATUS_DECOMPRESSION_FAILED = 11,
+  ONESIE_PROXY_STATUS_JSON_PARSING_FAILED = 12,
+  ONESIE_PROXY_STATUS_UNKNOWN_COMPRESSION_TYPE = 13,
+  UNRECOGNIZED = -1,
+}
+
+export function onesieProxyStatusFromJSON(object: any): OnesieProxyStatus {
+  switch (object) {
+    case 0:
+    case "ONESIE_PROXY_STATUS_UNKNOWN":
+      return OnesieProxyStatus.ONESIE_PROXY_STATUS_UNKNOWN;
+    case 1:
+    case "ONESIE_PROXY_STATUS_OK":
+      return OnesieProxyStatus.ONESIE_PROXY_STATUS_OK;
+    case 2:
+    case "ONESIE_PROXY_STATUS_DECRYPTION_FAILED":
+      return OnesieProxyStatus.ONESIE_PROXY_STATUS_DECRYPTION_FAILED;
+    case 3:
+    case "ONESIE_PROXY_STATUS_PARSING_FAILED":
+      return OnesieProxyStatus.ONESIE_PROXY_STATUS_PARSING_FAILED;
+    case 4:
+    case "ONESIE_PROXY_STATUS_MISSING_X_FORWARDED_FOR":
+      return OnesieProxyStatus.ONESIE_PROXY_STATUS_MISSING_X_FORWARDED_FOR;
+    case 5:
+    case "ONESIE_PROXY_STATUS_INVALID_X_FORWARDED_FOR":
+      return OnesieProxyStatus.ONESIE_PROXY_STATUS_INVALID_X_FORWARDED_FOR;
+    case 6:
+    case "ONESIE_PROXY_STATUS_INVALID_CONTENT_TYPE":
+      return OnesieProxyStatus.ONESIE_PROXY_STATUS_INVALID_CONTENT_TYPE;
+    case 7:
+    case "ONESIE_PROXY_STATUS_BACKEND_ERROR":
+      return OnesieProxyStatus.ONESIE_PROXY_STATUS_BACKEND_ERROR;
+    case 8:
+    case "ONESIE_PROXY_STATUS_CLIENT_ERROR":
+      return OnesieProxyStatus.ONESIE_PROXY_STATUS_CLIENT_ERROR;
+    case 9:
+    case "ONESIE_PROXY_STATUS_MISSING_CRYPTER":
+      return OnesieProxyStatus.ONESIE_PROXY_STATUS_MISSING_CRYPTER;
+    case 10:
+    case "ONESIE_PROXY_STATUS_RESPONSE_JSON_SERIALIZATION_FAILED":
+      return OnesieProxyStatus.ONESIE_PROXY_STATUS_RESPONSE_JSON_SERIALIZATION_FAILED;
+    case 11:
+    case "ONESIE_PROXY_STATUS_DECOMPRESSION_FAILED":
+      return OnesieProxyStatus.ONESIE_PROXY_STATUS_DECOMPRESSION_FAILED;
+    case 12:
+    case "ONESIE_PROXY_STATUS_JSON_PARSING_FAILED":
+      return OnesieProxyStatus.ONESIE_PROXY_STATUS_JSON_PARSING_FAILED;
+    case 13:
+    case "ONESIE_PROXY_STATUS_UNKNOWN_COMPRESSION_TYPE":
+      return OnesieProxyStatus.ONESIE_PROXY_STATUS_UNKNOWN_COMPRESSION_TYPE;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return OnesieProxyStatus.UNRECOGNIZED;
+  }
+}
+
+export function onesieProxyStatusToJSON(object: OnesieProxyStatus): string {
+  switch (object) {
+    case OnesieProxyStatus.ONESIE_PROXY_STATUS_UNKNOWN:
+      return "ONESIE_PROXY_STATUS_UNKNOWN";
+    case OnesieProxyStatus.ONESIE_PROXY_STATUS_OK:
+      return "ONESIE_PROXY_STATUS_OK";
+    case OnesieProxyStatus.ONESIE_PROXY_STATUS_DECRYPTION_FAILED:
+      return "ONESIE_PROXY_STATUS_DECRYPTION_FAILED";
+    case OnesieProxyStatus.ONESIE_PROXY_STATUS_PARSING_FAILED:
+      return "ONESIE_PROXY_STATUS_PARSING_FAILED";
+    case OnesieProxyStatus.ONESIE_PROXY_STATUS_MISSING_X_FORWARDED_FOR:
+      return "ONESIE_PROXY_STATUS_MISSING_X_FORWARDED_FOR";
+    case OnesieProxyStatus.ONESIE_PROXY_STATUS_INVALID_X_FORWARDED_FOR:
+      return "ONESIE_PROXY_STATUS_INVALID_X_FORWARDED_FOR";
+    case OnesieProxyStatus.ONESIE_PROXY_STATUS_INVALID_CONTENT_TYPE:
+      return "ONESIE_PROXY_STATUS_INVALID_CONTENT_TYPE";
+    case OnesieProxyStatus.ONESIE_PROXY_STATUS_BACKEND_ERROR:
+      return "ONESIE_PROXY_STATUS_BACKEND_ERROR";
+    case OnesieProxyStatus.ONESIE_PROXY_STATUS_CLIENT_ERROR:
+      return "ONESIE_PROXY_STATUS_CLIENT_ERROR";
+    case OnesieProxyStatus.ONESIE_PROXY_STATUS_MISSING_CRYPTER:
+      return "ONESIE_PROXY_STATUS_MISSING_CRYPTER";
+    case OnesieProxyStatus.ONESIE_PROXY_STATUS_RESPONSE_JSON_SERIALIZATION_FAILED:
+      return "ONESIE_PROXY_STATUS_RESPONSE_JSON_SERIALIZATION_FAILED";
+    case OnesieProxyStatus.ONESIE_PROXY_STATUS_DECOMPRESSION_FAILED:
+      return "ONESIE_PROXY_STATUS_DECOMPRESSION_FAILED";
+    case OnesieProxyStatus.ONESIE_PROXY_STATUS_JSON_PARSING_FAILED:
+      return "ONESIE_PROXY_STATUS_JSON_PARSING_FAILED";
+    case OnesieProxyStatus.ONESIE_PROXY_STATUS_UNKNOWN_COMPRESSION_TYPE:
+      return "ONESIE_PROXY_STATUS_UNKNOWN_COMPRESSION_TYPE";
+    case OnesieProxyStatus.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
 export interface OnesiePlayerResponse {
-  onesieProxyStatus?: number | undefined;
+  onesieProxyStatus?: OnesieProxyStatus | undefined;
   httpStatus?: number | undefined;
   headers: HttpHeader[];
   body?: Uint8Array | undefined;
@@ -50,7 +155,7 @@ export const OnesiePlayerResponse: MessageFns<OnesiePlayerResponse> = {
             break;
           }
 
-          message.onesieProxyStatus = reader.int32();
+          message.onesieProxyStatus = reader.int32() as any;
           continue;
         case 2:
           if (tag !== 16) {
@@ -84,7 +189,7 @@ export const OnesiePlayerResponse: MessageFns<OnesiePlayerResponse> = {
 
   fromJSON(object: any): OnesiePlayerResponse {
     return {
-      onesieProxyStatus: isSet(object.onesieProxyStatus) ? globalThis.Number(object.onesieProxyStatus) : 0,
+      onesieProxyStatus: isSet(object.onesieProxyStatus) ? onesieProxyStatusFromJSON(object.onesieProxyStatus) : 0,
       httpStatus: isSet(object.httpStatus) ? globalThis.Number(object.httpStatus) : 0,
       headers: globalThis.Array.isArray(object?.headers) ? object.headers.map((e: any) => HttpHeader.fromJSON(e)) : [],
       body: isSet(object.body) ? bytesFromBase64(object.body) : new Uint8Array(0),
@@ -94,7 +199,7 @@ export const OnesiePlayerResponse: MessageFns<OnesiePlayerResponse> = {
   toJSON(message: OnesiePlayerResponse): unknown {
     const obj: any = {};
     if (message.onesieProxyStatus !== undefined && message.onesieProxyStatus !== 0) {
-      obj.onesieProxyStatus = Math.round(message.onesieProxyStatus);
+      obj.onesieProxyStatus = onesieProxyStatusToJSON(message.onesieProxyStatus);
     }
     if (message.httpStatus !== undefined && message.httpStatus !== 0) {
       obj.httpStatus = Math.round(message.httpStatus);
