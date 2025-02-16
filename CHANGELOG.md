@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v2.0.0...googlevideo-v2.1.0) (2025-02-16)
+
+
+### Features
+
+* Add support for unencrypted onesie requests & responses ([418898f](https://github.com/LuanRT/googlevideo/commit/418898faa91967ff8d60ab009d32ee49b6649ea5))
+
 ## [2.0.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v1.1.0...googlevideo-v2.0.0) (2024-11-02)
 
 
