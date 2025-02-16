@@ -14,15 +14,12 @@ export interface OnesiePlayerRequest {
   url?: string | undefined;
   headers: HttpHeader[];
   body?: string | undefined;
-  proxiedByTrustedBandaid?:
-    | boolean
-    | undefined;
-  /** Seen this on youtube.com and the YTMusic protos. Not sure what it is yet. */
-  field6?: boolean | undefined;
+  proxiedByTrustedBandaid?: boolean | undefined;
+  skipResponseEncryption?: boolean | undefined;
 }
 
 function createBaseOnesiePlayerRequest(): OnesiePlayerRequest {
-  return { url: "", headers: [], body: "", proxiedByTrustedBandaid: false, field6: false };
+  return { url: "", headers: [], body: "", proxiedByTrustedBandaid: false, skipResponseEncryption: false };
 }
 
 export const OnesiePlayerRequest: MessageFns<OnesiePlayerRequest> = {
@@ -39,8 +36,8 @@ export const OnesiePlayerRequest: MessageFns<OnesiePlayerRequest> = {
     if (message.proxiedByTrustedBandaid !== undefined && message.proxiedByTrustedBandaid !== false) {
       writer.uint32(32).bool(message.proxiedByTrustedBandaid);
     }
-    if (message.field6 !== undefined && message.field6 !== false) {
-      writer.uint32(48).bool(message.field6);
+    if (message.skipResponseEncryption !== undefined && message.skipResponseEncryption !== false) {
+      writer.uint32(48).bool(message.skipResponseEncryption);
     }
     return writer;
   },
@@ -85,7 +82,7 @@ export const OnesiePlayerRequest: MessageFns<OnesiePlayerRequest> = {
             break;
           }
 
-          message.field6 = reader.bool();
+          message.skipResponseEncryption = reader.bool();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -104,7 +101,9 @@ export const OnesiePlayerRequest: MessageFns<OnesiePlayerRequest> = {
       proxiedByTrustedBandaid: isSet(object.proxiedByTrustedBandaid)
         ? globalThis.Boolean(object.proxiedByTrustedBandaid)
         : false,
-      field6: isSet(object.field6) ? globalThis.Boolean(object.field6) : false,
+      skipResponseEncryption: isSet(object.skipResponseEncryption)
+        ? globalThis.Boolean(object.skipResponseEncryption)
+        : false,
     };
   },
 
@@ -122,8 +121,8 @@ export const OnesiePlayerRequest: MessageFns<OnesiePlayerRequest> = {
     if (message.proxiedByTrustedBandaid !== undefined && message.proxiedByTrustedBandaid !== false) {
       obj.proxiedByTrustedBandaid = message.proxiedByTrustedBandaid;
     }
-    if (message.field6 !== undefined && message.field6 !== false) {
-      obj.field6 = message.field6;
+    if (message.skipResponseEncryption !== undefined && message.skipResponseEncryption !== false) {
+      obj.skipResponseEncryption = message.skipResponseEncryption;
     }
     return obj;
   },
@@ -137,7 +136,7 @@ export const OnesiePlayerRequest: MessageFns<OnesiePlayerRequest> = {
     message.headers = object.headers?.map((e) => HttpHeader.fromPartial(e)) || [];
     message.body = object.body ?? "";
     message.proxiedByTrustedBandaid = object.proxiedByTrustedBandaid ?? false;
-    message.field6 = object.field6 ?? false;
+    message.skipResponseEncryption = object.skipResponseEncryption ?? false;
     return message;
   },
 };

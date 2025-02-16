@@ -13,6 +13,6 @@ message EncryptedPlayerRequest {
   optional bool YP = 10;
   optional bool pM = 13;
   optional bool enable_compression = 14;
-  optional OnesiePlayerRequest onesie_player_request = 16;
+  optional bytes unencrypted_onesie_player_request = 16; 
   optional bool TQ = 17;
 }

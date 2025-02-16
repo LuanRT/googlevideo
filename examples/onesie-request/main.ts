@@ -108,7 +108,7 @@ async function prepareOnesieRequest(args: OnesieRequestArgs): Promise<OnesieRequ
     headers,
     body: JSON.stringify(playerRequestJson),
     proxiedByTrustedBandaid: true,
-    field6: false
+    skipResponseEncryption: true
   }).finish();
 
   const { encrypted, hmac, iv } = await encryptRequest(clientKeyData, onesieRequest);
@@ -118,6 +118,10 @@ async function prepareOnesieRequest(args: OnesieRequestArgs): Promise<OnesieRequ
     playerRequest: {
       encryptedClientKey,
       encryptedOnesiePlayerRequest: encrypted,
+      /* 
+       * If you want to use an unencrypted player request:
+       * unencryptedOnesiePlayerRequest: onesieRequest, 
+       */
       enableCompression: false,
       hmac: hmac,
       iv: iv,
@@ -222,9 +226,9 @@ async function getBasicInfo(innertube: Innertube, videoId: string): Promise<YT.V
 
     const iv = onesiePlayerResponse.cryptoParams.iv;
     const hmac = onesiePlayerResponse.cryptoParams.hmac;
-    const encrypted = onesiePlayerResponse.data;
 
-    const decryptedData = await decryptResponse(iv, hmac, encrypted, clientConfig.clientKeyData);
+    // If skipResponseEncryption is set to true in the request, the response will not be encrypted.
+    const decryptedData = hmac?.length && iv?.length ? await decryptResponse(iv, hmac, onesiePlayerResponse.data, clientConfig.clientKeyData) : onesiePlayerResponse.data!;
     const response = Protos.OnesiePlayerResponse.decode(decryptedData);
 
     if (response.onesieProxyStatus !== Protos.OnesieProxyStatus.ONESIE_PROXY_STATUS_OK)
