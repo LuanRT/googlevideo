@@ -126,7 +126,7 @@ async function prepareOnesieRequest(args: OnesieRequestArgs): Promise<OnesieRequ
       hmac: hmac,
       iv: iv,
       TQ: true,
-      YP: true
+      serializeResponseAsJson: true // If false, the response will be serialized as protobuf.
     },
     clientAbrState: {
       timeSinceLastManualFormatSelectionMs: 0,

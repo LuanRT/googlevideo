@@ -10,7 +10,7 @@ message EncryptedPlayerRequest {
   optional bytes iv = 6;
   optional bytes hmac = 7;
   optional string reverse_proxy_config = 9;
-  optional bool YP = 10;
+  optional bool serialize_response_as_json = 10;
   optional bool pM = 13;
   optional bool enable_compression = 14;
   optional bytes unencrypted_onesie_player_request = 16; 

@@ -17,7 +17,7 @@ export interface EncryptedPlayerRequest {
   iv?: Uint8Array | undefined;
   hmac?: Uint8Array | undefined;
   reverseProxyConfig?: string | undefined;
-  YP?: boolean | undefined;
+  serializeResponseAsJson?: boolean | undefined;
   pM?: boolean | undefined;
   enableCompression?: boolean | undefined;
   unencryptedOnesiePlayerRequest?: Uint8Array | undefined;
@@ -32,7 +32,7 @@ function createBaseEncryptedPlayerRequest(): EncryptedPlayerRequest {
     iv: new Uint8Array(0),
     hmac: new Uint8Array(0),
     reverseProxyConfig: "",
-    YP: false,
+    serializeResponseAsJson: false,
     pM: false,
     enableCompression: false,
     unencryptedOnesiePlayerRequest: new Uint8Array(0),
@@ -60,8 +60,8 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
     if (message.reverseProxyConfig !== undefined && message.reverseProxyConfig !== "") {
       writer.uint32(74).string(message.reverseProxyConfig);
     }
-    if (message.YP !== undefined && message.YP !== false) {
-      writer.uint32(80).bool(message.YP);
+    if (message.serializeResponseAsJson !== undefined && message.serializeResponseAsJson !== false) {
+      writer.uint32(80).bool(message.serializeResponseAsJson);
     }
     if (message.pM !== undefined && message.pM !== false) {
       writer.uint32(104).bool(message.pM);
@@ -132,7 +132,7 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
             break;
           }
 
-          message.YP = reader.bool();
+          message.serializeResponseAsJson = reader.bool();
           continue;
         case 13:
           if (tag !== 104) {
@@ -183,7 +183,9 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
       iv: isSet(object.iv) ? bytesFromBase64(object.iv) : new Uint8Array(0),
       hmac: isSet(object.hmac) ? bytesFromBase64(object.hmac) : new Uint8Array(0),
       reverseProxyConfig: isSet(object.reverseProxyConfig) ? globalThis.String(object.reverseProxyConfig) : "",
-      YP: isSet(object.YP) ? globalThis.Boolean(object.YP) : false,
+      serializeResponseAsJson: isSet(object.serializeResponseAsJson)
+        ? globalThis.Boolean(object.serializeResponseAsJson)
+        : false,
       pM: isSet(object.pM) ? globalThis.Boolean(object.pM) : false,
       enableCompression: isSet(object.enableCompression) ? globalThis.Boolean(object.enableCompression) : false,
       unencryptedOnesiePlayerRequest: isSet(object.unencryptedOnesiePlayerRequest)
@@ -213,8 +215,8 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
     if (message.reverseProxyConfig !== undefined && message.reverseProxyConfig !== "") {
       obj.reverseProxyConfig = message.reverseProxyConfig;
     }
-    if (message.YP !== undefined && message.YP !== false) {
-      obj.YP = message.YP;
+    if (message.serializeResponseAsJson !== undefined && message.serializeResponseAsJson !== false) {
+      obj.serializeResponseAsJson = message.serializeResponseAsJson;
     }
     if (message.pM !== undefined && message.pM !== false) {
       obj.pM = message.pM;
@@ -242,7 +244,7 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
     message.iv = object.iv ?? new Uint8Array(0);
     message.hmac = object.hmac ?? new Uint8Array(0);
     message.reverseProxyConfig = object.reverseProxyConfig ?? "";
-    message.YP = object.YP ?? false;
+    message.serializeResponseAsJson = object.serializeResponseAsJson ?? false;
     message.pM = object.pM ?? false;
     message.enableCompression = object.enableCompression ?? false;
     message.unencryptedOnesiePlayerRequest = object.unencryptedOnesiePlayerRequest ?? new Uint8Array(0);
