@@ -1,0 +1,13 @@
+syntax = "proto2";
+package video_streaming;
+
+message LiveMetadata {
+  optional uint32 head_sequence_number = 3;
+  optional uint64 head_time_ms = 4;
+  optional uint64 wall_time_ms = 5;
+  optional uint64 field10 = 10;
+  optional uint64 field12 = 12;
+  optional uint64 field13 = 13;
+  optional uint64 head_time_usec = 14;
+  optional uint64 field15 = 15;
+}
