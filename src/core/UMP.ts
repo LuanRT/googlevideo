@@ -8,7 +8,7 @@ export class UMP {
     this.chunkedDataBuffer = chunkedDataBuffer;
   }
 
-  public parse(handlePart: (part: Part) => void) {
+  public parse(handlePart: (part: Part) => void): Part | undefined {
     while (true) {
       let offset = 0;
 
@@ -21,9 +21,16 @@ export class UMP {
       if (partType < 0 || partSize < 0)
         break;
 
-      // Note that we don't handle cases like this YET..
-      if (!this.chunkedDataBuffer.canReadBytes(offset, partSize))
-        break;
+      if (!this.chunkedDataBuffer.canReadBytes(offset, partSize)) {
+        if (!this.chunkedDataBuffer.canReadBytes(offset, 1))
+          break;
+        
+        return {
+          type: partType,
+          size: partSize,
+          data: this.chunkedDataBuffer
+        };
+      }
 
       const splitResult = this.chunkedDataBuffer.split(offset).remainingBuffer.split(partSize);
       offset = 0;
