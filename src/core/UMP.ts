@@ -4,10 +4,19 @@ import type { ChunkedDataBuffer } from './ChunkedDataBuffer.js';
 export class UMP {
   private chunkedDataBuffer: ChunkedDataBuffer;
 
+  /**
+   * Creates a new UMP parser.
+   * @param chunkedDataBuffer - Buffer containing UMP format data.
+   */
   constructor(chunkedDataBuffer: ChunkedDataBuffer) {
     this.chunkedDataBuffer = chunkedDataBuffer;
   }
 
+  /**
+   * Parses parts from the buffer and calls the handler for each complete part.
+   * @param handlePart - Function called with each complete part.
+   * @returns Partial part if parsing is incomplete, undefined otherwise.
+   */
   public parse(handlePart: (part: Part) => void): Part | undefined {
     while (true) {
       let offset = 0;
@@ -45,6 +54,11 @@ export class UMP {
     }
   }
 
+  /**
+   * Reads a variable-length integer from the buffer.
+   * @param offset - Position to start reading from.
+   * @returns Tuple of [value, new offset] or [-1, offset] if incomplete.
+   */
   public readVarInt(offset: number): [number, number] {
     let byteLength: number;
 
@@ -108,10 +122,20 @@ export class UMP {
     return [ value, offset ];
   }
 
+  /**
+   * Checks if the specified bytes can be read from the current chunk.
+   * @param offset - Position to start reading from.
+   * @param length - Number of bytes to read.
+   * @returns True if bytes can be read from current chunk, false otherwise.
+   */
   public canReadFromCurrentChunk(offset: number, length: number): boolean {
     return offset - this.chunkedDataBuffer.currentChunkOffset + length <= this.chunkedDataBuffer.chunks[this.chunkedDataBuffer.currentChunkIndex].length;
   }
 
+  /**
+   * Gets a DataView of the current chunk, creating it if necessary.
+   * @returns DataView for the current chunk.
+   */
   public getCurrentDataView(): DataView {
     if (!this.chunkedDataBuffer.currentDataView) {
       const currentChunk = this.chunkedDataBuffer.chunks[this.chunkedDataBuffer.currentChunkIndex];
