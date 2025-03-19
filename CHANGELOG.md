@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.1.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v2.0.0...googlevideo-v2.1.0) (2025-03-19)
+
+
+### Features
+
+* Add support for unencrypted onesie requests & responses ([418898f](https://github.com/LuanRT/googlevideo/commit/418898faa91967ff8d60ab009d32ee49b6649ea5))
+* **protos:** Add `LiveMetadata` protobuf ([#18](https://github.com/LuanRT/googlevideo/issues/18)) ([d389d24](https://github.com/LuanRT/googlevideo/commit/d389d242ab21450b750dd694889334f6a37ef4ca))
+* **UMP:** Add support for partial parts ([d12432c](https://github.com/LuanRT/googlevideo/commit/d12432c0e5737f440abb75c42c7c430819751cdc))
+
 ## [2.0.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v1.1.0...googlevideo-v2.0.0) (2024-11-02)
 
 
