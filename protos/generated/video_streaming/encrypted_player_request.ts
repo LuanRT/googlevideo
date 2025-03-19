@@ -10,7 +10,6 @@ import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 export const protobufPackage = "video_streaming";
 
 export interface EncryptedPlayerRequest {
-  /** InnerTubeContext proto? */
   context?: Uint8Array | undefined;
   encryptedOnesiePlayerRequest?: Uint8Array | undefined;
   encryptedClientKey?: Uint8Array | undefined;
