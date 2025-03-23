@@ -82,71 +82,9 @@ export const PlaybackCookie: MessageFns<PlaybackCookie> = {
     }
     return message;
   },
-
-  fromJSON(object: any): PlaybackCookie {
-    return {
-      field1: isSet(object.field1) ? globalThis.Number(object.field1) : 0,
-      field2: isSet(object.field2) ? globalThis.Number(object.field2) : 0,
-      videoFmt: isSet(object.videoFmt) ? FormatId.fromJSON(object.videoFmt) : undefined,
-      audioFmt: isSet(object.audioFmt) ? FormatId.fromJSON(object.audioFmt) : undefined,
-    };
-  },
-
-  toJSON(message: PlaybackCookie): unknown {
-    const obj: any = {};
-    if (message.field1 !== undefined && message.field1 !== 0) {
-      obj.field1 = Math.round(message.field1);
-    }
-    if (message.field2 !== undefined && message.field2 !== 0) {
-      obj.field2 = Math.round(message.field2);
-    }
-    if (message.videoFmt !== undefined) {
-      obj.videoFmt = FormatId.toJSON(message.videoFmt);
-    }
-    if (message.audioFmt !== undefined) {
-      obj.audioFmt = FormatId.toJSON(message.audioFmt);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PlaybackCookie>, I>>(base?: I): PlaybackCookie {
-    return PlaybackCookie.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PlaybackCookie>, I>>(object: I): PlaybackCookie {
-    const message = createBasePlaybackCookie();
-    message.field1 = object.field1 ?? 0;
-    message.field2 = object.field2 ?? 0;
-    message.videoFmt = (object.videoFmt !== undefined && object.videoFmt !== null)
-      ? FormatId.fromPartial(object.videoFmt)
-      : undefined;
-    message.audioFmt = (object.audioFmt !== undefined && object.audioFmt !== null)
-      ? FormatId.fromPartial(object.audioFmt)
-      : undefined;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

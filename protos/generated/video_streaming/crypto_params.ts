@@ -22,38 +22,6 @@ export enum CryptoParams_CompressionType {
   UNRECOGNIZED = -1,
 }
 
-export function cryptoParams_CompressionTypeFromJSON(object: any): CryptoParams_CompressionType {
-  switch (object) {
-    case 0:
-    case "VAL_0":
-      return CryptoParams_CompressionType.VAL_0;
-    case 1:
-    case "VAL_1":
-      return CryptoParams_CompressionType.VAL_1;
-    case 2:
-    case "VAL_2":
-      return CryptoParams_CompressionType.VAL_2;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return CryptoParams_CompressionType.UNRECOGNIZED;
-  }
-}
-
-export function cryptoParams_CompressionTypeToJSON(object: CryptoParams_CompressionType): string {
-  switch (object) {
-    case CryptoParams_CompressionType.VAL_0:
-      return "VAL_0";
-    case CryptoParams_CompressionType.VAL_1:
-      return "VAL_1";
-    case CryptoParams_CompressionType.VAL_2:
-      return "VAL_2";
-    case CryptoParams_CompressionType.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 function createBaseCryptoParams(): CryptoParams {
   return { hmac: new Uint8Array(0), iv: new Uint8Array(0), compressionType: 0 };
 }
@@ -108,79 +76,9 @@ export const CryptoParams: MessageFns<CryptoParams> = {
     }
     return message;
   },
-
-  fromJSON(object: any): CryptoParams {
-    return {
-      hmac: isSet(object.hmac) ? bytesFromBase64(object.hmac) : new Uint8Array(0),
-      iv: isSet(object.iv) ? bytesFromBase64(object.iv) : new Uint8Array(0),
-      compressionType: isSet(object.compressionType) ? cryptoParams_CompressionTypeFromJSON(object.compressionType) : 0,
-    };
-  },
-
-  toJSON(message: CryptoParams): unknown {
-    const obj: any = {};
-    if (message.hmac !== undefined && message.hmac.length !== 0) {
-      obj.hmac = base64FromBytes(message.hmac);
-    }
-    if (message.iv !== undefined && message.iv.length !== 0) {
-      obj.iv = base64FromBytes(message.iv);
-    }
-    if (message.compressionType !== undefined && message.compressionType !== 0) {
-      obj.compressionType = cryptoParams_CompressionTypeToJSON(message.compressionType);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<CryptoParams>, I>>(base?: I): CryptoParams {
-    return CryptoParams.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<CryptoParams>, I>>(object: I): CryptoParams {
-    const message = createBaseCryptoParams();
-    message.hmac = object.hmac ?? new Uint8Array(0);
-    message.iv = object.iv ?? new Uint8Array(0);
-    message.compressionType = object.compressionType ?? 0;
-    return message;
-  },
 };
-
-function bytesFromBase64(b64: string): Uint8Array {
-  const bin = globalThis.atob(b64);
-  const arr = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; ++i) {
-    arr[i] = bin.charCodeAt(i);
-  }
-  return arr;
-}
-
-function base64FromBytes(arr: Uint8Array): string {
-  const bin: string[] = [];
-  arr.forEach((byte) => {
-    bin.push(globalThis.String.fromCharCode(byte));
-  });
-  return globalThis.btoa(bin.join(""));
-}
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

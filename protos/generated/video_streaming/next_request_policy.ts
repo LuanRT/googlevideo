@@ -98,78 +98,9 @@ export const NextRequestPolicy: MessageFns<NextRequestPolicy> = {
     }
     return message;
   },
-
-  fromJSON(object: any): NextRequestPolicy {
-    return {
-      targetAudioReadaheadMs: isSet(object.targetAudioReadaheadMs)
-        ? globalThis.Number(object.targetAudioReadaheadMs)
-        : 0,
-      targetVideoReadaheadMs: isSet(object.targetVideoReadaheadMs)
-        ? globalThis.Number(object.targetVideoReadaheadMs)
-        : 0,
-      backoffTimeMs: isSet(object.backoffTimeMs) ? globalThis.Number(object.backoffTimeMs) : 0,
-      playbackCookie: isSet(object.playbackCookie) ? PlaybackCookie.fromJSON(object.playbackCookie) : undefined,
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
-    };
-  },
-
-  toJSON(message: NextRequestPolicy): unknown {
-    const obj: any = {};
-    if (message.targetAudioReadaheadMs !== undefined && message.targetAudioReadaheadMs !== 0) {
-      obj.targetAudioReadaheadMs = Math.round(message.targetAudioReadaheadMs);
-    }
-    if (message.targetVideoReadaheadMs !== undefined && message.targetVideoReadaheadMs !== 0) {
-      obj.targetVideoReadaheadMs = Math.round(message.targetVideoReadaheadMs);
-    }
-    if (message.backoffTimeMs !== undefined && message.backoffTimeMs !== 0) {
-      obj.backoffTimeMs = Math.round(message.backoffTimeMs);
-    }
-    if (message.playbackCookie !== undefined) {
-      obj.playbackCookie = PlaybackCookie.toJSON(message.playbackCookie);
-    }
-    if (message.videoId !== undefined && message.videoId !== "") {
-      obj.videoId = message.videoId;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<NextRequestPolicy>, I>>(base?: I): NextRequestPolicy {
-    return NextRequestPolicy.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<NextRequestPolicy>, I>>(object: I): NextRequestPolicy {
-    const message = createBaseNextRequestPolicy();
-    message.targetAudioReadaheadMs = object.targetAudioReadaheadMs ?? 0;
-    message.targetVideoReadaheadMs = object.targetVideoReadaheadMs ?? 0;
-    message.backoffTimeMs = object.backoffTimeMs ?? 0;
-    message.playbackCookie = (object.playbackCookie !== undefined && object.playbackCookie !== null)
-      ? PlaybackCookie.fromPartial(object.playbackCookie)
-      : undefined;
-    message.videoId = object.videoId ?? "";
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

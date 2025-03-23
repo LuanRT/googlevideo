@@ -7,7 +7,7 @@
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { CryptoParams } from "./crypto_params.js";
-import { OnesieHeaderType, onesieHeaderTypeFromJSON, onesieHeaderTypeToJSON } from "./onesie_header_type.js";
+import { OnesieHeaderType } from "./onesie_header_type.js";
 
 export const protobufPackage = "video_streaming";
 
@@ -179,87 +179,6 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
     }
     return message;
   },
-
-  fromJSON(object: any): OnesieHeader {
-    return {
-      type: isSet(object.type) ? onesieHeaderTypeFromJSON(object.type) : 0,
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
-      itag: isSet(object.itag) ? globalThis.String(object.itag) : "",
-      cryptoParams: isSet(object.cryptoParams) ? CryptoParams.fromJSON(object.cryptoParams) : undefined,
-      lastModified: isSet(object.lastModified) ? globalThis.Number(object.lastModified) : 0,
-      mediaSizeBytes: isSet(object.mediaSizeBytes) ? globalThis.Number(object.mediaSizeBytes) : 0,
-      restrictedFormats: globalThis.Array.isArray(object?.restrictedFormats)
-        ? object.restrictedFormats.map((e: any) => globalThis.String(e))
-        : [],
-      xtags: isSet(object.xtags) ? globalThis.String(object.xtags) : "",
-      sequenceNumber: isSet(object.sequenceNumber) ? globalThis.Number(object.sequenceNumber) : 0,
-      field23: isSet(object.field23) ? OnesieHeader_Field23.fromJSON(object.field23) : undefined,
-      field34: isSet(object.field34) ? OnesieHeader_Field34.fromJSON(object.field34) : undefined,
-    };
-  },
-
-  toJSON(message: OnesieHeader): unknown {
-    const obj: any = {};
-    if (message.type !== undefined && message.type !== 0) {
-      obj.type = onesieHeaderTypeToJSON(message.type);
-    }
-    if (message.videoId !== undefined && message.videoId !== "") {
-      obj.videoId = message.videoId;
-    }
-    if (message.itag !== undefined && message.itag !== "") {
-      obj.itag = message.itag;
-    }
-    if (message.cryptoParams !== undefined) {
-      obj.cryptoParams = CryptoParams.toJSON(message.cryptoParams);
-    }
-    if (message.lastModified !== undefined && message.lastModified !== 0) {
-      obj.lastModified = Math.round(message.lastModified);
-    }
-    if (message.mediaSizeBytes !== undefined && message.mediaSizeBytes !== 0) {
-      obj.mediaSizeBytes = Math.round(message.mediaSizeBytes);
-    }
-    if (message.restrictedFormats?.length) {
-      obj.restrictedFormats = message.restrictedFormats;
-    }
-    if (message.xtags !== undefined && message.xtags !== "") {
-      obj.xtags = message.xtags;
-    }
-    if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
-      obj.sequenceNumber = Math.round(message.sequenceNumber);
-    }
-    if (message.field23 !== undefined) {
-      obj.field23 = OnesieHeader_Field23.toJSON(message.field23);
-    }
-    if (message.field34 !== undefined) {
-      obj.field34 = OnesieHeader_Field34.toJSON(message.field34);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<OnesieHeader>, I>>(base?: I): OnesieHeader {
-    return OnesieHeader.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<OnesieHeader>, I>>(object: I): OnesieHeader {
-    const message = createBaseOnesieHeader();
-    message.type = object.type ?? 0;
-    message.videoId = object.videoId ?? "";
-    message.itag = object.itag ?? "";
-    message.cryptoParams = (object.cryptoParams !== undefined && object.cryptoParams !== null)
-      ? CryptoParams.fromPartial(object.cryptoParams)
-      : undefined;
-    message.lastModified = object.lastModified ?? 0;
-    message.mediaSizeBytes = object.mediaSizeBytes ?? 0;
-    message.restrictedFormats = object.restrictedFormats?.map((e) => e) || [];
-    message.xtags = object.xtags ?? "";
-    message.sequenceNumber = object.sequenceNumber ?? 0;
-    message.field23 = (object.field23 !== undefined && object.field23 !== null)
-      ? OnesieHeader_Field23.fromPartial(object.field23)
-      : undefined;
-    message.field34 = (object.field34 !== undefined && object.field34 !== null)
-      ? OnesieHeader_Field34.fromPartial(object.field34)
-      : undefined;
-    return message;
-  },
 };
 
 function createBaseOnesieHeader_Field23(): OnesieHeader_Field23 {
@@ -294,27 +213,6 @@ export const OnesieHeader_Field23: MessageFns<OnesieHeader_Field23> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): OnesieHeader_Field23 {
-    return { videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "" };
-  },
-
-  toJSON(message: OnesieHeader_Field23): unknown {
-    const obj: any = {};
-    if (message.videoId !== undefined && message.videoId !== "") {
-      obj.videoId = message.videoId;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<OnesieHeader_Field23>, I>>(base?: I): OnesieHeader_Field23 {
-    return OnesieHeader_Field23.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<OnesieHeader_Field23>, I>>(object: I): OnesieHeader_Field23 {
-    const message = createBaseOnesieHeader_Field23();
-    message.videoId = object.videoId ?? "";
     return message;
   },
 };
@@ -353,44 +251,7 @@ export const OnesieHeader_Field34: MessageFns<OnesieHeader_Field34> = {
     }
     return message;
   },
-
-  fromJSON(object: any): OnesieHeader_Field34 {
-    return {
-      itagDenylist: globalThis.Array.isArray(object?.itagDenylist)
-        ? object.itagDenylist.map((e: any) => globalThis.String(e))
-        : [],
-    };
-  },
-
-  toJSON(message: OnesieHeader_Field34): unknown {
-    const obj: any = {};
-    if (message.itagDenylist?.length) {
-      obj.itagDenylist = message.itagDenylist;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<OnesieHeader_Field34>, I>>(base?: I): OnesieHeader_Field34 {
-    return OnesieHeader_Field34.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<OnesieHeader_Field34>, I>>(object: I): OnesieHeader_Field34 {
-    const message = createBaseOnesieHeader_Field34();
-    message.itagDenylist = object.itagDenylist?.map((e) => e) || [];
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
@@ -403,15 +264,7 @@ function longToNumber(int64: { toString(): string }): number {
   return num;
 }
 
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }
