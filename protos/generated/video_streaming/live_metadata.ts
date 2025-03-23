@@ -133,77 +133,7 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
     }
     return message;
   },
-
-  fromJSON(object: any): LiveMetadata {
-    return {
-      headSequenceNumber: isSet(object.headSequenceNumber) ? globalThis.Number(object.headSequenceNumber) : 0,
-      headTimeMs: isSet(object.headTimeMs) ? globalThis.Number(object.headTimeMs) : 0,
-      wallTimeMs: isSet(object.wallTimeMs) ? globalThis.Number(object.wallTimeMs) : 0,
-      field10: isSet(object.field10) ? globalThis.Number(object.field10) : 0,
-      field12: isSet(object.field12) ? globalThis.Number(object.field12) : 0,
-      field13: isSet(object.field13) ? globalThis.Number(object.field13) : 0,
-      headTimeUsec: isSet(object.headTimeUsec) ? globalThis.Number(object.headTimeUsec) : 0,
-      field15: isSet(object.field15) ? globalThis.Number(object.field15) : 0,
-    };
-  },
-
-  toJSON(message: LiveMetadata): unknown {
-    const obj: any = {};
-    if (message.headSequenceNumber !== undefined && message.headSequenceNumber !== 0) {
-      obj.headSequenceNumber = Math.round(message.headSequenceNumber);
-    }
-    if (message.headTimeMs !== undefined && message.headTimeMs !== 0) {
-      obj.headTimeMs = Math.round(message.headTimeMs);
-    }
-    if (message.wallTimeMs !== undefined && message.wallTimeMs !== 0) {
-      obj.wallTimeMs = Math.round(message.wallTimeMs);
-    }
-    if (message.field10 !== undefined && message.field10 !== 0) {
-      obj.field10 = Math.round(message.field10);
-    }
-    if (message.field12 !== undefined && message.field12 !== 0) {
-      obj.field12 = Math.round(message.field12);
-    }
-    if (message.field13 !== undefined && message.field13 !== 0) {
-      obj.field13 = Math.round(message.field13);
-    }
-    if (message.headTimeUsec !== undefined && message.headTimeUsec !== 0) {
-      obj.headTimeUsec = Math.round(message.headTimeUsec);
-    }
-    if (message.field15 !== undefined && message.field15 !== 0) {
-      obj.field15 = Math.round(message.field15);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<LiveMetadata>, I>>(base?: I): LiveMetadata {
-    return LiveMetadata.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<LiveMetadata>, I>>(object: I): LiveMetadata {
-    const message = createBaseLiveMetadata();
-    message.headSequenceNumber = object.headSequenceNumber ?? 0;
-    message.headTimeMs = object.headTimeMs ?? 0;
-    message.wallTimeMs = object.wallTimeMs ?? 0;
-    message.field10 = object.field10 ?? 0;
-    message.field12 = object.field12 ?? 0;
-    message.field13 = object.field13 ?? 0;
-    message.headTimeUsec = object.headTimeUsec ?? 0;
-    message.field15 = object.field15 ?? 0;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
@@ -216,15 +146,7 @@ function longToNumber(int64: { toString(): string }): number {
   return num;
 }
 
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

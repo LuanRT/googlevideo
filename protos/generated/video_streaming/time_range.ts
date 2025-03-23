@@ -69,52 +69,7 @@ export const TimeRange: MessageFns<TimeRange> = {
     }
     return message;
   },
-
-  fromJSON(object: any): TimeRange {
-    return {
-      start: isSet(object.start) ? globalThis.Number(object.start) : 0,
-      duration: isSet(object.duration) ? globalThis.Number(object.duration) : 0,
-      timescale: isSet(object.timescale) ? globalThis.Number(object.timescale) : 0,
-    };
-  },
-
-  toJSON(message: TimeRange): unknown {
-    const obj: any = {};
-    if (message.start !== undefined && message.start !== 0) {
-      obj.start = Math.round(message.start);
-    }
-    if (message.duration !== undefined && message.duration !== 0) {
-      obj.duration = Math.round(message.duration);
-    }
-    if (message.timescale !== undefined && message.timescale !== 0) {
-      obj.timescale = Math.round(message.timescale);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<TimeRange>, I>>(base?: I): TimeRange {
-    return TimeRange.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<TimeRange>, I>>(object: I): TimeRange {
-    const message = createBaseTimeRange();
-    message.start = object.start ?? 0;
-    message.duration = object.duration ?? 0;
-    message.timescale = object.timescale ?? 0;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
@@ -127,15 +82,7 @@ function longToNumber(int64: { toString(): string }): number {
   return num;
 }
 
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

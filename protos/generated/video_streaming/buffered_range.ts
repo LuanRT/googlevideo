@@ -162,79 +162,6 @@ export const BufferedRange: MessageFns<BufferedRange> = {
     }
     return message;
   },
-
-  fromJSON(object: any): BufferedRange {
-    return {
-      formatId: isSet(object.formatId) ? FormatId.fromJSON(object.formatId) : undefined,
-      startTimeMs: isSet(object.startTimeMs) ? globalThis.Number(object.startTimeMs) : 0,
-      durationMs: isSet(object.durationMs) ? globalThis.Number(object.durationMs) : 0,
-      startSegmentIndex: isSet(object.startSegmentIndex) ? globalThis.Number(object.startSegmentIndex) : 0,
-      endSegmentIndex: isSet(object.endSegmentIndex) ? globalThis.Number(object.endSegmentIndex) : 0,
-      timeRange: isSet(object.timeRange) ? TimeRange.fromJSON(object.timeRange) : undefined,
-      field9: isSet(object.field9) ? Kob.fromJSON(object.field9) : undefined,
-      field11: isSet(object.field11) ? YPa.fromJSON(object.field11) : undefined,
-      field12: isSet(object.field12) ? YPa.fromJSON(object.field12) : undefined,
-    };
-  },
-
-  toJSON(message: BufferedRange): unknown {
-    const obj: any = {};
-    if (message.formatId !== undefined) {
-      obj.formatId = FormatId.toJSON(message.formatId);
-    }
-    if (message.startTimeMs !== 0) {
-      obj.startTimeMs = Math.round(message.startTimeMs);
-    }
-    if (message.durationMs !== 0) {
-      obj.durationMs = Math.round(message.durationMs);
-    }
-    if (message.startSegmentIndex !== 0) {
-      obj.startSegmentIndex = Math.round(message.startSegmentIndex);
-    }
-    if (message.endSegmentIndex !== 0) {
-      obj.endSegmentIndex = Math.round(message.endSegmentIndex);
-    }
-    if (message.timeRange !== undefined) {
-      obj.timeRange = TimeRange.toJSON(message.timeRange);
-    }
-    if (message.field9 !== undefined) {
-      obj.field9 = Kob.toJSON(message.field9);
-    }
-    if (message.field11 !== undefined) {
-      obj.field11 = YPa.toJSON(message.field11);
-    }
-    if (message.field12 !== undefined) {
-      obj.field12 = YPa.toJSON(message.field12);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<BufferedRange>, I>>(base?: I): BufferedRange {
-    return BufferedRange.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<BufferedRange>, I>>(object: I): BufferedRange {
-    const message = createBaseBufferedRange();
-    message.formatId = (object.formatId !== undefined && object.formatId !== null)
-      ? FormatId.fromPartial(object.formatId)
-      : undefined;
-    message.startTimeMs = object.startTimeMs ?? 0;
-    message.durationMs = object.durationMs ?? 0;
-    message.startSegmentIndex = object.startSegmentIndex ?? 0;
-    message.endSegmentIndex = object.endSegmentIndex ?? 0;
-    message.timeRange = (object.timeRange !== undefined && object.timeRange !== null)
-      ? TimeRange.fromPartial(object.timeRange)
-      : undefined;
-    message.field9 = (object.field9 !== undefined && object.field9 !== null)
-      ? Kob.fromPartial(object.field9)
-      : undefined;
-    message.field11 = (object.field11 !== undefined && object.field11 !== null)
-      ? YPa.fromPartial(object.field11)
-      : undefined;
-    message.field12 = (object.field12 !== undefined && object.field12 !== null)
-      ? YPa.fromPartial(object.field12)
-      : undefined;
-    return message;
-  },
 };
 
 function createBaseKob(): Kob {
@@ -269,27 +196,6 @@ export const Kob: MessageFns<Kob> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): Kob {
-    return { EW: globalThis.Array.isArray(object?.EW) ? object.EW.map((e: any) => Kob_Pa.fromJSON(e)) : [] };
-  },
-
-  toJSON(message: Kob): unknown {
-    const obj: any = {};
-    if (message.EW?.length) {
-      obj.EW = message.EW.map((e) => Kob_Pa.toJSON(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Kob>, I>>(base?: I): Kob {
-    return Kob.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Kob>, I>>(object: I): Kob {
-    const message = createBaseKob();
-    message.EW = object.EW?.map((e) => Kob_Pa.fromPartial(e)) || [];
     return message;
   },
 };
@@ -336,34 +242,6 @@ export const Kob_Pa: MessageFns<Kob_Pa> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): Kob_Pa {
-    return {
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
-      lmt: isSet(object.lmt) ? globalThis.Number(object.lmt) : 0,
-    };
-  },
-
-  toJSON(message: Kob_Pa): unknown {
-    const obj: any = {};
-    if (message.videoId !== undefined && message.videoId !== "") {
-      obj.videoId = message.videoId;
-    }
-    if (message.lmt !== undefined && message.lmt !== 0) {
-      obj.lmt = Math.round(message.lmt);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Kob_Pa>, I>>(base?: I): Kob_Pa {
-    return Kob_Pa.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Kob_Pa>, I>>(object: I): Kob_Pa {
-    const message = createBaseKob_Pa();
-    message.videoId = object.videoId ?? "";
-    message.lmt = object.lmt ?? 0;
     return message;
   },
 };
@@ -422,52 +300,7 @@ export const YPa: MessageFns<YPa> = {
     }
     return message;
   },
-
-  fromJSON(object: any): YPa {
-    return {
-      field1: isSet(object.field1) ? globalThis.Number(object.field1) : 0,
-      field2: isSet(object.field2) ? globalThis.Number(object.field2) : 0,
-      field3: isSet(object.field3) ? globalThis.Number(object.field3) : 0,
-    };
-  },
-
-  toJSON(message: YPa): unknown {
-    const obj: any = {};
-    if (message.field1 !== undefined && message.field1 !== 0) {
-      obj.field1 = Math.round(message.field1);
-    }
-    if (message.field2 !== undefined && message.field2 !== 0) {
-      obj.field2 = Math.round(message.field2);
-    }
-    if (message.field3 !== undefined && message.field3 !== 0) {
-      obj.field3 = Math.round(message.field3);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<YPa>, I>>(base?: I): YPa {
-    return YPa.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<YPa>, I>>(object: I): YPa {
-    const message = createBaseYPa();
-    message.field1 = object.field1 ?? 0;
-    message.field2 = object.field2 ?? 0;
-    message.field3 = object.field3 ?? 0;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
@@ -480,15 +313,7 @@ function longToNumber(int64: { toString(): string }): number {
   return num;
 }
 
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

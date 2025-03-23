@@ -85,49 +85,6 @@ export const MediaCapabilities: MessageFns<MediaCapabilities> = {
     }
     return message;
   },
-
-  fromJSON(object: any): MediaCapabilities {
-    return {
-      videoFormatCapabilities: globalThis.Array.isArray(object?.videoFormatCapabilities)
-        ? object.videoFormatCapabilities.map((e: any) => MediaCapabilities_VideoFormatCapability.fromJSON(e))
-        : [],
-      audioFormatCapabilities: globalThis.Array.isArray(object?.audioFormatCapabilities)
-        ? object.audioFormatCapabilities.map((e: any) => MediaCapabilities_AudioFormatCapability.fromJSON(e))
-        : [],
-      hdrModeBitmask: isSet(object.hdrModeBitmask) ? globalThis.Number(object.hdrModeBitmask) : 0,
-    };
-  },
-
-  toJSON(message: MediaCapabilities): unknown {
-    const obj: any = {};
-    if (message.videoFormatCapabilities?.length) {
-      obj.videoFormatCapabilities = message.videoFormatCapabilities.map((e) =>
-        MediaCapabilities_VideoFormatCapability.toJSON(e)
-      );
-    }
-    if (message.audioFormatCapabilities?.length) {
-      obj.audioFormatCapabilities = message.audioFormatCapabilities.map((e) =>
-        MediaCapabilities_AudioFormatCapability.toJSON(e)
-      );
-    }
-    if (message.hdrModeBitmask !== undefined && message.hdrModeBitmask !== 0) {
-      obj.hdrModeBitmask = Math.round(message.hdrModeBitmask);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MediaCapabilities>, I>>(base?: I): MediaCapabilities {
-    return MediaCapabilities.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MediaCapabilities>, I>>(object: I): MediaCapabilities {
-    const message = createBaseMediaCapabilities();
-    message.videoFormatCapabilities =
-      object.videoFormatCapabilities?.map((e) => MediaCapabilities_VideoFormatCapability.fromPartial(e)) || [];
-    message.audioFormatCapabilities =
-      object.audioFormatCapabilities?.map((e) => MediaCapabilities_AudioFormatCapability.fromPartial(e)) || [];
-    message.hdrModeBitmask = object.hdrModeBitmask ?? 0;
-    return message;
-  },
 };
 
 function createBaseMediaCapabilities_VideoFormatCapability(): MediaCapabilities_VideoFormatCapability {
@@ -214,58 +171,6 @@ export const MediaCapabilities_VideoFormatCapability: MessageFns<MediaCapabiliti
     }
     return message;
   },
-
-  fromJSON(object: any): MediaCapabilities_VideoFormatCapability {
-    return {
-      videoCodec: isSet(object.videoCodec) ? globalThis.Number(object.videoCodec) : 0,
-      maxHeight: isSet(object.maxHeight) ? globalThis.Number(object.maxHeight) : 0,
-      maxWidth: isSet(object.maxWidth) ? globalThis.Number(object.maxWidth) : 0,
-      maxFramerate: isSet(object.maxFramerate) ? globalThis.Number(object.maxFramerate) : 0,
-      maxBitrateBps: isSet(object.maxBitrateBps) ? globalThis.Number(object.maxBitrateBps) : 0,
-      is10BitSupported: isSet(object.is10BitSupported) ? globalThis.Boolean(object.is10BitSupported) : false,
-    };
-  },
-
-  toJSON(message: MediaCapabilities_VideoFormatCapability): unknown {
-    const obj: any = {};
-    if (message.videoCodec !== undefined && message.videoCodec !== 0) {
-      obj.videoCodec = Math.round(message.videoCodec);
-    }
-    if (message.maxHeight !== undefined && message.maxHeight !== 0) {
-      obj.maxHeight = Math.round(message.maxHeight);
-    }
-    if (message.maxWidth !== undefined && message.maxWidth !== 0) {
-      obj.maxWidth = Math.round(message.maxWidth);
-    }
-    if (message.maxFramerate !== undefined && message.maxFramerate !== 0) {
-      obj.maxFramerate = Math.round(message.maxFramerate);
-    }
-    if (message.maxBitrateBps !== undefined && message.maxBitrateBps !== 0) {
-      obj.maxBitrateBps = Math.round(message.maxBitrateBps);
-    }
-    if (message.is10BitSupported !== undefined && message.is10BitSupported !== false) {
-      obj.is10BitSupported = message.is10BitSupported;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MediaCapabilities_VideoFormatCapability>, I>>(
-    base?: I,
-  ): MediaCapabilities_VideoFormatCapability {
-    return MediaCapabilities_VideoFormatCapability.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MediaCapabilities_VideoFormatCapability>, I>>(
-    object: I,
-  ): MediaCapabilities_VideoFormatCapability {
-    const message = createBaseMediaCapabilities_VideoFormatCapability();
-    message.videoCodec = object.videoCodec ?? 0;
-    message.maxHeight = object.maxHeight ?? 0;
-    message.maxWidth = object.maxWidth ?? 0;
-    message.maxFramerate = object.maxFramerate ?? 0;
-    message.maxBitrateBps = object.maxBitrateBps ?? 0;
-    message.is10BitSupported = object.is10BitSupported ?? false;
-    return message;
-  },
 };
 
 function createBaseMediaCapabilities_AudioFormatCapability(): MediaCapabilities_AudioFormatCapability {
@@ -332,73 +237,9 @@ export const MediaCapabilities_AudioFormatCapability: MessageFns<MediaCapabiliti
     }
     return message;
   },
-
-  fromJSON(object: any): MediaCapabilities_AudioFormatCapability {
-    return {
-      audioCodec: isSet(object.audioCodec) ? globalThis.Number(object.audioCodec) : 0,
-      numChannels: isSet(object.numChannels) ? globalThis.Number(object.numChannels) : 0,
-      maxBitrateBps: isSet(object.maxBitrateBps) ? globalThis.Number(object.maxBitrateBps) : 0,
-      spatialCapabilityBitmask: isSet(object.spatialCapabilityBitmask)
-        ? globalThis.Number(object.spatialCapabilityBitmask)
-        : 0,
-    };
-  },
-
-  toJSON(message: MediaCapabilities_AudioFormatCapability): unknown {
-    const obj: any = {};
-    if (message.audioCodec !== undefined && message.audioCodec !== 0) {
-      obj.audioCodec = Math.round(message.audioCodec);
-    }
-    if (message.numChannels !== undefined && message.numChannels !== 0) {
-      obj.numChannels = Math.round(message.numChannels);
-    }
-    if (message.maxBitrateBps !== undefined && message.maxBitrateBps !== 0) {
-      obj.maxBitrateBps = Math.round(message.maxBitrateBps);
-    }
-    if (message.spatialCapabilityBitmask !== undefined && message.spatialCapabilityBitmask !== 0) {
-      obj.spatialCapabilityBitmask = Math.round(message.spatialCapabilityBitmask);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MediaCapabilities_AudioFormatCapability>, I>>(
-    base?: I,
-  ): MediaCapabilities_AudioFormatCapability {
-    return MediaCapabilities_AudioFormatCapability.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MediaCapabilities_AudioFormatCapability>, I>>(
-    object: I,
-  ): MediaCapabilities_AudioFormatCapability {
-    const message = createBaseMediaCapabilities_AudioFormatCapability();
-    message.audioCodec = object.audioCodec ?? 0;
-    message.numChannels = object.numChannels ?? 0;
-    message.maxBitrateBps = object.maxBitrateBps ?? 0;
-    message.spatialCapabilityBitmask = object.spatialCapabilityBitmask ?? 0;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

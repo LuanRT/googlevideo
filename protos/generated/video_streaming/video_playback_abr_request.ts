@@ -226,105 +226,6 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     }
     return message;
   },
-
-  fromJSON(object: any): VideoPlaybackAbrRequest {
-    return {
-      clientAbrState: isSet(object.clientAbrState) ? ClientAbrState.fromJSON(object.clientAbrState) : undefined,
-      selectedFormatIds: globalThis.Array.isArray(object?.selectedFormatIds)
-        ? object.selectedFormatIds.map((e: any) => FormatId.fromJSON(e))
-        : [],
-      bufferedRanges: globalThis.Array.isArray(object?.bufferedRanges)
-        ? object.bufferedRanges.map((e: any) => BufferedRange.fromJSON(e))
-        : [],
-      playerTimeMs: isSet(object.playerTimeMs) ? globalThis.Number(object.playerTimeMs) : 0,
-      videoPlaybackUstreamerConfig: isSet(object.videoPlaybackUstreamerConfig)
-        ? bytesFromBase64(object.videoPlaybackUstreamerConfig)
-        : new Uint8Array(0),
-      lo: isSet(object.lo) ? Lo.fromJSON(object.lo) : undefined,
-      selectedAudioFormatIds: globalThis.Array.isArray(object?.selectedAudioFormatIds)
-        ? object.selectedAudioFormatIds.map((e: any) => FormatId.fromJSON(e))
-        : [],
-      selectedVideoFormatIds: globalThis.Array.isArray(object?.selectedVideoFormatIds)
-        ? object.selectedVideoFormatIds.map((e: any) => FormatId.fromJSON(e))
-        : [],
-      streamerContext: isSet(object.streamerContext) ? StreamerContext.fromJSON(object.streamerContext) : undefined,
-      field21: isSet(object.field21) ? OQa.fromJSON(object.field21) : undefined,
-      field22: isSet(object.field22) ? globalThis.Number(object.field22) : 0,
-      field23: isSet(object.field23) ? globalThis.Number(object.field23) : 0,
-      field1000: globalThis.Array.isArray(object?.field1000) ? object.field1000.map((e: any) => Pqa.fromJSON(e)) : [],
-    };
-  },
-
-  toJSON(message: VideoPlaybackAbrRequest): unknown {
-    const obj: any = {};
-    if (message.clientAbrState !== undefined) {
-      obj.clientAbrState = ClientAbrState.toJSON(message.clientAbrState);
-    }
-    if (message.selectedFormatIds?.length) {
-      obj.selectedFormatIds = message.selectedFormatIds.map((e) => FormatId.toJSON(e));
-    }
-    if (message.bufferedRanges?.length) {
-      obj.bufferedRanges = message.bufferedRanges.map((e) => BufferedRange.toJSON(e));
-    }
-    if (message.playerTimeMs !== undefined && message.playerTimeMs !== 0) {
-      obj.playerTimeMs = Math.round(message.playerTimeMs);
-    }
-    if (message.videoPlaybackUstreamerConfig !== undefined && message.videoPlaybackUstreamerConfig.length !== 0) {
-      obj.videoPlaybackUstreamerConfig = base64FromBytes(message.videoPlaybackUstreamerConfig);
-    }
-    if (message.lo !== undefined) {
-      obj.lo = Lo.toJSON(message.lo);
-    }
-    if (message.selectedAudioFormatIds?.length) {
-      obj.selectedAudioFormatIds = message.selectedAudioFormatIds.map((e) => FormatId.toJSON(e));
-    }
-    if (message.selectedVideoFormatIds?.length) {
-      obj.selectedVideoFormatIds = message.selectedVideoFormatIds.map((e) => FormatId.toJSON(e));
-    }
-    if (message.streamerContext !== undefined) {
-      obj.streamerContext = StreamerContext.toJSON(message.streamerContext);
-    }
-    if (message.field21 !== undefined) {
-      obj.field21 = OQa.toJSON(message.field21);
-    }
-    if (message.field22 !== undefined && message.field22 !== 0) {
-      obj.field22 = Math.round(message.field22);
-    }
-    if (message.field23 !== undefined && message.field23 !== 0) {
-      obj.field23 = Math.round(message.field23);
-    }
-    if (message.field1000?.length) {
-      obj.field1000 = message.field1000.map((e) => Pqa.toJSON(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<VideoPlaybackAbrRequest>, I>>(base?: I): VideoPlaybackAbrRequest {
-    return VideoPlaybackAbrRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<VideoPlaybackAbrRequest>, I>>(object: I): VideoPlaybackAbrRequest {
-    const message = createBaseVideoPlaybackAbrRequest();
-    message.clientAbrState = (object.clientAbrState !== undefined && object.clientAbrState !== null)
-      ? ClientAbrState.fromPartial(object.clientAbrState)
-      : undefined;
-    message.selectedFormatIds = object.selectedFormatIds?.map((e) => FormatId.fromPartial(e)) || [];
-    message.bufferedRanges = object.bufferedRanges?.map((e) => BufferedRange.fromPartial(e)) || [];
-    message.playerTimeMs = object.playerTimeMs ?? 0;
-    message.videoPlaybackUstreamerConfig = object.videoPlaybackUstreamerConfig ?? new Uint8Array(0);
-    message.lo = (object.lo !== undefined && object.lo !== null) ? Lo.fromPartial(object.lo) : undefined;
-    message.selectedAudioFormatIds = object.selectedAudioFormatIds?.map((e) => FormatId.fromPartial(e)) || [];
-    message.selectedVideoFormatIds = object.selectedVideoFormatIds?.map((e) => FormatId.fromPartial(e)) || [];
-    message.streamerContext = (object.streamerContext !== undefined && object.streamerContext !== null)
-      ? StreamerContext.fromPartial(object.streamerContext)
-      : undefined;
-    message.field21 = (object.field21 !== undefined && object.field21 !== null)
-      ? OQa.fromPartial(object.field21)
-      : undefined;
-    message.field22 = object.field22 ?? 0;
-    message.field23 = object.field23 ?? 0;
-    message.field1000 = object.field1000?.map((e) => Pqa.fromPartial(e)) || [];
-    return message;
-  },
 };
 
 function createBaseLo(): Lo {
@@ -401,53 +302,6 @@ export const Lo: MessageFns<Lo> = {
     }
     return message;
   },
-
-  fromJSON(object: any): Lo {
-    return {
-      formatId: isSet(object.formatId) ? FormatId.fromJSON(object.formatId) : undefined,
-      Lj: isSet(object.Lj) ? globalThis.Number(object.Lj) : 0,
-      sequenceNumber: isSet(object.sequenceNumber) ? globalThis.Number(object.sequenceNumber) : 0,
-      field4: isSet(object.field4) ? Lo_Field4.fromJSON(object.field4) : undefined,
-      MZ: isSet(object.MZ) ? globalThis.Number(object.MZ) : 0,
-    };
-  },
-
-  toJSON(message: Lo): unknown {
-    const obj: any = {};
-    if (message.formatId !== undefined) {
-      obj.formatId = FormatId.toJSON(message.formatId);
-    }
-    if (message.Lj !== undefined && message.Lj !== 0) {
-      obj.Lj = Math.round(message.Lj);
-    }
-    if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
-      obj.sequenceNumber = Math.round(message.sequenceNumber);
-    }
-    if (message.field4 !== undefined) {
-      obj.field4 = Lo_Field4.toJSON(message.field4);
-    }
-    if (message.MZ !== undefined && message.MZ !== 0) {
-      obj.MZ = Math.round(message.MZ);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Lo>, I>>(base?: I): Lo {
-    return Lo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Lo>, I>>(object: I): Lo {
-    const message = createBaseLo();
-    message.formatId = (object.formatId !== undefined && object.formatId !== null)
-      ? FormatId.fromPartial(object.formatId)
-      : undefined;
-    message.Lj = object.Lj ?? 0;
-    message.sequenceNumber = object.sequenceNumber ?? 0;
-    message.field4 = (object.field4 !== undefined && object.field4 !== null)
-      ? Lo_Field4.fromPartial(object.field4)
-      : undefined;
-    message.MZ = object.MZ ?? 0;
-    return message;
-  },
 };
 
 function createBaseLo_Field4(): Lo_Field4 {
@@ -502,39 +356,6 @@ export const Lo_Field4: MessageFns<Lo_Field4> = {
       }
       reader.skip(tag & 7);
     }
-    return message;
-  },
-
-  fromJSON(object: any): Lo_Field4 {
-    return {
-      field1: isSet(object.field1) ? globalThis.Number(object.field1) : 0,
-      field2: isSet(object.field2) ? globalThis.Number(object.field2) : 0,
-      field3: isSet(object.field3) ? globalThis.Number(object.field3) : 0,
-    };
-  },
-
-  toJSON(message: Lo_Field4): unknown {
-    const obj: any = {};
-    if (message.field1 !== undefined && message.field1 !== 0) {
-      obj.field1 = Math.round(message.field1);
-    }
-    if (message.field2 !== undefined && message.field2 !== 0) {
-      obj.field2 = Math.round(message.field2);
-    }
-    if (message.field3 !== undefined && message.field3 !== 0) {
-      obj.field3 = Math.round(message.field3);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Lo_Field4>, I>>(base?: I): Lo_Field4 {
-    return Lo_Field4.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Lo_Field4>, I>>(object: I): Lo_Field4 {
-    const message = createBaseLo_Field4();
-    message.field1 = object.field1 ?? 0;
-    message.field2 = object.field2 ?? 0;
-    message.field3 = object.field3 ?? 0;
     return message;
   },
 };
@@ -623,54 +444,6 @@ export const OQa: MessageFns<OQa> = {
     }
     return message;
   },
-
-  fromJSON(object: any): OQa {
-    return {
-      field1: globalThis.Array.isArray(object?.field1) ? object.field1.map((e: any) => globalThis.String(e)) : [],
-      field2: isSet(object.field2) ? bytesFromBase64(object.field2) : new Uint8Array(0),
-      field3: isSet(object.field3) ? globalThis.String(object.field3) : "",
-      field4: isSet(object.field4) ? globalThis.Number(object.field4) : 0,
-      field5: isSet(object.field5) ? globalThis.Number(object.field5) : 0,
-      field6: isSet(object.field6) ? globalThis.String(object.field6) : "",
-    };
-  },
-
-  toJSON(message: OQa): unknown {
-    const obj: any = {};
-    if (message.field1?.length) {
-      obj.field1 = message.field1;
-    }
-    if (message.field2 !== undefined && message.field2.length !== 0) {
-      obj.field2 = base64FromBytes(message.field2);
-    }
-    if (message.field3 !== undefined && message.field3 !== "") {
-      obj.field3 = message.field3;
-    }
-    if (message.field4 !== undefined && message.field4 !== 0) {
-      obj.field4 = Math.round(message.field4);
-    }
-    if (message.field5 !== undefined && message.field5 !== 0) {
-      obj.field5 = Math.round(message.field5);
-    }
-    if (message.field6 !== undefined && message.field6 !== "") {
-      obj.field6 = message.field6;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<OQa>, I>>(base?: I): OQa {
-    return OQa.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<OQa>, I>>(object: I): OQa {
-    const message = createBaseOQa();
-    message.field1 = object.field1?.map((e) => e) || [];
-    message.field2 = object.field2 ?? new Uint8Array(0);
-    message.field3 = object.field3 ?? "";
-    message.field4 = object.field4 ?? 0;
-    message.field5 = object.field5 ?? 0;
-    message.field6 = object.field6 ?? "";
-    return message;
-  },
 };
 
 function createBasePqa(): Pqa {
@@ -727,69 +500,7 @@ export const Pqa: MessageFns<Pqa> = {
     }
     return message;
   },
-
-  fromJSON(object: any): Pqa {
-    return {
-      formats: globalThis.Array.isArray(object?.formats) ? object.formats.map((e: any) => FormatId.fromJSON(e)) : [],
-      ud: globalThis.Array.isArray(object?.ud) ? object.ud.map((e: any) => BufferedRange.fromJSON(e)) : [],
-      clipId: isSet(object.clipId) ? globalThis.String(object.clipId) : "",
-    };
-  },
-
-  toJSON(message: Pqa): unknown {
-    const obj: any = {};
-    if (message.formats?.length) {
-      obj.formats = message.formats.map((e) => FormatId.toJSON(e));
-    }
-    if (message.ud?.length) {
-      obj.ud = message.ud.map((e) => BufferedRange.toJSON(e));
-    }
-    if (message.clipId !== undefined && message.clipId !== "") {
-      obj.clipId = message.clipId;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Pqa>, I>>(base?: I): Pqa {
-    return Pqa.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Pqa>, I>>(object: I): Pqa {
-    const message = createBasePqa();
-    message.formats = object.formats?.map((e) => FormatId.fromPartial(e)) || [];
-    message.ud = object.ud?.map((e) => BufferedRange.fromPartial(e)) || [];
-    message.clipId = object.clipId ?? "";
-    return message;
-  },
 };
-
-function bytesFromBase64(b64: string): Uint8Array {
-  const bin = globalThis.atob(b64);
-  const arr = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; ++i) {
-    arr[i] = bin.charCodeAt(i);
-  }
-  return arr;
-}
-
-function base64FromBytes(arr: Uint8Array): string {
-  const bin: string[] = [];
-  arr.forEach((byte) => {
-    bin.push(globalThis.String.fromCharCode(byte));
-  });
-  return globalThis.btoa(bin.join(""));
-}
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
@@ -802,15 +513,7 @@ function longToNumber(int64: { toString(): string }): number {
   return num;
 }
 
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

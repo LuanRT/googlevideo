@@ -92,76 +92,9 @@ export const OnesiePlayerRequest: MessageFns<OnesiePlayerRequest> = {
     }
     return message;
   },
-
-  fromJSON(object: any): OnesiePlayerRequest {
-    return {
-      url: isSet(object.url) ? globalThis.String(object.url) : "",
-      headers: globalThis.Array.isArray(object?.headers) ? object.headers.map((e: any) => HttpHeader.fromJSON(e)) : [],
-      body: isSet(object.body) ? globalThis.String(object.body) : "",
-      proxiedByTrustedBandaid: isSet(object.proxiedByTrustedBandaid)
-        ? globalThis.Boolean(object.proxiedByTrustedBandaid)
-        : false,
-      skipResponseEncryption: isSet(object.skipResponseEncryption)
-        ? globalThis.Boolean(object.skipResponseEncryption)
-        : false,
-    };
-  },
-
-  toJSON(message: OnesiePlayerRequest): unknown {
-    const obj: any = {};
-    if (message.url !== undefined && message.url !== "") {
-      obj.url = message.url;
-    }
-    if (message.headers?.length) {
-      obj.headers = message.headers.map((e) => HttpHeader.toJSON(e));
-    }
-    if (message.body !== undefined && message.body !== "") {
-      obj.body = message.body;
-    }
-    if (message.proxiedByTrustedBandaid !== undefined && message.proxiedByTrustedBandaid !== false) {
-      obj.proxiedByTrustedBandaid = message.proxiedByTrustedBandaid;
-    }
-    if (message.skipResponseEncryption !== undefined && message.skipResponseEncryption !== false) {
-      obj.skipResponseEncryption = message.skipResponseEncryption;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<OnesiePlayerRequest>, I>>(base?: I): OnesiePlayerRequest {
-    return OnesiePlayerRequest.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<OnesiePlayerRequest>, I>>(object: I): OnesiePlayerRequest {
-    const message = createBaseOnesiePlayerRequest();
-    message.url = object.url ?? "";
-    message.headers = object.headers?.map((e) => HttpHeader.fromPartial(e)) || [];
-    message.body = object.body ?? "";
-    message.proxiedByTrustedBandaid = object.proxiedByTrustedBandaid ?? false;
-    message.skipResponseEncryption = object.skipResponseEncryption ?? false;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }
