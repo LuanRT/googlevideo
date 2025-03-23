@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "typescript": "^4.6.4",
-    "vite": "^5.4.8"
+    "vite": "^6.2.2"
   },
   "dependencies": {
     "bgutils-js": "^2.0.1",
