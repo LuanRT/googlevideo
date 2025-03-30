@@ -48,6 +48,7 @@ export interface ClientAbrState {
   sabrForceProxima?: number | undefined;
   Tqb?: number | undefined;
   sabrForceMaxNetworkInterruptionDurationMs?: number | undefined;
+  audioTrackId?: string | undefined;
 }
 
 function createBaseClientAbrState(): ClientAbrState {
@@ -90,6 +91,7 @@ function createBaseClientAbrState(): ClientAbrState {
     sabrForceProxima: 0,
     Tqb: 0,
     sabrForceMaxNetworkInterruptionDurationMs: 0,
+    audioTrackId: "",
   };
 }
 
@@ -213,6 +215,9 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
       message.sabrForceMaxNetworkInterruptionDurationMs !== 0
     ) {
       writer.uint32(544).int64(message.sabrForceMaxNetworkInterruptionDurationMs);
+    }
+    if (message.audioTrackId !== undefined && message.audioTrackId !== "") {
+      writer.uint32(554).string(message.audioTrackId);
     }
     return writer;
   },
@@ -489,6 +494,13 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
           }
 
           message.sabrForceMaxNetworkInterruptionDurationMs = longToNumber(reader.int64());
+          continue;
+        case 69:
+          if (tag !== 554) {
+            break;
+          }
+
+          message.audioTrackId = reader.string();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
