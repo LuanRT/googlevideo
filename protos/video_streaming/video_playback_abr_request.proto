@@ -2,10 +2,10 @@ syntax = "proto2";
 package video_streaming;
 
 import "misc/common.proto";
+import "video_streaming/buffered_range.proto";
 import "video_streaming/client_abr_state.proto";
 import "video_streaming/streamer_context.proto";
-import "video_streaming/buffered_range.proto";
- 
+
 message VideoPlaybackAbrRequest {
   optional ClientAbrState client_abr_state = 1;
   repeated .misc.FormatId selected_format_ids = 2;
@@ -15,7 +15,7 @@ message VideoPlaybackAbrRequest {
   optional Lo lo = 6;
   repeated .misc.FormatId selected_audio_format_ids = 16;
   repeated .misc.FormatId selected_video_format_ids = 17;
-  optional StreamerContext streamer_context = 19; 
+  optional StreamerContext streamer_context = 19;
   optional OQa field21 = 21;
   optional int32 field22 = 22;
   optional int32 field23 = 23;

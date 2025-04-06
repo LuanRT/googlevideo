@@ -11,13 +11,13 @@ message EncryptedPlayerRequest {
   optional bool serialize_response_as_json = 10;
   optional bool enable_ad_placements_preroll = 13;
   optional bool enable_compression = 14;
-  
+
   message UstreamerFlags {
     optional bool send_video_playback_config = 2;
   }
 
   optional UstreamerFlags ustreamer_flags = 15;
-  
+
   optional bytes unencrypted_onesie_player_request = 16;
   optional bool use_jsonformatter_to_parse_player_response = 17;
 }

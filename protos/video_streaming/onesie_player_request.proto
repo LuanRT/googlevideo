@@ -4,9 +4,9 @@ package video_streaming;
 import "misc/common.proto";
 
 message OnesiePlayerRequest {
-	optional string url = 1;
-	repeated misc.HttpHeader headers = 2; 
-	optional string body = 3;
-	optional bool proxied_by_trusted_bandaid  = 4;
-	optional bool skip_response_encryption = 6;
+  optional string url = 1;
+  repeated misc.HttpHeader headers = 2;
+  optional string body = 3;
+  optional bool proxied_by_trusted_bandaid = 4;
+  optional bool skip_response_encryption = 6;
 }

@@ -24,7 +24,7 @@ message StreamerContext {
     optional float screen_density_float = 65;
     optional int64 utc_offset_minutes = 67;
     optional string time_zone = 80;
-    optional string chipset = 92; // e.g. "qcom;taro" 
+    optional string chipset = 92; // e.g. "qcom;taro"
     optional GLDeviceInfo gl_device_info = 102;
   }
 

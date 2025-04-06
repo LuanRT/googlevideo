@@ -5,10 +5,10 @@ message CryptoParams {
   enum CompressionType {
     NONE = 0;
     GZIP = 1;
-	  BROTLI = 2;
-	}
-  
-	optional bytes hmac = 4;
-	optional bytes iv = 5;
-	optional CompressionType compression_type = 6;
+    BROTLI = 2;
+  }
+
+  optional bytes hmac = 4;
+  optional bytes iv = 5;
+  optional CompressionType compression_type = 6;
 }

@@ -1,4 +1,3 @@
-
 syntax = "proto2";
 package video_streaming;
 
@@ -13,7 +12,7 @@ message BufferedRange {
   required int32 end_segment_index = 5;
   optional TimeRange time_range = 6;
   optional Kob field9 = 9;
-  optional YPa field11 = 11; 
+  optional YPa field11 = 11;
   optional YPa field12 = 12;
 }
 

@@ -13,5 +13,5 @@ message FormatInitializationMetadata {
   optional .misc.IndexRange index_range = 7;
   optional int32 field8 = 8;
   optional int32 duration_ms = 9;
-  optional int32 field10 = 10; 
+  optional int32 field10 = 10;
 }
