@@ -10,6 +10,7 @@ export default [
       "**/bundle/",
       '**/examples/browser/proxy/',
       "**/*.{js,mjs,cjs}",
+      "**/protos/"
     ],
   }, {
     languageOptions: {

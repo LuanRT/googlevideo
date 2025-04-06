@@ -47,50 +47,9 @@ export const SabrRedirect: MessageFns<SabrRedirect> = {
     }
     return message;
   },
-
-  fromJSON(object: any): SabrRedirect {
-    return { url: isSet(object.url) ? globalThis.String(object.url) : "" };
-  },
-
-  toJSON(message: SabrRedirect): unknown {
-    const obj: any = {};
-    if (message.url !== undefined && message.url !== "") {
-      obj.url = message.url;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SabrRedirect>, I>>(base?: I): SabrRedirect {
-    return SabrRedirect.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SabrRedirect>, I>>(object: I): SabrRedirect {
-    const message = createBaseSabrRedirect();
-    message.url = object.url ?? "";
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

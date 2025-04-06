@@ -58,57 +58,9 @@ export const StreamProtectionStatus: MessageFns<StreamProtectionStatus> = {
     }
     return message;
   },
-
-  fromJSON(object: any): StreamProtectionStatus {
-    return {
-      status: isSet(object.status) ? globalThis.Number(object.status) : 0,
-      field2: isSet(object.field2) ? globalThis.Number(object.field2) : 0,
-    };
-  },
-
-  toJSON(message: StreamProtectionStatus): unknown {
-    const obj: any = {};
-    if (message.status !== undefined && message.status !== 0) {
-      obj.status = Math.round(message.status);
-    }
-    if (message.field2 !== undefined && message.field2 !== 0) {
-      obj.field2 = Math.round(message.field2);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<StreamProtectionStatus>, I>>(base?: I): StreamProtectionStatus {
-    return StreamProtectionStatus.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<StreamProtectionStatus>, I>>(object: I): StreamProtectionStatus {
-    const message = createBaseStreamProtectionStatus();
-    message.status = object.status ?? 0;
-    message.field2 = object.field2 ?? 0;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

@@ -158,93 +158,7 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
     }
     return message;
   },
-
-  fromJSON(object: any): FormatInitializationMetadata {
-    return {
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
-      formatId: isSet(object.formatId) ? FormatId.fromJSON(object.formatId) : undefined,
-      endTimeMs: isSet(object.endTimeMs) ? globalThis.Number(object.endTimeMs) : 0,
-      endSegmentNumber: isSet(object.endSegmentNumber) ? globalThis.Number(object.endSegmentNumber) : 0,
-      mimeType: isSet(object.mimeType) ? globalThis.String(object.mimeType) : "",
-      initRange: isSet(object.initRange) ? InitRange.fromJSON(object.initRange) : undefined,
-      indexRange: isSet(object.indexRange) ? IndexRange.fromJSON(object.indexRange) : undefined,
-      field8: isSet(object.field8) ? globalThis.Number(object.field8) : 0,
-      durationMs: isSet(object.durationMs) ? globalThis.Number(object.durationMs) : 0,
-      field10: isSet(object.field10) ? globalThis.Number(object.field10) : 0,
-    };
-  },
-
-  toJSON(message: FormatInitializationMetadata): unknown {
-    const obj: any = {};
-    if (message.videoId !== undefined && message.videoId !== "") {
-      obj.videoId = message.videoId;
-    }
-    if (message.formatId !== undefined) {
-      obj.formatId = FormatId.toJSON(message.formatId);
-    }
-    if (message.endTimeMs !== undefined && message.endTimeMs !== 0) {
-      obj.endTimeMs = Math.round(message.endTimeMs);
-    }
-    if (message.endSegmentNumber !== undefined && message.endSegmentNumber !== 0) {
-      obj.endSegmentNumber = Math.round(message.endSegmentNumber);
-    }
-    if (message.mimeType !== undefined && message.mimeType !== "") {
-      obj.mimeType = message.mimeType;
-    }
-    if (message.initRange !== undefined) {
-      obj.initRange = InitRange.toJSON(message.initRange);
-    }
-    if (message.indexRange !== undefined) {
-      obj.indexRange = IndexRange.toJSON(message.indexRange);
-    }
-    if (message.field8 !== undefined && message.field8 !== 0) {
-      obj.field8 = Math.round(message.field8);
-    }
-    if (message.durationMs !== undefined && message.durationMs !== 0) {
-      obj.durationMs = Math.round(message.durationMs);
-    }
-    if (message.field10 !== undefined && message.field10 !== 0) {
-      obj.field10 = Math.round(message.field10);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<FormatInitializationMetadata>, I>>(base?: I): FormatInitializationMetadata {
-    return FormatInitializationMetadata.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<FormatInitializationMetadata>, I>>(object: I): FormatInitializationMetadata {
-    const message = createBaseFormatInitializationMetadata();
-    message.videoId = object.videoId ?? "";
-    message.formatId = (object.formatId !== undefined && object.formatId !== null)
-      ? FormatId.fromPartial(object.formatId)
-      : undefined;
-    message.endTimeMs = object.endTimeMs ?? 0;
-    message.endSegmentNumber = object.endSegmentNumber ?? 0;
-    message.mimeType = object.mimeType ?? "";
-    message.initRange = (object.initRange !== undefined && object.initRange !== null)
-      ? InitRange.fromPartial(object.initRange)
-      : undefined;
-    message.indexRange = (object.indexRange !== undefined && object.indexRange !== null)
-      ? IndexRange.fromPartial(object.indexRange)
-      : undefined;
-    message.field8 = object.field8 ?? 0;
-    message.durationMs = object.durationMs ?? 0;
-    message.field10 = object.field10 ?? 0;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
@@ -257,15 +171,7 @@ function longToNumber(int64: { toString(): string }): number {
   return num;
 }
 
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

@@ -36,38 +36,6 @@ export enum MediaHeader_CompressionAlgorithm {
   UNRECOGNIZED = -1,
 }
 
-export function mediaHeader_CompressionAlgorithmFromJSON(object: any): MediaHeader_CompressionAlgorithm {
-  switch (object) {
-    case 0:
-    case "UNKNOWN":
-      return MediaHeader_CompressionAlgorithm.UNKNOWN;
-    case 1:
-    case "NONE":
-      return MediaHeader_CompressionAlgorithm.NONE;
-    case 2:
-    case "GZIP":
-      return MediaHeader_CompressionAlgorithm.GZIP;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return MediaHeader_CompressionAlgorithm.UNRECOGNIZED;
-  }
-}
-
-export function mediaHeader_CompressionAlgorithmToJSON(object: MediaHeader_CompressionAlgorithm): string {
-  switch (object) {
-    case MediaHeader_CompressionAlgorithm.UNKNOWN:
-      return "UNKNOWN";
-    case MediaHeader_CompressionAlgorithm.NONE:
-      return "NONE";
-    case MediaHeader_CompressionAlgorithm.GZIP:
-      return "GZIP";
-    case MediaHeader_CompressionAlgorithm.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-
 function createBaseMediaHeader(): MediaHeader {
   return {
     headerId: 0,
@@ -258,118 +226,7 @@ export const MediaHeader: MessageFns<MediaHeader> = {
     }
     return message;
   },
-
-  fromJSON(object: any): MediaHeader {
-    return {
-      headerId: isSet(object.headerId) ? globalThis.Number(object.headerId) : 0,
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
-      itag: isSet(object.itag) ? globalThis.Number(object.itag) : 0,
-      lmt: isSet(object.lmt) ? globalThis.Number(object.lmt) : 0,
-      xtags: isSet(object.xtags) ? globalThis.String(object.xtags) : "",
-      startRange: isSet(object.startRange) ? globalThis.Number(object.startRange) : 0,
-      compressionAlgorithm: isSet(object.compressionAlgorithm)
-        ? mediaHeader_CompressionAlgorithmFromJSON(object.compressionAlgorithm)
-        : 0,
-      isInitSeg: isSet(object.isInitSeg) ? globalThis.Boolean(object.isInitSeg) : false,
-      sequenceNumber: isSet(object.sequenceNumber) ? globalThis.Number(object.sequenceNumber) : 0,
-      field10: isSet(object.field10) ? globalThis.Number(object.field10) : 0,
-      startMs: isSet(object.startMs) ? globalThis.Number(object.startMs) : 0,
-      durationMs: isSet(object.durationMs) ? globalThis.Number(object.durationMs) : 0,
-      formatId: isSet(object.formatId) ? FormatId.fromJSON(object.formatId) : undefined,
-      contentLength: isSet(object.contentLength) ? globalThis.Number(object.contentLength) : 0,
-      timeRange: isSet(object.timeRange) ? TimeRange.fromJSON(object.timeRange) : undefined,
-    };
-  },
-
-  toJSON(message: MediaHeader): unknown {
-    const obj: any = {};
-    if (message.headerId !== undefined && message.headerId !== 0) {
-      obj.headerId = Math.round(message.headerId);
-    }
-    if (message.videoId !== undefined && message.videoId !== "") {
-      obj.videoId = message.videoId;
-    }
-    if (message.itag !== undefined && message.itag !== 0) {
-      obj.itag = Math.round(message.itag);
-    }
-    if (message.lmt !== undefined && message.lmt !== 0) {
-      obj.lmt = Math.round(message.lmt);
-    }
-    if (message.xtags !== undefined && message.xtags !== "") {
-      obj.xtags = message.xtags;
-    }
-    if (message.startRange !== undefined && message.startRange !== 0) {
-      obj.startRange = Math.round(message.startRange);
-    }
-    if (message.compressionAlgorithm !== undefined && message.compressionAlgorithm !== 0) {
-      obj.compressionAlgorithm = mediaHeader_CompressionAlgorithmToJSON(message.compressionAlgorithm);
-    }
-    if (message.isInitSeg !== undefined && message.isInitSeg !== false) {
-      obj.isInitSeg = message.isInitSeg;
-    }
-    if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
-      obj.sequenceNumber = Math.round(message.sequenceNumber);
-    }
-    if (message.field10 !== undefined && message.field10 !== 0) {
-      obj.field10 = Math.round(message.field10);
-    }
-    if (message.startMs !== undefined && message.startMs !== 0) {
-      obj.startMs = Math.round(message.startMs);
-    }
-    if (message.durationMs !== undefined && message.durationMs !== 0) {
-      obj.durationMs = Math.round(message.durationMs);
-    }
-    if (message.formatId !== undefined) {
-      obj.formatId = FormatId.toJSON(message.formatId);
-    }
-    if (message.contentLength !== undefined && message.contentLength !== 0) {
-      obj.contentLength = Math.round(message.contentLength);
-    }
-    if (message.timeRange !== undefined) {
-      obj.timeRange = TimeRange.toJSON(message.timeRange);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<MediaHeader>, I>>(base?: I): MediaHeader {
-    return MediaHeader.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MediaHeader>, I>>(object: I): MediaHeader {
-    const message = createBaseMediaHeader();
-    message.headerId = object.headerId ?? 0;
-    message.videoId = object.videoId ?? "";
-    message.itag = object.itag ?? 0;
-    message.lmt = object.lmt ?? 0;
-    message.xtags = object.xtags ?? "";
-    message.startRange = object.startRange ?? 0;
-    message.compressionAlgorithm = object.compressionAlgorithm ?? 0;
-    message.isInitSeg = object.isInitSeg ?? false;
-    message.sequenceNumber = object.sequenceNumber ?? 0;
-    message.field10 = object.field10 ?? 0;
-    message.startMs = object.startMs ?? 0;
-    message.durationMs = object.durationMs ?? 0;
-    message.formatId = (object.formatId !== undefined && object.formatId !== null)
-      ? FormatId.fromPartial(object.formatId)
-      : undefined;
-    message.contentLength = object.contentLength ?? 0;
-    message.timeRange = (object.timeRange !== undefined && object.timeRange !== null)
-      ? TimeRange.fromPartial(object.timeRange)
-      : undefined;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
@@ -382,15 +239,7 @@ function longToNumber(int64: { toString(): string }): number {
   return num;
 }
 
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

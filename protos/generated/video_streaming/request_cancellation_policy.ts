@@ -75,41 +75,6 @@ export const RequestCancellationPolicy: MessageFns<RequestCancellationPolicy> = 
     }
     return message;
   },
-
-  fromJSON(object: any): RequestCancellationPolicy {
-    return {
-      N0: isSet(object.N0) ? globalThis.Number(object.N0) : 0,
-      items: globalThis.Array.isArray(object?.items)
-        ? object.items.map((e: any) => RequestCancellationPolicy_Item.fromJSON(e))
-        : [],
-      jq: isSet(object.jq) ? globalThis.Number(object.jq) : 0,
-    };
-  },
-
-  toJSON(message: RequestCancellationPolicy): unknown {
-    const obj: any = {};
-    if (message.N0 !== undefined && message.N0 !== 0) {
-      obj.N0 = Math.round(message.N0);
-    }
-    if (message.items?.length) {
-      obj.items = message.items.map((e) => RequestCancellationPolicy_Item.toJSON(e));
-    }
-    if (message.jq !== undefined && message.jq !== 0) {
-      obj.jq = Math.round(message.jq);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<RequestCancellationPolicy>, I>>(base?: I): RequestCancellationPolicy {
-    return RequestCancellationPolicy.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<RequestCancellationPolicy>, I>>(object: I): RequestCancellationPolicy {
-    const message = createBaseRequestCancellationPolicy();
-    message.N0 = object.N0 ?? 0;
-    message.items = object.items?.map((e) => RequestCancellationPolicy_Item.fromPartial(e)) || [];
-    message.jq = object.jq ?? 0;
-    return message;
-  },
 };
 
 function createBaseRequestCancellationPolicy_Item(): RequestCancellationPolicy_Item {
@@ -166,64 +131,9 @@ export const RequestCancellationPolicy_Item: MessageFns<RequestCancellationPolic
     }
     return message;
   },
-
-  fromJSON(object: any): RequestCancellationPolicy_Item {
-    return {
-      fR: isSet(object.fR) ? globalThis.Number(object.fR) : 0,
-      NK: isSet(object.NK) ? globalThis.Number(object.NK) : 0,
-      minReadaheadMs: isSet(object.minReadaheadMs) ? globalThis.Number(object.minReadaheadMs) : 0,
-    };
-  },
-
-  toJSON(message: RequestCancellationPolicy_Item): unknown {
-    const obj: any = {};
-    if (message.fR !== undefined && message.fR !== 0) {
-      obj.fR = Math.round(message.fR);
-    }
-    if (message.NK !== undefined && message.NK !== 0) {
-      obj.NK = Math.round(message.NK);
-    }
-    if (message.minReadaheadMs !== undefined && message.minReadaheadMs !== 0) {
-      obj.minReadaheadMs = Math.round(message.minReadaheadMs);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<RequestCancellationPolicy_Item>, I>>(base?: I): RequestCancellationPolicy_Item {
-    return RequestCancellationPolicy_Item.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<RequestCancellationPolicy_Item>, I>>(
-    object: I,
-  ): RequestCancellationPolicy_Item {
-    const message = createBaseRequestCancellationPolicy_Item();
-    message.fR = object.fR ?? 0;
-    message.NK = object.NK ?? 0;
-    message.minReadaheadMs = object.minReadaheadMs ?? 0;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

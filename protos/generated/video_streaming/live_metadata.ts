@@ -169,92 +169,7 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
     }
     return message;
   },
-
-  fromJSON(object: any): LiveMetadata {
-    return {
-      broadcastId: isSet(object.broadcastId) ? globalThis.String(object.broadcastId) : "",
-      headSequenceNumber: isSet(object.headSequenceNumber) ? globalThis.Number(object.headSequenceNumber) : 0,
-      headTimeMs: isSet(object.headTimeMs) ? globalThis.Number(object.headTimeMs) : 0,
-      wallTimeMs: isSet(object.wallTimeMs) ? globalThis.Number(object.wallTimeMs) : 0,
-      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
-      postLiveDvr: isSet(object.postLiveDvr) ? globalThis.Boolean(object.postLiveDvr) : false,
-      headm: isSet(object.headm) ? globalThis.Number(object.headm) : 0,
-      minSeekableTimeTicks: isSet(object.minSeekableTimeTicks) ? globalThis.Number(object.minSeekableTimeTicks) : 0,
-      minSeekableTimescale: isSet(object.minSeekableTimescale) ? globalThis.Number(object.minSeekableTimescale) : 0,
-      maxSeekableTimeTicks: isSet(object.maxSeekableTimeTicks) ? globalThis.Number(object.maxSeekableTimeTicks) : 0,
-      maxSeekableTimescale: isSet(object.maxSeekableTimescale) ? globalThis.Number(object.maxSeekableTimescale) : 0,
-    };
-  },
-
-  toJSON(message: LiveMetadata): unknown {
-    const obj: any = {};
-    if (message.broadcastId !== undefined && message.broadcastId !== "") {
-      obj.broadcastId = message.broadcastId;
-    }
-    if (message.headSequenceNumber !== undefined && message.headSequenceNumber !== 0) {
-      obj.headSequenceNumber = Math.round(message.headSequenceNumber);
-    }
-    if (message.headTimeMs !== undefined && message.headTimeMs !== 0) {
-      obj.headTimeMs = Math.round(message.headTimeMs);
-    }
-    if (message.wallTimeMs !== undefined && message.wallTimeMs !== 0) {
-      obj.wallTimeMs = Math.round(message.wallTimeMs);
-    }
-    if (message.videoId !== undefined && message.videoId !== "") {
-      obj.videoId = message.videoId;
-    }
-    if (message.postLiveDvr !== undefined && message.postLiveDvr !== false) {
-      obj.postLiveDvr = message.postLiveDvr;
-    }
-    if (message.headm !== undefined && message.headm !== 0) {
-      obj.headm = Math.round(message.headm);
-    }
-    if (message.minSeekableTimeTicks !== undefined && message.minSeekableTimeTicks !== 0) {
-      obj.minSeekableTimeTicks = Math.round(message.minSeekableTimeTicks);
-    }
-    if (message.minSeekableTimescale !== undefined && message.minSeekableTimescale !== 0) {
-      obj.minSeekableTimescale = Math.round(message.minSeekableTimescale);
-    }
-    if (message.maxSeekableTimeTicks !== undefined && message.maxSeekableTimeTicks !== 0) {
-      obj.maxSeekableTimeTicks = Math.round(message.maxSeekableTimeTicks);
-    }
-    if (message.maxSeekableTimescale !== undefined && message.maxSeekableTimescale !== 0) {
-      obj.maxSeekableTimescale = Math.round(message.maxSeekableTimescale);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<LiveMetadata>, I>>(base?: I): LiveMetadata {
-    return LiveMetadata.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<LiveMetadata>, I>>(object: I): LiveMetadata {
-    const message = createBaseLiveMetadata();
-    message.broadcastId = object.broadcastId ?? "";
-    message.headSequenceNumber = object.headSequenceNumber ?? 0;
-    message.headTimeMs = object.headTimeMs ?? 0;
-    message.wallTimeMs = object.wallTimeMs ?? 0;
-    message.videoId = object.videoId ?? "";
-    message.postLiveDvr = object.postLiveDvr ?? false;
-    message.headm = object.headm ?? 0;
-    message.minSeekableTimeTicks = object.minSeekableTimeTicks ?? 0;
-    message.minSeekableTimescale = object.minSeekableTimescale ?? 0;
-    message.maxSeekableTimeTicks = object.maxSeekableTimeTicks ?? 0;
-    message.maxSeekableTimescale = object.maxSeekableTimescale ?? 0;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
@@ -267,15 +182,7 @@ function longToNumber(int64: { toString(): string }): number {
   return num;
 }
 
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

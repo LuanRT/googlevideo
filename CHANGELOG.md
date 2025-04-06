@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v2.0.0...googlevideo-v3.0.0) (2025-03-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **protos:** Remove the fromJSON, toJSON, create and fromPartial functions ([#19](https://github.com/LuanRT/googlevideo/issues/19))
+
+### Features
+
+* Add support for unencrypted onesie requests & responses ([418898f](https://github.com/LuanRT/googlevideo/commit/418898faa91967ff8d60ab009d32ee49b6649ea5))
+* **protos:** Add `LiveMetadata` protobuf ([#18](https://github.com/LuanRT/googlevideo/issues/18)) ([d389d24](https://github.com/LuanRT/googlevideo/commit/d389d242ab21450b750dd694889334f6a37ef4ca))
+* **UMP:** Add support for partial parts ([d12432c](https://github.com/LuanRT/googlevideo/commit/d12432c0e5737f440abb75c42c7c430819751cdc))
+
+
+### Code Refactoring
+
+* **protos:** Remove the fromJSON, toJSON, create and fromPartial functions ([#19](https://github.com/LuanRT/googlevideo/issues/19)) ([c5c81a8](https://github.com/LuanRT/googlevideo/commit/c5c81a81edcd6640368ee9f09dfa4043a42ee0e7))
+
 ## [2.0.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v1.1.0...googlevideo-v2.0.0) (2024-11-02)
 
 

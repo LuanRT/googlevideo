@@ -58,57 +58,9 @@ export const SabrError: MessageFns<SabrError> = {
     }
     return message;
   },
-
-  fromJSON(object: any): SabrError {
-    return {
-      type: isSet(object.type) ? globalThis.String(object.type) : "",
-      code: isSet(object.code) ? globalThis.Number(object.code) : 0,
-    };
-  },
-
-  toJSON(message: SabrError): unknown {
-    const obj: any = {};
-    if (message.type !== undefined && message.type !== "") {
-      obj.type = message.type;
-    }
-    if (message.code !== undefined && message.code !== 0) {
-      obj.code = Math.round(message.code);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<SabrError>, I>>(base?: I): SabrError {
-    return SabrError.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<SabrError>, I>>(object: I): SabrError {
-    const message = createBaseSabrError();
-    message.type = object.type ?? "";
-    message.code = object.code ?? 0;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

@@ -2,41 +2,42 @@
 // versions:
 //   protoc-gen-ts_proto  v2.2.0
 //   protoc               v5.28.0
-// source: video_streaming/time_range.proto
+// source: video_streaming/sabr_seek.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { SeekSource } from "../misc/common.js";
 
 export const protobufPackage = "video_streaming";
 
-export interface TimeRange {
-  start?: number | undefined;
-  duration?: number | undefined;
-  timescale?: number | undefined;
+export interface SabrSeek {
+  seekMediaTime?: number | undefined;
+  seekMediaTimescale?: number | undefined;
+  seekSource?: SeekSource | undefined;
 }
 
-function createBaseTimeRange(): TimeRange {
-  return { start: 0, duration: 0, timescale: 0 };
+function createBaseSabrSeek(): SabrSeek {
+  return { seekMediaTime: 0, seekMediaTimescale: 0, seekSource: 0 };
 }
 
-export const TimeRange: MessageFns<TimeRange> = {
-  encode(message: TimeRange, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.start !== undefined && message.start !== 0) {
-      writer.uint32(8).int64(message.start);
+export const SabrSeek: MessageFns<SabrSeek> = {
+  encode(message: SabrSeek, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.seekMediaTime !== undefined && message.seekMediaTime !== 0) {
+      writer.uint32(8).int64(message.seekMediaTime);
     }
-    if (message.duration !== undefined && message.duration !== 0) {
-      writer.uint32(16).int64(message.duration);
+    if (message.seekMediaTimescale !== undefined && message.seekMediaTimescale !== 0) {
+      writer.uint32(16).int32(message.seekMediaTimescale);
     }
-    if (message.timescale !== undefined && message.timescale !== 0) {
-      writer.uint32(24).int32(message.timescale);
+    if (message.seekSource !== undefined && message.seekSource !== 0) {
+      writer.uint32(24).int32(message.seekSource);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): TimeRange {
+  decode(input: BinaryReader | Uint8Array, length?: number): SabrSeek {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseTimeRange();
+    const message = createBaseSabrSeek();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -45,21 +46,21 @@ export const TimeRange: MessageFns<TimeRange> = {
             break;
           }
 
-          message.start = longToNumber(reader.int64());
+          message.seekMediaTime = longToNumber(reader.int64());
           continue;
         case 2:
           if (tag !== 16) {
             break;
           }
 
-          message.duration = longToNumber(reader.int64());
+          message.seekMediaTimescale = reader.int32();
           continue;
         case 3:
           if (tag !== 24) {
             break;
           }
 
-          message.timescale = reader.int32();
+          message.seekSource = reader.int32() as any;
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {

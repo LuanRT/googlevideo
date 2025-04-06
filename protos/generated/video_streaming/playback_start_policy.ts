@@ -63,44 +63,6 @@ export const PlaybackStartPolicy: MessageFns<PlaybackStartPolicy> = {
     }
     return message;
   },
-
-  fromJSON(object: any): PlaybackStartPolicy {
-    return {
-      startMinReadaheadPolicy: isSet(object.startMinReadaheadPolicy)
-        ? PlaybackStartPolicy_ReadaheadPolicy.fromJSON(object.startMinReadaheadPolicy)
-        : undefined,
-      resumeMinReadaheadPolicy: isSet(object.resumeMinReadaheadPolicy)
-        ? PlaybackStartPolicy_ReadaheadPolicy.fromJSON(object.resumeMinReadaheadPolicy)
-        : undefined,
-    };
-  },
-
-  toJSON(message: PlaybackStartPolicy): unknown {
-    const obj: any = {};
-    if (message.startMinReadaheadPolicy !== undefined) {
-      obj.startMinReadaheadPolicy = PlaybackStartPolicy_ReadaheadPolicy.toJSON(message.startMinReadaheadPolicy);
-    }
-    if (message.resumeMinReadaheadPolicy !== undefined) {
-      obj.resumeMinReadaheadPolicy = PlaybackStartPolicy_ReadaheadPolicy.toJSON(message.resumeMinReadaheadPolicy);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PlaybackStartPolicy>, I>>(base?: I): PlaybackStartPolicy {
-    return PlaybackStartPolicy.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PlaybackStartPolicy>, I>>(object: I): PlaybackStartPolicy {
-    const message = createBasePlaybackStartPolicy();
-    message.startMinReadaheadPolicy =
-      (object.startMinReadaheadPolicy !== undefined && object.startMinReadaheadPolicy !== null)
-        ? PlaybackStartPolicy_ReadaheadPolicy.fromPartial(object.startMinReadaheadPolicy)
-        : undefined;
-    message.resumeMinReadaheadPolicy =
-      (object.resumeMinReadaheadPolicy !== undefined && object.resumeMinReadaheadPolicy !== null)
-        ? PlaybackStartPolicy_ReadaheadPolicy.fromPartial(object.resumeMinReadaheadPolicy)
-        : undefined;
-    return message;
-  },
 };
 
 function createBasePlaybackStartPolicy_ReadaheadPolicy(): PlaybackStartPolicy_ReadaheadPolicy {
@@ -147,63 +109,9 @@ export const PlaybackStartPolicy_ReadaheadPolicy: MessageFns<PlaybackStartPolicy
     }
     return message;
   },
-
-  fromJSON(object: any): PlaybackStartPolicy_ReadaheadPolicy {
-    return {
-      minReadaheadMs: isSet(object.minReadaheadMs) ? globalThis.Number(object.minReadaheadMs) : 0,
-      minBandwidthBytesPerSec: isSet(object.minBandwidthBytesPerSec)
-        ? globalThis.Number(object.minBandwidthBytesPerSec)
-        : 0,
-    };
-  },
-
-  toJSON(message: PlaybackStartPolicy_ReadaheadPolicy): unknown {
-    const obj: any = {};
-    if (message.minReadaheadMs !== undefined && message.minReadaheadMs !== 0) {
-      obj.minReadaheadMs = Math.round(message.minReadaheadMs);
-    }
-    if (message.minBandwidthBytesPerSec !== undefined && message.minBandwidthBytesPerSec !== 0) {
-      obj.minBandwidthBytesPerSec = Math.round(message.minBandwidthBytesPerSec);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PlaybackStartPolicy_ReadaheadPolicy>, I>>(
-    base?: I,
-  ): PlaybackStartPolicy_ReadaheadPolicy {
-    return PlaybackStartPolicy_ReadaheadPolicy.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PlaybackStartPolicy_ReadaheadPolicy>, I>>(
-    object: I,
-  ): PlaybackStartPolicy_ReadaheadPolicy {
-    const message = createBasePlaybackStartPolicy_ReadaheadPolicy();
-    message.minReadaheadMs = object.minReadaheadMs ?? 0;
-    message.minBandwidthBytesPerSec = object.minBandwidthBytesPerSec ?? 0;
-    return message;
-  },
 };
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
-
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

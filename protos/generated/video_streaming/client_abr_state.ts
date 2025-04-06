@@ -8,17 +8,9 @@
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import {
   AudioQuality,
-  audioQualityFromJSON,
-  audioQualityToJSON,
   NetworkMeteredState,
-  networkMeteredStateFromJSON,
-  networkMeteredStateToJSON,
   PlaybackAudioRouteOutputType,
-  playbackAudioRouteOutputTypeFromJSON,
-  playbackAudioRouteOutputTypeToJSON,
   VideoQualitySetting,
-  videoQualitySettingFromJSON,
-  videoQualitySettingToJSON,
 } from "../misc/common.js";
 
 export const protobufPackage = "video_streaming";
@@ -67,6 +59,7 @@ export interface ClientAbrState {
   sabrForceProxima?: number | undefined;
   Tqb?: number | undefined;
   sabrForceMaxNetworkInterruptionDurationMs?: number | undefined;
+  audioTrackId?: string | undefined;
 }
 
 function createBaseClientAbrState(): ClientAbrState {
@@ -114,6 +107,7 @@ function createBaseClientAbrState(): ClientAbrState {
     sabrForceProxima: 0,
     Tqb: 0,
     sabrForceMaxNetworkInterruptionDurationMs: 0,
+    audioTrackId: "",
   };
 }
 
@@ -252,6 +246,9 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
       message.sabrForceMaxNetworkInterruptionDurationMs !== 0
     ) {
       writer.uint32(544).int64(message.sabrForceMaxNetworkInterruptionDurationMs);
+    }
+    if (message.audioTrackId !== undefined && message.audioTrackId !== "") {
+      writer.uint32(554).string(message.audioTrackId);
     }
     return writer;
   },
@@ -564,6 +561,13 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
 
           message.sabrForceMaxNetworkInterruptionDurationMs = longToNumber(reader.int64());
           continue;
+        case 69:
+          if (tag !== 554) {
+            break;
+          }
+
+          message.audioTrackId = reader.string();
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -572,300 +576,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     }
     return message;
   },
-
-  fromJSON(object: any): ClientAbrState {
-    return {
-      timeSinceLastManualFormatSelectionMs: isSet(object.timeSinceLastManualFormatSelectionMs)
-        ? globalThis.Number(object.timeSinceLastManualFormatSelectionMs)
-        : 0,
-      lastManualDirection: isSet(object.lastManualDirection) ? globalThis.Number(object.lastManualDirection) : 0,
-      lastManualSelectedResolution: isSet(object.lastManualSelectedResolution)
-        ? globalThis.Number(object.lastManualSelectedResolution)
-        : 0,
-      detailedNetworkType: isSet(object.detailedNetworkType) ? globalThis.Number(object.detailedNetworkType) : 0,
-      clientViewportWidth: isSet(object.clientViewportWidth) ? globalThis.Number(object.clientViewportWidth) : 0,
-      clientViewportHeight: isSet(object.clientViewportHeight) ? globalThis.Number(object.clientViewportHeight) : 0,
-      clientBitrateCapBytesPerSec: isSet(object.clientBitrateCapBytesPerSec)
-        ? globalThis.Number(object.clientBitrateCapBytesPerSec)
-        : 0,
-      stickyResolution: isSet(object.stickyResolution) ? globalThis.Number(object.stickyResolution) : 0,
-      clientViewportIsFlexible: isSet(object.clientViewportIsFlexible)
-        ? globalThis.Boolean(object.clientViewportIsFlexible)
-        : false,
-      bandwidthEstimate: isSet(object.bandwidthEstimate) ? globalThis.Number(object.bandwidthEstimate) : 0,
-      minAudioQuality: isSet(object.minAudioQuality) ? audioQualityFromJSON(object.minAudioQuality) : 0,
-      maxAudioQuality: isSet(object.maxAudioQuality) ? audioQualityFromJSON(object.maxAudioQuality) : 0,
-      videoQualitySetting: isSet(object.videoQualitySetting)
-        ? videoQualitySettingFromJSON(object.videoQualitySetting)
-        : 0,
-      audioRoute: isSet(object.audioRoute) ? playbackAudioRouteOutputTypeFromJSON(object.audioRoute) : 0,
-      playerTimeMs: isSet(object.playerTimeMs) ? globalThis.Number(object.playerTimeMs) : 0,
-      timeSinceLastSeek: isSet(object.timeSinceLastSeek) ? globalThis.Number(object.timeSinceLastSeek) : 0,
-      dataSaverMode: isSet(object.dataSaverMode) ? globalThis.Boolean(object.dataSaverMode) : false,
-      networkMeteredState: isSet(object.networkMeteredState)
-        ? networkMeteredStateFromJSON(object.networkMeteredState)
-        : 0,
-      visibility: isSet(object.visibility) ? globalThis.Number(object.visibility) : 0,
-      playbackRate: isSet(object.playbackRate) ? globalThis.Number(object.playbackRate) : 0,
-      elapsedWallTimeMs: isSet(object.elapsedWallTimeMs) ? globalThis.Number(object.elapsedWallTimeMs) : 0,
-      mediaCapabilities: isSet(object.mediaCapabilities)
-        ? bytesFromBase64(object.mediaCapabilities)
-        : new Uint8Array(0),
-      timeSinceLastActionMs: isSet(object.timeSinceLastActionMs) ? globalThis.Number(object.timeSinceLastActionMs) : 0,
-      enabledTrackTypesBitfield: isSet(object.enabledTrackTypesBitfield)
-        ? globalThis.Number(object.enabledTrackTypesBitfield)
-        : 0,
-      maxPacingRate: isSet(object.maxPacingRate) ? globalThis.Number(object.maxPacingRate) : 0,
-      playerState: isSet(object.playerState) ? globalThis.Number(object.playerState) : 0,
-      drcEnabled: isSet(object.drcEnabled) ? globalThis.Boolean(object.drcEnabled) : false,
-      Jda: isSet(object.Jda) ? globalThis.Number(object.Jda) : 0,
-      qw: isSet(object.qw) ? globalThis.Number(object.qw) : 0,
-      Ky: isSet(object.Ky) ? globalThis.Number(object.Ky) : 0,
-      sabrReportRequestCancellationInfo: isSet(object.sabrReportRequestCancellationInfo)
-        ? globalThis.Number(object.sabrReportRequestCancellationInfo)
-        : 0,
-      l: isSet(object.l) ? globalThis.Boolean(object.l) : false,
-      G7: isSet(object.G7) ? globalThis.Number(object.G7) : 0,
-      preferVp9: isSet(object.preferVp9) ? globalThis.Boolean(object.preferVp9) : false,
-      qj: isSet(object.qj) ? globalThis.Number(object.qj) : 0,
-      Hx: isSet(object.Hx) ? globalThis.Number(object.Hx) : 0,
-      isPrefetch: isSet(object.isPrefetch) ? globalThis.Boolean(object.isPrefetch) : false,
-      sabrSupportQualityConstraints: isSet(object.sabrSupportQualityConstraints)
-        ? globalThis.Number(object.sabrSupportQualityConstraints)
-        : 0,
-      sabrLicenseConstraint: isSet(object.sabrLicenseConstraint)
-        ? bytesFromBase64(object.sabrLicenseConstraint)
-        : new Uint8Array(0),
-      allowProximaLiveLatency: isSet(object.allowProximaLiveLatency)
-        ? globalThis.Number(object.allowProximaLiveLatency)
-        : 0,
-      sabrForceProxima: isSet(object.sabrForceProxima) ? globalThis.Number(object.sabrForceProxima) : 0,
-      Tqb: isSet(object.Tqb) ? globalThis.Number(object.Tqb) : 0,
-      sabrForceMaxNetworkInterruptionDurationMs: isSet(object.sabrForceMaxNetworkInterruptionDurationMs)
-        ? globalThis.Number(object.sabrForceMaxNetworkInterruptionDurationMs)
-        : 0,
-    };
-  },
-
-  toJSON(message: ClientAbrState): unknown {
-    const obj: any = {};
-    if (
-      message.timeSinceLastManualFormatSelectionMs !== undefined && message.timeSinceLastManualFormatSelectionMs !== 0
-    ) {
-      obj.timeSinceLastManualFormatSelectionMs = Math.round(message.timeSinceLastManualFormatSelectionMs);
-    }
-    if (message.lastManualDirection !== undefined && message.lastManualDirection !== 0) {
-      obj.lastManualDirection = Math.round(message.lastManualDirection);
-    }
-    if (message.lastManualSelectedResolution !== undefined && message.lastManualSelectedResolution !== 0) {
-      obj.lastManualSelectedResolution = Math.round(message.lastManualSelectedResolution);
-    }
-    if (message.detailedNetworkType !== undefined && message.detailedNetworkType !== 0) {
-      obj.detailedNetworkType = Math.round(message.detailedNetworkType);
-    }
-    if (message.clientViewportWidth !== undefined && message.clientViewportWidth !== 0) {
-      obj.clientViewportWidth = Math.round(message.clientViewportWidth);
-    }
-    if (message.clientViewportHeight !== undefined && message.clientViewportHeight !== 0) {
-      obj.clientViewportHeight = Math.round(message.clientViewportHeight);
-    }
-    if (message.clientBitrateCapBytesPerSec !== undefined && message.clientBitrateCapBytesPerSec !== 0) {
-      obj.clientBitrateCapBytesPerSec = Math.round(message.clientBitrateCapBytesPerSec);
-    }
-    if (message.stickyResolution !== undefined && message.stickyResolution !== 0) {
-      obj.stickyResolution = Math.round(message.stickyResolution);
-    }
-    if (message.clientViewportIsFlexible !== undefined && message.clientViewportIsFlexible !== false) {
-      obj.clientViewportIsFlexible = message.clientViewportIsFlexible;
-    }
-    if (message.bandwidthEstimate !== undefined && message.bandwidthEstimate !== 0) {
-      obj.bandwidthEstimate = Math.round(message.bandwidthEstimate);
-    }
-    if (message.minAudioQuality !== undefined && message.minAudioQuality !== 0) {
-      obj.minAudioQuality = audioQualityToJSON(message.minAudioQuality);
-    }
-    if (message.maxAudioQuality !== undefined && message.maxAudioQuality !== 0) {
-      obj.maxAudioQuality = audioQualityToJSON(message.maxAudioQuality);
-    }
-    if (message.videoQualitySetting !== undefined && message.videoQualitySetting !== 0) {
-      obj.videoQualitySetting = videoQualitySettingToJSON(message.videoQualitySetting);
-    }
-    if (message.audioRoute !== undefined && message.audioRoute !== 0) {
-      obj.audioRoute = playbackAudioRouteOutputTypeToJSON(message.audioRoute);
-    }
-    if (message.playerTimeMs !== undefined && message.playerTimeMs !== 0) {
-      obj.playerTimeMs = Math.round(message.playerTimeMs);
-    }
-    if (message.timeSinceLastSeek !== undefined && message.timeSinceLastSeek !== 0) {
-      obj.timeSinceLastSeek = Math.round(message.timeSinceLastSeek);
-    }
-    if (message.dataSaverMode !== undefined && message.dataSaverMode !== false) {
-      obj.dataSaverMode = message.dataSaverMode;
-    }
-    if (message.networkMeteredState !== undefined && message.networkMeteredState !== 0) {
-      obj.networkMeteredState = networkMeteredStateToJSON(message.networkMeteredState);
-    }
-    if (message.visibility !== undefined && message.visibility !== 0) {
-      obj.visibility = Math.round(message.visibility);
-    }
-    if (message.playbackRate !== undefined && message.playbackRate !== 0) {
-      obj.playbackRate = message.playbackRate;
-    }
-    if (message.elapsedWallTimeMs !== undefined && message.elapsedWallTimeMs !== 0) {
-      obj.elapsedWallTimeMs = Math.round(message.elapsedWallTimeMs);
-    }
-    if (message.mediaCapabilities !== undefined && message.mediaCapabilities.length !== 0) {
-      obj.mediaCapabilities = base64FromBytes(message.mediaCapabilities);
-    }
-    if (message.timeSinceLastActionMs !== undefined && message.timeSinceLastActionMs !== 0) {
-      obj.timeSinceLastActionMs = Math.round(message.timeSinceLastActionMs);
-    }
-    if (message.enabledTrackTypesBitfield !== undefined && message.enabledTrackTypesBitfield !== 0) {
-      obj.enabledTrackTypesBitfield = Math.round(message.enabledTrackTypesBitfield);
-    }
-    if (message.maxPacingRate !== undefined && message.maxPacingRate !== 0) {
-      obj.maxPacingRate = Math.round(message.maxPacingRate);
-    }
-    if (message.playerState !== undefined && message.playerState !== 0) {
-      obj.playerState = Math.round(message.playerState);
-    }
-    if (message.drcEnabled !== undefined && message.drcEnabled !== false) {
-      obj.drcEnabled = message.drcEnabled;
-    }
-    if (message.Jda !== undefined && message.Jda !== 0) {
-      obj.Jda = Math.round(message.Jda);
-    }
-    if (message.qw !== undefined && message.qw !== 0) {
-      obj.qw = Math.round(message.qw);
-    }
-    if (message.Ky !== undefined && message.Ky !== 0) {
-      obj.Ky = Math.round(message.Ky);
-    }
-    if (message.sabrReportRequestCancellationInfo !== undefined && message.sabrReportRequestCancellationInfo !== 0) {
-      obj.sabrReportRequestCancellationInfo = Math.round(message.sabrReportRequestCancellationInfo);
-    }
-    if (message.l !== undefined && message.l !== false) {
-      obj.l = message.l;
-    }
-    if (message.G7 !== undefined && message.G7 !== 0) {
-      obj.G7 = Math.round(message.G7);
-    }
-    if (message.preferVp9 !== undefined && message.preferVp9 !== false) {
-      obj.preferVp9 = message.preferVp9;
-    }
-    if (message.qj !== undefined && message.qj !== 0) {
-      obj.qj = Math.round(message.qj);
-    }
-    if (message.Hx !== undefined && message.Hx !== 0) {
-      obj.Hx = Math.round(message.Hx);
-    }
-    if (message.isPrefetch !== undefined && message.isPrefetch !== false) {
-      obj.isPrefetch = message.isPrefetch;
-    }
-    if (message.sabrSupportQualityConstraints !== undefined && message.sabrSupportQualityConstraints !== 0) {
-      obj.sabrSupportQualityConstraints = Math.round(message.sabrSupportQualityConstraints);
-    }
-    if (message.sabrLicenseConstraint !== undefined && message.sabrLicenseConstraint.length !== 0) {
-      obj.sabrLicenseConstraint = base64FromBytes(message.sabrLicenseConstraint);
-    }
-    if (message.allowProximaLiveLatency !== undefined && message.allowProximaLiveLatency !== 0) {
-      obj.allowProximaLiveLatency = Math.round(message.allowProximaLiveLatency);
-    }
-    if (message.sabrForceProxima !== undefined && message.sabrForceProxima !== 0) {
-      obj.sabrForceProxima = Math.round(message.sabrForceProxima);
-    }
-    if (message.Tqb !== undefined && message.Tqb !== 0) {
-      obj.Tqb = Math.round(message.Tqb);
-    }
-    if (
-      message.sabrForceMaxNetworkInterruptionDurationMs !== undefined &&
-      message.sabrForceMaxNetworkInterruptionDurationMs !== 0
-    ) {
-      obj.sabrForceMaxNetworkInterruptionDurationMs = Math.round(message.sabrForceMaxNetworkInterruptionDurationMs);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ClientAbrState>, I>>(base?: I): ClientAbrState {
-    return ClientAbrState.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ClientAbrState>, I>>(object: I): ClientAbrState {
-    const message = createBaseClientAbrState();
-    message.timeSinceLastManualFormatSelectionMs = object.timeSinceLastManualFormatSelectionMs ?? 0;
-    message.lastManualDirection = object.lastManualDirection ?? 0;
-    message.lastManualSelectedResolution = object.lastManualSelectedResolution ?? 0;
-    message.detailedNetworkType = object.detailedNetworkType ?? 0;
-    message.clientViewportWidth = object.clientViewportWidth ?? 0;
-    message.clientViewportHeight = object.clientViewportHeight ?? 0;
-    message.clientBitrateCapBytesPerSec = object.clientBitrateCapBytesPerSec ?? 0;
-    message.stickyResolution = object.stickyResolution ?? 0;
-    message.clientViewportIsFlexible = object.clientViewportIsFlexible ?? false;
-    message.bandwidthEstimate = object.bandwidthEstimate ?? 0;
-    message.minAudioQuality = object.minAudioQuality ?? 0;
-    message.maxAudioQuality = object.maxAudioQuality ?? 0;
-    message.videoQualitySetting = object.videoQualitySetting ?? 0;
-    message.audioRoute = object.audioRoute ?? 0;
-    message.playerTimeMs = object.playerTimeMs ?? 0;
-    message.timeSinceLastSeek = object.timeSinceLastSeek ?? 0;
-    message.dataSaverMode = object.dataSaverMode ?? false;
-    message.networkMeteredState = object.networkMeteredState ?? 0;
-    message.visibility = object.visibility ?? 0;
-    message.playbackRate = object.playbackRate ?? 0;
-    message.elapsedWallTimeMs = object.elapsedWallTimeMs ?? 0;
-    message.mediaCapabilities = object.mediaCapabilities ?? new Uint8Array(0);
-    message.timeSinceLastActionMs = object.timeSinceLastActionMs ?? 0;
-    message.enabledTrackTypesBitfield = object.enabledTrackTypesBitfield ?? 0;
-    message.maxPacingRate = object.maxPacingRate ?? 0;
-    message.playerState = object.playerState ?? 0;
-    message.drcEnabled = object.drcEnabled ?? false;
-    message.Jda = object.Jda ?? 0;
-    message.qw = object.qw ?? 0;
-    message.Ky = object.Ky ?? 0;
-    message.sabrReportRequestCancellationInfo = object.sabrReportRequestCancellationInfo ?? 0;
-    message.l = object.l ?? false;
-    message.G7 = object.G7 ?? 0;
-    message.preferVp9 = object.preferVp9 ?? false;
-    message.qj = object.qj ?? 0;
-    message.Hx = object.Hx ?? 0;
-    message.isPrefetch = object.isPrefetch ?? false;
-    message.sabrSupportQualityConstraints = object.sabrSupportQualityConstraints ?? 0;
-    message.sabrLicenseConstraint = object.sabrLicenseConstraint ?? new Uint8Array(0);
-    message.allowProximaLiveLatency = object.allowProximaLiveLatency ?? 0;
-    message.sabrForceProxima = object.sabrForceProxima ?? 0;
-    message.Tqb = object.Tqb ?? 0;
-    message.sabrForceMaxNetworkInterruptionDurationMs = object.sabrForceMaxNetworkInterruptionDurationMs ?? 0;
-    return message;
-  },
 };
-
-function bytesFromBase64(b64: string): Uint8Array {
-  const bin = globalThis.atob(b64);
-  const arr = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; ++i) {
-    arr[i] = bin.charCodeAt(i);
-  }
-  return arr;
-}
-
-function base64FromBytes(arr: Uint8Array): string {
-  const bin: string[] = [];
-  arr.forEach((byte) => {
-    bin.push(globalThis.String.fromCharCode(byte));
-  });
-  return globalThis.btoa(bin.join(""));
-}
-
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
-
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
-
-type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
   const num = globalThis.Number(int64.toString());
@@ -878,15 +589,7 @@ function longToNumber(int64: { toString(): string }): number {
   return num;
 }
 
-function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
-}
-
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
   decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }
