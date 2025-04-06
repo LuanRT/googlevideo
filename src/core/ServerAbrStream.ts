@@ -240,7 +240,7 @@ export class ServerAbrStream extends EventEmitterLike {
         isInitSegment: mediaHeader.isInitSeg,
         durationMs: mediaHeader.durationMs,
         startMs: mediaHeader.startMs,
-        startDataRange: mediaHeader.startDataRange,
+        startDataRange: mediaHeader.startRange,
         sequenceNumber: mediaHeader.sequenceNumber,
         contentLength: mediaHeader.contentLength,
         timeRange: mediaHeader.timeRange
@@ -300,7 +300,7 @@ export class ServerAbrStream extends EventEmitterLike {
         formatKey: formatKey,
         durationMs: data.durationMs,
         mimeType: 'mimeType' in data ? data.mimeType : undefined,
-        sequenceCount: 'field4' in data ? data.field4 : undefined,
+        sequenceCount: 'endSegmentNumber' in data ? data.endSegmentNumber : undefined,
         sequenceList: [],
         mediaChunks: [],
         _state: {

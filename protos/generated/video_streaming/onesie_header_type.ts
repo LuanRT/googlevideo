@@ -9,31 +9,17 @@
 export const protobufPackage = "video_streaming";
 
 export enum OnesieHeaderType {
-  PLAYER_RESPONSE = 0,
-  HEADER_TYPE_1 = 1,
+  ONESIE_PLAYER_RESPONSE = 0,
+  MEDIA = 1,
   MEDIA_DECRYPTION_KEY = 2,
-  HEADER_TYPE_3 = 3,
-  HEADER_TYPE_4 = 4,
-  HEADER_TYPE_5 = 5,
-  NEW_HOST = 6,
-  HEADER_TYPE_7 = 7,
-  HEADER_TYPE_8 = 8,
-  HEADER_TYPE_9 = 9,
-  HEADER_TYPE_10 = 10,
-  HEADER_TYPE_11 = 11,
-  HEADER_TYPE_12 = 12,
-  HEADER_TYPE_13 = 13,
-  RESTRICTED_FORMATS_HINT = 14,
-  HEADER_TYPE_15 = 15,
+  CLEAR_MEDIA = 3,
+  CLEAR_INIT_SEGMENT = 4,
+  ACK = 5,
+  MEDIA_STREAMER_HOSTNAME = 6,
+  MEDIA_SIZE_HINT = 7,
+  PLAYER_SERVICE_RESPONSE_PUSH_URL = 8,
+  LAST_HIGH_PRIORITY_HINT = 9,
   STREAM_METADATA = 16,
-  HEADER_TYPE_17 = 17,
-  HEADER_TYPE_18 = 18,
-  HEADER_TYPE_19 = 19,
-  HEADER_TYPE_20 = 20,
-  HEADER_TYPE_21 = 21,
-  HEADER_TYPE_22 = 22,
-  HEADER_TYPE_23 = 23,
-  HEADER_TYPE_24 = 24,
   ENCRYPTED_INNERTUBE_RESPONSE_PART = 25,
   UNRECOGNIZED = -1,
 }
@@ -41,80 +27,38 @@ export enum OnesieHeaderType {
 export function onesieHeaderTypeFromJSON(object: any): OnesieHeaderType {
   switch (object) {
     case 0:
-    case "PLAYER_RESPONSE":
-      return OnesieHeaderType.PLAYER_RESPONSE;
+    case "ONESIE_PLAYER_RESPONSE":
+      return OnesieHeaderType.ONESIE_PLAYER_RESPONSE;
     case 1:
-    case "HEADER_TYPE_1":
-      return OnesieHeaderType.HEADER_TYPE_1;
+    case "MEDIA":
+      return OnesieHeaderType.MEDIA;
     case 2:
     case "MEDIA_DECRYPTION_KEY":
       return OnesieHeaderType.MEDIA_DECRYPTION_KEY;
     case 3:
-    case "HEADER_TYPE_3":
-      return OnesieHeaderType.HEADER_TYPE_3;
+    case "CLEAR_MEDIA":
+      return OnesieHeaderType.CLEAR_MEDIA;
     case 4:
-    case "HEADER_TYPE_4":
-      return OnesieHeaderType.HEADER_TYPE_4;
+    case "CLEAR_INIT_SEGMENT":
+      return OnesieHeaderType.CLEAR_INIT_SEGMENT;
     case 5:
-    case "HEADER_TYPE_5":
-      return OnesieHeaderType.HEADER_TYPE_5;
+    case "ACK":
+      return OnesieHeaderType.ACK;
     case 6:
-    case "NEW_HOST":
-      return OnesieHeaderType.NEW_HOST;
+    case "MEDIA_STREAMER_HOSTNAME":
+      return OnesieHeaderType.MEDIA_STREAMER_HOSTNAME;
     case 7:
-    case "HEADER_TYPE_7":
-      return OnesieHeaderType.HEADER_TYPE_7;
+    case "MEDIA_SIZE_HINT":
+      return OnesieHeaderType.MEDIA_SIZE_HINT;
     case 8:
-    case "HEADER_TYPE_8":
-      return OnesieHeaderType.HEADER_TYPE_8;
+    case "PLAYER_SERVICE_RESPONSE_PUSH_URL":
+      return OnesieHeaderType.PLAYER_SERVICE_RESPONSE_PUSH_URL;
     case 9:
-    case "HEADER_TYPE_9":
-      return OnesieHeaderType.HEADER_TYPE_9;
-    case 10:
-    case "HEADER_TYPE_10":
-      return OnesieHeaderType.HEADER_TYPE_10;
-    case 11:
-    case "HEADER_TYPE_11":
-      return OnesieHeaderType.HEADER_TYPE_11;
-    case 12:
-    case "HEADER_TYPE_12":
-      return OnesieHeaderType.HEADER_TYPE_12;
-    case 13:
-    case "HEADER_TYPE_13":
-      return OnesieHeaderType.HEADER_TYPE_13;
-    case 14:
-    case "RESTRICTED_FORMATS_HINT":
-      return OnesieHeaderType.RESTRICTED_FORMATS_HINT;
-    case 15:
-    case "HEADER_TYPE_15":
-      return OnesieHeaderType.HEADER_TYPE_15;
+    case "LAST_HIGH_PRIORITY_HINT":
+      return OnesieHeaderType.LAST_HIGH_PRIORITY_HINT;
     case 16:
     case "STREAM_METADATA":
       return OnesieHeaderType.STREAM_METADATA;
-    case 17:
-    case "HEADER_TYPE_17":
-      return OnesieHeaderType.HEADER_TYPE_17;
-    case 18:
-    case "HEADER_TYPE_18":
-      return OnesieHeaderType.HEADER_TYPE_18;
-    case 19:
-    case "HEADER_TYPE_19":
-      return OnesieHeaderType.HEADER_TYPE_19;
-    case 20:
-    case "HEADER_TYPE_20":
-      return OnesieHeaderType.HEADER_TYPE_20;
-    case 21:
-    case "HEADER_TYPE_21":
-      return OnesieHeaderType.HEADER_TYPE_21;
-    case 22:
-    case "HEADER_TYPE_22":
-      return OnesieHeaderType.HEADER_TYPE_22;
-    case 23:
-    case "HEADER_TYPE_23":
-      return OnesieHeaderType.HEADER_TYPE_23;
-    case 24:
-    case "HEADER_TYPE_24":
-      return OnesieHeaderType.HEADER_TYPE_24;
     case 25:
     case "ENCRYPTED_INNERTUBE_RESPONSE_PART":
       return OnesieHeaderType.ENCRYPTED_INNERTUBE_RESPONSE_PART;
@@ -127,56 +71,28 @@ export function onesieHeaderTypeFromJSON(object: any): OnesieHeaderType {
 
 export function onesieHeaderTypeToJSON(object: OnesieHeaderType): string {
   switch (object) {
-    case OnesieHeaderType.PLAYER_RESPONSE:
-      return "PLAYER_RESPONSE";
-    case OnesieHeaderType.HEADER_TYPE_1:
-      return "HEADER_TYPE_1";
+    case OnesieHeaderType.ONESIE_PLAYER_RESPONSE:
+      return "ONESIE_PLAYER_RESPONSE";
+    case OnesieHeaderType.MEDIA:
+      return "MEDIA";
     case OnesieHeaderType.MEDIA_DECRYPTION_KEY:
       return "MEDIA_DECRYPTION_KEY";
-    case OnesieHeaderType.HEADER_TYPE_3:
-      return "HEADER_TYPE_3";
-    case OnesieHeaderType.HEADER_TYPE_4:
-      return "HEADER_TYPE_4";
-    case OnesieHeaderType.HEADER_TYPE_5:
-      return "HEADER_TYPE_5";
-    case OnesieHeaderType.NEW_HOST:
-      return "NEW_HOST";
-    case OnesieHeaderType.HEADER_TYPE_7:
-      return "HEADER_TYPE_7";
-    case OnesieHeaderType.HEADER_TYPE_8:
-      return "HEADER_TYPE_8";
-    case OnesieHeaderType.HEADER_TYPE_9:
-      return "HEADER_TYPE_9";
-    case OnesieHeaderType.HEADER_TYPE_10:
-      return "HEADER_TYPE_10";
-    case OnesieHeaderType.HEADER_TYPE_11:
-      return "HEADER_TYPE_11";
-    case OnesieHeaderType.HEADER_TYPE_12:
-      return "HEADER_TYPE_12";
-    case OnesieHeaderType.HEADER_TYPE_13:
-      return "HEADER_TYPE_13";
-    case OnesieHeaderType.RESTRICTED_FORMATS_HINT:
-      return "RESTRICTED_FORMATS_HINT";
-    case OnesieHeaderType.HEADER_TYPE_15:
-      return "HEADER_TYPE_15";
+    case OnesieHeaderType.CLEAR_MEDIA:
+      return "CLEAR_MEDIA";
+    case OnesieHeaderType.CLEAR_INIT_SEGMENT:
+      return "CLEAR_INIT_SEGMENT";
+    case OnesieHeaderType.ACK:
+      return "ACK";
+    case OnesieHeaderType.MEDIA_STREAMER_HOSTNAME:
+      return "MEDIA_STREAMER_HOSTNAME";
+    case OnesieHeaderType.MEDIA_SIZE_HINT:
+      return "MEDIA_SIZE_HINT";
+    case OnesieHeaderType.PLAYER_SERVICE_RESPONSE_PUSH_URL:
+      return "PLAYER_SERVICE_RESPONSE_PUSH_URL";
+    case OnesieHeaderType.LAST_HIGH_PRIORITY_HINT:
+      return "LAST_HIGH_PRIORITY_HINT";
     case OnesieHeaderType.STREAM_METADATA:
       return "STREAM_METADATA";
-    case OnesieHeaderType.HEADER_TYPE_17:
-      return "HEADER_TYPE_17";
-    case OnesieHeaderType.HEADER_TYPE_18:
-      return "HEADER_TYPE_18";
-    case OnesieHeaderType.HEADER_TYPE_19:
-      return "HEADER_TYPE_19";
-    case OnesieHeaderType.HEADER_TYPE_20:
-      return "HEADER_TYPE_20";
-    case OnesieHeaderType.HEADER_TYPE_21:
-      return "HEADER_TYPE_21";
-    case OnesieHeaderType.HEADER_TYPE_22:
-      return "HEADER_TYPE_22";
-    case OnesieHeaderType.HEADER_TYPE_23:
-      return "HEADER_TYPE_23";
-    case OnesieHeaderType.HEADER_TYPE_24:
-      return "HEADER_TYPE_24";
     case OnesieHeaderType.ENCRYPTED_INNERTUBE_RESPONSE_PART:
       return "ENCRYPTED_INNERTUBE_RESPONSE_PART";
     case OnesieHeaderType.UNRECOGNIZED:

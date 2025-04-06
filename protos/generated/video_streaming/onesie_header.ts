@@ -17,7 +17,7 @@ export interface OnesieHeader {
   itag?: string | undefined;
   cryptoParams?: CryptoParams | undefined;
   lastModified?: number | undefined;
-  mediaSizeBytes?: number | undefined;
+  expectedMediaSizeBytes?: number | undefined;
   restrictedFormats: string[];
   xtags?: string | undefined;
   sequenceNumber?: number | undefined;
@@ -40,7 +40,7 @@ function createBaseOnesieHeader(): OnesieHeader {
     itag: "",
     cryptoParams: undefined,
     lastModified: 0,
-    mediaSizeBytes: 0,
+    expectedMediaSizeBytes: 0,
     restrictedFormats: [],
     xtags: "",
     sequenceNumber: 0,
@@ -66,8 +66,8 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
     if (message.lastModified !== undefined && message.lastModified !== 0) {
       writer.uint32(40).uint64(message.lastModified);
     }
-    if (message.mediaSizeBytes !== undefined && message.mediaSizeBytes !== 0) {
-      writer.uint32(56).int64(message.mediaSizeBytes);
+    if (message.expectedMediaSizeBytes !== undefined && message.expectedMediaSizeBytes !== 0) {
+      writer.uint32(56).int64(message.expectedMediaSizeBytes);
     }
     for (const v of message.restrictedFormats) {
       writer.uint32(90).string(v!);
@@ -134,7 +134,7 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
             break;
           }
 
-          message.mediaSizeBytes = longToNumber(reader.int64());
+          message.expectedMediaSizeBytes = longToNumber(reader.int64());
           continue;
         case 11:
           if (tag !== 90) {
@@ -187,7 +187,9 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
       itag: isSet(object.itag) ? globalThis.String(object.itag) : "",
       cryptoParams: isSet(object.cryptoParams) ? CryptoParams.fromJSON(object.cryptoParams) : undefined,
       lastModified: isSet(object.lastModified) ? globalThis.Number(object.lastModified) : 0,
-      mediaSizeBytes: isSet(object.mediaSizeBytes) ? globalThis.Number(object.mediaSizeBytes) : 0,
+      expectedMediaSizeBytes: isSet(object.expectedMediaSizeBytes)
+        ? globalThis.Number(object.expectedMediaSizeBytes)
+        : 0,
       restrictedFormats: globalThis.Array.isArray(object?.restrictedFormats)
         ? object.restrictedFormats.map((e: any) => globalThis.String(e))
         : [],
@@ -215,8 +217,8 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
     if (message.lastModified !== undefined && message.lastModified !== 0) {
       obj.lastModified = Math.round(message.lastModified);
     }
-    if (message.mediaSizeBytes !== undefined && message.mediaSizeBytes !== 0) {
-      obj.mediaSizeBytes = Math.round(message.mediaSizeBytes);
+    if (message.expectedMediaSizeBytes !== undefined && message.expectedMediaSizeBytes !== 0) {
+      obj.expectedMediaSizeBytes = Math.round(message.expectedMediaSizeBytes);
     }
     if (message.restrictedFormats?.length) {
       obj.restrictedFormats = message.restrictedFormats;
@@ -248,7 +250,7 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
       ? CryptoParams.fromPartial(object.cryptoParams)
       : undefined;
     message.lastModified = object.lastModified ?? 0;
-    message.mediaSizeBytes = object.mediaSizeBytes ?? 0;
+    message.expectedMediaSizeBytes = object.expectedMediaSizeBytes ?? 0;
     message.restrictedFormats = object.restrictedFormats?.map((e) => e) || [];
     message.xtags = object.xtags ?? "";
     message.sequenceNumber = object.sequenceNumber ?? 0;

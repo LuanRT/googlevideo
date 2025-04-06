@@ -17,10 +17,15 @@ export interface EncryptedPlayerRequest {
   hmac?: Uint8Array | undefined;
   reverseProxyConfig?: string | undefined;
   serializeResponseAsJson?: boolean | undefined;
-  pM?: boolean | undefined;
+  enableAdPlacementsPreroll?: boolean | undefined;
   enableCompression?: boolean | undefined;
+  ustreamerFlags?: EncryptedPlayerRequest_UstreamerFlags | undefined;
   unencryptedOnesiePlayerRequest?: Uint8Array | undefined;
-  TQ?: boolean | undefined;
+  useJsonformatterToParsePlayerResponse?: boolean | undefined;
+}
+
+export interface EncryptedPlayerRequest_UstreamerFlags {
+  sendVideoPlaybackConfig?: boolean | undefined;
 }
 
 function createBaseEncryptedPlayerRequest(): EncryptedPlayerRequest {
@@ -32,10 +37,11 @@ function createBaseEncryptedPlayerRequest(): EncryptedPlayerRequest {
     hmac: new Uint8Array(0),
     reverseProxyConfig: "",
     serializeResponseAsJson: false,
-    pM: false,
+    enableAdPlacementsPreroll: false,
     enableCompression: false,
+    ustreamerFlags: undefined,
     unencryptedOnesiePlayerRequest: new Uint8Array(0),
-    TQ: false,
+    useJsonformatterToParsePlayerResponse: false,
   };
 }
 
@@ -62,17 +68,23 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
     if (message.serializeResponseAsJson !== undefined && message.serializeResponseAsJson !== false) {
       writer.uint32(80).bool(message.serializeResponseAsJson);
     }
-    if (message.pM !== undefined && message.pM !== false) {
-      writer.uint32(104).bool(message.pM);
+    if (message.enableAdPlacementsPreroll !== undefined && message.enableAdPlacementsPreroll !== false) {
+      writer.uint32(104).bool(message.enableAdPlacementsPreroll);
     }
     if (message.enableCompression !== undefined && message.enableCompression !== false) {
       writer.uint32(112).bool(message.enableCompression);
     }
+    if (message.ustreamerFlags !== undefined) {
+      EncryptedPlayerRequest_UstreamerFlags.encode(message.ustreamerFlags, writer.uint32(122).fork()).join();
+    }
     if (message.unencryptedOnesiePlayerRequest !== undefined && message.unencryptedOnesiePlayerRequest.length !== 0) {
       writer.uint32(130).bytes(message.unencryptedOnesiePlayerRequest);
     }
-    if (message.TQ !== undefined && message.TQ !== false) {
-      writer.uint32(136).bool(message.TQ);
+    if (
+      message.useJsonformatterToParsePlayerResponse !== undefined &&
+      message.useJsonformatterToParsePlayerResponse !== false
+    ) {
+      writer.uint32(136).bool(message.useJsonformatterToParsePlayerResponse);
     }
     return writer;
   },
@@ -138,7 +150,7 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
             break;
           }
 
-          message.pM = reader.bool();
+          message.enableAdPlacementsPreroll = reader.bool();
           continue;
         case 14:
           if (tag !== 112) {
@@ -146,6 +158,13 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
           }
 
           message.enableCompression = reader.bool();
+          continue;
+        case 15:
+          if (tag !== 122) {
+            break;
+          }
+
+          message.ustreamerFlags = EncryptedPlayerRequest_UstreamerFlags.decode(reader, reader.uint32());
           continue;
         case 16:
           if (tag !== 130) {
@@ -159,7 +178,7 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
             break;
           }
 
-          message.TQ = reader.bool();
+          message.useJsonformatterToParsePlayerResponse = reader.bool();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -185,12 +204,19 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
       serializeResponseAsJson: isSet(object.serializeResponseAsJson)
         ? globalThis.Boolean(object.serializeResponseAsJson)
         : false,
-      pM: isSet(object.pM) ? globalThis.Boolean(object.pM) : false,
+      enableAdPlacementsPreroll: isSet(object.enableAdPlacementsPreroll)
+        ? globalThis.Boolean(object.enableAdPlacementsPreroll)
+        : false,
       enableCompression: isSet(object.enableCompression) ? globalThis.Boolean(object.enableCompression) : false,
+      ustreamerFlags: isSet(object.ustreamerFlags)
+        ? EncryptedPlayerRequest_UstreamerFlags.fromJSON(object.ustreamerFlags)
+        : undefined,
       unencryptedOnesiePlayerRequest: isSet(object.unencryptedOnesiePlayerRequest)
         ? bytesFromBase64(object.unencryptedOnesiePlayerRequest)
         : new Uint8Array(0),
-      TQ: isSet(object.TQ) ? globalThis.Boolean(object.TQ) : false,
+      useJsonformatterToParsePlayerResponse: isSet(object.useJsonformatterToParsePlayerResponse)
+        ? globalThis.Boolean(object.useJsonformatterToParsePlayerResponse)
+        : false,
     };
   },
 
@@ -217,17 +243,23 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
     if (message.serializeResponseAsJson !== undefined && message.serializeResponseAsJson !== false) {
       obj.serializeResponseAsJson = message.serializeResponseAsJson;
     }
-    if (message.pM !== undefined && message.pM !== false) {
-      obj.pM = message.pM;
+    if (message.enableAdPlacementsPreroll !== undefined && message.enableAdPlacementsPreroll !== false) {
+      obj.enableAdPlacementsPreroll = message.enableAdPlacementsPreroll;
     }
     if (message.enableCompression !== undefined && message.enableCompression !== false) {
       obj.enableCompression = message.enableCompression;
     }
+    if (message.ustreamerFlags !== undefined) {
+      obj.ustreamerFlags = EncryptedPlayerRequest_UstreamerFlags.toJSON(message.ustreamerFlags);
+    }
     if (message.unencryptedOnesiePlayerRequest !== undefined && message.unencryptedOnesiePlayerRequest.length !== 0) {
       obj.unencryptedOnesiePlayerRequest = base64FromBytes(message.unencryptedOnesiePlayerRequest);
     }
-    if (message.TQ !== undefined && message.TQ !== false) {
-      obj.TQ = message.TQ;
+    if (
+      message.useJsonformatterToParsePlayerResponse !== undefined &&
+      message.useJsonformatterToParsePlayerResponse !== false
+    ) {
+      obj.useJsonformatterToParsePlayerResponse = message.useJsonformatterToParsePlayerResponse;
     }
     return obj;
   },
@@ -244,10 +276,78 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
     message.hmac = object.hmac ?? new Uint8Array(0);
     message.reverseProxyConfig = object.reverseProxyConfig ?? "";
     message.serializeResponseAsJson = object.serializeResponseAsJson ?? false;
-    message.pM = object.pM ?? false;
+    message.enableAdPlacementsPreroll = object.enableAdPlacementsPreroll ?? false;
     message.enableCompression = object.enableCompression ?? false;
+    message.ustreamerFlags = (object.ustreamerFlags !== undefined && object.ustreamerFlags !== null)
+      ? EncryptedPlayerRequest_UstreamerFlags.fromPartial(object.ustreamerFlags)
+      : undefined;
     message.unencryptedOnesiePlayerRequest = object.unencryptedOnesiePlayerRequest ?? new Uint8Array(0);
-    message.TQ = object.TQ ?? false;
+    message.useJsonformatterToParsePlayerResponse = object.useJsonformatterToParsePlayerResponse ?? false;
+    return message;
+  },
+};
+
+function createBaseEncryptedPlayerRequest_UstreamerFlags(): EncryptedPlayerRequest_UstreamerFlags {
+  return { sendVideoPlaybackConfig: false };
+}
+
+export const EncryptedPlayerRequest_UstreamerFlags: MessageFns<EncryptedPlayerRequest_UstreamerFlags> = {
+  encode(message: EncryptedPlayerRequest_UstreamerFlags, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.sendVideoPlaybackConfig !== undefined && message.sendVideoPlaybackConfig !== false) {
+      writer.uint32(16).bool(message.sendVideoPlaybackConfig);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): EncryptedPlayerRequest_UstreamerFlags {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseEncryptedPlayerRequest_UstreamerFlags();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.sendVideoPlaybackConfig = reader.bool();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): EncryptedPlayerRequest_UstreamerFlags {
+    return {
+      sendVideoPlaybackConfig: isSet(object.sendVideoPlaybackConfig)
+        ? globalThis.Boolean(object.sendVideoPlaybackConfig)
+        : false,
+    };
+  },
+
+  toJSON(message: EncryptedPlayerRequest_UstreamerFlags): unknown {
+    const obj: any = {};
+    if (message.sendVideoPlaybackConfig !== undefined && message.sendVideoPlaybackConfig !== false) {
+      obj.sendVideoPlaybackConfig = message.sendVideoPlaybackConfig;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<EncryptedPlayerRequest_UstreamerFlags>, I>>(
+    base?: I,
+  ): EncryptedPlayerRequest_UstreamerFlags {
+    return EncryptedPlayerRequest_UstreamerFlags.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<EncryptedPlayerRequest_UstreamerFlags>, I>>(
+    object: I,
+  ): EncryptedPlayerRequest_UstreamerFlags {
+    const message = createBaseEncryptedPlayerRequest_UstreamerFlags();
+    message.sendVideoPlaybackConfig = object.sendVideoPlaybackConfig ?? false;
     return message;
   },
 };

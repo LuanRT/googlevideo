@@ -6,6 +6,20 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import {
+  AudioQuality,
+  audioQualityFromJSON,
+  audioQualityToJSON,
+  NetworkMeteredState,
+  networkMeteredStateFromJSON,
+  networkMeteredStateToJSON,
+  PlaybackAudioRouteOutputType,
+  playbackAudioRouteOutputTypeFromJSON,
+  playbackAudioRouteOutputTypeToJSON,
+  VideoQualitySetting,
+  videoQualitySettingFromJSON,
+  videoQualitySettingToJSON,
+} from "../misc/common.js";
 
 export const protobufPackage = "video_streaming";
 
@@ -16,13 +30,18 @@ export interface ClientAbrState {
   detailedNetworkType?: number | undefined;
   clientViewportWidth?: number | undefined;
   clientViewportHeight?: number | undefined;
-  clientBitrateCap?: number | undefined;
+  clientBitrateCapBytesPerSec?: number | undefined;
   stickyResolution?: number | undefined;
   clientViewportIsFlexible?: boolean | undefined;
   bandwidthEstimate?: number | undefined;
+  minAudioQuality?: AudioQuality | undefined;
+  maxAudioQuality?: AudioQuality | undefined;
+  videoQualitySetting?: VideoQualitySetting | undefined;
+  audioRoute?: PlaybackAudioRouteOutputType | undefined;
   playerTimeMs?: number | undefined;
   timeSinceLastSeek?: number | undefined;
   dataSaverMode?: boolean | undefined;
+  networkMeteredState?: NetworkMeteredState | undefined;
   visibility?: number | undefined;
   playbackRate?: number | undefined;
   elapsedWallTimeMs?: number | undefined;
@@ -58,13 +77,18 @@ function createBaseClientAbrState(): ClientAbrState {
     detailedNetworkType: 0,
     clientViewportWidth: 0,
     clientViewportHeight: 0,
-    clientBitrateCap: 0,
+    clientBitrateCapBytesPerSec: 0,
     stickyResolution: 0,
     clientViewportIsFlexible: false,
     bandwidthEstimate: 0,
+    minAudioQuality: 0,
+    maxAudioQuality: 0,
+    videoQualitySetting: 0,
+    audioRoute: 0,
     playerTimeMs: 0,
     timeSinceLastSeek: 0,
     dataSaverMode: false,
+    networkMeteredState: 0,
     visibility: 0,
     playbackRate: 0,
     elapsedWallTimeMs: 0,
@@ -98,10 +122,10 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     if (
       message.timeSinceLastManualFormatSelectionMs !== undefined && message.timeSinceLastManualFormatSelectionMs !== 0
     ) {
-      writer.uint32(104).int32(message.timeSinceLastManualFormatSelectionMs);
+      writer.uint32(104).int64(message.timeSinceLastManualFormatSelectionMs);
     }
     if (message.lastManualDirection !== undefined && message.lastManualDirection !== 0) {
-      writer.uint32(112).int32(message.lastManualDirection);
+      writer.uint32(112).sint32(message.lastManualDirection);
     }
     if (message.lastManualSelectedResolution !== undefined && message.lastManualSelectedResolution !== 0) {
       writer.uint32(128).int32(message.lastManualSelectedResolution);
@@ -115,8 +139,8 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     if (message.clientViewportHeight !== undefined && message.clientViewportHeight !== 0) {
       writer.uint32(152).int32(message.clientViewportHeight);
     }
-    if (message.clientBitrateCap !== undefined && message.clientBitrateCap !== 0) {
-      writer.uint32(160).int64(message.clientBitrateCap);
+    if (message.clientBitrateCapBytesPerSec !== undefined && message.clientBitrateCapBytesPerSec !== 0) {
+      writer.uint32(160).int64(message.clientBitrateCapBytesPerSec);
     }
     if (message.stickyResolution !== undefined && message.stickyResolution !== 0) {
       writer.uint32(168).int32(message.stickyResolution);
@@ -125,7 +149,19 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
       writer.uint32(176).bool(message.clientViewportIsFlexible);
     }
     if (message.bandwidthEstimate !== undefined && message.bandwidthEstimate !== 0) {
-      writer.uint32(184).int32(message.bandwidthEstimate);
+      writer.uint32(184).int64(message.bandwidthEstimate);
+    }
+    if (message.minAudioQuality !== undefined && message.minAudioQuality !== 0) {
+      writer.uint32(192).int32(message.minAudioQuality);
+    }
+    if (message.maxAudioQuality !== undefined && message.maxAudioQuality !== 0) {
+      writer.uint32(200).int32(message.maxAudioQuality);
+    }
+    if (message.videoQualitySetting !== undefined && message.videoQualitySetting !== 0) {
+      writer.uint32(208).int32(message.videoQualitySetting);
+    }
+    if (message.audioRoute !== undefined && message.audioRoute !== 0) {
+      writer.uint32(216).int32(message.audioRoute);
     }
     if (message.playerTimeMs !== undefined && message.playerTimeMs !== 0) {
       writer.uint32(224).int64(message.playerTimeMs);
@@ -135,6 +171,9 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     }
     if (message.dataSaverMode !== undefined && message.dataSaverMode !== false) {
       writer.uint32(240).bool(message.dataSaverMode);
+    }
+    if (message.networkMeteredState !== undefined && message.networkMeteredState !== 0) {
+      writer.uint32(256).int32(message.networkMeteredState);
     }
     if (message.visibility !== undefined && message.visibility !== 0) {
       writer.uint32(272).int32(message.visibility);
@@ -229,14 +268,14 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.timeSinceLastManualFormatSelectionMs = reader.int32();
+          message.timeSinceLastManualFormatSelectionMs = longToNumber(reader.int64());
           continue;
         case 14:
           if (tag !== 112) {
             break;
           }
 
-          message.lastManualDirection = reader.int32();
+          message.lastManualDirection = reader.sint32();
           continue;
         case 16:
           if (tag !== 128) {
@@ -271,7 +310,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.clientBitrateCap = longToNumber(reader.int64());
+          message.clientBitrateCapBytesPerSec = longToNumber(reader.int64());
           continue;
         case 21:
           if (tag !== 168) {
@@ -292,7 +331,35 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.bandwidthEstimate = reader.int32();
+          message.bandwidthEstimate = longToNumber(reader.int64());
+          continue;
+        case 24:
+          if (tag !== 192) {
+            break;
+          }
+
+          message.minAudioQuality = reader.int32() as any;
+          continue;
+        case 25:
+          if (tag !== 200) {
+            break;
+          }
+
+          message.maxAudioQuality = reader.int32() as any;
+          continue;
+        case 26:
+          if (tag !== 208) {
+            break;
+          }
+
+          message.videoQualitySetting = reader.int32() as any;
+          continue;
+        case 27:
+          if (tag !== 216) {
+            break;
+          }
+
+          message.audioRoute = reader.int32() as any;
           continue;
         case 28:
           if (tag !== 224) {
@@ -314,6 +381,13 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
           }
 
           message.dataSaverMode = reader.bool();
+          continue;
+        case 32:
+          if (tag !== 256) {
+            break;
+          }
+
+          message.networkMeteredState = reader.int32() as any;
           continue;
         case 34:
           if (tag !== 272) {
@@ -511,15 +585,26 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
       detailedNetworkType: isSet(object.detailedNetworkType) ? globalThis.Number(object.detailedNetworkType) : 0,
       clientViewportWidth: isSet(object.clientViewportWidth) ? globalThis.Number(object.clientViewportWidth) : 0,
       clientViewportHeight: isSet(object.clientViewportHeight) ? globalThis.Number(object.clientViewportHeight) : 0,
-      clientBitrateCap: isSet(object.clientBitrateCap) ? globalThis.Number(object.clientBitrateCap) : 0,
+      clientBitrateCapBytesPerSec: isSet(object.clientBitrateCapBytesPerSec)
+        ? globalThis.Number(object.clientBitrateCapBytesPerSec)
+        : 0,
       stickyResolution: isSet(object.stickyResolution) ? globalThis.Number(object.stickyResolution) : 0,
       clientViewportIsFlexible: isSet(object.clientViewportIsFlexible)
         ? globalThis.Boolean(object.clientViewportIsFlexible)
         : false,
       bandwidthEstimate: isSet(object.bandwidthEstimate) ? globalThis.Number(object.bandwidthEstimate) : 0,
+      minAudioQuality: isSet(object.minAudioQuality) ? audioQualityFromJSON(object.minAudioQuality) : 0,
+      maxAudioQuality: isSet(object.maxAudioQuality) ? audioQualityFromJSON(object.maxAudioQuality) : 0,
+      videoQualitySetting: isSet(object.videoQualitySetting)
+        ? videoQualitySettingFromJSON(object.videoQualitySetting)
+        : 0,
+      audioRoute: isSet(object.audioRoute) ? playbackAudioRouteOutputTypeFromJSON(object.audioRoute) : 0,
       playerTimeMs: isSet(object.playerTimeMs) ? globalThis.Number(object.playerTimeMs) : 0,
       timeSinceLastSeek: isSet(object.timeSinceLastSeek) ? globalThis.Number(object.timeSinceLastSeek) : 0,
       dataSaverMode: isSet(object.dataSaverMode) ? globalThis.Boolean(object.dataSaverMode) : false,
+      networkMeteredState: isSet(object.networkMeteredState)
+        ? networkMeteredStateFromJSON(object.networkMeteredState)
+        : 0,
       visibility: isSet(object.visibility) ? globalThis.Number(object.visibility) : 0,
       playbackRate: isSet(object.playbackRate) ? globalThis.Number(object.playbackRate) : 0,
       elapsedWallTimeMs: isSet(object.elapsedWallTimeMs) ? globalThis.Number(object.elapsedWallTimeMs) : 0,
@@ -584,8 +669,8 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     if (message.clientViewportHeight !== undefined && message.clientViewportHeight !== 0) {
       obj.clientViewportHeight = Math.round(message.clientViewportHeight);
     }
-    if (message.clientBitrateCap !== undefined && message.clientBitrateCap !== 0) {
-      obj.clientBitrateCap = Math.round(message.clientBitrateCap);
+    if (message.clientBitrateCapBytesPerSec !== undefined && message.clientBitrateCapBytesPerSec !== 0) {
+      obj.clientBitrateCapBytesPerSec = Math.round(message.clientBitrateCapBytesPerSec);
     }
     if (message.stickyResolution !== undefined && message.stickyResolution !== 0) {
       obj.stickyResolution = Math.round(message.stickyResolution);
@@ -596,6 +681,18 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     if (message.bandwidthEstimate !== undefined && message.bandwidthEstimate !== 0) {
       obj.bandwidthEstimate = Math.round(message.bandwidthEstimate);
     }
+    if (message.minAudioQuality !== undefined && message.minAudioQuality !== 0) {
+      obj.minAudioQuality = audioQualityToJSON(message.minAudioQuality);
+    }
+    if (message.maxAudioQuality !== undefined && message.maxAudioQuality !== 0) {
+      obj.maxAudioQuality = audioQualityToJSON(message.maxAudioQuality);
+    }
+    if (message.videoQualitySetting !== undefined && message.videoQualitySetting !== 0) {
+      obj.videoQualitySetting = videoQualitySettingToJSON(message.videoQualitySetting);
+    }
+    if (message.audioRoute !== undefined && message.audioRoute !== 0) {
+      obj.audioRoute = playbackAudioRouteOutputTypeToJSON(message.audioRoute);
+    }
     if (message.playerTimeMs !== undefined && message.playerTimeMs !== 0) {
       obj.playerTimeMs = Math.round(message.playerTimeMs);
     }
@@ -604,6 +701,9 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     }
     if (message.dataSaverMode !== undefined && message.dataSaverMode !== false) {
       obj.dataSaverMode = message.dataSaverMode;
+    }
+    if (message.networkMeteredState !== undefined && message.networkMeteredState !== 0) {
+      obj.networkMeteredState = networkMeteredStateToJSON(message.networkMeteredState);
     }
     if (message.visibility !== undefined && message.visibility !== 0) {
       obj.visibility = Math.round(message.visibility);
@@ -697,13 +797,18 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     message.detailedNetworkType = object.detailedNetworkType ?? 0;
     message.clientViewportWidth = object.clientViewportWidth ?? 0;
     message.clientViewportHeight = object.clientViewportHeight ?? 0;
-    message.clientBitrateCap = object.clientBitrateCap ?? 0;
+    message.clientBitrateCapBytesPerSec = object.clientBitrateCapBytesPerSec ?? 0;
     message.stickyResolution = object.stickyResolution ?? 0;
     message.clientViewportIsFlexible = object.clientViewportIsFlexible ?? false;
     message.bandwidthEstimate = object.bandwidthEstimate ?? 0;
+    message.minAudioQuality = object.minAudioQuality ?? 0;
+    message.maxAudioQuality = object.maxAudioQuality ?? 0;
+    message.videoQualitySetting = object.videoQualitySetting ?? 0;
+    message.audioRoute = object.audioRoute ?? 0;
     message.playerTimeMs = object.playerTimeMs ?? 0;
     message.timeSinceLastSeek = object.timeSinceLastSeek ?? 0;
     message.dataSaverMode = object.dataSaverMode ?? false;
+    message.networkMeteredState = object.networkMeteredState ?? 0;
     message.visibility = object.visibility ?? 0;
     message.playbackRate = object.playbackRate ?? 0;
     message.elapsedWallTimeMs = object.elapsedWallTimeMs ?? 0;

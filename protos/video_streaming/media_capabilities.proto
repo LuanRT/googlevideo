@@ -3,8 +3,8 @@ package video_streaming;
 
 message MediaCapabilities {
   repeated VideoFormatCapability video_format_capabilities = 1;
-    repeated AudioFormatCapability audio_format_capabilities = 2;
-    optional int32 hdr_mode_bitmask = 5;
+  repeated AudioFormatCapability audio_format_capabilities = 2;
+  optional int32 hdr_mode_bitmask = 5;
 
   message VideoFormatCapability {
     optional int32 video_codec = 1;

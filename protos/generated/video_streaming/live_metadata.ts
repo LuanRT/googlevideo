@@ -10,54 +10,69 @@ import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 export const protobufPackage = "video_streaming";
 
 export interface LiveMetadata {
+  broadcastId?: string | undefined;
   headSequenceNumber?: number | undefined;
   headTimeMs?: number | undefined;
   wallTimeMs?: number | undefined;
-  field10?: number | undefined;
-  field12?: number | undefined;
-  field13?: number | undefined;
-  headTimeUsec?: number | undefined;
-  field15?: number | undefined;
+  videoId?: string | undefined;
+  postLiveDvr?: boolean | undefined;
+  headm?: number | undefined;
+  minSeekableTimeTicks?: number | undefined;
+  minSeekableTimescale?: number | undefined;
+  maxSeekableTimeTicks?: number | undefined;
+  maxSeekableTimescale?: number | undefined;
 }
 
 function createBaseLiveMetadata(): LiveMetadata {
   return {
+    broadcastId: "",
     headSequenceNumber: 0,
     headTimeMs: 0,
     wallTimeMs: 0,
-    field10: 0,
-    field12: 0,
-    field13: 0,
-    headTimeUsec: 0,
-    field15: 0,
+    videoId: "",
+    postLiveDvr: false,
+    headm: 0,
+    minSeekableTimeTicks: 0,
+    minSeekableTimescale: 0,
+    maxSeekableTimeTicks: 0,
+    maxSeekableTimescale: 0,
   };
 }
 
 export const LiveMetadata: MessageFns<LiveMetadata> = {
   encode(message: LiveMetadata, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.broadcastId !== undefined && message.broadcastId !== "") {
+      writer.uint32(10).string(message.broadcastId);
+    }
     if (message.headSequenceNumber !== undefined && message.headSequenceNumber !== 0) {
-      writer.uint32(24).uint32(message.headSequenceNumber);
+      writer.uint32(24).int64(message.headSequenceNumber);
     }
     if (message.headTimeMs !== undefined && message.headTimeMs !== 0) {
-      writer.uint32(32).uint64(message.headTimeMs);
+      writer.uint32(32).int64(message.headTimeMs);
     }
     if (message.wallTimeMs !== undefined && message.wallTimeMs !== 0) {
-      writer.uint32(40).uint64(message.wallTimeMs);
+      writer.uint32(40).int64(message.wallTimeMs);
     }
-    if (message.field10 !== undefined && message.field10 !== 0) {
-      writer.uint32(80).uint64(message.field10);
+    if (message.videoId !== undefined && message.videoId !== "") {
+      writer.uint32(50).string(message.videoId);
     }
-    if (message.field12 !== undefined && message.field12 !== 0) {
-      writer.uint32(96).uint64(message.field12);
+    if (message.postLiveDvr !== undefined && message.postLiveDvr !== false) {
+      writer.uint32(64).bool(message.postLiveDvr);
     }
-    if (message.field13 !== undefined && message.field13 !== 0) {
-      writer.uint32(104).uint64(message.field13);
+    if (message.headm !== undefined && message.headm !== 0) {
+      writer.uint32(80).int64(message.headm);
     }
-    if (message.headTimeUsec !== undefined && message.headTimeUsec !== 0) {
-      writer.uint32(112).uint64(message.headTimeUsec);
+    if (message.minSeekableTimeTicks !== undefined && message.minSeekableTimeTicks !== 0) {
+      writer.uint32(96).int64(message.minSeekableTimeTicks);
     }
-    if (message.field15 !== undefined && message.field15 !== 0) {
-      writer.uint32(120).uint64(message.field15);
+    if (message.minSeekableTimescale !== undefined && message.minSeekableTimescale !== 0) {
+      writer.uint32(104).int32(message.minSeekableTimescale);
+    }
+    if (message.maxSeekableTimeTicks !== undefined && message.maxSeekableTimeTicks !== 0) {
+      writer.uint32(112).int64(message.maxSeekableTimeTicks);
+    }
+    if (message.maxSeekableTimescale !== undefined && message.maxSeekableTimescale !== 0) {
+      writer.uint32(120).int32(message.maxSeekableTimescale);
     }
     return writer;
   },
@@ -69,61 +84,82 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.broadcastId = reader.string();
+          continue;
         case 3:
           if (tag !== 24) {
             break;
           }
 
-          message.headSequenceNumber = reader.uint32();
+          message.headSequenceNumber = longToNumber(reader.int64());
           continue;
         case 4:
           if (tag !== 32) {
             break;
           }
 
-          message.headTimeMs = longToNumber(reader.uint64());
+          message.headTimeMs = longToNumber(reader.int64());
           continue;
         case 5:
           if (tag !== 40) {
             break;
           }
 
-          message.wallTimeMs = longToNumber(reader.uint64());
+          message.wallTimeMs = longToNumber(reader.int64());
+          continue;
+        case 6:
+          if (tag !== 50) {
+            break;
+          }
+
+          message.videoId = reader.string();
+          continue;
+        case 8:
+          if (tag !== 64) {
+            break;
+          }
+
+          message.postLiveDvr = reader.bool();
           continue;
         case 10:
           if (tag !== 80) {
             break;
           }
 
-          message.field10 = longToNumber(reader.uint64());
+          message.headm = longToNumber(reader.int64());
           continue;
         case 12:
           if (tag !== 96) {
             break;
           }
 
-          message.field12 = longToNumber(reader.uint64());
+          message.minSeekableTimeTicks = longToNumber(reader.int64());
           continue;
         case 13:
           if (tag !== 104) {
             break;
           }
 
-          message.field13 = longToNumber(reader.uint64());
+          message.minSeekableTimescale = reader.int32();
           continue;
         case 14:
           if (tag !== 112) {
             break;
           }
 
-          message.headTimeUsec = longToNumber(reader.uint64());
+          message.maxSeekableTimeTicks = longToNumber(reader.int64());
           continue;
         case 15:
           if (tag !== 120) {
             break;
           }
 
-          message.field15 = longToNumber(reader.uint64());
+          message.maxSeekableTimescale = reader.int32();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -136,19 +172,25 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
 
   fromJSON(object: any): LiveMetadata {
     return {
+      broadcastId: isSet(object.broadcastId) ? globalThis.String(object.broadcastId) : "",
       headSequenceNumber: isSet(object.headSequenceNumber) ? globalThis.Number(object.headSequenceNumber) : 0,
       headTimeMs: isSet(object.headTimeMs) ? globalThis.Number(object.headTimeMs) : 0,
       wallTimeMs: isSet(object.wallTimeMs) ? globalThis.Number(object.wallTimeMs) : 0,
-      field10: isSet(object.field10) ? globalThis.Number(object.field10) : 0,
-      field12: isSet(object.field12) ? globalThis.Number(object.field12) : 0,
-      field13: isSet(object.field13) ? globalThis.Number(object.field13) : 0,
-      headTimeUsec: isSet(object.headTimeUsec) ? globalThis.Number(object.headTimeUsec) : 0,
-      field15: isSet(object.field15) ? globalThis.Number(object.field15) : 0,
+      videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
+      postLiveDvr: isSet(object.postLiveDvr) ? globalThis.Boolean(object.postLiveDvr) : false,
+      headm: isSet(object.headm) ? globalThis.Number(object.headm) : 0,
+      minSeekableTimeTicks: isSet(object.minSeekableTimeTicks) ? globalThis.Number(object.minSeekableTimeTicks) : 0,
+      minSeekableTimescale: isSet(object.minSeekableTimescale) ? globalThis.Number(object.minSeekableTimescale) : 0,
+      maxSeekableTimeTicks: isSet(object.maxSeekableTimeTicks) ? globalThis.Number(object.maxSeekableTimeTicks) : 0,
+      maxSeekableTimescale: isSet(object.maxSeekableTimescale) ? globalThis.Number(object.maxSeekableTimescale) : 0,
     };
   },
 
   toJSON(message: LiveMetadata): unknown {
     const obj: any = {};
+    if (message.broadcastId !== undefined && message.broadcastId !== "") {
+      obj.broadcastId = message.broadcastId;
+    }
     if (message.headSequenceNumber !== undefined && message.headSequenceNumber !== 0) {
       obj.headSequenceNumber = Math.round(message.headSequenceNumber);
     }
@@ -158,20 +200,26 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
     if (message.wallTimeMs !== undefined && message.wallTimeMs !== 0) {
       obj.wallTimeMs = Math.round(message.wallTimeMs);
     }
-    if (message.field10 !== undefined && message.field10 !== 0) {
-      obj.field10 = Math.round(message.field10);
+    if (message.videoId !== undefined && message.videoId !== "") {
+      obj.videoId = message.videoId;
     }
-    if (message.field12 !== undefined && message.field12 !== 0) {
-      obj.field12 = Math.round(message.field12);
+    if (message.postLiveDvr !== undefined && message.postLiveDvr !== false) {
+      obj.postLiveDvr = message.postLiveDvr;
     }
-    if (message.field13 !== undefined && message.field13 !== 0) {
-      obj.field13 = Math.round(message.field13);
+    if (message.headm !== undefined && message.headm !== 0) {
+      obj.headm = Math.round(message.headm);
     }
-    if (message.headTimeUsec !== undefined && message.headTimeUsec !== 0) {
-      obj.headTimeUsec = Math.round(message.headTimeUsec);
+    if (message.minSeekableTimeTicks !== undefined && message.minSeekableTimeTicks !== 0) {
+      obj.minSeekableTimeTicks = Math.round(message.minSeekableTimeTicks);
     }
-    if (message.field15 !== undefined && message.field15 !== 0) {
-      obj.field15 = Math.round(message.field15);
+    if (message.minSeekableTimescale !== undefined && message.minSeekableTimescale !== 0) {
+      obj.minSeekableTimescale = Math.round(message.minSeekableTimescale);
+    }
+    if (message.maxSeekableTimeTicks !== undefined && message.maxSeekableTimeTicks !== 0) {
+      obj.maxSeekableTimeTicks = Math.round(message.maxSeekableTimeTicks);
+    }
+    if (message.maxSeekableTimescale !== undefined && message.maxSeekableTimescale !== 0) {
+      obj.maxSeekableTimescale = Math.round(message.maxSeekableTimescale);
     }
     return obj;
   },
@@ -181,14 +229,17 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
   },
   fromPartial<I extends Exact<DeepPartial<LiveMetadata>, I>>(object: I): LiveMetadata {
     const message = createBaseLiveMetadata();
+    message.broadcastId = object.broadcastId ?? "";
     message.headSequenceNumber = object.headSequenceNumber ?? 0;
     message.headTimeMs = object.headTimeMs ?? 0;
     message.wallTimeMs = object.wallTimeMs ?? 0;
-    message.field10 = object.field10 ?? 0;
-    message.field12 = object.field12 ?? 0;
-    message.field13 = object.field13 ?? 0;
-    message.headTimeUsec = object.headTimeUsec ?? 0;
-    message.field15 = object.field15 ?? 0;
+    message.videoId = object.videoId ?? "";
+    message.postLiveDvr = object.postLiveDvr ?? false;
+    message.headm = object.headm ?? 0;
+    message.minSeekableTimeTicks = object.minSeekableTimeTicks ?? 0;
+    message.minSeekableTimescale = object.minSeekableTimescale ?? 0;
+    message.maxSeekableTimeTicks = object.maxSeekableTimeTicks ?? 0;
+    message.maxSeekableTimescale = object.maxSeekableTimescale ?? 0;
     return message;
   },
 };

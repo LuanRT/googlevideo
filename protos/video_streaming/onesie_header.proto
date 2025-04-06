@@ -18,7 +18,7 @@ message OnesieHeader {
 	optional string itag = 3;
 	optional CryptoParams crypto_params = 4;
 	optional uint64 last_modified = 5;
-	optional int64 media_size_bytes = 7;
+  optional int64 expected_media_size_bytes = 7;
 	repeated string restricted_formats = 11;
 	optional string xtags = 15;
 	optional int64 sequence_number = 18;

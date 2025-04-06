@@ -1,5 +1,4 @@
-import Innertube, { Constants, UniversalCache } from 'youtubei.js';
-import { type Context, YT } from 'youtubei.js';
+import Innertube, { Constants, type Context, UniversalCache, YT } from 'youtubei.js';
 import GoogleVideo, { base64ToU8, PART, Protos, QUALITY } from '../../dist/src/index.js';
 import { decryptResponse, encryptRequest } from './utils.js';
 
@@ -67,7 +66,7 @@ async function prepareOnesieRequest(args: OnesieRequestArgs): Promise<OnesieRequ
   // Change or remove these if you want to use a different client. I chose TVHTML5 purely for testing.
   clonedInnerTubeContext.client.clientName = Constants.CLIENTS.TV.NAME;
   clonedInnerTubeContext.client.clientVersion = Constants.CLIENTS.TV.VERSION;
-  
+
   const params: Record<string, any> = {
     playbackContext: {
       contentPlaybackContext: {
@@ -79,29 +78,31 @@ async function prepareOnesieRequest(args: OnesieRequestArgs): Promise<OnesieRequ
     },
     videoId
   };
-  
+
   if (poToken) {
     params.serviceIntegrityDimensions = {};
     params.serviceIntegrityDimensions.poToken = poToken;
   }
-  
+
   const playerRequestJson = {
     context: clonedInnerTubeContext,
     ...params
   };
 
-  const headers = [ {
-    name: 'Content-Type',
-    value: 'application/json'
-  },
-  {
-    name: 'User-Agent',
-    value: innertube.session.context.client.userAgent
-  },
-  {
-    name: 'X-Goog-Visitor-Id',
-    value: innertube.session.context.client.visitorData
-  } ];
+  const headers = [
+    {
+      name: 'Content-Type',
+      value: 'application/json'
+    },
+    {
+      name: 'User-Agent',
+      value: innertube.session.context.client.userAgent
+    },
+    {
+      name: 'X-Goog-Visitor-Id',
+      value: innertube.session.context.client.visitorData
+    }
+  ];
 
   const onesieRequest = Protos.OnesiePlayerRequest.encode({
     url: 'https://youtubei.googleapis.com/youtubei/v1/player?key=AIzaSyDCU8hByM-4DrUqRUYnGn-3llEO78bcxq8',
@@ -122,15 +123,13 @@ async function prepareOnesieRequest(args: OnesieRequestArgs): Promise<OnesieRequ
        * If you want to use an unencrypted player request:
        * unencryptedOnesiePlayerRequest: onesieRequest, 
        */
-      enableCompression: false,
+      enableCompression: true,
       hmac: hmac,
       iv: iv,
-      TQ: true,
+      useJsonformatterToParsePlayerResponse: false,
       serializeResponseAsJson: true // If false, the response will be serialized as protobuf.
     },
     clientAbrState: {
-      timeSinceLastManualFormatSelectionMs: 0,
-      lastManualDirection: 0,
       lastManualSelectedResolution: QUALITY.HD720,
       stickyResolution: QUALITY.HD720,
       playerTimeMs: 0,
@@ -142,7 +141,7 @@ async function prepareOnesieRequest(args: OnesieRequestArgs): Promise<OnesieRequ
       poToken: poToken ? base64ToU8(poToken) : undefined,
       playbackCookie: undefined,
       clientInfo: {
-        clientName: parseInt(Constants.CLIENTS.TV.NAME_ID),
+        clientName: parseInt(Constants.CLIENT_NAME_IDS[clonedInnerTubeContext.client.clientName as keyof typeof Constants.CLIENT_NAME_IDS]),
         clientVersion: clonedInnerTubeContext.client.clientVersion
       }
     },
@@ -190,7 +189,7 @@ async function getBasicInfo(innertube: Innertube, videoId: string): Promise<YT.V
     method: 'POST',
     headers: {
       'accept': '*/*',
-      'content-type': 'text/plain'
+      'content-type': 'application/octet-stream'
     },
     referrer: 'https://www.youtube.com/',
     body: onesieRequest.body
@@ -218,7 +217,7 @@ async function getBasicInfo(innertube: Innertube, videoId: string): Promise<YT.V
     }
   });
 
-  const onesiePlayerResponse = onesie.find((header) => header.type === Protos.OnesieHeaderType.PLAYER_RESPONSE);
+  const onesiePlayerResponse = onesie.find((header) => header.type === Protos.OnesieHeaderType.ONESIE_PLAYER_RESPONSE);
 
   if (onesiePlayerResponse) {
     if (!onesiePlayerResponse.cryptoParams)
@@ -227,8 +226,23 @@ async function getBasicInfo(innertube: Innertube, videoId: string): Promise<YT.V
     const iv = onesiePlayerResponse.cryptoParams.iv;
     const hmac = onesiePlayerResponse.cryptoParams.hmac;
 
+    let responseData = onesiePlayerResponse.data;
+
+    // Decompress the response data if compression is enabled.
+    if (responseData && onesiePlayerResponse.cryptoParams.compressionType === Protos.CompressionType.GZIP) {
+      if (typeof window === 'undefined') {
+        const zlib = await import('node:zlib');
+        responseData = new Uint8Array(zlib.gunzipSync(responseData));
+      } else {
+        const ds = new DecompressionStream('gzip');
+        const stream = new Blob([ responseData ]).stream().pipeThrough(ds);
+        responseData = await new Response(stream).arrayBuffer().then((buf) => new Uint8Array(buf));
+      }
+    }
+
     // If skipResponseEncryption is set to true in the request, the response will not be encrypted.
-    const decryptedData = hmac?.length && iv?.length ? await decryptResponse(iv, hmac, onesiePlayerResponse.data, clientConfig.clientKeyData) : onesiePlayerResponse.data!;
+    const decryptedData = hmac?.length && iv?.length ?
+      await decryptResponse(iv, hmac, responseData, clientConfig.clientKeyData) : responseData!;
     const response = Protos.OnesiePlayerResponse.decode(decryptedData);
 
     if (response.onesieProxyStatus !== Protos.OnesieProxyStatus.ONESIE_PROXY_STATUS_OK)
@@ -253,4 +267,9 @@ const innertube = await Innertube.create({ cache: new UniversalCache(true) });
 
 const videoInfo = await getBasicInfo(innertube, 'JAs6WyK-Kr0');
 console.log('Basic info:', videoInfo);
-console.log('Deciphered audio URL:', videoInfo.chooseFormat({ format: 'mp4', quality: 'best', type: 'audio' }).decipher(innertube.session.player));
+console.log('Deciphered audio URL:');
+console.log(videoInfo.chooseFormat({
+  format: 'mp4',
+  quality: 'best',
+  type: 'audio'
+}).decipher(innertube.session.player));

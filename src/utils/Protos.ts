@@ -22,3 +22,4 @@ export { MediaCapabilities } from '../../protos/generated/video_streaming/media_
 export { CryptoParams } from '../../protos/generated/video_streaming/crypto_params.js';
 export { LiveMetadata } from '../../protos/generated/video_streaming/live_metadata.js';
 export { FormatId, KeyValuePair, InitRange, IndexRange, HttpHeader } from '../../protos/generated/misc/common.js';
+export { CryptoParams_CompressionType as CompressionType } from '../../protos/generated/video_streaming/crypto_params.js';

@@ -16,23 +16,23 @@ export interface CryptoParams {
 }
 
 export enum CryptoParams_CompressionType {
-  VAL_0 = 0,
-  VAL_1 = 1,
-  VAL_2 = 2,
+  NONE = 0,
+  GZIP = 1,
+  BROTLI = 2,
   UNRECOGNIZED = -1,
 }
 
 export function cryptoParams_CompressionTypeFromJSON(object: any): CryptoParams_CompressionType {
   switch (object) {
     case 0:
-    case "VAL_0":
-      return CryptoParams_CompressionType.VAL_0;
+    case "NONE":
+      return CryptoParams_CompressionType.NONE;
     case 1:
-    case "VAL_1":
-      return CryptoParams_CompressionType.VAL_1;
+    case "GZIP":
+      return CryptoParams_CompressionType.GZIP;
     case 2:
-    case "VAL_2":
-      return CryptoParams_CompressionType.VAL_2;
+    case "BROTLI":
+      return CryptoParams_CompressionType.BROTLI;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -42,12 +42,12 @@ export function cryptoParams_CompressionTypeFromJSON(object: any): CryptoParams_
 
 export function cryptoParams_CompressionTypeToJSON(object: CryptoParams_CompressionType): string {
   switch (object) {
-    case CryptoParams_CompressionType.VAL_0:
-      return "VAL_0";
-    case CryptoParams_CompressionType.VAL_1:
-      return "VAL_1";
-    case CryptoParams_CompressionType.VAL_2:
-      return "VAL_2";
+    case CryptoParams_CompressionType.NONE:
+      return "NONE";
+    case CryptoParams_CompressionType.GZIP:
+      return "GZIP";
+    case CryptoParams_CompressionType.BROTLI:
+      return "BROTLI";
     case CryptoParams_CompressionType.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";

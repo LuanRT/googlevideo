@@ -5,6 +5,7 @@ import "video_streaming/client_abr_state.proto";
 import "video_streaming/encrypted_player_request.proto";
 import "video_streaming/streamer_context.proto";
 import "video_streaming/buffered_range.proto";
+import "misc/common.proto";
 
 message OnesieRequest {
 	repeated string urls = 1;
@@ -14,6 +15,6 @@ message OnesieRequest {
 	optional int32 max_vp9_height = 5;
 	optional int32 client_display_height = 6;
   optional StreamerContext streamer_context = 10; 
-	optional int32 request_target = 13; // MLOnesieRequestTarget
+	optional .misc.OnesieRequestTarget request_target = 13; // MLOnesieRequestTarget
 	repeated BufferedRange buffered_ranges = 14;
 }

@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { OnesieRequestTarget, onesieRequestTargetFromJSON, onesieRequestTargetToJSON } from "../misc/common.js";
 import { BufferedRange } from "./buffered_range.js";
 import { ClientAbrState } from "./client_abr_state.js";
 import { EncryptedPlayerRequest } from "./encrypted_player_request.js";
@@ -24,7 +25,7 @@ export interface OnesieRequest {
     | StreamerContext
     | undefined;
   /** MLOnesieRequestTarget */
-  requestTarget?: number | undefined;
+  requestTarget?: OnesieRequestTarget | undefined;
   bufferedRanges: BufferedRange[];
 }
 
@@ -135,7 +136,7 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
             break;
           }
 
-          message.requestTarget = reader.int32();
+          message.requestTarget = reader.int32() as any;
           continue;
         case 14:
           if (tag !== 114) {
@@ -164,7 +165,7 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
       maxVp9Height: isSet(object.maxVp9Height) ? globalThis.Number(object.maxVp9Height) : 0,
       clientDisplayHeight: isSet(object.clientDisplayHeight) ? globalThis.Number(object.clientDisplayHeight) : 0,
       streamerContext: isSet(object.streamerContext) ? StreamerContext.fromJSON(object.streamerContext) : undefined,
-      requestTarget: isSet(object.requestTarget) ? globalThis.Number(object.requestTarget) : 0,
+      requestTarget: isSet(object.requestTarget) ? onesieRequestTargetFromJSON(object.requestTarget) : 0,
       bufferedRanges: globalThis.Array.isArray(object?.bufferedRanges)
         ? object.bufferedRanges.map((e: any) => BufferedRange.fromJSON(e))
         : [],
@@ -195,7 +196,7 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
       obj.streamerContext = StreamerContext.toJSON(message.streamerContext);
     }
     if (message.requestTarget !== undefined && message.requestTarget !== 0) {
-      obj.requestTarget = Math.round(message.requestTarget);
+      obj.requestTarget = onesieRequestTargetToJSON(message.requestTarget);
     }
     if (message.bufferedRanges?.length) {
       obj.bufferedRanges = message.bufferedRanges.map((e) => BufferedRange.toJSON(e));

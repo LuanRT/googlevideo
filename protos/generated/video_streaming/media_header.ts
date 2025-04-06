@@ -17,8 +17,8 @@ export interface MediaHeader {
   itag?: number | undefined;
   lmt?: number | undefined;
   xtags?: string | undefined;
-  startDataRange?: number | undefined;
-  compression?: MediaHeader_Compression | undefined;
+  startRange?: number | undefined;
+  compressionAlgorithm?: MediaHeader_CompressionAlgorithm | undefined;
   isInitSeg?: boolean | undefined;
   sequenceNumber?: number | undefined;
   field10?: number | undefined;
@@ -29,40 +29,40 @@ export interface MediaHeader {
   timeRange?: TimeRange | undefined;
 }
 
-export enum MediaHeader_Compression {
-  VAL0 = 0,
-  VAL1 = 1,
+export enum MediaHeader_CompressionAlgorithm {
+  UNKNOWN = 0,
+  NONE = 1,
   GZIP = 2,
   UNRECOGNIZED = -1,
 }
 
-export function mediaHeader_CompressionFromJSON(object: any): MediaHeader_Compression {
+export function mediaHeader_CompressionAlgorithmFromJSON(object: any): MediaHeader_CompressionAlgorithm {
   switch (object) {
     case 0:
-    case "VAL0":
-      return MediaHeader_Compression.VAL0;
+    case "UNKNOWN":
+      return MediaHeader_CompressionAlgorithm.UNKNOWN;
     case 1:
-    case "VAL1":
-      return MediaHeader_Compression.VAL1;
+    case "NONE":
+      return MediaHeader_CompressionAlgorithm.NONE;
     case 2:
     case "GZIP":
-      return MediaHeader_Compression.GZIP;
+      return MediaHeader_CompressionAlgorithm.GZIP;
     case -1:
     case "UNRECOGNIZED":
     default:
-      return MediaHeader_Compression.UNRECOGNIZED;
+      return MediaHeader_CompressionAlgorithm.UNRECOGNIZED;
   }
 }
 
-export function mediaHeader_CompressionToJSON(object: MediaHeader_Compression): string {
+export function mediaHeader_CompressionAlgorithmToJSON(object: MediaHeader_CompressionAlgorithm): string {
   switch (object) {
-    case MediaHeader_Compression.VAL0:
-      return "VAL0";
-    case MediaHeader_Compression.VAL1:
-      return "VAL1";
-    case MediaHeader_Compression.GZIP:
+    case MediaHeader_CompressionAlgorithm.UNKNOWN:
+      return "UNKNOWN";
+    case MediaHeader_CompressionAlgorithm.NONE:
+      return "NONE";
+    case MediaHeader_CompressionAlgorithm.GZIP:
       return "GZIP";
-    case MediaHeader_Compression.UNRECOGNIZED:
+    case MediaHeader_CompressionAlgorithm.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
   }
@@ -75,8 +75,8 @@ function createBaseMediaHeader(): MediaHeader {
     itag: 0,
     lmt: 0,
     xtags: "",
-    startDataRange: 0,
-    compression: 0,
+    startRange: 0,
+    compressionAlgorithm: 0,
     isInitSeg: false,
     sequenceNumber: 0,
     field10: 0,
@@ -105,11 +105,11 @@ export const MediaHeader: MessageFns<MediaHeader> = {
     if (message.xtags !== undefined && message.xtags !== "") {
       writer.uint32(42).string(message.xtags);
     }
-    if (message.startDataRange !== undefined && message.startDataRange !== 0) {
-      writer.uint32(48).int32(message.startDataRange);
+    if (message.startRange !== undefined && message.startRange !== 0) {
+      writer.uint32(48).int64(message.startRange);
     }
-    if (message.compression !== undefined && message.compression !== 0) {
-      writer.uint32(56).int32(message.compression);
+    if (message.compressionAlgorithm !== undefined && message.compressionAlgorithm !== 0) {
+      writer.uint32(56).int32(message.compressionAlgorithm);
     }
     if (message.isInitSeg !== undefined && message.isInitSeg !== false) {
       writer.uint32(64).bool(message.isInitSeg);
@@ -121,10 +121,10 @@ export const MediaHeader: MessageFns<MediaHeader> = {
       writer.uint32(80).int64(message.field10);
     }
     if (message.startMs !== undefined && message.startMs !== 0) {
-      writer.uint32(88).int32(message.startMs);
+      writer.uint32(88).int64(message.startMs);
     }
     if (message.durationMs !== undefined && message.durationMs !== 0) {
-      writer.uint32(96).int32(message.durationMs);
+      writer.uint32(96).int64(message.durationMs);
     }
     if (message.formatId !== undefined) {
       FormatId.encode(message.formatId, writer.uint32(106).fork()).join();
@@ -185,14 +185,14 @@ export const MediaHeader: MessageFns<MediaHeader> = {
             break;
           }
 
-          message.startDataRange = reader.int32();
+          message.startRange = longToNumber(reader.int64());
           continue;
         case 7:
           if (tag !== 56) {
             break;
           }
 
-          message.compression = reader.int32() as any;
+          message.compressionAlgorithm = reader.int32() as any;
           continue;
         case 8:
           if (tag !== 64) {
@@ -220,14 +220,14 @@ export const MediaHeader: MessageFns<MediaHeader> = {
             break;
           }
 
-          message.startMs = reader.int32();
+          message.startMs = longToNumber(reader.int64());
           continue;
         case 12:
           if (tag !== 96) {
             break;
           }
 
-          message.durationMs = reader.int32();
+          message.durationMs = longToNumber(reader.int64());
           continue;
         case 13:
           if (tag !== 106) {
@@ -266,8 +266,10 @@ export const MediaHeader: MessageFns<MediaHeader> = {
       itag: isSet(object.itag) ? globalThis.Number(object.itag) : 0,
       lmt: isSet(object.lmt) ? globalThis.Number(object.lmt) : 0,
       xtags: isSet(object.xtags) ? globalThis.String(object.xtags) : "",
-      startDataRange: isSet(object.startDataRange) ? globalThis.Number(object.startDataRange) : 0,
-      compression: isSet(object.compression) ? mediaHeader_CompressionFromJSON(object.compression) : 0,
+      startRange: isSet(object.startRange) ? globalThis.Number(object.startRange) : 0,
+      compressionAlgorithm: isSet(object.compressionAlgorithm)
+        ? mediaHeader_CompressionAlgorithmFromJSON(object.compressionAlgorithm)
+        : 0,
       isInitSeg: isSet(object.isInitSeg) ? globalThis.Boolean(object.isInitSeg) : false,
       sequenceNumber: isSet(object.sequenceNumber) ? globalThis.Number(object.sequenceNumber) : 0,
       field10: isSet(object.field10) ? globalThis.Number(object.field10) : 0,
@@ -296,11 +298,11 @@ export const MediaHeader: MessageFns<MediaHeader> = {
     if (message.xtags !== undefined && message.xtags !== "") {
       obj.xtags = message.xtags;
     }
-    if (message.startDataRange !== undefined && message.startDataRange !== 0) {
-      obj.startDataRange = Math.round(message.startDataRange);
+    if (message.startRange !== undefined && message.startRange !== 0) {
+      obj.startRange = Math.round(message.startRange);
     }
-    if (message.compression !== undefined && message.compression !== 0) {
-      obj.compression = mediaHeader_CompressionToJSON(message.compression);
+    if (message.compressionAlgorithm !== undefined && message.compressionAlgorithm !== 0) {
+      obj.compressionAlgorithm = mediaHeader_CompressionAlgorithmToJSON(message.compressionAlgorithm);
     }
     if (message.isInitSeg !== undefined && message.isInitSeg !== false) {
       obj.isInitSeg = message.isInitSeg;
@@ -339,8 +341,8 @@ export const MediaHeader: MessageFns<MediaHeader> = {
     message.itag = object.itag ?? 0;
     message.lmt = object.lmt ?? 0;
     message.xtags = object.xtags ?? "";
-    message.startDataRange = object.startDataRange ?? 0;
-    message.compression = object.compression ?? 0;
+    message.startRange = object.startRange ?? 0;
+    message.compressionAlgorithm = object.compressionAlgorithm ?? 0;
     message.isInitSeg = object.isInitSeg ?? false;
     message.sequenceNumber = object.sequenceNumber ?? 0;
     message.field10 = object.field10 ?? 0;

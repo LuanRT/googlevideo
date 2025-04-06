@@ -14,7 +14,7 @@ export interface FormatInitializationMetadata {
   videoId?: string | undefined;
   formatId?: FormatId | undefined;
   endTimeMs?: number | undefined;
-  field4?: number | undefined;
+  endSegmentNumber?: number | undefined;
   mimeType?: string | undefined;
   initRange?: InitRange | undefined;
   indexRange?: IndexRange | undefined;
@@ -28,7 +28,7 @@ function createBaseFormatInitializationMetadata(): FormatInitializationMetadata 
     videoId: "",
     formatId: undefined,
     endTimeMs: 0,
-    field4: 0,
+    endSegmentNumber: 0,
     mimeType: "",
     initRange: undefined,
     indexRange: undefined,
@@ -49,8 +49,8 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
     if (message.endTimeMs !== undefined && message.endTimeMs !== 0) {
       writer.uint32(24).int32(message.endTimeMs);
     }
-    if (message.field4 !== undefined && message.field4 !== 0) {
-      writer.uint32(32).int32(message.field4);
+    if (message.endSegmentNumber !== undefined && message.endSegmentNumber !== 0) {
+      writer.uint32(32).int64(message.endSegmentNumber);
     }
     if (message.mimeType !== undefined && message.mimeType !== "") {
       writer.uint32(42).string(message.mimeType);
@@ -106,7 +106,7 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
             break;
           }
 
-          message.field4 = reader.int32();
+          message.endSegmentNumber = longToNumber(reader.int64());
           continue;
         case 5:
           if (tag !== 42) {
@@ -164,7 +164,7 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
       videoId: isSet(object.videoId) ? globalThis.String(object.videoId) : "",
       formatId: isSet(object.formatId) ? FormatId.fromJSON(object.formatId) : undefined,
       endTimeMs: isSet(object.endTimeMs) ? globalThis.Number(object.endTimeMs) : 0,
-      field4: isSet(object.field4) ? globalThis.Number(object.field4) : 0,
+      endSegmentNumber: isSet(object.endSegmentNumber) ? globalThis.Number(object.endSegmentNumber) : 0,
       mimeType: isSet(object.mimeType) ? globalThis.String(object.mimeType) : "",
       initRange: isSet(object.initRange) ? InitRange.fromJSON(object.initRange) : undefined,
       indexRange: isSet(object.indexRange) ? IndexRange.fromJSON(object.indexRange) : undefined,
@@ -185,8 +185,8 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
     if (message.endTimeMs !== undefined && message.endTimeMs !== 0) {
       obj.endTimeMs = Math.round(message.endTimeMs);
     }
-    if (message.field4 !== undefined && message.field4 !== 0) {
-      obj.field4 = Math.round(message.field4);
+    if (message.endSegmentNumber !== undefined && message.endSegmentNumber !== 0) {
+      obj.endSegmentNumber = Math.round(message.endSegmentNumber);
     }
     if (message.mimeType !== undefined && message.mimeType !== "") {
       obj.mimeType = message.mimeType;
@@ -219,7 +219,7 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
       ? FormatId.fromPartial(object.formatId)
       : undefined;
     message.endTimeMs = object.endTimeMs ?? 0;
-    message.field4 = object.field4 ?? 0;
+    message.endSegmentNumber = object.endSegmentNumber ?? 0;
     message.mimeType = object.mimeType ?? "";
     message.initRange = (object.initRange !== undefined && object.initRange !== null)
       ? InitRange.fromPartial(object.initRange)
@@ -245,6 +245,17 @@ export type DeepPartial<T> = T extends Builtin ? T
 type KeysOfUnion<T> = T extends T ? keyof T : never;
 export type Exact<P, I extends P> = P extends Builtin ? P
   : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+
+function longToNumber(int64: { toString(): string }): number {
+  const num = globalThis.Number(int64.toString());
+  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
+    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
+  }
+  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
+    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
+  }
+  return num;
+}
 
 function isSet(value: any): boolean {
   return value !== null && value !== undefined;
