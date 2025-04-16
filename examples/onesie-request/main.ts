@@ -245,7 +245,7 @@ async function getBasicInfo(innertube: Innertube, videoId: string): Promise<YT.V
       await decryptResponse(iv, hmac, responseData, clientConfig.clientKeyData) : responseData!;
     const response = Protos.OnesiePlayerResponse.decode(decryptedData);
 
-    if (response.onesieProxyStatus !== Protos.OnesieProxyStatus.ONESIE_PROXY_STATUS_OK)
+    if (response.onesieProxyStatus !== Protos.OnesieProxyStatus.OK)
       throw new Error('Onesie proxy status not OK');
 
     if (response.httpStatus !== 200)
