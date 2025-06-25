@@ -40,7 +40,7 @@ message StreamerContext {
     optional int32 gl_es_version_minor = 3;
   }
 
-  message Fqa {
+  message SabrContext {
     optional int32 type = 1;
     optional bytes value = 2;
   }
@@ -59,8 +59,8 @@ message StreamerContext {
   optional bytes po_token = 2;
   optional bytes playback_cookie = 3;
   optional bytes gp = 4;
-  repeated Fqa field5 = 5;
-  repeated int32 field6 = 6;
+  repeated SabrContext sabr_contexts = 5;
+  repeated int32 unsent_sabr_contexts = 6;
   optional string field7 = 7;
   optional Gqa field8 = 8;
 }
