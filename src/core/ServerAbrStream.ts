@@ -131,8 +131,8 @@ export class ServerAbrStream extends EventEmitterLike {
       selectedFormatIds: this.initializedFormats.map((fmt) => fmt.formatId),
       videoPlaybackUstreamerConfig: base64ToU8(this.videoPlaybackUstreamerConfig),
       streamerContext: {
-        field5: [],
-        field6: [],
+        sabrContexts: [],
+        unsentSabrContexts: [],
         poToken: this.poToken ? base64ToU8(this.poToken) : undefined,
         playbackCookie: this.playbackCookie ? PlaybackCookie.encode(this.playbackCookie).finish() : undefined,
         clientInfo: {
