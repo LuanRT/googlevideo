@@ -2,16 +2,16 @@
 // versions:
 //   protoc-gen-ts_proto  v2.2.0
 //   protoc               v5.28.0
-// source: video_streaming/encrypted_player_request.proto
+// source: video_streaming/innertube_request.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 
 export const protobufPackage = "video_streaming";
 
-export interface EncryptedPlayerRequest {
+export interface InnertubeRequest {
   context?: Uint8Array | undefined;
-  encryptedOnesiePlayerRequest?: Uint8Array | undefined;
+  encryptedOnesieInnertubeRequest?: Uint8Array | undefined;
   encryptedClientKey?: Uint8Array | undefined;
   iv?: Uint8Array | undefined;
   hmac?: Uint8Array | undefined;
@@ -19,19 +19,19 @@ export interface EncryptedPlayerRequest {
   serializeResponseAsJson?: boolean | undefined;
   enableAdPlacementsPreroll?: boolean | undefined;
   enableCompression?: boolean | undefined;
-  ustreamerFlags?: EncryptedPlayerRequest_UstreamerFlags | undefined;
-  unencryptedOnesiePlayerRequest?: Uint8Array | undefined;
+  ustreamerFlags?: UstreamerFlags | undefined;
+  unencryptedOnesieInnertubeRequest?: Uint8Array | undefined;
   useJsonformatterToParsePlayerResponse?: boolean | undefined;
 }
 
-export interface EncryptedPlayerRequest_UstreamerFlags {
+export interface UstreamerFlags {
   sendVideoPlaybackConfig?: boolean | undefined;
 }
 
-function createBaseEncryptedPlayerRequest(): EncryptedPlayerRequest {
+function createBaseInnertubeRequest(): InnertubeRequest {
   return {
     context: new Uint8Array(0),
-    encryptedOnesiePlayerRequest: new Uint8Array(0),
+    encryptedOnesieInnertubeRequest: new Uint8Array(0),
     encryptedClientKey: new Uint8Array(0),
     iv: new Uint8Array(0),
     hmac: new Uint8Array(0),
@@ -40,18 +40,18 @@ function createBaseEncryptedPlayerRequest(): EncryptedPlayerRequest {
     enableAdPlacementsPreroll: false,
     enableCompression: false,
     ustreamerFlags: undefined,
-    unencryptedOnesiePlayerRequest: new Uint8Array(0),
+    unencryptedOnesieInnertubeRequest: new Uint8Array(0),
     useJsonformatterToParsePlayerResponse: false,
   };
 }
 
-export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
-  encode(message: EncryptedPlayerRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const InnertubeRequest: MessageFns<InnertubeRequest> = {
+  encode(message: InnertubeRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.context !== undefined && message.context.length !== 0) {
       writer.uint32(10).bytes(message.context);
     }
-    if (message.encryptedOnesiePlayerRequest !== undefined && message.encryptedOnesiePlayerRequest.length !== 0) {
-      writer.uint32(18).bytes(message.encryptedOnesiePlayerRequest);
+    if (message.encryptedOnesieInnertubeRequest !== undefined && message.encryptedOnesieInnertubeRequest.length !== 0) {
+      writer.uint32(18).bytes(message.encryptedOnesieInnertubeRequest);
     }
     if (message.encryptedClientKey !== undefined && message.encryptedClientKey.length !== 0) {
       writer.uint32(42).bytes(message.encryptedClientKey);
@@ -75,10 +75,12 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
       writer.uint32(112).bool(message.enableCompression);
     }
     if (message.ustreamerFlags !== undefined) {
-      EncryptedPlayerRequest_UstreamerFlags.encode(message.ustreamerFlags, writer.uint32(122).fork()).join();
+      UstreamerFlags.encode(message.ustreamerFlags, writer.uint32(122).fork()).join();
     }
-    if (message.unencryptedOnesiePlayerRequest !== undefined && message.unencryptedOnesiePlayerRequest.length !== 0) {
-      writer.uint32(130).bytes(message.unencryptedOnesiePlayerRequest);
+    if (
+      message.unencryptedOnesieInnertubeRequest !== undefined && message.unencryptedOnesieInnertubeRequest.length !== 0
+    ) {
+      writer.uint32(130).bytes(message.unencryptedOnesieInnertubeRequest);
     }
     if (
       message.useJsonformatterToParsePlayerResponse !== undefined &&
@@ -89,10 +91,10 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): EncryptedPlayerRequest {
+  decode(input: BinaryReader | Uint8Array, length?: number): InnertubeRequest {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseEncryptedPlayerRequest();
+    const message = createBaseInnertubeRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -108,7 +110,7 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
             break;
           }
 
-          message.encryptedOnesiePlayerRequest = reader.bytes();
+          message.encryptedOnesieInnertubeRequest = reader.bytes();
           continue;
         case 5:
           if (tag !== 42) {
@@ -164,14 +166,14 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
             break;
           }
 
-          message.ustreamerFlags = EncryptedPlayerRequest_UstreamerFlags.decode(reader, reader.uint32());
+          message.ustreamerFlags = UstreamerFlags.decode(reader, reader.uint32());
           continue;
         case 16:
           if (tag !== 130) {
             break;
           }
 
-          message.unencryptedOnesiePlayerRequest = reader.bytes();
+          message.unencryptedOnesieInnertubeRequest = reader.bytes();
           continue;
         case 17:
           if (tag !== 136) {
@@ -190,22 +192,22 @@ export const EncryptedPlayerRequest: MessageFns<EncryptedPlayerRequest> = {
   },
 };
 
-function createBaseEncryptedPlayerRequest_UstreamerFlags(): EncryptedPlayerRequest_UstreamerFlags {
+function createBaseUstreamerFlags(): UstreamerFlags {
   return { sendVideoPlaybackConfig: false };
 }
 
-export const EncryptedPlayerRequest_UstreamerFlags: MessageFns<EncryptedPlayerRequest_UstreamerFlags> = {
-  encode(message: EncryptedPlayerRequest_UstreamerFlags, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const UstreamerFlags: MessageFns<UstreamerFlags> = {
+  encode(message: UstreamerFlags, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.sendVideoPlaybackConfig !== undefined && message.sendVideoPlaybackConfig !== false) {
       writer.uint32(16).bool(message.sendVideoPlaybackConfig);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): EncryptedPlayerRequest_UstreamerFlags {
+  decode(input: BinaryReader | Uint8Array, length?: number): UstreamerFlags {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseEncryptedPlayerRequest_UstreamerFlags();
+    const message = createBaseUstreamerFlags();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {

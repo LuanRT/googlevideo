@@ -18,21 +18,21 @@ export interface BufferedRange {
   startSegmentIndex: number;
   endSegmentIndex: number;
   timeRange?: TimeRange | undefined;
-  field9?: Kob | undefined;
-  field11?: YPa | undefined;
-  field12?: YPa | undefined;
+  field9?: BufferedRange_UnknownMessage1 | undefined;
+  field11?: BufferedRange_UnknownMessage2 | undefined;
+  field12?: BufferedRange_UnknownMessage2 | undefined;
 }
 
-export interface Kob {
-  EW: Kob_Pa[];
+export interface BufferedRange_UnknownMessage1 {
+  field1: BufferedRange_UnknownMessage1_UnknownInnerMessage[];
 }
 
-export interface Kob_Pa {
+export interface BufferedRange_UnknownMessage1_UnknownInnerMessage {
   videoId?: string | undefined;
   lmt?: number | undefined;
 }
 
-export interface YPa {
+export interface BufferedRange_UnknownMessage2 {
   field1?: number | undefined;
   field2?: number | undefined;
   field3?: number | undefined;
@@ -73,13 +73,13 @@ export const BufferedRange: MessageFns<BufferedRange> = {
       TimeRange.encode(message.timeRange, writer.uint32(50).fork()).join();
     }
     if (message.field9 !== undefined) {
-      Kob.encode(message.field9, writer.uint32(74).fork()).join();
+      BufferedRange_UnknownMessage1.encode(message.field9, writer.uint32(74).fork()).join();
     }
     if (message.field11 !== undefined) {
-      YPa.encode(message.field11, writer.uint32(90).fork()).join();
+      BufferedRange_UnknownMessage2.encode(message.field11, writer.uint32(90).fork()).join();
     }
     if (message.field12 !== undefined) {
-      YPa.encode(message.field12, writer.uint32(98).fork()).join();
+      BufferedRange_UnknownMessage2.encode(message.field12, writer.uint32(98).fork()).join();
     }
     return writer;
   },
@@ -138,21 +138,21 @@ export const BufferedRange: MessageFns<BufferedRange> = {
             break;
           }
 
-          message.field9 = Kob.decode(reader, reader.uint32());
+          message.field9 = BufferedRange_UnknownMessage1.decode(reader, reader.uint32());
           continue;
         case 11:
           if (tag !== 90) {
             break;
           }
 
-          message.field11 = YPa.decode(reader, reader.uint32());
+          message.field11 = BufferedRange_UnknownMessage2.decode(reader, reader.uint32());
           continue;
         case 12:
           if (tag !== 98) {
             break;
           }
 
-          message.field12 = YPa.decode(reader, reader.uint32());
+          message.field12 = BufferedRange_UnknownMessage2.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -164,22 +164,22 @@ export const BufferedRange: MessageFns<BufferedRange> = {
   },
 };
 
-function createBaseKob(): Kob {
-  return { EW: [] };
+function createBaseBufferedRange_UnknownMessage1(): BufferedRange_UnknownMessage1 {
+  return { field1: [] };
 }
 
-export const Kob: MessageFns<Kob> = {
-  encode(message: Kob, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.EW) {
-      Kob_Pa.encode(v!, writer.uint32(10).fork()).join();
+export const BufferedRange_UnknownMessage1: MessageFns<BufferedRange_UnknownMessage1> = {
+  encode(message: BufferedRange_UnknownMessage1, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.field1) {
+      BufferedRange_UnknownMessage1_UnknownInnerMessage.encode(v!, writer.uint32(10).fork()).join();
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): Kob {
+  decode(input: BinaryReader | Uint8Array, length?: number): BufferedRange_UnknownMessage1 {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseKob();
+    const message = createBaseBufferedRange_UnknownMessage1();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -188,7 +188,7 @@ export const Kob: MessageFns<Kob> = {
             break;
           }
 
-          message.EW.push(Kob_Pa.decode(reader, reader.uint32()));
+          message.field1.push(BufferedRange_UnknownMessage1_UnknownInnerMessage.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -200,12 +200,17 @@ export const Kob: MessageFns<Kob> = {
   },
 };
 
-function createBaseKob_Pa(): Kob_Pa {
+function createBaseBufferedRange_UnknownMessage1_UnknownInnerMessage(): BufferedRange_UnknownMessage1_UnknownInnerMessage {
   return { videoId: "", lmt: 0 };
 }
 
-export const Kob_Pa: MessageFns<Kob_Pa> = {
-  encode(message: Kob_Pa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const BufferedRange_UnknownMessage1_UnknownInnerMessage: MessageFns<
+  BufferedRange_UnknownMessage1_UnknownInnerMessage
+> = {
+  encode(
+    message: BufferedRange_UnknownMessage1_UnknownInnerMessage,
+    writer: BinaryWriter = new BinaryWriter(),
+  ): BinaryWriter {
     if (message.videoId !== undefined && message.videoId !== "") {
       writer.uint32(10).string(message.videoId);
     }
@@ -215,10 +220,10 @@ export const Kob_Pa: MessageFns<Kob_Pa> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): Kob_Pa {
+  decode(input: BinaryReader | Uint8Array, length?: number): BufferedRange_UnknownMessage1_UnknownInnerMessage {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseKob_Pa();
+    const message = createBaseBufferedRange_UnknownMessage1_UnknownInnerMessage();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -246,12 +251,12 @@ export const Kob_Pa: MessageFns<Kob_Pa> = {
   },
 };
 
-function createBaseYPa(): YPa {
+function createBaseBufferedRange_UnknownMessage2(): BufferedRange_UnknownMessage2 {
   return { field1: 0, field2: 0, field3: 0 };
 }
 
-export const YPa: MessageFns<YPa> = {
-  encode(message: YPa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const BufferedRange_UnknownMessage2: MessageFns<BufferedRange_UnknownMessage2> = {
+  encode(message: BufferedRange_UnknownMessage2, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.field1 !== undefined && message.field1 !== 0) {
       writer.uint32(8).int32(message.field1);
     }
@@ -264,10 +269,10 @@ export const YPa: MessageFns<YPa> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): YPa {
+  decode(input: BinaryReader | Uint8Array, length?: number): BufferedRange_UnknownMessage2 {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseYPa();
+    const message = createBaseBufferedRange_UnknownMessage2();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {

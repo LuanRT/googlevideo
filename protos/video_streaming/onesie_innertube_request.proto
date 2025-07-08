@@ -3,7 +3,7 @@ package video_streaming;
 
 import "misc/common.proto";
 
-message OnesiePlayerRequest {
+message OnesieInnertubeRequest {
   optional string url = 1;
   repeated misc.HttpHeader headers = 2;
   optional string body = 3;

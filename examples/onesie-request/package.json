@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "youtubei.js": "^13.3.0"
+    "googlevideo": "file:../..",
+    "youtubei.js": "^14.0.0"
   }
 }

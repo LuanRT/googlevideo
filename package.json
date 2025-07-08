@@ -1,7 +1,7 @@
 {
   "name": "googlevideo",
   "version": "3.0.0",
-  "description": "A set of utilities for working with Google Video APIs.",
+  "description": "A collection of modules for working with YouTube's proprietary video streaming protocols (UMP/SABR).",
   "main": "dist/index.js",
   "type": "module",
   "types": "./dist/src/index.d.ts",
@@ -11,9 +11,12 @@
     "lint": "npx eslint ./src/**/*.ts",
     "lint:fix": "npx eslint --fix ./src/**/*.ts",
     "clean": "npx rimraf ./dist ./protos/generated",
-    "build": "npm run clean && npm run lint && npm run build:proto && npm run build:esm",
+    "build": "npm run clean && npm run lint && npm run build:proto && npm run build:esm && npm run build:browser",
     "build:esm": "npx tsc",
+    "build:browser": "npx esbuild ./src/index.ts --bundle --outfile=dist/browser/googlevideo.umd.js --format=iife --global-name=GoogleVideo --platform=browser --minify",
     "build:proto": "node ./dev-scripts/generate-proto.mjs",
+    "test": "vitest run --reporter verbose",
+    "test:watch": "vitest",
     "prepare": "npm run build"
   },
   "author": "LuanRT <luan.lrt4@gmail.com> (https://github.com/LuanRT)",
@@ -28,12 +31,33 @@
   ],
   "license": "MIT",
   "exports": {
-    ".": {
-      "node": {
-        "import": "./dist/src/index.js"
-      },
-      "types": "./dist/src/index.d.ts",
-      "default": "./dist/src/index.js"
+    "./ump": {
+      "types": "./dist/src/exports/ump.d.ts",
+      "import": "./dist/src/exports/ump.js",
+      "default": "./dist/src/exports/ump.js"
+    },
+    "./sabr-streaming-adapter": {
+      "types": "./dist/src/exports/sabr-streaming-adapter.d.ts",
+      "import": "./dist/src/exports/sabr-streaming-adapter.js",
+      "default": "./dist/src/exports/sabr-streaming-adapter.js"
+    },
+    "./sabr-stream": {
+      "types": "./dist/src/exports/sabr-stream.d.ts",
+      "import": "./dist/src/exports/sabr-stream.js",
+      "default": "./dist/src/exports/sabr-stream.js"
+    },   
+    "./protos": {
+      "types": "./dist/src/exports/protos.d.ts",
+      "import": "./dist/src/exports/protos.js",
+      "default": "./dist/src/exports/protos.js"
+    },
+    "./utils": {
+      "types": "./dist/src/exports/utils.d.ts",
+      "import": "./dist/src/exports/utils.js",
+      "default": "./dist/src/exports/utils.js"
+    },
+    "./shared-types": {
+      "types": "./dist/src/types/shared.d.ts"
     }
   },
   "devDependencies": {
@@ -44,7 +68,8 @@
     "globals": "^15.9.0",
     "ts-proto": "^2.2.0",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.2.0"
+    "typescript-eslint": "^8.2.0",
+    "vitest": "^3.2.4"
   },
   "dependencies": {
     "@bufbuild/protobuf": "^2.0.0"

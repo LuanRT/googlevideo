@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { FormatId, IndexRange, InitRange } from "../misc/common.js";
+import { FormatId, Range } from "../misc/common.js";
 
 export const protobufPackage = "video_streaming";
 
@@ -16,11 +16,11 @@ export interface FormatInitializationMetadata {
   endTimeMs?: number | undefined;
   endSegmentNumber?: number | undefined;
   mimeType?: string | undefined;
-  initRange?: InitRange | undefined;
-  indexRange?: IndexRange | undefined;
+  initRange?: Range | undefined;
+  indexRange?: Range | undefined;
   field8?: number | undefined;
-  durationMs?: number | undefined;
-  field10?: number | undefined;
+  durationUnits?: number | undefined;
+  durationTimescale?: number | undefined;
 }
 
 function createBaseFormatInitializationMetadata(): FormatInitializationMetadata {
@@ -33,8 +33,8 @@ function createBaseFormatInitializationMetadata(): FormatInitializationMetadata 
     initRange: undefined,
     indexRange: undefined,
     field8: 0,
-    durationMs: 0,
-    field10: 0,
+    durationUnits: 0,
+    durationTimescale: 0,
   };
 }
 
@@ -47,7 +47,7 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
       FormatId.encode(message.formatId, writer.uint32(18).fork()).join();
     }
     if (message.endTimeMs !== undefined && message.endTimeMs !== 0) {
-      writer.uint32(24).int32(message.endTimeMs);
+      writer.uint32(24).int64(message.endTimeMs);
     }
     if (message.endSegmentNumber !== undefined && message.endSegmentNumber !== 0) {
       writer.uint32(32).int64(message.endSegmentNumber);
@@ -56,19 +56,19 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
       writer.uint32(42).string(message.mimeType);
     }
     if (message.initRange !== undefined) {
-      InitRange.encode(message.initRange, writer.uint32(50).fork()).join();
+      Range.encode(message.initRange, writer.uint32(50).fork()).join();
     }
     if (message.indexRange !== undefined) {
-      IndexRange.encode(message.indexRange, writer.uint32(58).fork()).join();
+      Range.encode(message.indexRange, writer.uint32(58).fork()).join();
     }
     if (message.field8 !== undefined && message.field8 !== 0) {
-      writer.uint32(64).int32(message.field8);
+      writer.uint32(64).int64(message.field8);
     }
-    if (message.durationMs !== undefined && message.durationMs !== 0) {
-      writer.uint32(72).int32(message.durationMs);
+    if (message.durationUnits !== undefined && message.durationUnits !== 0) {
+      writer.uint32(72).int64(message.durationUnits);
     }
-    if (message.field10 !== undefined && message.field10 !== 0) {
-      writer.uint32(80).int32(message.field10);
+    if (message.durationTimescale !== undefined && message.durationTimescale !== 0) {
+      writer.uint32(80).int64(message.durationTimescale);
     }
     return writer;
   },
@@ -99,7 +99,7 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
             break;
           }
 
-          message.endTimeMs = reader.int32();
+          message.endTimeMs = longToNumber(reader.int64());
           continue;
         case 4:
           if (tag !== 32) {
@@ -120,35 +120,35 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
             break;
           }
 
-          message.initRange = InitRange.decode(reader, reader.uint32());
+          message.initRange = Range.decode(reader, reader.uint32());
           continue;
         case 7:
           if (tag !== 58) {
             break;
           }
 
-          message.indexRange = IndexRange.decode(reader, reader.uint32());
+          message.indexRange = Range.decode(reader, reader.uint32());
           continue;
         case 8:
           if (tag !== 64) {
             break;
           }
 
-          message.field8 = reader.int32();
+          message.field8 = longToNumber(reader.int64());
           continue;
         case 9:
           if (tag !== 72) {
             break;
           }
 
-          message.durationMs = reader.int32();
+          message.durationUnits = longToNumber(reader.int64());
           continue;
         case 10:
           if (tag !== 80) {
             break;
           }
 
-          message.field10 = reader.int32();
+          message.durationTimescale = longToNumber(reader.int64());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {

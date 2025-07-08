@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { FormatId } from "../misc/common.js";
+import { CompressionType, FormatId } from "../misc/common.js";
 import { TimeRange } from "./time_range.js";
 
 export const protobufPackage = "video_streaming";
@@ -18,22 +18,16 @@ export interface MediaHeader {
   lmt?: number | undefined;
   xtags?: string | undefined;
   startRange?: number | undefined;
-  compressionAlgorithm?: MediaHeader_CompressionAlgorithm | undefined;
+  compressionAlgorithm?: CompressionType | undefined;
   isInitSeg?: boolean | undefined;
   sequenceNumber?: number | undefined;
-  field10?: number | undefined;
+  bitrateBps?: number | undefined;
   startMs?: number | undefined;
   durationMs?: number | undefined;
   formatId?: FormatId | undefined;
   contentLength?: number | undefined;
   timeRange?: TimeRange | undefined;
-}
-
-export enum MediaHeader_CompressionAlgorithm {
-  UNKNOWN = 0,
-  NONE = 1,
-  GZIP = 2,
-  UNRECOGNIZED = -1,
+  sequenceLmt?: number | undefined;
 }
 
 function createBaseMediaHeader(): MediaHeader {
@@ -47,12 +41,13 @@ function createBaseMediaHeader(): MediaHeader {
     compressionAlgorithm: 0,
     isInitSeg: false,
     sequenceNumber: 0,
-    field10: 0,
+    bitrateBps: 0,
     startMs: 0,
     durationMs: 0,
     formatId: undefined,
     contentLength: 0,
     timeRange: undefined,
+    sequenceLmt: 0,
   };
 }
 
@@ -85,8 +80,8 @@ export const MediaHeader: MessageFns<MediaHeader> = {
     if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
       writer.uint32(72).int64(message.sequenceNumber);
     }
-    if (message.field10 !== undefined && message.field10 !== 0) {
-      writer.uint32(80).int64(message.field10);
+    if (message.bitrateBps !== undefined && message.bitrateBps !== 0) {
+      writer.uint32(80).int64(message.bitrateBps);
     }
     if (message.startMs !== undefined && message.startMs !== 0) {
       writer.uint32(88).int64(message.startMs);
@@ -102,6 +97,9 @@ export const MediaHeader: MessageFns<MediaHeader> = {
     }
     if (message.timeRange !== undefined) {
       TimeRange.encode(message.timeRange, writer.uint32(122).fork()).join();
+    }
+    if (message.sequenceLmt !== undefined && message.sequenceLmt !== 0) {
+      writer.uint32(128).uint64(message.sequenceLmt);
     }
     return writer;
   },
@@ -181,7 +179,7 @@ export const MediaHeader: MessageFns<MediaHeader> = {
             break;
           }
 
-          message.field10 = longToNumber(reader.int64());
+          message.bitrateBps = longToNumber(reader.int64());
           continue;
         case 11:
           if (tag !== 88) {
@@ -217,6 +215,13 @@ export const MediaHeader: MessageFns<MediaHeader> = {
           }
 
           message.timeRange = TimeRange.decode(reader, reader.uint32());
+          continue;
+        case 16:
+          if (tag !== 128) {
+            break;
+          }
+
+          message.sequenceLmt = longToNumber(reader.uint64());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {

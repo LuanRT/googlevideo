@@ -4,17 +4,19 @@ package video_streaming;
 import "misc/common.proto";
 import "video_streaming/buffered_range.proto";
 import "video_streaming/client_abr_state.proto";
-import "video_streaming/encrypted_player_request.proto";
+import "video_streaming/innertube_request.proto";
 import "video_streaming/streamer_context.proto";
+import "video_streaming/reload_player_response.proto";
 
 message OnesieRequest {
   repeated string urls = 1;
   optional ClientAbrState client_abr_state = 2;
-  optional EncryptedPlayerRequest player_request = 3;
+  optional InnertubeRequest innertube_request = 3;
   optional bytes onesie_ustreamer_config = 4;
   optional int32 max_vp9_height = 5;
   optional int32 client_display_height = 6;
   optional StreamerContext streamer_context = 10;
   optional .misc.OnesieRequestTarget request_target = 13; // MLOnesieRequestTarget
   repeated BufferedRange buffered_ranges = 14;
+  optional ReloadPlaybackParams reload_playback_params = 15;
 }

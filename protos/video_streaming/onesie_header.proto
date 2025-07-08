@@ -5,11 +5,11 @@ import "video_streaming/crypto_params.proto";
 import "video_streaming/onesie_header_type.proto";
 
 message OnesieHeader {
-  message Field23 {
+  message UnknownMessage1 {
     optional string video_id = 2;
   }
 
-  message Field34 {
+  message UnknownMessage2 {
     repeated string itag_denylist = 1;
   }
 
@@ -22,6 +22,6 @@ message OnesieHeader {
   repeated string restricted_formats = 11;
   optional string xtags = 15;
   optional int64 sequence_number = 18;
-  optional Field23 field23 = 23;
-  optional Field34 field34 = 34;
+  optional UnknownMessage1 field23 = 23;
+  optional UnknownMessage2 field34 = 34;
 }

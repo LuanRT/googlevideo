@@ -1,170 +1,92 @@
+import { EnabledTrackTypes } from 'googlevideo/utils';
+import { promises as fs } from 'node:fs';
 import ffmpeg from 'fluent-ffmpeg';
-import cliProgress from 'cli-progress';
-import type { WriteStream } from 'node:fs';
-import { createWriteStream, unlink } from 'node:fs';
-import { Innertube, UniversalCache } from 'youtubei.js';
-import GoogleVideo, { type Format } from '../../dist/src/index.js';
-import { generateWebPoToken } from './utils.js';
 
-const progressBars = new cliProgress.MultiBar({
-  stopOnComplete: true,
-  hideCursor: true
-}, cliProgress.Presets.rect);
+import {
+  createOutputStream,
+  createStreamSink,
+  createSabrStream,
+  createMultiProgressBar,
+  setupProgressBar
+} from './utils/sabr-stream-factory.js';
 
-const formatProgressBars = new Map<string, cliProgress.SingleBar>();
+import type { SabrPlaybackOptions } from 'googlevideo/sabr-stream';
 
-const innertube = await Innertube.create({ cache: new UniversalCache(true) });
-const webPoTokenResult = await generateWebPoToken(innertube.session.context.client.visitorData || '');
-const info = await innertube.getBasicInfo('wRNnMQEKo7o');
-
-console.info(`
-  Title: ${info.basic_info.title}
-  Duration: ${info.basic_info.duration}
-  Views: ${info.basic_info.view_count}
-  Author: ${info.basic_info.author}
-  Video ID: ${info.basic_info.id}
-  WebPoToken: ${webPoTokenResult.poToken}
-`);
-
-const durationMs = (info.basic_info?.duration ?? 0) * 1000;
-const sanitizedTitle = info.basic_info.title?.replace(/[^a-z0-9]/gi, '_');
-
-let audioOutput: WriteStream | undefined;
-let videoOutput: WriteStream | undefined;
-let audioOutputFilename: string | undefined;
-let videoOutputFilename: string | undefined;
-
-const audioFormat = info.chooseFormat({ quality: 'best', format: 'webm', type: 'audio' });
-const videoFormat = info.chooseFormat({ quality: '1080p', format: 'webm', type: 'video' });
-
-const selectedAudioFormat: Format = {
-  itag: audioFormat.itag,
-  lastModified: audioFormat.last_modified_ms,
-  xtags: audioFormat.xtags
+const VIDEO_ID = 'gKOgKVJ7Lio';
+const OPTIONS: SabrPlaybackOptions = {
+  preferWebM: true,
+  preferOpus: true,
+  videoQuality: '720p',
+  audioQuality: 'AUDIO_QUALITY_MEDIUM',
+  enabledTrackTypes: EnabledTrackTypes.VIDEO_AND_AUDIO
 };
 
-const selectedVideoFormat: Format = {
-  itag: videoFormat.itag,
-  lastModified: videoFormat.last_modified_ms,
-  width: videoFormat.width,
-  height: videoFormat.height,
-  xtags: videoFormat.xtags
-};
-
-const serverAbrStreamingUrl = innertube.session.player?.decipher(info.page[0].streaming_data?.server_abr_streaming_url);
-const videoPlaybackUstreamerConfig = info.page[0].player_config?.media_common_config.media_ustreamer_request_config?.video_playback_ustreamer_config;
-
-if (!videoPlaybackUstreamerConfig)
-  throw new Error('ustreamerConfig not found');
-
-if (!serverAbrStreamingUrl)
-  throw new Error('serverAbrStreamingUrl not found');
-
-const serverAbrStream = new GoogleVideo.ServerAbrStream({
-  fetch: innertube.session.http.fetch_function,
-  poToken: webPoTokenResult.poToken,
-  serverAbrStreamingUrl,
-  videoPlaybackUstreamerConfig: videoPlaybackUstreamerConfig,
-  durationMs
-});
-
-let downloadedBytesAudio = 0;
-let downloadedBytesVideo = 0;
-
-serverAbrStream.on('data', (streamData) => {
-  for (const formatData of streamData.initializedFormats) {
-    const isVideo = formatData.mimeType?.includes('video');
-    const mediaFormat = info.streaming_data?.adaptive_formats.find((f) => f.itag === formatData.formatId.itag);
-    const formatKey = formatData.formatKey;
-
-    let bar = formatProgressBars.get(formatKey);
-
-    if (!bar) {
-      bar = progressBars.create(100, 0, undefined, { format: `${isVideo ? 'video' : 'audio'} (${formatData.formatId.itag}) [{bar}] {percentage}% | ETA: {eta}s` });
-      formatProgressBars.set(formatKey, bar);
-    }
-
-    const mediaChunks = formatData.mediaChunks;
-
-    if (isVideo && mediaChunks.length) {
-      if (!videoOutput) {
-        videoOutputFilename = `${sanitizedTitle}.${formatData.formatId.itag}.webm`;
-        videoOutput = createWriteStream(videoOutputFilename);
-      }
-
-      for (const chunk of mediaChunks) {
-        downloadedBytesVideo += chunk.length;
-        videoOutput.write(chunk);
-      }
-    } else if (mediaChunks.length) {
-      if (!audioOutput) {
-        audioOutputFilename = `${sanitizedTitle}.${formatData.formatId.itag}.webm`;
-        audioOutput = createWriteStream(audioOutputFilename);
-      }
-      for (const chunk of mediaChunks) {
-        downloadedBytesAudio += chunk.length;
-        audioOutput.write(chunk);
-      }
-    }
-
-    const contentLength = mediaFormat?.content_length ?? 0;
-    const downloadedBytes = isVideo ? downloadedBytesVideo : downloadedBytesAudio;
-
-    if (contentLength > 0) {
-      const percentage = (downloadedBytes / contentLength) * 100;
-      bar.update(percentage);
+async function cleanupTempFiles(files: string[]) {
+  for (const file of files) {
+    try {
+      await fs.unlink(file);
+    } catch (error) {
+      console.warn(`Failed to delete temp file ${file}:`, error);
     }
   }
-});
+}
 
-serverAbrStream.on('error', (error) => {
-  console.error(error);
-});
+async function mergeAudioAndVideo(videoTitle: string, audioPath: string, videoPath: string, mergeBar: any): Promise<string> {
+  const sanitizedTitle = videoTitle?.replace(/[^a-z0-9]/gi, '_') || 'output';
+  const outputPath = `${sanitizedTitle}.webm`;
 
-await serverAbrStream.init({
-  audioFormats: [ selectedAudioFormat ],
-  videoFormats: [ selectedVideoFormat ],
-  clientAbrState: {
-    playerTimeMs: 0,
-    enabledTrackTypesBitfield: 0 // 0 = BOTH, 1 = AUDIO (video-only is no longer supported by YouTube)
+  return new Promise((resolve, reject) => {
+    mergeBar.update(10);
+
+    ffmpeg()
+      .input(videoPath)
+      .input(audioPath)
+      .outputOptions([ '-c:v copy', '-c:a copy', '-map 0:v:0', '-map 1:a:0' ])
+      .on('progress', (progress) => {
+        if (progress.percent) {
+          mergeBar.update(Math.min(progress.percent, 99));
+        }
+      })
+      .on('end', () => {
+        mergeBar.update(100);
+        resolve(outputPath);
+      })
+      .on('error', (err) => {
+        reject(new Error(`Error merging files: ${err.message}`));
+      })
+      .save(outputPath);
+  });
+}
+
+async function main() {
+  const progressBars = createMultiProgressBar();
+
+  try {
+    const { streamResults } = await createSabrStream(VIDEO_ID, OPTIONS);
+    const { videoStream, audioStream, selectedFormats, videoTitle } = streamResults;
+
+    const audioOutputStream = createOutputStream(videoTitle, selectedFormats.audioFormat.mimeType!);
+    const videoOutputStream = createOutputStream(videoTitle, selectedFormats.videoFormat.mimeType!);
+
+    const audioBar = setupProgressBar(progressBars, 'audio', selectedFormats.audioFormat.contentLength || 0);
+    const videoBar = setupProgressBar(progressBars, 'video', selectedFormats.videoFormat.contentLength || 0);
+    const mergeBar = setupProgressBar(progressBars, 'merge');
+
+    await Promise.all([
+      videoStream.pipeTo(createStreamSink(selectedFormats.videoFormat, videoOutputStream.stream, videoBar)),
+      audioStream.pipeTo(createStreamSink(selectedFormats.audioFormat, audioOutputStream.stream, audioBar))
+    ]);
+
+    await mergeAudioAndVideo(videoTitle, audioOutputStream.filePath, videoOutputStream.filePath, mergeBar);
+    await cleanupTempFiles([ audioOutputStream.filePath, videoOutputStream.filePath ]);
+
+    progressBars.stop();
+    console.log(`Download complete! Output saved as "${videoTitle.replace(/[^a-z0-9]/gi, '_')}.webm"`);
+  } catch (error) {
+    console.error('Download failed:', error);
+    progressBars.stop();
+    process.exit(1);
   }
-});
+}
 
-if (audioOutput)
-  audioOutput.end();
-
-if (videoOutput)
-  videoOutput.end();
-
-progressBars.stop();
-
-const outputFilename = `${sanitizedTitle}_final.webm`;
-
-await new Promise<void>((resolve, reject) => {
-  if (!videoOutputFilename || !audioOutputFilename)
-    return reject(new Error('No video or audio output filename'));
-
-  ffmpeg()
-    .input(videoOutputFilename)
-    .input(audioOutputFilename)
-    .videoCodec('copy')
-    .audioCodec('copy')
-    .on('end', () => {
-      if (videoOutputFilename) {
-        unlink(videoOutputFilename, (err) => {
-          if (err) console.error(`Error deleting video temp file: ${err}`);
-        });
-      }
-      if (audioOutputFilename) {
-        unlink(audioOutputFilename, (err) => {
-          if (err) console.error(`Error deleting audio temp file: ${err}`);
-        });
-      }
-      resolve();
-    })
-    .on('error', (err: Error) => {
-      console.error('Error processing video:', err);
-      reject(err);
-    })
-    .save(outputFilename);
-});
+main().then();

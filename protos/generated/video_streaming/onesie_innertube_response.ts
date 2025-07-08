@@ -2,7 +2,7 @@
 // versions:
 //   protoc-gen-ts_proto  v2.2.0
 //   protoc               v5.28.0
-// source: video_streaming/onesie_player_response.proto
+// source: video_streaming/onesie_innertube_response.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
@@ -11,19 +11,19 @@ import { OnesieProxyStatus } from "./onesie_proxy_status.js";
 
 export const protobufPackage = "video_streaming";
 
-export interface OnesiePlayerResponse {
+export interface OnesieInnertubeResponse {
   onesieProxyStatus?: OnesieProxyStatus | undefined;
   httpStatus?: number | undefined;
   headers: HttpHeader[];
   body?: Uint8Array | undefined;
 }
 
-function createBaseOnesiePlayerResponse(): OnesiePlayerResponse {
+function createBaseOnesieInnertubeResponse(): OnesieInnertubeResponse {
   return { onesieProxyStatus: 0, httpStatus: 0, headers: [], body: new Uint8Array(0) };
 }
 
-export const OnesiePlayerResponse: MessageFns<OnesiePlayerResponse> = {
-  encode(message: OnesiePlayerResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const OnesieInnertubeResponse: MessageFns<OnesieInnertubeResponse> = {
+  encode(message: OnesieInnertubeResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.onesieProxyStatus !== undefined && message.onesieProxyStatus !== 0) {
       writer.uint32(8).int32(message.onesieProxyStatus);
     }
@@ -39,10 +39,10 @@ export const OnesiePlayerResponse: MessageFns<OnesiePlayerResponse> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): OnesiePlayerResponse {
+  decode(input: BinaryReader | Uint8Array, length?: number): OnesieInnertubeResponse {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseOnesiePlayerResponse();
+    const message = createBaseOnesieInnertubeResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {

@@ -10,6 +10,7 @@ import { FormatId } from "../misc/common.js";
 import { BufferedRange } from "./buffered_range.js";
 import { ClientAbrState } from "./client_abr_state.js";
 import { StreamerContext } from "./streamer_context.js";
+import { TimeRange } from "./time_range.js";
 
 export const protobufPackage = "video_streaming";
 
@@ -17,33 +18,33 @@ export interface VideoPlaybackAbrRequest {
   clientAbrState?: ClientAbrState | undefined;
   selectedFormatIds: FormatId[];
   bufferedRanges: BufferedRange[];
+  /** `osts` (Onesie Start Time Seconds) param on Onesie requests. */
   playerTimeMs?: number | undefined;
   videoPlaybackUstreamerConfig?: Uint8Array | undefined;
-  lo?: Lo | undefined;
-  selectedAudioFormatIds: FormatId[];
-  selectedVideoFormatIds: FormatId[];
+  field6?:
+    | UnknownMessage1
+    | undefined;
+  /** `pai` (Preferred Audio Itags) param on Onesie requests. */
+  preferredAudioFormatIds: FormatId[];
+  /** `pvi` (Preferred Video Itags) param on Onesie requests. */
+  preferredVideoFormatIds: FormatId[];
+  preferredSubtitleFormatIds: FormatId[];
   streamerContext?: StreamerContext | undefined;
-  field21?: OQa | undefined;
+  field21?: UnknownMessage2 | undefined;
   field22?: number | undefined;
   field23?: number | undefined;
-  field1000: Pqa[];
+  field1000: UnknownMessage3[];
 }
 
-export interface Lo {
+export interface UnknownMessage1 {
   formatId?: FormatId | undefined;
-  Lj?: number | undefined;
+  lmt?: number | undefined;
   sequenceNumber?: number | undefined;
-  field4?: Lo_Field4 | undefined;
-  MZ?: number | undefined;
+  timeRange?: TimeRange | undefined;
+  field5?: number | undefined;
 }
 
-export interface Lo_Field4 {
-  field1?: number | undefined;
-  field2?: number | undefined;
-  field3?: number | undefined;
-}
-
-export interface OQa {
+export interface UnknownMessage2 {
   field1: string[];
   field2?: Uint8Array | undefined;
   field3?: string | undefined;
@@ -52,8 +53,8 @@ export interface OQa {
   field6?: string | undefined;
 }
 
-export interface Pqa {
-  formats: FormatId[];
+export interface UnknownMessage3 {
+  formatIds: FormatId[];
   ud: BufferedRange[];
   clipId?: string | undefined;
 }
@@ -65,9 +66,10 @@ function createBaseVideoPlaybackAbrRequest(): VideoPlaybackAbrRequest {
     bufferedRanges: [],
     playerTimeMs: 0,
     videoPlaybackUstreamerConfig: new Uint8Array(0),
-    lo: undefined,
-    selectedAudioFormatIds: [],
-    selectedVideoFormatIds: [],
+    field6: undefined,
+    preferredAudioFormatIds: [],
+    preferredVideoFormatIds: [],
+    preferredSubtitleFormatIds: [],
     streamerContext: undefined,
     field21: undefined,
     field22: 0,
@@ -93,20 +95,23 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     if (message.videoPlaybackUstreamerConfig !== undefined && message.videoPlaybackUstreamerConfig.length !== 0) {
       writer.uint32(42).bytes(message.videoPlaybackUstreamerConfig);
     }
-    if (message.lo !== undefined) {
-      Lo.encode(message.lo, writer.uint32(50).fork()).join();
+    if (message.field6 !== undefined) {
+      UnknownMessage1.encode(message.field6, writer.uint32(50).fork()).join();
     }
-    for (const v of message.selectedAudioFormatIds) {
+    for (const v of message.preferredAudioFormatIds) {
       FormatId.encode(v!, writer.uint32(130).fork()).join();
     }
-    for (const v of message.selectedVideoFormatIds) {
+    for (const v of message.preferredVideoFormatIds) {
       FormatId.encode(v!, writer.uint32(138).fork()).join();
+    }
+    for (const v of message.preferredSubtitleFormatIds) {
+      FormatId.encode(v!, writer.uint32(146).fork()).join();
     }
     if (message.streamerContext !== undefined) {
       StreamerContext.encode(message.streamerContext, writer.uint32(154).fork()).join();
     }
     if (message.field21 !== undefined) {
-      OQa.encode(message.field21, writer.uint32(170).fork()).join();
+      UnknownMessage2.encode(message.field21, writer.uint32(170).fork()).join();
     }
     if (message.field22 !== undefined && message.field22 !== 0) {
       writer.uint32(176).int32(message.field22);
@@ -115,7 +120,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
       writer.uint32(184).int32(message.field23);
     }
     for (const v of message.field1000) {
-      Pqa.encode(v!, writer.uint32(8002).fork()).join();
+      UnknownMessage3.encode(v!, writer.uint32(8002).fork()).join();
     }
     return writer;
   },
@@ -167,21 +172,28 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
             break;
           }
 
-          message.lo = Lo.decode(reader, reader.uint32());
+          message.field6 = UnknownMessage1.decode(reader, reader.uint32());
           continue;
         case 16:
           if (tag !== 130) {
             break;
           }
 
-          message.selectedAudioFormatIds.push(FormatId.decode(reader, reader.uint32()));
+          message.preferredAudioFormatIds.push(FormatId.decode(reader, reader.uint32()));
           continue;
         case 17:
           if (tag !== 138) {
             break;
           }
 
-          message.selectedVideoFormatIds.push(FormatId.decode(reader, reader.uint32()));
+          message.preferredVideoFormatIds.push(FormatId.decode(reader, reader.uint32()));
+          continue;
+        case 18:
+          if (tag !== 146) {
+            break;
+          }
+
+          message.preferredSubtitleFormatIds.push(FormatId.decode(reader, reader.uint32()));
           continue;
         case 19:
           if (tag !== 154) {
@@ -195,7 +207,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
             break;
           }
 
-          message.field21 = OQa.decode(reader, reader.uint32());
+          message.field21 = UnknownMessage2.decode(reader, reader.uint32());
           continue;
         case 22:
           if (tag !== 176) {
@@ -216,7 +228,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
             break;
           }
 
-          message.field1000.push(Pqa.decode(reader, reader.uint32()));
+          message.field1000.push(UnknownMessage3.decode(reader, reader.uint32()));
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -228,34 +240,34 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
   },
 };
 
-function createBaseLo(): Lo {
-  return { formatId: undefined, Lj: 0, sequenceNumber: 0, field4: undefined, MZ: 0 };
+function createBaseUnknownMessage1(): UnknownMessage1 {
+  return { formatId: undefined, lmt: 0, sequenceNumber: 0, timeRange: undefined, field5: 0 };
 }
 
-export const Lo: MessageFns<Lo> = {
-  encode(message: Lo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const UnknownMessage1: MessageFns<UnknownMessage1> = {
+  encode(message: UnknownMessage1, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.formatId !== undefined) {
       FormatId.encode(message.formatId, writer.uint32(10).fork()).join();
     }
-    if (message.Lj !== undefined && message.Lj !== 0) {
-      writer.uint32(16).int32(message.Lj);
+    if (message.lmt !== undefined && message.lmt !== 0) {
+      writer.uint32(16).sint64(message.lmt);
     }
     if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
       writer.uint32(24).int32(message.sequenceNumber);
     }
-    if (message.field4 !== undefined) {
-      Lo_Field4.encode(message.field4, writer.uint32(34).fork()).join();
+    if (message.timeRange !== undefined) {
+      TimeRange.encode(message.timeRange, writer.uint32(34).fork()).join();
     }
-    if (message.MZ !== undefined && message.MZ !== 0) {
-      writer.uint32(40).int32(message.MZ);
+    if (message.field5 !== undefined && message.field5 !== 0) {
+      writer.uint32(40).int32(message.field5);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): Lo {
+  decode(input: BinaryReader | Uint8Array, length?: number): UnknownMessage1 {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseLo();
+    const message = createBaseUnknownMessage1();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -271,7 +283,7 @@ export const Lo: MessageFns<Lo> = {
             break;
           }
 
-          message.Lj = reader.int32();
+          message.lmt = longToNumber(reader.sint64());
           continue;
         case 3:
           if (tag !== 24) {
@@ -285,14 +297,14 @@ export const Lo: MessageFns<Lo> = {
             break;
           }
 
-          message.field4 = Lo_Field4.decode(reader, reader.uint32());
+          message.timeRange = TimeRange.decode(reader, reader.uint32());
           continue;
         case 5:
           if (tag !== 40) {
             break;
           }
 
-          message.MZ = reader.int32();
+          message.field5 = reader.int32();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -304,68 +316,12 @@ export const Lo: MessageFns<Lo> = {
   },
 };
 
-function createBaseLo_Field4(): Lo_Field4 {
-  return { field1: 0, field2: 0, field3: 0 };
-}
-
-export const Lo_Field4: MessageFns<Lo_Field4> = {
-  encode(message: Lo_Field4, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.field1 !== undefined && message.field1 !== 0) {
-      writer.uint32(8).int32(message.field1);
-    }
-    if (message.field2 !== undefined && message.field2 !== 0) {
-      writer.uint32(16).int32(message.field2);
-    }
-    if (message.field3 !== undefined && message.field3 !== 0) {
-      writer.uint32(24).int32(message.field3);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): Lo_Field4 {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseLo_Field4();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 8) {
-            break;
-          }
-
-          message.field1 = reader.int32();
-          continue;
-        case 2:
-          if (tag !== 16) {
-            break;
-          }
-
-          message.field2 = reader.int32();
-          continue;
-        case 3:
-          if (tag !== 24) {
-            break;
-          }
-
-          message.field3 = reader.int32();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skip(tag & 7);
-    }
-    return message;
-  },
-};
-
-function createBaseOQa(): OQa {
+function createBaseUnknownMessage2(): UnknownMessage2 {
   return { field1: [], field2: new Uint8Array(0), field3: "", field4: 0, field5: 0, field6: "" };
 }
 
-export const OQa: MessageFns<OQa> = {
-  encode(message: OQa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const UnknownMessage2: MessageFns<UnknownMessage2> = {
+  encode(message: UnknownMessage2, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     for (const v of message.field1) {
       writer.uint32(10).string(v!);
     }
@@ -387,10 +343,10 @@ export const OQa: MessageFns<OQa> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): OQa {
+  decode(input: BinaryReader | Uint8Array, length?: number): UnknownMessage2 {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseOQa();
+    const message = createBaseUnknownMessage2();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -446,13 +402,13 @@ export const OQa: MessageFns<OQa> = {
   },
 };
 
-function createBasePqa(): Pqa {
-  return { formats: [], ud: [], clipId: "" };
+function createBaseUnknownMessage3(): UnknownMessage3 {
+  return { formatIds: [], ud: [], clipId: "" };
 }
 
-export const Pqa: MessageFns<Pqa> = {
-  encode(message: Pqa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.formats) {
+export const UnknownMessage3: MessageFns<UnknownMessage3> = {
+  encode(message: UnknownMessage3, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.formatIds) {
       FormatId.encode(v!, writer.uint32(10).fork()).join();
     }
     for (const v of message.ud) {
@@ -464,10 +420,10 @@ export const Pqa: MessageFns<Pqa> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): Pqa {
+  decode(input: BinaryReader | Uint8Array, length?: number): UnknownMessage3 {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBasePqa();
+    const message = createBaseUnknownMessage3();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -476,7 +432,7 @@ export const Pqa: MessageFns<Pqa> = {
             break;
           }
 
-          message.formats.push(FormatId.decode(reader, reader.uint32()));
+          message.formatIds.push(FormatId.decode(reader, reader.uint32()));
           continue;
         case 2:
           if (tag !== 18) {

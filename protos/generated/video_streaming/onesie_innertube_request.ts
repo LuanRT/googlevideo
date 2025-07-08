@@ -2,7 +2,7 @@
 // versions:
 //   protoc-gen-ts_proto  v2.2.0
 //   protoc               v5.28.0
-// source: video_streaming/onesie_player_request.proto
+// source: video_streaming/onesie_innertube_request.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
@@ -10,7 +10,7 @@ import { HttpHeader } from "../misc/common.js";
 
 export const protobufPackage = "video_streaming";
 
-export interface OnesiePlayerRequest {
+export interface OnesieInnertubeRequest {
   url?: string | undefined;
   headers: HttpHeader[];
   body?: string | undefined;
@@ -18,12 +18,12 @@ export interface OnesiePlayerRequest {
   skipResponseEncryption?: boolean | undefined;
 }
 
-function createBaseOnesiePlayerRequest(): OnesiePlayerRequest {
+function createBaseOnesieInnertubeRequest(): OnesieInnertubeRequest {
   return { url: "", headers: [], body: "", proxiedByTrustedBandaid: false, skipResponseEncryption: false };
 }
 
-export const OnesiePlayerRequest: MessageFns<OnesiePlayerRequest> = {
-  encode(message: OnesiePlayerRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const OnesieInnertubeRequest: MessageFns<OnesieInnertubeRequest> = {
+  encode(message: OnesieInnertubeRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.url !== undefined && message.url !== "") {
       writer.uint32(10).string(message.url);
     }
@@ -42,10 +42,10 @@ export const OnesiePlayerRequest: MessageFns<OnesiePlayerRequest> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): OnesiePlayerRequest {
+  decode(input: BinaryReader | Uint8Array, length?: number): OnesieInnertubeRequest {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseOnesiePlayerRequest();
+    const message = createBaseOnesieInnertubeRequest();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {

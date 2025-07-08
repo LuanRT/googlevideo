@@ -4,7 +4,7 @@ package video_streaming;
 import "misc/common.proto";
 import "video_streaming/onesie_proxy_status.proto";
 
-message OnesiePlayerResponse {
+message OnesieInnertubeResponse {
   optional OnesieProxyStatus onesie_proxy_status = 1;
   optional int32 http_status = 2;
   repeated .misc.HttpHeader headers = 3;

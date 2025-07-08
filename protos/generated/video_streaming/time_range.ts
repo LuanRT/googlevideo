@@ -10,22 +10,22 @@ import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 export const protobufPackage = "video_streaming";
 
 export interface TimeRange {
-  start?: number | undefined;
-  duration?: number | undefined;
+  startTicks?: number | undefined;
+  durationTicks?: number | undefined;
   timescale?: number | undefined;
 }
 
 function createBaseTimeRange(): TimeRange {
-  return { start: 0, duration: 0, timescale: 0 };
+  return { startTicks: 0, durationTicks: 0, timescale: 0 };
 }
 
 export const TimeRange: MessageFns<TimeRange> = {
   encode(message: TimeRange, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.start !== undefined && message.start !== 0) {
-      writer.uint32(8).int64(message.start);
+    if (message.startTicks !== undefined && message.startTicks !== 0) {
+      writer.uint32(8).int64(message.startTicks);
     }
-    if (message.duration !== undefined && message.duration !== 0) {
-      writer.uint32(16).int64(message.duration);
+    if (message.durationTicks !== undefined && message.durationTicks !== 0) {
+      writer.uint32(16).int64(message.durationTicks);
     }
     if (message.timescale !== undefined && message.timescale !== 0) {
       writer.uint32(24).int32(message.timescale);
@@ -45,14 +45,14 @@ export const TimeRange: MessageFns<TimeRange> = {
             break;
           }
 
-          message.start = longToNumber(reader.int64());
+          message.startTicks = longToNumber(reader.int64());
           continue;
         case 2:
           if (tag !== 16) {
             break;
           }
 
-          message.duration = longToNumber(reader.int64());
+          message.durationTicks = longToNumber(reader.int64());
           continue;
         case 3:
           if (tag !== 24) {

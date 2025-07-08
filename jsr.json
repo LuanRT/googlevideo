@@ -1,7 +1,14 @@
 {
   "name": "@luanrt/googlevideo",
   "version": "3.0.0",
-  "exports": "./src/index.ts",
+  "exports": {
+    "./ump": "./src/exports/ump.ts",
+    "./sabr-streaming-adapter": "./src/exports/sabr-streaming-adapter.ts",
+    "./sabr-stream": "./src/exports/sabr-stream.ts",
+    "./protos": "./src/exports/protos.ts",
+    "./utils": "./src/exports/utils.ts",
+    "./shared-types": "./src/types/shared.ts"
+  },
   "imports": {
     "@bufbuild/protobuf": "npm:@bufbuild/protobuf@^2.0.0"
   },
@@ -13,7 +20,7 @@
       "src/**/*.ts"
     ],
     "exclude": [
-      "test",
+      "tests",
       "dev-scripts",
       "examples"
     ]

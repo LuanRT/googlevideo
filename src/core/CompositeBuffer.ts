@@ -1,4 +1,4 @@
-export class ChunkedDataBuffer {
+export class CompositeBuffer {
   public chunks: Uint8Array[];
   public currentChunkOffset: number;
   public currentChunkIndex: number;
@@ -15,28 +15,28 @@ export class ChunkedDataBuffer {
     });
   }
 
-  getLength(): number {
-    return this.totalLength;
-  }
-
-  append(chunk: Uint8Array): void {
-    if (this.canMergeWithLastChunk(chunk)) {
-      const lastChunk = this.chunks[this.chunks.length - 1];
-      this.chunks[this.chunks.length - 1] = new Uint8Array(
-        lastChunk.buffer,
-        lastChunk.byteOffset,
-        lastChunk.length + chunk.length
-      );
-      this.resetFocus();
+  public append(chunk: Uint8Array | CompositeBuffer): void {
+    if (chunk instanceof Uint8Array) {
+      if (this.canMergeWithLastChunk(chunk)) {
+        const lastChunk = this.chunks[this.chunks.length - 1];
+        this.chunks[this.chunks.length - 1] = new Uint8Array(
+          lastChunk.buffer,
+          lastChunk.byteOffset,
+          lastChunk.length + chunk.length
+        );
+        this.resetFocus();
+      } else {
+        this.chunks.push(chunk);
+      }
+      this.totalLength += chunk.length;
     } else {
-      this.chunks.push(chunk);
+      chunk.chunks.forEach((c) => this.append(c));
     }
-    this.totalLength += chunk.length;
   }
 
-  split(position: number): { extractedBuffer: ChunkedDataBuffer; remainingBuffer: ChunkedDataBuffer } {
-    const extractedBuffer = new ChunkedDataBuffer();
-    const remainingBuffer = new ChunkedDataBuffer();
+  public split(position: number): { extractedBuffer: CompositeBuffer; remainingBuffer: CompositeBuffer } {
+    const extractedBuffer = new CompositeBuffer();
+    const remainingBuffer = new CompositeBuffer();
     const iterator = this.chunks[Symbol.iterator]();
     let item = iterator.next();
 
@@ -60,11 +60,20 @@ export class ChunkedDataBuffer {
     return { extractedBuffer, remainingBuffer };
   }
 
-  isFocused(position: number): boolean {
-    return position >= this.currentChunkOffset && position < this.currentChunkOffset + this.chunks[this.currentChunkIndex].length;
+  public getLength(): number {
+    return this.totalLength;
   }
 
-  focus(position: number): void {
+  public canReadBytes(position: number, length: number): boolean {
+    return position + length <= this.totalLength;
+  }
+
+  public getUint8(position: number): number {
+    this.focus(position);
+    return this.chunks[this.currentChunkIndex][position - this.currentChunkOffset];
+  }
+
+  public focus(position: number): void {
     if (!this.isFocused(position)) {
       if (position < this.currentChunkOffset) this.resetFocus();
 
@@ -80,13 +89,17 @@ export class ChunkedDataBuffer {
     }
   }
 
-  canReadBytes(position: number, length: number): boolean {
-    return position + length <= this.totalLength;
+  public isFocused(position: number): boolean {
+    return (
+      position >= this.currentChunkOffset &&
+      position < this.currentChunkOffset + this.chunks[this.currentChunkIndex].length
+    );
   }
 
-  getUint8(position: number): number {
-    this.focus(position);
-    return this.chunks[this.currentChunkIndex][position - this.currentChunkOffset];
+  private resetFocus(): void {
+    this.currentDataView = undefined;
+    this.currentChunkIndex = 0;
+    this.currentChunkOffset = 0;
   }
 
   private canMergeWithLastChunk(chunk: Uint8Array): boolean {
@@ -96,11 +109,5 @@ export class ChunkedDataBuffer {
       lastChunk.buffer === chunk.buffer &&
       lastChunk.byteOffset + lastChunk.length === chunk.byteOffset
     );
-  }
-
-  private resetFocus(): void {
-    this.currentDataView = undefined;
-    this.currentChunkIndex = 0;
-    this.currentChunkOffset = 0;
   }
 }

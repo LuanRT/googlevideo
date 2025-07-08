@@ -1,9 +1,9 @@
 syntax = "proto2";
 package video_streaming;
 
-message EncryptedPlayerRequest {
+message InnertubeRequest {
   optional bytes context = 1;
-  optional bytes encrypted_onesie_player_request = 2;
+  optional bytes encrypted_onesie_innertube_request = 2;
   optional bytes encrypted_client_key = 5;
   optional bytes iv = 6;
   optional bytes hmac = 7;
@@ -11,13 +11,11 @@ message EncryptedPlayerRequest {
   optional bool serialize_response_as_json = 10;
   optional bool enable_ad_placements_preroll = 13;
   optional bool enable_compression = 14;
-
-  message UstreamerFlags {
-    optional bool send_video_playback_config = 2;
-  }
-
   optional UstreamerFlags ustreamer_flags = 15;
-
-  optional bytes unencrypted_onesie_player_request = 16;
+  optional bytes unencrypted_onesie_innertube_request = 16;
   optional bool use_jsonformatter_to_parse_player_response = 17;
+}
+
+message UstreamerFlags {
+  optional bool send_video_playback_config = 2;
 }

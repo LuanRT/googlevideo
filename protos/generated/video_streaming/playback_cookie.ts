@@ -11,21 +11,21 @@ import { FormatId } from "../misc/common.js";
 export const protobufPackage = "video_streaming";
 
 export interface PlaybackCookie {
-  /** Always 999999?? */
-  field1?: number | undefined;
+  /** Always 999999 when resolution is set manually, or if the auto selected one is the max available resolution. */
+  resolution?: number | undefined;
   field2?: number | undefined;
   videoFmt?: FormatId | undefined;
   audioFmt?: FormatId | undefined;
 }
 
 function createBasePlaybackCookie(): PlaybackCookie {
-  return { field1: 0, field2: 0, videoFmt: undefined, audioFmt: undefined };
+  return { resolution: 0, field2: 0, videoFmt: undefined, audioFmt: undefined };
 }
 
 export const PlaybackCookie: MessageFns<PlaybackCookie> = {
   encode(message: PlaybackCookie, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.field1 !== undefined && message.field1 !== 0) {
-      writer.uint32(8).int32(message.field1);
+    if (message.resolution !== undefined && message.resolution !== 0) {
+      writer.uint32(8).int32(message.resolution);
     }
     if (message.field2 !== undefined && message.field2 !== 0) {
       writer.uint32(16).int32(message.field2);
@@ -51,7 +51,7 @@ export const PlaybackCookie: MessageFns<PlaybackCookie> = {
             break;
           }
 
-          message.field1 = reader.int32();
+          message.resolution = reader.int32();
           continue;
         case 2:
           if (tag !== 16) {
