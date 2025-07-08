@@ -12,7 +12,7 @@ A collection of modules for working with YouTube's proprietary video streaming p
 
 #### SABR:
 * [SabrStream](src/core/SabrStream.ts) - A robust client for downloading SABR streams. Provides separate video and audio data via [ReadableStreams](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream).
-* [SabrStreamingAdapter](src/core/SabrStreamingAdapter.ts) - A bridge between SABR protocol and media players that intercepts network requests, handles context updates, and manages format selection.
+* [SabrStreamingAdapter](src/core/SabrStreamingAdapter.ts) - A bridge between SABR protocol and media players. Intercepts network requests, and manages the streaming session.
 * [SabrUmpProcessor](src/core/SabrUmpProcessor.ts) - A UMP processor for player implementations that use [SabrStreamingAdapter](src/core/SabrStreamingAdapter.ts).
 
 ## Installation
