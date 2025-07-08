@@ -24,6 +24,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
+      - name: Install protoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip
+          curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v21.12/protoc-21.12-linux-x86_64.zip
+          unzip protoc-21.12-linux-x86_64.zip -d protoc21
+          sudo mv protoc21/bin/protoc /usr/local/bin/
+
       - name: Install dependencies
         run: npm install
 
