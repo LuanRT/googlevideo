@@ -11,7 +11,7 @@ A collection of modules for working with YouTube's proprietary video streaming p
 * [CompositeBuffer](src/core/CompositeBuffer.ts) - A memory-efficient buffer abstraction that manages discontinuous chunks as a logical continuous stream.
 
 #### SABR:
-* [SabrStream](src/core/SabrStream.ts) - A standalone client for downloading SABR streams, providing media via [ReadableStreams](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream).
+* [SabrStream](src/core/SabrStream.ts) - A robust client for downloading SABR streams. Provides separate video and audio data via [ReadableStreams](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream).
 * [SabrStreamingAdapter](src/core/SabrStreamingAdapter.ts) - A bridge between SABR protocol and media players that intercepts network requests, handles context updates, and manages format selection.
 * [SabrUmpProcessor](src/core/SabrUmpProcessor.ts) - A UMP processor for player implementations that use [SabrStreamingAdapter](src/core/SabrStreamingAdapter.ts).
 
