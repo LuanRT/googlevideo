@@ -10,9 +10,7 @@ export class CompositeBuffer {
     this.currentChunkOffset = this.currentChunkIndex = 0;
     this.currentDataView = undefined;
     this.totalLength = 0;
-    chunks.forEach((chunk) => {
-      this.append(chunk);
-    });
+    chunks.forEach((chunk) => this.append(chunk));
   }
 
   public append(chunk: Uint8Array | CompositeBuffer): void {
