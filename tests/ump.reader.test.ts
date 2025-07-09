@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 
-import { concatenateChunks } from '../src/utils/index.js';
 import { Part } from '../src/types/shared.js';
+import { concatenateChunks } from '../src/utils/index.js';
 import { CompositeBuffer, UmpReader, UmpWriter } from '../src/exports/ump.js';
 
 

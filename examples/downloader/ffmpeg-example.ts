@@ -12,11 +12,11 @@ import {
 
 import type { SabrPlaybackOptions } from 'googlevideo/sabr-stream';
 
-const VIDEO_ID = 'gKOgKVJ7Lio';
+const VIDEO_ID = 'hzGmbwS_Drs';
 const OPTIONS: SabrPlaybackOptions = {
   preferWebM: true,
   preferOpus: true,
-  videoQuality: '720p',
+  videoQuality: '480p',
   audioQuality: 'AUDIO_QUALITY_MEDIUM',
   enabledTrackTypes: EnabledTrackTypes.VIDEO_AND_AUDIO
 };

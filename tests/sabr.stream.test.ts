@@ -1,9 +1,17 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { Logger, LogLevel, Protos, concatenateChunks, EnabledTrackTypes } from '../src/utils/index.js';
+import { Logger, LogLevel, concatenateChunks, EnabledTrackTypes } from '../src/utils/index.js';
 import { SabrFormat } from '../src/types/shared.js';
 import { CompositeBuffer, UmpWriter } from '../src/exports/ump.js';
 import { SabrStream } from '../src/exports/sabr-stream.js';
+
+import {
+  UMPPartId,
+  FormatInitializationMetadata,
+  MediaHeader, NextRequestPolicy,
+  StreamProtectionStatus,
+  VideoPlaybackAbrRequest
+} from '../src/utils/Protos.js';
 
 Logger.getInstance().setLogLevels(LogLevel.NONE);
 
@@ -43,8 +51,8 @@ function createMediaHeader(
   format: SabrFormat
 ) {
   return {
-    partType: Protos.UMPPartId.MEDIA_HEADER,
-    partData: Protos.MediaHeader.encode({
+    partType: UMPPartId.MEDIA_HEADER,
+    partData: MediaHeader.encode({
       headerId,
       videoId: '',
       itag: format.itag,
@@ -69,14 +77,14 @@ function createMediaHeader(
 
 function createMediaPart(headerId: number, mockedSize: number) {
   return {
-    partType: Protos.UMPPartId.MEDIA,
+    partType: UMPPartId.MEDIA,
     partData: new Uint8Array([ headerId, ...new Uint8Array(mockedSize).fill(0) ])
   };
 }
 
 function createMediaEndPart(headerId: number) {
   return {
-    partType: Protos.UMPPartId.MEDIA_END,
+    partType: UMPPartId.MEDIA_END,
     partData: new Uint8Array([ headerId ])
   };
 }
@@ -89,15 +97,15 @@ function createMockFetch(maxSegmentSize: number, maxSegmentDuration: number, str
   return vi.fn().mockImplementation(async (url, options) => {
     const request = new Request(url, options);
     const requestBodyData = await request.arrayBuffer();
-    const requestBody = Protos.VideoPlaybackAbrRequest.decode(new Uint8Array(requestBodyData));
+    const requestBody = VideoPlaybackAbrRequest.decode(new Uint8Array(requestBodyData));
 
     const playerTimeMs = requestBody.clientAbrState?.playerTimeMs || 0;
 
     const partsToWrite = [];
 
     partsToWrite.push({
-      partType: Protos.UMPPartId.NEXT_REQUEST_POLICY,
-      partData: Protos.NextRequestPolicy.encode({
+      partType: UMPPartId.NEXT_REQUEST_POLICY,
+      partData: NextRequestPolicy.encode({
         targetAudioReadaheadMs: 15011,
         targetVideoReadaheadMs: 15011,
         backoffTimeMs: 0,
@@ -112,15 +120,15 @@ function createMockFetch(maxSegmentSize: number, maxSegmentDuration: number, str
     });
 
     partsToWrite.push({
-      partType: Protos.UMPPartId.STREAM_PROTECTION_STATUS,
-      partData: Protos.StreamProtectionStatus.encode({ status: streamProtectionStatus }).finish()
+      partType: UMPPartId.STREAM_PROTECTION_STATUS,
+      partData: StreamProtectionStatus.encode({ status: streamProtectionStatus }).finish()
     });
 
     if (playerTimeMs === 0) {
       // Initialize the format.
       partsToWrite.push({
-        partType: Protos.UMPPartId.FORMAT_INITIALIZATION_METADATA,
-        partData: Protos.FormatInitializationMetadata.encode({
+        partType: UMPPartId.FORMAT_INITIALIZATION_METADATA,
+        partData: FormatInitializationMetadata.encode({
           formatId: AUDIO_FORMAT,
           durationUnits: 120000,
           durationTimescale: 1000,

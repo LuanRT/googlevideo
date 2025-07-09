@@ -1,8 +1,7 @@
 import { describe, it, expect } from 'vitest';
 
 import { concatenateChunks } from '../src/utils/index.js';
-import { Part } from '../src/types/shared.js';
-import { CompositeBuffer, UmpReader, UmpWriter } from '../src/exports/ump.js';
+import { CompositeBuffer, UmpWriter } from '../src/exports/ump.js';
 
 describe('UmpWriter', () => {
   it('should write a small part correctly', () => {
