@@ -13,8 +13,9 @@ export function isGoogleVideoURL(url: string): boolean {
     return true;
   }
 
-  const urlPart = url.split('?')[0];
-  const queryPart = url.split('?')[1] || '';
+  const urlParts = url.split('?');
+  const urlPart = urlParts[0];
+  const queryPart = urlParts[1] || '';
 
   if (urlPart.endsWith('/videoplayback')) {
     const params = new URLSearchParams(queryPart);
