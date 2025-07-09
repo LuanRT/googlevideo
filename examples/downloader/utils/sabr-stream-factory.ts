@@ -2,14 +2,11 @@ import { createWriteStream, type WriteStream } from 'node:fs';
 import cliProgress from 'cli-progress';
 import { Constants, Innertube, type IPlayerResponse, UniversalCache, YTNodes } from 'youtubei.js';
 
-import {
-  buildSabrFormat,
-  type Protos
-} from 'googlevideo/utils';
-
 import { generateWebPoToken } from './webpo-helper.js';
 import type { SabrFormat } from 'googlevideo/shared-types';
+import type { ReloadPlaybackContext } from 'googlevideo/protos';
 import { SabrStream, type SabrPlaybackOptions } from 'googlevideo/sabr-stream';
+import { buildSabrFormat } from 'googlevideo/utils';
 
 export interface DownloadOutput {
   stream: WriteStream;
@@ -29,7 +26,7 @@ export interface StreamResults {
 /**
  * Fetches video details and streaming information from YouTube.
  */
-export async function makePlayerRequest(innertube: Innertube, videoId: string, reloadPlaybackContext?: Protos.ReloadPlaybackContext): Promise<IPlayerResponse> {
+export async function makePlayerRequest(innertube: Innertube, videoId: string, reloadPlaybackContext?: ReloadPlaybackContext): Promise<IPlayerResponse> {
   const watchEndpoint = new YTNodes.NavigationEndpoint({ watchEndpoint: { videoId } });
 
   const extraArgs: Record<string, any> = {
@@ -195,8 +192,8 @@ export async function createSabrStream(
     const videoPlaybackUstreamerConfig = playerResponse.player_config?.media_common_config.media_ustreamer_request_config?.video_playback_ustreamer_config;
 
     if (serverAbrStreamingUrl && videoPlaybackUstreamerConfig) {
-      serverAbrStream.setServerAbrStreamingUrl(serverAbrStreamingUrl);
-      serverAbrStream.setVideoPlaybackUstreamerConfig(videoPlaybackUstreamerConfig);
+      serverAbrStream.setStreamingURL(serverAbrStreamingUrl);
+      serverAbrStream.setUstreamerConfig(videoPlaybackUstreamerConfig);
     }
   });
 

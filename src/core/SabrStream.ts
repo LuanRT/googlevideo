@@ -223,7 +223,7 @@ export class SabrStream extends EventEmitterLike {
    * Sets the server ABR streaming URL for media requests.
    * @param url - The streaming URL.
    */
-  public setServerAbrStreamingUrl(url: string): void {
+  public setStreamingURL(url: string): void {
     this.serverAbrStreamingUrl = url;
   }
 
@@ -231,7 +231,7 @@ export class SabrStream extends EventEmitterLike {
    * Sets the Ustreamer configuration string.
    * @param config - The Ustreamer configuration.
    */
-  public setVideoPlaybackUstreamerConfig(config: string): void {
+  public setUstreamerConfig(config: string): void {
     this.videoPlaybackUstreamerConfig = config;
   }
 
