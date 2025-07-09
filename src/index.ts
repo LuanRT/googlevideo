@@ -5,3 +5,4 @@ export * from './core/SabrUmpProcessor.js';
 export * from './core/UmpReader.js';
 export * from './core/UmpWriter.js';
 export * from './utils/index.js';
+export * as Protos from './exports/protos.js';
