@@ -262,7 +262,7 @@ export class SabrStream extends EventEmitterLike {
     this.emit('abort');
   }
 
-  //#region Stream Initialization and Lifecycle Control
+  //#region --- Stream Initialization and Lifecycle Control ---
 
   /**
    * Returns a serializable state object that can be used to restore the stream later.
@@ -536,10 +536,9 @@ export class SabrStream extends EventEmitterLike {
 
     return { videoFormat, audioFormat };
   }
-
   //#endregion
 
-  //#region Segment Fetching and Network Communication
+  //#region --- Segment Fetching and Network Communication ---
 
   /**
    * Fetches and processes media segments from the server for the current ABR state.
@@ -885,10 +884,9 @@ export class SabrStream extends EventEmitterLike {
     }
     return false;
   }
-
   //#endregion
 
-  //#region UMP Part Handlers
+  //#region --- UMP Part Handlers ---
 
   /**
    * Handles `FORMAT_INITIALIZATION_METADATA` parts.
@@ -1142,10 +1140,9 @@ export class SabrStream extends EventEmitterLike {
       this.partialSegmentQueue.delete(headerId);
     }
   }
-
   //#endregion
 
-  //#region Stream Validation and Integrity Checks
+  //#region --- Stream Validation and Integrity Checks ---
 
   /**
    * Validates and corrects the stream duration based on format initialization metadata.
@@ -1227,7 +1224,6 @@ export class SabrStream extends EventEmitterLike {
       }
     }
   }
-
   //#endregion
 
   /**
