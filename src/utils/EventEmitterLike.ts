@@ -1,4 +1,23 @@
-import { CustomEvent } from './index.js';
+// See https://github.com/nodejs/node/issues/40678#issuecomment-1126944677
+class CustomEvent extends Event {
+  #detail;
+
+  constructor(type: string, options?: CustomEventInit<any[]>) {
+    super(type, options);
+    this.#detail = options?.detail ?? null;
+  }
+
+  get detail(): any[] | null {
+    return this.#detail;
+  }
+}
+
+export class SabrAdapterError extends Error {
+  constructor(message: string, public code?: string) {
+    super(`[SabrStreamingAdapter] ${message}`);
+    this.name = 'SabrAdapterError';
+  }
+}
 
 export class EventEmitterLike extends EventTarget {
   #legacyListeners = new Map<(...args: any[]) => void, { type: string, wrapper: EventListener }>();

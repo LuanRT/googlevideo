@@ -142,7 +142,7 @@ export class SabrStreamingAdapter {
    * Initializes the player adapter and sets up request/response interceptors.
    * @throws Error if the adapter has been disposed.
    */
-  attach(player: any): void {
+  public attach(player: any): void {
     this.checkDisposed();
     this.playerAdapter.initialize(player, this.requestMetadataManager, this.cacheManager);
     this.setupInterceptors();
@@ -152,7 +152,7 @@ export class SabrStreamingAdapter {
    * Sets the initial server abr streaming URL.
    * @throws Error if the adapter has been disposed.
    */
-  setStreamingURL(url?: string) {
+  public setStreamingURL(url?: string) {
     this.checkDisposed();
     this.serverAbrStreamingUrl = url;
   }
@@ -161,7 +161,7 @@ export class SabrStreamingAdapter {
    * Sets the ustreamer configuration for SABR requests.
    * @throws Error if the adapter has been disposed.
    */
-  setUstreamerConfig(ustreamerConfig?: string) {
+  public setUstreamerConfig(ustreamerConfig?: string) {
     this.checkDisposed();
     this.ustreamerConfig = ustreamerConfig;
   }
@@ -170,9 +170,16 @@ export class SabrStreamingAdapter {
    * Sets the available SABR formats for streaming.
    * @throws Error if the adapter has been disposed.
    */
-  setServerAbrFormats(sabrFormats: SabrFormat[]) {
+  public setServerAbrFormats(sabrFormats: SabrFormat[]) {
     this.checkDisposed();
     this.sabrFormats = sabrFormats;
+  }
+
+  /**
+   * Returns the cache manager instance, if caching is enabled.
+   */
+  public getCacheManager(): CacheManager | null {
+    return this.cacheManager;
   }
 
   private setupInterceptors(): void {
@@ -610,7 +617,7 @@ export class SabrStreamingAdapter {
    * Releases resources and cleans up the adapter instance.
    * After calling dispose, the adapter can no longer be used.
    */
-  dispose() {
+  public dispose() {
     if (this.isDisposed) return;
 
     this.cacheManager?.dispose();

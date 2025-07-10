@@ -1,9 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
 
 import { Part } from '../src/types/shared.js';
-import { concatenateChunks } from '../src/utils/index.js';
+import { concatenateChunks } from '../src/utils/shared.js';
 import { CompositeBuffer, UmpReader, UmpWriter } from '../src/exports/ump.js';
-
 
 describe('UmpReader', () => {
   it('should read a single small part correctly', () => {

@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { concatenateChunks } from '../src/utils/index.js';
+import { concatenateChunks } from '../src/utils/shared.js';
 import { CompositeBuffer, UmpWriter } from '../src/exports/ump.js';
 
 describe('UmpWriter', () => {

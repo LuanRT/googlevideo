@@ -1,5 +1,4 @@
-import { concatenateChunks } from '../utils/index.js';
-import type { CacheManager } from '../utils/index.js';
+import { concatenateChunks, type CacheManager } from '../utils/index.js';
 
 import { createSegmentCacheKey, fromFormat, fromMediaHeader } from '../utils/formatKeyUtils.js';
 

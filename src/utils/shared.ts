@@ -95,24 +95,3 @@ export function buildSabrFormat(formatStream: FormatStream): SabrFormat {
 export function wait(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-
-// See https://github.com/nodejs/node/issues/40678#issuecomment-1126944677
-export class CustomEvent extends Event {
-  #detail;
-
-  constructor(type: string, options?: CustomEventInit<any[]>) {
-    super(type, options);
-    this.#detail = options?.detail ?? null;
-  }
-
-  get detail(): any[] | null {
-    return this.#detail;
-  }
-}
-
-export class SabrAdapterError extends Error {
-  constructor(message: string, public code?: string) {
-    super(`[SabrStreamingAdapter] ${message}`);
-    this.name = 'SabrAdapterError';
-  }
-}
