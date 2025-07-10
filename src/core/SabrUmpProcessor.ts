@@ -27,6 +27,7 @@ interface Segment {
   mediaHeader: MediaHeader;
   complete?: boolean;
   bufferedChunks: Uint8Array[];
+  lastChunkSize: number;
 }
 
 export interface UmpProcessingResult {
@@ -102,6 +103,10 @@ export class SabrUmpProcessor {
     });
   }
 
+  public getSegmentInfo() {
+    return this.targetSegment;
+  }
+
   private decodePart<T>(part: Part, decoder: { decode: (data: Uint8Array) => T }): T {
     return decoder.decode(concatenateChunks(part.data.chunks));
   }
@@ -132,7 +137,8 @@ export class SabrUmpProcessor {
         this.targetSegment = {
           headerId: mediaHeader.headerId,
           mediaHeader: mediaHeader,
-          bufferedChunks: []
+          bufferedChunks: [],
+          lastChunkSize: 0
         };
       }
     }
@@ -144,6 +150,7 @@ export class SabrUmpProcessor {
     const buffer = part.data.split(1).remainingBuffer;
 
     if (this.targetSegment && headerId === this.targetHeaderId) {
+      this.targetSegment.lastChunkSize = buffer.getLength();
       for (const chunk of buffer.chunks) {
         this.targetSegment.bufferedChunks.push(chunk);
       }
