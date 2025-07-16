@@ -8,11 +8,11 @@ A collection of modules for working with YouTube's proprietary video streaming p
 #### UMP:
 * [UmpReader](src/core/UmpReader.ts) - A parser that efficiently processes chunked UMP binary data.
 * [UmpWriter](src/core/UmpWriter.ts) - A serialization module that encodes data into the UMP binary format with proper type and size encoding.
-* [CompositeBuffer](src/core/CompositeBuffer.ts) - A memory-efficient buffer abstraction that manages discontinuous chunks as a logical continuous stream.
+* [CompositeBuffer](src/core/CompositeBuffer.ts) - A memory-efficient buffer that manages discontinuous chunks as a single logical stream.
 
 #### SABR:
 * [SabrStream](src/core/SabrStream.ts) - A robust client for downloading SABR streams. Provides separate video and audio data via [ReadableStreams](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream).
-* [SabrStreamingAdapter](src/core/SabrStreamingAdapter.ts) - A bridge between SABR protocol and media players. Intercepts network requests, and manages the streaming session.
+* [SabrStreamingAdapter](src/core/SabrStreamingAdapter.ts) - A bridge between the SABR protocol and media players. It manages the streaming session, creates request payloads, and handles server signals.
 * [SabrUmpProcessor](src/core/SabrUmpProcessor.ts) - A UMP processor for player implementations that use [SabrStreamingAdapter](src/core/SabrStreamingAdapter.ts).
 
 ## Installation

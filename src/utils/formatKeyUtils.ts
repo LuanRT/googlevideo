@@ -12,7 +12,7 @@ export function createKey(itag: number | undefined, xtags: string | undefined): 
 }
 
 /**
- * Creates a format key from a SABRFormat object.
+ * Creates a format key from a SabrFormat object.
  * @returns A string format key or undefined if format is undefined.
  */
 export function fromFormat(format?: { itag?: number; xtags?: string }): string | undefined {

@@ -22,7 +22,7 @@ import {
 
 import type {
   PlayerHttpRequest,
-  PlayerHttpResponse,
+  PlayerHttpResponse, 
   SabrOptions,
   SabrPlayerAdapter
 } from '../types/sabrStreamingAdapterTypes.js';
@@ -30,7 +30,7 @@ import type {
 import type { SabrFormat } from '../types/shared.js';
 
 interface InitializedFormat {
-  lastSegmentMetadata?: {
+  lastSegmentMetadata: {
     formatId: FormatId;
     startSequenceNumber: number;
     endSequenceNumber: number;
@@ -92,7 +92,7 @@ export class SabrStreamingAdapter {
   private onReloadPlayerResponseCallback?: OnReloadPlayerResponseCb;
   private onSnackbarMessageCallback?: OnSnackbarMessageCb;
   private onMintPoTokenCallback?: OnMintPoTokenCallback;
-  
+
   public isDisposed = false;
 
   /**
@@ -215,19 +215,15 @@ export class SabrStreamingAdapter {
       sabrUrl.searchParams.set('rn', requestNumber);
       request.url = sabrUrl.toString();
 
-      const currentFormat = this.sabrFormats.find((format) => fromFormat(format) === (originalUri.searchParams.get(SABR_CONSTANTS.KEY_PARAM) || ''));
-
-      if (!currentFormat) {
-        throw new SabrAdapterError(`Active format not found for key: ${originalUri.searchParams.get(SABR_CONSTANTS.KEY_PARAM)}`);
-      }
-
-      const activeFormats = this.playerAdapter.getAllActiveFormats(currentFormat, this.sabrFormats);
-
-      const videoPlaybackAbrRequest = await this.createVideoPlaybackAbrRequest(
-        request,
-        currentFormat,
-        activeFormats
+      const currentFormat = this.sabrFormats.find(
+        (format) => fromFormat(format) === (originalUri.searchParams.get(SABR_CONSTANTS.KEY_PARAM) || '')
       );
+
+      if (!currentFormat)
+        throw new SabrAdapterError(`Could not determine current format from URL: ${request.url}`);
+
+      const activeFormats = this.playerAdapter.getActiveTrackFormats(currentFormat, this.sabrFormats);
+      const videoPlaybackAbrRequest = await this.createVideoPlaybackAbrRequest(request, currentFormat, activeFormats);
 
       if (currentFormat.height) {
         videoPlaybackAbrRequest.clientAbrState!.stickyResolution = currentFormat.height;
@@ -359,9 +355,20 @@ export class SabrStreamingAdapter {
 
   /**
    * Adds buffering information to the ABR request for all active formats.
+   * 
+   * NOTE:
+   * On the web, mobile, and TV clients, buffered ranges in combination to player time is what dictates the segments you get.
+   * In our case, we are cheating a bit by abusing the player time field (in clientAbrState), setting it to the exact start 
+   * time value of the segment we want, while YouTube simply uses the actual player time.
+   * 
+   * We don't have to fully replicate this behavior for two reasons:
+   * 1. The SABR server will only send so much segments for a given player time. That means players like Shaka would
+   * not be able to buffer more than what the server thinks is enough. It would behave like YouTube's.
+   * 2. We don't have to know what segment a buffered range starts/ends at. It is easy to do in Shaka, but not in other players.
+   * 
    * @param videoPlaybackAbrRequest - The ABR request to modify with buffering information.
    * @param currentFormat - The format currently being requested.
-   * @param activeFormats - Object containing references to the currently active audio and video formats.
+   * @param activeFormats - References to the currently active audio and video formats.
    * @returns The format to discard (if any) - typically formats that are active but not currently requested.
    */
   private addBufferingInfoToAbrRequest(
@@ -370,16 +377,16 @@ export class SabrStreamingAdapter {
     activeFormats: { audioFormat?: SabrFormat; videoFormat?: SabrFormat }
   ) {
     let formatToDiscard: SabrFormat | undefined;
+
     const currentFormatKey = fromFormat(currentFormat);
 
     for (const activeFormat of Object.values(activeFormats)) {
       if (!activeFormat) continue;
 
       const activeFormatKey = fromFormat(activeFormat);
-      const initializedFormat = this.initializedFormats.get(activeFormatKey || '');
       const shouldDiscard = currentFormatKey !== activeFormatKey;
-
-      // Create buffered range based on format status.
+      const initializedFormat = this.initializedFormats.get(activeFormatKey || '');
+      
       const bufferedRange = shouldDiscard
         ? this.createFullBufferRange(activeFormat)
         : this.createPartialBufferRange(initializedFormat);
@@ -397,8 +404,8 @@ export class SabrStreamingAdapter {
   }
 
   /**
-   * Creates a buffer range representing a complete format buffer.
-   * Used when we want to signal to the server to not send any segments for this format.
+   * Creates a bogus buffered range for a format. Used when we want to signal to the server to not send any 
+   * segments for this format.
    * @param format - The format to create a full buffer range for.
    * @returns A BufferedRange object indicating the entire format is buffered.
    */
@@ -418,46 +425,39 @@ export class SabrStreamingAdapter {
   }
 
   /**
-   * Creates a buffer range representing a partially buffered format.
+   * Creates a buffered range representing a partially buffered format.
    * @param initializedFormat - The format with initialization data.
    * @returns A BufferedRange object with segment information, or null if no metadata is available.
    */
   private createPartialBufferRange(initializedFormat?: InitializedFormat): BufferedRange | null {
     if (!initializedFormat?.lastSegmentMetadata) return null;
 
-    const { formatId, startTimeMs, startSequenceNumber, timescale, durationMs, endSequenceNumber } =
+    const { formatId, startSequenceNumber, timescale, durationMs, endSequenceNumber } =
       initializedFormat.lastSegmentMetadata;
 
     return {
       formatId,
       startSegmentIndex: startSequenceNumber,
       durationMs,
-      startTimeMs,
+      startTimeMs: 0,
       endSegmentIndex: endSequenceNumber,
       timeRange: {
         timescale,
-        startTicks: startTimeMs,
+        startTicks: 0,
         durationTicks: durationMs
       }
     };
   }
-
+  
   /**
    * Processes HTTP responses to extract SABR-specific information.
    * @returns The response object.
    */
   private async handleResponse(response: PlayerHttpResponse) {
     const requestMetadata = this.requestMetadataManager.getRequestMetadata(response.url, true);
-
     if (!requestMetadata) return response;
 
-    const {
-      streamInfo,
-      isSABR,
-      format,
-      byteRange
-    } = requestMetadata;
-
+    const { streamInfo, format, byteRange, isSABR } = requestMetadata;
     if (!streamInfo) return response;
 
     const retry = async () => {
@@ -560,7 +560,7 @@ export class SabrStreamingAdapter {
       if (streamInfo.mediaHeader.isInitSeg)
         return;
 
-      const initializedFormat = this.initializedFormats.get(formatKey) || {};
+      const initializedFormat = this.initializedFormats.get(formatKey) || {} as InitializedFormat;
 
       initializedFormat.lastSegmentMetadata = {
         formatId: streamInfo.mediaHeader.formatId!,

@@ -79,11 +79,15 @@ export type RequestFilter = (request: PlayerHttpRequest) => Promise<PlayerHttpRe
 export type ResponseFilter = (response: PlayerHttpResponse) => Promise<PlayerHttpResponse | undefined> | PlayerHttpResponse | undefined;
 
 export interface SabrPlayerAdapter {
-  initialize(player: any, requestMetadataManager: RequestMetadataManager, cache: CacheManager | null): void;
+  initialize(
+    player: any, 
+    requestMetadataManager: RequestMetadataManager, 
+    cache: CacheManager | null
+  ): void;
   getPlayerTime(): number;
   getPlaybackRate(): number;
   getBandwidthEstimate(): number;
-  getAllActiveFormats(activeFormat: SabrFormat, sabrFormats: SabrFormat[]): {
+  getActiveTrackFormats(activeFormat: SabrFormat, sabrFormats: SabrFormat[]): {
     audioFormat?: SabrFormat;
     videoFormat?: SabrFormat;
   };
