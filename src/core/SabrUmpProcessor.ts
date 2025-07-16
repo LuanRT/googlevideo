@@ -47,8 +47,8 @@ type UmpPartHandler = (part: Part) => UmpProcessingResult | undefined;
 export class SabrUmpProcessor {
   public partialPart?: Part;
   private readonly formatInitMetadata: FormatInitializationMetadata[] = [];
-  private targetHeaderId?: number;
-  private targetSegment?: Segment;
+  private desiredHeaderId?: number;
+  private partialSegments = new Map<number, Segment>();
 
   private readonly umpPartHandlers = new Map<UMPPartId, UmpPartHandler>([
     [ UMPPartId.FORMAT_INITIALIZATION_METADATA, this.handleFormatInitMetadata.bind(this) ],
@@ -93,8 +93,8 @@ export class SabrUmpProcessor {
         const result = handler?.(part);
         if (result) {
           this.partialPart = undefined;
-          this.targetHeaderId = undefined;
-          this.targetSegment = undefined;
+          this.desiredHeaderId = undefined;
+          this.partialSegments.clear();
           resolve(result);
         }
       });
@@ -104,44 +104,64 @@ export class SabrUmpProcessor {
   }
 
   public getSegmentInfo() {
-    return this.targetSegment;
+    return this.partialSegments.get(this.desiredHeaderId || 0);
   }
 
-  private decodePart<T>(part: Part, decoder: { decode: (data: Uint8Array) => T }): T {
-    return decoder.decode(concatenateChunks(part.data.chunks));
+  private decodePart<T>(part: Part, decoder: { decode: (data: Uint8Array) => T }): T | undefined {
+    if (!part.data.chunks.length)
+      return undefined;
+    
+    try {
+      return decoder.decode(concatenateChunks(part.data.chunks));
+    } catch {
+      return undefined;
+    }
   }
 
   private handleFormatInitMetadata(part: Part) {
     const formatInitMetadata = this.decodePart(part, FormatInitializationMetadata);
-    this.formatInitMetadata.push(formatInitMetadata);
+    if (formatInitMetadata) {
+      this.formatInitMetadata.push(formatInitMetadata);
+    }
     return undefined;
   }
 
   private handleNextRequestPolicy(part: Part) {
     const nextRequestPolicy = this.decodePart(part, NextRequestPolicy);
-    this.requestMetadata.streamInfo = {
-      ...this.requestMetadata.streamInfo,
-      nextRequestPolicy
-    };
+    if (nextRequestPolicy) {
+      this.requestMetadata.streamInfo = {
+        ...this.requestMetadata.streamInfo,
+        nextRequestPolicy
+      };
+    }
     return undefined;
   }
 
   private handleMediaHeader(part: Part) {
     const mediaHeader = this.decodePart(part, MediaHeader);
+
+    if (!mediaHeader) {
+      return undefined;
+    }
+
     const targetFormatKey = fromFormat(this.requestMetadata.format);
     const segmentFormatKey = fromMediaHeader(mediaHeader);
 
     if (!this.requestMetadata.isSABR || segmentFormatKey === targetFormatKey) {
-      if (this.targetHeaderId === undefined) {
-        this.targetHeaderId = mediaHeader.headerId;
-        this.targetSegment = {
-          headerId: mediaHeader.headerId,
-          mediaHeader: mediaHeader,
-          bufferedChunks: [],
-          lastChunkSize: 0
-        };
+      const segmentObj = {
+        headerId: mediaHeader.headerId,
+        mediaHeader: mediaHeader,
+        bufferedChunks: [],
+        lastChunkSize: 0
+      };
+
+      if (this.desiredHeaderId === undefined) {
+        this.desiredHeaderId = mediaHeader.headerId;
       }
+
+      this.partialSegments.set(<number>mediaHeader.headerId, segmentObj);
     }
+
     return undefined;
   }
 
@@ -149,10 +169,12 @@ export class SabrUmpProcessor {
     const headerId = part.data.getUint8(0);
     const buffer = part.data.split(1).remainingBuffer;
 
-    if (this.targetSegment && headerId === this.targetHeaderId) {
-      this.targetSegment.lastChunkSize = buffer.getLength();
+    const segment = this.partialSegments.get(headerId);
+
+    if (segment) {
+      segment.lastChunkSize = buffer.getLength();
       for (const chunk of buffer.chunks) {
-        this.targetSegment.bufferedChunks.push(chunk);
+        segment.bufferedChunks.push(chunk);
       }
     }
 
@@ -161,47 +183,48 @@ export class SabrUmpProcessor {
 
   private handleMediaEnd(part: Part): UmpProcessingResult | undefined {
     const headerId = part.data.getUint8(0);
+    const segment = this.partialSegments.get(headerId);
 
-    if (!this.targetSegment || headerId !== this.targetHeaderId) {
-      return undefined;
-    }
+    if (segment && segment.headerId === this.desiredHeaderId) {
+      const segmentData = concatenateChunks(segment.bufferedChunks);
 
-    this.requestMetadata.streamInfo = {
-      ...this.requestMetadata.streamInfo,
-      formatInitMetadata: this.formatInitMetadata,
-      mediaHeader: this.targetSegment.mediaHeader
-    };
+      this.requestMetadata.streamInfo = {
+        ...this.requestMetadata.streamInfo,
+        formatInitMetadata: this.formatInitMetadata,
+        mediaHeader: segment.mediaHeader
+      };
 
-    const segmentData = concatenateChunks(this.targetSegment.bufferedChunks);
+      /**
+       * Cache initialization segments to optimize performance. SABR responses contain larger payloads,
+       * and caching the init segment reduces latency when switching between different quality levels
+       * or initializing new streams.
+       */
+      if (this.cacheManager && this.requestMetadata.isInit && this.requestMetadata.byteRange && this.requestMetadata.format) {
+        this.cacheManager.setInitSegment(
+          createSegmentCacheKey(segment.mediaHeader, this.requestMetadata.format),
+          segmentData
+        );
+        return {
+          data: segmentData.slice(this.requestMetadata.byteRange.start, this.requestMetadata.byteRange.end + 1),
+          done: true
+        };
+      }
 
-    /**
-     * Cache initialization segments to optimize performance. SABR responses contain larger payloads,
-     * and caching the init segment reduces latency when switching between different quality levels
-     * or initializing new streams.
-     */
-    if (this.cacheManager && this.requestMetadata.isInit && this.requestMetadata.byteRange && this.requestMetadata.format) {
-      this.cacheManager.setInitSegment(
-        createSegmentCacheKey(this.targetSegment.mediaHeader, this.requestMetadata.format),
-        segmentData
-      );
       return {
-        data: segmentData.slice(this.requestMetadata.byteRange.start, this.requestMetadata.byteRange.end + 1),
+        data: segmentData,
         done: true
       };
     }
-
-    return {
-      data: segmentData,
-      done: true
-    };
   }
 
   private handleSnackbarMessage(part: Part) {
     const snackbarMessage = this.decodePart(part, SnackbarMessage);
-    this.requestMetadata.streamInfo = {
-      ...this.requestMetadata.streamInfo,
-      snackbarMessage
-    };
+    if (snackbarMessage) {
+      this.requestMetadata.streamInfo = {
+        ...this.requestMetadata.streamInfo,
+        snackbarMessage
+      };
+    }
     return undefined;
   }
 
@@ -213,6 +236,10 @@ export class SabrUmpProcessor {
 
   private handleStreamProtectionStatus(part: Part): UmpProcessingResult | undefined {
     const streamProtectionStatus = this.decodePart(part, StreamProtectionStatus);
+
+    if (!streamProtectionStatus) {
+      return undefined;
+    }
 
     this.requestMetadata.streamInfo = {
       ...this.requestMetadata.streamInfo,
@@ -231,6 +258,10 @@ export class SabrUmpProcessor {
   private handleReloadPlayerResponse(part: Part): UmpProcessingResult | undefined {
     const reloadPlaybackContext = this.decodePart(part, ReloadPlaybackContext);
 
+    if (!reloadPlaybackContext) {
+      return undefined;
+    }
+
     this.requestMetadata.streamInfo = {
       ...this.requestMetadata.streamInfo,
       reloadPlaybackContext
@@ -243,6 +274,10 @@ export class SabrUmpProcessor {
 
   private handleSabrRedirect(part: Part): UmpProcessingResult | undefined {
     const redirect = this.decodePart(part, SabrRedirect);
+
+    if (!redirect) {
+      return undefined;
+    }
 
     this.requestMetadata.streamInfo = {
       ...this.requestMetadata.streamInfo,
@@ -259,19 +294,23 @@ export class SabrUmpProcessor {
 
   private handleSabrContextUpdate(part: Part) {
     const sabrContextUpdate = this.decodePart(part, SabrContextUpdate);
-    this.requestMetadata.streamInfo = {
-      ...this.requestMetadata.streamInfo,
-      sabrContextUpdate
-    };
+    if (sabrContextUpdate) {
+      this.requestMetadata.streamInfo = {
+        ...this.requestMetadata.streamInfo,
+        sabrContextUpdate
+      };
+    }
     return undefined;
   }
 
   private handleSabrContextSendingPolicy(part: Part): UmpProcessingResult | undefined {
     const sabrContextSendingPolicy = this.decodePart(part, SabrContextSendingPolicy);
-    this.requestMetadata.streamInfo = {
-      ...this.requestMetadata.streamInfo,
-      sabrContextSendingPolicy
-    };
+    if (sabrContextSendingPolicy) {
+      this.requestMetadata.streamInfo = {
+        ...this.requestMetadata.streamInfo,
+        sabrContextSendingPolicy
+      };
+    }
     return undefined;
   }
 }
