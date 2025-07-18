@@ -11,9 +11,8 @@
     "lint": "npx eslint ./src/**/*.ts",
     "lint:fix": "npx eslint --fix ./src/**/*.ts",
     "clean": "npx rimraf ./dist ./protos/generated",
-    "build": "npm run clean && npm run lint && npm run build:proto && npm run build:esm && npm run build:browser",
+    "build": "npm run clean && npm run lint && npm run build:proto && npm run build:esm",
     "build:esm": "npx tsc",
-    "build:browser": "npx esbuild ./src/index.ts --bundle --outfile=dist/browser/googlevideo.umd.js --format=iife --global-name=GoogleVideo --platform=browser --minify",
     "build:proto": "node ./dev-scripts/generate-proto.mjs",
     "test": "vitest run --reporter verbose",
     "test:watch": "vitest",
@@ -45,7 +44,7 @@
       "types": "./dist/src/exports/sabr-stream.d.ts",
       "import": "./dist/src/exports/sabr-stream.js",
       "default": "./dist/src/exports/sabr-stream.js"
-    },   
+    },
     "./protos": {
       "types": "./dist/src/exports/protos.d.ts",
       "import": "./dist/src/exports/protos.js",
