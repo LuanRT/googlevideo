@@ -3,9 +3,9 @@
 [![NPM](https://img.shields.io/npm/v/googlevideo)](https://www.npmjs.com/package/googlevideo)
 [![License](https://img.shields.io/github/license/LuanRT/googlevideo)](./LICENSE)
 
-[API Reference →](https://ytjs.dev/googlevideo/api)
-
 A collection of modules for working with YouTube's proprietary video streaming protocols (UMP/SABR). It can be used to build clients or to integrate with existing media players (e.g., [Shaka Player](https://shaka-player-demo.appspot.com/docs/api/index.html)).
+
+[API Reference →](https://ytjs.dev/googlevideo/api)
 
 ## Features
 
