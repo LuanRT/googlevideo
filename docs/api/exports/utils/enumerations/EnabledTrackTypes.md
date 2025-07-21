@@ -2,7 +2,7 @@
 
 # Enumeration: EnabledTrackTypes
 
-Defined in: [src/utils/shared.ts:5](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/shared.ts#L5)
+Defined in: [src/utils/shared.ts:5](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/shared.ts#L5)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: [src/utils/shared.ts:5](https://github.com/LuanRT/googlevideo/blob/d
 
 > **AUDIO\_ONLY**: `1`
 
-Defined in: [src/utils/shared.ts:7](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/shared.ts#L7)
+Defined in: [src/utils/shared.ts:7](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/shared.ts#L7)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/utils/shared.ts:7](https://github.com/LuanRT/googlevideo/blob/d
 
 > **VIDEO\_AND\_AUDIO**: `0`
 
-Defined in: [src/utils/shared.ts:6](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/shared.ts#L6)
+Defined in: [src/utils/shared.ts:6](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/shared.ts#L6)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [src/utils/shared.ts:6](https://github.com/LuanRT/googlevideo/blob/d
 
 > **VIDEO\_ONLY**: `2`
 
-Defined in: [src/utils/shared.ts:8](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/shared.ts#L8)
+Defined in: [src/utils/shared.ts:8](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/shared.ts#L8)

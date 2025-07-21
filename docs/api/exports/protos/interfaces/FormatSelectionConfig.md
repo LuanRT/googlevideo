@@ -2,7 +2,7 @@
 
 # Interface: FormatSelectionConfig
 
-Defined in: [protos/generated/video\_streaming/format\_selection\_config.ts:12](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/format_selection_config.ts#L12)
+Defined in: protos/generated/video\_streaming/format\_selection\_config.ts:12
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/format\_selection\_config.ts:12](
 
 > **itags**: `number`[]
 
-Defined in: [protos/generated/video\_streaming/format\_selection\_config.ts:13](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/format_selection_config.ts#L13)
+Defined in: protos/generated/video\_streaming/format\_selection\_config.ts:13
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/format\_selection\_config.ts:13](
 
 > `optional` **resolution**: `number`
 
-Defined in: [protos/generated/video\_streaming/format\_selection\_config.ts:15](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/format_selection_config.ts#L15)
+Defined in: protos/generated/video\_streaming/format\_selection\_config.ts:15
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [protos/generated/video\_streaming/format\_selection\_config.ts:15](
 
 > `optional` **videoId**: `string`
 
-Defined in: [protos/generated/video\_streaming/format\_selection\_config.ts:14](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/format_selection_config.ts#L14)
+Defined in: protos/generated/video\_streaming/format\_selection\_config.ts:14

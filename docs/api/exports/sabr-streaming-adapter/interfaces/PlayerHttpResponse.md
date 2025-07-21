@@ -2,7 +2,7 @@
 
 # Interface: PlayerHttpResponse
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:75](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/types/sabrStreamingAdapterTypes.ts#L75)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:75](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/types/sabrStreamingAdapterTypes.ts#L75)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:75](https://github.com/LuanR
 
 > `optional` **data**: `ArrayBuffer` \| `ArrayBufferView`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:79](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/types/sabrStreamingAdapterTypes.ts#L79)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:79](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/types/sabrStreamingAdapterTypes.ts#L79)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:79](https://github.com/LuanR
 
 > **headers**: `Record`\<`string`, `string`\>
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:78](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/types/sabrStreamingAdapterTypes.ts#L78)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:78](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/types/sabrStreamingAdapterTypes.ts#L78)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:78](https://github.com/LuanR
 
 > **makeRequest**: (`url`, `headers`) => `Promise`\<`Omit`\<`PlayerHttpResponse`, `"makeRequest"`\>\>
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:80](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/types/sabrStreamingAdapterTypes.ts#L80)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:80](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/types/sabrStreamingAdapterTypes.ts#L80)
 
 #### Parameters
 
@@ -48,7 +48,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:80](https://github.com/LuanR
 
 > **method**: `string`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:77](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/types/sabrStreamingAdapterTypes.ts#L77)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:77](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/types/sabrStreamingAdapterTypes.ts#L77)
 
 ***
 
@@ -56,4 +56,4 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:77](https://github.com/LuanR
 
 > **url**: `string`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:76](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/types/sabrStreamingAdapterTypes.ts#L76)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:76](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/types/sabrStreamingAdapterTypes.ts#L76)

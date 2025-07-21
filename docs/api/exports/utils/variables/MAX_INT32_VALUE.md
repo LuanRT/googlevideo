@@ -4,4 +4,4 @@
 
 > `const` **MAX\_INT32\_VALUE**: `2147483647` = `2147483647`
 
-Defined in: [src/utils/shared.ts:3](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/shared.ts#L3)
+Defined in: [src/utils/shared.ts:3](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/shared.ts#L3)

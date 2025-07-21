@@ -2,7 +2,7 @@
 
 # Interface: UstreamerFlags
 
-Defined in: [protos/generated/video\_streaming/innertube\_request.ts:27](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/innertube_request.ts#L27)
+Defined in: protos/generated/video\_streaming/innertube\_request.ts:27
 
 ## Properties
 
@@ -10,4 +10,4 @@ Defined in: [protos/generated/video\_streaming/innertube\_request.ts:27](https:/
 
 > `optional` **sendVideoPlaybackConfig**: `boolean`
 
-Defined in: [protos/generated/video\_streaming/innertube\_request.ts:28](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/innertube_request.ts#L28)
+Defined in: protos/generated/video\_streaming/innertube\_request.ts:28

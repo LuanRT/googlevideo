@@ -2,7 +2,7 @@
 
 # Class: EventEmitterLike
 
-Defined in: [src/utils/EventEmitterLike.ts:22](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/EventEmitterLike.ts#L22)
+Defined in: [src/utils/EventEmitterLike.ts:22](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/EventEmitterLike.ts#L22)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/utils/EventEmitterLike.ts:22](https://github.com/LuanRT/googlev
 
 > **new EventEmitterLike**(): `EventEmitterLike`
 
-Defined in: [src/utils/EventEmitterLike.ts:25](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/EventEmitterLike.ts#L25)
+Defined in: [src/utils/EventEmitterLike.ts:25](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/EventEmitterLike.ts#L25)
 
 #### Returns
 
@@ -106,7 +106,7 @@ Dispatches a synthetic event event to target and returns true if either event's 
 
 > **emit**(`type`, ...`args`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:29](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/EventEmitterLike.ts#L29)
+Defined in: [src/utils/EventEmitterLike.ts:29](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/EventEmitterLike.ts#L29)
 
 #### Parameters
 
@@ -128,7 +128,7 @@ Defined in: [src/utils/EventEmitterLike.ts:29](https://github.com/LuanRT/googlev
 
 > **off**(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:59](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/EventEmitterLike.ts#L59)
+Defined in: [src/utils/EventEmitterLike.ts:59](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/EventEmitterLike.ts#L59)
 
 #### Parameters
 
@@ -150,7 +150,7 @@ Defined in: [src/utils/EventEmitterLike.ts:59](https://github.com/LuanRT/googlev
 
 > **on**(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:34](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/EventEmitterLike.ts#L34)
+Defined in: [src/utils/EventEmitterLike.ts:34](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/EventEmitterLike.ts#L34)
 
 #### Parameters
 
@@ -172,7 +172,7 @@ Defined in: [src/utils/EventEmitterLike.ts:34](https://github.com/LuanRT/googlev
 
 > **once**(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:46](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/EventEmitterLike.ts#L46)
+Defined in: [src/utils/EventEmitterLike.ts:46](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/EventEmitterLike.ts#L46)
 
 #### Parameters
 
@@ -194,7 +194,7 @@ Defined in: [src/utils/EventEmitterLike.ts:46](https://github.com/LuanRT/googlev
 
 > **removeAllListeners**(`type?`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:67](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/EventEmitterLike.ts#L67)
+Defined in: [src/utils/EventEmitterLike.ts:67](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/EventEmitterLike.ts#L67)
 
 #### Parameters
 

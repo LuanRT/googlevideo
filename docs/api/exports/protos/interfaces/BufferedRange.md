@@ -2,7 +2,7 @@
 
 # Interface: BufferedRange
 
-Defined in: [protos/generated/video\_streaming/buffered\_range.ts:14](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/buffered_range.ts#L14)
+Defined in: protos/generated/video\_streaming/buffered\_range.ts:14
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/buffered\_range.ts:14](https://gi
 
 > **durationMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/buffered\_range.ts:17](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/buffered_range.ts#L17)
+Defined in: protos/generated/video\_streaming/buffered\_range.ts:17
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/buffered\_range.ts:17](https://gi
 
 > **endSegmentIndex**: `number`
 
-Defined in: [protos/generated/video\_streaming/buffered\_range.ts:19](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/buffered_range.ts#L19)
+Defined in: protos/generated/video\_streaming/buffered\_range.ts:19
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/buffered\_range.ts:19](https://gi
 
 > `optional` **field11**: `BufferedRange_UnknownMessage2`
 
-Defined in: [protos/generated/video\_streaming/buffered\_range.ts:22](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/buffered_range.ts#L22)
+Defined in: protos/generated/video\_streaming/buffered\_range.ts:22
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/video\_streaming/buffered\_range.ts:22](https://gi
 
 > `optional` **field12**: `BufferedRange_UnknownMessage2`
 
-Defined in: [protos/generated/video\_streaming/buffered\_range.ts:23](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/buffered_range.ts#L23)
+Defined in: protos/generated/video\_streaming/buffered\_range.ts:23
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [protos/generated/video\_streaming/buffered\_range.ts:23](https://gi
 
 > `optional` **field9**: `BufferedRange_UnknownMessage1`
 
-Defined in: [protos/generated/video\_streaming/buffered\_range.ts:21](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/buffered_range.ts#L21)
+Defined in: protos/generated/video\_streaming/buffered\_range.ts:21
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [protos/generated/video\_streaming/buffered\_range.ts:21](https://gi
 
 > **formatId**: `undefined` \| [`FormatId`](FormatId.md)
 
-Defined in: [protos/generated/video\_streaming/buffered\_range.ts:15](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/buffered_range.ts#L15)
+Defined in: protos/generated/video\_streaming/buffered\_range.ts:15
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [protos/generated/video\_streaming/buffered\_range.ts:15](https://gi
 
 > **startSegmentIndex**: `number`
 
-Defined in: [protos/generated/video\_streaming/buffered\_range.ts:18](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/buffered_range.ts#L18)
+Defined in: protos/generated/video\_streaming/buffered\_range.ts:18
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [protos/generated/video\_streaming/buffered\_range.ts:18](https://gi
 
 > **startTimeMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/buffered\_range.ts:16](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/buffered_range.ts#L16)
+Defined in: protos/generated/video\_streaming/buffered\_range.ts:16
 
 ***
 
@@ -74,4 +74,4 @@ Defined in: [protos/generated/video\_streaming/buffered\_range.ts:16](https://gi
 
 > `optional` **timeRange**: `TimeRange`
 
-Defined in: [protos/generated/video\_streaming/buffered\_range.ts:20](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/buffered_range.ts#L20)
+Defined in: protos/generated/video\_streaming/buffered\_range.ts:20

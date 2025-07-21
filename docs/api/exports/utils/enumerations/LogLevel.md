@@ -2,7 +2,7 @@
 
 # Enumeration: LogLevel
 
-Defined in: [src/utils/Logger.ts:1](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/Logger.ts#L1)
+Defined in: [src/utils/Logger.ts:1](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/Logger.ts#L1)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: [src/utils/Logger.ts:1](https://github.com/LuanRT/googlevideo/blob/d
 
 > **ALL**: `99`
 
-Defined in: [src/utils/Logger.ts:7](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/Logger.ts#L7)
+Defined in: [src/utils/Logger.ts:7](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/Logger.ts#L7)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/utils/Logger.ts:7](https://github.com/LuanRT/googlevideo/blob/d
 
 > **DEBUG**: `4`
 
-Defined in: [src/utils/Logger.ts:6](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/Logger.ts#L6)
+Defined in: [src/utils/Logger.ts:6](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/Logger.ts#L6)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/utils/Logger.ts:6](https://github.com/LuanRT/googlevideo/blob/d
 
 > **ERROR**: `1`
 
-Defined in: [src/utils/Logger.ts:3](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/Logger.ts#L3)
+Defined in: [src/utils/Logger.ts:3](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/Logger.ts#L3)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/utils/Logger.ts:3](https://github.com/LuanRT/googlevideo/blob/d
 
 > **INFO**: `3`
 
-Defined in: [src/utils/Logger.ts:5](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/Logger.ts#L5)
+Defined in: [src/utils/Logger.ts:5](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/Logger.ts#L5)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [src/utils/Logger.ts:5](https://github.com/LuanRT/googlevideo/blob/d
 
 > **NONE**: `0`
 
-Defined in: [src/utils/Logger.ts:2](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/Logger.ts#L2)
+Defined in: [src/utils/Logger.ts:2](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/Logger.ts#L2)
 
 ***
 
@@ -50,4 +50,4 @@ Defined in: [src/utils/Logger.ts:2](https://github.com/LuanRT/googlevideo/blob/d
 
 > **WARN**: `2`
 
-Defined in: [src/utils/Logger.ts:4](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/src/utils/Logger.ts#L4)
+Defined in: [src/utils/Logger.ts:4](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/Logger.ts#L4)

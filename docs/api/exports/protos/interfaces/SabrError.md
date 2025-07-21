@@ -2,7 +2,7 @@
 
 # Interface: SabrError
 
-Defined in: [protos/generated/video\_streaming/sabr\_error.ts:12](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/sabr_error.ts#L12)
+Defined in: protos/generated/video\_streaming/sabr\_error.ts:12
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/sabr\_error.ts:12](https://github
 
 > `optional` **code**: `number`
 
-Defined in: [protos/generated/video\_streaming/sabr\_error.ts:14](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/sabr_error.ts#L14)
+Defined in: protos/generated/video\_streaming/sabr\_error.ts:14
 
 ***
 
@@ -18,4 +18,4 @@ Defined in: [protos/generated/video\_streaming/sabr\_error.ts:14](https://github
 
 > `optional` **type**: `string`
 
-Defined in: [protos/generated/video\_streaming/sabr\_error.ts:13](https://github.com/LuanRT/googlevideo/blob/d9eb9db82e3516a9a277a77a3d25342e9c5bf127/protos/generated/video_streaming/sabr_error.ts#L13)
+Defined in: protos/generated/video\_streaming/sabr\_error.ts:13
