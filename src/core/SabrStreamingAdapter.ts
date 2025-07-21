@@ -52,7 +52,7 @@ export const SABR_CONSTANTS = {
   DEFAULT_OPTIONS: {
     enableCaching: true,
     enableVerboseRequestLogging: false,
-    maxCacheSizeMB: 50,
+    maxCacheSizeMB: 3,
     maxCacheAgeSeconds: 300
   }
 } as const;
@@ -118,6 +118,10 @@ export class SabrStreamingAdapter {
     this.onMintPoTokenCallback = cb;
   }
 
+  /**
+   * @param options - Configuration options for the adapter.
+   * @throws SabrAdapterError if a player adapter is not provided.
+   */
   constructor(options: SabrOptions) {
     this.options = {
       ...SABR_CONSTANTS.DEFAULT_OPTIONS,
@@ -140,7 +144,7 @@ export class SabrStreamingAdapter {
 
   /**
    * Initializes the player adapter and sets up request/response interceptors.
-   * @throws Error if the adapter has been disposed.
+   * @throws SabrAdapterError if the adapter has been disposed.
    */
   public attach(player: any): void {
     this.checkDisposed();
@@ -150,7 +154,7 @@ export class SabrStreamingAdapter {
 
   /**
    * Sets the initial server abr streaming URL.
-   * @throws Error if the adapter has been disposed.
+   * @throws SabrAdapterError if the adapter has been disposed.
    */
   public setStreamingURL(url?: string) {
     this.checkDisposed();
@@ -159,7 +163,7 @@ export class SabrStreamingAdapter {
 
   /**
    * Sets the ustreamer configuration for SABR requests.
-   * @throws Error if the adapter has been disposed.
+   * @throws SabrAdapterError if the adapter has been disposed.
    */
   public setUstreamerConfig(ustreamerConfig?: string) {
     this.checkDisposed();
@@ -168,7 +172,7 @@ export class SabrStreamingAdapter {
 
   /**
    * Sets the available SABR formats for streaming.
-   * @throws Error if the adapter has been disposed.
+   * @throws SabrAdapterError if the adapter has been disposed.
    */
   public setServerAbrFormats(sabrFormats: SabrFormat[]) {
     this.checkDisposed();
@@ -301,7 +305,7 @@ export class SabrStreamingAdapter {
    * @param currentFormat - The format currently being fetched.
    * @param activeFormats - Object containing references to active audio and video formats.
    * @returns A populated VideoPlaybackAbrRequest object.
-   * @throws Error if ustreamer config is not set.
+   * @throws SabrAdapterError if ustreamer config is not set.
    */
   private async createVideoPlaybackAbrRequest(
     request: PlayerHttpRequest,

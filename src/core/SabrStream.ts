@@ -153,10 +153,30 @@ export class SabrStream extends EventEmitterLike {
   private videoController?: ReadableStreamDefaultController<Uint8Array>;
   private audioController?: ReadableStreamDefaultController<Uint8Array>;
 
+  /**
+   * Fired when the server sends initialization metadata for a media format.
+   * @event
+   */
   public on(event: 'formatInitialization', listener: (initializedFormat: InitializedFormat) => void): void;
+  /**
+   * Fired when the server provides an update on the stream's content protection status.
+   * @event
+   */
   public on(event: 'streamProtectionStatusUpdate', listener: (data: StreamProtectionStatus) => void): void;
+  /**
+   * Fired when the server directs the client to reload the player, usually indicating the current session is invalid.
+   * @event
+   */
   public on(event: 'reloadPlayerResponse', listener: (reloadPlaybackContext: ReloadPlaybackContext) => void): void;
+  /**
+   * Fired when the entire stream has been successfully downloaded.
+   * @event
+   */
   public on(event: 'finish', listener: () => void): void;
+  /**
+   * Fired when the download process is manually aborted via the `abort()` method.
+   * @event
+   */
   public on(event: 'abort', listener: () => void): void;
   public on(event: string, listener: (...data: any[]) => void): void {
     super.on(event, listener);

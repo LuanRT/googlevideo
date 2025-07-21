@@ -41,15 +41,34 @@ export interface SabrRequestMetadata {
 }
 
 export interface SabrOptions {
+  /**
+   * Whether to enable caching of SABR segments.
+   * @default true
+   */
   enableCaching?: boolean;
   /**
    * Enables verbose logging of all SABR requests made by the player.
    * @NOTE: `DEBUG` level logging must be enabled for this to take effect.
+   * @default false
    */
   enableVerboseRequestLogging?: boolean;
+  /**
+   * Maximum size of the segment cache in megabytes.
+   * @default 3
+   */
   maxCacheSizeMB?: number;
+  /**
+   * Maximum age of cached segments in seconds.
+   * @default 300 (5 minutes)
+   */
   maxCacheAgeSeconds?: number;
+  /**
+   * Player adapter to use for SABR streaming.
+   */
   playerAdapter?: SabrPlayerAdapter;
+  /**
+   * Client information to send with SABR requests.
+   */
   clientInfo?: ClientInfo;
 }
 
@@ -71,7 +90,6 @@ export interface PlayerHttpRequest {
 
 export interface RequestSegment {
   getStartTime: () => number | null;
-  getEndTime: () => number | null;
   isInit: () => boolean;
 }
 

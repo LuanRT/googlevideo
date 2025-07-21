@@ -1,10 +1,18 @@
 import type { InitializedFormat } from '../core/SabrStream.js';
 import type { SabrFormat } from '../types/shared.js';
 
+/**
+ * Determines the media type (video or audio) based on the format initialization metadata.
+ * @param initializedFormat
+ */
 export function getMediaType(initializedFormat: InitializedFormat): 'video' | 'audio' {
   return initializedFormat.formatInitializationMetadata?.mimeType?.includes('video') ? 'video' : 'audio';
 }
 
+/**
+ * Calculates the total duration of downloaded segments in milliseconds.
+ * @param initializedFormat
+ */
 export function getTotalDownloadedDuration(
   initializedFormat: InitializedFormat
 ): number {
@@ -60,12 +68,11 @@ export function chooseFormat(
   let filteredFormats = typeFormats;
 
   if (preferences.language) {
-    filteredFormats = applyFilter(filteredFormats,
-      (format) => format.language === preferences.language);
+    filteredFormats = filteredFormats.filter((format) => format.language === preferences.language);
   }
 
   if (preferences.quality) {
-    filteredFormats = applyFilter(filteredFormats, (format) =>
+    filteredFormats = filteredFormats.filter((format) =>
       preferences.isAudio
         ? !!format.audioQuality?.toLowerCase().includes(preferences.quality?.toLowerCase() || '')
         : !!format.qualityLabel?.toLowerCase().includes(preferences.quality?.toLowerCase() || '')
@@ -74,18 +81,18 @@ export function chooseFormat(
 
   if (preferences.isAudio) {
     if (preferences.preferOpus) {
-      filteredFormats = applyMimeTypeFilter(filteredFormats, 'opus') || [];
+      filteredFormats = applyMimeTypeFilter(filteredFormats, 'opus');
     }
   } else if (preferences.preferH264) {
-    filteredFormats = applyFilter(filteredFormats,
+    filteredFormats = filteredFormats.filter(
       (format) => !!format.mimeType && format.mimeType.includes('mp4') && format.mimeType.includes('avc')
     );
   }
 
   if (preferences.preferWebM) {
-    filteredFormats = applyMimeTypeFilter(filteredFormats, 'webm') || [];
+    filteredFormats = applyMimeTypeFilter(filteredFormats, 'webm');
   } else if (preferences.preferMP4) {
-    filteredFormats = applyMimeTypeFilter(filteredFormats, 'mp4') || [];
+    filteredFormats = applyMimeTypeFilter(filteredFormats, 'mp4');
   }
 
   return preferences.isAudio
@@ -93,11 +100,6 @@ export function chooseFormat(
     : filteredFormats.sort((a, b) => (b.height || 0) - (a.height || 0))[0];
 }
 
-function applyFilter(formats: SabrFormat[], predicate: (format: SabrFormat) => boolean): SabrFormat[] {
-  return formats.filter(predicate);
-}
-
-function applyMimeTypeFilter(formats: SabrFormat[], mimeTypePart: string): SabrFormat[] | null {
-  const filtered = formats.filter((format) => format.mimeType?.includes(mimeTypePart));
-  return filtered.length ? filtered : null;
+function applyMimeTypeFilter(formats: SabrFormat[], mimeTypePart: string): SabrFormat[] {
+  return formats.filter((format) => format.mimeType?.includes(mimeTypePart));
 }

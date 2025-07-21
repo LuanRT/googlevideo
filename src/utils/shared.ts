@@ -30,7 +30,16 @@ export function isGoogleVideoURL(url: string): boolean {
   return false;
 }
 
-export function parseRangeHeader(rangeHeaderValue: string | undefined): { start: number; end: number } | undefined {
+interface Range {
+  start: number;
+  end: number;
+}
+
+/**
+ * Parses the Range header value to extract the start and end byte positions.
+ * @param rangeHeaderValue
+ */
+export function parseRangeHeader(rangeHeaderValue: string | undefined): Range | undefined {
   if (!rangeHeaderValue) return undefined;
 
   const parts = rangeHeaderValue.split('=')[1]?.split('-');
@@ -43,16 +52,28 @@ export function parseRangeHeader(rangeHeaderValue: string | undefined): { start:
   return undefined;
 }
 
+/**
+ * Converts a Uint8Array to a Base64 string.
+ * @param u8
+ */
 export function u8ToBase64(u8: Uint8Array): string {
   return btoa(String.fromCharCode.apply(null, Array.from(u8)));
 }
 
+/**
+ * Converts a Base64 string to a Uint8Array.
+ * @param base64
+ */
 export function base64ToU8(base64: string): Uint8Array {
   const standard_base64 = base64.replace(/-/g, '+').replace(/_/g, '/');
   const padded_base64 = standard_base64.padEnd(standard_base64.length + (4 - standard_base64.length % 4) % 4, '=');
   return new Uint8Array(atob(padded_base64).split('').map((char) => char.charCodeAt(0)));
 }
 
+/**
+ * Concatenates multiple Uint8Array chunks into a single Uint8Array.
+ * @param chunks
+ */
 export function concatenateChunks(chunks: Uint8Array[]): Uint8Array {
   const totalLength = chunks.reduce((sum, chunk) => sum + chunk.length, 0);
   const result = new Uint8Array(totalLength);
@@ -64,6 +85,10 @@ export function concatenateChunks(chunks: Uint8Array[]): Uint8Array {
   return result;
 }
 
+/**
+ * Converts a FormatStream object to a SabrFormat object.
+ * @param formatStream
+ */
 export function buildSabrFormat(formatStream: FormatStream): SabrFormat {
   return {
     itag: formatStream.itag,
@@ -92,6 +117,10 @@ export function buildSabrFormat(formatStream: FormatStream): SabrFormat {
   };
 }
 
+/**
+ * Returns a promise that resolves after a specified number of milliseconds.
+ * @param ms - The number of milliseconds to wait.
+ */
 export function wait(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }

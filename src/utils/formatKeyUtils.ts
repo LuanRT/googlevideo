@@ -77,6 +77,11 @@ export function createSegmentCacheKeyFromMetadata(
   );
 }
 
+/**
+ * Generates a unique format ID based on the SabrFormat properties.
+ * @param format - The SabrFormat object.
+ * @returns A unique string identifier for the format.
+ */
 export function getUniqueFormatId(format: SabrFormat) {
   if (format.width)
     return format.itag.toString();

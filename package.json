@@ -14,6 +14,7 @@
     "build": "npm run clean && npm run lint && npm run build:proto && npm run build:esm",
     "build:esm": "npx tspc",
     "build:proto": "node ./dev-scripts/generate-proto.mjs",
+    "build:docs": "typedoc",
     "test": "vitest run --reporter verbose",
     "test:watch": "vitest",
     "prepare": "npm run build"
@@ -67,6 +68,8 @@
     "globals": "^15.9.0",
     "ts-patch": "^3.3.0",
     "ts-proto": "^2.2.0",
+    "typedoc": "^0.28.7",
+    "typedoc-plugin-markdown": "^4.7.1",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.2.0",
     "vitest": "^3.2.4"

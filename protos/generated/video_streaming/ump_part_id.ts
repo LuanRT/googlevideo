@@ -13,22 +13,30 @@ export enum UMPPartId {
   ONESIE_HEADER = 10,
   ONESIE_DATA = 11,
   ONESIE_ENCRYPTED_MEDIA = 12,
+  /** MEDIA_HEADER - Header for a media segment; includes sequence and timing information. */
   MEDIA_HEADER = 20,
+  /** MEDIA - Chunk of media segment data. */
   MEDIA = 21,
+  /** MEDIA_END - Indicates end of media segment; finalizes segment processing. */
   MEDIA_END = 22,
   CONFIG = 30,
   LIVE_METADATA = 31,
   HOSTNAME_CHANGE_HINT_DEPRECATED = 32,
   LIVE_METADATA_PROMISE = 33,
   LIVE_METADATA_PROMISE_CANCELLATION = 34,
+  /** NEXT_REQUEST_POLICY - Server's policy for the next request; includes backoff time and playback cookie. */
   NEXT_REQUEST_POLICY = 35,
   USTREAMER_VIDEO_AND_FORMAT_METADATA = 36,
   FORMAT_SELECTION_CONFIG = 37,
   USTREAMER_SELECTED_MEDIA_STREAM = 38,
+  /** FORMAT_INITIALIZATION_METADATA - Metadata for format initialization; contains total number of segments, duration, etc. */
   FORMAT_INITIALIZATION_METADATA = 42,
+  /** SABR_REDIRECT - Indicates a redirect to a different streaming URL. */
   SABR_REDIRECT = 43,
+  /** SABR_ERROR - Indicates a SABR error; happens when the payload is invalid or the server cannot process the request. */
   SABR_ERROR = 44,
   SABR_SEEK = 45,
+  /** RELOAD_PLAYER_RESPONSE - Directive to reload the player with new parameters. */
   RELOAD_PLAYER_RESPONSE = 46,
   PLAYBACK_START_POLICY = 47,
   ALLOWED_CACHED_FORMATS = 48,
@@ -40,8 +48,11 @@ export enum UMPPartId {
   ONESIE_PREFETCH_REJECTION = 54,
   TIMELINE_CONTEXT = 55,
   REQUEST_PIPELINING = 56,
+  /** SABR_CONTEXT_UPDATE - Updates SABR context data; usually used for ads. */
   SABR_CONTEXT_UPDATE = 57,
+  /** STREAM_PROTECTION_STATUS - Status of stream protection; indicates whether attestation is required. */
   STREAM_PROTECTION_STATUS = 58,
+  /** SABR_CONTEXT_SENDING_POLICY - Policy indicating which SABR contexts to send or discard in future requests. */
   SABR_CONTEXT_SENDING_POLICY = 59,
   LAWNMOWER_POLICY = 60,
   SABR_ACK = 61,
@@ -50,6 +61,7 @@ export enum UMPPartId {
   LAWNMOWER_MESSAGING_POLICY = 64,
   PREWARM_CONNECTION = 65,
   PLAYBACK_DEBUG_INFO = 66,
+  /** SNACKBAR_MESSAGE - Directive to show the user a notification message. */
   SNACKBAR_MESSAGE = 67,
   UNRECOGNIZED = -1,
 }
