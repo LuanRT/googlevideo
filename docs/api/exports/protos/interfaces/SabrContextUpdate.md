@@ -2,7 +2,7 @@
 
 # Interface: SabrContextUpdate
 
-Defined in: protos/generated/video\_streaming/sabr\_context\_update.ts:12
+Defined in: [protos/generated/video\_streaming/sabr\_context\_update.ts:12](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/sabr_context_update.ts#L12)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: protos/generated/video\_streaming/sabr\_context\_update.ts:12
 
 > `optional` **scope**: `SabrContextUpdate_SabrContextScope`
 
-Defined in: protos/generated/video\_streaming/sabr\_context\_update.ts:14
+Defined in: [protos/generated/video\_streaming/sabr\_context\_update.ts:14](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/sabr_context_update.ts#L14)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: protos/generated/video\_streaming/sabr\_context\_update.ts:14
 
 > `optional` **sendByDefault**: `boolean`
 
-Defined in: protos/generated/video\_streaming/sabr\_context\_update.ts:16
+Defined in: [protos/generated/video\_streaming/sabr\_context\_update.ts:16](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/sabr_context_update.ts#L16)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: protos/generated/video\_streaming/sabr\_context\_update.ts:16
 
 > `optional` **type**: `number`
 
-Defined in: protos/generated/video\_streaming/sabr\_context\_update.ts:13
+Defined in: [protos/generated/video\_streaming/sabr\_context\_update.ts:13](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/sabr_context_update.ts#L13)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: protos/generated/video\_streaming/sabr\_context\_update.ts:13
 
 > `optional` **value**: `Uint8Array`
 
-Defined in: protos/generated/video\_streaming/sabr\_context\_update.ts:15
+Defined in: [protos/generated/video\_streaming/sabr\_context\_update.ts:15](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/sabr_context_update.ts#L15)
 
 ***
 
@@ -42,4 +42,4 @@ Defined in: protos/generated/video\_streaming/sabr\_context\_update.ts:15
 
 > `optional` **writePolicy**: [`SabrContextWritePolicy`](../enumerations/SabrContextWritePolicy.md)
 
-Defined in: protos/generated/video\_streaming/sabr\_context\_update.ts:17
+Defined in: [protos/generated/video\_streaming/sabr\_context\_update.ts:17](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/sabr_context_update.ts#L17)

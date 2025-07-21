@@ -2,7 +2,7 @@
 
 # Class: UmpReader
 
-Defined in: [src/core/UmpReader.ts:4](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/core/UmpReader.ts#L4)
+Defined in: [src/core/UmpReader.ts:4](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/UmpReader.ts#L4)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/core/UmpReader.ts:4](https://github.com/LuanRT/googlevideo/blob
 
 > **new UmpReader**(`compositeBuffer`): `UmpReader`
 
-Defined in: [src/core/UmpReader.ts:5](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/core/UmpReader.ts#L5)
+Defined in: [src/core/UmpReader.ts:5](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/UmpReader.ts#L5)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/core/UmpReader.ts:5](https://github.com/LuanRT/googlevideo/blob
 
 > **canReadFromCurrentChunk**(`offset`, `length`): `boolean`
 
-Defined in: [src/core/UmpReader.ts:123](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/core/UmpReader.ts#L123)
+Defined in: [src/core/UmpReader.ts:123](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/UmpReader.ts#L123)
 
 Checks if the specified bytes can be read from the current chunk.
 
@@ -58,7 +58,7 @@ True if bytes can be read from current chunk, false otherwise.
 
 > **getCurrentDataView**(): `DataView`
 
-Defined in: [src/core/UmpReader.ts:131](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/core/UmpReader.ts#L131)
+Defined in: [src/core/UmpReader.ts:131](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/UmpReader.ts#L131)
 
 Gets a DataView of the current chunk, creating it if necessary.
 
@@ -74,7 +74,7 @@ DataView for the current chunk.
 
 > **read**(`handlePart`): `undefined` \| [`Part`](../../../types/shared/type-aliases/Part.md)
 
-Defined in: [src/core/UmpReader.ts:12](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/core/UmpReader.ts#L12)
+Defined in: [src/core/UmpReader.ts:12](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/UmpReader.ts#L12)
 
 Parses parts from the buffer and calls the handler for each complete part.
 
@@ -98,7 +98,7 @@ Partial part if parsing is incomplete, undefined otherwise.
 
 > **readVarInt**(`offset`): \[`number`, `number`\]
 
-Defined in: [src/core/UmpReader.ts:54](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/core/UmpReader.ts#L54)
+Defined in: [src/core/UmpReader.ts:54](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/UmpReader.ts#L54)
 
 Reads a variable-length integer from the buffer.
 

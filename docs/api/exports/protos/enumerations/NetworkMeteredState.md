@@ -2,7 +2,7 @@
 
 # Enumeration: NetworkMeteredState
 
-Defined in: protos/generated/misc/common.ts:53
+Defined in: [protos/generated/misc/common.ts:53](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/misc/common.ts#L53)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: protos/generated/misc/common.ts:53
 
 > **METERED**: `2`
 
-Defined in: protos/generated/misc/common.ts:56
+Defined in: [protos/generated/misc/common.ts:56](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/misc/common.ts#L56)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: protos/generated/misc/common.ts:56
 
 > **UNKNOWN**: `0`
 
-Defined in: protos/generated/misc/common.ts:54
+Defined in: [protos/generated/misc/common.ts:54](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/misc/common.ts#L54)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: protos/generated/misc/common.ts:54
 
 > **UNMETERED**: `1`
 
-Defined in: protos/generated/misc/common.ts:55
+Defined in: [protos/generated/misc/common.ts:55](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/misc/common.ts#L55)
 
 ***
 
@@ -34,4 +34,4 @@ Defined in: protos/generated/misc/common.ts:55
 
 > **UNRECOGNIZED**: `-1`
 
-Defined in: protos/generated/misc/common.ts:57
+Defined in: [protos/generated/misc/common.ts:57](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/misc/common.ts#L57)

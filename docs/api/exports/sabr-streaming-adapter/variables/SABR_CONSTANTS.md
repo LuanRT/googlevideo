@@ -4,7 +4,7 @@
 
 > `const` **SABR\_CONSTANTS**: `object`
 
-Defined in: [src/core/SabrStreamingAdapter.ts:49](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/core/SabrStreamingAdapter.ts#L49)
+Defined in: [src/core/SabrStreamingAdapter.ts:49](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStreamingAdapter.ts#L49)
 
 ## Type declaration
 

@@ -4,7 +4,7 @@
 
 > **fromFormatInitializationMetadata**(`formatInitMetadata`): `string`
 
-Defined in: [src/utils/formatKeyUtils.ts:35](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/formatKeyUtils.ts#L35)
+Defined in: [src/utils/formatKeyUtils.ts:35](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/formatKeyUtils.ts#L35)
 
 Creates a format key from FormatInitializationMetadata.
 

@@ -2,7 +2,7 @@
 
 # Interface: OnesieHeader
 
-Defined in: protos/generated/video\_streaming/onesie\_header.ts:14
+Defined in: [protos/generated/video\_streaming/onesie\_header.ts:14](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_header.ts#L14)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: protos/generated/video\_streaming/onesie\_header.ts:14
 
 > `optional` **cryptoParams**: [`CryptoParams`](CryptoParams.md)
 
-Defined in: protos/generated/video\_streaming/onesie\_header.ts:18
+Defined in: [protos/generated/video\_streaming/onesie\_header.ts:18](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_header.ts#L18)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: protos/generated/video\_streaming/onesie\_header.ts:18
 
 > `optional` **expectedMediaSizeBytes**: `number`
 
-Defined in: protos/generated/video\_streaming/onesie\_header.ts:20
+Defined in: [protos/generated/video\_streaming/onesie\_header.ts:20](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_header.ts#L20)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: protos/generated/video\_streaming/onesie\_header.ts:20
 
 > `optional` **field23**: `OnesieHeader_UnknownMessage1`
 
-Defined in: protos/generated/video\_streaming/onesie\_header.ts:24
+Defined in: [protos/generated/video\_streaming/onesie\_header.ts:24](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_header.ts#L24)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: protos/generated/video\_streaming/onesie\_header.ts:24
 
 > `optional` **field34**: `OnesieHeader_UnknownMessage2`
 
-Defined in: protos/generated/video\_streaming/onesie\_header.ts:25
+Defined in: [protos/generated/video\_streaming/onesie\_header.ts:25](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_header.ts#L25)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: protos/generated/video\_streaming/onesie\_header.ts:25
 
 > `optional` **itag**: `string`
 
-Defined in: protos/generated/video\_streaming/onesie\_header.ts:17
+Defined in: [protos/generated/video\_streaming/onesie\_header.ts:17](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_header.ts#L17)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: protos/generated/video\_streaming/onesie\_header.ts:17
 
 > `optional` **lastModified**: `number`
 
-Defined in: protos/generated/video\_streaming/onesie\_header.ts:19
+Defined in: [protos/generated/video\_streaming/onesie\_header.ts:19](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_header.ts#L19)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: protos/generated/video\_streaming/onesie\_header.ts:19
 
 > **restrictedFormats**: `string`[]
 
-Defined in: protos/generated/video\_streaming/onesie\_header.ts:21
+Defined in: [protos/generated/video\_streaming/onesie\_header.ts:21](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_header.ts#L21)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: protos/generated/video\_streaming/onesie\_header.ts:21
 
 > `optional` **sequenceNumber**: `number`
 
-Defined in: protos/generated/video\_streaming/onesie\_header.ts:23
+Defined in: [protos/generated/video\_streaming/onesie\_header.ts:23](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_header.ts#L23)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: protos/generated/video\_streaming/onesie\_header.ts:23
 
 > `optional` **type**: [`OnesieHeaderType`](../enumerations/OnesieHeaderType.md)
 
-Defined in: protos/generated/video\_streaming/onesie\_header.ts:15
+Defined in: [protos/generated/video\_streaming/onesie\_header.ts:15](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_header.ts#L15)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: protos/generated/video\_streaming/onesie\_header.ts:15
 
 > `optional` **videoId**: `string`
 
-Defined in: protos/generated/video\_streaming/onesie\_header.ts:16
+Defined in: [protos/generated/video\_streaming/onesie\_header.ts:16](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_header.ts#L16)
 
 ***
 
@@ -90,4 +90,4 @@ Defined in: protos/generated/video\_streaming/onesie\_header.ts:16
 
 > `optional` **xtags**: `string`
 
-Defined in: protos/generated/video\_streaming/onesie\_header.ts:22
+Defined in: [protos/generated/video\_streaming/onesie\_header.ts:22](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_header.ts#L22)

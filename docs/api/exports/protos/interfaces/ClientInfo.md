@@ -2,7 +2,7 @@
 
 # Interface: ClientInfo
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:30
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:30](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L30)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:30
 
 > `optional` **acceptLanguage**: `string`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:37
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:37](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L37)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:37
 
 > `optional` **acceptRegion**: `string`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:38
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:38](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L38)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:38
 
 > `optional` **androidSdkVersion**: `number`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:51
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:51](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L51)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:51
 
 > `optional` **chipset**: `string`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:58
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:58](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L58)
 
 e.g. "qcom;taro"
 
@@ -44,7 +44,7 @@ e.g. "qcom;taro"
 
 > `optional` **clientFormFactor**: `StreamerContext_ClientFormFactor`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:44
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:44](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L44)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:44
 
 > `optional` **clientName**: `number`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:33
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:33](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L33)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:33
 
 > `optional` **clientVersion**: `string`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:34
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:34](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L34)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:34
 
 > `optional` **deviceMake**: `string`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:31
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:31](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L31)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:31
 
 > `optional` **deviceModel**: `string`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:32
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:32](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L32)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:32
 
 > `optional` **glDeviceInfo**: `StreamerContext_GLDeviceInfo`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:59
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:59](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L59)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:59
 
 > `optional` **gmscoreVersionCode**: `number`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:48
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:48](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L48)
 
 e.g. 243731017
 
@@ -102,7 +102,7 @@ e.g. 243731017
 
 > `optional` **osName**: `string`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:35
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:35](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L35)
 
 ***
 
@@ -110,7 +110,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:35
 
 > `optional` **osVersion**: `string`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:36
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:36](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L36)
 
 ***
 
@@ -118,7 +118,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:36
 
 > `optional` **screenDensityFloat**: `number`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:52
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:52](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L52)
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:52
 
 > `optional` **screenHeightInches**: `number`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:42
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:42](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L42)
 
 ***
 
@@ -134,7 +134,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:42
 
 > `optional` **screenHeightPoints**: `number`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:40
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:40](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L40)
 
 ***
 
@@ -142,7 +142,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:40
 
 > `optional` **screenPixelDensity**: `number`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:43
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:43](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L43)
 
 ***
 
@@ -150,7 +150,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:43
 
 > `optional` **screenWidthInches**: `number`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:41
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:41](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L41)
 
 ***
 
@@ -158,7 +158,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:41
 
 > `optional` **screenWidthPoints**: `number`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:39
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:39](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L39)
 
 ***
 
@@ -166,7 +166,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:39
 
 > `optional` **timeZone**: `string`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:54
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:54](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L54)
 
 ***
 
@@ -174,7 +174,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:54
 
 > `optional` **utcOffsetMinutes**: `number`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:53
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:53](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L53)
 
 ***
 
@@ -182,7 +182,7 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:53
 
 > `optional` **windowHeightPoints**: `number`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:50
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:50](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L50)
 
 ***
 
@@ -190,4 +190,4 @@ Defined in: protos/generated/video\_streaming/streamer\_context.ts:50
 
 > `optional` **windowWidthPoints**: `number`
 
-Defined in: protos/generated/video\_streaming/streamer\_context.ts:49
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:49](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L49)

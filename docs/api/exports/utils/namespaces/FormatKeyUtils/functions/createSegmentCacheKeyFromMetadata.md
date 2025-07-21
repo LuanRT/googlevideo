@@ -4,7 +4,7 @@
 
 > **createSegmentCacheKeyFromMetadata**(`requestMetadata`): `string`
 
-Defined in: [src/utils/formatKeyUtils.ts:61](https://github.com/LuanRT/googlevideo/blob/dbf946453f309f019ca5c8a163ede31e16e7831d/src/utils/formatKeyUtils.ts#L61)
+Defined in: [src/utils/formatKeyUtils.ts:61](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/formatKeyUtils.ts#L61)
 
 Creates a cache key from request metadata.
 

@@ -2,7 +2,7 @@
 
 # Interface: IdentifierToken
 
-Defined in: protos/generated/misc/common.ts:199
+Defined in: [protos/generated/misc/common.ts:199](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/misc/common.ts#L199)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: protos/generated/misc/common.ts:199
 
 > `optional` **field5**: `number`
 
-Defined in: protos/generated/misc/common.ts:201
+Defined in: [protos/generated/misc/common.ts:201](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/misc/common.ts#L201)
 
 ***
 
@@ -18,4 +18,4 @@ Defined in: protos/generated/misc/common.ts:201
 
 > `optional` **requestNumber**: `number`
 
-Defined in: protos/generated/misc/common.ts:200
+Defined in: [protos/generated/misc/common.ts:200](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/misc/common.ts#L200)

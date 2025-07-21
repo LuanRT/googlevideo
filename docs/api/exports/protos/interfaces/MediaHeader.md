@@ -2,7 +2,7 @@
 
 # Interface: MediaHeader
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:14
+Defined in: [protos/generated/video\_streaming/media\_header.ts:14](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L14)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:14
 
 > `optional` **bitrateBps**: `number`
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:24
+Defined in: [protos/generated/video\_streaming/media\_header.ts:24](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L24)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:24
 
 > `optional` **compressionAlgorithm**: [`CompressionType`](../enumerations/CompressionType.md)
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:21
+Defined in: [protos/generated/video\_streaming/media\_header.ts:21](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L21)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:21
 
 > `optional` **contentLength**: `number`
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:28
+Defined in: [protos/generated/video\_streaming/media\_header.ts:28](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L28)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:28
 
 > `optional` **durationMs**: `number`
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:26
+Defined in: [protos/generated/video\_streaming/media\_header.ts:26](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L26)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:26
 
 > `optional` **formatId**: [`FormatId`](FormatId.md)
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:27
+Defined in: [protos/generated/video\_streaming/media\_header.ts:27](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L27)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:27
 
 > `optional` **headerId**: `number`
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:15
+Defined in: [protos/generated/video\_streaming/media\_header.ts:15](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L15)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:15
 
 > `optional` **isInitSeg**: `boolean`
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:22
+Defined in: [protos/generated/video\_streaming/media\_header.ts:22](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L22)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:22
 
 > `optional` **itag**: `number`
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:17
+Defined in: [protos/generated/video\_streaming/media\_header.ts:17](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L17)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:17
 
 > `optional` **lmt**: `number`
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:18
+Defined in: [protos/generated/video\_streaming/media\_header.ts:18](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L18)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:18
 
 > `optional` **sequenceLmt**: `number`
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:30
+Defined in: [protos/generated/video\_streaming/media\_header.ts:30](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L30)
 
 ***
 
@@ -90,7 +90,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:30
 
 > `optional` **sequenceNumber**: `number`
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:23
+Defined in: [protos/generated/video\_streaming/media\_header.ts:23](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L23)
 
 ***
 
@@ -98,7 +98,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:23
 
 > `optional` **startMs**: `number`
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:25
+Defined in: [protos/generated/video\_streaming/media\_header.ts:25](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L25)
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:25
 
 > `optional` **startRange**: `number`
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:20
+Defined in: [protos/generated/video\_streaming/media\_header.ts:20](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L20)
 
 ***
 
@@ -114,7 +114,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:20
 
 > `optional` **timeRange**: `TimeRange`
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:29
+Defined in: [protos/generated/video\_streaming/media\_header.ts:29](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L29)
 
 ***
 
@@ -122,7 +122,7 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:29
 
 > `optional` **videoId**: `string`
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:16
+Defined in: [protos/generated/video\_streaming/media\_header.ts:16](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L16)
 
 ***
 
@@ -130,4 +130,4 @@ Defined in: protos/generated/video\_streaming/media\_header.ts:16
 
 > `optional` **xtags**: `string`
 
-Defined in: protos/generated/video\_streaming/media\_header.ts:19
+Defined in: [protos/generated/video\_streaming/media\_header.ts:19](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/media_header.ts#L19)
