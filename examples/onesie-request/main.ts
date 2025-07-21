@@ -15,6 +15,7 @@ import {
 
 import { base64ToU8 } from 'googlevideo/utils';
 import { decryptResponse, encryptRequest } from './utils.js';
+import type { Part } from 'googlevideo/shared-types';
 
 type ClientConfig = {
   clientKeyData: Uint8Array;
@@ -22,6 +23,8 @@ type ClientConfig = {
   onesieUstreamerConfig: Uint8Array;
   baseUrl: string;
 };
+
+type UmpPartHandler = (part: Part) => void;
 
 const enableCompression = true;
 
@@ -69,7 +72,7 @@ type OnesieRequestArgs = {
 /**
  * Prepares a Onesie request.
  */
-async function prepareOnesieRequest(args: OnesieRequestArgs){
+async function prepareOnesieRequest(args: OnesieRequestArgs) {
   const { videoId, poToken, clientConfig, innertube } = args;
   const { clientKeyData, encryptedClientKey, onesieUstreamerConfig } = clientConfig;
   const clonedInnerTubeContext: Context = structuredClone(innertube.session.context);
@@ -116,7 +119,7 @@ async function prepareOnesieRequest(args: OnesieRequestArgs){
   ];
 
   const onesieInnertubeRequest = OnesieInnertubeRequest.encode({
-    url: 'https://youtubei.googleapis.com/youtubei/v1/player?key=AIzaSyDCU8hByM-4DrUqRUYnGn-3llEO78bcxq8&$fields=playerConfig,captions,playabilityStatus,streamingData,responseContext.mainAppWebResponseContext.datasyncId,videoDetails.isLive,videoDetails.isLiveContent,videoDetails.title,videoDetails.author,playbackTracking',
+    url: 'https://youtubei.googleapis.com/youtubei/v1/player?key=AIzaSyDCU8hByM-4DrUqRUYnGn-3llEO78bcxq8&$fields=playerConfig,captions,playabilityStatus,streamingData,responseContext.mainAppWebResponseContext.datasyncId,videoDetails,playbackTracking',
     headers,
     body: JSON.stringify(playerRequestJson),
     proxiedByTrustedBandaid: true,
@@ -188,11 +191,11 @@ async function getBasicInfo(innertube: Innertube, videoId: string): Promise<YT.V
   queryParams.push('osts=0'); // Onesie Start Time Seconds.
   queryParams.push('por=1');
   queryParams.push('rn=0');
-  
+
   /**
    * Add the following search params to get media data parts along with the onesie player response.
    * NOTE: The `osts` is what determines which segment to start playback from.
-   * 
+   *
    * const preferredVideoItags = [ ... ]; // Add your preferred video itags here.
    * const preferredAudioItags = [ ... ];
    * searchParams.push(`pvi=${preferredVideoItags.join(',')}`);
@@ -216,21 +219,36 @@ async function getBasicInfo(innertube: Innertube, videoId: string): Promise<YT.V
 
   const onesie: (OnesieHeader & { data?: Uint8Array })[] = [];
 
-  googUmp.read((part) => {
+  function handleSabrError(part: Part) {
     const data = part.data.chunks[0];
-    switch (part.type) {
-      case UMPPartId.SABR_ERROR:
-        console.log('[SABR_ERROR]:', SabrError.decode(data));
-        break;
-      case UMPPartId.ONESIE_HEADER:
-        onesie.push(OnesieHeader.decode(data));
-        break;
-      case UMPPartId.ONESIE_DATA:
-        onesie[onesie.length - 1].data = data;
-        break;
-      default:
-        break;
+    const error = SabrError.decode(data);
+    console.error('[SABR_ERROR]:', error);
+  }
+
+  function handleOnesieHeader(part: Part) {
+    const data = part.data.chunks[0];
+    onesie.push(OnesieHeader.decode(data));
+  }
+
+  function handleOnesieData(part: Part) {
+    const data = part.data.chunks[0];
+    if (onesie.length > 0) {
+      onesie[onesie.length - 1].data = data;
+    } else {
+      console.warn('Received ONESIE_DATA without a preceding ONESIE_HEADER');
     }
+  }
+
+  const umpPartHandlers = new Map<UMPPartId, UmpPartHandler>([
+    [ UMPPartId.SABR_ERROR, handleSabrError ],
+    [ UMPPartId.ONESIE_HEADER, handleOnesieHeader ],
+    [ UMPPartId.ONESIE_DATA, handleOnesieData ]
+  ]);
+
+  googUmp.read((part) => {
+    const handler = umpPartHandlers.get(part.type);
+    if (handler)
+      handler(part);
   });
 
   const onesiePlayerResponse = onesie.find((header) => header.type === OnesieHeaderType.ONESIE_PLAYER_RESPONSE);

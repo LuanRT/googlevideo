@@ -13,6 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "googlevideo": "file:../..",
-    "youtubei.js": "^14.0.0"
+    "youtubei.js": "^15.0.0"
   }
 }
