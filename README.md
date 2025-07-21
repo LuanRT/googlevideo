@@ -3,17 +3,21 @@
 [![NPM](https://img.shields.io/npm/v/googlevideo)](https://www.npmjs.com/package/googlevideo)
 [![License](https://img.shields.io/github/license/LuanRT/googlevideo)](./LICENSE)
 
+[API Reference →](https://ytjs.dev/googlevideo/api)
+
 A collection of modules for working with YouTube's proprietary video streaming protocols (UMP/SABR). It can be used to build clients or to integrate with existing media players (e.g., [Shaka Player](https://shaka-player-demo.appspot.com/docs/api/index.html)).
 
-#### UMP:
-* [UmpReader](src/core/UmpReader.ts) - A parser that efficiently processes chunked UMP binary data.
-* [UmpWriter](src/core/UmpWriter.ts) - A serialization module that encodes data into the UMP binary format with proper type and size encoding.
-* [CompositeBuffer](src/core/CompositeBuffer.ts) - A memory-efficient buffer that manages discontinuous chunks as a single logical stream.
+## Features
 
-#### SABR:
-* [SabrStream](src/core/SabrStream.ts) - A robust client for downloading SABR streams. Provides separate video and audio data via [ReadableStreams](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream).
-* [SabrStreamingAdapter](src/core/SabrStreamingAdapter.ts) - A bridge between the SABR protocol and media players. It manages the streaming session, creates request payloads, and handles server signals.
-* [SabrUmpProcessor](src/core/SabrUmpProcessor.ts) - A UMP processor for player implementations that use [SabrStreamingAdapter](src/core/SabrStreamingAdapter.ts).
+- **UMP Modules**
+  - [UmpReader](src/core/UmpReader.ts) - Efficiently parses chunked UMP binary data.
+  - [UmpWriter](src/core/UmpWriter.ts) - Serializes data into the UMP binary format.
+  - [CompositeBuffer](src/core/CompositeBuffer.ts) - Manages discontinuous chunks as a single logical stream.
+
+- **SABR Modules**
+  - [SabrStream](src/core/SabrStream.ts) - A robust client for downloading SABR streams. Provides separate video and audio data via [ReadableStreams](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream).
+  - [SabrStreamingAdapter](src/core/SabrStreamingAdapter.ts) - Bridges SABR protocol with media players, manages streaming sessions and server directives.
+  - [SabrUmpProcessor](src/core/SabrUmpProcessor.ts) - Processes UMP data for player implementations using SABR.
 
 ## Installation
 
@@ -30,7 +34,7 @@ npm install LuanRT/googlevideo
 ```
 
 ## Basic Usage
-The following example demonstrates basic usage of the UMP modules. It covers creating a UMP data buffer, writing various parts, and then reading and processing these parts with corresponding handlers.
+Below is a basic example using the UMP modules to create a buffer, write parts, and process them:
 
 > [!NOTE] 
 > More advanced usage examples can be found in the [/examples](./examples/) directory.
@@ -121,24 +125,7 @@ function mockUmpData(): CompositeBuffer {
 
 Expected output:
 ```
-Media Header: {
-  headerId: 0,
-  videoId: 'sOa4VVlI9tE',
-  itag: 141,
-  lmt: 1645502668395260,
-  xtags: '',
-  startRange: 5463800,
-  compressionAlgorithm: 0,
-  isInitSeg: false,
-  sequenceNumber: 0,
-  bitrateBps: 0,
-  startMs: 0,
-  durationMs: 0,
-  formatId: { itag: 141, lastModified: 1645502668395260, xtags: '' },
-  contentLength: 963966,
-  timeRange: undefined,
-  sequenceLmt: 0
-}
+Media Header: { ... }
 Media Part (Associated Header ID: 0): 827609 bytes
 Media Part (Associated Header ID: 0): 136357 bytes
 Media End Part (Associated Header ID: 0): 0 bytes
