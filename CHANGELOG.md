@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/LuanRT/googlevideo/compare/googlevideo-v4.0.0...googlevideo-v4.0.1) (2025-07-22)
+
+
+### Miscellaneous Chores
+
+* **docs:** Add more tsdoc to make jsr happy ([5b84100](https://github.com/LuanRT/googlevideo/commit/5b84100979befab767d819a9606dde964d469341))
+
 ## [4.0.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v3.0.0...googlevideo-v4.0.0) (2025-07-22)
 
 
