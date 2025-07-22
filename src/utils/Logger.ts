@@ -7,6 +7,19 @@ export enum LogLevel {
   ALL = 99,
 }
 
+/**
+ * Singleton logger utility.
+ *
+ * Allows enabling or disabling specific log levels (`ERROR`, `WARN`, `INFO`, `DEBUG`)
+ * at runtime. Supports logging with tags and message arguments.
+ *
+ * Usage:
+ * ```ts
+ * const logger = Logger.getInstance();
+ * logger.setLogLevels(LogLevel.ERROR, LogLevel.INFO);
+ * logger.error('MyTag', 'An error occurred');
+ * ```
+ */
 export class Logger {
   private static instance: Logger;
   private currentLogLevels: Set<LogLevel> = new Set([ LogLevel.INFO, LogLevel.ERROR ]);

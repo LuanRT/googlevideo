@@ -1,6 +1,9 @@
 import type { CompositeBuffer } from './CompositeBuffer.js';
 import type { Part } from '../types/shared.js';
 
+/**
+ * A parser that efficiently processes chunked UMP binary data.
+ */
 export class UmpReader {
   constructor(private compositeBuffer: CompositeBuffer) { }
 

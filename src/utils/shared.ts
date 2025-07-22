@@ -8,6 +8,18 @@ export enum EnabledTrackTypes {
   VIDEO_ONLY = 2,
 }
 
+/**
+ * Determines if a given URL is a Google video URL, specifically for YouTube or SABR-related content.
+ *
+ * @param url - The URL to check.
+ *
+ * The function checks the following conditions:
+ * 1. If the URL starts with the `sabr://` protocol, it is considered a Google video URL.
+ * 2. If the URL ends with `/videoplayback`, it parses the query parameters to check for specific keys
+ *    (`source=youtube`, `sabr`, `lsig`, or `expire`) that indicate a Google video URL.
+ * 3. If the URL contains `/videoplayback/` (e.g., for live or post-live content), it checks the path
+ *    segments for specific keywords (`videoplayback`, `sabr`, `lsig`, or `expire`).
+ */
 export function isGoogleVideoURL(url: string): boolean {
   if (url.startsWith('sabr://')) {
     return true;

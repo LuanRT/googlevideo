@@ -1,5 +1,8 @@
 import type { CompositeBuffer } from './CompositeBuffer.js';
 
+/**
+ * A serialization module that encodes data into the UMP binary format with proper type and size encoding.
+ */
 export class UmpWriter {
   constructor(
     private compositeBuffer: CompositeBuffer

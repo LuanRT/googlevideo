@@ -1,3 +1,6 @@
+/**
+ * A memory-efficient buffer that manages discontinuous chunks as a single logical stream.
+ */
 export class CompositeBuffer {
   public chunks: Uint8Array[];
   public currentChunkOffset: number;
