@@ -56,5 +56,5 @@ jobs:
       - name: Publish to JSR
         run: |
           npm run build
-          npx jsr publish
+          npx jsr publish --allow-dirty
         if: ${{ steps.release.outputs.release_created }}
