@@ -82,7 +82,7 @@ export function createSegmentCacheKeyFromMetadata(
  * @param format - The SabrFormat object.
  * @returns A unique string identifier for the format.
  */
-export function getUniqueFormatId(format: SabrFormat) {
+export function getUniqueFormatId(format: SabrFormat): string {
   if (format.width)
     return format.itag.toString();
 

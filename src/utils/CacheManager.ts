@@ -26,7 +26,10 @@ export class CacheManager {
     this.startGarbageCollection();
   }
 
-  public getCacheEntries() {
+  public getCacheEntries(): {
+    initSegmentCache: Map<string, CacheEntry>;
+    segmentCache: Map<string, CacheEntry>;
+    } {
     return {
       initSegmentCache: this.initSegmentCache,
       segmentCache: this.segmentCache

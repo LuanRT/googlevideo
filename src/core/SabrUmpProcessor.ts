@@ -103,7 +103,7 @@ export class SabrUmpProcessor {
     });
   }
 
-  public getSegmentInfo() {
+  public getSegmentInfo(): Segment | undefined {
     return this.partialSegments.get(this.desiredHeaderId || 0);
   }
 

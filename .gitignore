@@ -10,6 +10,9 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
+# WebStorm
+.idea/
+
 # Coverage directory used by tools like istanbul
 coverage
 *.lcov
