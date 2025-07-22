@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v3.0.0...googlevideo-v4.0.0) (2025-07-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* rework library ([#27](https://github.com/LuanRT/googlevideo/issues/27))
+
+### Features
+
+* rework library ([#27](https://github.com/LuanRT/googlevideo/issues/27)) ([a744d6a](https://github.com/LuanRT/googlevideo/commit/a744d6af0a09d9771780c2fcf490441c5cadea2a))
+
 ## [3.0.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v2.0.0...googlevideo-v3.0.0) (2025-03-23)
 
 
