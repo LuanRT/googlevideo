@@ -13,11 +13,11 @@ export interface StreamerContext {
   clientInfo?: StreamerContext_ClientInfo | undefined;
   poToken?: Uint8Array | undefined;
   playbackCookie?: Uint8Array | undefined;
-  gp?: Uint8Array | undefined;
-  field5: StreamerContext_Fqa[];
-  field6: number[];
+  field4?: Uint8Array | undefined;
+  sabrContexts: StreamerContext_SabrContext[];
+  unsentSabrContexts: number[];
   field7?: string | undefined;
-  field8?: StreamerContext_Gqa | undefined;
+  field8?: StreamerContext_UnknownMessage1 | undefined;
 }
 
 export enum StreamerContext_ClientFormFactor {
@@ -65,17 +65,17 @@ export interface StreamerContext_GLDeviceInfo {
   glEsVersionMinor?: number | undefined;
 }
 
-export interface StreamerContext_Fqa {
+export interface StreamerContext_SabrContext {
   type?: number | undefined;
   value?: Uint8Array | undefined;
 }
 
-export interface StreamerContext_Gqa {
+export interface StreamerContext_UnknownMessage1 {
   field1?: Uint8Array | undefined;
-  field2?: StreamerContext_Gqa_Hqa | undefined;
+  field2?: StreamerContext_UnknownMessage1_UnknownInnerMessage1 | undefined;
 }
 
-export interface StreamerContext_Gqa_Hqa {
+export interface StreamerContext_UnknownMessage1_UnknownInnerMessage1 {
   code?: number | undefined;
   message?: string | undefined;
 }
@@ -85,9 +85,9 @@ function createBaseStreamerContext(): StreamerContext {
     clientInfo: undefined,
     poToken: new Uint8Array(0),
     playbackCookie: new Uint8Array(0),
-    gp: new Uint8Array(0),
-    field5: [],
-    field6: [],
+    field4: new Uint8Array(0),
+    sabrContexts: [],
+    unsentSabrContexts: [],
     field7: "",
     field8: undefined,
   };
@@ -104,14 +104,14 @@ export const StreamerContext: MessageFns<StreamerContext> = {
     if (message.playbackCookie !== undefined && message.playbackCookie.length !== 0) {
       writer.uint32(26).bytes(message.playbackCookie);
     }
-    if (message.gp !== undefined && message.gp.length !== 0) {
-      writer.uint32(34).bytes(message.gp);
+    if (message.field4 !== undefined && message.field4.length !== 0) {
+      writer.uint32(34).bytes(message.field4);
     }
-    for (const v of message.field5) {
-      StreamerContext_Fqa.encode(v!, writer.uint32(42).fork()).join();
+    for (const v of message.sabrContexts) {
+      StreamerContext_SabrContext.encode(v!, writer.uint32(42).fork()).join();
     }
     writer.uint32(50).fork();
-    for (const v of message.field6) {
+    for (const v of message.unsentSabrContexts) {
       writer.int32(v);
     }
     writer.join();
@@ -119,7 +119,7 @@ export const StreamerContext: MessageFns<StreamerContext> = {
       writer.uint32(58).string(message.field7);
     }
     if (message.field8 !== undefined) {
-      StreamerContext_Gqa.encode(message.field8, writer.uint32(66).fork()).join();
+      StreamerContext_UnknownMessage1.encode(message.field8, writer.uint32(66).fork()).join();
     }
     return writer;
   },
@@ -157,18 +157,18 @@ export const StreamerContext: MessageFns<StreamerContext> = {
             break;
           }
 
-          message.gp = reader.bytes();
+          message.field4 = reader.bytes();
           continue;
         case 5:
           if (tag !== 42) {
             break;
           }
 
-          message.field5.push(StreamerContext_Fqa.decode(reader, reader.uint32()));
+          message.sabrContexts.push(StreamerContext_SabrContext.decode(reader, reader.uint32()));
           continue;
         case 6:
           if (tag === 48) {
-            message.field6.push(reader.int32());
+            message.unsentSabrContexts.push(reader.int32());
 
             continue;
           }
@@ -176,7 +176,7 @@ export const StreamerContext: MessageFns<StreamerContext> = {
           if (tag === 50) {
             const end2 = reader.uint32() + reader.pos;
             while (reader.pos < end2) {
-              message.field6.push(reader.int32());
+              message.unsentSabrContexts.push(reader.int32());
             }
 
             continue;
@@ -195,7 +195,7 @@ export const StreamerContext: MessageFns<StreamerContext> = {
             break;
           }
 
-          message.field8 = StreamerContext_Gqa.decode(reader, reader.uint32());
+          message.field8 = StreamerContext_UnknownMessage1.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -543,12 +543,12 @@ export const StreamerContext_GLDeviceInfo: MessageFns<StreamerContext_GLDeviceIn
   },
 };
 
-function createBaseStreamerContext_Fqa(): StreamerContext_Fqa {
+function createBaseStreamerContext_SabrContext(): StreamerContext_SabrContext {
   return { type: 0, value: new Uint8Array(0) };
 }
 
-export const StreamerContext_Fqa: MessageFns<StreamerContext_Fqa> = {
-  encode(message: StreamerContext_Fqa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const StreamerContext_SabrContext: MessageFns<StreamerContext_SabrContext> = {
+  encode(message: StreamerContext_SabrContext, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.type !== undefined && message.type !== 0) {
       writer.uint32(8).int32(message.type);
     }
@@ -558,10 +558,10 @@ export const StreamerContext_Fqa: MessageFns<StreamerContext_Fqa> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): StreamerContext_Fqa {
+  decode(input: BinaryReader | Uint8Array, length?: number): StreamerContext_SabrContext {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseStreamerContext_Fqa();
+    const message = createBaseStreamerContext_SabrContext();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -589,25 +589,25 @@ export const StreamerContext_Fqa: MessageFns<StreamerContext_Fqa> = {
   },
 };
 
-function createBaseStreamerContext_Gqa(): StreamerContext_Gqa {
+function createBaseStreamerContext_UnknownMessage1(): StreamerContext_UnknownMessage1 {
   return { field1: new Uint8Array(0), field2: undefined };
 }
 
-export const StreamerContext_Gqa: MessageFns<StreamerContext_Gqa> = {
-  encode(message: StreamerContext_Gqa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const StreamerContext_UnknownMessage1: MessageFns<StreamerContext_UnknownMessage1> = {
+  encode(message: StreamerContext_UnknownMessage1, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.field1 !== undefined && message.field1.length !== 0) {
       writer.uint32(10).bytes(message.field1);
     }
     if (message.field2 !== undefined) {
-      StreamerContext_Gqa_Hqa.encode(message.field2, writer.uint32(18).fork()).join();
+      StreamerContext_UnknownMessage1_UnknownInnerMessage1.encode(message.field2, writer.uint32(18).fork()).join();
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): StreamerContext_Gqa {
+  decode(input: BinaryReader | Uint8Array, length?: number): StreamerContext_UnknownMessage1 {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseStreamerContext_Gqa();
+    const message = createBaseStreamerContext_UnknownMessage1();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -623,7 +623,7 @@ export const StreamerContext_Gqa: MessageFns<StreamerContext_Gqa> = {
             break;
           }
 
-          message.field2 = StreamerContext_Gqa_Hqa.decode(reader, reader.uint32());
+          message.field2 = StreamerContext_UnknownMessage1_UnknownInnerMessage1.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -635,12 +635,17 @@ export const StreamerContext_Gqa: MessageFns<StreamerContext_Gqa> = {
   },
 };
 
-function createBaseStreamerContext_Gqa_Hqa(): StreamerContext_Gqa_Hqa {
+function createBaseStreamerContext_UnknownMessage1_UnknownInnerMessage1(): StreamerContext_UnknownMessage1_UnknownInnerMessage1 {
   return { code: 0, message: "" };
 }
 
-export const StreamerContext_Gqa_Hqa: MessageFns<StreamerContext_Gqa_Hqa> = {
-  encode(message: StreamerContext_Gqa_Hqa, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const StreamerContext_UnknownMessage1_UnknownInnerMessage1: MessageFns<
+  StreamerContext_UnknownMessage1_UnknownInnerMessage1
+> = {
+  encode(
+    message: StreamerContext_UnknownMessage1_UnknownInnerMessage1,
+    writer: BinaryWriter = new BinaryWriter(),
+  ): BinaryWriter {
     if (message.code !== undefined && message.code !== 0) {
       writer.uint32(8).int32(message.code);
     }
@@ -650,10 +655,10 @@ export const StreamerContext_Gqa_Hqa: MessageFns<StreamerContext_Gqa_Hqa> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): StreamerContext_Gqa_Hqa {
+  decode(input: BinaryReader | Uint8Array, length?: number): StreamerContext_UnknownMessage1_UnknownInnerMessage1 {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseStreamerContext_Gqa_Hqa();
+    const message = createBaseStreamerContext_UnknownMessage1_UnknownInnerMessage1();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {

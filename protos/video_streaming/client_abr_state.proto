@@ -2,6 +2,7 @@ syntax = "proto2";
 package video_streaming;
 
 import "misc/common.proto";
+import "video_streaming/media_capabilities.proto";
 
 message ClientAbrState {
   optional int64 time_since_last_manual_format_selection_ms = 13;
@@ -25,27 +26,29 @@ message ClientAbrState {
   optional int32 visibility = 34;
   optional float playback_rate = 35;
   optional int64 elapsed_wall_time_ms = 36;
-  optional bytes media_capabilities = 38;
+  optional MediaCapabilities media_capabilities = 38;
   optional int64 time_since_last_action_ms = 39;
   optional int32 enabled_track_types_bitfield = 40;
   optional int32 max_pacing_rate = 43;
   optional int64 player_state = 44;
   optional bool drc_enabled = 46;
-  optional int32 Jda = 48;
-  optional int32 qw = 50;
-  optional int32 Ky = 51;
+  optional int32 field48 = 48;
+  optional int32 field50 = 50;
+  optional int32 field51 = 51;
   optional int32 sabr_report_request_cancellation_info = 54;
-  optional bool l = 56;
-  optional int64 G7 = 57;
+  optional bool disable_streaming_xhr = 56;
+  optional int64 field57 = 57;
   optional bool prefer_vp9 = 58;
-  optional int32 qj = 59;
-  optional int32 Hx = 60;
+  optional int32 av1_quality_threshold = 59; // 2160
+  optional int32 field60 = 60;
   optional bool is_prefetch = 61;
-  optional int32 sabr_support_quality_constraints = 62;
+  optional bool sabr_support_quality_constraints = 62;
   optional bytes sabr_license_constraint = 63;
   optional int32 allow_proxima_live_latency = 64;
   optional int32 sabr_force_proxima = 66;
-  optional int32 Tqb = 67;
+  optional int32 field67 = 67;
   optional int64 sabr_force_max_network_interruption_duration_ms = 68;
   optional string audio_track_id = 69;
+  optional bool enable_voice_boost = 76;
+  optional .misc.PlaybackAuthorization playback_authorization = 79;
 }

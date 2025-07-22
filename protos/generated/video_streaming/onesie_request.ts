@@ -9,7 +9,8 @@ import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { OnesieRequestTarget } from "../misc/common.js";
 import { BufferedRange } from "./buffered_range.js";
 import { ClientAbrState } from "./client_abr_state.js";
-import { EncryptedPlayerRequest } from "./encrypted_player_request.js";
+import { InnertubeRequest } from "./innertube_request.js";
+import { ReloadPlaybackParams } from "./reload_player_response.js";
 import { StreamerContext } from "./streamer_context.js";
 
 export const protobufPackage = "video_streaming";
@@ -17,7 +18,7 @@ export const protobufPackage = "video_streaming";
 export interface OnesieRequest {
   urls: string[];
   clientAbrState?: ClientAbrState | undefined;
-  playerRequest?: EncryptedPlayerRequest | undefined;
+  innertubeRequest?: InnertubeRequest | undefined;
   onesieUstreamerConfig?: Uint8Array | undefined;
   maxVp9Height?: number | undefined;
   clientDisplayHeight?: number | undefined;
@@ -27,19 +28,21 @@ export interface OnesieRequest {
   /** MLOnesieRequestTarget */
   requestTarget?: OnesieRequestTarget | undefined;
   bufferedRanges: BufferedRange[];
+  reloadPlaybackParams?: ReloadPlaybackParams | undefined;
 }
 
 function createBaseOnesieRequest(): OnesieRequest {
   return {
     urls: [],
     clientAbrState: undefined,
-    playerRequest: undefined,
+    innertubeRequest: undefined,
     onesieUstreamerConfig: new Uint8Array(0),
     maxVp9Height: 0,
     clientDisplayHeight: 0,
     streamerContext: undefined,
     requestTarget: 0,
     bufferedRanges: [],
+    reloadPlaybackParams: undefined,
   };
 }
 
@@ -51,8 +54,8 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
     if (message.clientAbrState !== undefined) {
       ClientAbrState.encode(message.clientAbrState, writer.uint32(18).fork()).join();
     }
-    if (message.playerRequest !== undefined) {
-      EncryptedPlayerRequest.encode(message.playerRequest, writer.uint32(26).fork()).join();
+    if (message.innertubeRequest !== undefined) {
+      InnertubeRequest.encode(message.innertubeRequest, writer.uint32(26).fork()).join();
     }
     if (message.onesieUstreamerConfig !== undefined && message.onesieUstreamerConfig.length !== 0) {
       writer.uint32(34).bytes(message.onesieUstreamerConfig);
@@ -71,6 +74,9 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
     }
     for (const v of message.bufferedRanges) {
       BufferedRange.encode(v!, writer.uint32(114).fork()).join();
+    }
+    if (message.reloadPlaybackParams !== undefined) {
+      ReloadPlaybackParams.encode(message.reloadPlaybackParams, writer.uint32(122).fork()).join();
     }
     return writer;
   },
@@ -101,7 +107,7 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
             break;
           }
 
-          message.playerRequest = EncryptedPlayerRequest.decode(reader, reader.uint32());
+          message.innertubeRequest = InnertubeRequest.decode(reader, reader.uint32());
           continue;
         case 4:
           if (tag !== 34) {
@@ -144,6 +150,13 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
           }
 
           message.bufferedRanges.push(BufferedRange.decode(reader, reader.uint32()));
+          continue;
+        case 15:
+          if (tag !== 122) {
+            break;
+          }
+
+          message.reloadPlaybackParams = ReloadPlaybackParams.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {

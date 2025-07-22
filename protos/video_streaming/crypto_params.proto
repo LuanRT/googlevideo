@@ -1,14 +1,10 @@
 syntax = "proto2";
 package video_streaming;
 
-message CryptoParams {
-  enum CompressionType {
-    NONE = 0;
-    GZIP = 1;
-    BROTLI = 2;
-  }
+import "misc/common.proto";
 
+message CryptoParams {
   optional bytes hmac = 4;
   optional bytes iv = 5;
-  optional CompressionType compression_type = 6;
+  optional .misc.CompressionType compression_type = 6;
 }

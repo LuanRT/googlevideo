@@ -21,15 +21,15 @@ export interface OnesieHeader {
   restrictedFormats: string[];
   xtags?: string | undefined;
   sequenceNumber?: number | undefined;
-  field23?: OnesieHeader_Field23 | undefined;
-  field34?: OnesieHeader_Field34 | undefined;
+  field23?: OnesieHeader_UnknownMessage1 | undefined;
+  field34?: OnesieHeader_UnknownMessage2 | undefined;
 }
 
-export interface OnesieHeader_Field23 {
+export interface OnesieHeader_UnknownMessage1 {
   videoId?: string | undefined;
 }
 
-export interface OnesieHeader_Field34 {
+export interface OnesieHeader_UnknownMessage2 {
   itagDenylist: string[];
 }
 
@@ -79,10 +79,10 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
       writer.uint32(144).int64(message.sequenceNumber);
     }
     if (message.field23 !== undefined) {
-      OnesieHeader_Field23.encode(message.field23, writer.uint32(186).fork()).join();
+      OnesieHeader_UnknownMessage1.encode(message.field23, writer.uint32(186).fork()).join();
     }
     if (message.field34 !== undefined) {
-      OnesieHeader_Field34.encode(message.field34, writer.uint32(274).fork()).join();
+      OnesieHeader_UnknownMessage2.encode(message.field34, writer.uint32(274).fork()).join();
     }
     return writer;
   },
@@ -162,14 +162,14 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
             break;
           }
 
-          message.field23 = OnesieHeader_Field23.decode(reader, reader.uint32());
+          message.field23 = OnesieHeader_UnknownMessage1.decode(reader, reader.uint32());
           continue;
         case 34:
           if (tag !== 274) {
             break;
           }
 
-          message.field34 = OnesieHeader_Field34.decode(reader, reader.uint32());
+          message.field34 = OnesieHeader_UnknownMessage2.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -181,22 +181,22 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
   },
 };
 
-function createBaseOnesieHeader_Field23(): OnesieHeader_Field23 {
+function createBaseOnesieHeader_UnknownMessage1(): OnesieHeader_UnknownMessage1 {
   return { videoId: "" };
 }
 
-export const OnesieHeader_Field23: MessageFns<OnesieHeader_Field23> = {
-  encode(message: OnesieHeader_Field23, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const OnesieHeader_UnknownMessage1: MessageFns<OnesieHeader_UnknownMessage1> = {
+  encode(message: OnesieHeader_UnknownMessage1, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.videoId !== undefined && message.videoId !== "") {
       writer.uint32(18).string(message.videoId);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): OnesieHeader_Field23 {
+  decode(input: BinaryReader | Uint8Array, length?: number): OnesieHeader_UnknownMessage1 {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseOnesieHeader_Field23();
+    const message = createBaseOnesieHeader_UnknownMessage1();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -217,22 +217,22 @@ export const OnesieHeader_Field23: MessageFns<OnesieHeader_Field23> = {
   },
 };
 
-function createBaseOnesieHeader_Field34(): OnesieHeader_Field34 {
+function createBaseOnesieHeader_UnknownMessage2(): OnesieHeader_UnknownMessage2 {
   return { itagDenylist: [] };
 }
 
-export const OnesieHeader_Field34: MessageFns<OnesieHeader_Field34> = {
-  encode(message: OnesieHeader_Field34, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const OnesieHeader_UnknownMessage2: MessageFns<OnesieHeader_UnknownMessage2> = {
+  encode(message: OnesieHeader_UnknownMessage2, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     for (const v of message.itagDenylist) {
       writer.uint32(10).string(v!);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): OnesieHeader_Field34 {
+  decode(input: BinaryReader | Uint8Array, length?: number): OnesieHeader_UnknownMessage2 {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseOnesieHeader_Field34();
+    const message = createBaseOnesieHeader_UnknownMessage2();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {

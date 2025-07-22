@@ -12,14 +12,22 @@ message FormatId {
   optional string xtags = 3;
 }
 
-message InitRange {
-  optional int32 start = 1;
-  optional int32 end = 2;
+message Range {
+  optional int32 legacy_start = 1;
+  optional int32 legacy_end = 2;
+  optional int32 start = 3;
+  optional int32 end = 4;
 }
 
-message IndexRange {
-  optional int32 start = 1;
-  optional int32 end = 2;
+enum CompressionType {
+  UNKNOWN = 0;
+  GZIP = 1;
+  BROTLI = 2;
+}
+
+message IdentifierToken {
+  optional int32 request_number = 1;
+  optional int32 field5 = 5;
 }
 
 message KeyValuePair {
@@ -181,4 +189,14 @@ enum OnesieRequestTarget {
   ONESIE_REQUEST_TARGET_ENCRYPTED_WATCH_SERVICE_DEPRECATED = 2;
   ONESIE_REQUEST_TARGET_ENCRYPTED_WATCH_SERVICE = 3;
   ONESIE_REQUEST_TARGET_INNERTUBE_ENCRYPTED_SERVICE = 4;
+}
+
+message AuthorizedFormat {
+  optional int32 track_type = 1;
+  optional bool is_hdr = 2;
+}
+
+message PlaybackAuthorization {
+  repeated AuthorizedFormat authorized_formats = 1;
+  optional bytes sabr_license_constraint = 2;
 }

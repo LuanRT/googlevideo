@@ -11,11 +11,11 @@ export const protobufPackage = "video_streaming";
 
 export interface StreamProtectionStatus {
   status?: number | undefined;
-  field2?: number | undefined;
+  maxRetries?: number | undefined;
 }
 
 function createBaseStreamProtectionStatus(): StreamProtectionStatus {
-  return { status: 0, field2: 0 };
+  return { status: 0, maxRetries: 0 };
 }
 
 export const StreamProtectionStatus: MessageFns<StreamProtectionStatus> = {
@@ -23,8 +23,8 @@ export const StreamProtectionStatus: MessageFns<StreamProtectionStatus> = {
     if (message.status !== undefined && message.status !== 0) {
       writer.uint32(8).int32(message.status);
     }
-    if (message.field2 !== undefined && message.field2 !== 0) {
-      writer.uint32(16).int32(message.field2);
+    if (message.maxRetries !== undefined && message.maxRetries !== 0) {
+      writer.uint32(16).int32(message.maxRetries);
     }
     return writer;
   },
@@ -48,7 +48,7 @@ export const StreamProtectionStatus: MessageFns<StreamProtectionStatus> = {
             break;
           }
 
-          message.field2 = reader.int32();
+          message.maxRetries = reader.int32();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {

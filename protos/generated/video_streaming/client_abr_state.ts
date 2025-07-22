@@ -10,8 +10,10 @@ import {
   AudioQuality,
   NetworkMeteredState,
   PlaybackAudioRouteOutputType,
+  PlaybackAuthorization,
   VideoQualitySetting,
 } from "../misc/common.js";
+import { MediaCapabilities } from "./media_capabilities.js";
 
 export const protobufPackage = "video_streaming";
 
@@ -37,29 +39,34 @@ export interface ClientAbrState {
   visibility?: number | undefined;
   playbackRate?: number | undefined;
   elapsedWallTimeMs?: number | undefined;
-  mediaCapabilities?: Uint8Array | undefined;
+  mediaCapabilities?: MediaCapabilities | undefined;
   timeSinceLastActionMs?: number | undefined;
   enabledTrackTypesBitfield?: number | undefined;
   maxPacingRate?: number | undefined;
   playerState?: number | undefined;
   drcEnabled?: boolean | undefined;
-  Jda?: number | undefined;
-  qw?: number | undefined;
-  Ky?: number | undefined;
+  field48?: number | undefined;
+  field50?: number | undefined;
+  field51?: number | undefined;
   sabrReportRequestCancellationInfo?: number | undefined;
-  l?: boolean | undefined;
-  G7?: number | undefined;
-  preferVp9?: boolean | undefined;
-  qj?: number | undefined;
-  Hx?: number | undefined;
+  disableStreamingXhr?: boolean | undefined;
+  field57?: number | undefined;
+  preferVp9?:
+    | boolean
+    | undefined;
+  /** 2160 */
+  av1QualityThreshold?: number | undefined;
+  field60?: number | undefined;
   isPrefetch?: boolean | undefined;
-  sabrSupportQualityConstraints?: number | undefined;
+  sabrSupportQualityConstraints?: boolean | undefined;
   sabrLicenseConstraint?: Uint8Array | undefined;
   allowProximaLiveLatency?: number | undefined;
   sabrForceProxima?: number | undefined;
-  Tqb?: number | undefined;
+  field67?: number | undefined;
   sabrForceMaxNetworkInterruptionDurationMs?: number | undefined;
   audioTrackId?: string | undefined;
+  enableVoiceBoost?: boolean | undefined;
+  playbackAuthorization?: PlaybackAuthorization | undefined;
 }
 
 function createBaseClientAbrState(): ClientAbrState {
@@ -85,29 +92,31 @@ function createBaseClientAbrState(): ClientAbrState {
     visibility: 0,
     playbackRate: 0,
     elapsedWallTimeMs: 0,
-    mediaCapabilities: new Uint8Array(0),
+    mediaCapabilities: undefined,
     timeSinceLastActionMs: 0,
     enabledTrackTypesBitfield: 0,
     maxPacingRate: 0,
     playerState: 0,
     drcEnabled: false,
-    Jda: 0,
-    qw: 0,
-    Ky: 0,
+    field48: 0,
+    field50: 0,
+    field51: 0,
     sabrReportRequestCancellationInfo: 0,
-    l: false,
-    G7: 0,
+    disableStreamingXhr: false,
+    field57: 0,
     preferVp9: false,
-    qj: 0,
-    Hx: 0,
+    av1QualityThreshold: 0,
+    field60: 0,
     isPrefetch: false,
-    sabrSupportQualityConstraints: 0,
+    sabrSupportQualityConstraints: false,
     sabrLicenseConstraint: new Uint8Array(0),
     allowProximaLiveLatency: 0,
     sabrForceProxima: 0,
-    Tqb: 0,
+    field67: 0,
     sabrForceMaxNetworkInterruptionDurationMs: 0,
     audioTrackId: "",
+    enableVoiceBoost: false,
+    playbackAuthorization: undefined,
   };
 }
 
@@ -178,8 +187,8 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     if (message.elapsedWallTimeMs !== undefined && message.elapsedWallTimeMs !== 0) {
       writer.uint32(288).int64(message.elapsedWallTimeMs);
     }
-    if (message.mediaCapabilities !== undefined && message.mediaCapabilities.length !== 0) {
-      writer.uint32(306).bytes(message.mediaCapabilities);
+    if (message.mediaCapabilities !== undefined) {
+      MediaCapabilities.encode(message.mediaCapabilities, writer.uint32(306).fork()).join();
     }
     if (message.timeSinceLastActionMs !== undefined && message.timeSinceLastActionMs !== 0) {
       writer.uint32(312).int64(message.timeSinceLastActionMs);
@@ -196,38 +205,38 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     if (message.drcEnabled !== undefined && message.drcEnabled !== false) {
       writer.uint32(368).bool(message.drcEnabled);
     }
-    if (message.Jda !== undefined && message.Jda !== 0) {
-      writer.uint32(384).int32(message.Jda);
+    if (message.field48 !== undefined && message.field48 !== 0) {
+      writer.uint32(384).int32(message.field48);
     }
-    if (message.qw !== undefined && message.qw !== 0) {
-      writer.uint32(400).int32(message.qw);
+    if (message.field50 !== undefined && message.field50 !== 0) {
+      writer.uint32(400).int32(message.field50);
     }
-    if (message.Ky !== undefined && message.Ky !== 0) {
-      writer.uint32(408).int32(message.Ky);
+    if (message.field51 !== undefined && message.field51 !== 0) {
+      writer.uint32(408).int32(message.field51);
     }
     if (message.sabrReportRequestCancellationInfo !== undefined && message.sabrReportRequestCancellationInfo !== 0) {
       writer.uint32(432).int32(message.sabrReportRequestCancellationInfo);
     }
-    if (message.l !== undefined && message.l !== false) {
-      writer.uint32(448).bool(message.l);
+    if (message.disableStreamingXhr !== undefined && message.disableStreamingXhr !== false) {
+      writer.uint32(448).bool(message.disableStreamingXhr);
     }
-    if (message.G7 !== undefined && message.G7 !== 0) {
-      writer.uint32(456).int64(message.G7);
+    if (message.field57 !== undefined && message.field57 !== 0) {
+      writer.uint32(456).int64(message.field57);
     }
     if (message.preferVp9 !== undefined && message.preferVp9 !== false) {
       writer.uint32(464).bool(message.preferVp9);
     }
-    if (message.qj !== undefined && message.qj !== 0) {
-      writer.uint32(472).int32(message.qj);
+    if (message.av1QualityThreshold !== undefined && message.av1QualityThreshold !== 0) {
+      writer.uint32(472).int32(message.av1QualityThreshold);
     }
-    if (message.Hx !== undefined && message.Hx !== 0) {
-      writer.uint32(480).int32(message.Hx);
+    if (message.field60 !== undefined && message.field60 !== 0) {
+      writer.uint32(480).int32(message.field60);
     }
     if (message.isPrefetch !== undefined && message.isPrefetch !== false) {
       writer.uint32(488).bool(message.isPrefetch);
     }
-    if (message.sabrSupportQualityConstraints !== undefined && message.sabrSupportQualityConstraints !== 0) {
-      writer.uint32(496).int32(message.sabrSupportQualityConstraints);
+    if (message.sabrSupportQualityConstraints !== undefined && message.sabrSupportQualityConstraints !== false) {
+      writer.uint32(496).bool(message.sabrSupportQualityConstraints);
     }
     if (message.sabrLicenseConstraint !== undefined && message.sabrLicenseConstraint.length !== 0) {
       writer.uint32(506).bytes(message.sabrLicenseConstraint);
@@ -238,8 +247,8 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     if (message.sabrForceProxima !== undefined && message.sabrForceProxima !== 0) {
       writer.uint32(528).int32(message.sabrForceProxima);
     }
-    if (message.Tqb !== undefined && message.Tqb !== 0) {
-      writer.uint32(536).int32(message.Tqb);
+    if (message.field67 !== undefined && message.field67 !== 0) {
+      writer.uint32(536).int32(message.field67);
     }
     if (
       message.sabrForceMaxNetworkInterruptionDurationMs !== undefined &&
@@ -249,6 +258,12 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     }
     if (message.audioTrackId !== undefined && message.audioTrackId !== "") {
       writer.uint32(554).string(message.audioTrackId);
+    }
+    if (message.enableVoiceBoost !== undefined && message.enableVoiceBoost !== false) {
+      writer.uint32(608).bool(message.enableVoiceBoost);
+    }
+    if (message.playbackAuthorization !== undefined) {
+      PlaybackAuthorization.encode(message.playbackAuthorization, writer.uint32(634).fork()).join();
     }
     return writer;
   },
@@ -412,7 +427,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.mediaCapabilities = reader.bytes();
+          message.mediaCapabilities = MediaCapabilities.decode(reader, reader.uint32());
           continue;
         case 39:
           if (tag !== 312) {
@@ -454,21 +469,21 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.Jda = reader.int32();
+          message.field48 = reader.int32();
           continue;
         case 50:
           if (tag !== 400) {
             break;
           }
 
-          message.qw = reader.int32();
+          message.field50 = reader.int32();
           continue;
         case 51:
           if (tag !== 408) {
             break;
           }
 
-          message.Ky = reader.int32();
+          message.field51 = reader.int32();
           continue;
         case 54:
           if (tag !== 432) {
@@ -482,14 +497,14 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.l = reader.bool();
+          message.disableStreamingXhr = reader.bool();
           continue;
         case 57:
           if (tag !== 456) {
             break;
           }
 
-          message.G7 = longToNumber(reader.int64());
+          message.field57 = longToNumber(reader.int64());
           continue;
         case 58:
           if (tag !== 464) {
@@ -503,14 +518,14 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.qj = reader.int32();
+          message.av1QualityThreshold = reader.int32();
           continue;
         case 60:
           if (tag !== 480) {
             break;
           }
 
-          message.Hx = reader.int32();
+          message.field60 = reader.int32();
           continue;
         case 61:
           if (tag !== 488) {
@@ -524,7 +539,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.sabrSupportQualityConstraints = reader.int32();
+          message.sabrSupportQualityConstraints = reader.bool();
           continue;
         case 63:
           if (tag !== 506) {
@@ -552,7 +567,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.Tqb = reader.int32();
+          message.field67 = reader.int32();
           continue;
         case 68:
           if (tag !== 544) {
@@ -567,6 +582,20 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
           }
 
           message.audioTrackId = reader.string();
+          continue;
+        case 76:
+          if (tag !== 608) {
+            break;
+          }
+
+          message.enableVoiceBoost = reader.bool();
+          continue;
+        case 79:
+          if (tag !== 634) {
+            break;
+          }
+
+          message.playbackAuthorization = PlaybackAuthorization.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {

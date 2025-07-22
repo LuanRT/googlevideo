@@ -1,0 +1,39 @@
+name: Run Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install protoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip
+          curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v21.12/protoc-21.12-linux-x86_64.zip
+          unzip protoc-21.12-linux-x86_64.zip -d protoc21
+          sudo mv protoc21/bin/protoc /usr/local/bin/
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test

@@ -40,27 +40,27 @@ message StreamerContext {
     optional int32 gl_es_version_minor = 3;
   }
 
-  message Fqa {
+  message SabrContext {
     optional int32 type = 1;
     optional bytes value = 2;
   }
 
-  message Gqa {
-    message Hqa {
+  message UnknownMessage1 {
+    message UnknownInnerMessage1 {
       optional int32 code = 1;
       optional string message = 2;
     }
 
     optional bytes field1 = 1;
-    optional Hqa field2 = 2;
+    optional UnknownInnerMessage1 field2 = 2;
   }
 
   optional ClientInfo client_info = 1;
   optional bytes po_token = 2;
   optional bytes playback_cookie = 3;
-  optional bytes gp = 4;
-  repeated Fqa field5 = 5;
-  repeated int32 field6 = 6;
+  optional bytes field4 = 4;
+  repeated SabrContext sabr_contexts = 5;
+  repeated int32 unsent_sabr_contexts = 6;
   optional string field7 = 7;
-  optional Gqa field8 = 8;
+  optional UnknownMessage1 field8 = 8;
 }

@@ -6,20 +6,14 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { CompressionType } from "../misc/common.js";
 
 export const protobufPackage = "video_streaming";
 
 export interface CryptoParams {
   hmac?: Uint8Array | undefined;
   iv?: Uint8Array | undefined;
-  compressionType?: CryptoParams_CompressionType | undefined;
-}
-
-export enum CryptoParams_CompressionType {
-  NONE = 0,
-  GZIP = 1,
-  BROTLI = 2,
-  UNRECOGNIZED = -1,
+  compressionType?: CompressionType | undefined;
 }
 
 function createBaseCryptoParams(): CryptoParams {

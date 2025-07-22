@@ -1,7 +1,26 @@
-import { CustomEvent } from './index.js';
+// See https://github.com/nodejs/node/issues/40678#issuecomment-1126944677
+class CustomEvent extends Event {
+  #detail;
+
+  constructor(type: string, options?: CustomEventInit<any[]>) {
+    super(type, options);
+    this.#detail = options?.detail ?? null;
+  }
+
+  get detail(): any[] | null {
+    return this.#detail;
+  }
+}
+
+export class SabrAdapterError extends Error {
+  constructor(message: string, public code?: string) {
+    super(`[SabrStreamingAdapter] ${message}`);
+    this.name = 'SabrAdapterError';
+  }
+}
 
 export class EventEmitterLike extends EventTarget {
-  #legacy_listeners = new Map<(...args: any[]) => void, EventListener>();
+  #legacyListeners = new Map<(...args: any[]) => void, { type: string, wrapper: EventListener }>();
 
   constructor() {
     super();
@@ -20,7 +39,7 @@ export class EventEmitterLike extends EventTarget {
         listener(ev);
       }
     };
-    this.#legacy_listeners.set(listener, wrapper);
+    this.#legacyListeners.set(listener, { type, wrapper });
     this.addEventListener(type, wrapper);
   }
 
@@ -33,15 +52,31 @@ export class EventEmitterLike extends EventTarget {
       }
       this.off(type, listener);
     };
-    this.#legacy_listeners.set(listener, wrapper);
+    this.#legacyListeners.set(listener, { type, wrapper });
     this.addEventListener(type, wrapper);
   }
 
   off(type: string, listener: (...args: any[]) => void) {
-    const wrapper = this.#legacy_listeners.get(listener);
-    if (wrapper) {
-      this.removeEventListener(type, wrapper);
-      this.#legacy_listeners.delete(listener);
+    const listenerData = this.#legacyListeners.get(listener);
+    if (listenerData && listenerData.type === type) {
+      this.removeEventListener(type, listenerData.wrapper);
+      this.#legacyListeners.delete(listener);
+    }
+  }
+
+  removeAllListeners(type?: string) {
+    if (type) {
+      for (const [ listener, listenerData ] of this.#legacyListeners.entries()) {
+        if (listenerData.type === type) {
+          this.removeEventListener(type, listenerData.wrapper);
+          this.#legacyListeners.delete(listener);
+        }
+      }
+    } else {
+      for (const [ listener, listenerData ] of this.#legacyListeners.entries()) {
+        this.removeEventListener(listenerData.type, listenerData.wrapper);
+        this.#legacyListeners.delete(listener);
+      }
     }
   }
 }

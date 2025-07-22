@@ -13,7 +13,10 @@ export const protobufPackage = "video_streaming";
 export interface NextRequestPolicy {
   targetAudioReadaheadMs?: number | undefined;
   targetVideoReadaheadMs?: number | undefined;
+  maxTimeSinceLastRequestMs?: number | undefined;
   backoffTimeMs?: number | undefined;
+  minAudioReadaheadMs?: number | undefined;
+  minVideoReadaheadMs?: number | undefined;
   playbackCookie?: PlaybackCookie | undefined;
   videoId?: string | undefined;
 }
@@ -22,7 +25,10 @@ function createBaseNextRequestPolicy(): NextRequestPolicy {
   return {
     targetAudioReadaheadMs: 0,
     targetVideoReadaheadMs: 0,
+    maxTimeSinceLastRequestMs: 0,
     backoffTimeMs: 0,
+    minAudioReadaheadMs: 0,
+    minVideoReadaheadMs: 0,
     playbackCookie: undefined,
     videoId: "",
   };
@@ -36,8 +42,17 @@ export const NextRequestPolicy: MessageFns<NextRequestPolicy> = {
     if (message.targetVideoReadaheadMs !== undefined && message.targetVideoReadaheadMs !== 0) {
       writer.uint32(16).int32(message.targetVideoReadaheadMs);
     }
+    if (message.maxTimeSinceLastRequestMs !== undefined && message.maxTimeSinceLastRequestMs !== 0) {
+      writer.uint32(24).int32(message.maxTimeSinceLastRequestMs);
+    }
     if (message.backoffTimeMs !== undefined && message.backoffTimeMs !== 0) {
       writer.uint32(32).int32(message.backoffTimeMs);
+    }
+    if (message.minAudioReadaheadMs !== undefined && message.minAudioReadaheadMs !== 0) {
+      writer.uint32(40).int32(message.minAudioReadaheadMs);
+    }
+    if (message.minVideoReadaheadMs !== undefined && message.minVideoReadaheadMs !== 0) {
+      writer.uint32(48).int32(message.minVideoReadaheadMs);
     }
     if (message.playbackCookie !== undefined) {
       PlaybackCookie.encode(message.playbackCookie, writer.uint32(58).fork()).join();
@@ -69,12 +84,33 @@ export const NextRequestPolicy: MessageFns<NextRequestPolicy> = {
 
           message.targetVideoReadaheadMs = reader.int32();
           continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.maxTimeSinceLastRequestMs = reader.int32();
+          continue;
         case 4:
           if (tag !== 32) {
             break;
           }
 
           message.backoffTimeMs = reader.int32();
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.minAudioReadaheadMs = reader.int32();
+          continue;
+        case 6:
+          if (tag !== 48) {
+            break;
+          }
+
+          message.minVideoReadaheadMs = reader.int32();
           continue;
         case 7:
           if (tag !== 58) {

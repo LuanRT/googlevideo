@@ -9,6 +9,13 @@ import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 
 export const protobufPackage = "misc";
 
+export enum CompressionType {
+  UNKNOWN = 0,
+  GZIP = 1,
+  BROTLI = 2,
+  UNRECOGNIZED = -1,
+}
+
 export enum AudioQuality {
   UNKNOWN = 0,
   ULTRALOW = 5,
@@ -182,19 +189,31 @@ export interface FormatId {
   xtags?: string | undefined;
 }
 
-export interface InitRange {
+export interface Range {
+  legacyStart?: number | undefined;
+  legacyEnd?: number | undefined;
   start?: number | undefined;
   end?: number | undefined;
 }
 
-export interface IndexRange {
-  start?: number | undefined;
-  end?: number | undefined;
+export interface IdentifierToken {
+  requestNumber?: number | undefined;
+  field5?: number | undefined;
 }
 
 export interface KeyValuePair {
   key?: string | undefined;
   value?: string | undefined;
+}
+
+export interface AuthorizedFormat {
+  trackType?: number | undefined;
+  isHdr?: boolean | undefined;
+}
+
+export interface PlaybackAuthorization {
+  authorizedFormats: AuthorizedFormat[];
+  sabrLicenseConstraint?: Uint8Array | undefined;
 }
 
 function createBaseHttpHeader(): HttpHeader {
@@ -299,25 +318,31 @@ export const FormatId: MessageFns<FormatId> = {
   },
 };
 
-function createBaseInitRange(): InitRange {
-  return { start: 0, end: 0 };
+function createBaseRange(): Range {
+  return { legacyStart: 0, legacyEnd: 0, start: 0, end: 0 };
 }
 
-export const InitRange: MessageFns<InitRange> = {
-  encode(message: InitRange, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const Range: MessageFns<Range> = {
+  encode(message: Range, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.legacyStart !== undefined && message.legacyStart !== 0) {
+      writer.uint32(8).int32(message.legacyStart);
+    }
+    if (message.legacyEnd !== undefined && message.legacyEnd !== 0) {
+      writer.uint32(16).int32(message.legacyEnd);
+    }
     if (message.start !== undefined && message.start !== 0) {
-      writer.uint32(8).int32(message.start);
+      writer.uint32(24).int32(message.start);
     }
     if (message.end !== undefined && message.end !== 0) {
-      writer.uint32(16).int32(message.end);
+      writer.uint32(32).int32(message.end);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): InitRange {
+  decode(input: BinaryReader | Uint8Array, length?: number): Range {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseInitRange();
+    const message = createBaseRange();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -326,10 +351,24 @@ export const InitRange: MessageFns<InitRange> = {
             break;
           }
 
-          message.start = reader.int32();
+          message.legacyStart = reader.int32();
           continue;
         case 2:
           if (tag !== 16) {
+            break;
+          }
+
+          message.legacyEnd = reader.int32();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.start = reader.int32();
+          continue;
+        case 4:
+          if (tag !== 32) {
             break;
           }
 
@@ -345,25 +384,25 @@ export const InitRange: MessageFns<InitRange> = {
   },
 };
 
-function createBaseIndexRange(): IndexRange {
-  return { start: 0, end: 0 };
+function createBaseIdentifierToken(): IdentifierToken {
+  return { requestNumber: 0, field5: 0 };
 }
 
-export const IndexRange: MessageFns<IndexRange> = {
-  encode(message: IndexRange, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.start !== undefined && message.start !== 0) {
-      writer.uint32(8).int32(message.start);
+export const IdentifierToken: MessageFns<IdentifierToken> = {
+  encode(message: IdentifierToken, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.requestNumber !== undefined && message.requestNumber !== 0) {
+      writer.uint32(8).int32(message.requestNumber);
     }
-    if (message.end !== undefined && message.end !== 0) {
-      writer.uint32(16).int32(message.end);
+    if (message.field5 !== undefined && message.field5 !== 0) {
+      writer.uint32(40).int32(message.field5);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): IndexRange {
+  decode(input: BinaryReader | Uint8Array, length?: number): IdentifierToken {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseIndexRange();
+    const message = createBaseIdentifierToken();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -372,14 +411,14 @@ export const IndexRange: MessageFns<IndexRange> = {
             break;
           }
 
-          message.start = reader.int32();
+          message.requestNumber = reader.int32();
           continue;
-        case 2:
-          if (tag !== 16) {
+        case 5:
+          if (tag !== 40) {
             break;
           }
 
-          message.end = reader.int32();
+          message.field5 = reader.int32();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -426,6 +465,98 @@ export const KeyValuePair: MessageFns<KeyValuePair> = {
           }
 
           message.value = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+};
+
+function createBaseAuthorizedFormat(): AuthorizedFormat {
+  return { trackType: 0, isHdr: false };
+}
+
+export const AuthorizedFormat: MessageFns<AuthorizedFormat> = {
+  encode(message: AuthorizedFormat, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.trackType !== undefined && message.trackType !== 0) {
+      writer.uint32(8).int32(message.trackType);
+    }
+    if (message.isHdr !== undefined && message.isHdr !== false) {
+      writer.uint32(16).bool(message.isHdr);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): AuthorizedFormat {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseAuthorizedFormat();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.trackType = reader.int32();
+          continue;
+        case 2:
+          if (tag !== 16) {
+            break;
+          }
+
+          message.isHdr = reader.bool();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+};
+
+function createBasePlaybackAuthorization(): PlaybackAuthorization {
+  return { authorizedFormats: [], sabrLicenseConstraint: new Uint8Array(0) };
+}
+
+export const PlaybackAuthorization: MessageFns<PlaybackAuthorization> = {
+  encode(message: PlaybackAuthorization, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.authorizedFormats) {
+      AuthorizedFormat.encode(v!, writer.uint32(10).fork()).join();
+    }
+    if (message.sabrLicenseConstraint !== undefined && message.sabrLicenseConstraint.length !== 0) {
+      writer.uint32(18).bytes(message.sabrLicenseConstraint);
+    }
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): PlaybackAuthorization {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBasePlaybackAuthorization();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.authorizedFormats.push(AuthorizedFormat.decode(reader, reader.uint32()));
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.sabrLicenseConstraint = reader.bytes();
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
