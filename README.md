@@ -7,18 +7,6 @@ A collection of modules for working with YouTube's proprietary video streaming p
 
 [API Reference →](https://ytjs.dev/googlevideo/api)
 
-## Features
-
-- **UMP Modules**
-  - [UmpReader](src/core/UmpReader.ts) - Efficiently parses chunked UMP binary data.
-  - [UmpWriter](src/core/UmpWriter.ts) - Serializes data into the UMP binary format.
-  - [CompositeBuffer](src/core/CompositeBuffer.ts) - Manages discontinuous chunks as a single logical stream.
-
-- **SABR Modules**
-  - [SabrStream](src/core/SabrStream.ts) - Downloads SABR streams and provides the video/audio data via [ReadableStreams](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream).
-  - [SabrStreamingAdapter](src/core/SabrStreamingAdapter.ts) - Bridges SABR protocol with media players, manages streaming sessions and server directives.
-  - [SabrUmpProcessor](src/core/SabrUmpProcessor.ts) - Processes UMP data for player implementations using SABR.
-
 ## Installation
 
 ```bash
