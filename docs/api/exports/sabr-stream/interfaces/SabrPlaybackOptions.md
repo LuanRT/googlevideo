@@ -2,7 +2,7 @@
 
 # Interface: SabrPlaybackOptions
 
-Defined in: [src/types/sabrStreamTypes.ts:48](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L48)
+Defined in: [src/types/sabrStreamTypes.ts:48](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L48)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:48](https://github.com/LuanRT/googlevi
 
 > `optional` **audioFormat**: `number` \| [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md) \| (`formats`) => `undefined` \| [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:59](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L59)
+Defined in: [src/types/sabrStreamTypes.ts:59](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L59)
 
 Audio format selection, can be a format ID number, a SabrFormat object,
 or a function that selects a format from the available formats array.
@@ -21,7 +21,7 @@ or a function that selects a format from the available formats array.
 
 > `optional` **audioLanguage**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:79](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L79)
+Defined in: [src/types/sabrStreamTypes.ts:79](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L79)
 
 Preferred audio language code.
 
@@ -31,7 +31,7 @@ Preferred audio language code.
 
 > `optional` **audioQuality**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:69](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L69)
+Defined in: [src/types/sabrStreamTypes.ts:69](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L69)
 
 Preferred audio quality (e.g., "high", "medium").
 
@@ -41,7 +41,7 @@ Preferred audio quality (e.g., "high", "medium").
 
 > `optional` **enabledTrackTypes**: [`EnabledTrackTypes`](../../utils/enumerations/EnabledTrackTypes.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:117](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L117)
+Defined in: [src/types/sabrStreamTypes.ts:117](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L117)
 
 Enabled track types for streaming (audio only, video only, or both).
 
@@ -55,7 +55,7 @@ EnabledTrackTypes
 
 > `optional` **maxRetries**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:105](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L105)
+Defined in: [src/types/sabrStreamTypes.ts:105](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L105)
 
 Maximum number of retry attempts when fetching segments.
 Default is 10.
@@ -66,7 +66,7 @@ Default is 10.
 
 > `optional` **preferH264**: `boolean`
 
-Defined in: [src/types/sabrStreamTypes.ts:94](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L94)
+Defined in: [src/types/sabrStreamTypes.ts:94](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L94)
 
 Whether to prefer H.264 video codec.
 
@@ -76,7 +76,7 @@ Whether to prefer H.264 video codec.
 
 > `optional` **preferMP4**: `boolean`
 
-Defined in: [src/types/sabrStreamTypes.ts:89](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L89)
+Defined in: [src/types/sabrStreamTypes.ts:89](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L89)
 
 Whether to prefer MP4 container format.
 
@@ -86,7 +86,7 @@ Whether to prefer MP4 container format.
 
 > `optional` **preferOpus**: `boolean`
 
-Defined in: [src/types/sabrStreamTypes.ts:99](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L99)
+Defined in: [src/types/sabrStreamTypes.ts:99](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L99)
 
 Whether to prefer Opus audio codec.
 
@@ -96,7 +96,7 @@ Whether to prefer Opus audio codec.
 
 > `optional` **preferWebM**: `boolean`
 
-Defined in: [src/types/sabrStreamTypes.ts:84](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L84)
+Defined in: [src/types/sabrStreamTypes.ts:84](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L84)
 
 Whether to prefer WebM container format.
 
@@ -106,7 +106,7 @@ Whether to prefer WebM container format.
 
 > `optional` **stallDetectionMs**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:111](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L111)
+Defined in: [src/types/sabrStreamTypes.ts:111](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L111)
 
 Duration in milliseconds after which a stall is detected if no progress is made.
 Default is 30000 (30 seconds).
@@ -117,7 +117,7 @@ Default is 30000 (30 seconds).
 
 > `optional` **state**: [`SabrStreamState`](SabrStreamState.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:122](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L122)
+Defined in: [src/types/sabrStreamTypes.ts:122](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L122)
 
 Previously saved state to resume a download.
 
@@ -127,7 +127,7 @@ Previously saved state to resume a download.
 
 > `optional` **videoFormat**: `number` \| [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md) \| (`formats`) => `undefined` \| [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:53](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L53)
+Defined in: [src/types/sabrStreamTypes.ts:53](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L53)
 
 Video format selection, can be a format ID number, a SabrFormat object,
 or a function that selects a format from the available formats array.
@@ -138,7 +138,7 @@ or a function that selects a format from the available formats array.
 
 > `optional` **videoLanguage**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:74](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L74)
+Defined in: [src/types/sabrStreamTypes.ts:74](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L74)
 
 Preferred video language code.
 
@@ -148,6 +148,6 @@ Preferred video language code.
 
 > `optional` **videoQuality**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:64](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamTypes.ts#L64)
+Defined in: [src/types/sabrStreamTypes.ts:64](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L64)
 
 Preferred video quality (e.g., "1080p", "720p").

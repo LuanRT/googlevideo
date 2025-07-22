@@ -2,6 +2,8 @@
 
 # exports/ump
 
+This module contains utilities for writing and reading UMP data.
+
 ## Classes
 
 - [CompositeBuffer](classes/CompositeBuffer.md)

@@ -2,7 +2,7 @@
 
 # Interface: AuthorizedFormat
 
-Defined in: [protos/generated/misc/common.ts:209](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/misc/common.ts#L209)
+Defined in: [protos/generated/misc/common.ts:209](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/misc/common.ts#L209)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/misc/common.ts:209](https://github.com/LuanRT/goog
 
 > `optional` **isHdr**: `boolean`
 
-Defined in: [protos/generated/misc/common.ts:211](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/misc/common.ts#L211)
+Defined in: [protos/generated/misc/common.ts:211](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/misc/common.ts#L211)
 
 ***
 
@@ -18,4 +18,4 @@ Defined in: [protos/generated/misc/common.ts:211](https://github.com/LuanRT/goog
 
 > `optional` **trackType**: `number`
 
-Defined in: [protos/generated/misc/common.ts:210](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/misc/common.ts#L210)
+Defined in: [protos/generated/misc/common.ts:210](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/misc/common.ts#L210)

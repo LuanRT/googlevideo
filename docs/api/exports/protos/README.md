@@ -2,6 +2,8 @@
 
 # exports/protos
 
+This module contains protobuf definitions.
+
 ## Enumerations
 
 - [AudioQuality](enumerations/AudioQuality.md)

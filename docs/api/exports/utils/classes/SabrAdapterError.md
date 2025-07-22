@@ -2,7 +2,7 @@
 
 # Class: SabrAdapterError
 
-Defined in: [src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/EventEmitterLike.ts#L15)
+Defined in: [src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/EventEmitterLike.ts#L15)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/utils/EventEmitterLike.ts:15](https://github.com/LuanRT/googlev
 
 > **new SabrAdapterError**(`message`, `code?`): `SabrAdapterError`
 
-Defined in: [src/utils/EventEmitterLike.ts:16](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/EventEmitterLike.ts#L16)
+Defined in: [src/utils/EventEmitterLike.ts:16](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/EventEmitterLike.ts#L16)
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: [src/utils/EventEmitterLike.ts:16](https://github.com/LuanRT/googlev
 
 > `optional` **code**: `string`
 
-Defined in: [src/utils/EventEmitterLike.ts:16](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/EventEmitterLike.ts#L16)
+Defined in: [src/utils/EventEmitterLike.ts:16](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/EventEmitterLike.ts#L16)
 
 ***
 

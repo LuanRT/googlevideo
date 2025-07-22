@@ -2,6 +2,9 @@
 
 # exports/sabr-streaming-adapter
 
+This module contains the core classes, types, and utilities required to integrate YouTube's SABR streaming protocol
+into a media player.
+
 ## Classes
 
 - [SabrStreamingAdapter](classes/SabrStreamingAdapter.md)

@@ -2,6 +2,8 @@
 
 # exports/utils
 
+This module contains general utilities.
+
 ## Namespaces
 
 - [FormatKeyUtils](namespaces/FormatKeyUtils/README.md)

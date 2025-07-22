@@ -2,7 +2,7 @@
 
 # Interface: InitializedFormat
 
-Defined in: [src/core/SabrStream.ts:53](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L53)
+Defined in: [src/core/SabrStream.ts:53](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L53)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/core/SabrStream.ts:53](https://github.com/LuanRT/googlevideo/bl
 
 > **downloadedSegments**: `Map`\<`number`, `Segment`\>
 
-Defined in: [src/core/SabrStream.ts:55](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L55)
+Defined in: [src/core/SabrStream.ts:55](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L55)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/core/SabrStream.ts:55](https://github.com/LuanRT/googlevideo/bl
 
 > **formatInitializationMetadata**: [`FormatInitializationMetadata`](../../protos/interfaces/FormatInitializationMetadata.md)
 
-Defined in: [src/core/SabrStream.ts:54](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L54)
+Defined in: [src/core/SabrStream.ts:54](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L54)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [src/core/SabrStream.ts:54](https://github.com/LuanRT/googlevideo/bl
 
 > **lastMediaHeaders**: [`MediaHeader`](../../protos/interfaces/MediaHeader.md)[]
 
-Defined in: [src/core/SabrStream.ts:56](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L56)
+Defined in: [src/core/SabrStream.ts:56](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L56)

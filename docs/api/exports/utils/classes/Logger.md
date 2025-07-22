@@ -2,7 +2,19 @@
 
 # Class: Logger
 
-Defined in: [src/utils/Logger.ts:10](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/Logger.ts#L10)
+Defined in: [src/utils/Logger.ts:23](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/Logger.ts#L23)
+
+Singleton logger utility.
+
+Allows enabling or disabling specific log levels (`ERROR`, `WARN`, `INFO`, `DEBUG`)
+at runtime. Supports logging with tags and message arguments.
+
+Usage:
+```ts
+const logger = Logger.getInstance();
+logger.setLogLevels(LogLevel.ERROR, LogLevel.INFO);
+logger.error('MyTag', 'An error occurred');
+```
 
 ## Constructors
 
@@ -20,7 +32,7 @@ Defined in: [src/utils/Logger.ts:10](https://github.com/LuanRT/googlevideo/blob/
 
 > **debug**(`tag`, ...`messages`): `void`
 
-Defined in: [src/utils/Logger.ts:82](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/Logger.ts#L82)
+Defined in: [src/utils/Logger.ts:95](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/Logger.ts#L95)
 
 #### Parameters
 
@@ -42,7 +54,7 @@ Defined in: [src/utils/Logger.ts:82](https://github.com/LuanRT/googlevideo/blob/
 
 > **error**(`tag`, ...`messages`): `void`
 
-Defined in: [src/utils/Logger.ts:70](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/Logger.ts#L70)
+Defined in: [src/utils/Logger.ts:83](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/Logger.ts#L83)
 
 #### Parameters
 
@@ -64,7 +76,7 @@ Defined in: [src/utils/Logger.ts:70](https://github.com/LuanRT/googlevideo/blob/
 
 > **getLogLevels**(): `Set`\<[`LogLevel`](../enumerations/LogLevel.md)\>
 
-Defined in: [src/utils/Logger.ts:46](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/Logger.ts#L46)
+Defined in: [src/utils/Logger.ts:59](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/Logger.ts#L59)
 
 Gets the current set of active log levels.
 
@@ -80,7 +92,7 @@ A new Set containing the active LogLevel enums.
 
 > **info**(`tag`, ...`messages`): `void`
 
-Defined in: [src/utils/Logger.ts:78](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/Logger.ts#L78)
+Defined in: [src/utils/Logger.ts:91](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/Logger.ts#L91)
 
 #### Parameters
 
@@ -102,7 +114,7 @@ Defined in: [src/utils/Logger.ts:78](https://github.com/LuanRT/googlevideo/blob/
 
 > **setLogLevels**(...`levels`): `void`
 
-Defined in: [src/utils/Logger.ts:27](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/Logger.ts#L27)
+Defined in: [src/utils/Logger.ts:40](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/Logger.ts#L40)
 
 Sets the active log levels.
 Call with LogLevel.NONE or no arguments to turn off all logging.
@@ -125,7 +137,7 @@ Use LogLevel.ALL to enable all log levels.
 
 > **warn**(`tag`, ...`messages`): `void`
 
-Defined in: [src/utils/Logger.ts:74](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/Logger.ts#L74)
+Defined in: [src/utils/Logger.ts:87](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/Logger.ts#L87)
 
 #### Parameters
 
@@ -147,7 +159,7 @@ Defined in: [src/utils/Logger.ts:74](https://github.com/LuanRT/googlevideo/blob/
 
 > `static` **getInstance**(): `Logger`
 
-Defined in: [src/utils/Logger.ts:14](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/Logger.ts#L14)
+Defined in: [src/utils/Logger.ts:27](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/Logger.ts#L27)
 
 #### Returns
 

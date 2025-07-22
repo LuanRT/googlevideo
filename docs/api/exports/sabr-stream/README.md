@@ -2,6 +2,8 @@
 
 # exports/sabr-stream
 
+This module contains a SABR client for downloading videos.
+
 ## Classes
 
 - [SabrStream](classes/SabrStream.md)

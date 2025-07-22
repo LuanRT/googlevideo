@@ -2,7 +2,7 @@
 
 # Interface: ClientInfo
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:30](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L30)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:30](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L30)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:30](https://
 
 > `optional` **acceptLanguage**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:37](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L37)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:37](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L37)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:37](https://
 
 > `optional` **acceptRegion**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:38](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L38)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:38](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L38)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:38](https://
 
 > `optional` **androidSdkVersion**: `number`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:51](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L51)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:51](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L51)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:51](https://
 
 > `optional` **chipset**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:58](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L58)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:58](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L58)
 
 e.g. "qcom;taro"
 
@@ -44,7 +44,7 @@ e.g. "qcom;taro"
 
 > `optional` **clientFormFactor**: `StreamerContext_ClientFormFactor`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:44](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L44)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:44](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L44)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:44](https://
 
 > `optional` **clientName**: `number`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:33](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L33)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:33](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L33)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:33](https://
 
 > `optional` **clientVersion**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:34](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L34)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:34](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L34)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:34](https://
 
 > `optional` **deviceMake**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:31](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L31)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:31](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L31)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:31](https://
 
 > `optional` **deviceModel**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:32](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L32)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:32](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L32)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:32](https://
 
 > `optional` **glDeviceInfo**: `StreamerContext_GLDeviceInfo`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:59](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L59)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:59](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L59)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:59](https://
 
 > `optional` **gmscoreVersionCode**: `number`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:48](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L48)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:48](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L48)
 
 e.g. 243731017
 
@@ -102,7 +102,7 @@ e.g. 243731017
 
 > `optional` **osName**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:35](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L35)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:35](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L35)
 
 ***
 
@@ -110,7 +110,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:35](https://
 
 > `optional` **osVersion**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:36](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L36)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:36](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L36)
 
 ***
 
@@ -118,7 +118,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:36](https://
 
 > `optional` **screenDensityFloat**: `number`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:52](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L52)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:52](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L52)
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:52](https://
 
 > `optional` **screenHeightInches**: `number`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:42](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L42)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:42](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L42)
 
 ***
 
@@ -134,7 +134,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:42](https://
 
 > `optional` **screenHeightPoints**: `number`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:40](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L40)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:40](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L40)
 
 ***
 
@@ -142,7 +142,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:40](https://
 
 > `optional` **screenPixelDensity**: `number`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:43](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L43)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:43](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L43)
 
 ***
 
@@ -150,7 +150,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:43](https://
 
 > `optional` **screenWidthInches**: `number`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:41](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L41)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:41](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L41)
 
 ***
 
@@ -158,7 +158,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:41](https://
 
 > `optional` **screenWidthPoints**: `number`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:39](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L39)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:39](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L39)
 
 ***
 
@@ -166,7 +166,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:39](https://
 
 > `optional` **timeZone**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:54](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L54)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:54](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L54)
 
 ***
 
@@ -174,7 +174,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:54](https://
 
 > `optional` **utcOffsetMinutes**: `number`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:53](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L53)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:53](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L53)
 
 ***
 
@@ -182,7 +182,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:53](https://
 
 > `optional` **windowHeightPoints**: `number`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:50](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L50)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:50](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L50)
 
 ***
 
@@ -190,4 +190,4 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:50](https://
 
 > `optional` **windowWidthPoints**: `number`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:49](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/streamer_context.ts#L49)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:49](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/streamer_context.ts#L49)

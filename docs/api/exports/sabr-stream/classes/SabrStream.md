@@ -2,7 +2,7 @@
 
 # Class: SabrStream
 
-Defined in: [src/core/SabrStream.ts:106](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L106)
+Defined in: [src/core/SabrStream.ts:106](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L106)
 
 Manages the download and processing of YouTube's Server-Adaptive Bitrate (SABR) streams.
 
@@ -24,7 +24,7 @@ This class handles the entire lifecycle of a SABR stream:
 
 > **new SabrStream**(`config`): `SabrStream`
 
-Defined in: [src/core/SabrStream.ts:194](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L194)
+Defined in: [src/core/SabrStream.ts:194](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L194)
 
 #### Parameters
 
@@ -46,7 +46,7 @@ Defined in: [src/core/SabrStream.ts:194](https://github.com/LuanRT/googlevideo/b
 
 > **abort**(): `void`
 
-Defined in: [src/core/SabrStream.ts:270](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L270)
+Defined in: [src/core/SabrStream.ts:270](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L270)
 
 Aborts the download process, closing all streams and cleaning up resources.
 Emits an 'abort' event.
@@ -133,7 +133,7 @@ Dispatches a synthetic event event to target and returns true if either event's 
 
 > **emit**(`type`, ...`args`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:29](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/EventEmitterLike.ts#L29)
+Defined in: [src/utils/EventEmitterLike.ts:29](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/EventEmitterLike.ts#L29)
 
 #### Parameters
 
@@ -159,7 +159,7 @@ Defined in: [src/utils/EventEmitterLike.ts:29](https://github.com/LuanRT/googlev
 
 > **getState**(): [`SabrStreamState`](../interfaces/SabrStreamState.md)
 
-Defined in: [src/core/SabrStream.ts:292](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L292)
+Defined in: [src/core/SabrStream.ts:292](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L292)
 
 Returns a serializable state object that can be used to restore the stream later.
 
@@ -179,7 +179,7 @@ If the main format is not initialized.
 
 > **off**(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:59](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/EventEmitterLike.ts#L59)
+Defined in: [src/utils/EventEmitterLike.ts:59](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/EventEmitterLike.ts#L59)
 
 #### Parameters
 
@@ -207,7 +207,7 @@ Defined in: [src/utils/EventEmitterLike.ts:59](https://github.com/LuanRT/googlev
 
 > **once**(`event`, `listener`): `void`
 
-Defined in: [src/core/SabrStream.ts:185](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L185)
+Defined in: [src/core/SabrStream.ts:185](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L185)
 
 ##### Parameters
 
@@ -231,7 +231,7 @@ Defined in: [src/core/SabrStream.ts:185](https://github.com/LuanRT/googlevideo/b
 
 > **once**(`event`, `listener`): `void`
 
-Defined in: [src/core/SabrStream.ts:186](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L186)
+Defined in: [src/core/SabrStream.ts:186](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L186)
 
 ##### Parameters
 
@@ -255,7 +255,7 @@ Defined in: [src/core/SabrStream.ts:186](https://github.com/LuanRT/googlevideo/b
 
 > **once**(`event`, `listener`): `void`
 
-Defined in: [src/core/SabrStream.ts:187](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L187)
+Defined in: [src/core/SabrStream.ts:187](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L187)
 
 ##### Parameters
 
@@ -279,7 +279,7 @@ Defined in: [src/core/SabrStream.ts:187](https://github.com/LuanRT/googlevideo/b
 
 > **once**(`event`, `listener`): `void`
 
-Defined in: [src/core/SabrStream.ts:188](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L188)
+Defined in: [src/core/SabrStream.ts:188](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L188)
 
 ##### Parameters
 
@@ -303,7 +303,7 @@ Defined in: [src/core/SabrStream.ts:188](https://github.com/LuanRT/googlevideo/b
 
 > **once**(`event`, `listener`): `void`
 
-Defined in: [src/core/SabrStream.ts:189](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L189)
+Defined in: [src/core/SabrStream.ts:189](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L189)
 
 ##### Parameters
 
@@ -329,7 +329,7 @@ Defined in: [src/core/SabrStream.ts:189](https://github.com/LuanRT/googlevideo/b
 
 > **removeAllListeners**(`type?`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:67](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/EventEmitterLike.ts#L67)
+Defined in: [src/utils/EventEmitterLike.ts:67](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/EventEmitterLike.ts#L67)
 
 #### Parameters
 
@@ -385,7 +385,7 @@ Removes the event listener in target's event listener list with the same type, c
 
 > **setClientInfo**(`clientInfo`): `void`
 
-Defined in: [src/core/SabrStream.ts:262](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L262)
+Defined in: [src/core/SabrStream.ts:262](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L262)
 
 Sets the client information used in SABR requests.
 
@@ -407,7 +407,7 @@ The client information object.
 
 > **setDurationMs**(`durationMs`): `void`
 
-Defined in: [src/core/SabrStream.ts:238](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L238)
+Defined in: [src/core/SabrStream.ts:238](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L238)
 
 Sets the total duration of the stream in milliseconds.
 This is optional as duration is often determined automatically from format metadata.
@@ -430,7 +430,7 @@ The duration in milliseconds.
 
 > **setPoToken**(`poToken`): `void`
 
-Defined in: [src/core/SabrStream.ts:221](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L221)
+Defined in: [src/core/SabrStream.ts:221](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L221)
 
 Sets Proof of Origin (PO) token.
 
@@ -452,7 +452,7 @@ The base64-encoded token string.
 
 > **setServerAbrFormats**(`formats`): `void`
 
-Defined in: [src/core/SabrStream.ts:229](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L229)
+Defined in: [src/core/SabrStream.ts:229](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L229)
 
 Sets the available server ABR formats.
 
@@ -474,7 +474,7 @@ An array of available SabrFormat objects.
 
 > **setStreamingURL**(`url`): `void`
 
-Defined in: [src/core/SabrStream.ts:246](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L246)
+Defined in: [src/core/SabrStream.ts:246](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L246)
 
 Sets the server ABR streaming URL for media requests.
 
@@ -496,7 +496,7 @@ The streaming URL.
 
 > **setUstreamerConfig**(`config`): `void`
 
-Defined in: [src/core/SabrStream.ts:254](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L254)
+Defined in: [src/core/SabrStream.ts:254](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L254)
 
 Sets the Ustreamer configuration string.
 
@@ -518,7 +518,7 @@ The Ustreamer configuration.
 
 > **start**(`options`): `Promise`\<\{ `audioStream`: `ReadableStream`\<`Uint8Array`\>; `selectedFormats`: `SelectedFormats`; `videoStream`: `ReadableStream`\<`Uint8Array`\>; \}\>
 
-Defined in: [src/core/SabrStream.ts:327](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L327)
+Defined in: [src/core/SabrStream.ts:327](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L327)
 
 Initiates the streaming process for the selected formats.
 
@@ -548,7 +548,7 @@ If no suitable formats are found or streaming fails.
 
 > **on**(`event`, `listener`): `void`
 
-Defined in: [src/core/SabrStream.ts:160](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L160)
+Defined in: [src/core/SabrStream.ts:160](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L160)
 
 Fired when the server sends initialization metadata for a media format.
 
@@ -574,7 +574,7 @@ Fired when the server sends initialization metadata for a media format.
 
 > **on**(`event`, `listener`): `void`
 
-Defined in: [src/core/SabrStream.ts:165](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L165)
+Defined in: [src/core/SabrStream.ts:165](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L165)
 
 Fired when the server provides an update on the stream's content protection status.
 
@@ -600,7 +600,7 @@ Fired when the server provides an update on the stream's content protection stat
 
 > **on**(`event`, `listener`): `void`
 
-Defined in: [src/core/SabrStream.ts:170](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L170)
+Defined in: [src/core/SabrStream.ts:170](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L170)
 
 Fired when the server directs the client to reload the player, usually indicating the current session is invalid.
 
@@ -626,7 +626,7 @@ Fired when the server directs the client to reload the player, usually indicatin
 
 > **on**(`event`, `listener`): `void`
 
-Defined in: [src/core/SabrStream.ts:175](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L175)
+Defined in: [src/core/SabrStream.ts:175](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L175)
 
 Fired when the entire stream has been successfully downloaded.
 
@@ -652,7 +652,7 @@ Fired when the entire stream has been successfully downloaded.
 
 > **on**(`event`, `listener`): `void`
 
-Defined in: [src/core/SabrStream.ts:180](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStream.ts#L180)
+Defined in: [src/core/SabrStream.ts:180](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStream.ts#L180)
 
 Fired when the download process is manually aborted via the `abort()` method.
 

@@ -2,7 +2,7 @@
 
 # Class: SabrStreamingAdapter
 
-Defined in: [src/core/SabrStreamingAdapter.ts:74](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStreamingAdapter.ts#L74)
+Defined in: [src/core/SabrStreamingAdapter.ts:74](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStreamingAdapter.ts#L74)
 
 Adapter class that handles YouTube SABR integration with media players (e.g., Shaka Player).
 
@@ -17,7 +17,7 @@ What it does:
 
 > **new SabrStreamingAdapter**(`options`): `SabrStreamingAdapter`
 
-Defined in: [src/core/SabrStreamingAdapter.ts:125](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStreamingAdapter.ts#L125)
+Defined in: [src/core/SabrStreamingAdapter.ts:125](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStreamingAdapter.ts#L125)
 
 #### Parameters
 
@@ -41,7 +41,7 @@ SabrAdapterError if a player adapter is not provided.
 
 > **isDisposed**: `boolean` = `false`
 
-Defined in: [src/core/SabrStreamingAdapter.ts:96](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStreamingAdapter.ts#L96)
+Defined in: [src/core/SabrStreamingAdapter.ts:96](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStreamingAdapter.ts#L96)
 
 ## Methods
 
@@ -49,7 +49,7 @@ Defined in: [src/core/SabrStreamingAdapter.ts:96](https://github.com/LuanRT/goog
 
 > **attach**(`player`): `void`
 
-Defined in: [src/core/SabrStreamingAdapter.ts:149](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStreamingAdapter.ts#L149)
+Defined in: [src/core/SabrStreamingAdapter.ts:149](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStreamingAdapter.ts#L149)
 
 Initializes the player adapter and sets up request/response interceptors.
 
@@ -73,7 +73,7 @@ SabrAdapterError if the adapter has been disposed.
 
 > **dispose**(): `void`
 
-Defined in: [src/core/SabrStreamingAdapter.ts:624](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStreamingAdapter.ts#L624)
+Defined in: [src/core/SabrStreamingAdapter.ts:624](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStreamingAdapter.ts#L624)
 
 Releases resources and cleans up the adapter instance.
 After calling dispose, the adapter can no longer be used.
@@ -88,7 +88,7 @@ After calling dispose, the adapter can no longer be used.
 
 > **getCacheManager**(): `null` \| [`CacheManager`](../../utils/classes/CacheManager.md)
 
-Defined in: [src/core/SabrStreamingAdapter.ts:185](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStreamingAdapter.ts#L185)
+Defined in: [src/core/SabrStreamingAdapter.ts:185](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStreamingAdapter.ts#L185)
 
 Returns the cache manager instance, if caching is enabled.
 
@@ -102,7 +102,7 @@ Returns the cache manager instance, if caching is enabled.
 
 > **onMintPoToken**(`cb`): `void`
 
-Defined in: [src/core/SabrStreamingAdapter.ts:117](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStreamingAdapter.ts#L117)
+Defined in: [src/core/SabrStreamingAdapter.ts:117](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStreamingAdapter.ts#L117)
 
 Registers a callback function to mint a new PoToken.
 
@@ -122,7 +122,7 @@ Registers a callback function to mint a new PoToken.
 
 > **onReloadPlayerResponse**(`cb`): `void`
 
-Defined in: [src/core/SabrStreamingAdapter.ts:109](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStreamingAdapter.ts#L109)
+Defined in: [src/core/SabrStreamingAdapter.ts:109](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStreamingAdapter.ts#L109)
 
 Handles server requests to reload the player with new parameters.
 
@@ -142,7 +142,7 @@ Handles server requests to reload the player with new parameters.
 
 > **onSnackbarMessage**(`cb`): `void`
 
-Defined in: [src/core/SabrStreamingAdapter.ts:101](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStreamingAdapter.ts#L101)
+Defined in: [src/core/SabrStreamingAdapter.ts:101](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStreamingAdapter.ts#L101)
 
 Registers a callback function to handle snackbar messages.
 
@@ -162,7 +162,7 @@ Registers a callback function to handle snackbar messages.
 
 > **setServerAbrFormats**(`sabrFormats`): `void`
 
-Defined in: [src/core/SabrStreamingAdapter.ts:177](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStreamingAdapter.ts#L177)
+Defined in: [src/core/SabrStreamingAdapter.ts:177](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStreamingAdapter.ts#L177)
 
 Sets the available SABR formats for streaming.
 
@@ -186,7 +186,7 @@ SabrAdapterError if the adapter has been disposed.
 
 > **setStreamingURL**(`url?`): `void`
 
-Defined in: [src/core/SabrStreamingAdapter.ts:159](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStreamingAdapter.ts#L159)
+Defined in: [src/core/SabrStreamingAdapter.ts:159](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStreamingAdapter.ts#L159)
 
 Sets the initial server abr streaming URL.
 
@@ -210,7 +210,7 @@ SabrAdapterError if the adapter has been disposed.
 
 > **setUstreamerConfig**(`ustreamerConfig?`): `void`
 
-Defined in: [src/core/SabrStreamingAdapter.ts:168](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/SabrStreamingAdapter.ts#L168)
+Defined in: [src/core/SabrStreamingAdapter.ts:168](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/SabrStreamingAdapter.ts#L168)
 
 Sets the ustreamer configuration for SABR requests.
 

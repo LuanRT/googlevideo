@@ -2,7 +2,7 @@
 
 # Interface: RequestSegment
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:91](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamingAdapterTypes.ts#L91)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:91](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamingAdapterTypes.ts#L91)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:91](https://github.com/LuanR
 
 > **getStartTime**: () => `null` \| `number`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:92](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamingAdapterTypes.ts#L92)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:92](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamingAdapterTypes.ts#L92)
 
 #### Returns
 
@@ -22,7 +22,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:92](https://github.com/LuanR
 
 > **isInit**: () => `boolean`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:93](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/types/sabrStreamingAdapterTypes.ts#L93)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:93](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamingAdapterTypes.ts#L93)
 
 #### Returns
 

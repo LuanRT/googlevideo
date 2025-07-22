@@ -2,7 +2,7 @@
 
 # Interface: OnesieRequest
 
-Defined in: [protos/generated/video\_streaming/onesie\_request.ts:18](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_request.ts#L18)
+Defined in: [protos/generated/video\_streaming/onesie\_request.ts:18](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_request.ts#L18)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_request.ts:18](https://gi
 
 > **bufferedRanges**: [`BufferedRange`](BufferedRange.md)[]
 
-Defined in: [protos/generated/video\_streaming/onesie\_request.ts:30](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_request.ts#L30)
+Defined in: [protos/generated/video\_streaming/onesie\_request.ts:30](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_request.ts#L30)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_request.ts:30](https://gi
 
 > `optional` **clientAbrState**: [`ClientAbrState`](ClientAbrState.md)
 
-Defined in: [protos/generated/video\_streaming/onesie\_request.ts:20](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_request.ts#L20)
+Defined in: [protos/generated/video\_streaming/onesie\_request.ts:20](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_request.ts#L20)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_request.ts:20](https://gi
 
 > `optional` **clientDisplayHeight**: `number`
 
-Defined in: [protos/generated/video\_streaming/onesie\_request.ts:24](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_request.ts#L24)
+Defined in: [protos/generated/video\_streaming/onesie\_request.ts:24](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_request.ts#L24)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_request.ts:24](https://gi
 
 > `optional` **innertubeRequest**: [`InnertubeRequest`](InnertubeRequest.md)
 
-Defined in: [protos/generated/video\_streaming/onesie\_request.ts:21](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_request.ts#L21)
+Defined in: [protos/generated/video\_streaming/onesie\_request.ts:21](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_request.ts#L21)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_request.ts:21](https://gi
 
 > `optional` **maxVp9Height**: `number`
 
-Defined in: [protos/generated/video\_streaming/onesie\_request.ts:23](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_request.ts#L23)
+Defined in: [protos/generated/video\_streaming/onesie\_request.ts:23](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_request.ts#L23)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_request.ts:23](https://gi
 
 > `optional` **onesieUstreamerConfig**: `Uint8Array`
 
-Defined in: [protos/generated/video\_streaming/onesie\_request.ts:22](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_request.ts#L22)
+Defined in: [protos/generated/video\_streaming/onesie\_request.ts:22](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_request.ts#L22)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_request.ts:22](https://gi
 
 > `optional` **reloadPlaybackParams**: [`ReloadPlaybackParams`](ReloadPlaybackParams.md)
 
-Defined in: [protos/generated/video\_streaming/onesie\_request.ts:31](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_request.ts#L31)
+Defined in: [protos/generated/video\_streaming/onesie\_request.ts:31](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_request.ts#L31)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_request.ts:31](https://gi
 
 > `optional` **requestTarget**: [`OnesieRequestTarget`](../enumerations/OnesieRequestTarget.md)
 
-Defined in: [protos/generated/video\_streaming/onesie\_request.ts:29](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_request.ts#L29)
+Defined in: [protos/generated/video\_streaming/onesie\_request.ts:29](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_request.ts#L29)
 
 MLOnesieRequestTarget
 
@@ -76,7 +76,7 @@ MLOnesieRequestTarget
 
 > `optional` **streamerContext**: [`StreamerContext`](StreamerContext.md)
 
-Defined in: [protos/generated/video\_streaming/onesie\_request.ts:25](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_request.ts#L25)
+Defined in: [protos/generated/video\_streaming/onesie\_request.ts:25](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_request.ts#L25)
 
 ***
 
@@ -84,4 +84,4 @@ Defined in: [protos/generated/video\_streaming/onesie\_request.ts:25](https://gi
 
 > **urls**: `string`[]
 
-Defined in: [protos/generated/video\_streaming/onesie\_request.ts:19](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/protos/generated/video_streaming/onesie_request.ts#L19)
+Defined in: [protos/generated/video\_streaming/onesie\_request.ts:19](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_request.ts#L19)

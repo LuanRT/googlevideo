@@ -2,7 +2,9 @@
 
 # Class: CompositeBuffer
 
-Defined in: [src/core/CompositeBuffer.ts:1](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/CompositeBuffer.ts#L1)
+Defined in: [src/core/CompositeBuffer.ts:4](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/CompositeBuffer.ts#L4)
+
+A memory-efficient buffer that manages discontinuous chunks as a single logical stream.
 
 ## Constructors
 
@@ -10,7 +12,7 @@ Defined in: [src/core/CompositeBuffer.ts:1](https://github.com/LuanRT/googlevide
 
 > **new CompositeBuffer**(`chunks`): `CompositeBuffer`
 
-Defined in: [src/core/CompositeBuffer.ts:8](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/CompositeBuffer.ts#L8)
+Defined in: [src/core/CompositeBuffer.ts:11](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/CompositeBuffer.ts#L11)
 
 #### Parameters
 
@@ -28,7 +30,7 @@ Defined in: [src/core/CompositeBuffer.ts:8](https://github.com/LuanRT/googlevide
 
 > **chunks**: `Uint8Array`[]
 
-Defined in: [src/core/CompositeBuffer.ts:2](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/CompositeBuffer.ts#L2)
+Defined in: [src/core/CompositeBuffer.ts:5](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/CompositeBuffer.ts#L5)
 
 ***
 
@@ -36,7 +38,7 @@ Defined in: [src/core/CompositeBuffer.ts:2](https://github.com/LuanRT/googlevide
 
 > **currentChunkIndex**: `number`
 
-Defined in: [src/core/CompositeBuffer.ts:4](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/CompositeBuffer.ts#L4)
+Defined in: [src/core/CompositeBuffer.ts:7](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/CompositeBuffer.ts#L7)
 
 ***
 
@@ -44,7 +46,7 @@ Defined in: [src/core/CompositeBuffer.ts:4](https://github.com/LuanRT/googlevide
 
 > **currentChunkOffset**: `number`
 
-Defined in: [src/core/CompositeBuffer.ts:3](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/CompositeBuffer.ts#L3)
+Defined in: [src/core/CompositeBuffer.ts:6](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/CompositeBuffer.ts#L6)
 
 ***
 
@@ -52,7 +54,7 @@ Defined in: [src/core/CompositeBuffer.ts:3](https://github.com/LuanRT/googlevide
 
 > `optional` **currentDataView**: `DataView`
 
-Defined in: [src/core/CompositeBuffer.ts:5](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/CompositeBuffer.ts#L5)
+Defined in: [src/core/CompositeBuffer.ts:8](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/CompositeBuffer.ts#L8)
 
 ***
 
@@ -60,7 +62,7 @@ Defined in: [src/core/CompositeBuffer.ts:5](https://github.com/LuanRT/googlevide
 
 > **totalLength**: `number`
 
-Defined in: [src/core/CompositeBuffer.ts:6](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/CompositeBuffer.ts#L6)
+Defined in: [src/core/CompositeBuffer.ts:9](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/CompositeBuffer.ts#L9)
 
 ## Methods
 
@@ -68,7 +70,7 @@ Defined in: [src/core/CompositeBuffer.ts:6](https://github.com/LuanRT/googlevide
 
 > **append**(`chunk`): `void`
 
-Defined in: [src/core/CompositeBuffer.ts:16](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/CompositeBuffer.ts#L16)
+Defined in: [src/core/CompositeBuffer.ts:19](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/CompositeBuffer.ts#L19)
 
 #### Parameters
 
@@ -86,7 +88,7 @@ Defined in: [src/core/CompositeBuffer.ts:16](https://github.com/LuanRT/googlevid
 
 > **canReadBytes**(`position`, `length`): `boolean`
 
-Defined in: [src/core/CompositeBuffer.ts:65](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/CompositeBuffer.ts#L65)
+Defined in: [src/core/CompositeBuffer.ts:68](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/CompositeBuffer.ts#L68)
 
 #### Parameters
 
@@ -108,7 +110,7 @@ Defined in: [src/core/CompositeBuffer.ts:65](https://github.com/LuanRT/googlevid
 
 > **focus**(`position`): `void`
 
-Defined in: [src/core/CompositeBuffer.ts:74](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/CompositeBuffer.ts#L74)
+Defined in: [src/core/CompositeBuffer.ts:77](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/CompositeBuffer.ts#L77)
 
 #### Parameters
 
@@ -126,7 +128,7 @@ Defined in: [src/core/CompositeBuffer.ts:74](https://github.com/LuanRT/googlevid
 
 > **getLength**(): `number`
 
-Defined in: [src/core/CompositeBuffer.ts:61](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/CompositeBuffer.ts#L61)
+Defined in: [src/core/CompositeBuffer.ts:64](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/CompositeBuffer.ts#L64)
 
 #### Returns
 
@@ -138,7 +140,7 @@ Defined in: [src/core/CompositeBuffer.ts:61](https://github.com/LuanRT/googlevid
 
 > **getUint8**(`position`): `number`
 
-Defined in: [src/core/CompositeBuffer.ts:69](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/CompositeBuffer.ts#L69)
+Defined in: [src/core/CompositeBuffer.ts:72](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/CompositeBuffer.ts#L72)
 
 #### Parameters
 
@@ -156,7 +158,7 @@ Defined in: [src/core/CompositeBuffer.ts:69](https://github.com/LuanRT/googlevid
 
 > **isFocused**(`position`): `boolean`
 
-Defined in: [src/core/CompositeBuffer.ts:90](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/CompositeBuffer.ts#L90)
+Defined in: [src/core/CompositeBuffer.ts:93](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/CompositeBuffer.ts#L93)
 
 #### Parameters
 
@@ -174,7 +176,7 @@ Defined in: [src/core/CompositeBuffer.ts:90](https://github.com/LuanRT/googlevid
 
 > **split**(`position`): `object`
 
-Defined in: [src/core/CompositeBuffer.ts:35](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/core/CompositeBuffer.ts#L35)
+Defined in: [src/core/CompositeBuffer.ts:38](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/CompositeBuffer.ts#L38)
 
 #### Parameters
 

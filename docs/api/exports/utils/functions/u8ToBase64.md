@@ -4,7 +4,7 @@
 
 > **u8ToBase64**(`u8`): `string`
 
-Defined in: [src/utils/shared.ts:59](https://github.com/LuanRT/googlevideo/blob/cc730b4dbadc5ae882d6aa28d716e442943577fa/src/utils/shared.ts#L59)
+Defined in: [src/utils/shared.ts:71](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/shared.ts#L71)
 
 Converts a Uint8Array to a Base64 string.
 
