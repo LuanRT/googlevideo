@@ -4,8 +4,6 @@
   "description": "A collection of modules for working with YouTube's proprietary video streaming protocols (UMP/SABR).",
   "main": "dist/index.js",
   "type": "module",
-  "types": "./dist/src/index.d.ts",
-  "module": "./dist/src/index.js",
   "scripts": {
     "watch": "npx tspc --watch",
     "lint": "npx eslint ./src/**/*.ts",
