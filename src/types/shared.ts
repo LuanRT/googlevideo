@@ -1,3 +1,8 @@
+/**
+ * This module contains type definitions used across the library.
+ * @module
+ */
+
 import type { CompositeBuffer } from '../core/CompositeBuffer.js';
 
 export type Part = {
