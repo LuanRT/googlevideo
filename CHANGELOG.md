@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.2](https://github.com/LuanRT/googlevideo/compare/googlevideo-v4.0.1...googlevideo-v4.0.2) (2025-07-24)
+
+
+### Bug Fixes
+
+* **SabrStream:** Catch part decoding errors and improve stall detection logic ([b4a0728](https://github.com/LuanRT/googlevideo/commit/b4a0728f6ac29c5948c540f97b920b91b193c26b))
+
 ## [4.0.1](https://github.com/LuanRT/googlevideo/compare/googlevideo-v4.0.0...googlevideo-v4.0.1) (2025-07-22)
 
 
