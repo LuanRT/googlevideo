@@ -4,7 +4,7 @@
 
 > **ResponseFilter** = (`response`) => `Promise`\<[`PlayerHttpResponse`](../interfaces/PlayerHttpResponse.md) \| `undefined`\> \| [`PlayerHttpResponse`](../interfaces/PlayerHttpResponse.md) \| `undefined`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:97](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamingAdapterTypes.ts#L97)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:97](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L97)
 
 ## Parameters
 

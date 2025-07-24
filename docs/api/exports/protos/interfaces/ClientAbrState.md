@@ -2,7 +2,7 @@
 
 # Interface: ClientAbrState
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:20](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L20)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:20](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L20)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:20](https:/
 
 > `optional` **allowProximaLiveLatency**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:63](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L63)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:63](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L63)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:63](https:/
 
 > `optional` **audioRoute**: [`PlaybackAudioRouteOutputType`](../enumerations/PlaybackAudioRouteOutputType.md)
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:34](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L34)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:34](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L34)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:34](https:/
 
 > `optional` **audioTrackId**: `string`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:67](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L67)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:67](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L67)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:67](https:/
 
 > `optional` **av1QualityThreshold**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:58](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L58)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:58](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L58)
 
 2160
 
@@ -44,7 +44,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:58](https:/
 
 > `optional` **bandwidthEstimate**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:30](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L30)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:30](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L30)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:30](https:/
 
 > `optional` **clientBitrateCapBytesPerSec**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:27](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L27)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:27](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L27)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:27](https:/
 
 > `optional` **clientViewportHeight**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:26](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L26)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:26](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L26)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:26](https:/
 
 > `optional` **clientViewportIsFlexible**: `boolean`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:29](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L29)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:29](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L29)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:29](https:/
 
 > `optional` **clientViewportWidth**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:25](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L25)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:25](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L25)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:25](https:/
 
 > `optional` **dataSaverMode**: `boolean`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:37](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L37)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:37](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L37)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:37](https:/
 
 > `optional` **detailedNetworkType**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:24](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L24)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:24](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L24)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:24](https:/
 
 > `optional` **disableStreamingXhr**: `boolean`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:52](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L52)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:52](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L52)
 
 ***
 
@@ -108,7 +108,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:52](https:/
 
 > `optional` **drcEnabled**: `boolean`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:47](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L47)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:47](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L47)
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:47](https:/
 
 > `optional` **elapsedWallTimeMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:41](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L41)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:41](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L41)
 
 ***
 
@@ -124,7 +124,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:41](https:/
 
 > `optional` **enabledTrackTypesBitfield**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:44](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L44)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:44](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L44)
 
 ***
 
@@ -132,7 +132,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:44](https:/
 
 > `optional` **enableVoiceBoost**: `boolean`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:68](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L68)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:68](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L68)
 
 ***
 
@@ -140,7 +140,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:68](https:/
 
 > `optional` **field48**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:48](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L48)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:48](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L48)
 
 ***
 
@@ -148,7 +148,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:48](https:/
 
 > `optional` **field50**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:49](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L49)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:49](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L49)
 
 ***
 
@@ -156,7 +156,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:49](https:/
 
 > `optional` **field51**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:50](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L50)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:50](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L50)
 
 ***
 
@@ -164,7 +164,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:50](https:/
 
 > `optional` **field57**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:53](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L53)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:53](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L53)
 
 ***
 
@@ -172,7 +172,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:53](https:/
 
 > `optional` **field60**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:59](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L59)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:59](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L59)
 
 ***
 
@@ -180,7 +180,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:59](https:/
 
 > `optional` **field67**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:65](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L65)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:65](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L65)
 
 ***
 
@@ -188,7 +188,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:65](https:/
 
 > `optional` **isPrefetch**: `boolean`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:60](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L60)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:60](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L60)
 
 ***
 
@@ -196,7 +196,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:60](https:/
 
 > `optional` **lastManualDirection**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:22](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L22)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:22](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L22)
 
 ***
 
@@ -204,7 +204,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:22](https:/
 
 > `optional` **lastManualSelectedResolution**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:23](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L23)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:23](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L23)
 
 ***
 
@@ -212,7 +212,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:23](https:/
 
 > `optional` **maxAudioQuality**: [`AudioQuality`](../enumerations/AudioQuality.md)
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:32](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L32)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:32](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L32)
 
 ***
 
@@ -220,7 +220,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:32](https:/
 
 > `optional` **maxPacingRate**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:45](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L45)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:45](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L45)
 
 ***
 
@@ -228,7 +228,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:45](https:/
 
 > `optional` **mediaCapabilities**: [`MediaCapabilities`](MediaCapabilities.md)
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:42](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L42)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:42](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L42)
 
 ***
 
@@ -236,7 +236,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:42](https:/
 
 > `optional` **minAudioQuality**: [`AudioQuality`](../enumerations/AudioQuality.md)
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:31](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L31)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:31](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L31)
 
 ***
 
@@ -244,7 +244,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:31](https:/
 
 > `optional` **networkMeteredState**: [`NetworkMeteredState`](../enumerations/NetworkMeteredState.md)
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:38](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L38)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:38](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L38)
 
 ***
 
@@ -252,7 +252,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:38](https:/
 
 > `optional` **playbackAuthorization**: [`PlaybackAuthorization`](PlaybackAuthorization.md)
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:69](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L69)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:69](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L69)
 
 ***
 
@@ -260,7 +260,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:69](https:/
 
 > `optional` **playbackRate**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:40](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L40)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:40](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L40)
 
 ***
 
@@ -268,7 +268,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:40](https:/
 
 > `optional` **playerState**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:46](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L46)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:46](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L46)
 
 ***
 
@@ -276,7 +276,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:46](https:/
 
 > `optional` **playerTimeMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:35](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L35)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:35](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L35)
 
 ***
 
@@ -284,7 +284,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:35](https:/
 
 > `optional` **preferVp9**: `boolean`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:54](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L54)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:54](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L54)
 
 ***
 
@@ -292,7 +292,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:54](https:/
 
 > `optional` **sabrForceMaxNetworkInterruptionDurationMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:66](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L66)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:66](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L66)
 
 ***
 
@@ -300,15 +300,15 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:66](https:/
 
 > `optional` **sabrForceProxima**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:64](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L64)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:64](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L64)
 
 ***
 
 ### sabrLicenseConstraint?
 
-> `optional` **sabrLicenseConstraint**: `Uint8Array`
+> `optional` **sabrLicenseConstraint**: `Uint8Array`\<`ArrayBufferLike`\>
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:62](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L62)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:62](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L62)
 
 ***
 
@@ -316,7 +316,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:62](https:/
 
 > `optional` **sabrReportRequestCancellationInfo**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:51](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L51)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:51](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L51)
 
 ***
 
@@ -324,7 +324,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:51](https:/
 
 > `optional` **sabrSupportQualityConstraints**: `boolean`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:61](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L61)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:61](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L61)
 
 ***
 
@@ -332,7 +332,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:61](https:/
 
 > `optional` **stickyResolution**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:28](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L28)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:28](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L28)
 
 ***
 
@@ -340,7 +340,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:28](https:/
 
 > `optional` **timeSinceLastActionMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:43](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L43)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:43](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L43)
 
 ***
 
@@ -348,7 +348,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:43](https:/
 
 > `optional` **timeSinceLastManualFormatSelectionMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:21](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L21)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:21](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L21)
 
 ***
 
@@ -356,7 +356,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:21](https:/
 
 > `optional` **timeSinceLastSeek**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:36](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L36)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:36](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L36)
 
 ***
 
@@ -364,7 +364,7 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:36](https:/
 
 > `optional` **videoQualitySetting**: [`VideoQualitySetting`](../enumerations/VideoQualitySetting.md)
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:33](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L33)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:33](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L33)
 
 ***
 
@@ -372,4 +372,4 @@ Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:33](https:/
 
 > `optional` **visibility**: `number`
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:39](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L39)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:39](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L39)

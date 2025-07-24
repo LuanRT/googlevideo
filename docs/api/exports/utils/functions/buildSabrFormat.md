@@ -4,7 +4,7 @@
 
 > **buildSabrFormat**(`formatStream`): [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)
 
-Defined in: [src/utils/shared.ts:104](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/shared.ts#L104)
+Defined in: [codeberg/googlevideo/src/utils/shared.ts:104](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/shared.ts#L104)
 
 Converts a FormatStream object to a SabrFormat object.
 

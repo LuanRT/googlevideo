@@ -2,7 +2,7 @@
 
 # Interface: SabrRedirect
 
-Defined in: [protos/generated/video\_streaming/sabr\_redirect.ts:12](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/sabr_redirect.ts#L12)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/sabr\_redirect.ts:12](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/sabr_redirect.ts#L12)
 
 ## Properties
 
@@ -10,4 +10,4 @@ Defined in: [protos/generated/video\_streaming/sabr\_redirect.ts:12](https://git
 
 > `optional` **url**: `string`
 
-Defined in: [protos/generated/video\_streaming/sabr\_redirect.ts:13](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/sabr_redirect.ts#L13)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/sabr\_redirect.ts:13](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/sabr_redirect.ts#L13)

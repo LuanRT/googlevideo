@@ -2,7 +2,7 @@
 
 # Interface: SabrOptions
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:43](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamingAdapterTypes.ts#L43)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:43](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L43)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:43](https://github.com/LuanR
 
 > `optional` **clientInfo**: [`ClientInfo`](../../protos/interfaces/ClientInfo.md)
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:72](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamingAdapterTypes.ts#L72)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:72](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L72)
 
 Client information to send with SABR requests.
 
@@ -20,7 +20,7 @@ Client information to send with SABR requests.
 
 > `optional` **enableCaching**: `boolean`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:48](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamingAdapterTypes.ts#L48)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:48](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L48)
 
 Whether to enable caching of SABR segments.
 
@@ -36,7 +36,7 @@ true
 
 > `optional` **enableVerboseRequestLogging**: `boolean`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:54](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamingAdapterTypes.ts#L54)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:54](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L54)
 
 Enables verbose logging of all SABR requests made by the player.
 @NOTE: `DEBUG` level logging must be enabled for this to take effect.
@@ -53,7 +53,7 @@ false
 
 > `optional` **maxCacheAgeSeconds**: `number`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:64](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamingAdapterTypes.ts#L64)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:64](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L64)
 
 Maximum age of cached segments in seconds.
 
@@ -69,7 +69,7 @@ Maximum age of cached segments in seconds.
 
 > `optional` **maxCacheSizeMB**: `number`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:59](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamingAdapterTypes.ts#L59)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:59](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L59)
 
 Maximum size of the segment cache in megabytes.
 
@@ -85,6 +85,6 @@ Maximum size of the segment cache in megabytes.
 
 > `optional` **playerAdapter**: [`SabrPlayerAdapter`](SabrPlayerAdapter.md)
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:68](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamingAdapterTypes.ts#L68)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:68](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L68)
 
 Player adapter to use for SABR streaming.

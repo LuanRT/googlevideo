@@ -2,7 +2,7 @@
 
 # Interface: Range
 
-Defined in: [protos/generated/misc/common.ts:192](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/misc/common.ts#L192)
+Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:192](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L192)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/misc/common.ts:192](https://github.com/LuanRT/goog
 
 > `optional` **end**: `number`
 
-Defined in: [protos/generated/misc/common.ts:196](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/misc/common.ts#L196)
+Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:196](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L196)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/misc/common.ts:196](https://github.com/LuanRT/goog
 
 > `optional` **legacyEnd**: `number`
 
-Defined in: [protos/generated/misc/common.ts:194](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/misc/common.ts#L194)
+Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:194](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L194)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/misc/common.ts:194](https://github.com/LuanRT/goog
 
 > `optional` **legacyStart**: `number`
 
-Defined in: [protos/generated/misc/common.ts:193](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/misc/common.ts#L193)
+Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:193](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L193)
 
 ***
 
@@ -34,4 +34,4 @@ Defined in: [protos/generated/misc/common.ts:193](https://github.com/LuanRT/goog
 
 > `optional` **start**: `number`
 
-Defined in: [protos/generated/misc/common.ts:195](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/misc/common.ts#L195)
+Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:195](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L195)

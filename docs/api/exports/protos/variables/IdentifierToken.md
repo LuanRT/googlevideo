@@ -4,4 +4,4 @@
 
 > **IdentifierToken**: `MessageFns`\<[`IdentifierToken`](../interfaces/IdentifierToken.md)\>
 
-Defined in: [protos/generated/misc/common.ts:199](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/misc/common.ts#L199)
+Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:199](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L199)

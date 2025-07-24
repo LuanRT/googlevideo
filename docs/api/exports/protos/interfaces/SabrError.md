@@ -2,7 +2,7 @@
 
 # Interface: SabrError
 
-Defined in: [protos/generated/video\_streaming/sabr\_error.ts:12](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/sabr_error.ts#L12)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/sabr\_error.ts:12](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/sabr_error.ts#L12)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/sabr\_error.ts:12](https://github
 
 > `optional` **code**: `number`
 
-Defined in: [protos/generated/video\_streaming/sabr\_error.ts:14](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/sabr_error.ts#L14)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/sabr\_error.ts:14](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/sabr_error.ts#L14)
 
 ***
 
@@ -18,4 +18,4 @@ Defined in: [protos/generated/video\_streaming/sabr\_error.ts:14](https://github
 
 > `optional` **type**: `string`
 
-Defined in: [protos/generated/video\_streaming/sabr\_error.ts:13](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/sabr_error.ts#L13)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/sabr\_error.ts:13](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/sabr_error.ts#L13)

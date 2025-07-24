@@ -2,7 +2,7 @@
 
 # Enumeration: EnabledTrackTypes
 
-Defined in: [src/utils/shared.ts:5](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/shared.ts#L5)
+Defined in: [codeberg/googlevideo/src/utils/shared.ts:5](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/shared.ts#L5)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: [src/utils/shared.ts:5](https://github.com/LuanRT/googlevideo/blob/5
 
 > **AUDIO\_ONLY**: `1`
 
-Defined in: [src/utils/shared.ts:7](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/shared.ts#L7)
+Defined in: [codeberg/googlevideo/src/utils/shared.ts:7](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/shared.ts#L7)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/utils/shared.ts:7](https://github.com/LuanRT/googlevideo/blob/5
 
 > **VIDEO\_AND\_AUDIO**: `0`
 
-Defined in: [src/utils/shared.ts:6](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/shared.ts#L6)
+Defined in: [codeberg/googlevideo/src/utils/shared.ts:6](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/shared.ts#L6)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [src/utils/shared.ts:6](https://github.com/LuanRT/googlevideo/blob/5
 
 > **VIDEO\_ONLY**: `2`
 
-Defined in: [src/utils/shared.ts:8](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/shared.ts#L8)
+Defined in: [codeberg/googlevideo/src/utils/shared.ts:8](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/shared.ts#L8)

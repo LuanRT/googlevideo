@@ -2,7 +2,7 @@
 
 # Class: UmpReader
 
-Defined in: [src/core/UmpReader.ts:7](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/UmpReader.ts#L7)
+Defined in: [codeberg/googlevideo/src/core/UmpReader.ts:7](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpReader.ts#L7)
 
 A parser that efficiently processes chunked UMP binary data.
 
@@ -12,7 +12,7 @@ A parser that efficiently processes chunked UMP binary data.
 
 > **new UmpReader**(`compositeBuffer`): `UmpReader`
 
-Defined in: [src/core/UmpReader.ts:8](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/UmpReader.ts#L8)
+Defined in: [codeberg/googlevideo/src/core/UmpReader.ts:8](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpReader.ts#L8)
 
 #### Parameters
 
@@ -30,7 +30,7 @@ Defined in: [src/core/UmpReader.ts:8](https://github.com/LuanRT/googlevideo/blob
 
 > **canReadFromCurrentChunk**(`offset`, `length`): `boolean`
 
-Defined in: [src/core/UmpReader.ts:126](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/UmpReader.ts#L126)
+Defined in: [codeberg/googlevideo/src/core/UmpReader.ts:126](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpReader.ts#L126)
 
 Checks if the specified bytes can be read from the current chunk.
 
@@ -60,7 +60,7 @@ True if bytes can be read from current chunk, false otherwise.
 
 > **getCurrentDataView**(): `DataView`
 
-Defined in: [src/core/UmpReader.ts:134](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/UmpReader.ts#L134)
+Defined in: [codeberg/googlevideo/src/core/UmpReader.ts:134](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpReader.ts#L134)
 
 Gets a DataView of the current chunk, creating it if necessary.
 
@@ -76,7 +76,7 @@ DataView for the current chunk.
 
 > **read**(`handlePart`): `undefined` \| [`Part`](../../../types/shared/type-aliases/Part.md)
 
-Defined in: [src/core/UmpReader.ts:15](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/UmpReader.ts#L15)
+Defined in: [codeberg/googlevideo/src/core/UmpReader.ts:15](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpReader.ts#L15)
 
 Parses parts from the buffer and calls the handler for each complete part.
 
@@ -100,7 +100,7 @@ Partial part if parsing is incomplete, undefined otherwise.
 
 > **readVarInt**(`offset`): \[`number`, `number`\]
 
-Defined in: [src/core/UmpReader.ts:57](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/UmpReader.ts#L57)
+Defined in: [codeberg/googlevideo/src/core/UmpReader.ts:57](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpReader.ts#L57)
 
 Reads a variable-length integer from the buffer.
 

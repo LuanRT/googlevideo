@@ -4,7 +4,7 @@
 
 > **isGoogleVideoURL**(`url`): `boolean`
 
-Defined in: [src/utils/shared.ts:23](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/shared.ts#L23)
+Defined in: [codeberg/googlevideo/src/utils/shared.ts:23](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/shared.ts#L23)
 
 Determines if a given URL is a Google video URL, specifically for YouTube or SABR-related content.
 

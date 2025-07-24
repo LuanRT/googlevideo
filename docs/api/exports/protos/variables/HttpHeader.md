@@ -4,4 +4,4 @@
 
 > **HttpHeader**: `MessageFns`\<[`HttpHeader`](../interfaces/HttpHeader.md)\>
 
-Defined in: [protos/generated/misc/common.ts:181](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/misc/common.ts#L181)
+Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:181](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L181)

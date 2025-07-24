@@ -2,7 +2,7 @@
 
 # Interface: SabrStreamConfig
 
-Defined in: [src/types/sabrStreamTypes.ts:6](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L6)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamTypes.ts:6](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamTypes.ts#L6)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:6](https://github.com/LuanRT/googlevid
 
 > `optional` **clientInfo**: [`ClientInfo`](../../protos/interfaces/ClientInfo.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:29](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L29)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamTypes.ts:29](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamTypes.ts#L29)
 
 Client information used to identify the requesting device/app.
 Contains details like client name, version, and capabilities.
@@ -21,7 +21,7 @@ Contains details like client name, version, and capabilities.
 
 > `optional` **durationMs**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:40](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L40)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamTypes.ts:40](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamTypes.ts#L40)
 
 Total duration of the media content in milliseconds.
 If not provided, will be determined from format metadata.
@@ -32,7 +32,7 @@ If not provided, will be determined from format metadata.
 
 > `optional` **fetch**: \{(`input`, `init?`): `Promise`\<`Response`\>; (`input`, `init?`): `Promise`\<`Response`\>; \}
 
-Defined in: [src/types/sabrStreamTypes.ts:11](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L11)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamTypes.ts:11](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamTypes.ts#L11)
 
 Custom fetch implementation to use for HTTP requests.
 If not provided, the global `fetch` function will be used.
@@ -41,7 +41,7 @@ If not provided, the global `fetch` function will be used.
 
 > (`input`, `init?`): `Promise`\<`Response`\>
 
-[MDN Reference](https://developer.mozilla.org/docs/Web/API/fetch)
+[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/fetch)
 
 ##### Parameters
 
@@ -61,7 +61,7 @@ If not provided, the global `fetch` function will be used.
 
 > (`input`, `init?`): `Promise`\<`Response`\>
 
-[MDN Reference](https://developer.mozilla.org/docs/Web/API/fetch)
+[MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/fetch)
 
 ##### Parameters
 
@@ -83,7 +83,7 @@ If not provided, the global `fetch` function will be used.
 
 > `optional` **formats**: [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)[]
 
-Defined in: [src/types/sabrStreamTypes.ts:45](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L45)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamTypes.ts:45](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamTypes.ts#L45)
 
 Array of available streaming formats obtained from the player response.
 
@@ -93,7 +93,7 @@ Array of available streaming formats obtained from the player response.
 
 > `optional` **poToken**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:34](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L34)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamTypes.ts:34](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamTypes.ts#L34)
 
 Proof of Origin token for content protection verification.
 
@@ -103,7 +103,7 @@ Proof of Origin token for content protection verification.
 
 > `optional` **serverAbrStreamingUrl**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:17](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L17)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamTypes.ts:17](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamTypes.ts#L17)
 
 The URL endpoint for server-side ABR streaming requests.
 This is typically obtained from the initial player response.
@@ -114,7 +114,7 @@ This is typically obtained from the initial player response.
 
 > `optional` **videoPlaybackUstreamerConfig**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:23](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/sabrStreamTypes.ts#L23)
+Defined in: [codeberg/googlevideo/src/types/sabrStreamTypes.ts:23](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamTypes.ts#L23)
 
 Base64-encoded Ustreamer configuration obtained from the player response.
 Required for authorizing and configuring the streaming session.

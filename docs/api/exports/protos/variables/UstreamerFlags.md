@@ -4,4 +4,4 @@
 
 > **UstreamerFlags**: `MessageFns`\<[`UstreamerFlags`](../interfaces/UstreamerFlags.md)\>
 
-Defined in: [protos/generated/video\_streaming/innertube\_request.ts:27](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/innertube_request.ts#L27)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/innertube\_request.ts:27](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/innertube_request.ts#L27)

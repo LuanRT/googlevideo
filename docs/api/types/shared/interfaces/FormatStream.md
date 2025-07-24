@@ -2,7 +2,7 @@
 
 # Interface: FormatStream
 
-Defined in: [src/types/shared.ts:33](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L33)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:38](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L38)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/shared.ts:33](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **approx\_duration\_ms**: `number`
 
-Defined in: [src/types/shared.ts:54](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L54)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:59](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L59)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/types/shared.ts:54](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **approxDurationMs**: `string`
 
-Defined in: [src/types/shared.ts:55](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L55)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:60](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L60)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/types/shared.ts:55](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **audio\_quality**: `string`
 
-Defined in: [src/types/shared.ts:42](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L42)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:47](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L47)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/types/shared.ts:42](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **audio\_track**: `object`
 
-Defined in: [src/types/shared.ts:50](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L50)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:55](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L55)
 
 #### id
 
@@ -46,7 +46,7 @@ Defined in: [src/types/shared.ts:50](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **audioQuality**: `string`
 
-Defined in: [src/types/shared.ts:43](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L43)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:48](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L48)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [src/types/shared.ts:43](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **audioTrackId**: `string`
 
-Defined in: [src/types/shared.ts:51](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L51)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:56](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L56)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [src/types/shared.ts:51](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **average\_bitrate**: `number`
 
-Defined in: [src/types/shared.ts:45](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L45)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:50](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L50)
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: [src/types/shared.ts:45](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **averageBitrate**: `number`
 
-Defined in: [src/types/shared.ts:46](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L46)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:51](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L51)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: [src/types/shared.ts:46](https://github.com/LuanRT/googlevideo/blob/
 
 > **bitrate**: `number`
 
-Defined in: [src/types/shared.ts:44](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L44)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:49](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L49)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [src/types/shared.ts:44](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **content\_length**: `number`
 
-Defined in: [src/types/shared.ts:56](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L56)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:61](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L61)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: [src/types/shared.ts:56](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **contentLength**: `string`
 
-Defined in: [src/types/shared.ts:57](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L57)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:62](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L62)
 
 ***
 
@@ -102,7 +102,7 @@ Defined in: [src/types/shared.ts:57](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **height**: `number`
 
-Defined in: [src/types/shared.ts:39](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L39)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:44](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L44)
 
 ***
 
@@ -110,7 +110,7 @@ Defined in: [src/types/shared.ts:39](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **is\_auto\_dubbed**: `boolean`
 
-Defined in: [src/types/shared.ts:58](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L58)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:63](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L63)
 
 ***
 
@@ -118,7 +118,7 @@ Defined in: [src/types/shared.ts:58](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **is\_descriptive**: `boolean`
 
-Defined in: [src/types/shared.ts:59](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L59)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:64](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L64)
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: [src/types/shared.ts:59](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **is\_drc**: `boolean`
 
-Defined in: [src/types/shared.ts:52](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L52)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:57](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L57)
 
 ***
 
@@ -134,7 +134,7 @@ Defined in: [src/types/shared.ts:52](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **is\_dubbed**: `boolean`
 
-Defined in: [src/types/shared.ts:60](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L60)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:65](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L65)
 
 ***
 
@@ -142,7 +142,7 @@ Defined in: [src/types/shared.ts:60](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **is\_original**: `boolean`
 
-Defined in: [src/types/shared.ts:62](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L62)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:67](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L67)
 
 ***
 
@@ -150,7 +150,7 @@ Defined in: [src/types/shared.ts:62](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **is\_secondary**: `boolean`
 
-Defined in: [src/types/shared.ts:63](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L63)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:68](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L68)
 
 ***
 
@@ -158,7 +158,7 @@ Defined in: [src/types/shared.ts:63](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **isDrc**: `boolean`
 
-Defined in: [src/types/shared.ts:53](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L53)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:58](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L58)
 
 ***
 
@@ -166,7 +166,7 @@ Defined in: [src/types/shared.ts:53](https://github.com/LuanRT/googlevideo/blob/
 
 > **itag**: `number`
 
-Defined in: [src/types/shared.ts:34](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L34)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:39](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L39)
 
 ***
 
@@ -174,7 +174,7 @@ Defined in: [src/types/shared.ts:34](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **language**: `null` \| `string`
 
-Defined in: [src/types/shared.ts:61](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L61)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:66](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L66)
 
 ***
 
@@ -182,7 +182,7 @@ Defined in: [src/types/shared.ts:61](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **last\_modified\_ms**: `string`
 
-Defined in: [src/types/shared.ts:35](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L35)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:40](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L40)
 
 ***
 
@@ -190,7 +190,7 @@ Defined in: [src/types/shared.ts:35](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **lastModified**: `string`
 
-Defined in: [src/types/shared.ts:36](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L36)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:41](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L41)
 
 ***
 
@@ -198,7 +198,7 @@ Defined in: [src/types/shared.ts:36](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **mime\_type**: `string`
 
-Defined in: [src/types/shared.ts:40](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L40)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:45](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L45)
 
 ***
 
@@ -206,7 +206,7 @@ Defined in: [src/types/shared.ts:40](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **mimeType**: `string`
 
-Defined in: [src/types/shared.ts:41](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L41)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:46](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L46)
 
 ***
 
@@ -214,7 +214,7 @@ Defined in: [src/types/shared.ts:41](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **quality**: `string`
 
-Defined in: [src/types/shared.ts:47](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L47)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:52](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L52)
 
 ***
 
@@ -222,7 +222,7 @@ Defined in: [src/types/shared.ts:47](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **quality\_label**: `string`
 
-Defined in: [src/types/shared.ts:48](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L48)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:53](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L53)
 
 ***
 
@@ -230,7 +230,7 @@ Defined in: [src/types/shared.ts:48](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **qualityLabel**: `string`
 
-Defined in: [src/types/shared.ts:49](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L49)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:54](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L54)
 
 ***
 
@@ -238,7 +238,7 @@ Defined in: [src/types/shared.ts:49](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **width**: `number`
 
-Defined in: [src/types/shared.ts:38](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L38)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:43](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L43)
 
 ***
 
@@ -246,4 +246,4 @@ Defined in: [src/types/shared.ts:38](https://github.com/LuanRT/googlevideo/blob/
 
 > `optional` **xtags**: `string`
 
-Defined in: [src/types/shared.ts:37](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L37)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:42](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L42)

@@ -2,7 +2,7 @@
 
 # Interface: CryptoParams
 
-Defined in: [protos/generated/video\_streaming/crypto\_params.ts:13](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/crypto_params.ts#L13)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/crypto\_params.ts:13](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/crypto_params.ts#L13)
 
 ## Properties
 
@@ -10,20 +10,20 @@ Defined in: [protos/generated/video\_streaming/crypto\_params.ts:13](https://git
 
 > `optional` **compressionType**: [`CompressionType`](../enumerations/CompressionType.md)
 
-Defined in: [protos/generated/video\_streaming/crypto\_params.ts:16](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/crypto_params.ts#L16)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/crypto\_params.ts:16](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/crypto_params.ts#L16)
 
 ***
 
 ### hmac?
 
-> `optional` **hmac**: `Uint8Array`
+> `optional` **hmac**: `Uint8Array`\<`ArrayBufferLike`\>
 
-Defined in: [protos/generated/video\_streaming/crypto\_params.ts:14](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/crypto_params.ts#L14)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/crypto\_params.ts:14](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/crypto_params.ts#L14)
 
 ***
 
 ### iv?
 
-> `optional` **iv**: `Uint8Array`
+> `optional` **iv**: `Uint8Array`\<`ArrayBufferLike`\>
 
-Defined in: [protos/generated/video\_streaming/crypto\_params.ts:15](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/crypto_params.ts#L15)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/crypto\_params.ts:15](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/crypto_params.ts#L15)

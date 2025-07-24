@@ -2,7 +2,7 @@
 
 # Class: EventEmitterLike
 
-Defined in: [src/utils/EventEmitterLike.ts:22](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/EventEmitterLike.ts#L22)
+Defined in: [codeberg/googlevideo/src/utils/EventEmitterLike.ts:22](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/EventEmitterLike.ts#L22)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [src/utils/EventEmitterLike.ts:22](https://github.com/LuanRT/googlev
 
 > **new EventEmitterLike**(): `EventEmitterLike`
 
-Defined in: [src/utils/EventEmitterLike.ts:25](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/EventEmitterLike.ts#L25)
+Defined in: [codeberg/googlevideo/src/utils/EventEmitterLike.ts:25](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/EventEmitterLike.ts#L25)
 
 #### Returns
 
@@ -34,7 +34,7 @@ Defined in: [src/utils/EventEmitterLike.ts:25](https://github.com/LuanRT/googlev
 
 > **addEventListener**(`type`, `callback`, `options?`): `void`
 
-Defined in: node\_modules/typescript/lib/lib.dom.d.ts:8303
+Defined in: codeberg/googlevideo/node\_modules/typescript/lib/lib.dom.d.ts:8876
 
 Appends an event listener for events whose type attribute value is type. The callback argument sets the callback that will be invoked when the event is dispatched.
 
@@ -80,7 +80,7 @@ The event listener is appended to target's event listener list and is not append
 
 > **dispatchEvent**(`event`): `boolean`
 
-Defined in: node\_modules/typescript/lib/lib.dom.d.ts:8309
+Defined in: codeberg/googlevideo/node\_modules/typescript/lib/lib.dom.d.ts:8882
 
 Dispatches a synthetic event event to target and returns true if either event's cancelable attribute value is false or its preventDefault() method was not invoked, and false otherwise.
 
@@ -106,7 +106,7 @@ Dispatches a synthetic event event to target and returns true if either event's 
 
 > **emit**(`type`, ...`args`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:29](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/EventEmitterLike.ts#L29)
+Defined in: [codeberg/googlevideo/src/utils/EventEmitterLike.ts:29](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/EventEmitterLike.ts#L29)
 
 #### Parameters
 
@@ -128,7 +128,7 @@ Defined in: [src/utils/EventEmitterLike.ts:29](https://github.com/LuanRT/googlev
 
 > **off**(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:59](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/EventEmitterLike.ts#L59)
+Defined in: [codeberg/googlevideo/src/utils/EventEmitterLike.ts:59](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/EventEmitterLike.ts#L59)
 
 #### Parameters
 
@@ -150,7 +150,7 @@ Defined in: [src/utils/EventEmitterLike.ts:59](https://github.com/LuanRT/googlev
 
 > **on**(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:34](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/EventEmitterLike.ts#L34)
+Defined in: [codeberg/googlevideo/src/utils/EventEmitterLike.ts:34](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/EventEmitterLike.ts#L34)
 
 #### Parameters
 
@@ -172,7 +172,7 @@ Defined in: [src/utils/EventEmitterLike.ts:34](https://github.com/LuanRT/googlev
 
 > **once**(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:46](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/EventEmitterLike.ts#L46)
+Defined in: [codeberg/googlevideo/src/utils/EventEmitterLike.ts:46](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/EventEmitterLike.ts#L46)
 
 #### Parameters
 
@@ -194,7 +194,7 @@ Defined in: [src/utils/EventEmitterLike.ts:46](https://github.com/LuanRT/googlev
 
 > **removeAllListeners**(`type?`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:67](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/EventEmitterLike.ts#L67)
+Defined in: [codeberg/googlevideo/src/utils/EventEmitterLike.ts:67](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/EventEmitterLike.ts#L67)
 
 #### Parameters
 
@@ -212,7 +212,7 @@ Defined in: [src/utils/EventEmitterLike.ts:67](https://github.com/LuanRT/googlev
 
 > **removeEventListener**(`type`, `callback`, `options?`): `void`
 
-Defined in: node\_modules/typescript/lib/lib.dom.d.ts:8315
+Defined in: codeberg/googlevideo/node\_modules/typescript/lib/lib.dom.d.ts:8888
 
 Removes the event listener in target's event listener list with the same type, callback, and options.
 

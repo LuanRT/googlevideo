@@ -4,4 +4,4 @@
 
 > **ClientAbrState**: `MessageFns`\<[`ClientAbrState`](../interfaces/ClientAbrState.md)\>
 
-Defined in: [protos/generated/video\_streaming/client\_abr\_state.ts:20](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/client_abr_state.ts#L20)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/client\_abr\_state.ts:20](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/client_abr_state.ts#L20)

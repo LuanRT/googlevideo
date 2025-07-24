@@ -2,7 +2,7 @@
 
 # Enumeration: OnesieProxyStatus
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:11](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L11)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:11](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L11)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:11](http
 
 > **BACKEND\_ERROR**: `7`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:19](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L19)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:19](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L19)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:19](http
 
 > **CLIENT\_ERROR**: `8`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:20](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L20)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:20](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L20)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:20](http
 
 > **DECOMPRESSION\_FAILED**: `11`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:23](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L23)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:23](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L23)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:23](http
 
 > **DECRYPTION\_FAILED**: `2`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:14](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L14)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:14](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L14)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:14](http
 
 > **INVALID\_CONTENT\_TYPE**: `6`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:18](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L18)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:18](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L18)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:18](http
 
 > **INVALID\_X\_FORWARDED\_FOR**: `5`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:17](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L17)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:17](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L17)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:17](http
 
 > **JSON\_PARSING\_FAILED**: `12`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:24](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L24)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:24](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L24)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:24](http
 
 > **MISSING\_CRYPTER**: `9`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:21](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L21)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:21](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L21)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:21](http
 
 > **MISSING\_X\_FORWARDED\_FOR**: `4`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:16](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L16)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:16](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L16)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:16](http
 
 > **OK**: `1`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:13](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L13)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:13](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L13)
 
 ***
 
@@ -90,7 +90,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:13](http
 
 > **PARSING\_FAILED**: `3`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:15](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L15)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:15](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L15)
 
 ***
 
@@ -98,7 +98,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:15](http
 
 > **RESPONSE\_JSON\_SERIALIZATION\_FAILED**: `10`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:22](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L22)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:22](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L22)
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:22](http
 
 > **UNKNOWN**: `0`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:12](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L12)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:12](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L12)
 
 ***
 
@@ -114,7 +114,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:12](http
 
 > **UNKNOWN\_COMPRESSION\_TYPE**: `13`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:25](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L25)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:25](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L25)
 
 ***
 
@@ -122,4 +122,4 @@ Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:25](http
 
 > **UNRECOGNIZED**: `-1`
 
-Defined in: [protos/generated/video\_streaming/onesie\_proxy\_status.ts:26](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/onesie_proxy_status.ts#L26)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_proxy\_status.ts:26](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_proxy_status.ts#L26)

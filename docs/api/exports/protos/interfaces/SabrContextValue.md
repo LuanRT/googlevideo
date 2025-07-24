@@ -2,7 +2,7 @@
 
 # Interface: SabrContextValue
 
-Defined in: [protos/generated/video\_streaming/sabr\_context\_update.ts:37](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/sabr_context_update.ts#L37)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/sabr\_context\_update.ts:37](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/sabr_context_update.ts#L37)
 
 For debugging
 
@@ -12,15 +12,15 @@ For debugging
 
 > `optional` **field5**: `number`
 
-Defined in: [protos/generated/video\_streaming/sabr\_context\_update.ts:40](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/sabr_context_update.ts#L40)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/sabr\_context\_update.ts:40](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/sabr_context_update.ts#L40)
 
 ***
 
 ### signature?
 
-> `optional` **signature**: `Uint8Array`
+> `optional` **signature**: `Uint8Array`\<`ArrayBufferLike`\>
 
-Defined in: [protos/generated/video\_streaming/sabr\_context\_update.ts:39](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/sabr_context_update.ts#L39)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/sabr\_context\_update.ts:39](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/sabr_context_update.ts#L39)
 
 ***
 
@@ -28,4 +28,4 @@ Defined in: [protos/generated/video\_streaming/sabr\_context\_update.ts:39](http
 
 > `optional` **timing**: `SabrContextValue_TimingInfo`
 
-Defined in: [protos/generated/video\_streaming/sabr\_context\_update.ts:38](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/video_streaming/sabr_context_update.ts#L38)
+Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/sabr\_context\_update.ts:38](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/sabr_context_update.ts#L38)

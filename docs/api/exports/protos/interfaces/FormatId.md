@@ -2,7 +2,7 @@
 
 # Interface: FormatId
 
-Defined in: [protos/generated/misc/common.ts:186](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/misc/common.ts#L186)
+Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:186](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L186)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/misc/common.ts:186](https://github.com/LuanRT/goog
 
 > `optional` **itag**: `number`
 
-Defined in: [protos/generated/misc/common.ts:187](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/misc/common.ts#L187)
+Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:187](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L187)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/misc/common.ts:187](https://github.com/LuanRT/goog
 
 > `optional` **lastModified**: `number`
 
-Defined in: [protos/generated/misc/common.ts:188](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/misc/common.ts#L188)
+Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:188](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L188)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [protos/generated/misc/common.ts:188](https://github.com/LuanRT/goog
 
 > `optional` **xtags**: `string`
 
-Defined in: [protos/generated/misc/common.ts:189](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/protos/generated/misc/common.ts#L189)
+Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:189](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L189)

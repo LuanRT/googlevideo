@@ -2,6 +2,8 @@
 
 # types/shared
 
+This module contains type definitions used across the library.
+
 ## Interfaces
 
 - [FormatStream](interfaces/FormatStream.md)

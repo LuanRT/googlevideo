@@ -4,7 +4,7 @@
 
 > **concatenateChunks**(`chunks`): `Uint8Array`
 
-Defined in: [src/utils/shared.ts:89](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/utils/shared.ts#L89)
+Defined in: [codeberg/googlevideo/src/utils/shared.ts:89](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/shared.ts#L89)
 
 Concatenates multiple Uint8Array chunks into a single Uint8Array.
 
@@ -12,7 +12,7 @@ Concatenates multiple Uint8Array chunks into a single Uint8Array.
 
 ### chunks
 
-`Uint8Array`[]
+`Uint8Array`\<`ArrayBufferLike`\>[]
 
 ## Returns
 

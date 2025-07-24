@@ -2,7 +2,7 @@
 
 # Class: UmpWriter
 
-Defined in: [src/core/UmpWriter.ts:6](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/UmpWriter.ts#L6)
+Defined in: [codeberg/googlevideo/src/core/UmpWriter.ts:6](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpWriter.ts#L6)
 
 A serialization module that encodes data into the UMP binary format with proper type and size encoding.
 
@@ -12,7 +12,7 @@ A serialization module that encodes data into the UMP binary format with proper 
 
 > **new UmpWriter**(`compositeBuffer`): `UmpWriter`
 
-Defined in: [src/core/UmpWriter.ts:7](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/UmpWriter.ts#L7)
+Defined in: [codeberg/googlevideo/src/core/UmpWriter.ts:7](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpWriter.ts#L7)
 
 #### Parameters
 
@@ -30,7 +30,7 @@ Defined in: [src/core/UmpWriter.ts:7](https://github.com/LuanRT/googlevideo/blob
 
 > **write**(`partType`, `partData`): `void`
 
-Defined in: [src/core/UmpWriter.ts:16](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/core/UmpWriter.ts#L16)
+Defined in: [codeberg/googlevideo/src/core/UmpWriter.ts:16](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpWriter.ts#L16)
 
 Writes a part to the buffer.
 

@@ -4,7 +4,7 @@
 
 > **Part** = `object`
 
-Defined in: [src/types/shared.ts:3](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L3)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:8](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L8)
 
 ## Properties
 
@@ -12,7 +12,7 @@ Defined in: [src/types/shared.ts:3](https://github.com/LuanRT/googlevideo/blob/5
 
 > **data**: [`CompositeBuffer`](../../../exports/ump/classes/CompositeBuffer.md)
 
-Defined in: [src/types/shared.ts:6](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L6)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:11](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L11)
 
 ***
 
@@ -20,7 +20,7 @@ Defined in: [src/types/shared.ts:6](https://github.com/LuanRT/googlevideo/blob/5
 
 > **size**: `number`
 
-Defined in: [src/types/shared.ts:5](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L5)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:10](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L10)
 
 ***
 
@@ -28,4 +28,4 @@ Defined in: [src/types/shared.ts:5](https://github.com/LuanRT/googlevideo/blob/5
 
 > **type**: `number`
 
-Defined in: [src/types/shared.ts:4](https://github.com/LuanRT/googlevideo/blob/5b84100979befab767d819a9606dde964d469341/src/types/shared.ts#L4)
+Defined in: [codeberg/googlevideo/src/types/shared.ts:9](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/shared.ts#L9)
