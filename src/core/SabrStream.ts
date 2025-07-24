@@ -11,13 +11,10 @@ import {
   SabrRedirect,
   StreamProtectionStatus,
   VideoPlaybackAbrRequest,
-  UMPPartId
-} from '../utils/Protos.js';
-
-import type {
-  BufferedRange,
-  ClientAbrState,
-  ClientInfo
+  UMPPartId,
+  type BufferedRange,
+  type ClientInfo,
+  type ClientAbrState
 } from '../utils/Protos.js';
 
 import type {
@@ -31,13 +28,20 @@ import {
   MAX_INT32_VALUE,
   EnabledTrackTypes,
   base64ToU8,
+  concatenateChunks,
   EventEmitterLike,
   Logger,
   wait
 } from '../utils/index.js';
 
 import * as FormatKeyUtils from '../utils/formatKeyUtils.js';
-import { chooseFormat, getMediaType, getTotalDownloadedDuration } from '../utils/sabrStreamUtils.js';
+
+import {
+  chooseFormat,
+  getMediaType,
+  getTotalDownloadedDuration
+} from '../utils/sabrStreamUtils.js';
+
 import { CompositeBuffer } from './CompositeBuffer.js';
 import { UmpReader } from './UmpReader.js';
 
@@ -398,10 +402,13 @@ export class SabrStream extends EventEmitterLike {
 
         abrState.playerTimeMs = this.mainFormat ? getTotalDownloadedDuration(this.mainFormat) : 0;
 
-        this.checkForStall({
+        const { shouldStop } = this.checkForStall({
           playerTimeMs: abrState.playerTimeMs,
           stallDetectionMs: options.stallDetectionMs
         });
+
+        if (shouldStop)
+          break;
 
         const success = await this.executeWithRetry(
           () => this.fetchAndProcessSegments(
@@ -489,14 +496,14 @@ export class SabrStream extends EventEmitterLike {
   /**
    * Checks if the download has stalled by tracking progress over time.
    * @param options - Configuration for stall detection.
-   * @returns `true` if a stall was detected but is within the retry limit, `false` otherwise.
+   * @returns An object indicating whether the stream should stop and if it is stalled.
    * @throws {Error} If the maximum number of consecutive stalls is reached.
    * @private
    */
   private checkForStall(options: {
     stallDetectionMs?: number,
     playerTimeMs: number
-  }): boolean {
+  }) {
     const currentTime = Date.now();
     const currentProgress = options.playerTimeMs;
     const stallThreshold = options.stallDetectionMs || DEFAULT_STALL_DETECTION_MS;
@@ -505,7 +512,7 @@ export class SabrStream extends EventEmitterLike {
       this.progressTracker.lastProgressTime = currentTime;
       this.progressTracker.lastDownloadedDuration = currentProgress;
       this.progressTracker.stallCount = 0;
-      return false;
+      return { shouldStop: false, stalled: false };
     } else if (currentTime - this.progressTracker.lastProgressTime > stallThreshold) {
       this.progressTracker.stallCount++;
       this.logger.warn(TAG, `Stream stalled for ${stallThreshold}ms (stall #${this.progressTracker.stallCount})`);
@@ -515,10 +522,25 @@ export class SabrStream extends EventEmitterLike {
       }
 
       this.progressTracker.lastProgressTime = currentTime;
-      return true;
+
+      const downloadedDurationCloseness = Math.abs(this.durationMs - currentProgress);
+
+      if (downloadedDurationCloseness < 5000) {
+        this.logger.warn(TAG, 'Stream is close to completion, but stalled. Checking if we have the last segment.');
+
+        const endSegmentNumber = this.mainFormat?.formatInitializationMetadata.endSegmentNumber || -1;
+        const lastSegment = this.mainFormat?.downloadedSegments.get(endSegmentNumber);
+       
+        if (lastSegment && lastSegment.segmentNumber === endSegmentNumber) {
+          this.logger.warn(TAG, 'Last segment is already downloaded. Stopping further processing.');
+          return { shouldStop: true, stalled: true };
+        }
+      }
+
+      return { shouldStop: false, stalled: true };
     }
 
-    return false;
+    return { shouldStop: false, stalled: false };
   }
 
   /**
@@ -853,8 +875,6 @@ export class SabrStream extends EventEmitterLike {
       });
     }
 
-    this.partialSegmentQueue.clear();
-
     return processedParts;
   }
 
@@ -898,8 +918,10 @@ export class SabrStream extends EventEmitterLike {
         }
 
         const retryBackoffMs = Math.min(BACKOFF_MULTIPLIER * Math.pow(2, attempt - 1), MAX_BACKOFF_MS);
-        this.logger.warn(TAG, `Segment fetch attempt ${attempt}/${maxRetries + 1} failed: ${error.message} - retrying in ${retryBackoffMs}ms`);
+        this.logger.warn(TAG, `Segment fetch attempt ${attempt}/${maxRetries + 1} failed - retrying in ${retryBackoffMs}ms`, error);
         await wait(retryBackoffMs);
+      } finally {
+        this.partialSegmentQueue.clear();
       }
     }
     return false;
@@ -909,12 +931,30 @@ export class SabrStream extends EventEmitterLike {
   //#region --- UMP Part Handlers ---
 
   /**
+   * Decodes a UMP part using the provided decoder.
+   * @param part
+   * @param decoder
+   * @private
+   */
+  private decodePart<T>(part: Part, decoder: { decode: (data: Uint8Array) => T }): T | undefined {
+    if (!part.data.chunks.length)
+      return undefined;
+
+    try {
+      return decoder.decode(concatenateChunks(part.data.chunks));
+    } catch {
+      return undefined;
+    }
+  }
+
+  /**
    * Handles `FORMAT_INITIALIZATION_METADATA` parts.
    * Creates and stores a new `InitializedFormat` entry.
    * @private
    */
   private handleFormatInitializationMetadata(part: Part): void {
-    const formatInitMetadata = FormatInitializationMetadata.decode(part.data.chunks[0]);
+    const formatInitMetadata = this.decodePart(part, FormatInitializationMetadata);
+    if (!formatInitMetadata) return;
 
     const formatIdKey = FormatKeyUtils.fromFormatInitializationMetadata(formatInitMetadata);
 
@@ -937,7 +977,7 @@ export class SabrStream extends EventEmitterLike {
    * @private
    */
   private handleNextRequestPolicy(part: Part): void {
-    this.nextRequestPolicy = NextRequestPolicy.decode(part.data.chunks[0]);
+    this.nextRequestPolicy = this.decodePart(part, NextRequestPolicy);
   }
 
   /**
@@ -947,7 +987,8 @@ export class SabrStream extends EventEmitterLike {
    * @private
    */
   private handleSabrError(part: Part): void {
-    const sabrError = SabrError.decode(part.data.chunks[0]);
+    const sabrError = this.decodePart(part, SabrError);
+    if (!sabrError) return;
     throw new Error(`SABR Error: ${sabrError.type} - ${sabrError.code}`);
   }
 
@@ -957,9 +998,13 @@ export class SabrStream extends EventEmitterLike {
    * @private
    */
   private handleSabrRedirect(part: Part): void {
-    const sabrRedirect = SabrRedirect.decode(part.data.chunks[0]);
-    this.serverAbrStreamingUrl = sabrRedirect.url!;
-    this.logger.debug(TAG, `Redirecting to ${this.serverAbrStreamingUrl}`);
+    const sabrRedirect = this.decodePart(part, SabrRedirect);
+    if (!sabrRedirect) return;
+
+    if (sabrRedirect.url) {
+      this.serverAbrStreamingUrl = sabrRedirect.url;
+      this.logger.debug(TAG, `Redirecting to ${this.serverAbrStreamingUrl}`);
+    }
   }
 
   /**
@@ -968,7 +1013,8 @@ export class SabrStream extends EventEmitterLike {
    * @private
    */
   private handleSabrContextUpdate(part: Part): void {
-    const sabrContextUpdate = SabrContextUpdate.decode(part.data.chunks[0]);
+    const sabrContextUpdate = this.decodePart(part, SabrContextUpdate);
+    if (!sabrContextUpdate) return;
     if (sabrContextUpdate.type !== undefined && sabrContextUpdate.value?.length) {
       if (
         sabrContextUpdate.writePolicy === SabrContextWritePolicy.KEEP_EXISTING &&
@@ -994,7 +1040,8 @@ export class SabrStream extends EventEmitterLike {
    * @private
    */
   private handleSabrContextSendingPolicy(part: Part): void {
-    const sabrContextSendingPolicy = SabrContextSendingPolicy.decode(part.data.chunks[0]);
+    const sabrContextSendingPolicy = this.decodePart(part, SabrContextSendingPolicy);
+    if (!sabrContextSendingPolicy) return;
 
     for (const startPolicy of sabrContextSendingPolicy.startPolicy) {
       if (!this.activeSabrContextTypes.has(startPolicy)) {
@@ -1025,7 +1072,8 @@ export class SabrStream extends EventEmitterLike {
    * @private
    */
   private handleStreamProtectionStatus(part: Part): void {
-    this.streamProtectionStatus = StreamProtectionStatus.decode(part.data.chunks[0]);
+    this.streamProtectionStatus = this.decodePart(part, StreamProtectionStatus);
+    if (!this.streamProtectionStatus) return;
     this.emit('streamProtectionStatusUpdate', this.streamProtectionStatus);
     if (this.streamProtectionStatus.status === 3) {
       throw new Error('Cannot proceed with stream: attestation required');
@@ -1041,7 +1089,8 @@ export class SabrStream extends EventEmitterLike {
    * @private
    */
   private handleReloadPlayerResponse(part: Part) {
-    const reloadPlaybackContext = ReloadPlaybackContext.decode(part.data.chunks[0]);
+    const reloadPlaybackContext = this.decodePart(part, ReloadPlaybackContext);
+    if (!reloadPlaybackContext) return;
     const errorMessage = 'Player response reload requested by server';
     this.logger.debug(TAG, `${errorMessage} (token: ${reloadPlaybackContext.reloadPlaybackParams?.token}`);
     this.emit('reloadPlayerResponse', reloadPlaybackContext);
@@ -1054,12 +1103,13 @@ export class SabrStream extends EventEmitterLike {
    * @private
    */
   private handleMediaHeader(part: Part): void {
-    const mediaHeader = MediaHeader.decode(part.data.chunks[0]);
+    const mediaHeader = this.decodePart(part, MediaHeader);
+    if (!mediaHeader) return;
 
     const headerId = mediaHeader.headerId || 0;
     const formatIdKey = FormatKeyUtils.fromMediaHeader(mediaHeader);
     const segmentNumber = mediaHeader.isInitSeg ? 0 : mediaHeader.sequenceNumber!;
-    const durationMs = mediaHeader.timeRange ? Math.ceil(((mediaHeader.timeRange.durationTicks || 0) / (mediaHeader.timeRange.timescale || 0)) * 1000) : mediaHeader.durationMs || 0;
+    const durationMs = mediaHeader.durationMs || Math.ceil(((mediaHeader.timeRange?.durationTicks || 0) / (mediaHeader.timeRange?.timescale || 0)) * 1000);
 
     const initializedFormat = this.initializedFormatsMap.get(formatIdKey);
     if (!initializedFormat) {
@@ -1229,7 +1279,7 @@ export class SabrStream extends EventEmitterLike {
       const hasDuplicates = uniqueSegmentCount !== segments.length;
 
       if (missingSegments.length > 0) {
-        const message = `Format ${formatIdKey}: Missing segments: ${missingSegments.join(', ')}. ` +
+        const message = `Format ${formatIdKey}: Missing segments: [${missingSegments.join(', ')}]. ` +
           `Expected range: 0-${expectedSegmentCount}. `;
         this.logger.warn(TAG, message);
         this.errorHandler(new Error(message), true);
