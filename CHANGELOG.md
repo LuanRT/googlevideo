@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.3](https://github.com/LuanRT/googlevideo/compare/googlevideo-v4.0.2...googlevideo-v4.0.3) (2025-08-16)
+
+
+### Bug Fixes
+
+* **SabrStreamingAdapter:** Add `lastPlayerTimeSecs` to prevent stale data usage ([4112e35](https://github.com/LuanRT/googlevideo/commit/4112e3542298d3dbc617addf5227e8d9bd340d94))
+* **SabrUmpProcessor:** Init segment not being fetched when cache is disabled ([5238e73](https://github.com/LuanRT/googlevideo/commit/5238e7322a1cd5541808d83eb07d82e90d43623a))
+
 ## [4.0.2](https://github.com/LuanRT/googlevideo/compare/googlevideo-v4.0.1...googlevideo-v4.0.2) (2025-07-24)
 
 
