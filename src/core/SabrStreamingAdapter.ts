@@ -85,6 +85,7 @@ export class SabrStreamingAdapter {
   private sabrContexts = new Map<number, SabrContextUpdate>();
   private activeSabrContextTypes = new Set<number>();
   private lastPlaybackCookie?: PlaybackCookie;
+  private lastPlayerTimeSecs = 0;
   private cacheManager: CacheManager | null = null;
   private requestNumber = 0;
 
@@ -226,6 +227,14 @@ export class SabrStreamingAdapter {
       if (!currentFormat)
         throw new SabrAdapterError(`Could not determine current format from URL: ${request.url}`);
 
+      /**
+       * If the player's current time is earlier than the last recorded time (e.g., the user seeks backward), we clear the initialized format metadata.
+       * This prevents the adapter from using stale data, which could lead to requesting segments that are ahead of the new playback position.
+       */
+      if (this.playerAdapter.getPlayerTime() < this.lastPlayerTimeSecs) {
+        this.initializedFormats.clear();
+      }
+      
       const activeFormats = this.playerAdapter.getActiveTrackFormats(currentFormat, this.sabrFormats);
       const videoPlaybackAbrRequest = await this.createVideoPlaybackAbrRequest(request, currentFormat, activeFormats);
 
@@ -334,11 +343,13 @@ export class SabrStreamingAdapter {
         streamerContext.unsentSabrContexts.push(<number>ctxUpdate.type);
       }
     }
+    
+    this.lastPlayerTimeSecs = this.playerAdapter.getPlayerTime();
 
     return {
       clientAbrState: {
         playbackRate: this.playerAdapter.getPlaybackRate(),
-        playerTimeMs: Math.round((request.segment.getStartTime() ?? this.playerAdapter.getPlayerTime()) * 1000),
+        playerTimeMs: Math.round((request.segment.getStartTime() ?? this.lastPlayerTimeSecs) * 1000),
         timeSinceLastManualFormatSelectionMs: 0,
         clientViewportIsFlexible: false,
         bandwidthEstimate: Math.round(this.playerAdapter.getBandwidthEstimate() || 0),
@@ -633,6 +644,7 @@ export class SabrStreamingAdapter {
     this.activeSabrContextTypes.clear();
 
     this.lastPlaybackCookie = undefined;
+    this.lastPlayerTimeSecs = 0;
     this.sabrFormats = [];
     this.serverAbrStreamingUrl = undefined;
     this.ustreamerConfig = undefined;
