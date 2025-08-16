@@ -199,11 +199,14 @@ export class SabrUmpProcessor {
        * and caching the init segment reduces latency when switching between different quality levels
        * or initializing new streams.
        */
-      if (this.cacheManager && this.requestMetadata.isInit && this.requestMetadata.byteRange && this.requestMetadata.format) {
-        this.cacheManager.setInitSegment(
-          createSegmentCacheKey(segment.mediaHeader, this.requestMetadata.format),
-          segmentData
-        );
+      if (this.requestMetadata.isInit && this.requestMetadata.byteRange && this.requestMetadata.format) {
+        if (this.cacheManager) {
+          this.cacheManager.setInitSegment(
+            createSegmentCacheKey(segment.mediaHeader, this.requestMetadata.format),
+            segmentData
+          );
+        }
+
         return {
           data: segmentData.slice(this.requestMetadata.byteRange.start, this.requestMetadata.byteRange.end + 1),
           done: true
