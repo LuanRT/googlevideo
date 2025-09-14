@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.4](https://github.com/LuanRT/googlevideo/compare/googlevideo-v4.0.3...googlevideo-v4.0.4) (2025-09-14)
+
+
+### Bug Fixes
+
+* **generate-proto:** Use `forceLong=string` option ([c240c97](https://github.com/LuanRT/googlevideo/commit/c240c97c233def9073cad3cc0740ffd54089bde1))
+
 ## [4.0.3](https://github.com/LuanRT/googlevideo/compare/googlevideo-v4.0.2...googlevideo-v4.0.3) (2025-08-16)
 
 

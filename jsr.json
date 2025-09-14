@@ -1,6 +1,6 @@
 {
   "name": "@luanrt/googlevideo",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "exports": {
     "./ump": "./src/exports/ump.ts",
     "./sabr-streaming-adapter": "./src/exports/sabr-streaming-adapter.ts",
