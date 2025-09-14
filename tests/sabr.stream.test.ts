@@ -17,7 +17,7 @@ Logger.getInstance().setLogLevels(LogLevel.NONE);
 
 const AUDIO_FORMAT = {
   itag: 140,
-  lastModified: 1700000000,
+  lastModified: '1700000000',
   contentLength: 117138,
   mimeType: 'audio/mp4; codecs="mp4a.40.2"',
   bitrate: 128000,
@@ -28,7 +28,7 @@ const VIDEO_FORMAT = {
   itag: 137,
   mimeType: 'video/mp4; codecs="avc1.640028"',
   bitrate: 4337000,
-  lastModified: 1700000000,
+  lastModified: '1700000000',
   height: 1080,
   approxDurationMs: 120000,
   qualityLabel: undefined,
@@ -57,18 +57,18 @@ function createMediaHeader(
       videoId: '',
       itag: format.itag,
       lmt: format.lastModified,
-      startRange,
+      startRange: startRange.toString(),
       compressionAlgorithm: 0,
       isInitSeg,
       sequenceNumber,
-      bitrateBps: format.bitrate,
-      startMs,
-      durationMs: durationMs || 0,
+      bitrateBps: format.bitrate.toString(),
+      startMs: startMs.toString(),
+      durationMs: durationMs.toString(),
       formatId: format,
-      contentLength,
+      contentLength: contentLength.toString(),
       timeRange: {
-        startTicks: startMs,
-        durationTicks: durationMs || 0,
+        startTicks: startMs.toString(),
+        durationTicks: durationMs.toString(),
         timescale: 1000
       }
     }).finish()
@@ -99,7 +99,7 @@ function createMockFetch(maxSegmentSize: number, maxSegmentDuration: number, str
     const requestBodyData = await request.arrayBuffer();
     const requestBody = VideoPlaybackAbrRequest.decode(new Uint8Array(requestBodyData));
 
-    const playerTimeMs = requestBody.clientAbrState?.playerTimeMs || 0;
+    const playerTimeMs = parseInt(requestBody.clientAbrState?.playerTimeMs || '0');
 
     const partsToWrite = [];
 
@@ -130,11 +130,11 @@ function createMockFetch(maxSegmentSize: number, maxSegmentDuration: number, str
         partType: UMPPartId.FORMAT_INITIALIZATION_METADATA,
         partData: FormatInitializationMetadata.encode({
           formatId: AUDIO_FORMAT,
-          durationUnits: 120000,
-          durationTimescale: 1000,
-          endSegmentNumber: 5,
+          durationUnits: '120000',
+          durationTimescale: '1000',
+          endSegmentNumber: '5',
           mimeType: AUDIO_FORMAT.mimeType,
-          endTimeMs: 120000,
+          endTimeMs: '120000',
           videoId: ''
         }).finish()
       });
