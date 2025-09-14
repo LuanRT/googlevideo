@@ -17,7 +17,7 @@ export function getTotalDownloadedDuration(
   initializedFormat: InitializedFormat
 ): number {
   return Array.from(initializedFormat.downloadedSegments.values())
-    .reduce((sum, segment) => sum + (segment.durationMs || 0), 0);
+    .reduce((sum, segment) => sum + (parseInt(segment.durationMs || '0')), 0);
 }
 
 /**

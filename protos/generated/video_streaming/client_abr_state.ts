@@ -18,39 +18,39 @@ import { MediaCapabilities } from "./media_capabilities.js";
 export const protobufPackage = "video_streaming";
 
 export interface ClientAbrState {
-  timeSinceLastManualFormatSelectionMs?: number | undefined;
+  timeSinceLastManualFormatSelectionMs?: string | undefined;
   lastManualDirection?: number | undefined;
   lastManualSelectedResolution?: number | undefined;
   detailedNetworkType?: number | undefined;
   clientViewportWidth?: number | undefined;
   clientViewportHeight?: number | undefined;
-  clientBitrateCapBytesPerSec?: number | undefined;
+  clientBitrateCapBytesPerSec?: string | undefined;
   stickyResolution?: number | undefined;
   clientViewportIsFlexible?: boolean | undefined;
-  bandwidthEstimate?: number | undefined;
+  bandwidthEstimate?: string | undefined;
   minAudioQuality?: AudioQuality | undefined;
   maxAudioQuality?: AudioQuality | undefined;
   videoQualitySetting?: VideoQualitySetting | undefined;
   audioRoute?: PlaybackAudioRouteOutputType | undefined;
-  playerTimeMs?: number | undefined;
-  timeSinceLastSeek?: number | undefined;
+  playerTimeMs?: string | undefined;
+  timeSinceLastSeek?: string | undefined;
   dataSaverMode?: boolean | undefined;
   networkMeteredState?: NetworkMeteredState | undefined;
   visibility?: number | undefined;
   playbackRate?: number | undefined;
-  elapsedWallTimeMs?: number | undefined;
+  elapsedWallTimeMs?: string | undefined;
   mediaCapabilities?: MediaCapabilities | undefined;
-  timeSinceLastActionMs?: number | undefined;
+  timeSinceLastActionMs?: string | undefined;
   enabledTrackTypesBitfield?: number | undefined;
   maxPacingRate?: number | undefined;
-  playerState?: number | undefined;
+  playerState?: string | undefined;
   drcEnabled?: boolean | undefined;
   field48?: number | undefined;
   field50?: number | undefined;
   field51?: number | undefined;
   sabrReportRequestCancellationInfo?: number | undefined;
   disableStreamingXhr?: boolean | undefined;
-  field57?: number | undefined;
+  field57?: string | undefined;
   preferVp9?:
     | boolean
     | undefined;
@@ -63,7 +63,7 @@ export interface ClientAbrState {
   allowProximaLiveLatency?: number | undefined;
   sabrForceProxima?: number | undefined;
   field67?: number | undefined;
-  sabrForceMaxNetworkInterruptionDurationMs?: number | undefined;
+  sabrForceMaxNetworkInterruptionDurationMs?: string | undefined;
   audioTrackId?: string | undefined;
   enableVoiceBoost?: boolean | undefined;
   playbackAuthorization?: PlaybackAuthorization | undefined;
@@ -71,39 +71,39 @@ export interface ClientAbrState {
 
 function createBaseClientAbrState(): ClientAbrState {
   return {
-    timeSinceLastManualFormatSelectionMs: 0,
+    timeSinceLastManualFormatSelectionMs: "0",
     lastManualDirection: 0,
     lastManualSelectedResolution: 0,
     detailedNetworkType: 0,
     clientViewportWidth: 0,
     clientViewportHeight: 0,
-    clientBitrateCapBytesPerSec: 0,
+    clientBitrateCapBytesPerSec: "0",
     stickyResolution: 0,
     clientViewportIsFlexible: false,
-    bandwidthEstimate: 0,
+    bandwidthEstimate: "0",
     minAudioQuality: 0,
     maxAudioQuality: 0,
     videoQualitySetting: 0,
     audioRoute: 0,
-    playerTimeMs: 0,
-    timeSinceLastSeek: 0,
+    playerTimeMs: "0",
+    timeSinceLastSeek: "0",
     dataSaverMode: false,
     networkMeteredState: 0,
     visibility: 0,
     playbackRate: 0,
-    elapsedWallTimeMs: 0,
+    elapsedWallTimeMs: "0",
     mediaCapabilities: undefined,
-    timeSinceLastActionMs: 0,
+    timeSinceLastActionMs: "0",
     enabledTrackTypesBitfield: 0,
     maxPacingRate: 0,
-    playerState: 0,
+    playerState: "0",
     drcEnabled: false,
     field48: 0,
     field50: 0,
     field51: 0,
     sabrReportRequestCancellationInfo: 0,
     disableStreamingXhr: false,
-    field57: 0,
+    field57: "0",
     preferVp9: false,
     av1QualityThreshold: 0,
     field60: 0,
@@ -113,7 +113,7 @@ function createBaseClientAbrState(): ClientAbrState {
     allowProximaLiveLatency: 0,
     sabrForceProxima: 0,
     field67: 0,
-    sabrForceMaxNetworkInterruptionDurationMs: 0,
+    sabrForceMaxNetworkInterruptionDurationMs: "0",
     audioTrackId: "",
     enableVoiceBoost: false,
     playbackAuthorization: undefined,
@@ -123,7 +123,7 @@ function createBaseClientAbrState(): ClientAbrState {
 export const ClientAbrState: MessageFns<ClientAbrState> = {
   encode(message: ClientAbrState, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (
-      message.timeSinceLastManualFormatSelectionMs !== undefined && message.timeSinceLastManualFormatSelectionMs !== 0
+      message.timeSinceLastManualFormatSelectionMs !== undefined && message.timeSinceLastManualFormatSelectionMs !== "0"
     ) {
       writer.uint32(104).int64(message.timeSinceLastManualFormatSelectionMs);
     }
@@ -142,7 +142,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     if (message.clientViewportHeight !== undefined && message.clientViewportHeight !== 0) {
       writer.uint32(152).int32(message.clientViewportHeight);
     }
-    if (message.clientBitrateCapBytesPerSec !== undefined && message.clientBitrateCapBytesPerSec !== 0) {
+    if (message.clientBitrateCapBytesPerSec !== undefined && message.clientBitrateCapBytesPerSec !== "0") {
       writer.uint32(160).int64(message.clientBitrateCapBytesPerSec);
     }
     if (message.stickyResolution !== undefined && message.stickyResolution !== 0) {
@@ -151,7 +151,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     if (message.clientViewportIsFlexible !== undefined && message.clientViewportIsFlexible !== false) {
       writer.uint32(176).bool(message.clientViewportIsFlexible);
     }
-    if (message.bandwidthEstimate !== undefined && message.bandwidthEstimate !== 0) {
+    if (message.bandwidthEstimate !== undefined && message.bandwidthEstimate !== "0") {
       writer.uint32(184).int64(message.bandwidthEstimate);
     }
     if (message.minAudioQuality !== undefined && message.minAudioQuality !== 0) {
@@ -166,10 +166,10 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     if (message.audioRoute !== undefined && message.audioRoute !== 0) {
       writer.uint32(216).int32(message.audioRoute);
     }
-    if (message.playerTimeMs !== undefined && message.playerTimeMs !== 0) {
+    if (message.playerTimeMs !== undefined && message.playerTimeMs !== "0") {
       writer.uint32(224).int64(message.playerTimeMs);
     }
-    if (message.timeSinceLastSeek !== undefined && message.timeSinceLastSeek !== 0) {
+    if (message.timeSinceLastSeek !== undefined && message.timeSinceLastSeek !== "0") {
       writer.uint32(232).int64(message.timeSinceLastSeek);
     }
     if (message.dataSaverMode !== undefined && message.dataSaverMode !== false) {
@@ -184,13 +184,13 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     if (message.playbackRate !== undefined && message.playbackRate !== 0) {
       writer.uint32(285).float(message.playbackRate);
     }
-    if (message.elapsedWallTimeMs !== undefined && message.elapsedWallTimeMs !== 0) {
+    if (message.elapsedWallTimeMs !== undefined && message.elapsedWallTimeMs !== "0") {
       writer.uint32(288).int64(message.elapsedWallTimeMs);
     }
     if (message.mediaCapabilities !== undefined) {
       MediaCapabilities.encode(message.mediaCapabilities, writer.uint32(306).fork()).join();
     }
-    if (message.timeSinceLastActionMs !== undefined && message.timeSinceLastActionMs !== 0) {
+    if (message.timeSinceLastActionMs !== undefined && message.timeSinceLastActionMs !== "0") {
       writer.uint32(312).int64(message.timeSinceLastActionMs);
     }
     if (message.enabledTrackTypesBitfield !== undefined && message.enabledTrackTypesBitfield !== 0) {
@@ -199,7 +199,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     if (message.maxPacingRate !== undefined && message.maxPacingRate !== 0) {
       writer.uint32(344).int32(message.maxPacingRate);
     }
-    if (message.playerState !== undefined && message.playerState !== 0) {
+    if (message.playerState !== undefined && message.playerState !== "0") {
       writer.uint32(352).int64(message.playerState);
     }
     if (message.drcEnabled !== undefined && message.drcEnabled !== false) {
@@ -220,7 +220,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     if (message.disableStreamingXhr !== undefined && message.disableStreamingXhr !== false) {
       writer.uint32(448).bool(message.disableStreamingXhr);
     }
-    if (message.field57 !== undefined && message.field57 !== 0) {
+    if (message.field57 !== undefined && message.field57 !== "0") {
       writer.uint32(456).int64(message.field57);
     }
     if (message.preferVp9 !== undefined && message.preferVp9 !== false) {
@@ -252,7 +252,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     }
     if (
       message.sabrForceMaxNetworkInterruptionDurationMs !== undefined &&
-      message.sabrForceMaxNetworkInterruptionDurationMs !== 0
+      message.sabrForceMaxNetworkInterruptionDurationMs !== "0"
     ) {
       writer.uint32(544).int64(message.sabrForceMaxNetworkInterruptionDurationMs);
     }
@@ -280,7 +280,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.timeSinceLastManualFormatSelectionMs = longToNumber(reader.int64());
+          message.timeSinceLastManualFormatSelectionMs = reader.int64().toString();
           continue;
         }
         case 14: {
@@ -328,7 +328,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.clientBitrateCapBytesPerSec = longToNumber(reader.int64());
+          message.clientBitrateCapBytesPerSec = reader.int64().toString();
           continue;
         }
         case 21: {
@@ -352,7 +352,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.bandwidthEstimate = longToNumber(reader.int64());
+          message.bandwidthEstimate = reader.int64().toString();
           continue;
         }
         case 24: {
@@ -392,7 +392,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.playerTimeMs = longToNumber(reader.int64());
+          message.playerTimeMs = reader.int64().toString();
           continue;
         }
         case 29: {
@@ -400,7 +400,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.timeSinceLastSeek = longToNumber(reader.int64());
+          message.timeSinceLastSeek = reader.int64().toString();
           continue;
         }
         case 30: {
@@ -440,7 +440,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.elapsedWallTimeMs = longToNumber(reader.int64());
+          message.elapsedWallTimeMs = reader.int64().toString();
           continue;
         }
         case 38: {
@@ -456,7 +456,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.timeSinceLastActionMs = longToNumber(reader.int64());
+          message.timeSinceLastActionMs = reader.int64().toString();
           continue;
         }
         case 40: {
@@ -480,7 +480,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.playerState = longToNumber(reader.int64());
+          message.playerState = reader.int64().toString();
           continue;
         }
         case 46: {
@@ -536,7 +536,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.field57 = longToNumber(reader.int64());
+          message.field57 = reader.int64().toString();
           continue;
         }
         case 58: {
@@ -616,7 +616,7 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
             break;
           }
 
-          message.sabrForceMaxNetworkInterruptionDurationMs = longToNumber(reader.int64());
+          message.sabrForceMaxNetworkInterruptionDurationMs = reader.int64().toString();
           continue;
         }
         case 69: {
@@ -652,17 +652,6 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     return message;
   },
 };
-
-function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;

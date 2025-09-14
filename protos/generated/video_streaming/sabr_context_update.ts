@@ -50,7 +50,7 @@ export interface SabrContextValue_ContentInfo {
 }
 
 export interface SabrContextValue_TimingInfo {
-  timestampMs?: number | undefined;
+  timestampMs?: string | undefined;
   durationMs?: number | undefined;
   content?: SabrContextValue_ContentInfo | undefined;
 }
@@ -244,12 +244,12 @@ export const SabrContextValue_ContentInfo: MessageFns<SabrContextValue_ContentIn
 };
 
 function createBaseSabrContextValue_TimingInfo(): SabrContextValue_TimingInfo {
-  return { timestampMs: 0, durationMs: 0, content: undefined };
+  return { timestampMs: "0", durationMs: 0, content: undefined };
 }
 
 export const SabrContextValue_TimingInfo: MessageFns<SabrContextValue_TimingInfo> = {
   encode(message: SabrContextValue_TimingInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.timestampMs !== undefined && message.timestampMs !== 0) {
+    if (message.timestampMs !== undefined && message.timestampMs !== "0") {
       writer.uint32(8).int64(message.timestampMs);
     }
     if (message.durationMs !== undefined && message.durationMs !== 0) {
@@ -273,7 +273,7 @@ export const SabrContextValue_TimingInfo: MessageFns<SabrContextValue_TimingInfo
             break;
           }
 
-          message.timestampMs = longToNumber(reader.int64());
+          message.timestampMs = reader.int64().toString();
           continue;
         }
         case 2: {
@@ -301,17 +301,6 @@ export const SabrContextValue_TimingInfo: MessageFns<SabrContextValue_TimingInfo
     return message;
   },
 };
-
-function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;

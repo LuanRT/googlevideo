@@ -11,30 +11,30 @@ export const protobufPackage = "video_streaming";
 
 export interface LiveMetadata {
   broadcastId?: string | undefined;
-  headSequenceNumber?: number | undefined;
-  headTimeMs?: number | undefined;
-  wallTimeMs?: number | undefined;
+  headSequenceNumber?: string | undefined;
+  headTimeMs?: string | undefined;
+  wallTimeMs?: string | undefined;
   videoId?: string | undefined;
   postLiveDvr?: boolean | undefined;
-  headm?: number | undefined;
-  minSeekableTimeTicks?: number | undefined;
+  headm?: string | undefined;
+  minSeekableTimeTicks?: string | undefined;
   minSeekableTimescale?: number | undefined;
-  maxSeekableTimeTicks?: number | undefined;
+  maxSeekableTimeTicks?: string | undefined;
   maxSeekableTimescale?: number | undefined;
 }
 
 function createBaseLiveMetadata(): LiveMetadata {
   return {
     broadcastId: "",
-    headSequenceNumber: 0,
-    headTimeMs: 0,
-    wallTimeMs: 0,
+    headSequenceNumber: "0",
+    headTimeMs: "0",
+    wallTimeMs: "0",
     videoId: "",
     postLiveDvr: false,
-    headm: 0,
-    minSeekableTimeTicks: 0,
+    headm: "0",
+    minSeekableTimeTicks: "0",
     minSeekableTimescale: 0,
-    maxSeekableTimeTicks: 0,
+    maxSeekableTimeTicks: "0",
     maxSeekableTimescale: 0,
   };
 }
@@ -44,13 +44,13 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
     if (message.broadcastId !== undefined && message.broadcastId !== "") {
       writer.uint32(10).string(message.broadcastId);
     }
-    if (message.headSequenceNumber !== undefined && message.headSequenceNumber !== 0) {
+    if (message.headSequenceNumber !== undefined && message.headSequenceNumber !== "0") {
       writer.uint32(24).int64(message.headSequenceNumber);
     }
-    if (message.headTimeMs !== undefined && message.headTimeMs !== 0) {
+    if (message.headTimeMs !== undefined && message.headTimeMs !== "0") {
       writer.uint32(32).int64(message.headTimeMs);
     }
-    if (message.wallTimeMs !== undefined && message.wallTimeMs !== 0) {
+    if (message.wallTimeMs !== undefined && message.wallTimeMs !== "0") {
       writer.uint32(40).int64(message.wallTimeMs);
     }
     if (message.videoId !== undefined && message.videoId !== "") {
@@ -59,16 +59,16 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
     if (message.postLiveDvr !== undefined && message.postLiveDvr !== false) {
       writer.uint32(64).bool(message.postLiveDvr);
     }
-    if (message.headm !== undefined && message.headm !== 0) {
+    if (message.headm !== undefined && message.headm !== "0") {
       writer.uint32(80).int64(message.headm);
     }
-    if (message.minSeekableTimeTicks !== undefined && message.minSeekableTimeTicks !== 0) {
+    if (message.minSeekableTimeTicks !== undefined && message.minSeekableTimeTicks !== "0") {
       writer.uint32(96).int64(message.minSeekableTimeTicks);
     }
     if (message.minSeekableTimescale !== undefined && message.minSeekableTimescale !== 0) {
       writer.uint32(104).int32(message.minSeekableTimescale);
     }
-    if (message.maxSeekableTimeTicks !== undefined && message.maxSeekableTimeTicks !== 0) {
+    if (message.maxSeekableTimeTicks !== undefined && message.maxSeekableTimeTicks !== "0") {
       writer.uint32(112).int64(message.maxSeekableTimeTicks);
     }
     if (message.maxSeekableTimescale !== undefined && message.maxSeekableTimescale !== 0) {
@@ -97,7 +97,7 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
             break;
           }
 
-          message.headSequenceNumber = longToNumber(reader.int64());
+          message.headSequenceNumber = reader.int64().toString();
           continue;
         }
         case 4: {
@@ -105,7 +105,7 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
             break;
           }
 
-          message.headTimeMs = longToNumber(reader.int64());
+          message.headTimeMs = reader.int64().toString();
           continue;
         }
         case 5: {
@@ -113,7 +113,7 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
             break;
           }
 
-          message.wallTimeMs = longToNumber(reader.int64());
+          message.wallTimeMs = reader.int64().toString();
           continue;
         }
         case 6: {
@@ -137,7 +137,7 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
             break;
           }
 
-          message.headm = longToNumber(reader.int64());
+          message.headm = reader.int64().toString();
           continue;
         }
         case 12: {
@@ -145,7 +145,7 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
             break;
           }
 
-          message.minSeekableTimeTicks = longToNumber(reader.int64());
+          message.minSeekableTimeTicks = reader.int64().toString();
           continue;
         }
         case 13: {
@@ -161,7 +161,7 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
             break;
           }
 
-          message.maxSeekableTimeTicks = longToNumber(reader.int64());
+          message.maxSeekableTimeTicks = reader.int64().toString();
           continue;
         }
         case 15: {
@@ -181,17 +181,6 @@ export const LiveMetadata: MessageFns<LiveMetadata> = {
     return message;
   },
 };
-
-function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;

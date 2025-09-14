@@ -16,11 +16,11 @@ export interface OnesieHeader {
   videoId?: string | undefined;
   itag?: string | undefined;
   cryptoParams?: CryptoParams | undefined;
-  lastModified?: number | undefined;
-  expectedMediaSizeBytes?: number | undefined;
+  lastModified?: string | undefined;
+  expectedMediaSizeBytes?: string | undefined;
   restrictedFormats: string[];
   xtags?: string | undefined;
-  sequenceNumber?: number | undefined;
+  sequenceNumber?: string | undefined;
   field23?: OnesieHeader_UnknownMessage1 | undefined;
   field34?: OnesieHeader_UnknownMessage2 | undefined;
 }
@@ -39,11 +39,11 @@ function createBaseOnesieHeader(): OnesieHeader {
     videoId: "",
     itag: "",
     cryptoParams: undefined,
-    lastModified: 0,
-    expectedMediaSizeBytes: 0,
+    lastModified: "0",
+    expectedMediaSizeBytes: "0",
     restrictedFormats: [],
     xtags: "",
-    sequenceNumber: 0,
+    sequenceNumber: "0",
     field23: undefined,
     field34: undefined,
   };
@@ -63,10 +63,10 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
     if (message.cryptoParams !== undefined) {
       CryptoParams.encode(message.cryptoParams, writer.uint32(34).fork()).join();
     }
-    if (message.lastModified !== undefined && message.lastModified !== 0) {
+    if (message.lastModified !== undefined && message.lastModified !== "0") {
       writer.uint32(40).uint64(message.lastModified);
     }
-    if (message.expectedMediaSizeBytes !== undefined && message.expectedMediaSizeBytes !== 0) {
+    if (message.expectedMediaSizeBytes !== undefined && message.expectedMediaSizeBytes !== "0") {
       writer.uint32(56).int64(message.expectedMediaSizeBytes);
     }
     for (const v of message.restrictedFormats) {
@@ -75,7 +75,7 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
     if (message.xtags !== undefined && message.xtags !== "") {
       writer.uint32(122).string(message.xtags);
     }
-    if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
+    if (message.sequenceNumber !== undefined && message.sequenceNumber !== "0") {
       writer.uint32(144).int64(message.sequenceNumber);
     }
     if (message.field23 !== undefined) {
@@ -131,7 +131,7 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
             break;
           }
 
-          message.lastModified = longToNumber(reader.uint64());
+          message.lastModified = reader.uint64().toString();
           continue;
         }
         case 7: {
@@ -139,7 +139,7 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
             break;
           }
 
-          message.expectedMediaSizeBytes = longToNumber(reader.int64());
+          message.expectedMediaSizeBytes = reader.int64().toString();
           continue;
         }
         case 11: {
@@ -163,7 +163,7 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
             break;
           }
 
-          message.sequenceNumber = longToNumber(reader.int64());
+          message.sequenceNumber = reader.int64().toString();
           continue;
         }
         case 23: {
@@ -265,17 +265,6 @@ export const OnesieHeader_UnknownMessage2: MessageFns<OnesieHeader_UnknownMessag
     return message;
   },
 };
-
-function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;

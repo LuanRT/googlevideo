@@ -10,21 +10,21 @@ import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 export const protobufPackage = "video_streaming";
 
 export interface TimeRange {
-  startTicks?: number | undefined;
-  durationTicks?: number | undefined;
+  startTicks?: string | undefined;
+  durationTicks?: string | undefined;
   timescale?: number | undefined;
 }
 
 function createBaseTimeRange(): TimeRange {
-  return { startTicks: 0, durationTicks: 0, timescale: 0 };
+  return { startTicks: "0", durationTicks: "0", timescale: 0 };
 }
 
 export const TimeRange: MessageFns<TimeRange> = {
   encode(message: TimeRange, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.startTicks !== undefined && message.startTicks !== 0) {
+    if (message.startTicks !== undefined && message.startTicks !== "0") {
       writer.uint32(8).int64(message.startTicks);
     }
-    if (message.durationTicks !== undefined && message.durationTicks !== 0) {
+    if (message.durationTicks !== undefined && message.durationTicks !== "0") {
       writer.uint32(16).int64(message.durationTicks);
     }
     if (message.timescale !== undefined && message.timescale !== 0) {
@@ -45,7 +45,7 @@ export const TimeRange: MessageFns<TimeRange> = {
             break;
           }
 
-          message.startTicks = longToNumber(reader.int64());
+          message.startTicks = reader.int64().toString();
           continue;
         }
         case 2: {
@@ -53,7 +53,7 @@ export const TimeRange: MessageFns<TimeRange> = {
             break;
           }
 
-          message.durationTicks = longToNumber(reader.int64());
+          message.durationTicks = reader.int64().toString();
           continue;
         }
         case 3: {
@@ -73,17 +73,6 @@ export const TimeRange: MessageFns<TimeRange> = {
     return message;
   },
 };
-
-function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;

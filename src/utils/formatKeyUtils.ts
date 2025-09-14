@@ -67,7 +67,7 @@ export function createSegmentCacheKeyFromMetadata(
   const pseudoMediaHeader = {
     itag: requestMetadata.format.itag,
     xtags: requestMetadata.format.xtags || '',
-    startRange: requestMetadata.byteRange.start,
+    startRange: requestMetadata.byteRange.start.toString(),
     isInitSeg: requestMetadata.isInit
   };
 

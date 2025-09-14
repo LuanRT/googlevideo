@@ -13,7 +13,7 @@ export type Part = {
 
 export interface SabrFormat {
   itag: number;
-  lastModified: number;
+  lastModified: string;
   xtags?: string;
   width?: number;
   height?: number;

@@ -13,8 +13,8 @@ export const protobufPackage = "video_streaming";
 
 export interface BufferedRange {
   formatId: FormatId | undefined;
-  startTimeMs: number;
-  durationMs: number;
+  startTimeMs: string;
+  durationMs: string;
   startSegmentIndex: number;
   endSegmentIndex: number;
   timeRange?: TimeRange | undefined;
@@ -29,7 +29,7 @@ export interface BufferedRange_UnknownMessage1 {
 
 export interface BufferedRange_UnknownMessage1_UnknownInnerMessage {
   videoId?: string | undefined;
-  lmt?: number | undefined;
+  lmt?: string | undefined;
 }
 
 export interface BufferedRange_UnknownMessage2 {
@@ -41,8 +41,8 @@ export interface BufferedRange_UnknownMessage2 {
 function createBaseBufferedRange(): BufferedRange {
   return {
     formatId: undefined,
-    startTimeMs: 0,
-    durationMs: 0,
+    startTimeMs: "0",
+    durationMs: "0",
     startSegmentIndex: 0,
     endSegmentIndex: 0,
     timeRange: undefined,
@@ -57,10 +57,10 @@ export const BufferedRange: MessageFns<BufferedRange> = {
     if (message.formatId !== undefined) {
       FormatId.encode(message.formatId, writer.uint32(10).fork()).join();
     }
-    if (message.startTimeMs !== 0) {
+    if (message.startTimeMs !== "0") {
       writer.uint32(16).int64(message.startTimeMs);
     }
-    if (message.durationMs !== 0) {
+    if (message.durationMs !== "0") {
       writer.uint32(24).int64(message.durationMs);
     }
     if (message.startSegmentIndex !== 0) {
@@ -104,7 +104,7 @@ export const BufferedRange: MessageFns<BufferedRange> = {
             break;
           }
 
-          message.startTimeMs = longToNumber(reader.int64());
+          message.startTimeMs = reader.int64().toString();
           continue;
         }
         case 3: {
@@ -112,7 +112,7 @@ export const BufferedRange: MessageFns<BufferedRange> = {
             break;
           }
 
-          message.durationMs = longToNumber(reader.int64());
+          message.durationMs = reader.int64().toString();
           continue;
         }
         case 4: {
@@ -211,7 +211,7 @@ export const BufferedRange_UnknownMessage1: MessageFns<BufferedRange_UnknownMess
 };
 
 function createBaseBufferedRange_UnknownMessage1_UnknownInnerMessage(): BufferedRange_UnknownMessage1_UnknownInnerMessage {
-  return { videoId: "", lmt: 0 };
+  return { videoId: "", lmt: "0" };
 }
 
 export const BufferedRange_UnknownMessage1_UnknownInnerMessage: MessageFns<
@@ -224,7 +224,7 @@ export const BufferedRange_UnknownMessage1_UnknownInnerMessage: MessageFns<
     if (message.videoId !== undefined && message.videoId !== "") {
       writer.uint32(10).string(message.videoId);
     }
-    if (message.lmt !== undefined && message.lmt !== 0) {
+    if (message.lmt !== undefined && message.lmt !== "0") {
       writer.uint32(16).uint64(message.lmt);
     }
     return writer;
@@ -250,7 +250,7 @@ export const BufferedRange_UnknownMessage1_UnknownInnerMessage: MessageFns<
             break;
           }
 
-          message.lmt = longToNumber(reader.uint64());
+          message.lmt = reader.uint64().toString();
           continue;
         }
       }
@@ -321,17 +321,6 @@ export const BufferedRange_UnknownMessage2: MessageFns<BufferedRange_UnknownMess
     return message;
   },
 };
-
-function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;

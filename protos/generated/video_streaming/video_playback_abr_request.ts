@@ -19,7 +19,7 @@ export interface VideoPlaybackAbrRequest {
   selectedFormatIds: FormatId[];
   bufferedRanges: BufferedRange[];
   /** `osts` (Onesie Start Time Seconds) param on Onesie requests. */
-  playerTimeMs?: number | undefined;
+  playerTimeMs?: string | undefined;
   videoPlaybackUstreamerConfig?: Uint8Array | undefined;
   field6?:
     | UnknownMessage1
@@ -38,7 +38,7 @@ export interface VideoPlaybackAbrRequest {
 
 export interface UnknownMessage1 {
   formatId?: FormatId | undefined;
-  lmt?: number | undefined;
+  lmt?: string | undefined;
   sequenceNumber?: number | undefined;
   timeRange?: TimeRange | undefined;
   field5?: number | undefined;
@@ -64,7 +64,7 @@ function createBaseVideoPlaybackAbrRequest(): VideoPlaybackAbrRequest {
     clientAbrState: undefined,
     selectedFormatIds: [],
     bufferedRanges: [],
-    playerTimeMs: 0,
+    playerTimeMs: "0",
     videoPlaybackUstreamerConfig: new Uint8Array(0),
     field6: undefined,
     preferredAudioFormatIds: [],
@@ -89,7 +89,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     for (const v of message.bufferedRanges) {
       BufferedRange.encode(v!, writer.uint32(26).fork()).join();
     }
-    if (message.playerTimeMs !== undefined && message.playerTimeMs !== 0) {
+    if (message.playerTimeMs !== undefined && message.playerTimeMs !== "0") {
       writer.uint32(32).int64(message.playerTimeMs);
     }
     if (message.videoPlaybackUstreamerConfig !== undefined && message.videoPlaybackUstreamerConfig.length !== 0) {
@@ -161,7 +161,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
             break;
           }
 
-          message.playerTimeMs = longToNumber(reader.int64());
+          message.playerTimeMs = reader.int64().toString();
           continue;
         }
         case 5: {
@@ -255,7 +255,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
 };
 
 function createBaseUnknownMessage1(): UnknownMessage1 {
-  return { formatId: undefined, lmt: 0, sequenceNumber: 0, timeRange: undefined, field5: 0 };
+  return { formatId: undefined, lmt: "0", sequenceNumber: 0, timeRange: undefined, field5: 0 };
 }
 
 export const UnknownMessage1: MessageFns<UnknownMessage1> = {
@@ -263,7 +263,7 @@ export const UnknownMessage1: MessageFns<UnknownMessage1> = {
     if (message.formatId !== undefined) {
       FormatId.encode(message.formatId, writer.uint32(10).fork()).join();
     }
-    if (message.lmt !== undefined && message.lmt !== 0) {
+    if (message.lmt !== undefined && message.lmt !== "0") {
       writer.uint32(16).sint64(message.lmt);
     }
     if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
@@ -298,7 +298,7 @@ export const UnknownMessage1: MessageFns<UnknownMessage1> = {
             break;
           }
 
-          message.lmt = longToNumber(reader.sint64());
+          message.lmt = reader.sint64().toString();
           continue;
         }
         case 3: {
@@ -485,17 +485,6 @@ export const UnknownMessage3: MessageFns<UnknownMessage3> = {
     return message;
   },
 };
-
-function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;

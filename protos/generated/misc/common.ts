@@ -185,7 +185,7 @@ export interface HttpHeader {
 
 export interface FormatId {
   itag?: number | undefined;
-  lastModified?: number | undefined;
+  lastModified?: string | undefined;
   xtags?: string | undefined;
 }
 
@@ -265,7 +265,7 @@ export const HttpHeader: MessageFns<HttpHeader> = {
 };
 
 function createBaseFormatId(): FormatId {
-  return { itag: 0, lastModified: 0, xtags: "" };
+  return { itag: 0, lastModified: "0", xtags: "" };
 }
 
 export const FormatId: MessageFns<FormatId> = {
@@ -273,7 +273,7 @@ export const FormatId: MessageFns<FormatId> = {
     if (message.itag !== undefined && message.itag !== 0) {
       writer.uint32(8).int32(message.itag);
     }
-    if (message.lastModified !== undefined && message.lastModified !== 0) {
+    if (message.lastModified !== undefined && message.lastModified !== "0") {
       writer.uint32(16).uint64(message.lastModified);
     }
     if (message.xtags !== undefined && message.xtags !== "") {
@@ -302,7 +302,7 @@ export const FormatId: MessageFns<FormatId> = {
             break;
           }
 
-          message.lastModified = longToNumber(reader.uint64());
+          message.lastModified = reader.uint64().toString();
           continue;
         }
         case 3: {
@@ -584,17 +584,6 @@ export const PlaybackAuthorization: MessageFns<PlaybackAuthorization> = {
     return message;
   },
 };
-
-function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;

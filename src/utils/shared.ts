@@ -1,6 +1,6 @@
 import type { FormatStream, SabrFormat } from '../types/shared.js';
 
-export const MAX_INT32_VALUE = 2147483647;
+export const MAX_INT32_VALUE = '2147483647';
 
 export enum EnabledTrackTypes {
   VIDEO_AND_AUDIO = 0,
@@ -104,7 +104,7 @@ export function concatenateChunks(chunks: Uint8Array[]): Uint8Array {
 export function buildSabrFormat(formatStream: FormatStream): SabrFormat {
   return {
     itag: formatStream.itag,
-    lastModified: parseInt(formatStream.last_modified_ms || formatStream.lastModified || '0'),
+    lastModified: formatStream.last_modified_ms || formatStream.lastModified || '0',
     xtags: formatStream.xtags,
     width: formatStream.width,
     height: formatStream.height,

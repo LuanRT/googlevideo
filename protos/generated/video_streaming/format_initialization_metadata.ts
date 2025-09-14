@@ -13,28 +13,28 @@ export const protobufPackage = "video_streaming";
 export interface FormatInitializationMetadata {
   videoId?: string | undefined;
   formatId?: FormatId | undefined;
-  endTimeMs?: number | undefined;
-  endSegmentNumber?: number | undefined;
+  endTimeMs?: string | undefined;
+  endSegmentNumber?: string | undefined;
   mimeType?: string | undefined;
   initRange?: Range | undefined;
   indexRange?: Range | undefined;
-  field8?: number | undefined;
-  durationUnits?: number | undefined;
-  durationTimescale?: number | undefined;
+  field8?: string | undefined;
+  durationUnits?: string | undefined;
+  durationTimescale?: string | undefined;
 }
 
 function createBaseFormatInitializationMetadata(): FormatInitializationMetadata {
   return {
     videoId: "",
     formatId: undefined,
-    endTimeMs: 0,
-    endSegmentNumber: 0,
+    endTimeMs: "0",
+    endSegmentNumber: "0",
     mimeType: "",
     initRange: undefined,
     indexRange: undefined,
-    field8: 0,
-    durationUnits: 0,
-    durationTimescale: 0,
+    field8: "0",
+    durationUnits: "0",
+    durationTimescale: "0",
   };
 }
 
@@ -46,10 +46,10 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
     if (message.formatId !== undefined) {
       FormatId.encode(message.formatId, writer.uint32(18).fork()).join();
     }
-    if (message.endTimeMs !== undefined && message.endTimeMs !== 0) {
+    if (message.endTimeMs !== undefined && message.endTimeMs !== "0") {
       writer.uint32(24).int64(message.endTimeMs);
     }
-    if (message.endSegmentNumber !== undefined && message.endSegmentNumber !== 0) {
+    if (message.endSegmentNumber !== undefined && message.endSegmentNumber !== "0") {
       writer.uint32(32).int64(message.endSegmentNumber);
     }
     if (message.mimeType !== undefined && message.mimeType !== "") {
@@ -61,13 +61,13 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
     if (message.indexRange !== undefined) {
       Range.encode(message.indexRange, writer.uint32(58).fork()).join();
     }
-    if (message.field8 !== undefined && message.field8 !== 0) {
+    if (message.field8 !== undefined && message.field8 !== "0") {
       writer.uint32(64).int64(message.field8);
     }
-    if (message.durationUnits !== undefined && message.durationUnits !== 0) {
+    if (message.durationUnits !== undefined && message.durationUnits !== "0") {
       writer.uint32(72).int64(message.durationUnits);
     }
-    if (message.durationTimescale !== undefined && message.durationTimescale !== 0) {
+    if (message.durationTimescale !== undefined && message.durationTimescale !== "0") {
       writer.uint32(80).int64(message.durationTimescale);
     }
     return writer;
@@ -101,7 +101,7 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
             break;
           }
 
-          message.endTimeMs = longToNumber(reader.int64());
+          message.endTimeMs = reader.int64().toString();
           continue;
         }
         case 4: {
@@ -109,7 +109,7 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
             break;
           }
 
-          message.endSegmentNumber = longToNumber(reader.int64());
+          message.endSegmentNumber = reader.int64().toString();
           continue;
         }
         case 5: {
@@ -141,7 +141,7 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
             break;
           }
 
-          message.field8 = longToNumber(reader.int64());
+          message.field8 = reader.int64().toString();
           continue;
         }
         case 9: {
@@ -149,7 +149,7 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
             break;
           }
 
-          message.durationUnits = longToNumber(reader.int64());
+          message.durationUnits = reader.int64().toString();
           continue;
         }
         case 10: {
@@ -157,7 +157,7 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
             break;
           }
 
-          message.durationTimescale = longToNumber(reader.int64());
+          message.durationTimescale = reader.int64().toString();
           continue;
         }
       }
@@ -169,17 +169,6 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
     return message;
   },
 };
-
-function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;

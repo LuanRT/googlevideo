@@ -15,19 +15,19 @@ export interface MediaHeader {
   headerId?: number | undefined;
   videoId?: string | undefined;
   itag?: number | undefined;
-  lmt?: number | undefined;
+  lmt?: string | undefined;
   xtags?: string | undefined;
-  startRange?: number | undefined;
+  startRange?: string | undefined;
   compressionAlgorithm?: CompressionType | undefined;
   isInitSeg?: boolean | undefined;
   sequenceNumber?: number | undefined;
-  bitrateBps?: number | undefined;
-  startMs?: number | undefined;
-  durationMs?: number | undefined;
+  bitrateBps?: string | undefined;
+  startMs?: string | undefined;
+  durationMs?: string | undefined;
   formatId?: FormatId | undefined;
-  contentLength?: number | undefined;
+  contentLength?: string | undefined;
   timeRange?: TimeRange | undefined;
-  sequenceLmt?: number | undefined;
+  sequenceLmt?: string | undefined;
 }
 
 function createBaseMediaHeader(): MediaHeader {
@@ -35,19 +35,19 @@ function createBaseMediaHeader(): MediaHeader {
     headerId: 0,
     videoId: "",
     itag: 0,
-    lmt: 0,
+    lmt: "0",
     xtags: "",
-    startRange: 0,
+    startRange: "0",
     compressionAlgorithm: 0,
     isInitSeg: false,
     sequenceNumber: 0,
-    bitrateBps: 0,
-    startMs: 0,
-    durationMs: 0,
+    bitrateBps: "0",
+    startMs: "0",
+    durationMs: "0",
     formatId: undefined,
-    contentLength: 0,
+    contentLength: "0",
     timeRange: undefined,
-    sequenceLmt: 0,
+    sequenceLmt: "0",
   };
 }
 
@@ -62,13 +62,13 @@ export const MediaHeader: MessageFns<MediaHeader> = {
     if (message.itag !== undefined && message.itag !== 0) {
       writer.uint32(24).int32(message.itag);
     }
-    if (message.lmt !== undefined && message.lmt !== 0) {
+    if (message.lmt !== undefined && message.lmt !== "0") {
       writer.uint32(32).uint64(message.lmt);
     }
     if (message.xtags !== undefined && message.xtags !== "") {
       writer.uint32(42).string(message.xtags);
     }
-    if (message.startRange !== undefined && message.startRange !== 0) {
+    if (message.startRange !== undefined && message.startRange !== "0") {
       writer.uint32(48).int64(message.startRange);
     }
     if (message.compressionAlgorithm !== undefined && message.compressionAlgorithm !== 0) {
@@ -78,27 +78,27 @@ export const MediaHeader: MessageFns<MediaHeader> = {
       writer.uint32(64).bool(message.isInitSeg);
     }
     if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
-      writer.uint32(72).int64(message.sequenceNumber);
+      writer.uint32(72).int32(message.sequenceNumber);
     }
-    if (message.bitrateBps !== undefined && message.bitrateBps !== 0) {
+    if (message.bitrateBps !== undefined && message.bitrateBps !== "0") {
       writer.uint32(80).int64(message.bitrateBps);
     }
-    if (message.startMs !== undefined && message.startMs !== 0) {
+    if (message.startMs !== undefined && message.startMs !== "0") {
       writer.uint32(88).int64(message.startMs);
     }
-    if (message.durationMs !== undefined && message.durationMs !== 0) {
+    if (message.durationMs !== undefined && message.durationMs !== "0") {
       writer.uint32(96).int64(message.durationMs);
     }
     if (message.formatId !== undefined) {
       FormatId.encode(message.formatId, writer.uint32(106).fork()).join();
     }
-    if (message.contentLength !== undefined && message.contentLength !== 0) {
+    if (message.contentLength !== undefined && message.contentLength !== "0") {
       writer.uint32(112).int64(message.contentLength);
     }
     if (message.timeRange !== undefined) {
       TimeRange.encode(message.timeRange, writer.uint32(122).fork()).join();
     }
-    if (message.sequenceLmt !== undefined && message.sequenceLmt !== 0) {
+    if (message.sequenceLmt !== undefined && message.sequenceLmt !== "0") {
       writer.uint32(128).uint64(message.sequenceLmt);
     }
     return writer;
@@ -140,7 +140,7 @@ export const MediaHeader: MessageFns<MediaHeader> = {
             break;
           }
 
-          message.lmt = longToNumber(reader.uint64());
+          message.lmt = reader.uint64().toString();
           continue;
         }
         case 5: {
@@ -156,7 +156,7 @@ export const MediaHeader: MessageFns<MediaHeader> = {
             break;
           }
 
-          message.startRange = longToNumber(reader.int64());
+          message.startRange = reader.int64().toString();
           continue;
         }
         case 7: {
@@ -180,7 +180,7 @@ export const MediaHeader: MessageFns<MediaHeader> = {
             break;
           }
 
-          message.sequenceNumber = longToNumber(reader.int64());
+          message.sequenceNumber = reader.int32();
           continue;
         }
         case 10: {
@@ -188,7 +188,7 @@ export const MediaHeader: MessageFns<MediaHeader> = {
             break;
           }
 
-          message.bitrateBps = longToNumber(reader.int64());
+          message.bitrateBps = reader.int64().toString();
           continue;
         }
         case 11: {
@@ -196,7 +196,7 @@ export const MediaHeader: MessageFns<MediaHeader> = {
             break;
           }
 
-          message.startMs = longToNumber(reader.int64());
+          message.startMs = reader.int64().toString();
           continue;
         }
         case 12: {
@@ -204,7 +204,7 @@ export const MediaHeader: MessageFns<MediaHeader> = {
             break;
           }
 
-          message.durationMs = longToNumber(reader.int64());
+          message.durationMs = reader.int64().toString();
           continue;
         }
         case 13: {
@@ -220,7 +220,7 @@ export const MediaHeader: MessageFns<MediaHeader> = {
             break;
           }
 
-          message.contentLength = longToNumber(reader.int64());
+          message.contentLength = reader.int64().toString();
           continue;
         }
         case 15: {
@@ -236,7 +236,7 @@ export const MediaHeader: MessageFns<MediaHeader> = {
             break;
           }
 
-          message.sequenceLmt = longToNumber(reader.uint64());
+          message.sequenceLmt = reader.uint64().toString();
           continue;
         }
       }
@@ -248,17 +248,6 @@ export const MediaHeader: MessageFns<MediaHeader> = {
     return message;
   },
 };
-
-function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;

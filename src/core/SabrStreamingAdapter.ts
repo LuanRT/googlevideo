@@ -34,8 +34,8 @@ interface InitializedFormat {
     formatId: FormatId;
     startSequenceNumber: number;
     endSequenceNumber: number;
-    startTimeMs: number;
-    durationMs: number;
+    startTimeMs: string;
+    durationMs: string;
     timescale: number;
   };
 }
@@ -349,10 +349,9 @@ export class SabrStreamingAdapter {
     return {
       clientAbrState: {
         playbackRate: this.playerAdapter.getPlaybackRate(),
-        playerTimeMs: Math.round((request.segment.getStartTime() ?? this.lastPlayerTimeSecs) * 1000),
-        timeSinceLastManualFormatSelectionMs: 0,
+        playerTimeMs: Math.round((request.segment.getStartTime() ?? this.lastPlayerTimeSecs) * 1000).toString(),
         clientViewportIsFlexible: false,
-        bandwidthEstimate: Math.round(this.playerAdapter.getBandwidthEstimate() || 0),
+        bandwidthEstimate: Math.round(this.playerAdapter.getBandwidthEstimate() || 0).toString(),
         drcEnabled: currentFormat?.isDrc ?? false,
         enabledTrackTypesBitfield: currentFormat.width ? EnabledTrackTypes.VIDEO_ONLY : EnabledTrackTypes.AUDIO_ONLY,
         audioTrackId: currentFormat.audioTrackId
@@ -428,12 +427,12 @@ export class SabrStreamingAdapter {
     return {
       formatId: format,
       durationMs: MAX_INT32_VALUE,
-      startTimeMs: 0,
-      startSegmentIndex: MAX_INT32_VALUE,
-      endSegmentIndex: MAX_INT32_VALUE,
+      startTimeMs: '0',
+      startSegmentIndex: Number(MAX_INT32_VALUE),
+      endSegmentIndex: Number(MAX_INT32_VALUE),
       timeRange: {
         durationTicks: MAX_INT32_VALUE,
-        startTicks: 0,
+        startTicks: '0',
         timescale: 1000
       }
     };
@@ -454,11 +453,11 @@ export class SabrStreamingAdapter {
       formatId,
       startSegmentIndex: startSequenceNumber,
       durationMs,
-      startTimeMs: 0,
+      startTimeMs: '0',
       endSegmentIndex: endSequenceNumber,
       timeRange: {
         timescale,
-        startTicks: 0,
+        startTicks: '0',
         durationTicks: durationMs
       }
     };
@@ -581,8 +580,8 @@ export class SabrStreamingAdapter {
         formatId: streamInfo.mediaHeader.formatId!,
         startSequenceNumber: streamInfo.mediaHeader.sequenceNumber || 1,
         endSequenceNumber: streamInfo.mediaHeader.sequenceNumber || 1,
-        startTimeMs: streamInfo.mediaHeader.startMs || 0,
-        durationMs: streamInfo.mediaHeader.durationMs || 0,
+        startTimeMs: streamInfo.mediaHeader.startMs || '0',
+        durationMs: streamInfo.mediaHeader.durationMs || '0',
         timescale: streamInfo.mediaHeader.timeRange?.timescale || 1000
       };
 

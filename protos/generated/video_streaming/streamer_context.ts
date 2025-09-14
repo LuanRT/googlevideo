@@ -50,7 +50,7 @@ export interface StreamerContext_ClientInfo {
   windowHeightPoints?: number | undefined;
   androidSdkVersion?: number | undefined;
   screenDensityFloat?: number | undefined;
-  utcOffsetMinutes?: number | undefined;
+  utcOffsetMinutes?: string | undefined;
   timeZone?:
     | string
     | undefined;
@@ -236,7 +236,7 @@ function createBaseStreamerContext_ClientInfo(): StreamerContext_ClientInfo {
     windowHeightPoints: 0,
     androidSdkVersion: 0,
     screenDensityFloat: 0,
-    utcOffsetMinutes: 0,
+    utcOffsetMinutes: "0",
     timeZone: "",
     chipset: "",
     glDeviceInfo: undefined,
@@ -302,7 +302,7 @@ export const StreamerContext_ClientInfo: MessageFns<StreamerContext_ClientInfo> 
     if (message.screenDensityFloat !== undefined && message.screenDensityFloat !== 0) {
       writer.uint32(525).float(message.screenDensityFloat);
     }
-    if (message.utcOffsetMinutes !== undefined && message.utcOffsetMinutes !== 0) {
+    if (message.utcOffsetMinutes !== undefined && message.utcOffsetMinutes !== "0") {
       writer.uint32(536).int64(message.utcOffsetMinutes);
     }
     if (message.timeZone !== undefined && message.timeZone !== "") {
@@ -481,7 +481,7 @@ export const StreamerContext_ClientInfo: MessageFns<StreamerContext_ClientInfo> 
             break;
           }
 
-          message.utcOffsetMinutes = longToNumber(reader.int64());
+          message.utcOffsetMinutes = reader.int64().toString();
           continue;
         }
         case 80: {
@@ -725,17 +725,6 @@ export const StreamerContext_UnknownMessage1_UnknownInnerMessage1: MessageFns<
     return message;
   },
 };
-
-function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;

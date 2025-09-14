@@ -11,18 +11,18 @@ import { SeekSource } from "../misc/common.js";
 export const protobufPackage = "video_streaming";
 
 export interface SabrSeek {
-  seekMediaTime?: number | undefined;
+  seekMediaTime?: string | undefined;
   seekMediaTimescale?: number | undefined;
   seekSource?: SeekSource | undefined;
 }
 
 function createBaseSabrSeek(): SabrSeek {
-  return { seekMediaTime: 0, seekMediaTimescale: 0, seekSource: 0 };
+  return { seekMediaTime: "0", seekMediaTimescale: 0, seekSource: 0 };
 }
 
 export const SabrSeek: MessageFns<SabrSeek> = {
   encode(message: SabrSeek, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.seekMediaTime !== undefined && message.seekMediaTime !== 0) {
+    if (message.seekMediaTime !== undefined && message.seekMediaTime !== "0") {
       writer.uint32(8).int64(message.seekMediaTime);
     }
     if (message.seekMediaTimescale !== undefined && message.seekMediaTimescale !== 0) {
@@ -46,7 +46,7 @@ export const SabrSeek: MessageFns<SabrSeek> = {
             break;
           }
 
-          message.seekMediaTime = longToNumber(reader.int64());
+          message.seekMediaTime = reader.int64().toString();
           continue;
         }
         case 2: {
@@ -74,17 +74,6 @@ export const SabrSeek: MessageFns<SabrSeek> = {
     return message;
   },
 };
-
-function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
-}
 
 export interface MessageFns<T> {
   encode(message: T, writer?: BinaryWriter): BinaryWriter;
