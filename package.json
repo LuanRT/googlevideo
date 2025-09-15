@@ -1,6 +1,6 @@
 {
   "name": "googlevideo",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "A collection of modules for working with YouTube's proprietary video streaming protocols (UMP/SABR).",
   "type": "module",
   "scripts": {
