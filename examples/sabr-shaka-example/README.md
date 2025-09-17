@@ -29,4 +29,4 @@ Things **not included** in this minimal example but available in the main projec
 3.  Open your browser and navigate to the local URL provided by Vite (e.g., `http://localhost:5173`).
 
 ## License
-Distributed under the [MIT](./LICENSE) License.
+Distributed under the [MIT](../../LICENSE) License.
