@@ -813,7 +813,7 @@ export class SabrStream extends EventEmitterLike {
           'accept-encoding': 'identity',
           'accept': 'application/vnd.yt-ump'
         },
-        body,
+        body: body as unknown as BodyInit,
         signal: this.abortController.signal
       });
     } finally {
