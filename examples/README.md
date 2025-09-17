@@ -1,5 +1,5 @@
-## SABR/UMP Player Example
-https://github.com/LuanRT/yt-sabr-shaka-demo
+## SABR/UMP Player
+See [sabr-shaka-example/README.md](./sabr-shaka-example/README.md).
 
 ## Downloader Example
 

@@ -1,0 +1,21 @@
+{
+  "name": "sabr-shaka-example",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "patch:shaka": "node ./scripts/patchShaka.mjs",
+    "postinstall": "npm run patch:shaka"
+  },
+  "dependencies": {
+    "bgutils-js": "^3.2.0",
+    "googlevideo": "^4.0.4",
+    "shaka-player": "^4.16.2",
+    "youtubei.js": "^15.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11"
+  }
+}

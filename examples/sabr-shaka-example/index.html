@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SABR Shaka Player Example</title>
+    <style>
+      body { font-family: sans-serif; background-color: #181818; color: #fff; margin: 0; padding: 2rem; }
+      #video-container { max-width: 800px; margin: 2rem auto; }
+      video { width: 100%; height: auto; background-color: #000; aspect-ratio: 16 / 9; }
+      .controls { max-width: 800px; margin: 0 auto 1rem; display: flex; gap: 0.5rem; }
+      input { flex-grow: 1; padding: 0.5rem; }
+      button { padding: 0.5rem 1rem; }
+      #status { text-align: center; margin-top: 1rem; }
+    </style>
+  </head>
+  <body>
+    <div class="controls">
+      <input type="text" id="videoIdInput" value="7j86ktJHjfI" placeholder="Enter YouTube Video ID" />
+      <button id="loadButton">Load Video</button>
+    </div>
+    <div id="video-container">
+      <video id="video" autoplay></video>
+    </div>
+    <div id="status">Ready. Enter a video ID and click "Load Video".</div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
