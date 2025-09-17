@@ -43,7 +43,7 @@ async function main() {
   console.log('[Main] Innertube initialized');
 
   // Now init the player.
-  player = new shaka.Player(videoElement);
+  player = new shaka.Player();
   player.configure({
     abr: { enabled: true },
     streaming: {
@@ -51,6 +51,8 @@ async function main() {
       rebufferingGoal: 2
     }
   });
+
+  await player.attach(videoElement);
 
   const ui = new shaka.ui.Overlay(player, videoContainer, videoElement);
 
