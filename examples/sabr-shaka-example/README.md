@@ -4,7 +4,7 @@ This project provides a minimal, self-contained example of how to use [Shaka Pla
 
 ## Note
 
-For an implementation that includes a proper user interface, advanced features, and best practices, please see the main **[Kira](https://github.com/LuanRT/yt-sabr-shaka-demo)** project this example is derived from.
+For an implementation that includes a proper user interface, advanced features, and best practices, please see the main **[Kira](https://github.com/LuanRT/kira)** project this example is derived from.
 
 Things **not included** in this minimal example but available in the main project:
 *   A proper watch page and user interface.
