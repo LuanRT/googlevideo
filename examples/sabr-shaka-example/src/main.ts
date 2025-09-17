@@ -36,7 +36,7 @@ async function main() {
     fetch: fetchFunction
   });
 
-  botguardService.init().then(() => console.info('[App]', 'BotGuard client initialized'));
+  botguardService.init().then(() => console.info('[Main]', 'BotGuard client initialized'));
 
   sessionPoTokenContentBinding = innertube.session.context.client.visitorData;
 
