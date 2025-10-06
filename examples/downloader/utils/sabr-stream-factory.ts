@@ -149,7 +149,7 @@ export async function createSabrStream(
   innertube: Innertube;
   streamResults: StreamResults;
 }> {
-  const innertube = await Innertube.create({ cache: new UniversalCache(true) });
+  const innertube = await Innertube.create({ cache: new UniversalCache(true), player_id: '0004de42' });
   const webPoTokenResult = await generateWebPoToken(innertube.session.context.client.visitorData || '');
 
   // Get video metadata.
