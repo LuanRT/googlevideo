@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v4.0.4...googlevideo-v4.1.0) (2026-07-12)
+
+
+### Features
+
+* **protos:** Export SabrSeek protobuf ([#49](https://github.com/LuanRT/googlevideo/issues/49)) ([2de7d84](https://github.com/LuanRT/googlevideo/commit/2de7d84cfbc602c337727291aba78930e4e6c4b1))
+
 ## [4.0.4](https://github.com/LuanRT/googlevideo/compare/googlevideo-v4.0.3...googlevideo-v4.0.4) (2025-09-14)
 
 
