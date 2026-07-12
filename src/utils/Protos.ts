@@ -14,6 +14,7 @@ export { RequestCancellationPolicy } from '../../protos/generated/video_streamin
 export { RequestIdentifier } from '../../protos/generated/video_streaming/request_identifier.js';
 export { SabrError } from '../../protos/generated/video_streaming/sabr_error.js';
 export { SabrRedirect } from '../../protos/generated/video_streaming/sabr_redirect.js';
+export { SabrSeek } from '../../protos/generated/video_streaming/sabr_seek.js';
 
 export { OnesieRequest } from '../../protos/generated/video_streaming/onesie_request.js';
 export { OnesieHeader } from '../../protos/generated/video_streaming/onesie_header.js';
