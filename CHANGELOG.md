@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.1](https://github.com/LuanRT/googlevideo/compare/googlevideo-v4.1.0...googlevideo-v4.1.1) (2026-07-13)
+
+
+### Miscellaneous Chores
+
+* release v4.1.1 ([28a2f11](https://github.com/LuanRT/googlevideo/commit/28a2f1180f9f2803f2ea0e04716061dd31c65241))
+
 ## [4.1.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v4.0.4...googlevideo-v4.1.0) (2026-07-12)
 
 
