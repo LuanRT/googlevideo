@@ -11,12 +11,10 @@ permissions:
   id-token: write
 
 jobs:
-  release-please:
-    permissions:
-      contents: write
-      pull-requests: write
-      id-token: write
+  release_please:
     runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
     steps:
       - uses: googleapis/release-please-action@v4
         id: release
@@ -25,14 +23,17 @@ jobs:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
+  publish:
+    needs: release_please
+    if: ${{ needs.release_please.outputs.release_created == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v4
-        if: ${{ steps.release.outputs.release_created }}
-  
+
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '24'
           registry-url: "https://registry.npmjs.org"
-        if: ${{ steps.release.outputs.release_created }}
 
       - name: Install protoc
         run: |
@@ -41,20 +42,16 @@ jobs:
           curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v21.12/protoc-21.12-linux-x86_64.zip
           unzip protoc-21.12-linux-x86_64.zip -d protoc21
           sudo mv protoc21/bin/protoc /usr/local/bin/
-        if: ${{ steps.release.outputs.release_created }}
 
       - run: npm ci
-        if: ${{ steps.release.outputs.release_created }}
 
       - name: Publish to NPM
         run: |
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        if: ${{ steps.release.outputs.release_created }}
 
       - name: Publish to JSR
         run: |
           npm run build
           npx jsr publish --allow-dirty
-        if: ${{ steps.release.outputs.release_created }}
