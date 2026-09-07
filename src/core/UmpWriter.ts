@@ -1,29 +1,17 @@
 import type { CompositeBuffer } from './CompositeBuffer.js';
 
-/**
- * A serialization module that encodes data into the UMP binary format with proper type and size encoding.
- */
 export class UmpWriter {
   constructor(
     private compositeBuffer: CompositeBuffer
   ) { }
 
-  /**
-   * Writes a part to the buffer.
-   * @param partType - The type of the part.
-   * @param partData - The data of the part.
-   */
-  public write(partType: number, partData: Uint8Array): void {
-    const partSize = partData.length;
-    this.writeVarInt(partType);
+  public write(type: number, data: Uint8Array): void {
+    const partSize = data.length;
+    this.writeVarInt(type);
     this.writeVarInt(partSize);
-    this.compositeBuffer.append(partData);
+    this.compositeBuffer.append(data);
   }
 
-  /**
-   * Writes a variable-length integer to the buffer.
-   * @param value - The integer to write.
-   */
   private writeVarInt(value: number): void {
     if (value < 0)
       throw new Error('VarInt value cannot be negative.');
