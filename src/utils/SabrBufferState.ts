@@ -34,7 +34,7 @@ export interface BufferedRangeSummary {
 }
 
 const TAG = 'SabrBufferState';
-const MAX_TRACKED_SEGMENTS = 64; // @NOTE: only tracks metadata, not actual media
+const MAX_TRACKED_SEGMENTS = 64; // @NOTE: only metadata, not actual media
 
 export class SabrBufferState {
   private readonly logger = Logger.getInstance();
