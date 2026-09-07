@@ -610,7 +610,6 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     selectedAudioFormat: SabrFormat,
     selectedVideoFormat: SabrFormat
   ): Promise<void> {
-    const startTime = performance.now();
 
     // Keep current gen id so we can detect if it changes during this request.
     const requestPoTokenGeneration = this.poTokenGenerationId;
@@ -622,6 +621,8 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     assert(response.ok, `Server returned ${response.status} ${response.statusText}`);
     assert(contentType === 'application/vnd.yt-ump', `Unexpected content type from server: ${contentType}`);
     assertIsDefined(response.body, 'Response body is null');
+
+    const startTime = performance.now();
 
     const reader = response.body.getReader();
 
