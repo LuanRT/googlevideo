@@ -2,9 +2,13 @@
 
 # Class: CompositeBuffer
 
-Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:4](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/CompositeBuffer.ts#L4)
+Defined in: [src/core/CompositeBuffer.ts:6](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/CompositeBuffer.ts#L6)
 
-A memory-efficient buffer that manages discontinuous chunks as a single logical stream.
+A memory efficient buffer that manages discontinuous chunks as a single stream.
+
+## NOTE
+
+Based on https://gist.github.com/LuanRT/02d7eab589fb4080cd16e97f6dccf06f
 
 ## Constructors
 
@@ -12,7 +16,7 @@ A memory-efficient buffer that manages discontinuous chunks as a single logical 
 
 > **new CompositeBuffer**(`chunks`): `CompositeBuffer`
 
-Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:11](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/CompositeBuffer.ts#L11)
+Defined in: [src/core/CompositeBuffer.ts:13](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/CompositeBuffer.ts#L13)
 
 #### Parameters
 
@@ -30,15 +34,7 @@ Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:11](https://github
 
 > **chunks**: `Uint8Array`\<`ArrayBufferLike`\>[]
 
-Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:5](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/CompositeBuffer.ts#L5)
-
-***
-
-### currentChunkIndex
-
-> **currentChunkIndex**: `number`
-
-Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:7](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/CompositeBuffer.ts#L7)
+Defined in: [src/core/CompositeBuffer.ts:7](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/CompositeBuffer.ts#L7)
 
 ***
 
@@ -46,7 +42,15 @@ Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:7](https://github.
 
 > **currentChunkOffset**: `number`
 
-Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:6](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/CompositeBuffer.ts#L6)
+Defined in: [src/core/CompositeBuffer.ts:8](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/CompositeBuffer.ts#L8)
+
+***
+
+### currentChunkIndex
+
+> **currentChunkIndex**: `number`
+
+Defined in: [src/core/CompositeBuffer.ts:9](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/CompositeBuffer.ts#L9)
 
 ***
 
@@ -54,7 +58,7 @@ Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:6](https://github.
 
 > `optional` **currentDataView**: `DataView`\<`ArrayBufferLike`\>
 
-Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:8](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/CompositeBuffer.ts#L8)
+Defined in: [src/core/CompositeBuffer.ts:10](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/CompositeBuffer.ts#L10)
 
 ***
 
@@ -62,7 +66,7 @@ Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:8](https://github.
 
 > **totalLength**: `number`
 
-Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:9](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/CompositeBuffer.ts#L9)
+Defined in: [src/core/CompositeBuffer.ts:11](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/CompositeBuffer.ts#L11)
 
 ## Methods
 
@@ -70,11 +74,16 @@ Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:9](https://github.
 
 > **append**(`chunk`): `void`
 
-Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:19](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/CompositeBuffer.ts#L19)
+Defined in: [src/core/CompositeBuffer.ts:26](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/CompositeBuffer.ts#L26)
+
+Appends a chunk or all chunks from another CompositeBuffer to this buffer.
+Chunks using the same `ArrayBuffer` are merged into a single `Uint8Array` to reduce memory usage and keep the number of chunks low.
 
 #### Parameters
 
 ##### chunk
+
+A `Uint8Array` to append, or another `CompositeBuffer` whose chunks will be appended individually.
 
 `CompositeBuffer` | `Uint8Array`\<`ArrayBufferLike`\>
 
@@ -84,11 +93,55 @@ Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:19](https://github
 
 ***
 
+### split()
+
+> **split**(`position`): `object`
+
+Defined in: [src/core/CompositeBuffer.ts:50](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/CompositeBuffer.ts#L50)
+
+Splits this buffer at a specified position.
+
+#### Parameters
+
+##### position
+
+`number`
+
+Offset at which to split the buffer.
+
+#### Returns
+
+`object`
+
+Obj containing the bytes before `position` as `extractedBuffer` and the bytes from `position` onward as `remainingBuffer`.
+
+##### extractedBuffer
+
+> **extractedBuffer**: `CompositeBuffer`
+
+##### remainingBuffer
+
+> **remainingBuffer**: `CompositeBuffer`
+
+***
+
+### getLength()
+
+> **getLength**(): `number`
+
+Defined in: [src/core/CompositeBuffer.ts:72](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/CompositeBuffer.ts#L72)
+
+#### Returns
+
+`number`
+
+***
+
 ### canReadBytes()
 
 > **canReadBytes**(`position`, `length`): `boolean`
 
-Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:68](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/CompositeBuffer.ts#L68)
+Defined in: [src/core/CompositeBuffer.ts:76](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/CompositeBuffer.ts#L76)
 
 #### Parameters
 
@@ -106,11 +159,35 @@ Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:68](https://github
 
 ***
 
+### getUint8()
+
+> **getUint8**(`position`): `number`
+
+Defined in: [src/core/CompositeBuffer.ts:83](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/CompositeBuffer.ts#L83)
+
+Reads a single unsigned byte at the given position.
+
+#### Parameters
+
+##### position
+
+`number`
+
+#### Returns
+
+`number`
+
+***
+
 ### focus()
 
 > **focus**(`position`): `void`
 
-Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:77](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/CompositeBuffer.ts#L77)
+Defined in: [src/core/CompositeBuffer.ts:93](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/CompositeBuffer.ts#L93)
+
+Moves the internal focus to the chunk containing the specified position.
+If the position is before the currently focused chunk, focus is reset first.
+Cached `currentDataView` is also invalidated.
 
 #### Parameters
 
@@ -124,41 +201,13 @@ Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:77](https://github
 
 ***
 
-### getLength()
-
-> **getLength**(): `number`
-
-Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:64](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/CompositeBuffer.ts#L64)
-
-#### Returns
-
-`number`
-
-***
-
-### getUint8()
-
-> **getUint8**(`position`): `number`
-
-Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:72](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/CompositeBuffer.ts#L72)
-
-#### Parameters
-
-##### position
-
-`number`
-
-#### Returns
-
-`number`
-
-***
-
 ### isFocused()
 
 > **isFocused**(`position`): `boolean`
 
-Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:93](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/CompositeBuffer.ts#L93)
+Defined in: [src/core/CompositeBuffer.ts:111](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/CompositeBuffer.ts#L111)
+
+Checks whether the internal focus already covers the specified position.
 
 #### Parameters
 
@@ -170,28 +219,4 @@ Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:93](https://github
 
 `boolean`
 
-***
-
-### split()
-
-> **split**(`position`): `object`
-
-Defined in: [codeberg/googlevideo/src/core/CompositeBuffer.ts:38](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/CompositeBuffer.ts#L38)
-
-#### Parameters
-
-##### position
-
-`number`
-
-#### Returns
-
-`object`
-
-##### extractedBuffer
-
-> **extractedBuffer**: `CompositeBuffer`
-
-##### remainingBuffer
-
-> **remainingBuffer**: `CompositeBuffer`
+`true` if `position` is within the currently focused chunk.

@@ -2,19 +2,19 @@
 
 # Interface: RequestSegment
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:91](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L91)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:95](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L95)
 
 ## Properties
 
 ### getStartTime()
 
-> **getStartTime**: () => `null` \| `number`
+> **getStartTime**: () => `number` \| `null`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:92](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L92)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:96](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L96)
 
 #### Returns
 
-`null` \| `number`
+`number` \| `null`
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:92](htt
 
 > **isInit**: () => `boolean`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:93](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L93)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:97](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L97)
 
 #### Returns
 

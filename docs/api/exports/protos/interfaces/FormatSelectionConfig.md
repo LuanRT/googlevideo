@@ -2,7 +2,7 @@
 
 # Interface: FormatSelectionConfig
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/format\_selection\_config.ts:12](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/format_selection_config.ts#L12)
+Defined in: [protos/generated/video\_streaming/format\_selection\_config.ts:12](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/format_selection_config.ts#L12)
 
 ## Properties
 
@@ -10,15 +10,7 @@ Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/format\_sele
 
 > **itags**: `number`[]
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/format\_selection\_config.ts:13](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/format_selection_config.ts#L13)
-
-***
-
-### resolution?
-
-> `optional` **resolution**: `number`
-
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/format\_selection\_config.ts:15](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/format_selection_config.ts#L15)
+Defined in: [protos/generated/video\_streaming/format\_selection\_config.ts:13](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/format_selection_config.ts#L13)
 
 ***
 
@@ -26,4 +18,12 @@ Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/format\_sele
 
 > `optional` **videoId**: `string`
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/format\_selection\_config.ts:14](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/format_selection_config.ts#L14)
+Defined in: [protos/generated/video\_streaming/format\_selection\_config.ts:14](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/format_selection_config.ts#L14)
+
+***
+
+### resolution?
+
+> `optional` **resolution**: `number`
+
+Defined in: [protos/generated/video\_streaming/format\_selection\_config.ts:15](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/format_selection_config.ts#L15)

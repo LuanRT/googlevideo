@@ -2,7 +2,7 @@
 
 # Interface: KeyValuePair
 
-Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:204](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L204)
+Defined in: [protos/generated/misc/common.ts:204](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/misc/common.ts#L204)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:204](https://g
 
 > `optional` **key**: `string`
 
-Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:205](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L205)
+Defined in: [protos/generated/misc/common.ts:205](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/misc/common.ts#L205)
 
 ***
 
@@ -18,4 +18,4 @@ Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:205](https://g
 
 > `optional` **value**: `string`
 
-Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:206](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L206)
+Defined in: [protos/generated/misc/common.ts:206](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/misc/common.ts#L206)

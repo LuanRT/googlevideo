@@ -2,25 +2,15 @@
 
 # Interface: SabrOptions
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:43](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L43)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:47](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L47)
 
 ## Properties
-
-### clientInfo?
-
-> `optional` **clientInfo**: [`ClientInfo`](../../protos/interfaces/ClientInfo.md)
-
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:72](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L72)
-
-Client information to send with SABR requests.
-
-***
 
 ### enableCaching?
 
 > `optional` **enableCaching**: `boolean`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:48](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L48)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:52](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L52)
 
 Whether to enable caching of SABR segments.
 
@@ -36,7 +26,7 @@ true
 
 > `optional` **enableVerboseRequestLogging**: `boolean`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:54](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L54)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:58](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L58)
 
 Enables verbose logging of all SABR requests made by the player.
 @NOTE: `DEBUG` level logging must be enabled for this to take effect.
@@ -49,27 +39,11 @@ false
 
 ***
 
-### maxCacheAgeSeconds?
-
-> `optional` **maxCacheAgeSeconds**: `number`
-
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:64](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L64)
-
-Maximum age of cached segments in seconds.
-
-#### Default
-
-```ts
-300 (5 minutes)
-```
-
-***
-
 ### maxCacheSizeMB?
 
 > `optional` **maxCacheSizeMB**: `number`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:59](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L59)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:63](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L63)
 
 Maximum size of the segment cache in megabytes.
 
@@ -81,10 +55,36 @@ Maximum size of the segment cache in megabytes.
 
 ***
 
+### maxCacheAgeSeconds?
+
+> `optional` **maxCacheAgeSeconds**: `number`
+
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:68](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L68)
+
+Maximum age of cached segments in seconds.
+
+#### Default
+
+```ts
+300 (5 minutes)
+```
+
+***
+
 ### playerAdapter?
 
 > `optional` **playerAdapter**: [`SabrPlayerAdapter`](SabrPlayerAdapter.md)
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:68](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L68)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:72](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L72)
 
 Player adapter to use for SABR streaming.
+
+***
+
+### clientInfo?
+
+> `optional` **clientInfo**: [`ClientInfo`](../../protos/interfaces/ClientInfo.md)
+
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:76](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L76)
+
+Client information to send with SABR requests.

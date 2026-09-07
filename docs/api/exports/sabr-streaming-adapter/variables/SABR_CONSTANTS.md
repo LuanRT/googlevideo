@@ -4,9 +4,17 @@
 
 > `const` **SABR\_CONSTANTS**: `object`
 
-Defined in: [codeberg/googlevideo/src/core/SabrStreamingAdapter.ts:49](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/SabrStreamingAdapter.ts#L49)
+Defined in: [src/core/SabrStreamingAdapter.ts:55](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/SabrStreamingAdapter.ts#L55)
 
-## Type declaration
+## Type Declaration
+
+### PROTOCOL
+
+> `readonly` **PROTOCOL**: `"sabr:"` = `'sabr:'`
+
+### KEY\_PARAM
+
+> `readonly` **KEY\_PARAM**: `"key"` = `'key'`
 
 ### DEFAULT\_OPTIONS
 
@@ -20,18 +28,10 @@ Defined in: [codeberg/googlevideo/src/core/SabrStreamingAdapter.ts:49](https://g
 
 > `readonly` **enableVerboseRequestLogging**: `false` = `false`
 
-#### DEFAULT\_OPTIONS.maxCacheAgeSeconds
-
-> `readonly` **maxCacheAgeSeconds**: `300` = `300`
-
 #### DEFAULT\_OPTIONS.maxCacheSizeMB
 
 > `readonly` **maxCacheSizeMB**: `3` = `3`
 
-### KEY\_PARAM
+#### DEFAULT\_OPTIONS.maxCacheAgeSeconds
 
-> `readonly` **KEY\_PARAM**: `"key"` = `'key'`
-
-### PROTOCOL
-
-> `readonly` **PROTOCOL**: `"sabr:"` = `'sabr:'`
+> `readonly` **maxCacheAgeSeconds**: `300` = `300`
