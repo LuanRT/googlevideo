@@ -1,5 +1,6 @@
 {
   "readme": "none",
+  "sort": ["source-order"],
   "entryPoints": [
     "src/exports/ump.ts",
     "src/exports/sabr-streaming-adapter.ts",
