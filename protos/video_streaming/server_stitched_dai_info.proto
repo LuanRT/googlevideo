@@ -1,0 +1,33 @@
+syntax = "proto2";
+package video_streaming;
+
+message ServerStitchedDaiInfo {
+  enum AdState {
+    UNKNOWN = 0;
+    TIMEOUT = 1;
+    RATECONTROL = 2; // when /ad_break returns adThrottled=true
+    RATECONTROL_CLIENT = 11; // when the client itself throttles ad requests?
+    SERVER_ERROR = 3;
+    DELETED = 4;
+    WAITING = 5;
+    READY = 6;
+    SSDISABLED = 7;
+    SSDISABLED_USTREAMER = 9;
+    SSDISABLED_NO_CONFIG = 10;
+    NO_DAI_CONFIG_RETURNED_IN_GAB = 12;
+    INACTIVE = 8;
+    CACHE_MISS = 13;
+  }
+
+  repeated string ad_cpns = 1;
+  optional bytes ads_config = 2;
+  optional string dai_state = 3;
+  optional int32 skip_sequence = 4;
+  optional int32 unknown_field_5 = 5;
+  optional string unknown_field_6 = 6;
+  optional string cuepoint_id = 7;
+  optional AdState state = 8;
+  optional string tile_context = 9;
+  optional int64 start_time_ms = 10;
+  optional int64 duration_ms = 11;
+}

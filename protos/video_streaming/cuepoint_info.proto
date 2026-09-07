@@ -1,0 +1,22 @@
+syntax = "proto2";
+package video_streaming;
+
+import "video_streaming/cuepoint.proto";
+import "video_streaming/time_range.proto";
+
+message CuepointInfo {
+  enum TrackType {
+    AUDIO = 1;
+    VIDEO = 2;
+  }
+
+  optional Cuepoint cuepoint = 1;
+  optional TrackType track_type = 2;
+  optional int32 sequence_number = 3;
+  optional TimeRange time_range = 4;
+  optional string tile_context = 5;
+  optional int32 unknown_field_6 = 6;
+  optional int32 unknown_field_7 = 7;
+  optional string opportunity_id = 8;
+  optional bytes serialized_prefetch_context = 9;
+}

@@ -2,37 +2,34 @@
 // versions:
 //   protoc-gen-ts_proto  v2.7.5
 //   protoc               v7.35.1
-// source: video_streaming/sabr_error.proto
+// source: video_streaming/cuepoint_list.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { CuepointInfo } from "./cuepoint_info.js";
 
 export const protobufPackage = "video_streaming";
 
-export interface SabrError {
-  type?: string | undefined;
-  code?: number | undefined;
+export interface CuepointList {
+  ssapInfos: CuepointInfo[];
 }
 
-function createBaseSabrError(): SabrError {
-  return { type: "", code: 0 };
+function createBaseCuepointList(): CuepointList {
+  return { ssapInfos: [] };
 }
 
-export const SabrError: MessageFns<SabrError> = {
-  encode(message: SabrError, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.type !== undefined && message.type !== "") {
-      writer.uint32(10).string(message.type);
-    }
-    if (message.code !== undefined && message.code !== 0) {
-      writer.uint32(16).int32(message.code);
+export const CuepointList: MessageFns<CuepointList> = {
+  encode(message: CuepointList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    for (const v of message.ssapInfos) {
+      CuepointInfo.encode(v!, writer.uint32(10).fork()).join();
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): SabrError {
+  decode(input: BinaryReader | Uint8Array, length?: number): CuepointList {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseSabrError();
+    const message = createBaseCuepointList();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -41,15 +38,7 @@ export const SabrError: MessageFns<SabrError> = {
             break;
           }
 
-          message.type = reader.string();
-          continue;
-        }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.code = reader.int32();
+          message.ssapInfos.push(CuepointInfo.decode(reader, reader.uint32()));
           continue;
         }
       }

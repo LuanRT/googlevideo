@@ -1,7 +1,7 @@
 syntax = "proto2";
 package video_streaming;
 
-message LiveMetadata {
+message SabrLiveMetadata {
   optional string broadcast_id = 1;
   optional int64 head_sequence_number = 3;
   optional int64 head_time_ms = 4;

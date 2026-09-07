@@ -1,8 +1,25 @@
 export { FormatInitializationMetadata } from '../../protos/generated/video_streaming/format_initialization_metadata.js';
 export { MediaHeader } from '../../protos/generated/video_streaming/media_header.js';
 export { BufferedRange } from '../../protos/generated/video_streaming/buffered_range.js';
-export { MediaCapabilities } from '../../protos/generated/video_streaming/media_capabilities.js';
+export { CuepointList } from '../../protos/generated/video_streaming/cuepoint_list.js';
+export { CuepointInfo, CuepointInfo_TrackType as CuepointTrackType } from '../../protos/generated/video_streaming/cuepoint_info.js';
+
+export {
+  Cuepoint,
+  Cuepoint_CuepointEvent as CuepointEvent
+} from '../../protos/generated/video_streaming/cuepoint.js';
+
+export {
+  MediaCapabilities,
+  MediaCapabilities_VideoFormatCapability as VideoFormatCapability,
+  MediaCapabilities_AudioFormatCapability as AudioFormatCapability
+} from '../../protos/generated/video_streaming/media_capabilities.js';
+
 export { CryptoParams } from '../../protos/generated/video_streaming/crypto_params.js';
+export { TimeRange } from '../../protos/generated/video_streaming/time_range.js';
+export { AllowedCachedFormats } from '../../protos/generated/video_streaming/allowed_cached_formats.js';
+export { SelectableFormats, SelectableFormats_SelectableFormat } from '../../protos/generated/video_streaming/selectable_formats.js';
+export { PrewarmConnection } from '../../protos/generated/video_streaming/prewarm_connection.js';
 
 export { PlaybackCookie } from '../../protos/generated/video_streaming/playback_cookie.js';
 export { PlaybackStartPolicy } from '../../protos/generated/video_streaming/playback_start_policy.js';
@@ -23,12 +40,28 @@ export { OnesieInnertubeRequest } from '../../protos/generated/video_streaming/o
 export { OnesieInnertubeResponse } from '../../protos/generated/video_streaming/onesie_innertube_response.js';
 export { OnesieProxyStatus } from '../../protos/generated/video_streaming/onesie_proxy_status.js';
 export { InnertubeRequest, UstreamerFlags } from '../../protos/generated/video_streaming/innertube_request.js';
-export { StreamerContext, StreamerContext_ClientInfo as ClientInfo } from '../../protos/generated/video_streaming/streamer_context.js';
-export { SabrContextUpdate, SabrContextUpdate_SabrContextWritePolicy as SabrContextWritePolicy, SabrContextValue } from '../../protos/generated/video_streaming/sabr_context_update.js';
+
+export {
+  StreamerContext,
+  StreamerContext_ClientInfo as ClientInfo,
+  StreamerContext_SabrContext as SabrContext
+} from '../../protos/generated/video_streaming/streamer_context.js';
+
+export {
+  SabrContextUpdate,
+  SabrContextUpdate_SabrContextScope as SabrContextScope,
+  SabrContextUpdate_SabrContextWritePolicy as SabrContextWritePolicy
+} from '../../protos/generated/video_streaming/sabr_context_update.js';
+
 export { SabrContextSendingPolicy } from '../../protos/generated/video_streaming/sabr_context_sending_policy.js';
+export { SabrLiveMetadata } from '../../protos/generated/video_streaming/sabr_live_metadata.js';
+
+export {
+  ServerStitchedDaiInfo,
+  ServerStitchedDaiInfo_AdState as AdState
+} from '../../protos/generated/video_streaming/server_stitched_dai_info.js';
 
 export { StreamProtectionStatus } from '../../protos/generated/video_streaming/stream_protection_status.js';
-export { LiveMetadata } from '../../protos/generated/video_streaming/live_metadata.js';
 export { SnackbarMessage } from '../../protos/generated/video_streaming/snackbar_message.js';
 export { UMPPartId } from '../../protos/generated/video_streaming/ump_part_id.js';
 export { ReloadPlaybackContext, ReloadPlaybackParams } from '../../protos/generated/video_streaming/reload_player_response.js';

@@ -6,22 +6,25 @@ import "video_streaming/buffered_range.proto";
 import "video_streaming/client_abr_state.proto";
 import "video_streaming/streamer_context.proto";
 import "video_streaming/time_range.proto";
+import "video_streaming/server_stitched_dai_info.proto";
 
 message VideoPlaybackAbrRequest {
   optional ClientAbrState client_abr_state = 1;
-  repeated .misc.FormatId selected_format_ids = 2;
+  repeated .misc.FormatId initialization_format_ids = 2;
   repeated BufferedRange buffered_ranges = 3;
-  optional int64 player_time_ms = 4; // `osts` (Onesie Start Time Seconds) param on Onesie requests.
+  optional int64 media_start_time_ms = 4;
   optional bytes video_playback_ustreamer_config = 5;
   optional UnknownMessage1 field6 = 6;
-  repeated .misc.FormatId preferred_audio_format_ids = 16; // `pai` (Preferred Audio Itags) param on Onesie requests.
-  repeated .misc.FormatId preferred_video_format_ids = 17; // `pvi` (Preferred Video Itags) param on Onesie requests.
-  repeated .misc.FormatId preferred_subtitle_format_ids = 18;
+  repeated .misc.FormatId selected_audio_format_ids = 16; // @NOTE: This is the same as preferred_audio_format_ids (pai) on onesie reqs
+  repeated .misc.FormatId selected_video_format_ids = 17; // @NOTE: This is the same as preferred_video_format_ids (pvi) on onesie reqs
+  repeated .misc.FormatId selected_caption_format_ids = 18; // @TODO: Check if onesie has an equivalent field
   optional StreamerContext streamer_context = 19;
-  optional UnknownMessage2 field21 = 21;
-  optional int32 field22 = 22;
-  optional int32 field23 = 23;
-  repeated UnknownMessage3 field1000 = 1000;
+  optional ServerStitchedDaiInfo server_stitched_dai_info = 21;
+  optional int32 last_video_itag = 22;
+  optional int32 last_audio_itag = 23;
+  repeated ServerStitchedDaiInfo ssap_playback_infos = 24;
+  optional bytes unused_bloat_size_bytes = 25; // @NOTE: What even is this? On web, it's only set if exp html5_sabr_unused_bloat_size_bytes > 0 (as `new Uint8Array(value_of_html5_sabr_unused_bloat_size_bytes_here)`)
+  repeated UnknownMessage2 field1000 = 1000;
 }
 
 message UnknownMessage1 {
@@ -33,15 +36,6 @@ message UnknownMessage1 {
 }
 
 message UnknownMessage2 {
-  repeated string field1 = 1;
-  optional bytes field2 = 2;
-  optional string field3 = 3;
-  optional int32 field4 = 4;
-  optional int32 field5 = 5;
-  optional string field6 = 6;
-}
-
-message UnknownMessage3 {
   repeated .misc.FormatId format_ids = 1;
   repeated BufferedRange ud = 2;
   optional string clip_id = 3;

@@ -2,37 +2,33 @@
 // versions:
 //   protoc-gen-ts_proto  v2.7.5
 //   protoc               v7.35.1
-// source: video_streaming/sabr_error.proto
+// source: video_streaming/prewarm_connection.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 
 export const protobufPackage = "video_streaming";
 
-export interface SabrError {
-  type?: string | undefined;
-  code?: number | undefined;
+export interface PrewarmConnection {
+  url?: string | undefined;
 }
 
-function createBaseSabrError(): SabrError {
-  return { type: "", code: 0 };
+function createBasePrewarmConnection(): PrewarmConnection {
+  return { url: "" };
 }
 
-export const SabrError: MessageFns<SabrError> = {
-  encode(message: SabrError, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.type !== undefined && message.type !== "") {
-      writer.uint32(10).string(message.type);
-    }
-    if (message.code !== undefined && message.code !== 0) {
-      writer.uint32(16).int32(message.code);
+export const PrewarmConnection: MessageFns<PrewarmConnection> = {
+  encode(message: PrewarmConnection, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    if (message.url !== undefined && message.url !== "") {
+      writer.uint32(10).string(message.url);
     }
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): SabrError {
+  decode(input: BinaryReader | Uint8Array, length?: number): PrewarmConnection {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseSabrError();
+    const message = createBasePrewarmConnection();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
@@ -41,15 +37,7 @@ export const SabrError: MessageFns<SabrError> = {
             break;
           }
 
-          message.type = reader.string();
-          continue;
-        }
-        case 2: {
-          if (tag !== 16) {
-            break;
-          }
-
-          message.code = reader.int32();
+          message.url = reader.string();
           continue;
         }
       }
