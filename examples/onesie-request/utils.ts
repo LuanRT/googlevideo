@@ -26,7 +26,7 @@ export async function encryptRequest(clientKey: Uint8Array, data: Uint8Array): P
   const encrypted = new Uint8Array(await crypto.subtle.encrypt(
     { name: 'AES-CTR', counter: iv, length: 128 },
     aesKey,
-    data
+    data as any
   ));
 
   const hmacKey = await crypto.subtle.importKey(
@@ -59,9 +59,9 @@ export async function decryptResponse(iv?: Uint8Array, hmac?: Uint8Array, data?:
   );
 
   const decryptedData = new Uint8Array(await crypto.subtle.decrypt(
-    { name: 'AES-CTR', counter: iv, length: 128 },
+    { name: 'AES-CTR', counter: iv as any, length: 128 },
     aesKey,
-    data
+    data as any
   ));
 
   const hmacKey = await crypto.subtle.importKey(
@@ -75,7 +75,7 @@ export async function decryptResponse(iv?: Uint8Array, hmac?: Uint8Array, data?:
   const isValid = await crypto.subtle.verify(
     'HMAC',
     hmacKey,
-    hmac,
+    hmac as any,
     new Uint8Array([ ...data, ...iv ])
   );
 
