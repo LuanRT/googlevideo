@@ -28,7 +28,7 @@ export interface VideoPlaybackAbrRequest {
   selectedAudioFormatIds: FormatId[];
   /** @NOTE: This is the same as preferred_video_format_ids (pvi) on onesie reqs */
   selectedVideoFormatIds: FormatId[];
-  /** @TODO: Check if onesie has an equivalent field */
+  /** @TODO: Check if onesie has an equivalent field for this */
   selectedCaptionFormatIds: FormatId[];
   streamerContext?: StreamerContext | undefined;
   serverStitchedDaiInfo?: ServerStitchedDaiInfo | undefined;

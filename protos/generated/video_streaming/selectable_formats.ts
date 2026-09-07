@@ -16,7 +16,7 @@ export interface SelectableFormats {
   videoId?:
     | string
     | undefined;
-  /** @NOTE: On iOS, this uses its own message (SelectableVideoFormat) instead of single SelectableFormat, should probably check if there are any differences at some point. */
+  /** @NOTE: On iOS, this uses its own message (SelectableVideoFormat) instead of single SelectableFormat. Should probably check if there are any differences at some point. */
   selectableVideoFormats: SelectableFormats_SelectableFormat[];
   selectableAudioFormats: SelectableFormats_SelectableFormat[];
   selectableCaptionFormats: SelectableFormats_SelectableFormat[];
