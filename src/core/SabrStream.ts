@@ -57,7 +57,7 @@ import { endOfStreamReached, getEndTimeMs, getMediaType } from '../utils/streamU
 
 interface ProgressTracker {
   lastProgressTime: number;
-  lastDownloadedDuration: number;
+  lastBufferedTimeMs: number;
   stallCount: number;
 }
 
@@ -71,6 +71,7 @@ const INITIAL_RETRY_BACKOFF_MS = 500;
 const MAX_RETRY_BACKOFF_MS = 5_000;
 const OFFLINE_GRACE_PERIOD_MS = 15_000;
 const DEFAULT_HEARTBEAT_INTERVAL_MS = 10_000;
+const LIVE_EDGE_SENTINEL_MS = Number.MAX_SAFE_INTEGER;
 
 const DEFAULT_VIDEO_HWM = 1024 * 1024 * 16;
 const DEFAULT_AUDIO_HWM = 1024 * 1024 * 3;
@@ -128,7 +129,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
 
   private progressTracker: ProgressTracker = {
     lastProgressTime: Date.now(),
-    lastDownloadedDuration: 0,
+    lastBufferedTimeMs: 0,
     stallCount: 0
   };
 
@@ -340,7 +341,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
 
         this.trackMetadata = this.bufferState.restore(snapshot.tracks);
         this.seekTo(snapshot.playerTimeMs, 'client');
-      } else this.seekTo(options.startTimeMs ?? (this._isLive && !options.isPostLiveDvr ? Number.MAX_SAFE_INTEGER : 0), 'client');
+      } else this.seekTo(options.startTimeMs ?? (this._isLive && !options.isPostLiveDvr ? LIVE_EDGE_SENTINEL_MS : 0), 'client');
 
       const abrState: ClientAbrState = {
         playerTimeMs: this.playerTimeMs.toString(),
@@ -512,14 +513,14 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   }
 
   private checkForStall(stallDetectionMs?: number): void {
-    if (this._isLive && this.playerTimeMs === Number.MAX_SAFE_INTEGER)
+    if (this._isLive && this.playerTimeMs === LIVE_EDGE_SENTINEL_MS)
       return; // no progress yet
 
     const currentTime = Date.now();
     const currentProgress = this.playerTimeMs;
     const stallThreshold = stallDetectionMs ?? DEFAULT_STALL_DETECTION_MS;
 
-    if (currentProgress > this.progressTracker.lastDownloadedDuration) {
+    if (currentProgress > this.progressTracker.lastBufferedTimeMs) {
       this.recordProgress(currentProgress);
     } else if (currentTime - this.progressTracker.lastProgressTime > stallThreshold) {
       this.progressTracker.stallCount++;
@@ -921,6 +922,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     } finally {
       this.clearRequestTimeout();
       reader.cancel().catch(() => { /* no-op */ });
+      reader.releaseLock();
       umpReader.dispose();
     }
 
@@ -963,7 +965,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     abrState: ClientAbrState,
     selectedAudioFormat: SabrFormat,
     selectedVideoFormat: SabrFormat
-  ): Uint8Array {
+  ): Uint8Array<ArrayBuffer> {
     const initializationFormatIds: FormatId[] = [];
     const ssapPlaybackInfos = Array.from(this.ssapPlaybackInfos.values());
     const videoPlaybackUstreamerConfig = base64ToU8(this.videoPlaybackUstreamerConfig);
@@ -981,7 +983,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
 
     const { sabrContexts, unsentSabrContexts } = this.prepareSabrContexts();
 
-    return VideoPlaybackAbrRequest.encode({
+    return <Uint8Array<ArrayBuffer>>VideoPlaybackAbrRequest.encode({
       clientAbrState: abrState,
       bufferedRanges,
       ssapPlaybackInfos,
@@ -1016,7 +1018,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     return { sabrContexts, unsentSabrContexts };
   }
 
-  private async makeStreamingRequest(body: Uint8Array): Promise<Response> {
+  private async makeStreamingRequest(body: Uint8Array<ArrayBuffer>): Promise<Response> {
     this.serverAbrStreamingUrl.searchParams.set('rn', this.requestNumber.toString());
 
     this.abortController = new AbortController();
@@ -1024,13 +1026,13 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
 
     try {
       return await this.fetchFunction(this.serverAbrStreamingUrl, {
+        body,
         method: 'POST',
         headers: {
           'content-type': 'application/x-protobuf',
           'accept-encoding': 'identity',
           'accept': 'application/vnd.yt-ump'
         },
-        body: body as BodyInit,
         signal: this.abortController.signal
       });
     } catch (error) {
@@ -1055,12 +1057,12 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   }
 
   private recordProgress(progressMs: number): void {
-    if (!Number.isFinite(progressMs) || progressMs <= this.progressTracker.lastDownloadedDuration) {
+    if (!Number.isFinite(progressMs) || progressMs <= this.progressTracker.lastBufferedTimeMs) {
       return;
     }
 
     this.progressTracker.lastProgressTime = Date.now();
-    this.progressTracker.lastDownloadedDuration = progressMs;
+    this.progressTracker.lastBufferedTimeMs = progressMs;
     this.progressTracker.stallCount = 0;
   }
 
@@ -1072,7 +1074,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   private resetProgressTracker(progressMs: number): void {
     this.progressTracker = {
       lastProgressTime: Date.now(),
-      lastDownloadedDuration: progressMs,
+      lastBufferedTimeMs: progressMs,
       stallCount: 0
     };
   }
