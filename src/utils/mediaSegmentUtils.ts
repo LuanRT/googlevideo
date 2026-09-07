@@ -26,8 +26,8 @@ export function stripMp4Init(segment: Uint8Array, isFirstSegment: boolean): Uint
   return segment;
 }
 
-export function stripWebmInit(segment: Uint8Array, isFirstSegment: boolean): Uint8Array {
-  if (isFirstSegment) return segment;
+export function stripWebmInit(segment: Uint8Array, shouldStripInit: boolean): Uint8Array {
+  if (shouldStripInit) return segment;
 
   for (let i = 0; i < segment.length - 3; i++) {
     if (
