@@ -3,20 +3,37 @@ See [sabr-shaka-example/README.md](./sabr-shaka-example/README.md).
 
 ## Downloader Example
 
+### Install deps & build:
 ```bash
-npm run build # If you haven't built the library yet.
+npm install
+npm run build
 cd examples/downloader
 npm install
-npx tsx main.ts
-
-# Example with ffmpeg
-npx tsx ffmpeg-example.ts
 ```
 
-## "Onesie" Request Example
+```bash
+# VOD download example
+npx tsx vod-example.ts
+```
 
 ```bash
-npm run build # If you haven't built the library yet.
+# VOD download example with ffmpeg
+npx tsx vod-ffmpeg-example.ts
+```
+
+```bash
+# Live stream download example (ffmpeg required)
+npx tsx livestream-example.ts
+```
+
+```bash
+# Streaming to MPV player
+npx tsx mpv-example.ts
+```
+
+## "Onesie" (/initplayback) Example
+
+```bash
 cd examples/onesie-request
 npm install
 npx tsx main.ts
