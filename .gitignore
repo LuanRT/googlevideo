@@ -57,7 +57,7 @@ jspm_packages/
 .pnpm-debug.log*
 pnpm-lock.yaml
 
-# Downloaded assets
+# Artifacts from downloader examples
 *.mp4
 *.webm
 *.mkv
