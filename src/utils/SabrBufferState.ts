@@ -153,7 +153,7 @@ export class SabrBufferState {
     }
 
     // @NOTE: The second check here is to avoid deleting the init segment when downloading vods.
-    const shouldStripInit = this.stripDuplicateInit
+    const isFirstSegment = this.stripDuplicateInit
       ? track.trackedSegments.size === 0 && !pendingSegment.mediaHeader.isInitializationSegment
       : true;
 
@@ -161,8 +161,8 @@ export class SabrBufferState {
 
     const cleanedSegment =
       track.mimeType?.includes('webm')
-        ? stripWebmInit(fullSegment, shouldStripInit)
-        : stripMp4Init(fullSegment, shouldStripInit);
+        ? stripWebmInit(fullSegment, isFirstSegment)
+        : stripMp4Init(fullSegment, isFirstSegment);
 
     trackController?.enqueue(cleanedSegment);
 
