@@ -1,6 +1,9 @@
 export * from './Logger.js';
-export * from './shared.js';
 export * from './CacheManager.js';
 export * from './EventEmitterLike.js';
 export * from './RequestMetadataManager.js';
-export * as FormatKeyUtils from './formatKeyUtils.js';
+export * from './formatUtils.js';
+export * from './mediaSegmentUtils.js';
+export * from './mediaTimeUtils.js';
+export * from './uint8arrayUtils.js';
+export * from './urlUtils.js';

@@ -40,6 +40,10 @@ export interface SabrRequestMetadata {
   timestamp: number;
 }
 
+export type OnSnackbarMessageCb = (snackbarMessage: SnackbarMessage) => void;
+export type OnReloadPlayerResponseCb = (reloadPlaybackContext: ReloadPlaybackContext) => Promise<void>;
+export type OnMintPoTokenCallback = () => Promise<string>;
+
 export interface SabrOptions {
   /**
    * Whether to enable caching of SABR segments.

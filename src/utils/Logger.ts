@@ -8,12 +8,8 @@ export enum LogLevel {
 }
 
 /**
- * Singleton logger utility.
- *
- * Allows enabling or disabling specific log levels (`ERROR`, `WARN`, `INFO`, `DEBUG`)
- * at runtime. Supports logging with tags and message arguments.
- *
- * Usage:
+ * Logger utility.
+ * @example
  * ```ts
  * const logger = Logger.getInstance();
  * logger.setLogLevels(LogLevel.ERROR, LogLevel.INFO);
@@ -33,9 +29,9 @@ export class Logger {
 
   /**
    * Sets the active log levels.
-   * Call with LogLevel.NONE or no arguments to turn off all logging.
+   * Call with {@link LogLevel.NONE} or no arguments to turn off all logging.
    * Otherwise, specify one or more log levels to be active.
-   * Use LogLevel.ALL to enable all log levels.
+   * Use {@link LogLevel.ALL} to enable all log levels.
    */
   public setLogLevels(...levels: LogLevel[]): void {
     if (levels.length === 0 || levels.includes(LogLevel.NONE)) {
