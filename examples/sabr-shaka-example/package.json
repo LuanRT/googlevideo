@@ -9,10 +9,10 @@
     "postinstall": "npm run patch:shaka"
   },
   "dependencies": {
-    "bgutils-js": "^3.2.0",
-    "googlevideo": "^4.0.4",
+    "bgutils-js": "^4.0.3",
+    "googlevideo": "file:../..",
     "shaka-player": "^4.16.2",
-    "youtubei.js": "^16.0.0"
+    "youtubei.js": "^18.0.0"
   },
   "devDependencies": {
     "typescript": "^5.4.5",

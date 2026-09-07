@@ -6,6 +6,8 @@ import { buildSabrFormat } from 'googlevideo/utils';
 import { ShakaPlayerAdapter } from './ShakaPlayerAdapter.js';
 import { checkExtension, fetchFunction } from './helpers.js';
 import { botguardService } from './BotguardService.js';
+
+// @ts-expect-error - Huh?
 import 'shaka-player/dist/controls.css';
 
 const videoElement = document.getElementById('video') as HTMLVideoElement;
@@ -22,20 +24,8 @@ let playbackWebPoTokenCreationLock = false;
 let playbackWebPoToken: string | undefined;
 let coldStartToken: string | undefined;
 
-Platform.shim.eval = async (data: Types.BuildScriptResult, env: Record<string, Types.VMPrimative>) => {
-  const properties = [];
-
-  if (env.n) {
-    properties.push(`n: exportedVars.nFunction("${env.n}")`);
-  }
-
-  if (env.sig) {
-    properties.push(`sig: exportedVars.sigFunction("${env.sig}")`);
-  }
-
-  const code = `${data.output}\nreturn { ${properties.join(', ')} }`;
-
-  return new Function(code)();
+Platform.shim.eval = async (data: Types.BuildScriptResult) => {
+  return new Function(data.output)();
 };
 
 async function main() {
@@ -128,10 +118,8 @@ async function loadVideo(videoId: string) {
       videoId,
       contentCheckOk: true,
       racyCheckOk: true,
+      client: 'VISIONOS',
       playbackContext: {
-        adPlaybackContext: {
-          pyv: true
-        },
         contentPlaybackContext: {
           signatureTimestamp: innertube.session.player?.signature_timestamp
         }
@@ -160,6 +148,12 @@ async function loadVideo(videoId: string) {
       }
     });
 
+    /**
+     * @NOTE 
+     * WebPO tokens only work on web based clients!
+     * This is here because this example used the "WEB" client before yt
+     * changed how PO tokens work on it.
+     */
     sabrAdapter.onMintPoToken(async () => {
       if (!playbackWebPoToken) {
         // For live streams, we must block and wait for the PO token as it's sometimes required for playback to start.

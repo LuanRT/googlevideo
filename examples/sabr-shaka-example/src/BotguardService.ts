@@ -1,14 +1,16 @@
 import { fetchFunction } from './helpers.js';
-import type { DescrambledChallenge, WebPoSignalOutput } from 'bgutils-js';
-import { BG, buildURL, GOOG_API_KEY } from 'bgutils-js';
+import { buildURL, GOOG_API_KEY } from 'bgutils-js/utils';
+import { BotGuardClient, parseChallengeData } from 'bgutils-js/botguard';
+import type { IBotguardClientSideBgChallenge, WebPoSignalOutput } from 'bgutils-js/shared-types';
+import { WebPoMinter, createColdStartToken } from 'bgutils-js/webpo';
 
 export class BotguardService {
   private readonly waaRequestKey = 'O43z0dpjhgX20SCx4KAo';
 
-  public botguardClient?: BG.BotGuardClient;
-  public initializationPromise?: Promise<BG.BotGuardClient | undefined> | null = null;
-  public integrityTokenBasedMinter?: BG.WebPoMinter;
-  public bgChallenge?: DescrambledChallenge & { challenge?: string, interpreterUrl?: string };
+  public botguardClient?: BotGuardClient;
+  public initializationPromise?: Promise<BotGuardClient | undefined> | null = null;
+  public integrityTokenBasedMinter?: WebPoMinter;
+  public bgChallenge?: IBotguardClientSideBgChallenge;
 
   async init() {
     if (this.initializationPromise) {
@@ -44,28 +46,28 @@ export class BotguardService {
     });
 
     const challengeResponseData = await challengeResponse.json();
-    this.bgChallenge = BG.Challenge.parseChallengeData(challengeResponseData);
+    this.bgChallenge = parseChallengeData(challengeResponseData);
 
     if (!this.bgChallenge)
       return;
 
-    const interpreterJavascript = this.bgChallenge.interpreterJavascript.privateDoNotAccessOrElseSafeScriptWrappedValue;
+    const interpreterJavascript = this.bgChallenge.interpreterJavascript?.privateDoNotAccessOrElseSafeScriptWrappedValue;
 
     if (!interpreterJavascript) {
       console.error('[BotguardService]', 'Could not get interpreter javascript. Interpreter Hash:', this.bgChallenge.interpreterHash);
       return;
     }
 
-    if (!document.getElementById(this.bgChallenge.interpreterHash)) {
+    if (!document.getElementById(this.bgChallenge.interpreterHash!)) {
       const script = document.createElement('script');
       script.type = 'text/javascript';
-      script.id = this.bgChallenge.interpreterHash;
+      script.id = this.bgChallenge.interpreterHash!;
       script.textContent = interpreterJavascript;
       document.head.appendChild(script);
     }
 
-    this.botguardClient = await BG.BotGuardClient.create({
-      globalObj: globalThis,
+    this.botguardClient = await BotGuardClient.create({
+      globalObject: globalThis,
       globalName: this.bgChallenge.globalName,
       program: this.bgChallenge.program
     });
@@ -79,7 +81,7 @@ export class BotguardService {
         headers: {
           'content-type': 'application/json+protobuf',
           'x-goog-api-key': GOOG_API_KEY,
-          'x-user-agent': 'grpc-web-javacript/0.1'
+          'x-user-agent': 'grpc-web-javascript/0.1'
         },
         body: JSON.stringify([ this.waaRequestKey, botguardResponse ])
       });
@@ -92,14 +94,14 @@ export class BotguardService {
         return;
       }
 
-      this.integrityTokenBasedMinter = await BG.WebPoMinter.create({ integrityToken }, webPoSignalOutput);
+      this.integrityTokenBasedMinter = await WebPoMinter.create({ integrityToken }, webPoSignalOutput);
     }
 
     return this.botguardClient;
   }
 
   public mintColdStartToken(contentBinding: string) {
-    return BG.PoToken.generateColdStartToken(contentBinding);
+    return createColdStartToken(contentBinding);
   }
 
   public isInitialized() {
@@ -112,7 +114,7 @@ export class BotguardService {
       this.botguardClient = undefined;
       this.integrityTokenBasedMinter = undefined;
 
-      const script = document.getElementById(this.bgChallenge.interpreterHash);
+      const script = document.getElementById(this.bgChallenge.interpreterHash!);
       if (script) {
         script.remove();
       }
