@@ -1,12 +1,14 @@
-import { MAX_INT32_VALUE, base64ToU8, EnabledTrackTypes, parseRangeHeader } from '../utils/shared.js';
-import { fromFormat, fromMediaHeader } from '../utils/formatKeyUtils.js';
 import { Logger } from '../utils/Logger.js';
+import { CacheManager } from '../utils/CacheManager.js';
+import { RequestMetadataManager } from '../utils/RequestMetadataManager.js';
+import { parseRangeHeader } from '../utils/urlUtils.js';
+import { base64ToU8 } from '../utils/uint8arrayUtils.js';
 
 import {
-  CacheManager,
-  RequestMetadataManager,
-  SabrAdapterError
-} from '../utils/index.js';
+  MAX_INT32_VALUE,
+  EnabledTrackTypes,
+  createFormatKey
+} from '../utils/formatUtils.js';
 
 import {
   PlaybackCookie,
@@ -14,20 +16,28 @@ import {
   VideoPlaybackAbrRequest,
   type BufferedRange,
   type FormatId,
-  type ReloadPlaybackContext,
   type SabrContextUpdate,
-  type SnackbarMessage,
   type StreamerContext
 } from '../utils/Protos.js';
 
 import type {
+  OnMintPoTokenCallback,
+  OnReloadPlayerResponseCb,
+  OnSnackbarMessageCb,
   PlayerHttpRequest,
-  PlayerHttpResponse, 
+  PlayerHttpResponse,
   SabrOptions,
   SabrPlayerAdapter
 } from '../types/sabrStreamingAdapterTypes.js';
 
 import type { SabrFormat } from '../types/shared.js';
+
+class SabrAdapterError extends Error {
+  constructor(message: string, public code?: string) {
+    super(`[SabrStreamingAdapter] ${message}`);
+    this.name = 'SabrAdapterError';
+  }
+}
 
 interface InitializedFormat {
   lastSegmentMetadata: {
@@ -39,10 +49,6 @@ interface InitializedFormat {
     timescale: number;
   };
 }
-
-type OnSnackbarMessageCb = (snackbarMessage: SnackbarMessage) => void;
-type OnReloadPlayerResponseCb = (reloadPlaybackContext: ReloadPlaybackContext) => Promise<void>;
-type OnMintPoTokenCallback = () => Promise<string>;
 
 const TAG = 'SabrStreamingAdapter';
 
@@ -57,17 +63,13 @@ export const SABR_CONSTANTS = {
   }
 } as const;
 
-/**
- * Standard UMP request body bytes.
- * These bytes represent a minimal valid protobuf message for UMP.
- */
-const UMP_REQUEST_BODY = new Uint8Array([ 120, 0 ]);
+const BASIC_UMP_REQUEST_BODY = new Uint8Array([ 120, 0 ]);
 
 /**
  * Adapter class that handles YouTube SABR integration with media players (e.g., Shaka Player).
  *
  * What it does:
- * - Sets up request/response interceptors so we can send proper SABR requests (UMP response parsing must be done in the player adapter).
+ * - Sets up request/response interceptors so proper SABR requests can be sent (UMP response parsing must be done in the player adapter).
  * - Keeps track of initialized formats and their metadata.
  * - Handles SABR-specific things, such as redirects, context updates, and playback cookies.
  */
@@ -221,7 +223,7 @@ export class SabrStreamingAdapter {
       request.url = sabrUrl.toString();
 
       const currentFormat = this.sabrFormats.find(
-        (format) => fromFormat(format) === (originalUri.searchParams.get(SABR_CONSTANTS.KEY_PARAM) || '')
+        (format) => createFormatKey(format) === (originalUri.searchParams.get(SABR_CONSTANTS.KEY_PARAM) || '')
       );
 
       if (!currentFormat)
@@ -234,7 +236,7 @@ export class SabrStreamingAdapter {
       if (this.playerAdapter.getPlayerTime() < this.lastPlayerTimeSecs) {
         this.initializedFormats.clear();
       }
-      
+
       const activeFormats = this.playerAdapter.getActiveTrackFormats(currentFormat, this.sabrFormats);
       const videoPlaybackAbrRequest = await this.createVideoPlaybackAbrRequest(request, currentFormat, activeFormats);
 
@@ -246,11 +248,11 @@ export class SabrStreamingAdapter {
       const formatToDiscard = this.addBufferingInfoToAbrRequest(videoPlaybackAbrRequest, currentFormat, activeFormats);
 
       if (formatToDiscard) {
-        videoPlaybackAbrRequest.selectedFormatIds.push(formatToDiscard);
+        videoPlaybackAbrRequest.initializationFormatIds.push(formatToDiscard);
       }
 
       if (!request.segment.isInit()) {
-        videoPlaybackAbrRequest.selectedFormatIds.push(currentFormat);
+        videoPlaybackAbrRequest.initializationFormatIds.push(currentFormat);
       }
 
       if (this.options.enableVerboseRequestLogging)
@@ -292,7 +294,7 @@ export class SabrStreamingAdapter {
       originalUri.searchParams.set('rn', requestNumber);
 
       request.url = originalUri.toString();
-      request.body = UMP_REQUEST_BODY;
+      request.body = BASIC_UMP_REQUEST_BODY;
 
       this.requestMetadataManager.metadataMap.set(requestNumber, {
         isUMP: true,
@@ -343,7 +345,7 @@ export class SabrStreamingAdapter {
         streamerContext.unsentSabrContexts.push(<number>ctxUpdate.type);
       }
     }
-    
+
     this.lastPlayerTimeSecs = this.playerAdapter.getPlayerTime();
 
     return {
@@ -357,10 +359,11 @@ export class SabrStreamingAdapter {
         audioTrackId: currentFormat.audioTrackId
       },
       bufferedRanges: [],
-      selectedFormatIds: [],
-      preferredAudioFormatIds: [ activeFormats.audioFormat || {} ],
-      preferredVideoFormatIds: [ activeFormats.videoFormat || {} ],
-      preferredSubtitleFormatIds: [],
+      initializationFormatIds: [],
+      selectedAudioFormatIds: [ activeFormats.audioFormat || {} ],
+      selectedVideoFormatIds: [ activeFormats.videoFormat || {} ],
+      selectedCaptionFormatIds: [],
+      ssapPlaybackInfos: [],
       videoPlaybackUstreamerConfig: base64ToU8(this.ustreamerConfig),
       streamerContext,
       field1000: []
@@ -376,7 +379,7 @@ export class SabrStreamingAdapter {
    * time value of the segment we want, while YouTube simply uses the actual player time.
    * 
    * We don't have to fully replicate this behavior for two reasons:
-   * 1. The SABR server will only send so much segments for a given player time. That means players like Shaka would
+   * 1. The SABR server will only send so many segments for a given player time. That means players like Shaka would
    * not be able to buffer more than what the server thinks is enough. It would behave like YouTube's.
    * 2. We don't have to know what segment a buffered range starts/ends at. It is easy to do in Shaka, but not in other players.
    * 
@@ -392,15 +395,15 @@ export class SabrStreamingAdapter {
   ) {
     let formatToDiscard: SabrFormat | undefined;
 
-    const currentFormatKey = fromFormat(currentFormat);
+    const currentFormatKey = createFormatKey(currentFormat);
 
     for (const activeFormat of Object.values(activeFormats)) {
       if (!activeFormat) continue;
 
-      const activeFormatKey = fromFormat(activeFormat);
+      const activeFormatKey = createFormatKey(activeFormat);
       const shouldDiscard = currentFormatKey !== activeFormatKey;
       const initializedFormat = this.initializedFormats.get(activeFormatKey || '');
-      
+
       const bufferedRange = shouldDiscard
         ? this.createFullBufferRange(activeFormat)
         : this.createPartialBufferRange(initializedFormat);
@@ -462,7 +465,7 @@ export class SabrStreamingAdapter {
       }
     };
   }
-  
+
   /**
    * Processes HTTP responses to extract SABR-specific information.
    * @returns The response object.
@@ -476,7 +479,7 @@ export class SabrStreamingAdapter {
 
     const retry = async () => {
       const formatType = format?.width ? 'video' : 'audio';
-      const formatKey = fromFormat(format) || '';
+      const formatKey = createFormatKey(format!) || '';
       const url = new URL(`${SABR_CONSTANTS.PROTOCOL}//${formatType}?${SABR_CONSTANTS.KEY_PARAM}=${formatKey}`);
       return await this.makeFollowupRequest(response, url.toString(), isSABR, byteRange);
     };
@@ -496,7 +499,7 @@ export class SabrStreamingAdapter {
       if (isSABR) {
         this.serverAbrStreamingUrl = streamInfo.redirect?.url;
         const formatType = format?.width ? 'video' : 'audio';
-        const formatKey = fromFormat(format) || '';
+        const formatKey = createFormatKey(format!) || '';
         redirectUrl = new URL(`${SABR_CONSTANTS.PROTOCOL}//${formatType}?${SABR_CONSTANTS.KEY_PARAM}=${formatKey}`);
       }
 
@@ -569,17 +572,17 @@ export class SabrStreamingAdapter {
     }
 
     if (streamInfo.mediaHeader) {
-      const formatKey = fromMediaHeader(streamInfo.mediaHeader);
+      const formatKey = createFormatKey(streamInfo.mediaHeader);
 
-      if (streamInfo.mediaHeader.isInitSeg)
+      if (streamInfo.mediaHeader.isInitializationSegment)
         return;
 
       const initializedFormat = this.initializedFormats.get(formatKey) || {} as InitializedFormat;
 
       initializedFormat.lastSegmentMetadata = {
         formatId: streamInfo.mediaHeader.formatId!,
-        startSequenceNumber: streamInfo.mediaHeader.sequenceNumber || 1,
-        endSequenceNumber: streamInfo.mediaHeader.sequenceNumber || 1,
+        startSequenceNumber: streamInfo.mediaHeader.segmentNum || 1,
+        endSequenceNumber: streamInfo.mediaHeader.segmentNum || 1,
         startTimeMs: streamInfo.mediaHeader.startMs || '0',
         durationMs: streamInfo.mediaHeader.durationMs || '0',
         timescale: streamInfo.mediaHeader.timeRange?.timescale || 1000
