@@ -1,11 +1,11 @@
 import { describe, it, expect, vi } from 'vitest';
 
-import { Part } from '../src/types/shared.js';
-import { concatenateChunks } from '../src/utils/shared.js';
+import { concatenateChunks } from '../src/utils/uint8arrayUtils.js';
 import { CompositeBuffer, UmpReader, UmpWriter } from '../src/exports/ump.js';
+import type { UMPPartId } from '../src/utils/Protos.js';
 
 describe('UmpReader', () => {
-  it('should read a single small part correctly', () => {
+  it('should read a single small part correctly', async () => {
     const buffer = new CompositeBuffer();
     const writer = new UmpWriter(buffer);
 
@@ -13,20 +13,20 @@ describe('UmpReader', () => {
     const partData = new Uint8Array([ 10, 20, 30 ]);
     writer.write(partType, partData);
 
-    const reader = new UmpReader(buffer);
-    const handlePart = vi.fn();
+    const onPart = vi.fn();
 
-    const incompletePart = reader.read(handlePart);
-    const receivedPart = handlePart.mock.calls[0][0];
+    const reader = new UmpReader({ onPart });
 
-    expect(handlePart).toHaveBeenCalledOnce();
-    expect(receivedPart.type).toBe(partType);
-    expect(receivedPart.size).toBe(partData.length);
-    expect(concatenateChunks(receivedPart.data.chunks)).toEqual(partData);
-    expect(incompletePart).toBeUndefined();
+    await reader.feed(buffer);
+
+    expect(onPart).toHaveBeenCalledOnce();
+    const [ receivedPartType, receivedPartData ] = onPart.mock.calls[0];
+    expect(receivedPartType).toBe(partType);
+    expect(receivedPartData.getLength()).toBe(partData.length);
+    expect(concatenateChunks(receivedPartData.chunks)).toEqual(partData);
   });
 
-  it('should read multiple parts sequentially', () => {
+  it('should read multiple parts sequentially', async () => {
     const buffer = new CompositeBuffer();
     const writer = new UmpWriter(buffer);
 
@@ -40,94 +40,78 @@ describe('UmpReader', () => {
       writer.write(part.type, part.data);
     }
 
-    const reader = new UmpReader(buffer);
-    const receivedParts: Part[] = [];
-    
-    const handlePart = (part: Part) => {
-      receivedParts.push(part);
-    };
+    const onPart = vi.fn();
+    const reader = new UmpReader({ onPart });
 
-    const incompletePart = reader.read(handlePart);
+    await reader.feed(buffer);
 
-    expect(receivedParts.length).toBe(partsToWrite.length);
+    expect(onPart).toHaveBeenCalledTimes(partsToWrite.length);
 
     for (let i = 0; i < partsToWrite.length; i++) {
-      expect(receivedParts[i].type).toBe(partsToWrite[i].type);
-      expect(receivedParts[i].size).toBe(partsToWrite[i].data.length);
-      expect(concatenateChunks(receivedParts[i].data.chunks)).toEqual(partsToWrite[i].data);
+      const [ type, data ] = onPart.mock.calls[i];
+      expect(type).toBe(partsToWrite[i].type);
+      expect(data.getLength()).toBe(partsToWrite[i].data.length);
+      expect(concatenateChunks(data.chunks)).toEqual(partsToWrite[i].data);
     }
-
-    expect(incompletePart).toBeUndefined();
   });
 
-  it('should return an incomplete part if data is not fully available', () => {
+  it('should buffer incomplete payloads until they are complete', async () => {
     const buffer = new CompositeBuffer();
     const writer = new UmpWriter(buffer);
 
     const partType = 5;
-    const partData = new Uint8Array(100);
+    const partData = new Uint8Array(100).fill(42);
     writer.write(partType, partData);
 
     const headerSize = 2;
-    const partialBuffer = buffer.split(headerSize + 50).extractedBuffer;
+    const firstChunk = buffer.split(headerSize + 50);
+    const onPart = vi.fn();
 
-    const reader = new UmpReader(partialBuffer);
-    const handlePart = vi.fn();
+    const reader = new UmpReader({ onPart });
 
-    const incompletePart = reader.read(handlePart);
+    await reader.feed(firstChunk.extractedBuffer);
+    expect(onPart).not.toHaveBeenCalled();
 
-    expect(handlePart).not.toHaveBeenCalled();
-    expect(incompletePart).toBeDefined();
-    expect(incompletePart?.type).toBe(partType);
-    expect(incompletePart?.size).toBe(partData.length);
+    await reader.feed(firstChunk.remainingBuffer);
+    expect(onPart).toHaveBeenCalledOnce();
+    const [ receivedPartType, receivedPartData ] = onPart.mock.calls[0];
+    expect(receivedPartType).toBe(partType);
+    expect(concatenateChunks(receivedPartData.chunks)).toEqual(partData);
   });
 
-  it('should return undefined if the buffer is empty', () => {
-    const buffer = new CompositeBuffer();
-    const reader = new UmpReader(buffer);
-    const handlePart = vi.fn();
+  it('should wait for an incomplete header', async () => {
+    const onPart = vi.fn();
+    const reader = new UmpReader({ onPart });
 
-    const incompletePart = reader.read(handlePart);
+    await reader.feed(new Uint8Array());
+    await reader.feed(new Uint8Array([ 0x96 ]));
+    expect(onPart).not.toHaveBeenCalled();
 
-    expect(handlePart).not.toHaveBeenCalled();
-    expect(incompletePart).toBeUndefined();
+    await reader.feed(new Uint8Array([ 0x02, 1, 42 ]));
+    expect(onPart).toHaveBeenCalledOnce();
+    const [ type, data ] = onPart.mock.calls[0];
+    expect(type).toBe(150);
+    expect(concatenateChunks(data.chunks)).toEqual(new Uint8Array([ 42 ]));
   });
 
-  it('should return undefined if part header is incomplete', () => {
-    const buffer = new CompositeBuffer();
-    buffer.append(new Uint8Array([ 0x96 ]));
+  it('should report a partial part with a 5-byte VarInt size', async () => {
+    const onPartialPart = vi.fn<(type: UMPPartId, data: CompositeBuffer, offset: number, totalSize: number) => boolean>(() => false);
+    const reader = new UmpReader({
+      onPart: vi.fn(),
+      onPartialPart
+    });
 
-    const reader = new UmpReader(buffer);
-    const handlePart = vi.fn();
+    await reader.feed(new Uint8Array([ 15, 0xF0, 0x00, 0xA3, 0xE1, 0x11, 42 ]));
 
-    const incompletePart = reader.read(handlePart);
-
-    expect(handlePart).not.toHaveBeenCalled();
-    expect(incompletePart).toBeUndefined();
+    expect(onPartialPart).toHaveBeenCalledOnce();
+    const [ type, data, offset, totalSize ] = onPartialPart.mock.calls[0];
+    expect(type).toBe(15);
+    expect(concatenateChunks(data.chunks)).toEqual(new Uint8Array([ 42 ]));
+    expect(offset).toBe(0);
+    expect(totalSize).toBe(300000000);
   });
 
-  it('should correctly read a part with a 5-byte VarInt size', () => {
-    const buffer = new CompositeBuffer();
-    const writer = new UmpWriter(buffer);
-
-    const partType = 15;
-    const partData = new Uint8Array(300000000);
-    writer.write(partType, partData);
-
-    const reader = new UmpReader(buffer);
-    const handlePart = vi.fn();
-
-    const incompletePart = reader.read(handlePart);
-
-    expect(handlePart).toHaveBeenCalledOnce();
-    const receivedPart = handlePart.mock.calls[0][0];
-
-    expect(receivedPart.type).toBe(partType);
-    expect(receivedPart.size).toBe(partData.length);
-    expect(incompletePart).toBeUndefined();
-  });
-
-  it('should handle reading from multiple chunks', () => {
+  it('should handle reading from multiple chunks', async () => {
     const buffer = new CompositeBuffer();
     const writer = new UmpWriter(buffer);
 
@@ -139,18 +123,19 @@ describe('UmpReader', () => {
     const chunk1 = new Uint8Array([ 1, 10, 1, 2, 3 ]); // type, size, data...
     const chunk2 = new Uint8Array([ 4, 5, 6 ]); // ...data...
     const chunk3 = new Uint8Array([ 7, 8, 9, 10 ]); // ...data
-    const chunkedBuffer = new CompositeBuffer([ chunk1, chunk2, chunk3 ]);
+    const compositeBuffer = new CompositeBuffer([ chunk1, chunk2, chunk3 ]);
 
-    const reader = new UmpReader(chunkedBuffer);
-    const handlePart = vi.fn();
+    const onPart = vi.fn();
+    const reader = new UmpReader({ onPart });
 
-    reader.read(handlePart);
+    await reader.feed(compositeBuffer);
 
-    expect(handlePart).toHaveBeenCalledOnce();
-    const receivedPart = handlePart.mock.calls[0][0];
+    expect(onPart).toHaveBeenCalledOnce();
+    const receivedPartType = onPart.mock.calls[0][0];
+    const receivedPartData = onPart.mock.calls[0][1];
 
-    expect(receivedPart.type).toBe(partType);
-    expect(receivedPart.size).toBe(partData.length);
-    expect(concatenateChunks(receivedPart.data.chunks)).toEqual(partData);
+    expect(receivedPartType).toBe(partType);
+    expect(receivedPartData.getLength()).toBe(partData.length);
+    expect(concatenateChunks(receivedPartData.chunks)).toEqual(partData);
   });
 });

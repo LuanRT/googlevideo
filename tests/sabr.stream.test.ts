@@ -1,188 +1,163 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-
-import { Logger, LogLevel, concatenateChunks, EnabledTrackTypes } from '../src/utils/index.js';
-import { SabrFormat } from '../src/types/shared.js';
-import { CompositeBuffer, UmpWriter } from '../src/exports/ump.js';
 import { SabrStream } from '../src/exports/sabr-stream.js';
+import { CompositeBuffer, UmpWriter } from '../src/exports/ump.js';
+import { Logger, LogLevel, concatenateChunks, EnabledTrackTypes } from '../src/utils/index.js';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import type { SabrFormat } from '../src/types/shared.js';
 
 import {
   UMPPartId,
-  FormatInitializationMetadata,
-  MediaHeader, NextRequestPolicy,
+  MediaHeader,
+  NextRequestPolicy,
   StreamProtectionStatus,
-  VideoPlaybackAbrRequest
+  FormatInitializationMetadata,
+  VideoPlaybackAbrRequest,
+  SabrError
 } from '../src/utils/Protos.js';
+
+vi.setConfig({ testTimeout: 120_000 });
 
 Logger.getInstance().setLogLevels(LogLevel.NONE);
 
-const AUDIO_FORMAT = {
+const VIDEO_ID = 'test-video-id';
+const TOTAL_SEGMENTS = 5;
+const SEGMENT_DURATION_MS = 24000;
+const TOTAL_DURATION_MS = TOTAL_SEGMENTS * SEGMENT_DURATION_MS;
+
+const AUDIO_FORMAT: SabrFormat = {
   itag: 140,
   lastModified: '1700000000',
   contentLength: 117138,
   mimeType: 'audio/mp4; codecs="mp4a.40.2"',
   bitrate: 128000,
-  approxDurationMs: 120000
+  approxDurationMs: TOTAL_DURATION_MS
 };
 
-const VIDEO_FORMAT = {
+const VIDEO_FORMAT: SabrFormat = {
   itag: 137,
+  lastModified: '1700000000',
+  contentLength: 234270,
   mimeType: 'video/mp4; codecs="avc1.640028"',
   bitrate: 4337000,
-  lastModified: '1700000000',
   height: 1080,
-  approxDurationMs: 120000,
-  qualityLabel: undefined,
-  language: null
+  approxDurationMs: TOTAL_DURATION_MS
 };
 
 const CLIENT_INFO = {
   clientName: 1,
-  clientVersion: '2.20240101.00.00'
+  clientVersion: '2.20690101.00.00'
 };
 
-function createMediaHeader(
-  headerId: number,
-  sequenceNumber: number,
-  startMs: number,
-  durationMs: number,
-  startRange: number,
-  contentLength: number,
-  isInitSeg: boolean,
-  format: SabrFormat
-) {
-  return {
-    partType: UMPPartId.MEDIA_HEADER,
-    partData: MediaHeader.encode({
-      headerId,
-      videoId: '',
-      itag: format.itag,
-      lmt: format.lastModified,
-      startRange: startRange.toString(),
-      compressionAlgorithm: 0,
-      isInitSeg,
-      sequenceNumber,
-      bitrateBps: format.bitrate.toString(),
-      startMs: startMs.toString(),
-      durationMs: durationMs.toString(),
-      formatId: format,
-      contentLength: contentLength.toString(),
-      timeRange: {
-        startTicks: startMs.toString(),
-        durationTicks: durationMs.toString(),
-        timescale: 1000
-      }
-    }).finish()
-  };
-}
+function createMockSabrServer(options: {
+  streamProtectionStatus?: number;
+  streamProtectionMaxRetries?: number;
+  responseStatus?: number;
+  simulateSabrError?: boolean;
+} = {}) {
+  const { streamProtectionStatus = 1, streamProtectionMaxRetries = 0, responseStatus = 200, simulateSabrError = false } = options;
 
-function createMediaPart(headerId: number, mockedSize: number) {
-  return {
-    partType: UMPPartId.MEDIA,
-    partData: new Uint8Array([ headerId, ...new Uint8Array(mockedSize).fill(0) ])
-  };
-}
+  let nextHeaderId = 0;
 
-function createMediaEndPart(headerId: number) {
-  return {
-    partType: UMPPartId.MEDIA_END,
-    partData: new Uint8Array([ headerId ])
-  };
-}
+  const segmentSizeFor = (format: SabrFormat) => Math.floor((format.contentLength || 0) / (TOTAL_SEGMENTS + 1));
 
-function createMockFetch(maxSegmentSize: number, maxSegmentDuration: number, streamProtectionStatus = 1) {
-  let startMs = 0;
-  let startRange = 0;
-  let segmentNumber = 0;
-
-  return vi.fn().mockImplementation(async (url, options) => {
-    const request = new Request(url, options);
-    const requestBodyData = await request.arrayBuffer();
-    const requestBody = VideoPlaybackAbrRequest.decode(new Uint8Array(requestBodyData));
-
-    const playerTimeMs = parseInt(requestBody.clientAbrState?.playerTimeMs || '0');
-
-    const partsToWrite = [];
-
-    partsToWrite.push({
-      partType: UMPPartId.NEXT_REQUEST_POLICY,
-      partData: NextRequestPolicy.encode({
-        targetAudioReadaheadMs: 15011,
-        targetVideoReadaheadMs: 15011,
-        backoffTimeMs: 0,
-        playbackCookie: {
-          resolution: 999999,
-          field2: 0,
-          videoFmt: VIDEO_FORMAT,
-          audioFmt: AUDIO_FORMAT
-        },
-        videoId: ''
-      }).finish()
-    });
-
-    partsToWrite.push({
-      partType: UMPPartId.STREAM_PROTECTION_STATUS,
-      partData: StreamProtectionStatus.encode({ status: streamProtectionStatus }).finish()
-    });
-
-    if (playerTimeMs === 0) {
-      // Initialize the format.
-      partsToWrite.push({
-        partType: UMPPartId.FORMAT_INITIALIZATION_METADATA,
-        partData: FormatInitializationMetadata.encode({
-          formatId: AUDIO_FORMAT,
-          durationUnits: '120000',
-          durationTimescale: '1000',
-          endSegmentNumber: '5',
-          mimeType: AUDIO_FORMAT.mimeType,
-          endTimeMs: '120000',
-          videoId: ''
-        }).finish()
-      });
-
-      // Add the init segment.
-      const initHeaderId = 0;
-      partsToWrite.push(createMediaHeader(initHeaderId, segmentNumber, 0, 0, 0, maxSegmentSize, true, AUDIO_FORMAT));
-      partsToWrite.push(createMediaPart(initHeaderId, maxSegmentSize));
-      partsToWrite.push(createMediaEndPart(initHeaderId));
-      startRange += maxSegmentSize;
-
-      segmentNumber += 1;
-
-      // Send 1 segment to get the stream started.
-      const mediaHeaderId = 1;
-      partsToWrite.push(createMediaHeader(mediaHeaderId, segmentNumber, startMs, maxSegmentDuration, startRange, maxSegmentSize, false, AUDIO_FORMAT));
-      partsToWrite.push(createMediaPart(mediaHeaderId, maxSegmentSize));
-      partsToWrite.push(createMediaEndPart(mediaHeaderId));
-      startMs += maxSegmentDuration;
-      startRange += maxSegmentSize;
-    } else if (playerTimeMs < 120000) {
-      const mediaHeaderId = 0;
-      partsToWrite.push(createMediaHeader(mediaHeaderId, segmentNumber, startMs, maxSegmentDuration, startRange, maxSegmentSize, false, AUDIO_FORMAT));
-      partsToWrite.push(createMediaPart(mediaHeaderId, maxSegmentSize));
-      partsToWrite.push(createMediaEndPart(mediaHeaderId));
-      startMs += maxSegmentDuration;
-      startRange += maxSegmentSize;
+  const mockFetch = vi.fn().mockImplementation(async (url: string, init: RequestInit) => {
+    if (responseStatus !== 200) {
+      return new Response(null, { status: responseStatus, statusText: 'Internal Server Error' });
     }
 
-    segmentNumber += 1;
+    const request = new Request(url, init);
+    const requestBody = VideoPlaybackAbrRequest.decode(new Uint8Array(await request.arrayBuffer()));
 
     const buffer = new CompositeBuffer();
     const umpWriter = new UmpWriter(buffer);
 
-    // Write all parts to the response.
-    for (const part of partsToWrite) {
-      umpWriter.write(part.partType, part.partData);
+    umpWriter.write(UMPPartId.NEXT_REQUEST_POLICY, NextRequestPolicy.encode({ backoffTimeMs: 0, videoId: VIDEO_ID }).finish());
+    umpWriter.write(UMPPartId.STREAM_PROTECTION_STATUS, StreamProtectionStatus.encode({
+      status: streamProtectionStatus,
+      maxRetries: streamProtectionMaxRetries
+    }).finish());
+
+    if (simulateSabrError) {
+      umpWriter.write(UMPPartId.SABR_ERROR, SabrError.encode({ type: 'whatthehell', code: 123 }).finish());
+    } else {
+      const requestedFormats = [
+        ...requestBody.selectedVideoFormatIds,
+        ...requestBody.selectedAudioFormatIds
+      ];
+
+      const initializedFormats = requestBody.initializationFormatIds.map((formatId) => formatId.itag);
+
+      for (const requestedFormat of requestedFormats) {
+        const format = requestedFormat.itag === VIDEO_FORMAT.itag ? VIDEO_FORMAT : AUDIO_FORMAT;
+        const segmentSize = segmentSizeFor(format);
+
+        const bufferedRange = requestBody.bufferedRanges.find((range) => range.formatId?.itag === format.itag);
+        const segmentsDownloaded = bufferedRange ? Math.round(parseInt(bufferedRange.durationMs || '0', 10) / SEGMENT_DURATION_MS) : 0;
+
+        if (!initializedFormats.includes(format.itag)) {
+          umpWriter.write(UMPPartId.FORMAT_INITIALIZATION_METADATA, FormatInitializationMetadata.encode({
+            videoId: VIDEO_ID,
+            formatId: format,
+            mimeType: format.mimeType,
+            endSegmentNum: TOTAL_SEGMENTS.toString(),
+            endTimeMs: TOTAL_DURATION_MS.toString(),
+            endTimeTicks: TOTAL_DURATION_MS.toString(),
+            endTimeTimescale: '1000'
+          }).finish());
+
+          const initHeaderId = nextHeaderId++;
+          umpWriter.write(UMPPartId.MEDIA_HEADER, MediaHeader.encode({
+            headerId: initHeaderId,
+            videoId: VIDEO_ID,
+            itag: format.itag,
+            lmt: format.lastModified,
+            formatId: format,
+            isInitializationSegment: true,
+            segmentNum: 0,
+            segmentByteRangeStart: '0',
+            segmentLengthBytes: segmentSize.toString(),
+            startMs: '0',
+            durationMs: '0'
+          }).finish());
+          umpWriter.write(UMPPartId.MEDIA, new Uint8Array([ initHeaderId, ...new Uint8Array(segmentSize).fill(1) ]));
+          umpWriter.write(UMPPartId.MEDIA_END, new Uint8Array([ initHeaderId ]));
+        }
+
+        if (segmentsDownloaded >= TOTAL_SEGMENTS)
+          continue;
+
+        const segmentNum = segmentsDownloaded + 1;
+        const startMs = segmentsDownloaded * SEGMENT_DURATION_MS;
+        const startRange = (segmentsDownloaded + 1) * segmentSize;
+
+        const headerId = nextHeaderId++;
+        umpWriter.write(UMPPartId.MEDIA_HEADER, MediaHeader.encode({
+          headerId,
+          videoId: VIDEO_ID,
+          itag: format.itag,
+          lmt: format.lastModified,
+          formatId: format,
+          isInitializationSegment: false,
+          segmentNum,
+          segmentByteRangeStart: startRange.toString(),
+          segmentLengthBytes: segmentSize.toString(),
+          startMs: startMs.toString(),
+          durationMs: SEGMENT_DURATION_MS.toString()
+        }).finish());
+        umpWriter.write(UMPPartId.MEDIA, new Uint8Array([ headerId, ...new Uint8Array(segmentSize).fill(2) ]));
+        umpWriter.write(UMPPartId.MEDIA_END, new Uint8Array([ headerId ]));
+      }
     }
 
-    const responseBody = concatenateChunks(buffer.chunks);
-    return new Response(responseBody, {
+    return new Response(concatenateChunks(buffer.chunks) as BodyInit, {
       status: 200,
-      headers: { 'Content-Type': 'application/vnd.yt-ump' }
+      headers: { 'content-type': 'application/vnd.yt-ump' }
     });
   });
+
+  return mockFetch;
 }
 
-async function collectStreamChunks(stream: ReadableStream<Uint8Array>): Promise<Uint8Array[]> {
+async function collectStreamChunks(stream: ReadableStream): Promise<Uint8Array[]> {
   const chunks = [];
   const reader = stream.getReader();
 
@@ -197,8 +172,9 @@ async function collectStreamChunks(stream: ReadableStream<Uint8Array>): Promise<
 
 function createSabrStream(mockFetch: typeof fetch) {
   return new SabrStream({
-    fetch: mockFetch,
-    serverAbrStreamingUrl: 'https://test.com/sabr',
+    videoId: VIDEO_ID,
+    fetchFunction: mockFetch,
+    serverAbrStreamingUrl: 'https://ytjs.dev/sabr',
     videoPlaybackUstreamerConfig: 'abc',
     poToken: 'abc',
     clientInfo: CLIENT_INFO,
@@ -206,16 +182,13 @@ function createSabrStream(mockFetch: typeof fetch) {
   });
 }
 
-describe('SabrStream', { timeout: 80000 }, () => {
-  const maxSegmentSize = 19523; // 117138 / 6 = 19523 bytes
-  const maxSegmentDuration = 24000; // 120000 / 5 = 24000 ms
-
+describe('SabrStream', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it('should initialize, download, and finish a stream successfully', async () => {
-    const mockFetch = createMockFetch(maxSegmentSize, maxSegmentDuration);
+  it('should download a VOD stream (video + audio)', async () => {
+    const mockFetch = createMockSabrServer();
 
     const onFormatInitialization = vi.fn();
     const onStreamProtectionStatusUpdate = vi.fn();
@@ -227,78 +200,137 @@ describe('SabrStream', { timeout: 80000 }, () => {
     stream.on('streamProtectionStatusUpdate', onStreamProtectionStatusUpdate);
     stream.on('finish', onFinish);
 
-    const { audioStream, selectedFormats } = await stream.start({
+    const { videoStream, audioStream, selectedFormats } = stream.start({
       videoFormat: VIDEO_FORMAT,
       audioFormat: AUDIO_FORMAT,
-      enabledTrackTypes: EnabledTrackTypes.AUDIO_ONLY
+      isPostLiveDvr: false
+    });
+
+    const [ videoChunks, audioChunks ] = await Promise.all([
+      collectStreamChunks(videoStream),
+      collectStreamChunks(audioStream)
+    ]);
+
+    expect(selectedFormats.audioFormat).toEqual(AUDIO_FORMAT);
+    expect(selectedFormats.videoFormat).toEqual(VIDEO_FORMAT);
+    expect(onFinish).toHaveBeenCalledOnce();
+    expect(onFormatInitialization).toHaveBeenCalledTimes(2);
+    expect(onStreamProtectionStatusUpdate).toHaveBeenCalledWith({ status: 1, maxRetries: 0 });
+    expect(concatenateChunks(videoChunks).length).toBe(VIDEO_FORMAT.contentLength);
+    expect(concatenateChunks(audioChunks).length).toBe(AUDIO_FORMAT.contentLength);
+
+    expect(mockFetch).toHaveBeenCalledTimes(TOTAL_SEGMENTS);
+  });
+
+  it('should download an audio-only stream', async () => {
+    const mockFetch = createMockSabrServer();
+
+    const stream = createSabrStream(mockFetch);
+
+    const { audioStream } = stream.start({
+      videoFormat: VIDEO_FORMAT,
+      audioFormat: AUDIO_FORMAT,
+      enabledTrackTypes: EnabledTrackTypes.AUDIO_ONLY,
+      isPostLiveDvr: false
     });
 
     const audioChunks = await collectStreamChunks(audioStream);
 
-    expect(selectedFormats.audioFormat).toEqual(AUDIO_FORMAT);
-    expect(selectedFormats.videoFormat).toEqual(VIDEO_FORMAT);
-    expect(onFinish).toHaveBeenCalled();
-    expect(onFormatInitialization).toHaveBeenCalled();
-    expect(onStreamProtectionStatusUpdate).toHaveBeenCalledWith({ status: 1, maxRetries: 0 });
     expect(concatenateChunks(audioChunks).length).toBe(AUDIO_FORMAT.contentLength);
-    expect(mockFetch).toHaveBeenCalledTimes(6);
+    expect(mockFetch).toHaveBeenCalledTimes(TOTAL_SEGMENTS);
+  });
+
+  it('should not be reusable after it has been started', async () => {
+    const mockFetch = createMockSabrServer();
+
+    const stream = createSabrStream(mockFetch);
+
+    const { videoStream, audioStream } = stream.start({
+      videoFormat: VIDEO_FORMAT,
+      audioFormat: AUDIO_FORMAT,
+      isPostLiveDvr: false
+    });
+
+    await Promise.all([
+      collectStreamChunks(videoStream),
+      collectStreamChunks(audioStream)
+    ]);
+
+    expect(mockFetch).toHaveBeenCalledTimes(TOTAL_SEGMENTS);
+
+    expect(() => stream.start({
+      videoFormat: VIDEO_FORMAT,
+      audioFormat: AUDIO_FORMAT,
+      isPostLiveDvr: false
+    })).toThrow('This stream instance has already been started and cannot be reused');
   });
 
   it('should abort the stream when abort() is called', async () => {
-    const mockFetch = createMockFetch(maxSegmentSize, maxSegmentDuration);
+    const mockFetch = createMockSabrServer();
 
     const stream = createSabrStream(mockFetch);
 
     const onAbort = vi.fn();
     stream.on('abort', onAbort);
 
-    const startPromise = stream.start({
+    const { videoStream, audioStream } = stream.start({
       videoFormat: VIDEO_FORMAT,
       audioFormat: AUDIO_FORMAT,
-      enabledTrackTypes: EnabledTrackTypes.AUDIO_ONLY
+      isPostLiveDvr: false
     });
 
-    stream.abort();
+    await stream.abort();
 
-    const { videoStream } = await startPromise;
-
-    await expect(videoStream.getReader().read()).rejects.toThrow('Download aborted.');
+    await expect(videoStream.getReader().read()).rejects.toThrow('Stream aborted');
+    await expect(audioStream.getReader().read()).rejects.toThrow('Stream aborted');
     expect(onAbort).toHaveBeenCalledOnce();
-    expect(mockFetch).toHaveBeenCalledTimes(1);
   });
 
   it('should fail after exhausting all retry attempts when server returns an error', async () => {
-    const mockFetch = createMockFetch(maxSegmentSize, maxSegmentDuration);
-    mockFetch.mockResolvedValue(new Response(null, { status: 500, statusText: 'Internal Server Error' }));
-    
+    const mockFetch = createMockSabrServer({ responseStatus: 500 });
+
     const stream = createSabrStream(mockFetch);
 
-    const { audioStream } = await stream.start({
+    const { audioStream } = stream.start({
       videoFormat: VIDEO_FORMAT,
       audioFormat: AUDIO_FORMAT,
-      enabledTrackTypes: EnabledTrackTypes.AUDIO_ONLY,
+      isPostLiveDvr: false,
       maxRetries: 1
     });
 
-    await expect(collectStreamChunks(audioStream)).rejects.toThrow('Server returned 500 ');
-
+    await expect(collectStreamChunks(audioStream)).rejects.toThrow('Server returned 500');
     expect(mockFetch).toHaveBeenCalledTimes(2);
   });
 
-  it('should terminate streaming when attestation is required by stream protection', async () => {
-    const mockFetch = createMockFetch(maxSegmentSize, maxSegmentDuration, 3);
-    
+  it('should fail after exhausting all retry attempts when a SABR error is received', async () => {
+    const mockFetch = createMockSabrServer({ simulateSabrError: true });
+
     const stream = createSabrStream(mockFetch);
 
-    const { audioStream } = await stream.start({
+    const { audioStream } = stream.start({
       videoFormat: VIDEO_FORMAT,
       audioFormat: AUDIO_FORMAT,
-      enabledTrackTypes: EnabledTrackTypes.AUDIO_ONLY,
+      isPostLiveDvr: false,
       maxRetries: 1
     });
 
-    await expect(collectStreamChunks(audioStream)).rejects.toThrow('Cannot proceed with stream: attestation required');
-
+    await expect(collectStreamChunks(audioStream)).rejects.toThrow('SABR Error: whatthehell - 123');
     expect(mockFetch).toHaveBeenCalledTimes(2);
+  });
+
+  it('should fail after exhausting all retry attempts when stream protection attestation is rejected', async () => {
+    const mockFetch = createMockSabrServer({ streamProtectionStatus: 3, streamProtectionMaxRetries: 2 });
+
+    const stream = createSabrStream(mockFetch);
+
+    const { audioStream } = stream.start({
+      videoFormat: VIDEO_FORMAT,
+      audioFormat: AUDIO_FORMAT,
+      isPostLiveDvr: false,
+      maxRetries: 1
+    });
+
+    await expect(collectStreamChunks(audioStream)).rejects.toThrow('Stream protection attestation rejected after 2 attempts');
+    expect(mockFetch).toHaveBeenCalledTimes(4);
   });
 });
