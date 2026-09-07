@@ -11,7 +11,7 @@ message SelectableFormats {
   repeated .misc.FormatId selectable_video_format_ids = 1;
   repeated .misc.FormatId selectable_audio_format_ids = 2;
   optional string video_id = 3;
-  repeated SelectableFormat selectable_video_formats = 4; // @NOTE: On iOS, this uses its own message (SelectableVideoFormat) instead of single SelectableFormat, should probably check if there are any differences at some point.
+  repeated SelectableFormat selectable_video_formats = 4; // @NOTE: On iOS, this uses its own message (SelectableVideoFormat) instead of single SelectableFormat. Should probably check if there are any differences at some point.
   repeated SelectableFormat selectable_audio_formats = 5;
   repeated SelectableFormat selectable_caption_formats = 6;
   repeated SelectableFormat restricted_formats = 7;

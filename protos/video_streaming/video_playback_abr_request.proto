@@ -17,7 +17,7 @@ message VideoPlaybackAbrRequest {
   optional UnknownMessage1 field6 = 6;
   repeated .misc.FormatId selected_audio_format_ids = 16; // @NOTE: This is the same as preferred_audio_format_ids (pai) on onesie reqs
   repeated .misc.FormatId selected_video_format_ids = 17; // @NOTE: This is the same as preferred_video_format_ids (pvi) on onesie reqs
-  repeated .misc.FormatId selected_caption_format_ids = 18; // @TODO: Check if onesie has an equivalent field
+  repeated .misc.FormatId selected_caption_format_ids = 18; // @TODO: Check if onesie has an equivalent field for this
   optional StreamerContext streamer_context = 19;
   optional ServerStitchedDaiInfo server_stitched_dai_info = 21;
   optional int32 last_video_itag = 22;
