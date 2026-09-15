@@ -114,7 +114,6 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   private poTokenGenerationId = 0;
   private spsRejectCount = 0;
 
-  private sabrLiveMetadata?: SabrLiveMetadata;
   private ssapPlaybackInfos = new Map<string, ServerStitchedDaiInfo>();
   private idleResolvers: (() => void)[] = [];
   private drainResolver?: () => void;
@@ -494,7 +493,6 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
 
     this.abortController = undefined;
     this.nextRequestPolicy = undefined;
-    this.sabrLiveMetadata = undefined;
 
     this.spsRejectCount = 0;
     this.playerTimeMs = 0;
@@ -701,13 +699,13 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
           }
 
           case UMPPartId.LIVE_METADATA: {
-            this.sabrLiveMetadata = decodePart(data.chunks, SabrLiveMetadata);
-            if (!this.sabrLiveMetadata) break;
+            const sabrLiveMetadata = decodePart(data.chunks, SabrLiveMetadata);
+            if (!sabrLiveMetadata) break;
 
-            const broadcastId = this.sabrLiveMetadata.broadcastId;
+            const broadcastId = sabrLiveMetadata.broadcastId;
             if (broadcastId) this.validateBroadcastId(broadcastId);
 
-            this.emit('liveMetadataUpdate', this.sabrLiveMetadata);
+            this.emit('liveMetadataUpdate', sabrLiveMetadata);
             break;
           }
 
