@@ -27,7 +27,7 @@ async function main() {
 
   try {
     const innertube = await Innertube.create({ cache: new UniversalCache(true) });
-    const searchResults = await innertube.search('lofi & chill beats | Radio Cutman');
+    const searchResults = await innertube.search('lofi hip hop radio - beats to relax/study to live stream');
     const liveVideo = searchResults.videos.filterType(YTNodes.Video).find((video) => video.is_live);
     const videoId = liveVideo?.video_id;
 
