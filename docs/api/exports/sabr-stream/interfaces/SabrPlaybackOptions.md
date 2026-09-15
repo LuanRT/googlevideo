@@ -2,7 +2,7 @@
 
 # Interface: SabrPlaybackOptions
 
-Defined in: [src/types/sabrStreamTypes.ts:114](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L114)
+Defined in: [src/types/sabrStreamTypes.ts:116](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L116)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:114](https://github.com/LuanRT/googlev
 
 > `optional` **videoFormat**: `number` \| [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md) \| (`formats`) => [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md) \| `undefined`
 
-Defined in: [src/types/sabrStreamTypes.ts:118](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L118)
+Defined in: [src/types/sabrStreamTypes.ts:120](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L120)
 
 Can be a format ID number, a SabrFormat object, or a function that selects a format from the available formats array.
 
@@ -20,7 +20,7 @@ Can be a format ID number, a SabrFormat object, or a function that selects a for
 
 > `optional` **audioFormat**: `number` \| [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md) \| (`formats`) => [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md) \| `undefined`
 
-Defined in: [src/types/sabrStreamTypes.ts:122](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L122)
+Defined in: [src/types/sabrStreamTypes.ts:124](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L124)
 
 Can be a format ID number, a SabrFormat object, or a function that selects a format from the available formats array.
 
@@ -30,7 +30,7 @@ Can be a format ID number, a SabrFormat object, or a function that selects a for
 
 > `optional` **videoPreferences**: [`VideoFormatPreferences`](VideoFormatPreferences.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:123](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L123)
+Defined in: [src/types/sabrStreamTypes.ts:125](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L125)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [src/types/sabrStreamTypes.ts:123](https://github.com/LuanRT/googlev
 
 > `optional` **audioPreferences**: [`AudioFormatPreferences`](AudioFormatPreferences.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:124](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L124)
+Defined in: [src/types/sabrStreamTypes.ts:126](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L126)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [src/types/sabrStreamTypes.ts:124](https://github.com/LuanRT/googlev
 
 > `optional` **maxRetries**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:129](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L129)
+Defined in: [src/types/sabrStreamTypes.ts:131](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L131)
 
 Maximum number of retries for failed requests.
 
@@ -62,7 +62,7 @@ Maximum number of retries for failed requests.
 
 > `optional` **stallDetectionMs**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:134](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L134)
+Defined in: [src/types/sabrStreamTypes.ts:136](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L136)
 
 Duration in milliseconds after which a stall is detected if no progress is made.
 
@@ -78,7 +78,7 @@ Duration in milliseconds after which a stall is detected if no progress is made.
 
 > `optional` **enabledTrackTypes**: [`EnabledTrackTypes`](../../utils/enumerations/EnabledTrackTypes.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:135](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L135)
+Defined in: [src/types/sabrStreamTypes.ts:137](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L137)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [src/types/sabrStreamTypes.ts:135](https://github.com/LuanRT/googlev
 
 > `optional` **startTimeMs**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:136](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L136)
+Defined in: [src/types/sabrStreamTypes.ts:138](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L138)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: [src/types/sabrStreamTypes.ts:136](https://github.com/LuanRT/googlev
 
 > **isPostLiveDvr**: `boolean`
 
-Defined in: [src/types/sabrStreamTypes.ts:137](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L137)
+Defined in: [src/types/sabrStreamTypes.ts:139](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L139)
 
 ***
 
@@ -102,6 +102,6 @@ Defined in: [src/types/sabrStreamTypes.ts:137](https://github.com/LuanRT/googlev
 
 > `optional` **snapshot**: [`SabrSnapshot`](SabrSnapshot.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:141](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L141)
+Defined in: [src/types/sabrStreamTypes.ts:143](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L143)
 
 If provided, the stream will attempt to continue from the given snapshot.

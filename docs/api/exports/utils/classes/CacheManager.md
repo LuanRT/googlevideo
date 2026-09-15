@@ -2,7 +2,7 @@
 
 # Class: CacheManager
 
-Defined in: [src/utils/CacheManager.ts:14](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/utils/CacheManager.ts#L14)
+Defined in: [src/utils/CacheManager.ts:14](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/CacheManager.ts#L14)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/utils/CacheManager.ts:14](https://github.com/LuanRT/googlevideo
 
 > **new CacheManager**(`maxSizeMB`, `maxAgeSeconds`): `CacheManager`
 
-Defined in: [src/utils/CacheManager.ts:23](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/utils/CacheManager.ts#L23)
+Defined in: [src/utils/CacheManager.ts:23](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/CacheManager.ts#L23)
 
 #### Parameters
 
@@ -32,19 +32,16 @@ Defined in: [src/utils/CacheManager.ts:23](https://github.com/LuanRT/googlevideo
 
 > **getCacheEntries**(): `object`
 
-Defined in: [src/utils/CacheManager.ts:29](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/utils/CacheManager.ts#L29)
+Defined in: [src/utils/CacheManager.ts:29](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/CacheManager.ts#L29)
 
 #### Returns
 
 `object`
 
-##### initSegmentCache
-
-> **initSegmentCache**: `Map`\<`string`, [`CacheEntry`](../interfaces/CacheEntry.md)\>
-
-##### segmentCache
-
-> **segmentCache**: `Map`\<`string`, [`CacheEntry`](../interfaces/CacheEntry.md)\>
+| Name | Type | Defined in |
+| ------ | ------ | ------ |
+| `initSegmentCache` | `Map`\<`string`, [`CacheEntry`](../interfaces/CacheEntry.md)\> | [src/utils/CacheManager.ts:30](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/CacheManager.ts#L30) |
+| `segmentCache` | `Map`\<`string`, [`CacheEntry`](../interfaces/CacheEntry.md)\> | [src/utils/CacheManager.ts:31](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/CacheManager.ts#L31) |
 
 ***
 
@@ -52,7 +49,7 @@ Defined in: [src/utils/CacheManager.ts:29](https://github.com/LuanRT/googlevideo
 
 > **setInitSegment**(`key`, `data`): `void`
 
-Defined in: [src/utils/CacheManager.ts:39](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/utils/CacheManager.ts#L39)
+Defined in: [src/utils/CacheManager.ts:39](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/CacheManager.ts#L39)
 
 #### Parameters
 
@@ -74,7 +71,7 @@ Defined in: [src/utils/CacheManager.ts:39](https://github.com/LuanRT/googlevideo
 
 > **setSegment**(`key`, `data`): `void`
 
-Defined in: [src/utils/CacheManager.ts:54](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/utils/CacheManager.ts#L54)
+Defined in: [src/utils/CacheManager.ts:54](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/CacheManager.ts#L54)
 
 #### Parameters
 
@@ -96,7 +93,7 @@ Defined in: [src/utils/CacheManager.ts:54](https://github.com/LuanRT/googlevideo
 
 > **getInitSegment**(`key`): `Uint8Array`\<`ArrayBufferLike`\> \| `undefined`
 
-Defined in: [src/utils/CacheManager.ts:66](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/utils/CacheManager.ts#L66)
+Defined in: [src/utils/CacheManager.ts:66](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/CacheManager.ts#L66)
 
 #### Parameters
 
@@ -114,7 +111,7 @@ Defined in: [src/utils/CacheManager.ts:66](https://github.com/LuanRT/googlevideo
 
 > **getSegment**(`key`): `Uint8Array`\<`ArrayBufferLike`\> \| `undefined`
 
-Defined in: [src/utils/CacheManager.ts:84](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/utils/CacheManager.ts#L84)
+Defined in: [src/utils/CacheManager.ts:84](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/CacheManager.ts#L84)
 
 #### Parameters
 
@@ -132,7 +129,7 @@ Defined in: [src/utils/CacheManager.ts:84](https://github.com/LuanRT/googlevideo
 
 > **dispose**(): `void`
 
-Defined in: [src/utils/CacheManager.ts:159](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/utils/CacheManager.ts#L159)
+Defined in: [src/utils/CacheManager.ts:159](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/CacheManager.ts#L159)
 
 #### Returns
 

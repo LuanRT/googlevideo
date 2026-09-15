@@ -10,6 +10,7 @@
     "src/types/shared.ts"
   ],
   "out": "docs/api",
+  "typeDeclarationFormat": "table",
   "plugin": [
     "typedoc-plugin-markdown"
   ],

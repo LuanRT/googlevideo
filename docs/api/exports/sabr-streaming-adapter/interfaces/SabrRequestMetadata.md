@@ -2,7 +2,7 @@
 
 # Interface: SabrRequestMetadata
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:19](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L19)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:19](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L19)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:19](https://github.com/LuanR
 
 > `optional` **byteRange**: `object`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:20](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L20)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:20](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L20)
 
 #### start
 
@@ -26,7 +26,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:20](https://github.com/LuanR
 
 > `optional` **format**: [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:21](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L21)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:21](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L21)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:21](https://github.com/LuanR
 
 > `optional` **isInit**: `boolean`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:22](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L22)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:22](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L22)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:22](https://github.com/LuanR
 
 > `optional` **isUMP**: `boolean`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:23](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L23)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:23](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L23)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:23](https://github.com/LuanR
 
 > `optional` **isSABR**: `boolean`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:24](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L24)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:24](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L24)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:24](https://github.com/LuanR
 
 > `optional` **streamInfo**: `object`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:25](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L25)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:25](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L25)
 
 #### playbackCookie?
 
@@ -106,7 +106,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:25](https://github.com/LuanR
 
 > `optional` **error**: `object`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:37](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L37)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:37](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L37)
 
 #### sabrError?
 
@@ -118,4 +118,4 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:37](https://github.com/LuanR
 
 > **timestamp**: `number`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:40](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L40)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:40](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L40)

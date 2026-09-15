@@ -2,7 +2,7 @@
 
 # Interface: SabrContext
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:33](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/streamer_context.ts#L33)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:33](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/streamer_context.ts#L33)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:33](https://
 
 > `optional` **type**: `number`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:34](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/streamer_context.ts#L34)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:34](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/streamer_context.ts#L34)
 
 ***
 
@@ -18,4 +18,4 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:34](https://
 
 > `optional` **value**: `Uint8Array`\<`ArrayBufferLike`\>
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:35](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/streamer_context.ts#L35)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:35](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/streamer_context.ts#L35)

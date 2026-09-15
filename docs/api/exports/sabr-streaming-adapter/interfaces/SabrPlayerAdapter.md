@@ -2,7 +2,7 @@
 
 # Interface: SabrPlayerAdapter
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:103](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L103)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:103](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L103)
 
 ## Methods
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:103](https://github.com/Luan
 
 > **initialize**(`player`, `requestMetadataManager`, `cache`): `void`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:104](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L104)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:104](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L104)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:104](https://github.com/Luan
 
 > **getPlayerTime**(): `number`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:109](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L109)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:109](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L109)
 
 #### Returns
 
@@ -48,7 +48,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:109](https://github.com/Luan
 
 > **getPlaybackRate**(): `number`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:110](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L110)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:110](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L110)
 
 #### Returns
 
@@ -60,7 +60,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:110](https://github.com/Luan
 
 > **getBandwidthEstimate**(): `number`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:111](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L111)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:111](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L111)
 
 #### Returns
 
@@ -72,7 +72,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:111](https://github.com/Luan
 
 > **getActiveTrackFormats**(`activeFormat`, `sabrFormats`): `object`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:112](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L112)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:112](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L112)
 
 #### Parameters
 
@@ -88,13 +88,10 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:112](https://github.com/Luan
 
 `object`
 
-##### audioFormat?
-
-> `optional` **audioFormat**: [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)
-
-##### videoFormat?
-
-> `optional` **videoFormat**: [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)
+| Name | Type | Defined in |
+| ------ | ------ | ------ |
+| `audioFormat?` | [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md) | [src/types/sabrStreamingAdapterTypes.ts:113](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L113) |
+| `videoFormat?` | [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md) | [src/types/sabrStreamingAdapterTypes.ts:114](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L114) |
 
 ***
 
@@ -102,7 +99,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:112](https://github.com/Luan
 
 > **registerRequestInterceptor**(`interceptor`): `void`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:116](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L116)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:116](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L116)
 
 #### Parameters
 
@@ -120,7 +117,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:116](https://github.com/Luan
 
 > **registerResponseInterceptor**(`interceptor`): `void`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:117](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L117)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:117](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L117)
 
 #### Parameters
 
@@ -138,7 +135,7 @@ Defined in: [src/types/sabrStreamingAdapterTypes.ts:117](https://github.com/Luan
 
 > **dispose**(): `void`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:118](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamingAdapterTypes.ts#L118)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:118](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L118)
 
 #### Returns
 

@@ -2,19 +2,15 @@
 
 # Function: stripWebmInit()
 
-> **stripWebmInit**(`segment`, `isFirstSegment`): `Uint8Array`
+> **stripWebmInit**(`segment`): `Uint8Array`
 
-Defined in: src/utils/mediaSegmentUtils.ts:29
+Defined in: [src/utils/mediaSegmentUtils.ts:37](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/mediaSegmentUtils.ts#L37)
 
 ## Parameters
 
 ### segment
 
 `Uint8Array`
-
-### isFirstSegment
-
-`boolean`
 
 ## Returns
 

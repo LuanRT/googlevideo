@@ -2,7 +2,7 @@
 
 # Interface: VideoPlaybackAbrRequest
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:18](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L18)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:18](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L18)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > `optional` **clientAbrState**: [`ClientAbrState`](ClientAbrState.md)
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:19](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L19)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:19](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L19)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > **initializationFormatIds**: [`FormatId`](FormatId.md)[]
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:20](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L20)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:20](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L20)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > **bufferedRanges**: [`BufferedRange`](BufferedRange.md)[]
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:21](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L21)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:21](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L21)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > `optional` **mediaStartTimeMs**: `string`
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:22](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L22)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:22](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L22)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > `optional` **videoPlaybackUstreamerConfig**: `Uint8Array`\<`ArrayBufferLike`\>
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:23](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L23)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:23](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L23)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > `optional` **field6**: `UnknownMessage1`
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:24](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L24)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:24](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L24)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > **selectedAudioFormatIds**: [`FormatId`](FormatId.md)[]
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:28](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L28)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:28](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L28)
 
 @NOTE: This is the same as preferred_audio_format_ids (pai) on onesie reqs
 
@@ -68,7 +68,7 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > **selectedVideoFormatIds**: [`FormatId`](FormatId.md)[]
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:30](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L30)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:30](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L30)
 
 @NOTE: This is the same as preferred_video_format_ids (pvi) on onesie reqs
 
@@ -78,9 +78,9 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > **selectedCaptionFormatIds**: [`FormatId`](FormatId.md)[]
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:32](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L32)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:32](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L32)
 
-@TODO: Check if onesie has an equivalent field
+@TODO: Check if onesie has an equivalent field for this
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > `optional` **streamerContext**: [`StreamerContext`](StreamerContext.md)
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:33](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L33)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:33](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L33)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > `optional` **serverStitchedDaiInfo**: [`ServerStitchedDaiInfo`](ServerStitchedDaiInfo.md)
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:34](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L34)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:34](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L34)
 
 ***
 
@@ -104,7 +104,7 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > `optional` **lastVideoItag**: `number`
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:35](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L35)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:35](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L35)
 
 ***
 
@@ -112,7 +112,7 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > `optional` **lastAudioItag**: `number`
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:36](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L36)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:36](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L36)
 
 ***
 
@@ -120,7 +120,7 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > **ssapPlaybackInfos**: [`ServerStitchedDaiInfo`](ServerStitchedDaiInfo.md)[]
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:37](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L37)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:37](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L37)
 
 ***
 
@@ -128,7 +128,7 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > `optional` **unusedBloatSizeBytes**: `Uint8Array`\<`ArrayBufferLike`\>
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:39](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L39)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:39](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L39)
 
 @NOTE: What even is this? On web, it's only set if exp html5_sabr_unused_bloat_size_bytes > 0 (as `new Uint8Array(value_of_html5_sabr_unused_bloat_size_bytes_here)`)
 
@@ -138,4 +138,4 @@ Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:
 
 > **field1000**: `UnknownMessage2`[]
 
-Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:40](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/video_playback_abr_request.ts#L40)
+Defined in: [protos/generated/video\_streaming/video\_playback\_abr\_request.ts:40](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/video_playback_abr_request.ts#L40)

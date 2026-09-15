@@ -2,7 +2,7 @@
 
 # Class: UmpReader
 
-Defined in: [src/core/UmpReader.ts:20](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/UmpReader.ts#L20)
+Defined in: [src/core/UmpReader.ts:20](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/UmpReader.ts#L20)
 
 An efficient UMP reader.
 
@@ -16,7 +16,7 @@ Based on https://gist.github.com/LuanRT/7c8c79fa558f2430f0b85b09f8a9d818
 
 > **new UmpReader**(`callbacks`): `UmpReader`
 
-Defined in: [src/core/UmpReader.ts:27](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/UmpReader.ts#L27)
+Defined in: [src/core/UmpReader.ts:27](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/UmpReader.ts#L27)
 
 #### Parameters
 
@@ -34,7 +34,7 @@ Defined in: [src/core/UmpReader.ts:27](https://github.com/LuanRT/googlevideo/blo
 
 > **feed**(`chunk`): `Promise`\<`void`\>
 
-Defined in: [src/core/UmpReader.ts:31](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/UmpReader.ts#L31)
+Defined in: [src/core/UmpReader.ts:31](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/UmpReader.ts#L31)
 
 #### Parameters
 
@@ -52,7 +52,7 @@ Defined in: [src/core/UmpReader.ts:31](https://github.com/LuanRT/googlevideo/blo
 
 > **readVarInt**(`offset`): \[`number`, `number`\]
 
-Defined in: [src/core/UmpReader.ts:103](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/UmpReader.ts#L103)
+Defined in: [src/core/UmpReader.ts:103](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/UmpReader.ts#L103)
 
 Reads a specific varint from the current buffer offset.
 
@@ -74,7 +74,7 @@ Reads a specific varint from the current buffer offset.
 
 > **canReadFromCurrentChunk**(`offset`, `length`): `boolean`
 
-Defined in: [src/core/UmpReader.ts:178](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/UmpReader.ts#L178)
+Defined in: [src/core/UmpReader.ts:178](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/UmpReader.ts#L178)
 
 Checks if the specified bytes can be read from the current chunk.
 
@@ -104,7 +104,7 @@ True if bytes can be read from current chunk, false otherwise.
 
 > **getCurrentDataView**(): `DataView`
 
-Defined in: [src/core/UmpReader.ts:187](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/UmpReader.ts#L187)
+Defined in: [src/core/UmpReader.ts:187](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/UmpReader.ts#L187)
 
 Gets a DataView of the current chunk, creating it if necessary.
 
@@ -120,7 +120,7 @@ DataView for the current chunk.
 
 > **dispose**(): `void`
 
-Defined in: [src/core/UmpReader.ts:199](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/UmpReader.ts#L199)
+Defined in: [src/core/UmpReader.ts:199](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/UmpReader.ts#L199)
 
 #### Returns
 

@@ -2,7 +2,7 @@
 
 # Interface: TrackSegmentInfo
 
-Defined in: [src/types/sabrStreamTypes.ts:205](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L205)
+Defined in: [src/types/sabrStreamTypes.ts:212](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L212)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:205](https://github.com/LuanRT/googlev
 
 > `optional` **formatId**: [`FormatId`](../../protos/interfaces/FormatId.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:206](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L206)
+Defined in: [src/types/sabrStreamTypes.ts:213](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L213)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/types/sabrStreamTypes.ts:206](https://github.com/LuanRT/googlev
 
 > `optional` **mimeType**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:207](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L207)
+Defined in: [src/types/sabrStreamTypes.ts:214](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L214)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/types/sabrStreamTypes.ts:207](https://github.com/LuanRT/googlev
 
 > `optional` **endSegmentNum**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:208](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L208)
+Defined in: [src/types/sabrStreamTypes.ts:215](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L215)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/types/sabrStreamTypes.ts:208](https://github.com/LuanRT/googlev
 
 > `optional` **endTimeTicks**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:209](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L209)
+Defined in: [src/types/sabrStreamTypes.ts:216](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L216)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [src/types/sabrStreamTypes.ts:209](https://github.com/LuanRT/googlev
 
 > `optional` **endTimescale**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:210](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L210)
+Defined in: [src/types/sabrStreamTypes.ts:217](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L217)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [src/types/sabrStreamTypes.ts:210](https://github.com/LuanRT/googlev
 
 > `optional` **targetDurationSec**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:211](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L211)
+Defined in: [src/types/sabrStreamTypes.ts:218](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L218)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [src/types/sabrStreamTypes.ts:211](https://github.com/LuanRT/googlev
 
 > **trackedSegments**: `Map`\<`number`, `CompletedSegment`\>
 
-Defined in: [src/types/sabrStreamTypes.ts:212](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L212)
+Defined in: [src/types/sabrStreamTypes.ts:219](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L219)
 
 ***
 
@@ -66,4 +66,12 @@ Defined in: [src/types/sabrStreamTypes.ts:212](https://github.com/LuanRT/googlev
 
 > `optional` **bufferedRangeSummary**: `BufferedRangeSummary`
 
-Defined in: [src/types/sabrStreamTypes.ts:213](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L213)
+Defined in: [src/types/sabrStreamTypes.ts:220](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L220)
+
+***
+
+### esmgSegmentMetadata?
+
+> `optional` **esmgSegmentMetadata**: `EmsgSegmentMetadata`
+
+Defined in: [src/types/sabrStreamTypes.ts:221](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L221)

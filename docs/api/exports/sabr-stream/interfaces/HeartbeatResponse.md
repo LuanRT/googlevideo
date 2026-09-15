@@ -2,7 +2,7 @@
 
 # Interface: HeartbeatResponse
 
-Defined in: [src/types/sabrStreamTypes.ts:93](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L93)
+Defined in: [src/types/sabrStreamTypes.ts:95](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L95)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:93](https://github.com/LuanRT/googlevi
 
 > `optional` **status**: [`PlayabilityStatus`](../type-aliases/PlayabilityStatus.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:94](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L94)
+Defined in: [src/types/sabrStreamTypes.ts:96](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L96)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/types/sabrStreamTypes.ts:94](https://github.com/LuanRT/googlevi
 
 > `optional` **broadcastId**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:95](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L95)
+Defined in: [src/types/sabrStreamTypes.ts:97](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L97)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/types/sabrStreamTypes.ts:95](https://github.com/LuanRT/googlevi
 
 > `optional` **pollDelayMs**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:96](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L96)
+Defined in: [src/types/sabrStreamTypes.ts:98](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L98)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/types/sabrStreamTypes.ts:96](https://github.com/LuanRT/googlevi
 
 > `optional` **displayEndscreen**: `boolean`
 
-Defined in: [src/types/sabrStreamTypes.ts:97](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L97)
+Defined in: [src/types/sabrStreamTypes.ts:99](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L99)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [src/types/sabrStreamTypes.ts:97](https://github.com/LuanRT/googlevi
 
 > `optional` **offlineSlatePresent**: `boolean`
 
-Defined in: [src/types/sabrStreamTypes.ts:98](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L98)
+Defined in: [src/types/sabrStreamTypes.ts:100](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L100)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [src/types/sabrStreamTypes.ts:98](https://github.com/LuanRT/googlevi
 
 > `optional` **offlineSlateButtonsPresent**: `boolean`
 
-Defined in: [src/types/sabrStreamTypes.ts:99](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L99)
+Defined in: [src/types/sabrStreamTypes.ts:101](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L101)
 
 ***
 
@@ -58,4 +58,4 @@ Defined in: [src/types/sabrStreamTypes.ts:99](https://github.com/LuanRT/googlevi
 
 > `optional` **heartbeatServerData**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:100](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L100)
+Defined in: [src/types/sabrStreamTypes.ts:102](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L102)

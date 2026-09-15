@@ -2,7 +2,7 @@
 
 # Enumeration: NetworkMeteredState
 
-Defined in: [protos/generated/misc/common.ts:53](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/misc/common.ts#L53)
+Defined in: [protos/generated/misc/common.ts:53](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L53)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/misc/common.ts:53](https://github.com/LuanRT/googl
 
 > **UNKNOWN**: `0`
 
-Defined in: [protos/generated/misc/common.ts:54](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/misc/common.ts#L54)
+Defined in: [protos/generated/misc/common.ts:54](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L54)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/misc/common.ts:54](https://github.com/LuanRT/googl
 
 > **UNMETERED**: `1`
 
-Defined in: [protos/generated/misc/common.ts:55](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/misc/common.ts#L55)
+Defined in: [protos/generated/misc/common.ts:55](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L55)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/misc/common.ts:55](https://github.com/LuanRT/googl
 
 > **METERED**: `2`
 
-Defined in: [protos/generated/misc/common.ts:56](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/misc/common.ts#L56)
+Defined in: [protos/generated/misc/common.ts:56](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L56)
 
 ***
 
@@ -34,4 +34,4 @@ Defined in: [protos/generated/misc/common.ts:56](https://github.com/LuanRT/googl
 
 > **UNRECOGNIZED**: `-1`
 
-Defined in: [protos/generated/misc/common.ts:57](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/misc/common.ts#L57)
+Defined in: [protos/generated/misc/common.ts:57](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L57)

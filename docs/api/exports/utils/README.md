@@ -35,6 +35,7 @@ This module contains general utilities.
 - [getUniqueFormatId](functions/getUniqueFormatId.md)
 - [stripMp4Init](functions/stripMp4Init.md)
 - [stripWebmInit](functions/stripWebmInit.md)
+- [parseEmsgSegmentMetadata](functions/parseEmsgSegmentMetadata.md)
 - [ticksToMs](functions/ticksToMs.md)
 - [getDurationMs](functions/getDurationMs.md)
 - [getStartMs](functions/getStartMs.md)

@@ -2,7 +2,7 @@
 
 # Enumeration: CuepointEvent
 
-Defined in: protos/generated/video\_streaming/cuepoint.ts:25
+Defined in: [protos/generated/video\_streaming/cuepoint.ts:25](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint.ts#L25)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: protos/generated/video\_streaming/cuepoint.ts:25
 
 > **UNKNOWN**: `0`
 
-Defined in: protos/generated/video\_streaming/cuepoint.ts:26
+Defined in: [protos/generated/video\_streaming/cuepoint.ts:26](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint.ts#L26)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: protos/generated/video\_streaming/cuepoint.ts:26
 
 > **START**: `1`
 
-Defined in: protos/generated/video\_streaming/cuepoint.ts:27
+Defined in: [protos/generated/video\_streaming/cuepoint.ts:27](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint.ts#L27)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: protos/generated/video\_streaming/cuepoint.ts:27
 
 > **CONTINUE**: `2`
 
-Defined in: protos/generated/video\_streaming/cuepoint.ts:28
+Defined in: [protos/generated/video\_streaming/cuepoint.ts:28](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint.ts#L28)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: protos/generated/video\_streaming/cuepoint.ts:28
 
 > **STOP**: `3`
 
-Defined in: protos/generated/video\_streaming/cuepoint.ts:29
+Defined in: [protos/generated/video\_streaming/cuepoint.ts:29](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint.ts#L29)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: protos/generated/video\_streaming/cuepoint.ts:29
 
 > **INSERTION**: `4`
 
-Defined in: protos/generated/video\_streaming/cuepoint.ts:30
+Defined in: [protos/generated/video\_streaming/cuepoint.ts:30](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint.ts#L30)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: protos/generated/video\_streaming/cuepoint.ts:30
 
 > **PREDICT\_START**: `5`
 
-Defined in: protos/generated/video\_streaming/cuepoint.ts:31
+Defined in: [protos/generated/video\_streaming/cuepoint.ts:31](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint.ts#L31)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: protos/generated/video\_streaming/cuepoint.ts:31
 
 > **PREFETCH**: `6`
 
-Defined in: protos/generated/video\_streaming/cuepoint.ts:33
+Defined in: [protos/generated/video\_streaming/cuepoint.ts:33](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint.ts#L33)
 
 PREFETCH - @NOTE: A request to https://www.youtube.com/youtubei/v1/player/ad_break?prettyPrint=false is made to get the ads_config bytes
 
@@ -68,4 +68,4 @@ PREFETCH - @NOTE: A request to https://www.youtube.com/youtubei/v1/player/ad_bre
 
 > **UNRECOGNIZED**: `-1`
 
-Defined in: protos/generated/video\_streaming/cuepoint.ts:34
+Defined in: [protos/generated/video\_streaming/cuepoint.ts:34](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint.ts#L34)

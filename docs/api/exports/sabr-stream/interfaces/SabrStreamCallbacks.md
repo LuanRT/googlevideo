@@ -2,7 +2,7 @@
 
 # Interface: SabrStreamCallbacks
 
-Defined in: [src/types/sabrStreamTypes.ts:41](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L41)
+Defined in: [src/types/sabrStreamTypes.ts:42](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L42)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:41](https://github.com/LuanRT/googlevi
 
 > `optional` **onCheckHeartbeat**: (`innertubeRequestBody`) => `Promise`\<[`HeartbeatResponse`](HeartbeatResponse.md)\>
 
-Defined in: [src/types/sabrStreamTypes.ts:42](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L42)
+Defined in: [src/types/sabrStreamTypes.ts:43](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L43)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/types/sabrStreamTypes.ts:42](https://github.com/LuanRT/googlevi
 
 > `optional` **onReloadPlayerResponse**: (`context`) => `Promise`\<[`ReloadResponse`](ReloadResponse.md)\>
 
-Defined in: [src/types/sabrStreamTypes.ts:43](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L43)
+Defined in: [src/types/sabrStreamTypes.ts:44](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L44)
 
 #### Parameters
 
@@ -46,7 +46,7 @@ Defined in: [src/types/sabrStreamTypes.ts:43](https://github.com/LuanRT/googlevi
 
 > `optional` **onMintPoToken**: () => `Promise`\<`Uint8Array`\<`ArrayBufferLike`\>\>
 
-Defined in: [src/types/sabrStreamTypes.ts:44](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L44)
+Defined in: [src/types/sabrStreamTypes.ts:45](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L45)
 
 #### Returns
 

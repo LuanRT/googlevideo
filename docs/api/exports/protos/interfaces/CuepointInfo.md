@@ -2,7 +2,7 @@
 
 # Interface: CuepointInfo
 
-Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:14
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:14](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint_info.ts#L14)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:14
 
 > `optional` **cuepoint**: [`Cuepoint`](Cuepoint.md)
 
-Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:15
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:15](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint_info.ts#L15)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:15
 
 > `optional` **trackType**: [`CuepointTrackType`](../enumerations/CuepointTrackType.md)
 
-Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:16
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:16](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint_info.ts#L16)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:16
 
 > `optional` **sequenceNumber**: `number`
 
-Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:17
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:17](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint_info.ts#L17)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:17
 
 > `optional` **timeRange**: [`TimeRange`](TimeRange.md)
 
-Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:18
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:18](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint_info.ts#L18)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:18
 
 > `optional` **tileContext**: `string`
 
-Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:19
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:19](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint_info.ts#L19)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:19
 
 > `optional` **unknownField6**: `number`
 
-Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:20
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:20](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint_info.ts#L20)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:20
 
 > `optional` **unknownField7**: `number`
 
-Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:21
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:21](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint_info.ts#L21)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:21
 
 > `optional` **opportunityId**: `string`
 
-Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:22
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:22](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint_info.ts#L22)
 
 ***
 
@@ -74,4 +74,4 @@ Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:22
 
 > `optional` **serializedPrefetchContext**: `Uint8Array`\<`ArrayBufferLike`\>
 
-Defined in: protos/generated/video\_streaming/cuepoint\_info.ts:23
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:23](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/cuepoint_info.ts#L23)

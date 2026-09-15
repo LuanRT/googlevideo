@@ -2,7 +2,7 @@
 
 # Interface: NextRequestPolicy
 
-Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:13](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/next_request_policy.ts#L13)
+Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:13](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/next_request_policy.ts#L13)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:13](http
 
 > `optional` **targetAudioReadaheadMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:14](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/next_request_policy.ts#L14)
+Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:14](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/next_request_policy.ts#L14)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:14](http
 
 > `optional` **targetVideoReadaheadMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:15](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/next_request_policy.ts#L15)
+Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:15](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/next_request_policy.ts#L15)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:15](http
 
 > `optional` **maxTimeSinceLastRequestMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:16](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/next_request_policy.ts#L16)
+Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:16](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/next_request_policy.ts#L16)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:16](http
 
 > `optional` **backoffTimeMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:17](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/next_request_policy.ts#L17)
+Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:17](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/next_request_policy.ts#L17)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:17](http
 
 > `optional` **minAudioReadaheadMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:18](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/next_request_policy.ts#L18)
+Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:18](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/next_request_policy.ts#L18)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:18](http
 
 > `optional` **minVideoReadaheadMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:19](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/next_request_policy.ts#L19)
+Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:19](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/next_request_policy.ts#L19)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:19](http
 
 > `optional` **playbackCookie**: [`PlaybackCookie`](PlaybackCookie.md)
 
-Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:20](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/next_request_policy.ts#L20)
+Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:20](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/next_request_policy.ts#L20)
 
 ***
 
@@ -66,4 +66,4 @@ Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:20](http
 
 > `optional` **videoId**: `string`
 
-Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:21](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/next_request_policy.ts#L21)
+Defined in: [protos/generated/video\_streaming/next\_request\_policy.ts:21](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/next_request_policy.ts#L21)

@@ -2,7 +2,7 @@
 
 # Interface: VideoFormatPreferences
 
-Defined in: [src/types/sabrStreamTypes.ts:144](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L144)
+Defined in: [src/types/sabrStreamTypes.ts:146](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L146)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:144](https://github.com/LuanRT/googlev
 
 > `optional` **quality**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:151](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L151)
+Defined in: [src/types/sabrStreamTypes.ts:153](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L153)
 
 Quality label.
 If not provided, the highest quality format will be selected.
@@ -33,7 +33,7 @@ undefined
 
 > `optional` **container**: `"webm"` \| `"mp4"`
 
-Defined in: [src/types/sabrStreamTypes.ts:156](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L156)
+Defined in: [src/types/sabrStreamTypes.ts:158](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L158)
 
 Required container format.
 
@@ -49,7 +49,7 @@ undefined
 
 > `optional` **preferredVideoCodec**: `"h264"` \| `"vp9"` \| `"av1"`
 
-Defined in: [src/types/sabrStreamTypes.ts:161](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L161)
+Defined in: [src/types/sabrStreamTypes.ts:163](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L163)
 
 Video codec to prefer when available.
 
@@ -65,4 +65,4 @@ undefined
 
 > `optional` **superResolution**: `boolean`
 
-Defined in: [src/types/sabrStreamTypes.ts:162](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L162)
+Defined in: [src/types/sabrStreamTypes.ts:164](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L164)

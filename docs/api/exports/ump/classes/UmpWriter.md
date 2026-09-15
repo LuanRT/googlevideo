@@ -2,7 +2,7 @@
 
 # Class: UmpWriter
 
-Defined in: [src/core/UmpWriter.ts:3](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/UmpWriter.ts#L3)
+Defined in: [src/core/UmpWriter.ts:3](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/UmpWriter.ts#L3)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/core/UmpWriter.ts:3](https://github.com/LuanRT/googlevideo/blob
 
 > **new UmpWriter**(`compositeBuffer`): `UmpWriter`
 
-Defined in: [src/core/UmpWriter.ts:4](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/UmpWriter.ts#L4)
+Defined in: [src/core/UmpWriter.ts:4](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/UmpWriter.ts#L4)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/core/UmpWriter.ts:4](https://github.com/LuanRT/googlevideo/blob
 
 > **write**(`type`, `data`): `void`
 
-Defined in: [src/core/UmpWriter.ts:8](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/core/UmpWriter.ts#L8)
+Defined in: [src/core/UmpWriter.ts:8](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/UmpWriter.ts#L8)
 
 #### Parameters
 

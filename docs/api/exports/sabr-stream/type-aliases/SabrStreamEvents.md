@@ -4,15 +4,33 @@
 
 > **SabrStreamEvents** = `object`
 
-Defined in: [src/types/sabrStreamTypes.ts:58](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L58)
+Defined in: [src/types/sabrStreamTypes.ts:59](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L59)
 
 ## Properties
+
+### trackMetadataUpdate()
+
+> **trackMetadataUpdate**: (`trackMetadata`) => `void`
+
+Defined in: [src/types/sabrStreamTypes.ts:60](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L60)
+
+#### Parameters
+
+##### trackMetadata
+
+[`TrackMetadata`](../interfaces/TrackMetadata.md)
+
+#### Returns
+
+`void`
+
+***
 
 ### formatInitialization()
 
 > **formatInitialization**: (`track`) => `void`
 
-Defined in: [src/types/sabrStreamTypes.ts:59](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L59)
+Defined in: [src/types/sabrStreamTypes.ts:61](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L61)
 
 #### Parameters
 
@@ -30,7 +48,7 @@ Defined in: [src/types/sabrStreamTypes.ts:59](https://github.com/LuanRT/googlevi
 
 > **streamProtectionStatusUpdate**: (`sps`) => `void`
 
-Defined in: [src/types/sabrStreamTypes.ts:60](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L60)
+Defined in: [src/types/sabrStreamTypes.ts:62](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L62)
 
 #### Parameters
 
@@ -48,7 +66,7 @@ Defined in: [src/types/sabrStreamTypes.ts:60](https://github.com/LuanRT/googlevi
 
 > **liveMetadataUpdate**: (`liveMetadata`) => `void`
 
-Defined in: [src/types/sabrStreamTypes.ts:61](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L61)
+Defined in: [src/types/sabrStreamTypes.ts:63](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L63)
 
 #### Parameters
 
@@ -66,7 +84,7 @@ Defined in: [src/types/sabrStreamTypes.ts:61](https://github.com/LuanRT/googlevi
 
 > **finish**: () => `void`
 
-Defined in: [src/types/sabrStreamTypes.ts:62](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L62)
+Defined in: [src/types/sabrStreamTypes.ts:64](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L64)
 
 #### Returns
 
@@ -78,7 +96,7 @@ Defined in: [src/types/sabrStreamTypes.ts:62](https://github.com/LuanRT/googlevi
 
 > **abort**: () => `void`
 
-Defined in: [src/types/sabrStreamTypes.ts:63](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L63)
+Defined in: [src/types/sabrStreamTypes.ts:65](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L65)
 
 #### Returns
 
@@ -90,7 +108,7 @@ Defined in: [src/types/sabrStreamTypes.ts:63](https://github.com/LuanRT/googlevi
 
 > **error**: (`e`) => `void`
 
-Defined in: [src/types/sabrStreamTypes.ts:64](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/src/types/sabrStreamTypes.ts#L64)
+Defined in: [src/types/sabrStreamTypes.ts:66](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L66)
 
 #### Parameters
 

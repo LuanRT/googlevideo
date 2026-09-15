@@ -2,7 +2,7 @@
 
 # Interface: SelectableFormats
 
-Defined in: protos/generated/video\_streaming/selectable\_formats.ts:13
+Defined in: [protos/generated/video\_streaming/selectable\_formats.ts:13](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/selectable_formats.ts#L13)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: protos/generated/video\_streaming/selectable\_formats.ts:13
 
 > **selectableVideoFormatIds**: [`FormatId`](FormatId.md)[]
 
-Defined in: protos/generated/video\_streaming/selectable\_formats.ts:14
+Defined in: [protos/generated/video\_streaming/selectable\_formats.ts:14](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/selectable_formats.ts#L14)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: protos/generated/video\_streaming/selectable\_formats.ts:14
 
 > **selectableAudioFormatIds**: [`FormatId`](FormatId.md)[]
 
-Defined in: protos/generated/video\_streaming/selectable\_formats.ts:15
+Defined in: [protos/generated/video\_streaming/selectable\_formats.ts:15](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/selectable_formats.ts#L15)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: protos/generated/video\_streaming/selectable\_formats.ts:15
 
 > `optional` **videoId**: `string`
 
-Defined in: protos/generated/video\_streaming/selectable\_formats.ts:16
+Defined in: [protos/generated/video\_streaming/selectable\_formats.ts:16](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/selectable_formats.ts#L16)
 
 ***
 
@@ -34,9 +34,9 @@ Defined in: protos/generated/video\_streaming/selectable\_formats.ts:16
 
 > **selectableVideoFormats**: [`SelectableFormats_SelectableFormat`](SelectableFormats_SelectableFormat.md)[]
 
-Defined in: protos/generated/video\_streaming/selectable\_formats.ts:20
+Defined in: [protos/generated/video\_streaming/selectable\_formats.ts:20](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/selectable_formats.ts#L20)
 
-@NOTE: On iOS, this uses its own message (SelectableVideoFormat) instead of single SelectableFormat, should probably check if there are any differences at some point.
+@NOTE: On iOS, this uses its own message (SelectableVideoFormat) instead of single SelectableFormat. Should probably check if there are any differences at some point.
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: protos/generated/video\_streaming/selectable\_formats.ts:20
 
 > **selectableAudioFormats**: [`SelectableFormats_SelectableFormat`](SelectableFormats_SelectableFormat.md)[]
 
-Defined in: protos/generated/video\_streaming/selectable\_formats.ts:21
+Defined in: [protos/generated/video\_streaming/selectable\_formats.ts:21](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/selectable_formats.ts#L21)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: protos/generated/video\_streaming/selectable\_formats.ts:21
 
 > **selectableCaptionFormats**: [`SelectableFormats_SelectableFormat`](SelectableFormats_SelectableFormat.md)[]
 
-Defined in: protos/generated/video\_streaming/selectable\_formats.ts:22
+Defined in: [protos/generated/video\_streaming/selectable\_formats.ts:22](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/selectable_formats.ts#L22)
 
 ***
 
@@ -60,4 +60,4 @@ Defined in: protos/generated/video\_streaming/selectable\_formats.ts:22
 
 > **restrictedFormats**: [`SelectableFormats_SelectableFormat`](SelectableFormats_SelectableFormat.md)[]
 
-Defined in: protos/generated/video\_streaming/selectable\_formats.ts:23
+Defined in: [protos/generated/video\_streaming/selectable\_formats.ts:23](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/selectable_formats.ts#L23)

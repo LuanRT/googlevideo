@@ -2,7 +2,7 @@
 
 # Interface: PlaybackStartPolicy
 
-Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:12](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/playback_start_policy.ts#L12)
+Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:12](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/playback_start_policy.ts#L12)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:12](ht
 
 > `optional` **startMinReadaheadPolicy**: `PlaybackStartPolicy_MinReadaheadPolicy`
 
-Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:13](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/playback_start_policy.ts#L13)
+Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:13](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/playback_start_policy.ts#L13)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:13](ht
 
 > `optional` **resumeMinReadaheadPolicy**: `PlaybackStartPolicy_MinReadaheadPolicy`
 
-Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:14](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/playback_start_policy.ts#L14)
+Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:14](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/playback_start_policy.ts#L14)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:14](ht
 
 > `optional` **videoId**: `string`
 
-Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:15](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/playback_start_policy.ts#L15)
+Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:15](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/playback_start_policy.ts#L15)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:15](ht
 
 > `optional` **startTimeoutMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:16](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/playback_start_policy.ts#L16)
+Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:16](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/playback_start_policy.ts#L16)
 
 ***
 
@@ -42,4 +42,4 @@ Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:16](ht
 
 > `optional` **resumeTimeoutMs**: `number`
 
-Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:17](https://github.com/LuanRT/googlevideo/blob/58f92b7ba8fc252a510963f003088279a00d4ab0/protos/generated/video_streaming/playback_start_policy.ts#L17)
+Defined in: [protos/generated/video\_streaming/playback\_start\_policy.ts:17](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/playback_start_policy.ts#L17)

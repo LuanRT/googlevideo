@@ -2,19 +2,15 @@
 
 # Function: stripMp4Init()
 
-> **stripMp4Init**(`segment`, `isFirstSegment`): `Uint8Array`
+> **stripMp4Init**(`segment`): `Uint8Array`
 
-Defined in: src/utils/mediaSegmentUtils.ts:1
+Defined in: [src/utils/mediaSegmentUtils.ts:3](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/mediaSegmentUtils.ts#L3)
 
 ## Parameters
 
 ### segment
 
 `Uint8Array`
-
-### isFirstSegment
-
-`boolean`
 
 ## Returns
 
