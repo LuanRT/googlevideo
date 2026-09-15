@@ -96,7 +96,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   private heartbeatParams: HeartbeatParams;
 
   private nextRequestPolicy?: NextRequestPolicy;
-  private sabrContexts = new Map<number, SabrContextUpdate>();
+  private sabrContextUpdates = new Map<number, SabrContextUpdate>();
   private activeSabrContextTypes = new Set<number>();
   private trackOutputs: TrackOutputs;
   private trackMetadata: TrackMetadata = {
@@ -486,7 +486,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   }
 
   private reset(): void {
-    this.sabrContexts.clear();
+    this.sabrContextUpdates.clear();
     this.ssapPlaybackInfos.clear();
     this.activeSabrContextTypes.clear();
     this.bufferState.reset();
@@ -771,10 +771,10 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
 
             if (
               contextUpdate.writePolicy === SabrContextWritePolicy.KEEP_EXISTING &&
-              this.sabrContexts.has(contextUpdate.type)
+              this.sabrContextUpdates.has(contextUpdate.type)
             ) break;
 
-            this.sabrContexts.set(contextUpdate.type, contextUpdate);
+            this.sabrContextUpdates.set(contextUpdate.type, contextUpdate);
 
             if (contextUpdate.sendByDefault)
               this.activeSabrContextTypes.add(contextUpdate.type);
@@ -801,8 +801,8 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
             }
 
             for (const discardPolicy of contextSendingPolicy.discardPolicy) {
-              if (this.sabrContexts.has(discardPolicy)) {
-                this.sabrContexts.delete(discardPolicy);
+              if (this.sabrContextUpdates.has(discardPolicy)) {
+                this.sabrContextUpdates.delete(discardPolicy);
                 this.logger.debug(TAG, `Discarded SABR context: type=${discardPolicy}`);
               }
             }
@@ -872,7 +872,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
                 this.setStreamingURL(response.serverAbrStreamingUrl);
                 this.setUstreamerConfig(response.videoPlaybackUstreamerConfig);
 
-                this.sabrContexts.clear();
+                this.sabrContextUpdates.clear();
                 this.activeSabrContextTypes.clear();
                 this.ssapPlaybackInfos.clear();
               } catch (err: unknown) {
@@ -998,7 +998,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     const sabrContexts: SabrContextUpdate[] = [];
     const unsentSabrContexts: number[] = [];
 
-    for (const [ type, ctxUpdate ] of this.sabrContexts.entries()) {
+    for (const [ type, ctxUpdate ] of this.sabrContextUpdates.entries()) {
       if (this.activeSabrContextTypes.has(type)) {
         sabrContexts.push(ctxUpdate);
       } else {
