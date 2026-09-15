@@ -1,7 +1,8 @@
 import { Logger } from './Logger.js';
+import { assertIsDefined } from './misc.js';
 import { createFormatKey } from './formatUtils.js';
 import { getDurationMs, getStartMs } from './mediaTimeUtils.js';
-import { stripMp4Init, stripWebmInit } from './mediaSegmentUtils.js';
+import { parseEmsgSegmentMetadata, stripMp4Init, stripWebmInit } from './mediaSegmentUtils.js';
 import { getMediaType } from './streamUtils.js';
 import { concatenateChunks } from './uint8arrayUtils.js';
 
@@ -42,6 +43,7 @@ export class SabrBufferState {
   private readonly pendingSegments = new Map<number, PendingSegment>();
 
   constructor(
+    private readonly isLive: boolean,
     private readonly stripDuplicateInit: boolean = true,
     private readonly trackOutputs: TrackOutputs
   ) { }
@@ -74,6 +76,7 @@ export class SabrBufferState {
     for (const state of states) {
       const track = {
         ...state,
+        esmgSegmentMetadata: undefined,
         trackedSegments: new Map(state.trackedSegments)
       };
 
@@ -98,7 +101,7 @@ export class SabrBufferState {
 
     const segmentNumber = mediaHeader.isInitializationSegment ? 0 : mediaHeader.segmentNum!;
 
-    if (track.trackedSegments.has(segmentNumber)) {
+    if (track.trackedSegments.has(segmentNumber)) { // Should never happen.
       this.logger.debug(TAG, `Ignoring recently downloaded segment: formatKey=${formatKey}, segmentNumber=${segmentNumber}`);
       return;
     }
@@ -152,29 +155,40 @@ export class SabrBufferState {
       return false;
     }
 
-    // @NOTE: The second check here is to avoid deleting the init segment when downloading vods.
-    const isFirstSegment = this.stripDuplicateInit
-      ? track.trackedSegments.size === 0 && !pendingSegment.mediaHeader.isInitializationSegment
-      : true;
+    let segment = concatenateChunks(pendingSegment.bufferedChunks);
 
-    const fullSegment = concatenateChunks(pendingSegment.bufferedChunks);
+    const emsgMetadata = parseEmsgSegmentMetadata(segment);
 
-    const cleanedSegment =
-      track.mimeType?.includes('webm')
-        ? stripWebmInit(fullSegment, isFirstSegment)
-        : stripMp4Init(fullSegment, isFirstSegment);
+    if (this.isLive && this.stripDuplicateInit && track.trackedSegments.size !== 0)
+      segment = track.mimeType?.includes('webm') ? stripWebmInit(segment) : stripMp4Init(segment);
 
-    trackController?.enqueue(cleanedSegment);
+    trackController?.enqueue(segment);
 
+    let durationMs: number | undefined = pendingSegment.durationMs;
+
+    if (durationMs <= 0 && !pendingSegment.mediaHeader.isInitializationSegment)
+      durationMs = track?.targetDurationSec ? track.targetDurationSec * 1000 : undefined;
+
+    if (emsgMetadata) {
+      track.esmgSegmentMetadata = emsgMetadata;
+
+      if (emsgMetadata.targetDurationSec > 0)
+        durationMs = emsgMetadata.targetDurationSec * 1000;
+    }
+
+    assertIsDefined(durationMs, `Track is missing durationMs: formatKey=${pendingSegment.formatKey}, segmentNumber=${pendingSegment.segmentNumber}`);
+
+    const segmentNumber = pendingSegment.segmentNumber;
+    const mediaHeader = pendingSegment.mediaHeader;
     const startTimeMs = pendingSegment.startTimeMs;
-    const endTimeMs = startTimeMs + pendingSegment.durationMs;
+    const endTimeMs = startTimeMs + durationMs;
 
-    track.trackedSegments.set(pendingSegment.segmentNumber, {
-      segmentNumber: pendingSegment.segmentNumber,
-      durationMs: pendingSegment.durationMs,
+    track.trackedSegments.set(segmentNumber, {
+      segmentNumber,
       startTimeMs,
       endTimeMs,
-      mediaHeader: pendingSegment.mediaHeader
+      durationMs,
+      mediaHeader
     });
 
     this.evictOldestTrackedSegments(track.trackedSegments);
@@ -202,10 +216,7 @@ export class SabrBufferState {
 
     for (const track of this.tracksMap.values()) {
       const summary = track.bufferedRangeSummary;
-
-      if (!summary) {
-        continue;
-      }
+      if (!summary) continue;
 
       ranges.push({
         formatId: track.formatId,

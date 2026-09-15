@@ -157,7 +157,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
       audio: this.createTrackStream(config.audioHighWaterMark ?? DEFAULT_AUDIO_HWM)
     };
 
-    this.bufferState = new SabrBufferState(config.stripDuplicateInit, this.trackOutputs);
+    this.bufferState = new SabrBufferState(this._isLive, config.stripDuplicateInit, this.trackOutputs);
   }
 
   //#region Public API
@@ -610,7 +610,6 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     selectedAudioFormat: SabrFormat,
     selectedVideoFormat: SabrFormat
   ): Promise<void> {
-
     // Keep current gen id so we can detect if it changes during this request.
     const requestPoTokenGeneration = this.poTokenGenerationId;
 
@@ -680,14 +679,6 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
             }
 
             this.logger.debug(TAG, `Received media header: headerId=${mediaHeader.headerId}, itag=${mediaHeader.itag}, segmentNum=${mediaHeader.segmentNum}, startMs=${mediaHeader.startMs}, durationMs=${mediaHeader.durationMs}, segmentLengthBytes=${mediaHeader.segmentLengthBytes}`);
-
-            if (this._isLive) {
-              const mediaHeaderFormatKey = createFormatKey(mediaHeader);
-              const targetDurationSec = this.bufferState.tracks.get(mediaHeaderFormatKey)?.targetDurationSec;
-              assertIsDefined(targetDurationSec, `Track is missing targetDurationSec: headerId=${mediaHeader.headerId}, formatKey=${mediaHeaderFormatKey}`);
-              mediaHeader.durationMs = String(targetDurationSec * 1000);
-            }
-
             this.bufferState.queueMediaHeader(mediaHeader);
             break;
           }
@@ -704,6 +695,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
             if (this.bufferState.finalizeSegment(headerId)) {
               this.recordProgress(this.bufferState.getBuffered());
               this.logger.debug(TAG, `Finalized segment: headerId=${headerId}`);
+              this.emit('trackMetadataUpdate', this.trackMetadata);
             }
             break;
           }

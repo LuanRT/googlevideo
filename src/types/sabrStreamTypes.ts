@@ -2,6 +2,7 @@ import type { FetchFunction, SabrFormat } from './shared.js';
 import type { BufferedRangeSummary, CompletedSegment } from '../utils/SabrBufferState.js';
 import type { ClientInfo, FormatId, ReloadPlaybackContext, SabrLiveMetadata, StreamProtectionStatus } from '../utils/Protos.js';
 import type { EnabledTrackTypes } from '../utils/formatUtils.js';
+import type { EmsgSegmentMetadata } from '../utils/EmsgSegmentMetadata.js';
 
 export interface SabrStreamConfig {
   videoId: string;
@@ -56,6 +57,7 @@ export interface StreamStartResult {
 }
 
 export type SabrStreamEvents = {
+  trackMetadataUpdate: (trackMetadata: TrackMetadata) => void;
   formatInitialization: (track: TrackSegmentInfo) => void;
   streamProtectionStatusUpdate: (sps: StreamProtectionStatus) => void;
   liveMetadataUpdate: (liveMetadata: SabrLiveMetadata) => void;
@@ -216,6 +218,7 @@ export interface TrackSegmentInfo {
   targetDurationSec?: number;
   trackedSegments: Map<number, CompletedSegment>;
   bufferedRangeSummary?: BufferedRangeSummary;
+  esmgSegmentMetadata?: EmsgSegmentMetadata;
 }
 
 export interface SabrSnapshot {
