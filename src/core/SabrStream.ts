@@ -331,7 +331,6 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
 
       if (options.snapshot && options.snapshot.tracks.length > 0) {
         const snapshot = options.snapshot;
-
         const snapshotVideoFormat = snapshot.tracks.find((track) => createFormatKey(track) === createFormatKey(videoFormat));
         const snapshotAudioFormat = snapshot.tracks.find((track) => createFormatKey(track) === createFormatKey(audioFormat));
 
@@ -659,7 +658,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
               track.endTimeTicks = parseInt(formatInitializationMetadata.endTimeTicks || '0');
               track.endTimescale = parseInt(formatInitializationMetadata.endTimeTimescale || '1000');
               track.endSegmentNum = parseInt(formatInitializationMetadata.endSegmentNum || '0');
-              track.targetDurationSec = selectedFormat.targetDurationSec;
+              track.targetDurationSec = selectedFormat.targetDurationSec; // @NOTE: Not a requirement. We always get it from the EMSG box anyway.
               this.bufferState.tracks.set(formatKey, track);
 
               this.emit('formatInitialization', track);
@@ -966,11 +965,9 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     const poToken = this.proofOfOriginToken;
 
     // No need to set initialization formats for live since every segment is self-initializing.
-    if (!this._isLive) {
-      for (const track of [ this.trackMetadata.video, this.trackMetadata.audio ]) {
+    if (!this._isLive)
+      for (const track of [ this.trackMetadata.video, this.trackMetadata.audio ])
         if (track.formatId) initializationFormatIds.push(track.formatId);
-      }
-    }
 
     const { sabrContexts, unsentSabrContexts } = this.prepareSabrContexts();
 
@@ -999,11 +996,8 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     const unsentSabrContexts: number[] = [];
 
     for (const [ type, ctxUpdate ] of this.sabrContextUpdates.entries()) {
-      if (this.activeSabrContextTypes.has(type)) {
-        sabrContexts.push(ctxUpdate);
-      } else {
-        unsentSabrContexts.push(type);
-      }
+      if (this.activeSabrContextTypes.has(type)) sabrContexts.push(ctxUpdate);
+      else unsentSabrContexts.push(type);
     }
 
     return { sabrContexts, unsentSabrContexts };
