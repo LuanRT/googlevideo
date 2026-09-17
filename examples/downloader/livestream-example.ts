@@ -18,7 +18,7 @@ import Innertube, { UniversalCache, YTNodes, Log } from 'youtubei.js';
 Log.setLevel(Log.Level.NONE);
 
 async function main() {
-  let videoTitle: string | undefined;
+  let title: string | undefined;
   let audioOutputStream: DownloadOutput | undefined;
   let videoOutputStream: DownloadOutput | undefined;
   let sabrStreamInstance: SabrStream | undefined;
@@ -49,6 +49,7 @@ async function main() {
     const { results } = await createSabrStream(options, playerResponse, innertube);
     const { videoStream, audioStream, selectedFormats, videoTitle, author, views, duration } = results;
 
+    title = videoTitle;
     sabrStreamInstance = results.sabrStreamInstance;
 
     console.info(`
@@ -81,13 +82,13 @@ async function main() {
       process.exitCode = 1;
     }
   } finally {
-    if (!audioOutputStream || !videoOutputStream || !videoTitle) {
+    if (!audioOutputStream || !videoOutputStream || !title) {
       process.exitCode = 1;
     } else {
-      await mergeMedia(videoTitle, audioOutputStream.filePath, videoOutputStream.filePath);
+      await mergeMedia(title, audioOutputStream.filePath, videoOutputStream.filePath);
       await cleanupTempFiles([ audioOutputStream.filePath, videoOutputStream.filePath ]);
 
-      console.log('[info]', `Download complete! Output saved as "${sanitize(videoTitle)}.mkv"`);
+      console.log('[info]', `Download complete! Output saved as "${sanitize(title)}.mkv"`);
     }
   }
 }

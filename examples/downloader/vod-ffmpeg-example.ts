@@ -17,7 +17,7 @@ import Innertube, { UniversalCache } from 'youtubei.js';
 const VIDEO_ID = 'hzGmbwS_Drs';
 
 async function main() {
-  let videoTitle: string | undefined;
+  let title: string | undefined;
   let audioOutputStream: DownloadOutput | undefined;
   let videoOutputStream: DownloadOutput | undefined;
   let sabrStreamInstance: SabrStream | undefined;
@@ -41,6 +41,7 @@ async function main() {
     const { results } = await createSabrStream(options, playerResponse, innertube);
     const { videoStream, audioStream, selectedFormats, videoTitle, author, views, duration } = results;
 
+    title = videoTitle;
     sabrStreamInstance = results.sabrStreamInstance;
 
     console.info(`
@@ -69,14 +70,14 @@ async function main() {
       process.exitCode = 1;
     }
   } finally {
-    if (!audioOutputStream || !videoOutputStream || !videoTitle) {
+    if (!audioOutputStream || !videoOutputStream || !title) {
       console.error('[error]', 'Missing output streams or video title.');
       process.exitCode = 1;
     } else {
-      await mergeAudioAndVideo(videoTitle, audioOutputStream.filePath, videoOutputStream.filePath);
+      await mergeAudioAndVideo(title, audioOutputStream.filePath, videoOutputStream.filePath);
       await cleanupTempFiles([ audioOutputStream.filePath, videoOutputStream.filePath ]);
 
-      console.info('[info]', `Saved as: ${sanitize(videoTitle)}.mkv`);
+      console.info('[info]', `Saved as: ${sanitize(title)}.mkv`);
     }
   }
 }
