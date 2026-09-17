@@ -218,7 +218,7 @@ export interface TrackSegmentInfo {
   targetDurationSec?: number;
   trackedSegments: Map<number, CompletedSegment>;
   bufferedRangeSummary?: BufferedRangeSummary;
-  esmgSegmentMetadata?: EmsgSegmentMetadata;
+  emsgSegmentMetadata?: EmsgSegmentMetadata;
 }
 
 export interface SabrSnapshot {

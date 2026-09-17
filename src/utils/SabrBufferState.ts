@@ -63,7 +63,7 @@ export class SabrBufferState {
     for (const track of this.tracksMap.values()) {
       trackStates.push({
         ...track,
-        esmgSegmentMetadata: undefined,
+        emsgSegmentMetadata: undefined,
         trackedSegments: Array.from(track.trackedSegments?.entries() || [])
       });
     }
@@ -171,7 +171,7 @@ export class SabrBufferState {
       durationMs = track?.targetDurationSec ? track.targetDurationSec * 1000 : undefined;
 
     if (emsgMetadata) {
-      track.esmgSegmentMetadata = emsgMetadata;
+      track.emsgSegmentMetadata = emsgMetadata;
       if (emsgMetadata.targetDurationSec > 0)
         durationMs = emsgMetadata.targetDurationSec * 1000;
     }
