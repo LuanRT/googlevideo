@@ -77,7 +77,7 @@ export class SabrBufferState {
     for (const state of states) {
       const track = {
         ...state,
-        esmgSegmentMetadata: undefined,
+        emsgSegmentMetadata: undefined,
         trackedSegments: new Map(state.trackedSegments)
       };
 
