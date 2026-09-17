@@ -47,17 +47,9 @@ async function main() {
     console.info('[info]', `Downloading live stream for ${EXAMPLE_DURATION_MIN} minutes...`);
 
     const { results } = await createSabrStream(options, playerResponse, innertube);
-
-    const duration = results.duration;
-    const views = results.views;
-    const author = results.author;
-
-    const videoStream = results.videoStream;
-    const audioStream = results.audioStream;
-    const selectedFormats = results.selectedFormats;
+    const { videoStream, audioStream, selectedFormats, videoTitle, author, views, duration } = results;
 
     sabrStreamInstance = results.sabrStreamInstance;
-    videoTitle = results.videoTitle;
 
     console.info(`
       Title: ${videoTitle}
