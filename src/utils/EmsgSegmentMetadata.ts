@@ -123,6 +123,8 @@ function getNumber(headers: Record<string, string>, key: string): number {
  * This was based on minified code from yt.
  */
 export class EmsgSegmentMetadata {
+  private receivedAtMs: number = Date.now();
+
   public segmentNumber: number;
   public totalSegmentCount: number;
   public segmentDurationsMs: string;
@@ -150,6 +152,12 @@ export class EmsgSegmentMetadata {
     this.cryptoPeriodSeconds = getNumber(this.data, 'Crypto-Period-Seconds');
     this.currentAbsoluteLoudnessLkfs = 'Current-Absolute-Loudness-Lkfs' in this.data
       ? getNumber(this.data, 'Current-Absolute-Loudness-Lkfs') : null;
+  }
+
+  public get latencyMs(): number {
+    const ingestionTimeMs = this.ingestionTimeSec * 1e3;
+    const uncertaintyMs = this.ingestionUncertaintySec * 1e3;
+    return Math.max(0, this.receivedAtMs - ingestionTimeMs - uncertaintyMs);
   }
 
   public getStitchedCPNs(): string[] {

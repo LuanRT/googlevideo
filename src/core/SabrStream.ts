@@ -184,6 +184,16 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     return getEndTimeMs(this.trackMetadata.audio);
   }
 
+  public get livePlaybackLatencyMs(): number | undefined {
+    const videoLatencyMs = this.trackMetadata.video.emsgSegmentMetadata?.latencyMs ?? 0;
+    const audioLatencyMs = this.trackMetadata.audio.emsgSegmentMetadata?.latencyMs ?? 0;
+
+    if (!this._isLive || (!videoLatencyMs && !audioLatencyMs))
+      return;
+
+    return Math.max(videoLatencyMs, audioLatencyMs);
+  }
+
   public setStreamingURL(url: string): void {
     this.serverAbrStreamingUrl = new URL(url);
     this.validateStreamingUrl(this.serverAbrStreamingUrl);
