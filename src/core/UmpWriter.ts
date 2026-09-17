@@ -1,5 +1,8 @@
 import type { CompositeBuffer } from './CompositeBuffer.js';
 
+/**
+ * A utility class for writing data in the UMP format.
+ */
 export class UmpWriter {
   constructor(
     private compositeBuffer: CompositeBuffer

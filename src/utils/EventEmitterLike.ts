@@ -10,9 +10,8 @@ export class EventEmitterLike<Events extends Record<string, Listener>> {
       return;
 
     // Snaapshot listeners so removals during emit do not affect current iteration.
-    for (const listener of [ ...listeners ]) {
+    for (const listener of [ ...listeners ])
       listener(...args);
-    }
   }
 
   public on<K extends keyof Events>(type: K, listener: Events[K]) {
@@ -45,8 +44,7 @@ export class EventEmitterLike<Events extends Record<string, Listener>> {
 
   public off<K extends keyof Events>(type: K, listener: Events[K]) {
     const listeners = this.listeners.get(type);
-    if (!listeners)
-      return;
+    if (!listeners) return;
 
     let target: Listener = listener;
     const wrappersByType = this.onceWrappers.get(listener);

@@ -17,13 +17,10 @@ export function describeMissingFormat(
 ): string {
   const available = filterFormatsByType(formats, type === 'audio').map((f) => `${f.itag}[qualityLabel=${f.qualityLabel || f.audioQuality || ''}, mimeType=${f.mimeType || ''}, isVb=${f.isVb || false}, isDrc=${f.isDrc || false}]`).join(', ') || 'none';
 
-  if (typeof formatOption === 'number') {
+  if (typeof formatOption === 'number')
     return `no ${type} format with itag ${formatOption} found (available ${type} formats: ${available})`;
-  }
-
-  if (typeof formatOption === 'function') {
+  if (typeof formatOption === 'function')
     return `no ${type} format matched the provided selector function (available ${type} formats: ${available})`;
-  }
 
   return `no ${type} format matched the given criteria (available ${type} formats: ${available})`;
 }
@@ -60,9 +57,8 @@ export function chooseFormat(
   let filteredFormats = typeFormats;
 
   const language = preferences.language;
-  if (language && preferences.isAudio) {
+  if (language && preferences.isAudio)
     filteredFormats = filteredFormats.filter((format) => format.language === language);
-  }
 
   const quality = preferences.quality;
   if (quality !== undefined) {
@@ -154,13 +150,11 @@ export function buildSabrFormat(formatStream: FormatStream): SabrFormat {
 }
 
 export function createFormatKey(input: CreateFormatKeyInput): string {
-  if ('formatId' in input && (input.formatId?.itag !== undefined || input.formatId?.xtags !== undefined)) {
+  if ('formatId' in input && (input.formatId?.itag !== undefined || input.formatId?.xtags !== undefined))
     return `${input.formatId?.itag || ''}:${input.formatId?.xtags || ''}`;
-  }
 
-  if (('itag' in input || 'xtags' in input) && (input.itag !== undefined || input.xtags !== undefined)) {
+  if (('itag' in input || 'xtags' in input) && (input.itag !== undefined || input.xtags !== undefined))
     return `${input.itag || ''}:${input.xtags || ''}`;
-  }
 
   throw new Error('Unsupported format type');
 }
@@ -174,9 +168,8 @@ export function createSegmentCacheKey(
   mediaHeader: MediaHeader,
   format?: SabrFormat
 ): string {
-  if (mediaHeader.isInitializationSegment && format) {
+  if (mediaHeader.isInitializationSegment && format)
     return `${mediaHeader.itag}:${mediaHeader.xtags || ''}:${format.contentLength || ''}:${format.mimeType || ''}`;
-  }
   return `${mediaHeader.segmentByteRangeStart || '0'}-${mediaHeader.itag}-${mediaHeader.xtags || ''}`;
 }
 
@@ -213,13 +206,11 @@ export function getUniqueFormatId(format: SabrFormat): string {
 
   const uidParts = [ format.itag.toString() ];
 
-  if (format.audioTrackId) {
+  if (format.audioTrackId)
     uidParts.push(format.audioTrackId);
-  }
 
-  if (format.isDrc) {
+  if (format.isDrc)
     uidParts.push('drc');
-  }
 
   return uidParts.join('-');
 }

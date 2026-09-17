@@ -82,9 +82,7 @@ export class SabrBufferState {
       };
 
       this.tracksMap.set(createFormatKey(track), track);
-
-      const mediaType = getMediaType(track);
-      trackMetadata[mediaType] = track;
+      trackMetadata[getMediaType(track)] = track;
     }
 
     return trackMetadata;
@@ -102,7 +100,8 @@ export class SabrBufferState {
 
     const segmentNumber = mediaHeader.isInitializationSegment ? 0 : mediaHeader.segmentNum!;
 
-    if (track.trackedSegments.has(segmentNumber)) { // Should never happen.
+    // Should never happen.
+    if (track.trackedSegments.has(segmentNumber)) {
       this.logger.debug(TAG, `Ignoring recently downloaded segment: formatKey=${formatKey}, segmentNumber=${segmentNumber}`);
       return;
     }

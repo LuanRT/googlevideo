@@ -290,11 +290,8 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     const hasAudioSpecs = options.audioFormat || options.audioPreferences;
     const hasVideoSpecs = options.videoFormat || options.videoPreferences;
 
-    if (audioOnly) {
-      assert(hasAudioSpecs, 'Track type is set to "AUDIO_ONLY" but no audio format or preferences were provided');
-    } else {
-      assert(hasAudioSpecs && hasVideoSpecs, 'No video and/or audio format or preferences provided');
-    }
+    if (audioOnly) assert(hasAudioSpecs, 'Track type is set to "AUDIO_ONLY" but no audio format or preferences were provided');
+    else assert(hasAudioSpecs && hasVideoSpecs, 'No video and/or audio format or preferences provided');
 
     const videoFormat = chooseFormat(this.formatIds, options.videoFormat, {
       isAudio: false,
@@ -407,9 +404,8 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
         if (!success) break;
       }
     } catch (error) {
-      if (!this._aborted) {
+      if (!this._aborted)
         this.errorHandler(error as Error);
-      }
     } finally {
       if (!this._aborted && !this._errored) {
         this.trackOutputs.video.controller?.close();
