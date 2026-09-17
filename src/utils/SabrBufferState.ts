@@ -63,6 +63,7 @@ export class SabrBufferState {
     for (const track of this.tracksMap.values()) {
       trackStates.push({
         ...track,
+        esmgSegmentMetadata: undefined,
         trackedSegments: Array.from(track.trackedSegments?.entries() || [])
       });
     }
@@ -145,6 +146,7 @@ export class SabrBufferState {
     const loadedBytes = pendingSegment.bufferedChunks.reduce((sum, chunk) => sum + chunk.length, 0);
     const expectedBytes = parseInt(pendingSegment.mediaHeader.segmentLengthBytes || '0');
 
+    // Should never happen.
     if (expectedBytes > 0 && loadedBytes !== expectedBytes) {
       this.logger.warn(
         TAG,
@@ -171,7 +173,6 @@ export class SabrBufferState {
 
     if (emsgMetadata) {
       track.esmgSegmentMetadata = emsgMetadata;
-
       if (emsgMetadata.targetDurationSec > 0)
         durationMs = emsgMetadata.targetDurationSec * 1000;
     }
