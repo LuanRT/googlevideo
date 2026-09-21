@@ -21,9 +21,8 @@ export class Logger {
   private currentLogLevels: Set<LogLevel> = new Set([ LogLevel.INFO, LogLevel.ERROR ]);
 
   public static getInstance(): Logger {
-    if (!Logger.instance) {
+    if (!Logger.instance)
       Logger.instance = new Logger();
-    }
     return Logger.instance;
   }
 
@@ -43,9 +42,7 @@ export class Logger {
         LogLevel.INFO,
         LogLevel.DEBUG
       ]);
-    } else {
-      this.currentLogLevels = new Set(levels.filter((level) => level !== LogLevel.NONE && level !== LogLevel.ALL));
-    }
+    } else this.currentLogLevels = new Set(levels.filter((level) => level !== LogLevel.NONE && level !== LogLevel.ALL));
   }
 
   /**

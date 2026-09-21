@@ -12,9 +12,9 @@ export function concatenateChunks(chunks: Uint8Array[]): Uint8Array {
   let totalLength = 0;
 
   const chunkCount = chunks.length;
-  for (let i = 0; i < chunkCount; i++) {
+
+  for (let i = 0; i < chunkCount; i++)
     totalLength += chunks[i].length;
-  }
 
   const result = new Uint8Array(totalLength);
 

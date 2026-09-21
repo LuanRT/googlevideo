@@ -2,6 +2,7 @@ import { EMSG_BOX_TYPE, findBox, parseEmsgBody, parseHeaderBlock, EmsgSegmentMet
 
 export function stripMp4Init(segment: Uint8Array): Uint8Array {
   const view = new DataView(segment.buffer, segment.byteOffset, segment.byteLength);
+
   let offset = 0;
 
   while (offset < segment.length - 8) {
@@ -14,19 +15,13 @@ export function stripMp4Init(segment: Uint8Array): Uint8Array {
       segment[offset + 7]
     );
 
-    if (type === 'moof' || type === 'mdat') {
+    if (type === 'moof' || type === 'mdat')
       return segment.subarray(offset);
-    }
 
     if (size === 1) {
-      if (offset + 16 > segment.length) {
-        break;
-      }
+      if (offset + 16 > segment.length) break;
       size = Number(view.getBigUint64(offset + 8, false));
-    } else if (size === 0) {
-      // extends to the end of the seg
-      break;
-    }
+    } else if (size === 0) break; // extends to the end of the seg
 
     offset += size;
   }
@@ -105,16 +100,15 @@ export function parseEmsgSegmentMetadata(buffer: Uint8Array): EmsgSegmentMetadat
   if (!firstBox) return;
 
   const firstBody = parseEmsgBody(firstBox);
-  
+
   let headers = parseHeaderBlock(firstBody.messageData);
 
   const secondBox = findBox(view, firstBox.offset + firstBox.size, EMSG_BOX_TYPE);
   if (secondBox) {
     const secondBody = parseEmsgBody(secondBox);
     const secondHeaders = parseHeaderBlock(secondBody.messageData);
-    if (headers && secondHeaders) {
+    if (headers && secondHeaders)
       headers = { ...headers, ...secondHeaders };
-    }
   }
 
   if (headers)

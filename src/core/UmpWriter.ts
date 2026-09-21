@@ -23,26 +23,26 @@ export class UmpWriter {
       this.compositeBuffer.append(new Uint8Array([ value ]));
     } else if (value < 16384) {
       this.compositeBuffer.append(new Uint8Array([
-        (value & 0x3F) | 0x80,
+        (value & 0x3f) | 0x80,
         value >> 6
       ]));
     } else if (value < 2097152) {
       this.compositeBuffer.append(new Uint8Array([
-        (value & 0x1F) | 0xC0,
-        (value >> 5) & 0xFF,
+        (value & 0x1f) | 0xc0,
+        (value >> 5) & 0xff,
         value >> 13
       ]));
     } else if (value < 268435456) {
       this.compositeBuffer.append(new Uint8Array([
-        (value & 0x0F) | 0xE0,
-        (value >> 4) & 0xFF,
-        (value >> 12) & 0xFF,
+        (value & 0x0f) | 0xe0,
+        (value >> 4) & 0xff,
+        (value >> 12) & 0xff,
         value >> 20
       ]));
     } else {
       const data = new Uint8Array(5);
       const view = new DataView(data.buffer);
-      data[0] = 0xF0;
+      data[0] = 0xf0;
       view.setUint32(1, value, true);
       this.compositeBuffer.append(data);
     }

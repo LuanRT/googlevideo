@@ -7,7 +7,6 @@ export function assert(condition: unknown, msg: string): asserts condition {
 }
 
 export function assertIsDefined<T>(val: T, msg?: string): asserts val is NonNullable<T> {
-  if (val === undefined || val === null) {
+  if (val === undefined || val === null)
     throw new Error(msg ?? `Expected value to be defined, but got ${val}`);
-  }
 }
