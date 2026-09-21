@@ -2,7 +2,7 @@
 
 # Interface: TrackMetadata
 
-Defined in: [src/types/sabrStreamTypes.ts:232](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L232)
+Defined in: [src/types/sabrStreamTypes.ts:232](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L232)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:232](https://github.com/LuanRT/googlev
 
 > **video**: [`TrackSegmentInfo`](TrackSegmentInfo.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:233](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L233)
+Defined in: [src/types/sabrStreamTypes.ts:233](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L233)
 
 ***
 
@@ -18,4 +18,4 @@ Defined in: [src/types/sabrStreamTypes.ts:233](https://github.com/LuanRT/googlev
 
 > **audio**: [`TrackSegmentInfo`](TrackSegmentInfo.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:234](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L234)
+Defined in: [src/types/sabrStreamTypes.ts:234](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L234)

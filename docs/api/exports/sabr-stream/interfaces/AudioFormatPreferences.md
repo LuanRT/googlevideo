@@ -2,7 +2,7 @@
 
 # Interface: AudioFormatPreferences
 
-Defined in: [src/types/sabrStreamTypes.ts:167](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L167)
+Defined in: [src/types/sabrStreamTypes.ts:167](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L167)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:167](https://github.com/LuanRT/googlev
 
 > `optional` **quality**: `"AUDIO_QUALITY_ULTRALOW"` \| `"AUDIO_QUALITY_LOW"` \| `"AUDIO_QUALITY_MEDIUM"` \| `"AUDIO_QUALITY_HIGH"`
 
-Defined in: [src/types/sabrStreamTypes.ts:173](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L173)
+Defined in: [src/types/sabrStreamTypes.ts:173](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L173)
 
 Quality label.
 If not provided, the highest quality format will be selected.
@@ -27,7 +27,7 @@ undefined
 
 > `optional` **language**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:178](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L178)
+Defined in: [src/types/sabrStreamTypes.ts:178](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L178)
 
 ***
 
@@ -35,7 +35,7 @@ Defined in: [src/types/sabrStreamTypes.ts:178](https://github.com/LuanRT/googlev
 
 > `optional` **container**: `"webm"` \| `"mp4"`
 
-Defined in: [src/types/sabrStreamTypes.ts:183](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L183)
+Defined in: [src/types/sabrStreamTypes.ts:183](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L183)
 
 Required container format.
 
@@ -51,7 +51,7 @@ undefined
 
 > `optional` **preferredAudioCodec**: `"aac"` \| `"opus"`
 
-Defined in: [src/types/sabrStreamTypes.ts:188](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L188)
+Defined in: [src/types/sabrStreamTypes.ts:188](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L188)
 
 Audio codec to prefer when available.
 
@@ -67,7 +67,7 @@ undefined
 
 > `optional` **voiceBoost**: `boolean`
 
-Defined in: [src/types/sabrStreamTypes.ts:189](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L189)
+Defined in: [src/types/sabrStreamTypes.ts:189](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L189)
 
 ***
 
@@ -75,4 +75,4 @@ Defined in: [src/types/sabrStreamTypes.ts:189](https://github.com/LuanRT/googlev
 
 > `optional` **dynamicRangeCompression**: `boolean`
 
-Defined in: [src/types/sabrStreamTypes.ts:190](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L190)
+Defined in: [src/types/sabrStreamTypes.ts:190](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L190)

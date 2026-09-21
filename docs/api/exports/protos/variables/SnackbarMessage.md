@@ -4,4 +4,4 @@
 
 > **SnackbarMessage**: `MessageFns`\<[`SnackbarMessage`](../interfaces/SnackbarMessage.md)\>
 
-Defined in: [protos/generated/video\_streaming/snackbar\_message.ts:12](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/snackbar_message.ts#L12)
+Defined in: [protos/generated/video\_streaming/snackbar\_message.ts:12](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/snackbar_message.ts#L12)

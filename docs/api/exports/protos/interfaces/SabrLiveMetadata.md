@@ -2,7 +2,7 @@
 
 # Interface: SabrLiveMetadata
 
-Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:12](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/sabr_live_metadata.ts#L12)
+Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:12](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/sabr_live_metadata.ts#L12)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:12](https
 
 > `optional` **broadcastId**: `string`
 
-Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:13](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/sabr_live_metadata.ts#L13)
+Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:13](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/sabr_live_metadata.ts#L13)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:13](https
 
 > `optional` **headSequenceNumber**: `string`
 
-Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:14](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/sabr_live_metadata.ts#L14)
+Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:14](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/sabr_live_metadata.ts#L14)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:14](https
 
 > `optional` **headTimeMs**: `string`
 
-Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:15](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/sabr_live_metadata.ts#L15)
+Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:15](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/sabr_live_metadata.ts#L15)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:15](https
 
 > `optional` **wallTimeMs**: `string`
 
-Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:16](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/sabr_live_metadata.ts#L16)
+Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:16](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/sabr_live_metadata.ts#L16)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:16](https
 
 > `optional` **videoId**: `string`
 
-Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:17](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/sabr_live_metadata.ts#L17)
+Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:17](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/sabr_live_metadata.ts#L17)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:17](https
 
 > `optional` **postLiveDvr**: `boolean`
 
-Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:18](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/sabr_live_metadata.ts#L18)
+Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:18](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/sabr_live_metadata.ts#L18)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:18](https
 
 > `optional` **headm**: `string`
 
-Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:19](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/sabr_live_metadata.ts#L19)
+Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:19](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/sabr_live_metadata.ts#L19)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:19](https
 
 > `optional` **minSeekableTimeTicks**: `string`
 
-Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:20](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/sabr_live_metadata.ts#L20)
+Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:20](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/sabr_live_metadata.ts#L20)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:20](https
 
 > `optional` **minSeekableTimescale**: `number`
 
-Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:21](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/sabr_live_metadata.ts#L21)
+Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:21](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/sabr_live_metadata.ts#L21)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:21](https
 
 > `optional` **maxSeekableTimeTicks**: `string`
 
-Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:22](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/sabr_live_metadata.ts#L22)
+Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:22](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/sabr_live_metadata.ts#L22)
 
 ***
 
@@ -90,4 +90,4 @@ Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:22](https
 
 > `optional` **maxSeekableTimescale**: `number`
 
-Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:23](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/sabr_live_metadata.ts#L23)
+Defined in: [protos/generated/video\_streaming/sabr\_live\_metadata.ts:23](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/sabr_live_metadata.ts#L23)

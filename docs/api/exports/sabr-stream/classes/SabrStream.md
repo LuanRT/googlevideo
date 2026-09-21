@@ -2,7 +2,7 @@
 
 # Class: SabrStream
 
-Defined in: [src/core/SabrStream.ts:83](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/SabrStream.ts#L83)
+Defined in: [src/core/SabrStream.ts:83](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L83)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/core/SabrStream.ts:83](https://github.com/LuanRT/googlevideo/bl
 
 > **new SabrStream**(`config`): `SabrStream`
 
-Defined in: [src/core/SabrStream.ts:137](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/SabrStream.ts#L137)
+Defined in: [src/core/SabrStream.ts:137](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L137)
 
 #### Parameters
 
@@ -38,7 +38,7 @@ Defined in: [src/core/SabrStream.ts:137](https://github.com/LuanRT/googlevideo/b
 
 > **get** **isBusy**(): `boolean`
 
-Defined in: [src/core/SabrStream.ts:163](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/SabrStream.ts#L163)
+Defined in: [src/core/SabrStream.ts:163](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L163)
 
 ##### Returns
 
@@ -52,7 +52,7 @@ Defined in: [src/core/SabrStream.ts:163](https://github.com/LuanRT/googlevideo/b
 
 > **get** **isLive**(): `boolean`
 
-Defined in: [src/core/SabrStream.ts:167](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/SabrStream.ts#L167)
+Defined in: [src/core/SabrStream.ts:167](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L167)
 
 ##### Returns
 
@@ -66,7 +66,7 @@ Defined in: [src/core/SabrStream.ts:167](https://github.com/LuanRT/googlevideo/b
 
 > **get** **isAborted**(): `boolean`
 
-Defined in: [src/core/SabrStream.ts:171](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/SabrStream.ts#L171)
+Defined in: [src/core/SabrStream.ts:171](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L171)
 
 ##### Returns
 
@@ -80,7 +80,7 @@ Defined in: [src/core/SabrStream.ts:171](https://github.com/LuanRT/googlevideo/b
 
 > **get** **hasErrored**(): `boolean`
 
-Defined in: [src/core/SabrStream.ts:175](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/SabrStream.ts#L175)
+Defined in: [src/core/SabrStream.ts:175](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L175)
 
 ##### Returns
 
@@ -94,7 +94,7 @@ Defined in: [src/core/SabrStream.ts:175](https://github.com/LuanRT/googlevideo/b
 
 > **get** **videoEndTimeMs**(): `number`
 
-Defined in: [src/core/SabrStream.ts:179](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/SabrStream.ts#L179)
+Defined in: [src/core/SabrStream.ts:179](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L179)
 
 ##### Returns
 
@@ -108,11 +108,25 @@ Defined in: [src/core/SabrStream.ts:179](https://github.com/LuanRT/googlevideo/b
 
 > **get** **audioEndTimeMs**(): `number`
 
-Defined in: [src/core/SabrStream.ts:183](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/SabrStream.ts#L183)
+Defined in: [src/core/SabrStream.ts:183](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L183)
 
 ##### Returns
 
 `number`
+
+***
+
+### livePlaybackLatencyMs
+
+#### Get Signature
+
+> **get** **livePlaybackLatencyMs**(): `number` \| `undefined`
+
+Defined in: [src/core/SabrStream.ts:187](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L187)
+
+##### Returns
+
+`number` \| `undefined`
 
 ## Methods
 
@@ -120,7 +134,7 @@ Defined in: [src/core/SabrStream.ts:183](https://github.com/LuanRT/googlevideo/b
 
 > **setStreamingURL**(`url`): `void`
 
-Defined in: [src/core/SabrStream.ts:187](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/SabrStream.ts#L187)
+Defined in: [src/core/SabrStream.ts:197](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L197)
 
 #### Parameters
 
@@ -138,7 +152,7 @@ Defined in: [src/core/SabrStream.ts:187](https://github.com/LuanRT/googlevideo/b
 
 > **setUstreamerConfig**(`config`): `void`
 
-Defined in: [src/core/SabrStream.ts:192](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/SabrStream.ts#L192)
+Defined in: [src/core/SabrStream.ts:202](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L202)
 
 #### Parameters
 
@@ -156,7 +170,7 @@ Defined in: [src/core/SabrStream.ts:192](https://github.com/LuanRT/googlevideo/b
 
 > **waitForIdle**(): `Promise`\<`void`\>
 
-Defined in: [src/core/SabrStream.ts:196](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/SabrStream.ts#L196)
+Defined in: [src/core/SabrStream.ts:206](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L206)
 
 #### Returns
 
@@ -168,7 +182,7 @@ Defined in: [src/core/SabrStream.ts:196](https://github.com/LuanRT/googlevideo/b
 
 > **snapshot**(): `Promise`\<[`SabrSnapshot`](../interfaces/SabrSnapshot.md)\>
 
-Defined in: [src/core/SabrStream.ts:200](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/SabrStream.ts#L200)
+Defined in: [src/core/SabrStream.ts:210](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L210)
 
 #### Returns
 
@@ -180,7 +194,7 @@ Defined in: [src/core/SabrStream.ts:200](https://github.com/LuanRT/googlevideo/b
 
 > **abort**(`options`): `Promise`\<[`SabrSnapshot`](../interfaces/SabrSnapshot.md) \| `undefined`\>
 
-Defined in: [src/core/SabrStream.ts:209](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/SabrStream.ts#L209)
+Defined in: [src/core/SabrStream.ts:219](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L219)
 
 #### Parameters
 
@@ -198,13 +212,13 @@ Defined in: [src/core/SabrStream.ts:209](https://github.com/LuanRT/googlevideo/b
 
 > **start**(`options`): [`StreamStartResult`](../interfaces/StreamStartResult.md)
 
-Defined in: [src/core/SabrStream.ts:229](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/core/SabrStream.ts#L229)
+Defined in: [src/core/SabrStream.ts:239](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStream.ts#L239)
 
 #### Parameters
 
 ##### options
 
-[`SabrPlaybackOptions`](../interfaces/SabrPlaybackOptions.md)
+[`SabrPlaybackConfig`](../interfaces/SabrPlaybackConfig.md)
 
 #### Returns
 
@@ -216,7 +230,7 @@ Defined in: [src/core/SabrStream.ts:229](https://github.com/LuanRT/googlevideo/b
 
 > **emit**\<`K`\>(`type`, ...`args`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:7](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/EventEmitterLike.ts#L7)
+Defined in: [src/utils/EventEmitterLike.ts:7](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/EventEmitterLike.ts#L7)
 
 #### Type Parameters
 
@@ -248,7 +262,7 @@ Defined in: [src/utils/EventEmitterLike.ts:7](https://github.com/LuanRT/googlevi
 
 > **on**\<`K`\>(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:18](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/EventEmitterLike.ts#L18)
+Defined in: [src/utils/EventEmitterLike.ts:17](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/EventEmitterLike.ts#L17)
 
 #### Type Parameters
 
@@ -280,7 +294,7 @@ Defined in: [src/utils/EventEmitterLike.ts:18](https://github.com/LuanRT/googlev
 
 > **once**\<`K`\>(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:29](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/EventEmitterLike.ts#L29)
+Defined in: [src/utils/EventEmitterLike.ts:28](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/EventEmitterLike.ts#L28)
 
 #### Type Parameters
 
@@ -312,7 +326,7 @@ Defined in: [src/utils/EventEmitterLike.ts:29](https://github.com/LuanRT/googlev
 
 > **off**\<`K`\>(`type`, `listener`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:46](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/EventEmitterLike.ts#L46)
+Defined in: [src/utils/EventEmitterLike.ts:45](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/EventEmitterLike.ts#L45)
 
 #### Type Parameters
 
@@ -344,7 +358,7 @@ Defined in: [src/utils/EventEmitterLike.ts:46](https://github.com/LuanRT/googlev
 
 > **removeAllListeners**(`type?`): `void`
 
-Defined in: [src/utils/EventEmitterLike.ts:72](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/EventEmitterLike.ts#L72)
+Defined in: [src/utils/EventEmitterLike.ts:70](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/EventEmitterLike.ts#L70)
 
 #### Parameters
 

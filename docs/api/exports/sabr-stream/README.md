@@ -18,7 +18,7 @@ This module contains a SABR stream implementation for downloading VODs and live 
 - [HeartbeatResponse](interfaces/HeartbeatResponse.md)
 - [HeartbeatParams](interfaces/HeartbeatParams.md)
 - [ReloadResponse](interfaces/ReloadResponse.md)
-- [SabrPlaybackOptions](interfaces/SabrPlaybackOptions.md)
+- [SabrPlaybackConfig](interfaces/SabrPlaybackConfig.md)
 - [VideoFormatPreferences](interfaces/VideoFormatPreferences.md)
 - [AudioFormatPreferences](interfaces/AudioFormatPreferences.md)
 - [AbortOptions](interfaces/AbortOptions.md)

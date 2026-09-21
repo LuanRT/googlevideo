@@ -2,7 +2,7 @@
 
 # Interface: ClientInfo
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:23](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/streamer_context.ts#L23)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:23](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L23)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:23](https://
 
 > `optional` **hl**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:24](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/streamer_context.ts#L24)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:24](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L24)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:24](https://
 
 > `optional` **deviceMake**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:25](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/streamer_context.ts#L25)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:25](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L25)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:25](https://
 
 > `optional` **deviceModel**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:26](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/streamer_context.ts#L26)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:26](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L26)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:26](https://
 
 > `optional` **clientName**: `number`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:27](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/streamer_context.ts#L27)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:27](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L27)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:27](https://
 
 > `optional` **clientVersion**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:28](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/streamer_context.ts#L28)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:28](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L28)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:28](https://
 
 > `optional` **osName**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:29](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/streamer_context.ts#L29)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:29](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L29)
 
 ***
 
@@ -58,4 +58,4 @@ Defined in: [protos/generated/video\_streaming/streamer\_context.ts:29](https://
 
 > `optional` **osVersion**: `string`
 
-Defined in: [protos/generated/video\_streaming/streamer\_context.ts:30](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/streamer_context.ts#L30)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:30](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L30)

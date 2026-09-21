@@ -4,7 +4,7 @@
 
 > **OnSnackbarMessageCb** = (`snackbarMessage`) => `void`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:43](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamingAdapterTypes.ts#L43)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:43](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L43)
 
 ## Parameters
 

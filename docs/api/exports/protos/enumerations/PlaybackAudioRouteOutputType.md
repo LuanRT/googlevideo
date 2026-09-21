@@ -2,7 +2,7 @@
 
 # Enumeration: PlaybackAudioRouteOutputType
 
-Defined in: [protos/generated/misc/common.ts:36](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L36)
+Defined in: [protos/generated/misc/common.ts:36](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L36)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/misc/common.ts:36](https://github.com/LuanRT/googl
 
 > **UNKNOWN**: `0`
 
-Defined in: [protos/generated/misc/common.ts:37](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L37)
+Defined in: [protos/generated/misc/common.ts:37](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L37)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/misc/common.ts:37](https://github.com/LuanRT/googl
 
 > **LINE\_OUT**: `1`
 
-Defined in: [protos/generated/misc/common.ts:38](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L38)
+Defined in: [protos/generated/misc/common.ts:38](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L38)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/misc/common.ts:38](https://github.com/LuanRT/googl
 
 > **HEADPHONES**: `2`
 
-Defined in: [protos/generated/misc/common.ts:39](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L39)
+Defined in: [protos/generated/misc/common.ts:39](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L39)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/misc/common.ts:39](https://github.com/LuanRT/googl
 
 > **BLUETOOTH\_A2DP**: `3`
 
-Defined in: [protos/generated/misc/common.ts:40](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L40)
+Defined in: [protos/generated/misc/common.ts:40](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L40)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [protos/generated/misc/common.ts:40](https://github.com/LuanRT/googl
 
 > **BUILT\_IN\_RECEIVER**: `4`
 
-Defined in: [protos/generated/misc/common.ts:41](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L41)
+Defined in: [protos/generated/misc/common.ts:41](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L41)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [protos/generated/misc/common.ts:41](https://github.com/LuanRT/googl
 
 > **BUILT\_IN\_SPEAKER**: `5`
 
-Defined in: [protos/generated/misc/common.ts:42](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L42)
+Defined in: [protos/generated/misc/common.ts:42](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L42)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [protos/generated/misc/common.ts:42](https://github.com/LuanRT/googl
 
 > **HDMI**: `6`
 
-Defined in: [protos/generated/misc/common.ts:43](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L43)
+Defined in: [protos/generated/misc/common.ts:43](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L43)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [protos/generated/misc/common.ts:43](https://github.com/LuanRT/googl
 
 > **AIR\_PLAY**: `7`
 
-Defined in: [protos/generated/misc/common.ts:44](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L44)
+Defined in: [protos/generated/misc/common.ts:44](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L44)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [protos/generated/misc/common.ts:44](https://github.com/LuanRT/googl
 
 > **BLUETOOTH\_LE**: `8`
 
-Defined in: [protos/generated/misc/common.ts:45](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L45)
+Defined in: [protos/generated/misc/common.ts:45](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L45)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: [protos/generated/misc/common.ts:45](https://github.com/LuanRT/googl
 
 > **BLUETOOTH\_HFP**: `9`
 
-Defined in: [protos/generated/misc/common.ts:46](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L46)
+Defined in: [protos/generated/misc/common.ts:46](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L46)
 
 ***
 
@@ -90,7 +90,7 @@ Defined in: [protos/generated/misc/common.ts:46](https://github.com/LuanRT/googl
 
 > **USB\_AUDIO**: `10`
 
-Defined in: [protos/generated/misc/common.ts:47](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L47)
+Defined in: [protos/generated/misc/common.ts:47](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L47)
 
 ***
 
@@ -98,7 +98,7 @@ Defined in: [protos/generated/misc/common.ts:47](https://github.com/LuanRT/googl
 
 > **CAR\_PLAY**: `11`
 
-Defined in: [protos/generated/misc/common.ts:48](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L48)
+Defined in: [protos/generated/misc/common.ts:48](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L48)
 
 ***
 
@@ -106,7 +106,7 @@ Defined in: [protos/generated/misc/common.ts:48](https://github.com/LuanRT/googl
 
 > **ANDROID\_AUDIO**: `12`
 
-Defined in: [protos/generated/misc/common.ts:49](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L49)
+Defined in: [protos/generated/misc/common.ts:49](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L49)
 
 ***
 
@@ -114,4 +114,4 @@ Defined in: [protos/generated/misc/common.ts:49](https://github.com/LuanRT/googl
 
 > **UNRECOGNIZED**: `-1`
 
-Defined in: [protos/generated/misc/common.ts:50](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/misc/common.ts#L50)
+Defined in: [protos/generated/misc/common.ts:50](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L50)

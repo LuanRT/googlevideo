@@ -4,7 +4,7 @@
 
 > **stripMp4Init**(`segment`): `Uint8Array`
 
-Defined in: [src/utils/mediaSegmentUtils.ts:3](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/mediaSegmentUtils.ts#L3)
+Defined in: [src/utils/mediaSegmentUtils.ts:3](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/mediaSegmentUtils.ts#L3)
 
 ## Parameters
 

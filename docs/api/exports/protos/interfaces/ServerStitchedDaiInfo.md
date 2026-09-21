@@ -2,7 +2,7 @@
 
 # Interface: ServerStitchedDaiInfo
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:12](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/server_stitched_dai_info.ts#L12)
+Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:12](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L12)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:12
 
 > **adCpns**: `string`[]
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:13](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/server_stitched_dai_info.ts#L13)
+Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:13](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L13)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:13
 
 > `optional` **adsConfig**: `Uint8Array`\<`ArrayBufferLike`\>
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:14](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/server_stitched_dai_info.ts#L14)
+Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:14](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L14)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:14
 
 > `optional` **daiState**: `string`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:15](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/server_stitched_dai_info.ts#L15)
+Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:15](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L15)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:15
 
 > `optional` **skipSequence**: `number`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:16](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/server_stitched_dai_info.ts#L16)
+Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:16](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L16)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:16
 
 > `optional` **unknownField5**: `number`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:17](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/server_stitched_dai_info.ts#L17)
+Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:17](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L17)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:17
 
 > `optional` **unknownField6**: `string`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:18](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/server_stitched_dai_info.ts#L18)
+Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:18](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L18)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:18
 
 > `optional` **cuepointId**: `string`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:19](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/server_stitched_dai_info.ts#L19)
+Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:19](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L19)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:19
 
 > `optional` **state**: [`AdState`](../enumerations/AdState.md)
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:20](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/server_stitched_dai_info.ts#L20)
+Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:20](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L20)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:20
 
 > `optional` **tileContext**: `string`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:21](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/server_stitched_dai_info.ts#L21)
+Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:21](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L21)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:21
 
 > `optional` **startTimeMs**: `string`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:22](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/server_stitched_dai_info.ts#L22)
+Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:22](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L22)
 
 ***
 
@@ -90,4 +90,4 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:22
 
 > `optional` **durationMs**: `string`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:23](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/protos/generated/video_streaming/server_stitched_dai_info.ts#L23)
+Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:23](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L23)

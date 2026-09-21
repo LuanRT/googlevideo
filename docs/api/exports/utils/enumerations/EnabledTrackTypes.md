@@ -2,7 +2,7 @@
 
 # Enumeration: EnabledTrackTypes
 
-Defined in: [src/utils/formatUtils.ts:7](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/formatUtils.ts#L7)
+Defined in: [src/utils/formatUtils.ts:7](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/formatUtils.ts#L7)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: [src/utils/formatUtils.ts:7](https://github.com/LuanRT/googlevideo/b
 
 > **VIDEO\_AND\_AUDIO**: `0`
 
-Defined in: [src/utils/formatUtils.ts:8](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/formatUtils.ts#L8)
+Defined in: [src/utils/formatUtils.ts:8](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/formatUtils.ts#L8)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/utils/formatUtils.ts:8](https://github.com/LuanRT/googlevideo/b
 
 > **AUDIO\_ONLY**: `1`
 
-Defined in: [src/utils/formatUtils.ts:9](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/formatUtils.ts#L9)
+Defined in: [src/utils/formatUtils.ts:9](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/formatUtils.ts#L9)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [src/utils/formatUtils.ts:9](https://github.com/LuanRT/googlevideo/b
 
 > **VIDEO\_ONLY**: `2`
 
-Defined in: [src/utils/formatUtils.ts:10](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/utils/formatUtils.ts#L10)
+Defined in: [src/utils/formatUtils.ts:10](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/formatUtils.ts#L10)

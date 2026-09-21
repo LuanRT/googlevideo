@@ -2,7 +2,7 @@
 
 # Interface: ReloadResponse
 
-Defined in: [src/types/sabrStreamTypes.ts:111](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L111)
+Defined in: [src/types/sabrStreamTypes.ts:111](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L111)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:111](https://github.com/LuanRT/googlev
 
 > **serverAbrStreamingUrl**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:112](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L112)
+Defined in: [src/types/sabrStreamTypes.ts:112](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L112)
 
 ***
 
@@ -18,4 +18,4 @@ Defined in: [src/types/sabrStreamTypes.ts:112](https://github.com/LuanRT/googlev
 
 > **videoPlaybackUstreamerConfig**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:113](https://github.com/LuanRT/googlevideo/blob/480a1b05eace83e7d2a8cd7a5fcc07242319fddc/src/types/sabrStreamTypes.ts#L113)
+Defined in: [src/types/sabrStreamTypes.ts:113](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L113)
