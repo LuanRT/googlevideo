@@ -2,7 +2,7 @@ import sanitize from 'sanitize-filename';
 import { createWriteStream, type WriteStream } from 'node:fs';
 import { Constants, type IPlayerResponse, Platform, YTNodes } from 'youtubei.js';
 import { buildSabrFormat } from 'googlevideo/utils';
-import { SabrStream, type SabrPlaybackOptions } from 'googlevideo/sabr-stream';
+import { SabrStream, type SabrPlaybackConfig } from 'googlevideo/sabr-stream';
 
 import type { Innertube, Types } from 'youtubei.js';
 import type { PlayabilityStatus } from 'googlevideo/sabr-stream';
@@ -106,7 +106,7 @@ export function createStreamSink(outputStream: WriteStream, progressLine?: Progr
 }
 
 export async function createSabrStream(
-  options: SabrPlaybackOptions,
+  options: SabrPlaybackConfig,
   playerResponse: IPlayerResponse,
   innertube: Innertube
 ): Promise<{

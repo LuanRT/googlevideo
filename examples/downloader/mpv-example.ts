@@ -7,7 +7,7 @@ import { spawn } from 'node:child_process';
 import { PassThrough, Readable } from 'node:stream';
 
 import Innertube, { Log, UniversalCache, YTNodes } from 'youtubei.js';
-import type { SabrPlaybackOptions, SabrStream } from 'googlevideo/sabr-stream';
+import type { SabrPlaybackConfig, SabrStream } from 'googlevideo/sabr-stream';
 import { EnabledTrackTypes } from 'googlevideo/utils';
 
 import {
@@ -47,7 +47,7 @@ async function main() {
       process.exit(1);
     }
 
-    const options: SabrPlaybackOptions = {
+    const options: SabrPlaybackConfig = {
       videoPreferences: { container: 'mp4', quality: '720' },
       audioPreferences: { container: 'mp4', dynamicRangeCompression: false, voiceBoost: false },
       enabledTrackTypes: EnabledTrackTypes.VIDEO_AND_AUDIO,

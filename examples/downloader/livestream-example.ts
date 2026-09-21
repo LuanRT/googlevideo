@@ -11,7 +11,7 @@ import {
   type DownloadOutput
 } from './utils/sabr-stream-factory.js';
 
-import type { SabrPlaybackOptions, SabrStream } from 'googlevideo/sabr-stream';
+import type { SabrPlaybackConfig, SabrStream } from 'googlevideo/sabr-stream';
 import Innertube, { UniversalCache, YTNodes, Log } from 'youtubei.js';
 
 // Disable ytjs logs to reduce noise
@@ -38,7 +38,7 @@ async function main() {
 
     const playerResponse = await makePlayerRequest(innertube, videoId);
 
-    const options: SabrPlaybackOptions = {
+    const options: SabrPlaybackConfig = {
       videoPreferences: { container: 'webm', quality: '720p', preferredVideoCodec: 'vp9' },
       audioPreferences: { container: 'mp4', preferredAudioCodec: 'aac', dynamicRangeCompression: false, voiceBoost: false },
       isPostLiveDvr: !!playerResponse.video_details?.is_post_live_dvr

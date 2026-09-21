@@ -6,7 +6,7 @@ import type {
   AbortOptions,
   HeartbeatParams,
   HeartbeatRequest,
-  SabrPlaybackOptions,
+  SabrPlaybackConfig,
   SabrSnapshot,
   SabrStreamCallbacks,
   SabrStreamConfig,
@@ -236,7 +236,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     return snapshotData;
   }
 
-  public start(options: SabrPlaybackOptions): StreamStartResult {
+  public start(options: SabrPlaybackConfig): StreamStartResult {
     assert(this.playbackSessionStartMs === undefined, 'This stream instance has already been started and cannot be reused');
     const { videoFormat, audioFormat } = this.selectFormats(options);
 
@@ -295,7 +295,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     }
   }
 
-  private selectFormats(options: SabrPlaybackOptions): SelectedFormats {
+  private selectFormats(options: SabrPlaybackConfig): SelectedFormats {
     const audioOnly = options.enabledTrackTypes === EnabledTrackTypes.AUDIO_ONLY;
     const hasAudioSpecs = options.audioFormat || options.audioPreferences;
     const hasVideoSpecs = options.videoFormat || options.videoPreferences;
@@ -326,7 +326,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   private async setupStreaming(
     videoFormat: SabrFormat,
     audioFormat: SabrFormat,
-    options: SabrPlaybackOptions
+    options: SabrPlaybackConfig
   ): Promise<void> {
     try {
       this.logger.debug(TAG, `Starting SABR stream: videoFormat=${videoFormat.itag}, audioFormat=${audioFormat.itag}, isLive=${this._isLive}, isPostLiveDvr=${options.isPostLiveDvr}`);
