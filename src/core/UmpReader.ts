@@ -69,7 +69,7 @@ export class UmpReader {
       }
 
       // If we don't have the full payload available...
-      if (!(offset + partSize <= this.compositeBuffer.totalLength)) {
+      if (!this.compositeBuffer.canReadBytes(offset, partSize)) {
         // If we can't read at least 1 byte of payload or don't have a paartial handler, wait for more data.
         if (!(this.callbacks.onPartialPart && this.compositeBuffer.canReadBytes(offset, 1))) {
           break;
