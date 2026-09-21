@@ -11,7 +11,7 @@ import {
   type DownloadOutput
 } from './utils/sabr-stream-factory.js';
 
-import type { SabrPlaybackConfig, SabrStream } from 'googlevideo/sabr-stream';
+import type { SabrPlaybackOptions, SabrStream } from 'googlevideo/sabr-stream';
 import Innertube, { UniversalCache } from 'youtubei.js';
 
 const VIDEO_ID = 'hzGmbwS_Drs';
@@ -32,7 +32,7 @@ async function main() {
       process.exit(1);
     }
 
-    const options: SabrPlaybackConfig = {
+    const options: SabrPlaybackOptions = {
       videoPreferences: { container: 'webm', quality: '720p', preferredVideoCodec: 'vp9' },
       audioPreferences: { container: 'webm', dynamicRangeCompression: false, voiceBoost: false },
       isPostLiveDvr: !!playerResponse.video_details?.is_post_live_dvr

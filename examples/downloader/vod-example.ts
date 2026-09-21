@@ -8,7 +8,7 @@ import {
 } from './utils/sabr-stream-factory.js';
 
 import { EnabledTrackTypes } from 'googlevideo/utils';
-import type { SabrPlaybackConfig, SabrStream } from 'googlevideo/sabr-stream';
+import type { SabrPlaybackOptions, SabrStream } from 'googlevideo/sabr-stream';
 import Innertube, { UniversalCache } from 'youtubei.js';
 
 const VIDEO_ID = 'SHxtKriIRYI';
@@ -29,7 +29,7 @@ async function main() {
       process.exit(1);
     }
 
-    const options: SabrPlaybackConfig = {
+    const options: SabrPlaybackOptions = {
       videoPreferences: { container: 'webm', quality: '1080p', preferredVideoCodec: 'vp9' },
       audioPreferences: { container: 'webm', dynamicRangeCompression: false, voiceBoost: false },
       enabledTrackTypes: EnabledTrackTypes.VIDEO_AND_AUDIO,

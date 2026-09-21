@@ -113,7 +113,7 @@ export interface ReloadResponse {
   videoPlaybackUstreamerConfig: string;
 }
 
-export interface SabrPlaybackConfig {
+export interface SabrPlaybackOptions {
   /**
    * Can be a format ID number, a SabrFormat object, or a function that selects a format from the available formats array.
    */
