@@ -42,9 +42,8 @@ export class UmpReader {
       const split = this.compositeBuffer.split(needed);
 
       if (!this.callbacks.onPartialPart) return;
-      if (!this.callbacks.onPartialPart(this.pendingType, split.extractedBuffer, this.pendingOffset!, this.pendingTotalSize!)) {
+      if (!this.callbacks.onPartialPart(this.pendingType, split.extractedBuffer, this.pendingOffset!, this.pendingTotalSize!))
         return;
-      }
 
       this.pendingOffset! += split.extractedBuffer.totalLength;
       this.compositeBuffer = split.remainingBuffer;
@@ -64,16 +63,14 @@ export class UmpReader {
       const [ partSize, finalOffset ] = this.readVarInt(offset);
       offset = finalOffset;
 
-      if (partType < 0 || partSize < 0) {
+      if (partType < 0 || partSize < 0)
         break;
-      }
 
       // If we don't have the full payload available...
       if (!this.compositeBuffer.canReadBytes(offset, partSize)) {
         // If we can't read at least 1 byte of payload or don't have a paartial handler, wait for more data.
-        if (!(this.callbacks.onPartialPart && this.compositeBuffer.canReadBytes(offset, 1))) {
+        if (!(this.callbacks.onPartialPart && this.compositeBuffer.canReadBytes(offset, 1)))
           break;
-        }
 
         const remainingBuff = this.compositeBuffer.split(offset).remainingBuffer;
 
@@ -112,16 +109,16 @@ export class UmpReader {
           : firstByte < 240 ? 4
             : 5;
 
-    if (!this.compositeBuffer.canReadBytes(offset, byteLength)) {
+    if (!this.compositeBuffer.canReadBytes(offset, byteLength))
       return [ -1, offset ];
-    }
 
     let value = 0;
 
     switch (byteLength) {
-      case 1:
+      case 1: {
         value = this.compositeBuffer.getUint8(offset++);
         break;
+      }
 
       case 2: {
         const b1 = this.compositeBuffer.getUint8(offset++);
