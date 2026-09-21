@@ -55,12 +55,6 @@ import { getBroadcastId } from '../utils/urlUtils.js';
 import { base64ToU8, decodePart } from '../utils/uint8arrayUtils.js';
 import { endOfStreamReached, getEndTimeMs, getMediaType } from '../utils/streamUtils.js';
 
-interface ProgressTracker {
-  lastProgressTime: number;
-  lastBufferedTimeMs: number;
-  stallCount: number;
-}
-
 const TAG = 'SabrStream';
 
 const MAX_STALLS = 3;
@@ -126,7 +120,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   private _aborted = false;
   private _isBusy = false;
 
-  private progressTracker: ProgressTracker = {
+  private progressTracker = {
     lastProgressTime: Date.now(),
     lastBufferedTimeMs: 0,
     stallCount: 0
