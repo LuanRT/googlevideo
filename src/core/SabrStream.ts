@@ -520,12 +520,9 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
       return; // no progress yet
 
     const currentTime = Date.now();
-    const currentProgress = this.playerTimeMs;
     const stallThreshold = stallDetectionMs ?? DEFAULT_STALL_DETECTION_MS;
 
-    if (currentProgress > this.progressTracker.lastBufferedTimeMs) {
-      this.recordProgress(currentProgress);
-    } else if (currentTime - this.progressTracker.lastProgressTime > stallThreshold) {
+    if (currentTime - this.progressTracker.lastProgressTime > stallThreshold) {
       this.progressTracker.stallCount++;
 
       this.logger.warn(TAG, `Stream stalled for ${stallThreshold}ms (stall #${this.progressTracker.stallCount})`);
