@@ -47,7 +47,7 @@ import {
   type FormatId,
   type ClientAbrState,
   type ClientInfo,
-  type ServerStitchedDaiInfo
+  type SsapPlaybackInfo
 } from '../utils/Protos.js';
 
 import { ticksToMs } from '../utils/mediaTimeUtils.js';
@@ -114,7 +114,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   private poTokenGenerationId = 0;
   private spsRejectCount = 0;
 
-  private ssapPlaybackInfos = new Map<string, ServerStitchedDaiInfo>();
+  private ssapPlaybackInfos = new Map<string, SsapPlaybackInfo>();
   private idleResolvers: (() => void)[] = [];
   private drainResolver?: () => void;
 

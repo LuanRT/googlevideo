@@ -9,7 +9,7 @@ import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 import { FormatId } from "../misc/common.js";
 import { BufferedRange } from "./buffered_range.js";
 import { ClientAbrState } from "./client_abr_state.js";
-import { ServerStitchedDaiInfo } from "./server_stitched_dai_info.js";
+import { SsapPlaybackInfo } from "./ssap_playback_info.js";
 import { StreamerContext } from "./streamer_context.js";
 import { TimeRange } from "./time_range.js";
 
@@ -31,10 +31,10 @@ export interface VideoPlaybackAbrRequest {
   /** @TODO: Check if onesie has an equivalent field for this */
   selectedCaptionFormatIds: FormatId[];
   streamerContext?: StreamerContext | undefined;
-  serverStitchedDaiInfo?: ServerStitchedDaiInfo | undefined;
+  serverStitchedDaiInfo?: SsapPlaybackInfo | undefined;
   lastVideoItag?: number | undefined;
   lastAudioItag?: number | undefined;
-  ssapPlaybackInfos: ServerStitchedDaiInfo[];
+  ssapPlaybackInfos: SsapPlaybackInfo[];
   /** @NOTE: What even is this? On web, it's only set if exp html5_sabr_unused_bloat_size_bytes > 0 (as `new Uint8Array(value_of_html5_sabr_unused_bloat_size_bytes_here)`) */
   unusedBloatSizeBytes?: Uint8Array | undefined;
   field1000: UnknownMessage2[];
@@ -108,7 +108,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
       StreamerContext.encode(message.streamerContext, writer.uint32(154).fork()).join();
     }
     if (message.serverStitchedDaiInfo !== undefined) {
-      ServerStitchedDaiInfo.encode(message.serverStitchedDaiInfo, writer.uint32(170).fork()).join();
+      SsapPlaybackInfo.encode(message.serverStitchedDaiInfo, writer.uint32(170).fork()).join();
     }
     if (message.lastVideoItag !== undefined && message.lastVideoItag !== 0) {
       writer.uint32(176).int32(message.lastVideoItag);
@@ -117,7 +117,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
       writer.uint32(184).int32(message.lastAudioItag);
     }
     for (const v of message.ssapPlaybackInfos) {
-      ServerStitchedDaiInfo.encode(v!, writer.uint32(194).fork()).join();
+      SsapPlaybackInfo.encode(v!, writer.uint32(194).fork()).join();
     }
     if (message.unusedBloatSizeBytes !== undefined && message.unusedBloatSizeBytes.length !== 0) {
       writer.uint32(202).bytes(message.unusedBloatSizeBytes);
@@ -220,7 +220,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
             break;
           }
 
-          message.serverStitchedDaiInfo = ServerStitchedDaiInfo.decode(reader, reader.uint32());
+          message.serverStitchedDaiInfo = SsapPlaybackInfo.decode(reader, reader.uint32());
           continue;
         }
         case 22: {
@@ -244,7 +244,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
             break;
           }
 
-          message.ssapPlaybackInfos.push(ServerStitchedDaiInfo.decode(reader, reader.uint32()));
+          message.ssapPlaybackInfos.push(SsapPlaybackInfo.decode(reader, reader.uint32()));
           continue;
         }
         case 25: {

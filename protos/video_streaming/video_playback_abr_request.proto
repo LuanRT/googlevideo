@@ -6,7 +6,7 @@ import "video_streaming/buffered_range.proto";
 import "video_streaming/client_abr_state.proto";
 import "video_streaming/streamer_context.proto";
 import "video_streaming/time_range.proto";
-import "video_streaming/server_stitched_dai_info.proto";
+import "video_streaming/ssap_playback_info.proto";
 
 message VideoPlaybackAbrRequest {
   optional ClientAbrState client_abr_state = 1;
@@ -19,10 +19,10 @@ message VideoPlaybackAbrRequest {
   repeated .misc.FormatId selected_video_format_ids = 17; // @NOTE: This is the same as preferred_video_format_ids (pvi) on onesie reqs
   repeated .misc.FormatId selected_caption_format_ids = 18; // @TODO: Check if onesie has an equivalent field for this
   optional StreamerContext streamer_context = 19;
-  optional ServerStitchedDaiInfo server_stitched_dai_info = 21;
+  optional SsapPlaybackInfo server_stitched_dai_info = 21;
   optional int32 last_video_itag = 22;
   optional int32 last_audio_itag = 23;
-  repeated ServerStitchedDaiInfo ssap_playback_infos = 24;
+  repeated SsapPlaybackInfo ssap_playback_infos = 24;
   optional bytes unused_bloat_size_bytes = 25; // @NOTE: What even is this? On web, it's only set if exp html5_sabr_unused_bloat_size_bytes > 0 (as `new Uint8Array(value_of_html5_sabr_unused_bloat_size_bytes_here)`)
   repeated UnknownMessage2 field1000 = 1000;
 }

@@ -1,7 +1,7 @@
 syntax = "proto2";
 package video_streaming;
 
-message ServerStitchedDaiInfo {
+message SsapPlaybackInfo {
   enum AdState {
     UNKNOWN = 0;
     TIMEOUT = 1;

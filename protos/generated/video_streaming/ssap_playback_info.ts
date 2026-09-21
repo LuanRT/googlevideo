@@ -2,14 +2,14 @@
 // versions:
 //   protoc-gen-ts_proto  v2.7.5
 //   protoc               v7.35.1
-// source: video_streaming/server_stitched_dai_info.proto
+// source: video_streaming/ssap_playback_info.proto
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
 
 export const protobufPackage = "video_streaming";
 
-export interface ServerStitchedDaiInfo {
+export interface SsapPlaybackInfo {
   adCpns: string[];
   adsConfig?: Uint8Array | undefined;
   daiState?: string | undefined;
@@ -17,13 +17,13 @@ export interface ServerStitchedDaiInfo {
   unknownField5?: number | undefined;
   unknownField6?: string | undefined;
   cuepointId?: string | undefined;
-  state?: ServerStitchedDaiInfo_AdState | undefined;
+  state?: SsapPlaybackInfo_AdState | undefined;
   tileContext?: string | undefined;
   startTimeMs?: string | undefined;
   durationMs?: string | undefined;
 }
 
-export enum ServerStitchedDaiInfo_AdState {
+export enum SsapPlaybackInfo_AdState {
   UNKNOWN = 0,
   TIMEOUT = 1,
   /** RATECONTROL - when /ad_break returns adThrottled=true */
@@ -43,7 +43,7 @@ export enum ServerStitchedDaiInfo_AdState {
   UNRECOGNIZED = -1,
 }
 
-function createBaseServerStitchedDaiInfo(): ServerStitchedDaiInfo {
+function createBaseSsapPlaybackInfo(): SsapPlaybackInfo {
   return {
     adCpns: [],
     adsConfig: new Uint8Array(0),
@@ -59,8 +59,8 @@ function createBaseServerStitchedDaiInfo(): ServerStitchedDaiInfo {
   };
 }
 
-export const ServerStitchedDaiInfo: MessageFns<ServerStitchedDaiInfo> = {
-  encode(message: ServerStitchedDaiInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+export const SsapPlaybackInfo: MessageFns<SsapPlaybackInfo> = {
+  encode(message: SsapPlaybackInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     for (const v of message.adCpns) {
       writer.uint32(10).string(v!);
     }
@@ -97,10 +97,10 @@ export const ServerStitchedDaiInfo: MessageFns<ServerStitchedDaiInfo> = {
     return writer;
   },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): ServerStitchedDaiInfo {
+  decode(input: BinaryReader | Uint8Array, length?: number): SsapPlaybackInfo {
     const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
     const end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseServerStitchedDaiInfo();
+    const message = createBaseSsapPlaybackInfo();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {

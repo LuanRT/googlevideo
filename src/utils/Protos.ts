@@ -57,9 +57,9 @@ export { SabrContextSendingPolicy } from '../../protos/generated/video_streaming
 export { SabrLiveMetadata } from '../../protos/generated/video_streaming/sabr_live_metadata.js';
 
 export {
-  ServerStitchedDaiInfo,
-  ServerStitchedDaiInfo_AdState as AdState
-} from '../../protos/generated/video_streaming/server_stitched_dai_info.js';
+  SsapPlaybackInfo,
+  SsapPlaybackInfo_AdState as AdState
+} from '../../protos/generated/video_streaming/ssap_playback_info.js';
 
 export { StreamProtectionStatus } from '../../protos/generated/video_streaming/stream_protection_status.js';
 export { SnackbarMessage } from '../../protos/generated/video_streaming/snackbar_message.js';
