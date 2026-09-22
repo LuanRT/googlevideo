@@ -15,30 +15,31 @@ export class CompositeBuffer {
     this.currentChunkOffset = this.currentChunkIndex = 0;
     this.currentDataView = undefined;
     this.totalLength = 0;
-    chunks.forEach((chunk) => this.append(chunk));
+
+    for (const chunk of chunks)
+      this.append(chunk);
   }
 
   /**
    * Appends a chunk or all chunks from another {@link CompositeBuffer} to this buffer.
    * Chunks using the same `ArrayBuffer` are merged into a single `Uint8Array` to reduce memory usage and keep the number of chunks low.
-   * @param chunk - A `Uint8Array` to append, or another `CompositeBuffer` whose chunks will be appended individually.
+   * @param data - A `Uint8Array` to append, or another `CompositeBuffer` whose chunks will be appended individually.
    */
-  public append(chunk: Uint8Array | CompositeBuffer): void {
-    if (chunk instanceof Uint8Array) {
-      if (this.canMergeWithLastChunk(chunk)) {
+  public append(data: Uint8Array | CompositeBuffer): void {
+    if (data instanceof Uint8Array) {
+      if (this.canMergeWithLastChunk(data)) {
         const lastChunk = this.chunks[this.chunks.length - 1];
         this.chunks[this.chunks.length - 1] = new Uint8Array(
           lastChunk.buffer,
           lastChunk.byteOffset,
-          lastChunk.length + chunk.length
+          lastChunk.length + data.length
         );
         this.resetFocus();
-      } else {
-        this.chunks.push(chunk);
-      }
-      this.totalLength += chunk.length;
+      } else this.chunks.push(data);
+      this.totalLength += data.length;
     } else {
-      chunk.chunks.forEach((c) => this.append(c));
+      for (const chunk of data.chunks)
+        this.append(chunk);
     }
   }
 
@@ -61,9 +62,7 @@ export class CompositeBuffer {
           new Uint8Array(chunk.buffer, chunk.byteOffset + position, chunk.length - position)
         );
         position = 0;
-      } else {
-        remainingBuffer.append(chunk);
-      }
+      } else remainingBuffer.append(chunk);
     }
 
     return { extractedBuffer, remainingBuffer };
