@@ -10,12 +10,12 @@ import type {
   SabrSnapshot,
   SabrStreamCallbacks,
   SabrStreamConfig,
-  TrackOutputs,
-  TrackMetadata,
+  SabrStreamEvents,
   SelectedFormats,
   StreamStartResult,
-  SabrStreamEvents,
-  TrackOutput
+  TrackMetadata,
+  TrackOutput,
+  TrackOutputs
 } from '../types/sabrStreamTypes.js';
 
 import { Logger } from '../utils/Logger.js';
@@ -936,8 +936,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
 
       (async () => {
         try {
-          const token = await onMintPoToken();
-          this.proofOfOriginToken = token;
+          this.proofOfOriginToken = await onMintPoToken();
           this.poTokenGenerationId += 1;
         } catch (err: unknown) {
           this.logger.error(TAG, `An error occurred while minting proof of origin token: ${(err as Error)?.message}`);

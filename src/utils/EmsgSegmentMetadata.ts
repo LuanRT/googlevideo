@@ -136,7 +136,7 @@ export class EmsgSegmentMetadata {
   public cryptoPeriodSeconds: number;
   public currentAbsoluteLoudnessLkfs: number | null;
 
-  constructor(public data: Record<string, string>, public uri: string = 'http://youtube.com') {
+  constructor(public data: Record<string, string>, public uri: string = 'https://youtube.com') {
     this.segmentNumber = getNumber(this.data, 'Sequence-Number');
     this.totalSegmentCount = getNumber(this.data, 'Segment-Count');
     this.segmentDurationsMs = this.data['Segment-Durations-Ms'] || '';
