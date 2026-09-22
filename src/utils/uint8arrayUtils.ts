@@ -3,9 +3,9 @@ export function u8ToBase64(u8: Uint8Array): string {
 }
 
 export function base64ToU8(base64: string): Uint8Array {
-  const standard_base64 = base64.replace(/-/g, '+').replace(/_/g, '/');
-  const padded_base64 = standard_base64.padEnd(standard_base64.length + (4 - standard_base64.length % 4) % 4, '=');
-  return new Uint8Array(atob(padded_base64).split('').map((char) => char.charCodeAt(0)));
+  const standardBase64 = base64.replace(/-/g, '+').replace(/_/g, '/');
+  const paddedBase64 = standardBase64.padEnd(standardBase64.length + (4 - standardBase64.length % 4) % 4, '=');
+  return new Uint8Array(atob(paddedBase64).split('').map((char) => char.charCodeAt(0)));
 }
 
 export function concatenateChunks(chunks: Uint8Array[]): Uint8Array {
