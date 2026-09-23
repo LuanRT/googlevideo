@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "googlevideo": "file:../..",
-    "youtubei.js": "^18.0.0"
+    "youtubei.js": "^18.1.0"
   },
   "devDependencies": {
     "@types/node": "^26.4.1"
