@@ -2,7 +2,7 @@
 
 # Interface: PlaybackCookie
 
-Defined in: [protos/generated/video\_streaming/playback\_cookie.ts:13](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/playback_cookie.ts#L13)
+Defined in: [protos/generated/video\_streaming/playback\_cookie.ts:13](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/playback_cookie.ts#L13)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/playback\_cookie.ts:13](https://g
 
 > `optional` **resolution**: `number`
 
-Defined in: [protos/generated/video\_streaming/playback\_cookie.ts:14](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/playback_cookie.ts#L14)
+Defined in: [protos/generated/video\_streaming/playback\_cookie.ts:14](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/playback_cookie.ts#L14)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/playback\_cookie.ts:14](https://g
 
 > `optional` **field2**: `number`
 
-Defined in: [protos/generated/video\_streaming/playback\_cookie.ts:15](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/playback_cookie.ts#L15)
+Defined in: [protos/generated/video\_streaming/playback\_cookie.ts:15](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/playback_cookie.ts#L15)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/playback\_cookie.ts:15](https://g
 
 > `optional` **videoFmt**: [`FormatId`](FormatId.md)
 
-Defined in: [protos/generated/video\_streaming/playback\_cookie.ts:16](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/playback_cookie.ts#L16)
+Defined in: [protos/generated/video\_streaming/playback\_cookie.ts:16](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/playback_cookie.ts#L16)
 
 ***
 
@@ -34,4 +34,4 @@ Defined in: [protos/generated/video\_streaming/playback\_cookie.ts:16](https://g
 
 > `optional` **audioFmt**: [`FormatId`](FormatId.md)
 
-Defined in: [protos/generated/video\_streaming/playback\_cookie.ts:17](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/playback_cookie.ts#L17)
+Defined in: [protos/generated/video\_streaming/playback\_cookie.ts:17](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/playback_cookie.ts#L17)

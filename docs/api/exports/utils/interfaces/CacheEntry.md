@@ -2,7 +2,7 @@
 
 # Interface: CacheEntry
 
-Defined in: [src/utils/CacheManager.ts:6](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/CacheManager.ts#L6)
+Defined in: [src/utils/CacheManager.ts:6](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/utils/CacheManager.ts#L6)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/utils/CacheManager.ts:6](https://github.com/LuanRT/googlevideo/
 
 > **data**: `Uint8Array`
 
-Defined in: [src/utils/CacheManager.ts:7](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/CacheManager.ts#L7)
+Defined in: [src/utils/CacheManager.ts:7](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/utils/CacheManager.ts#L7)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/utils/CacheManager.ts:7](https://github.com/LuanRT/googlevideo/
 
 > **timestamp**: `number`
 
-Defined in: [src/utils/CacheManager.ts:8](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/CacheManager.ts#L8)
+Defined in: [src/utils/CacheManager.ts:8](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/utils/CacheManager.ts#L8)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [src/utils/CacheManager.ts:8](https://github.com/LuanRT/googlevideo/
 
 > **size**: `number`
 
-Defined in: [src/utils/CacheManager.ts:9](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/CacheManager.ts#L9)
+Defined in: [src/utils/CacheManager.ts:9](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/utils/CacheManager.ts#L9)

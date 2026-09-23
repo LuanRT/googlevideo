@@ -4,4 +4,4 @@
 
 > **ReloadPlaybackContext**: `MessageFns`\<[`ReloadPlaybackContext`](../interfaces/ReloadPlaybackContext.md)\>
 
-Defined in: [protos/generated/video\_streaming/reload\_player\_response.ts:16](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/reload_player_response.ts#L16)
+Defined in: [protos/generated/video\_streaming/reload\_player\_response.ts:16](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/reload_player_response.ts#L16)

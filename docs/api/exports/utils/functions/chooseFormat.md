@@ -4,7 +4,7 @@
 
 > **chooseFormat**(`formats`, `formatOption`, `preferences`): [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md) \| `undefined`
 
-Defined in: [src/utils/formatUtils.ts:28](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/formatUtils.ts#L28)
+Defined in: [src/utils/formatUtils.ts:28](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/utils/formatUtils.ts#L28)
 
 ## Parameters
 

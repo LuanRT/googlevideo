@@ -2,7 +2,7 @@
 
 # Enumeration: OnesieHeaderType
 
-Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:11](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_header_type.ts#L11)
+Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:11](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/onesie_header_type.ts#L11)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:11](https
 
 > **ONESIE\_PLAYER\_RESPONSE**: `0`
 
-Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:12](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_header_type.ts#L12)
+Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:12](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/onesie_header_type.ts#L12)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:12](https
 
 > **MEDIA**: `1`
 
-Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:13](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_header_type.ts#L13)
+Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:13](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/onesie_header_type.ts#L13)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:13](https
 
 > **MEDIA\_DECRYPTION\_KEY**: `2`
 
-Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:14](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_header_type.ts#L14)
+Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:14](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/onesie_header_type.ts#L14)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:14](https
 
 > **CLEAR\_MEDIA**: `3`
 
-Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:15](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_header_type.ts#L15)
+Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:15](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/onesie_header_type.ts#L15)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:15](https
 
 > **CLEAR\_INIT\_SEGMENT**: `4`
 
-Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:16](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_header_type.ts#L16)
+Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:16](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/onesie_header_type.ts#L16)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:16](https
 
 > **ACK**: `5`
 
-Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:17](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_header_type.ts#L17)
+Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:17](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/onesie_header_type.ts#L17)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:17](https
 
 > **MEDIA\_STREAMER\_HOSTNAME**: `6`
 
-Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:18](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_header_type.ts#L18)
+Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:18](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/onesie_header_type.ts#L18)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:18](https
 
 > **MEDIA\_SIZE\_HINT**: `7`
 
-Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:19](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_header_type.ts#L19)
+Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:19](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/onesie_header_type.ts#L19)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:19](https
 
 > **PLAYER\_SERVICE\_RESPONSE\_PUSH\_URL**: `8`
 
-Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:20](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_header_type.ts#L20)
+Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:20](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/onesie_header_type.ts#L20)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:20](https
 
 > **LAST\_HIGH\_PRIORITY\_HINT**: `9`
 
-Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:21](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_header_type.ts#L21)
+Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:21](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/onesie_header_type.ts#L21)
 
 ***
 
@@ -90,7 +90,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:21](https
 
 > **STREAM\_METADATA**: `16`
 
-Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:22](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_header_type.ts#L22)
+Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:22](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/onesie_header_type.ts#L22)
 
 ***
 
@@ -98,7 +98,7 @@ Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:22](https
 
 > **ENCRYPTED\_INNERTUBE\_RESPONSE\_PART**: `25`
 
-Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:23](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_header_type.ts#L23)
+Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:23](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/onesie_header_type.ts#L23)
 
 ***
 
@@ -106,4 +106,4 @@ Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:23](https
 
 > **UNRECOGNIZED**: `-1`
 
-Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:24](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_header_type.ts#L24)
+Defined in: [protos/generated/video\_streaming/onesie\_header\_type.ts:24](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/onesie_header_type.ts#L24)

@@ -4,4 +4,4 @@
 
 > **FormatInitializationMetadata**: `MessageFns`\<[`FormatInitializationMetadata`](../interfaces/FormatInitializationMetadata.md)\>
 
-Defined in: [protos/generated/video\_streaming/format\_initialization\_metadata.ts:13](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/format_initialization_metadata.ts#L13)
+Defined in: [protos/generated/video\_streaming/format\_initialization\_metadata.ts:13](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/format_initialization_metadata.ts#L13)

@@ -2,7 +2,7 @@
 
 # Class: RequestMetadataManager
 
-Defined in: [src/utils/RequestMetadataManager.ts:6](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/RequestMetadataManager.ts#L6)
+Defined in: [src/utils/RequestMetadataManager.ts:6](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/utils/RequestMetadataManager.ts#L6)
 
 Manages request metadata objects.
 
@@ -12,7 +12,7 @@ Manages request metadata objects.
 
 > **new RequestMetadataManager**(): `RequestMetadataManager`
 
-Defined in: [src/utils/RequestMetadataManager.ts:12](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/RequestMetadataManager.ts#L12)
+Defined in: [src/utils/RequestMetadataManager.ts:12](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/utils/RequestMetadataManager.ts#L12)
 
 #### Returns
 
@@ -24,7 +24,7 @@ Defined in: [src/utils/RequestMetadataManager.ts:12](https://github.com/LuanRT/g
 
 > **metadataMap**: `Map`\<`string`, [`SabrRequestMetadata`](../../sabr-streaming-adapter/interfaces/SabrRequestMetadata.md)\>
 
-Defined in: [src/utils/RequestMetadataManager.ts:7](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/RequestMetadataManager.ts#L7)
+Defined in: [src/utils/RequestMetadataManager.ts:7](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/utils/RequestMetadataManager.ts#L7)
 
 ## Methods
 
@@ -32,7 +32,7 @@ Defined in: [src/utils/RequestMetadataManager.ts:7](https://github.com/LuanRT/go
 
 > **getRequestMetadata**(`url`, `del`): [`SabrRequestMetadata`](../../sabr-streaming-adapter/interfaces/SabrRequestMetadata.md) \| `undefined`
 
-Defined in: [src/utils/RequestMetadataManager.ts:17](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/RequestMetadataManager.ts#L17)
+Defined in: [src/utils/RequestMetadataManager.ts:17](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/utils/RequestMetadataManager.ts#L17)
 
 #### Parameters
 
@@ -54,7 +54,7 @@ Defined in: [src/utils/RequestMetadataManager.ts:17](https://github.com/LuanRT/g
 
 > **setRequestMetadata**(`url`, `context`): `void`
 
-Defined in: [src/utils/RequestMetadataManager.ts:37](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/RequestMetadataManager.ts#L37)
+Defined in: [src/utils/RequestMetadataManager.ts:37](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/utils/RequestMetadataManager.ts#L37)
 
 #### Parameters
 

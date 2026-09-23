@@ -2,7 +2,7 @@
 
 # Interface: TimeRange
 
-Defined in: [protos/generated/video\_streaming/time\_range.ts:12](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/time_range.ts#L12)
+Defined in: [protos/generated/video\_streaming/time\_range.ts:12](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/time_range.ts#L12)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/time\_range.ts:12](https://github
 
 > `optional` **startTicks**: `string`
 
-Defined in: [protos/generated/video\_streaming/time\_range.ts:13](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/time_range.ts#L13)
+Defined in: [protos/generated/video\_streaming/time\_range.ts:13](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/time_range.ts#L13)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/time\_range.ts:13](https://github
 
 > `optional` **durationTicks**: `string`
 
-Defined in: [protos/generated/video\_streaming/time\_range.ts:14](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/time_range.ts#L14)
+Defined in: [protos/generated/video\_streaming/time\_range.ts:14](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/time_range.ts#L14)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [protos/generated/video\_streaming/time\_range.ts:14](https://github
 
 > `optional` **timescale**: `number`
 
-Defined in: [protos/generated/video\_streaming/time\_range.ts:15](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/time_range.ts#L15)
+Defined in: [protos/generated/video\_streaming/time\_range.ts:15](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/time_range.ts#L15)

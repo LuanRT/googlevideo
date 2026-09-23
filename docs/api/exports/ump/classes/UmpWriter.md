@@ -2,7 +2,7 @@
 
 # Class: UmpWriter
 
-Defined in: [src/core/UmpWriter.ts:6](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/UmpWriter.ts#L6)
+Defined in: [src/core/UmpWriter.ts:6](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/UmpWriter.ts#L6)
 
 A utility class for writing data in the UMP format.
 
@@ -12,7 +12,7 @@ A utility class for writing data in the UMP format.
 
 > **new UmpWriter**(`compositeBuffer`): `UmpWriter`
 
-Defined in: [src/core/UmpWriter.ts:7](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/UmpWriter.ts#L7)
+Defined in: [src/core/UmpWriter.ts:7](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/UmpWriter.ts#L7)
 
 #### Parameters
 
@@ -30,7 +30,7 @@ Defined in: [src/core/UmpWriter.ts:7](https://github.com/LuanRT/googlevideo/blob
 
 > **write**(`type`, `data`): `void`
 
-Defined in: [src/core/UmpWriter.ts:11](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/UmpWriter.ts#L11)
+Defined in: [src/core/UmpWriter.ts:11](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/UmpWriter.ts#L11)
 
 #### Parameters
 

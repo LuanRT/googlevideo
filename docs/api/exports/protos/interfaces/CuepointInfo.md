@@ -2,7 +2,7 @@
 
 # Interface: CuepointInfo
 
-Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:14](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/cuepoint_info.ts#L14)
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:14](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/cuepoint_info.ts#L14)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:14](https://git
 
 > `optional` **cuepoint**: [`Cuepoint`](Cuepoint.md)
 
-Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:15](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/cuepoint_info.ts#L15)
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:15](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/cuepoint_info.ts#L15)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:15](https://git
 
 > `optional` **trackType**: [`CuepointTrackType`](../enumerations/CuepointTrackType.md)
 
-Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:16](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/cuepoint_info.ts#L16)
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:16](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/cuepoint_info.ts#L16)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:16](https://git
 
 > `optional` **sequenceNumber**: `number`
 
-Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:17](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/cuepoint_info.ts#L17)
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:17](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/cuepoint_info.ts#L17)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:17](https://git
 
 > `optional` **timeRange**: [`TimeRange`](TimeRange.md)
 
-Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:18](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/cuepoint_info.ts#L18)
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:18](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/cuepoint_info.ts#L18)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:18](https://git
 
 > `optional` **tileContext**: `string`
 
-Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:19](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/cuepoint_info.ts#L19)
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:19](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/cuepoint_info.ts#L19)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:19](https://git
 
 > `optional` **unknownField6**: `number`
 
-Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:20](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/cuepoint_info.ts#L20)
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:20](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/cuepoint_info.ts#L20)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:20](https://git
 
 > `optional` **unknownField7**: `number`
 
-Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:21](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/cuepoint_info.ts#L21)
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:21](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/cuepoint_info.ts#L21)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:21](https://git
 
 > `optional` **opportunityId**: `string`
 
-Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:22](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/cuepoint_info.ts#L22)
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:22](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/cuepoint_info.ts#L22)
 
 ***
 
@@ -74,4 +74,4 @@ Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:22](https://git
 
 > `optional` **serializedPrefetchContext**: `Uint8Array`\<`ArrayBufferLike`\>
 
-Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:23](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/cuepoint_info.ts#L23)
+Defined in: [protos/generated/video\_streaming/cuepoint\_info.ts:23](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/cuepoint_info.ts#L23)

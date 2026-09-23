@@ -2,7 +2,7 @@
 
 # Interface: SabrStreamConfig
 
-Defined in: [src/types/sabrStreamTypes.ts:7](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L7)
+Defined in: [src/types/sabrStreamTypes.ts:7](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L7)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:7](https://github.com/LuanRT/googlevid
 
 > **videoId**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:8](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L8)
+Defined in: [src/types/sabrStreamTypes.ts:8](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L8)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/types/sabrStreamTypes.ts:8](https://github.com/LuanRT/googlevid
 
 > `optional` **fetchFunction**: (`input`, `init?`) => `Promise`\<`Response`\>
 
-Defined in: [src/types/sabrStreamTypes.ts:13](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L13)
+Defined in: [src/types/sabrStreamTypes.ts:13](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L13)
 
 Custom fetch implementation to use for HTTP requests.
 If not provided, the global `fetch` function will be used.
@@ -45,7 +45,7 @@ If not provided, the global `fetch` function will be used.
 
 > **serverAbrStreamingUrl**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:14](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L14)
+Defined in: [src/types/sabrStreamTypes.ts:14](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L14)
 
 ***
 
@@ -53,7 +53,7 @@ Defined in: [src/types/sabrStreamTypes.ts:14](https://github.com/LuanRT/googlevi
 
 > **videoPlaybackUstreamerConfig**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:15](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L15)
+Defined in: [src/types/sabrStreamTypes.ts:15](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L15)
 
 ***
 
@@ -61,7 +61,7 @@ Defined in: [src/types/sabrStreamTypes.ts:15](https://github.com/LuanRT/googlevi
 
 > `optional` **heartbeatParams**: [`HeartbeatParams`](HeartbeatParams.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:16](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L16)
+Defined in: [src/types/sabrStreamTypes.ts:16](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L16)
 
 ***
 
@@ -69,7 +69,7 @@ Defined in: [src/types/sabrStreamTypes.ts:16](https://github.com/LuanRT/googlevi
 
 > **clientInfo**: [`ClientInfo`](../../protos/interfaces/ClientInfo.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:17](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L17)
+Defined in: [src/types/sabrStreamTypes.ts:17](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L17)
 
 ***
 
@@ -77,7 +77,7 @@ Defined in: [src/types/sabrStreamTypes.ts:17](https://github.com/LuanRT/googlevi
 
 > `optional` **poToken**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:22](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L22)
+Defined in: [src/types/sabrStreamTypes.ts:22](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L22)
 
 Proof of Origin token. It is recommended to use [SabrStreamCallbacks.onMintPoToken](SabrStreamCallbacks.md#onmintpotoken) instead,
 as the server may reject the provided token if it is expired or invalid.
@@ -88,7 +88,7 @@ as the server may reject the provided token if it is expired or invalid.
 
 > **formats**: [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)[]
 
-Defined in: [src/types/sabrStreamTypes.ts:23](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L23)
+Defined in: [src/types/sabrStreamTypes.ts:23](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L23)
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: [src/types/sabrStreamTypes.ts:23](https://github.com/LuanRT/googlevi
 
 > `optional` **callbacks**: [`SabrStreamCallbacks`](SabrStreamCallbacks.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:24](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L24)
+Defined in: [src/types/sabrStreamTypes.ts:24](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L24)
 
 ***
 
@@ -104,7 +104,7 @@ Defined in: [src/types/sabrStreamTypes.ts:24](https://github.com/LuanRT/googlevi
 
 > `optional` **stripDuplicateInit**: `boolean`
 
-Defined in: [src/types/sabrStreamTypes.ts:29](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L29)
+Defined in: [src/types/sabrStreamTypes.ts:29](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L29)
 
 Whether to strip duplicate initialization headers (moov/EBML) from segments after the first one.
 
@@ -120,7 +120,7 @@ true
 
 > `optional` **videoHighWaterMark**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:34](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L34)
+Defined in: [src/types/sabrStreamTypes.ts:34](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L34)
 
 #### Default
 
@@ -134,7 +134,7 @@ Defined in: [src/types/sabrStreamTypes.ts:34](https://github.com/LuanRT/googlevi
 
 > `optional` **audioHighWaterMark**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:39](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamTypes.ts#L39)
+Defined in: [src/types/sabrStreamTypes.ts:39](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L39)
 
 #### Default
 

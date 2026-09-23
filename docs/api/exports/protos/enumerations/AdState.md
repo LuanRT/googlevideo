@@ -2,7 +2,7 @@
 
 # Enumeration: AdState
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:26](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L26)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:26](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L26)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:26
 
 > **UNKNOWN**: `0`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:27](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L27)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:27](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L27)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:27
 
 > **TIMEOUT**: `1`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:28](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L28)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:28](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L28)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:28
 
 > **RATECONTROL**: `2`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:30](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L30)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:30](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L30)
 
 RATECONTROL - when /ad_break returns adThrottled=true
 
@@ -36,7 +36,7 @@ RATECONTROL - when /ad_break returns adThrottled=true
 
 > **RATECONTROL\_CLIENT**: `11`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:32](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L32)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:32](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L32)
 
 RATECONTROL_CLIENT - when the client itself throttles ad requests?
 
@@ -46,7 +46,7 @@ RATECONTROL_CLIENT - when the client itself throttles ad requests?
 
 > **SERVER\_ERROR**: `3`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:33](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L33)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:33](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L33)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:33
 
 > **DELETED**: `4`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:34](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L34)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:34](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L34)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:34
 
 > **WAITING**: `5`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:35](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L35)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:35](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L35)
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:35
 
 > **READY**: `6`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:36](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L36)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:36](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L36)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:36
 
 > **SSDISABLED**: `7`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:37](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L37)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:37](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L37)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:37
 
 > **SSDISABLED\_USTREAMER**: `9`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:38](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L38)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:38](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L38)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:38
 
 > **SSDISABLED\_NO\_CONFIG**: `10`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:39](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L39)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:39](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L39)
 
 ***
 
@@ -102,7 +102,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:39
 
 > **NO\_DAI\_CONFIG\_RETURNED\_IN\_GAB**: `12`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:40](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L40)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:40](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L40)
 
 ***
 
@@ -110,7 +110,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:40
 
 > **INACTIVE**: `8`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:41](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L41)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:41](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L41)
 
 ***
 
@@ -118,7 +118,7 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:41
 
 > **CACHE\_MISS**: `13`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:42](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L42)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:42](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L42)
 
 ***
 
@@ -126,4 +126,4 @@ Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:42
 
 > **UNRECOGNIZED**: `-1`
 
-Defined in: [protos/generated/video\_streaming/server\_stitched\_dai\_info.ts:43](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/server_stitched_dai_info.ts#L43)
+Defined in: [protos/generated/video\_streaming/ssap\_playback\_info.ts:43](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/ssap_playback_info.ts#L43)

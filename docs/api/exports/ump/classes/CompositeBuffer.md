@@ -2,7 +2,7 @@
 
 # Class: CompositeBuffer
 
-Defined in: [src/core/CompositeBuffer.ts:6](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L6)
+Defined in: [src/core/CompositeBuffer.ts:6](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L6)
 
 A memory efficient buffer that manages discontinuous chunks as a single stream.
 
@@ -16,7 +16,7 @@ Based on https://gist.github.com/LuanRT/02d7eab589fb4080cd16e97f6dccf06f
 
 > **new CompositeBuffer**(`chunks`): `CompositeBuffer`
 
-Defined in: [src/core/CompositeBuffer.ts:13](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L13)
+Defined in: [src/core/CompositeBuffer.ts:13](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L13)
 
 #### Parameters
 
@@ -34,7 +34,7 @@ Defined in: [src/core/CompositeBuffer.ts:13](https://github.com/LuanRT/googlevid
 
 > **chunks**: `Uint8Array`\<`ArrayBufferLike`\>[]
 
-Defined in: [src/core/CompositeBuffer.ts:7](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L7)
+Defined in: [src/core/CompositeBuffer.ts:7](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L7)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [src/core/CompositeBuffer.ts:7](https://github.com/LuanRT/googlevide
 
 > **currentChunkOffset**: `number`
 
-Defined in: [src/core/CompositeBuffer.ts:8](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L8)
+Defined in: [src/core/CompositeBuffer.ts:8](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L8)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [src/core/CompositeBuffer.ts:8](https://github.com/LuanRT/googlevide
 
 > **currentChunkIndex**: `number`
 
-Defined in: [src/core/CompositeBuffer.ts:9](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L9)
+Defined in: [src/core/CompositeBuffer.ts:9](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L9)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [src/core/CompositeBuffer.ts:9](https://github.com/LuanRT/googlevide
 
 > `optional` **currentDataView**: `DataView`\<`ArrayBufferLike`\>
 
-Defined in: [src/core/CompositeBuffer.ts:10](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L10)
+Defined in: [src/core/CompositeBuffer.ts:10](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L10)
 
 ***
 
@@ -66,22 +66,22 @@ Defined in: [src/core/CompositeBuffer.ts:10](https://github.com/LuanRT/googlevid
 
 > **totalLength**: `number`
 
-Defined in: [src/core/CompositeBuffer.ts:11](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L11)
+Defined in: [src/core/CompositeBuffer.ts:11](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L11)
 
 ## Methods
 
 ### append()
 
-> **append**(`chunk`): `void`
+> **append**(`data`): `void`
 
-Defined in: [src/core/CompositeBuffer.ts:26](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L26)
+Defined in: [src/core/CompositeBuffer.ts:28](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L28)
 
 Appends a chunk or all chunks from another CompositeBuffer to this buffer.
 Chunks using the same `ArrayBuffer` are merged into a single `Uint8Array` to reduce memory usage and keep the number of chunks low.
 
 #### Parameters
 
-##### chunk
+##### data
 
 A `Uint8Array` to append, or another `CompositeBuffer` whose chunks will be appended individually.
 
@@ -97,7 +97,7 @@ A `Uint8Array` to append, or another `CompositeBuffer` whose chunks will be appe
 
 > **split**(`position`): `object`
 
-Defined in: [src/core/CompositeBuffer.ts:50](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L50)
+Defined in: [src/core/CompositeBuffer.ts:51](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L51)
 
 Splits this buffer at a specified position.
 
@@ -117,8 +117,8 @@ Obj containing the bytes before `position` as `extractedBuffer` and the bytes fr
 
 | Name | Type | Defined in |
 | ------ | ------ | ------ |
-| `extractedBuffer` | `CompositeBuffer` | [src/core/CompositeBuffer.ts:50](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L50) |
-| `remainingBuffer` | `CompositeBuffer` | [src/core/CompositeBuffer.ts:50](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L50) |
+| `extractedBuffer` | `CompositeBuffer` | [src/core/CompositeBuffer.ts:51](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L51) |
+| `remainingBuffer` | `CompositeBuffer` | [src/core/CompositeBuffer.ts:51](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L51) |
 
 ***
 
@@ -126,7 +126,7 @@ Obj containing the bytes before `position` as `extractedBuffer` and the bytes fr
 
 > **getLength**(): `number`
 
-Defined in: [src/core/CompositeBuffer.ts:72](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L72)
+Defined in: [src/core/CompositeBuffer.ts:71](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L71)
 
 #### Returns
 
@@ -138,7 +138,7 @@ Defined in: [src/core/CompositeBuffer.ts:72](https://github.com/LuanRT/googlevid
 
 > **canReadBytes**(`position`, `length`): `boolean`
 
-Defined in: [src/core/CompositeBuffer.ts:76](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L76)
+Defined in: [src/core/CompositeBuffer.ts:75](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L75)
 
 #### Parameters
 
@@ -160,7 +160,7 @@ Defined in: [src/core/CompositeBuffer.ts:76](https://github.com/LuanRT/googlevid
 
 > **getUint8**(`position`): `number`
 
-Defined in: [src/core/CompositeBuffer.ts:83](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L83)
+Defined in: [src/core/CompositeBuffer.ts:82](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L82)
 
 Reads a single unsigned byte at the given position.
 
@@ -180,7 +180,7 @@ Reads a single unsigned byte at the given position.
 
 > **focus**(`position`): `void`
 
-Defined in: [src/core/CompositeBuffer.ts:93](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L93)
+Defined in: [src/core/CompositeBuffer.ts:92](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L92)
 
 Moves the internal focus to the chunk containing the specified position.
 If the position is before the currently focused chunk, focus is reset first.
@@ -202,7 +202,7 @@ Cached `currentDataView` is also invalidated.
 
 > **isFocused**(`position`): `boolean`
 
-Defined in: [src/core/CompositeBuffer.ts:111](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/CompositeBuffer.ts#L111)
+Defined in: [src/core/CompositeBuffer.ts:110](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/core/CompositeBuffer.ts#L110)
 
 Checks whether the internal focus already covers the specified position.
 

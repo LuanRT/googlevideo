@@ -4,7 +4,7 @@
 
 > **parseRangeHeader**(`rangeHeaderValue`): `Range` \| `undefined`
 
-Defined in: [src/utils/urlUtils.ts:6](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/urlUtils.ts#L6)
+Defined in: [src/utils/urlUtils.ts:6](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/utils/urlUtils.ts#L6)
 
 ## Parameters
 

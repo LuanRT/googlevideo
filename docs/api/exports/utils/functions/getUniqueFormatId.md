@@ -4,7 +4,7 @@
 
 > **getUniqueFormatId**(`format`): `string`
 
-Defined in: [src/utils/formatUtils.ts:203](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/formatUtils.ts#L203)
+Defined in: [src/utils/formatUtils.ts:203](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/utils/formatUtils.ts#L203)
 
 Generates a unique format ID based on the SabrFormat properties.
 
