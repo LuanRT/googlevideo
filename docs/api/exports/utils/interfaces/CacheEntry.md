@@ -2,7 +2,7 @@
 
 # Interface: CacheEntry
 
-Defined in: [codeberg/googlevideo/src/utils/CacheManager.ts:3](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/CacheManager.ts#L3)
+Defined in: [src/utils/CacheManager.ts:6](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/CacheManager.ts#L6)
 
 ## Properties
 
@@ -10,15 +10,7 @@ Defined in: [codeberg/googlevideo/src/utils/CacheManager.ts:3](https://github.co
 
 > **data**: `Uint8Array`
 
-Defined in: [codeberg/googlevideo/src/utils/CacheManager.ts:4](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/CacheManager.ts#L4)
-
-***
-
-### size
-
-> **size**: `number`
-
-Defined in: [codeberg/googlevideo/src/utils/CacheManager.ts:6](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/CacheManager.ts#L6)
+Defined in: [src/utils/CacheManager.ts:7](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/CacheManager.ts#L7)
 
 ***
 
@@ -26,4 +18,12 @@ Defined in: [codeberg/googlevideo/src/utils/CacheManager.ts:6](https://github.co
 
 > **timestamp**: `number`
 
-Defined in: [codeberg/googlevideo/src/utils/CacheManager.ts:5](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/CacheManager.ts#L5)
+Defined in: [src/utils/CacheManager.ts:8](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/CacheManager.ts#L8)
+
+***
+
+### size
+
+> **size**: `number`
+
+Defined in: [src/utils/CacheManager.ts:9](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/CacheManager.ts#L9)

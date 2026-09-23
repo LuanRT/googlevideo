@@ -2,7 +2,7 @@
 
 # Interface: StreamerContext
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/streamer\_context.ts:12](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/streamer_context.ts#L12)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:12](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L12)
 
 ## Properties
 
@@ -10,39 +10,7 @@ Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/streamer\_co
 
 > `optional` **clientInfo**: [`ClientInfo`](ClientInfo.md)
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/streamer\_context.ts:13](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/streamer_context.ts#L13)
-
-***
-
-### field4?
-
-> `optional` **field4**: `Uint8Array`\<`ArrayBufferLike`\>
-
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/streamer\_context.ts:16](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/streamer_context.ts#L16)
-
-***
-
-### field7?
-
-> `optional` **field7**: `string`
-
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/streamer\_context.ts:19](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/streamer_context.ts#L19)
-
-***
-
-### field8?
-
-> `optional` **field8**: `StreamerContext_UnknownMessage1`
-
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/streamer\_context.ts:20](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/streamer_context.ts#L20)
-
-***
-
-### playbackCookie?
-
-> `optional` **playbackCookie**: `Uint8Array`\<`ArrayBufferLike`\>
-
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/streamer\_context.ts:15](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/streamer_context.ts#L15)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:13](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L13)
 
 ***
 
@@ -50,15 +18,31 @@ Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/streamer\_co
 
 > `optional` **poToken**: `Uint8Array`\<`ArrayBufferLike`\>
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/streamer\_context.ts:14](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/streamer_context.ts#L14)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:14](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L14)
+
+***
+
+### playbackCookie?
+
+> `optional` **playbackCookie**: `Uint8Array`\<`ArrayBufferLike`\>
+
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:15](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L15)
+
+***
+
+### field4?
+
+> `optional` **field4**: `Uint8Array`\<`ArrayBufferLike`\>
+
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:16](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L16)
 
 ***
 
 ### sabrContexts
 
-> **sabrContexts**: `StreamerContext_SabrContext`[]
+> **sabrContexts**: [`SabrContext`](SabrContext.md)[]
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/streamer\_context.ts:17](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/streamer_context.ts#L17)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:17](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L17)
 
 ***
 
@@ -66,4 +50,20 @@ Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/streamer\_co
 
 > **unsentSabrContexts**: `number`[]
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/streamer\_context.ts:18](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/streamer_context.ts#L18)
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:18](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L18)
+
+***
+
+### field7?
+
+> `optional` **field7**: `string`
+
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:19](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L19)
+
+***
+
+### field8?
+
+> `optional` **field8**: `StreamerContext_UnknownMessage1`
+
+Defined in: [protos/generated/video\_streaming/streamer\_context.ts:20](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/streamer_context.ts#L20)

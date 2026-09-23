@@ -1,0 +1,8 @@
+syntax = "proto2";
+package video_streaming;
+
+import "video_streaming/cuepoint_info.proto";
+
+message CuepointList {
+  repeated CuepointInfo ssap_infos = 1;
+}

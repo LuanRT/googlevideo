@@ -1,5 +1,8 @@
 import { Logger } from './Logger.js';
 
+// @NOTE: The only reason this cache exists is because Shaka often tries redownloading the init segment.
+// Maybe there is a better way to handle it.
+
 export interface CacheEntry {
   data: Uint8Array;
   timestamp: number;
@@ -8,9 +11,6 @@ export interface CacheEntry {
 
 const TAG = 'CacheManager';
 
-/**
- * A "proper" cache for storing segments.
- */
 export class CacheManager {
   private initSegmentCache = new Map<string, CacheEntry>();
   private segmentCache = new Map<string, CacheEntry>();

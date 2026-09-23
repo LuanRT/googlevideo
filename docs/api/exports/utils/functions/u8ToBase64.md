@@ -4,9 +4,7 @@
 
 > **u8ToBase64**(`u8`): `string`
 
-Defined in: [codeberg/googlevideo/src/utils/shared.ts:71](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/utils/shared.ts#L71)
-
-Converts a Uint8Array to a Base64 string.
+Defined in: [src/utils/uint8arrayUtils.ts:1](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/utils/uint8arrayUtils.ts#L1)
 
 ## Parameters
 

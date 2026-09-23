@@ -2,23 +2,15 @@
 
 # Interface: CryptoParams
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/crypto\_params.ts:13](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/crypto_params.ts#L13)
+Defined in: [protos/generated/video\_streaming/crypto\_params.ts:13](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/crypto_params.ts#L13)
 
 ## Properties
-
-### compressionType?
-
-> `optional` **compressionType**: [`CompressionType`](../enumerations/CompressionType.md)
-
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/crypto\_params.ts:16](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/crypto_params.ts#L16)
-
-***
 
 ### hmac?
 
 > `optional` **hmac**: `Uint8Array`\<`ArrayBufferLike`\>
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/crypto\_params.ts:14](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/crypto_params.ts#L14)
+Defined in: [protos/generated/video\_streaming/crypto\_params.ts:14](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/crypto_params.ts#L14)
 
 ***
 
@@ -26,4 +18,12 @@ Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/crypto\_para
 
 > `optional` **iv**: `Uint8Array`\<`ArrayBufferLike`\>
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/crypto\_params.ts:15](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/crypto_params.ts#L15)
+Defined in: [protos/generated/video\_streaming/crypto\_params.ts:15](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/crypto_params.ts#L15)
+
+***
+
+### compressionType?
+
+> `optional` **compressionType**: [`CompressionType`](../enumerations/CompressionType.md)
+
+Defined in: [protos/generated/video\_streaming/crypto\_params.ts:16](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/crypto_params.ts#L16)

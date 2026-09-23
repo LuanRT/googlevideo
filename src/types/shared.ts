@@ -4,6 +4,7 @@
  */
 
 import type { CompositeBuffer } from '../core/CompositeBuffer.js';
+import type { FormatInitializationMetadata, MediaHeader } from '../utils/Protos.js';
 
 export type Part = {
   type: number;
@@ -21,6 +22,8 @@ export interface SabrFormat {
   audioTrackId?: string;
   mimeType?: string;
   isDrc?: boolean;
+  isVb?: boolean;
+  isSr?: boolean;
   quality?: string;
   qualityLabel?: string;
   averageBitrate?: number;
@@ -33,6 +36,7 @@ export interface SabrFormat {
   isDescriptive?: boolean;
   isSecondary?: boolean;
   isOriginal?: boolean;
+  targetDurationSec?: number;
 }
 
 export interface FormatStream {
@@ -56,6 +60,10 @@ export interface FormatStream {
   audioTrackId?: string;
   is_drc?: boolean;
   isDrc?: boolean;
+  isVb?: boolean;
+  is_vb?: boolean;
+  is_sr?: boolean;
+  isSr?: boolean;
   approx_duration_ms?: number;
   approxDurationMs?: string;
   content_length?: number;
@@ -66,6 +74,10 @@ export interface FormatStream {
   language?: string | null;
   is_original?: boolean;
   is_secondary?: boolean;
+  targetDurationSec?: number;
+  target_duration_sec?: number;
+  target_duration_dec?: number;
 }
 
+export type CreateFormatKeyInput = { itag?: number; xtags?: string } | MediaHeader | FormatInitializationMetadata | SabrFormat;
 export type FetchFunction = typeof fetch;

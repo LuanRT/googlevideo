@@ -2,23 +2,27 @@
 
 # Class: UmpReader
 
-Defined in: [codeberg/googlevideo/src/core/UmpReader.ts:7](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpReader.ts#L7)
+Defined in: [src/core/UmpReader.ts:20](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/UmpReader.ts#L20)
 
-A parser that efficiently processes chunked UMP binary data.
+An efficient UMP reader.
+
+## NOTE
+
+Based on https://gist.github.com/LuanRT/7c8c79fa558f2430f0b85b09f8a9d818
 
 ## Constructors
 
 ### Constructor
 
-> **new UmpReader**(`compositeBuffer`): `UmpReader`
+> **new UmpReader**(`callbacks`): `UmpReader`
 
-Defined in: [codeberg/googlevideo/src/core/UmpReader.ts:8](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpReader.ts#L8)
+Defined in: [src/core/UmpReader.ts:27](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/UmpReader.ts#L27)
 
 #### Parameters
 
-##### compositeBuffer
+##### callbacks
 
-[`CompositeBuffer`](CompositeBuffer.md)
+[`UmpReaderCallbacks`](../interfaces/UmpReaderCallbacks.md)
 
 #### Returns
 
@@ -26,11 +30,51 @@ Defined in: [codeberg/googlevideo/src/core/UmpReader.ts:8](https://github.com/Lu
 
 ## Methods
 
+### feed()
+
+> **feed**(`chunk`): `Promise`\<`void`\>
+
+Defined in: [src/core/UmpReader.ts:31](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/UmpReader.ts#L31)
+
+#### Parameters
+
+##### chunk
+
+[`CompositeBuffer`](CompositeBuffer.md) | `Uint8Array`\<`ArrayBufferLike`\>
+
+#### Returns
+
+`Promise`\<`void`\>
+
+***
+
+### readVarInt()
+
+> **readVarInt**(`offset`): \[`number`, `number`\]
+
+Defined in: [src/core/UmpReader.ts:103](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/UmpReader.ts#L103)
+
+Reads a specific varint from the current buffer offset.
+
+#### Parameters
+
+##### offset
+
+`number`
+
+#### Returns
+
+\[`number`, `number`\]
+
+[decodedValue, updatedOffset] or [-1, originalOffset] if incomplete.
+
+***
+
 ### canReadFromCurrentChunk()
 
 > **canReadFromCurrentChunk**(`offset`, `length`): `boolean`
 
-Defined in: [codeberg/googlevideo/src/core/UmpReader.ts:126](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpReader.ts#L126)
+Defined in: [src/core/UmpReader.ts:178](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/UmpReader.ts#L178)
 
 Checks if the specified bytes can be read from the current chunk.
 
@@ -60,7 +104,7 @@ True if bytes can be read from current chunk, false otherwise.
 
 > **getCurrentDataView**(): `DataView`
 
-Defined in: [codeberg/googlevideo/src/core/UmpReader.ts:134](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpReader.ts#L134)
+Defined in: [src/core/UmpReader.ts:187](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/UmpReader.ts#L187)
 
 Gets a DataView of the current chunk, creating it if necessary.
 
@@ -72,48 +116,12 @@ DataView for the current chunk.
 
 ***
 
-### read()
+### dispose()
 
-> **read**(`handlePart`): `undefined` \| [`Part`](../../../types/shared/type-aliases/Part.md)
+> **dispose**(): `void`
 
-Defined in: [codeberg/googlevideo/src/core/UmpReader.ts:15](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpReader.ts#L15)
-
-Parses parts from the buffer and calls the handler for each complete part.
-
-#### Parameters
-
-##### handlePart
-
-(`part`) => `void`
-
-Function called with each complete part.
+Defined in: [src/core/UmpReader.ts:199](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/UmpReader.ts#L199)
 
 #### Returns
 
-`undefined` \| [`Part`](../../../types/shared/type-aliases/Part.md)
-
-Partial part if parsing is incomplete, undefined otherwise.
-
-***
-
-### readVarInt()
-
-> **readVarInt**(`offset`): \[`number`, `number`\]
-
-Defined in: [codeberg/googlevideo/src/core/UmpReader.ts:57](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/UmpReader.ts#L57)
-
-Reads a variable-length integer from the buffer.
-
-#### Parameters
-
-##### offset
-
-`number`
-
-Position to start reading from.
-
-#### Returns
-
-\[`number`, `number`\]
-
-Tuple of [value, new offset] or [-1, offset] if incomplete.
+`void`

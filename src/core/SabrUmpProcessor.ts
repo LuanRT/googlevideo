@@ -1,9 +1,5 @@
 import { concatenateChunks, type CacheManager } from '../utils/index.js';
-
-import { createSegmentCacheKey, fromFormat, fromMediaHeader } from '../utils/formatKeyUtils.js';
-
-import { CompositeBuffer } from './CompositeBuffer.js';
-import { UmpReader } from './UmpReader.js';
+import { createSegmentCacheKey, createFormatKey } from '../utils/formatUtils.js';
 
 import {
   FormatInitializationMetadata,
@@ -19,8 +15,9 @@ import {
   UMPPartId
 } from '../utils/Protos.js';
 
-import type { Part } from '../types/shared.js';
+import { UmpReader } from './UmpReader.js';
 import type { SabrRequestMetadata } from '../types/sabrStreamingAdapterTypes.js';
+import type { CompositeBuffer } from './CompositeBuffer.js';
 
 interface Segment {
   headerId?: number;
@@ -28,6 +25,12 @@ interface Segment {
   complete?: boolean;
   bufferedChunks: Uint8Array[];
   lastChunkSize: number;
+}
+
+interface Part {
+  type: number;
+  size: number;
+  data: CompositeBuffer;
 }
 
 export interface UmpProcessingResult {
@@ -38,17 +41,21 @@ export interface UmpProcessingResult {
 type UmpPartHandler = (part: Part) => UmpProcessingResult | undefined;
 
 /**
- * This class is responsible for reading a UMP stream, handling different part types
- * (like media headers, media data, and server directives), and populating a
- * metadata object with the extracted information. It is supposed to be used
- * in conjunction with a {@linkcode SabrPlayerAdapter} in video player
- * implementations.
+ * This class is responsible for reading a UMP stream and populating a metadata object
+ * with the extracted information. It is supposed to be used in conjunction with a 
+ * {@linkcode SabrPlayerAdapter} in video player implementations.
  */
 export class SabrUmpProcessor {
-  public partialPart?: Part;
   private readonly formatInitMetadata: FormatInitializationMetadata[] = [];
   private desiredHeaderId?: number;
   private partialSegments = new Map<number, Segment>();
+  private umpReader: UmpReader;
+
+  /**
+   * Very janky workaround because I just wanted to quickly port this to the new UmpReader implementation...
+   * @TODO: Refactor this
+   */
+  private returnData?: { done: boolean; data?: Uint8Array };
 
   private readonly umpPartHandlers = new Map<UMPPartId, UmpPartHandler>([
     [ UMPPartId.FORMAT_INITIALIZATION_METADATA, this.handleFormatInitMetadata.bind(this) ],
@@ -68,39 +75,30 @@ export class SabrUmpProcessor {
   constructor(
     private requestMetadata: SabrRequestMetadata,
     private cacheManager?: CacheManager
-  ) { }
+  ) {
+    this.umpReader = new UmpReader({
+      onPart: (type, data) => {
+        const part: Part = { type, size: data.getLength(), data };
+        const handler = this.umpPartHandlers.get(part.type);
+        const result = handler?.(part);
+        if (result) {
+          this.desiredHeaderId = undefined;
+          this.partialSegments.clear();
+          this.returnData = result;
+        }
+      }
+    });
+  }
 
   /**
    * Processes a chunk of data from a UMP stream and updates the request context.
    * @returns A promise that resolves with a processing result if a terminal part is found (e.g., MediaEnd), or undefined otherwise.
    * @param value
    */
-  public processChunk(value: Uint8Array): Promise<UmpProcessingResult | undefined> {
-    return new Promise((resolve) => {
-      let chunk;
-
-      if (this.partialPart) {
-        chunk = this.partialPart.data;
-        chunk.append(value);
-      } else {
-        chunk = new CompositeBuffer([ value ]);
-      }
-
-      const ump = new UmpReader(chunk);
-
-      this.partialPart = ump.read((part: Part) => {
-        const handler = this.umpPartHandlers.get(part.type);
-        const result = handler?.(part);
-        if (result) {
-          this.partialPart = undefined;
-          this.desiredHeaderId = undefined;
-          this.partialSegments.clear();
-          resolve(result);
-        }
-      });
-
-      resolve(undefined);
-    });
+  public async processChunk(value: Uint8Array): Promise<UmpProcessingResult | undefined> {
+    this.returnData = undefined;
+    await this.umpReader.feed(value);
+    return this.returnData;
   }
 
   public getSegmentInfo(): Segment | undefined {
@@ -110,7 +108,7 @@ export class SabrUmpProcessor {
   private decodePart<T>(part: Part, decoder: { decode: (data: Uint8Array) => T }): T | undefined {
     if (!part.data.chunks.length)
       return undefined;
-    
+
     try {
       return decoder.decode(concatenateChunks(part.data.chunks));
     } catch {
@@ -144,8 +142,8 @@ export class SabrUmpProcessor {
       return undefined;
     }
 
-    const targetFormatKey = fromFormat(this.requestMetadata.format);
-    const segmentFormatKey = fromMediaHeader(mediaHeader);
+    const targetFormatKey = createFormatKey(this.requestMetadata.format!);
+    const segmentFormatKey = createFormatKey(mediaHeader);
 
     if (!this.requestMetadata.isSABR || segmentFormatKey === targetFormatKey) {
       const segmentObj = {
@@ -315,5 +313,12 @@ export class SabrUmpProcessor {
       };
     }
     return undefined;
+  }
+
+  public dispose(): void {
+    this.returnData = undefined;
+    this.desiredHeaderId = undefined;
+    this.partialSegments.clear();
+    this.umpReader.dispose();
   }
 }

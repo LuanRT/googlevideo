@@ -2,15 +2,23 @@
 
 # Interface: PlayerHttpResponse
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:75](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L75)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:79](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L79)
 
 ## Properties
 
-### data?
+### url
 
-> `optional` **data**: `ArrayBuffer` \| `ArrayBufferView`\<`ArrayBufferLike`\>
+> **url**: `string`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:79](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L79)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:80](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L80)
+
+***
+
+### method
+
+> **method**: `string`
+
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:81](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L81)
 
 ***
 
@@ -18,7 +26,15 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:79](htt
 
 > **headers**: `Record`\<`string`, `string`\>
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:78](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L78)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:82](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L82)
+
+***
+
+### data?
+
+> `optional` **data**: `ArrayBuffer` \| `ArrayBufferView`\<`ArrayBufferLike`\>
+
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:83](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L83)
 
 ***
 
@@ -26,7 +42,7 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:78](htt
 
 > **makeRequest**: (`url`, `headers`) => `Promise`\<`Omit`\<`PlayerHttpResponse`, `"makeRequest"`\>\>
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:80](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L80)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:84](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L84)
 
 #### Parameters
 
@@ -41,19 +57,3 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:80](htt
 #### Returns
 
 `Promise`\<`Omit`\<`PlayerHttpResponse`, `"makeRequest"`\>\>
-
-***
-
-### method
-
-> **method**: `string`
-
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:77](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L77)
-
-***
-
-### url
-
-> **url**: `string`
-
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:76](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L76)

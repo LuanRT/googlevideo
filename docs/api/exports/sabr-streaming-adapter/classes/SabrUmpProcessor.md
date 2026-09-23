@@ -2,13 +2,11 @@
 
 # Class: SabrUmpProcessor
 
-Defined in: [codeberg/googlevideo/src/core/SabrUmpProcessor.ts:47](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/SabrUmpProcessor.ts#L47)
+Defined in: [src/core/SabrUmpProcessor.ts:48](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrUmpProcessor.ts#L48)
 
-This class is responsible for reading a UMP stream, handling different part types
-(like media headers, media data, and server directives), and populating a
-metadata object with the extracted information. It is supposed to be used
-in conjunction with a [`SabrPlayerAdapter`](../interfaces/SabrPlayerAdapter.md) in video player
-implementations.
+This class is responsible for reading a UMP stream and populating a metadata object
+with the extracted information. It is supposed to be used in conjunction with a 
+[`SabrPlayerAdapter`](../interfaces/SabrPlayerAdapter.md) in video player implementations.
 
 ## Constructors
 
@@ -16,7 +14,7 @@ implementations.
 
 > **new SabrUmpProcessor**(`requestMetadata`, `cacheManager?`): `SabrUmpProcessor`
 
-Defined in: [codeberg/googlevideo/src/core/SabrUmpProcessor.ts:68](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/SabrUmpProcessor.ts#L68)
+Defined in: [src/core/SabrUmpProcessor.ts:75](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrUmpProcessor.ts#L75)
 
 #### Parameters
 
@@ -32,33 +30,13 @@ Defined in: [codeberg/googlevideo/src/core/SabrUmpProcessor.ts:68](https://githu
 
 `SabrUmpProcessor`
 
-## Properties
-
-### partialPart?
-
-> `optional` **partialPart**: [`Part`](../../../types/shared/type-aliases/Part.md)
-
-Defined in: [codeberg/googlevideo/src/core/SabrUmpProcessor.ts:48](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/SabrUmpProcessor.ts#L48)
-
 ## Methods
-
-### getSegmentInfo()
-
-> **getSegmentInfo**(): `undefined` \| `Segment`
-
-Defined in: [codeberg/googlevideo/src/core/SabrUmpProcessor.ts:106](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/SabrUmpProcessor.ts#L106)
-
-#### Returns
-
-`undefined` \| `Segment`
-
-***
 
 ### processChunk()
 
-> **processChunk**(`value`): `Promise`\<`undefined` \| [`UmpProcessingResult`](../interfaces/UmpProcessingResult.md)\>
+> **processChunk**(`value`): `Promise`\<[`UmpProcessingResult`](../interfaces/UmpProcessingResult.md) \| `undefined`\>
 
-Defined in: [codeberg/googlevideo/src/core/SabrUmpProcessor.ts:78](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/SabrUmpProcessor.ts#L78)
+Defined in: [src/core/SabrUmpProcessor.ts:98](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrUmpProcessor.ts#L98)
 
 Processes a chunk of data from a UMP stream and updates the request context.
 
@@ -70,6 +48,30 @@ Processes a chunk of data from a UMP stream and updates the request context.
 
 #### Returns
 
-`Promise`\<`undefined` \| [`UmpProcessingResult`](../interfaces/UmpProcessingResult.md)\>
+`Promise`\<[`UmpProcessingResult`](../interfaces/UmpProcessingResult.md) \| `undefined`\>
 
 A promise that resolves with a processing result if a terminal part is found (e.g., MediaEnd), or undefined otherwise.
+
+***
+
+### getSegmentInfo()
+
+> **getSegmentInfo**(): `Segment` \| `undefined`
+
+Defined in: [src/core/SabrUmpProcessor.ts:104](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrUmpProcessor.ts#L104)
+
+#### Returns
+
+`Segment` \| `undefined`
+
+***
+
+### dispose()
+
+> **dispose**(): `void`
+
+Defined in: [src/core/SabrUmpProcessor.ts:318](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrUmpProcessor.ts#L318)
+
+#### Returns
+
+`void`

@@ -2,7 +2,7 @@
 
 # Interface: SabrRequestMetadata
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:19](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L19)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:19](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L19)
 
 ## Properties
 
@@ -10,27 +10,15 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:19](htt
 
 > `optional` **byteRange**: `object`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:20](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L20)
-
-#### end
-
-> **end**: `number`
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:20](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L20)
 
 #### start
 
 > **start**: `number`
 
-***
+#### end
 
-### error?
-
-> `optional` **error**: `object`
-
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:37](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L37)
-
-#### sabrError?
-
-> `optional` **sabrError**: [`SabrError`](../../protos/interfaces/SabrError.md)
+> **end**: `number`
 
 ***
 
@@ -38,7 +26,7 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:37](htt
 
 > `optional` **format**: [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:21](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L21)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:21](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L21)
 
 ***
 
@@ -46,15 +34,7 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:21](htt
 
 > `optional` **isInit**: `boolean`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:22](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L22)
-
-***
-
-### isSABR?
-
-> `optional` **isSABR**: `boolean`
-
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:24](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L24)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:22](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L22)
 
 ***
 
@@ -62,7 +42,15 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:24](htt
 
 > `optional` **isUMP**: `boolean`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:23](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L23)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:23](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L23)
+
+***
+
+### isSABR?
+
+> `optional` **isSABR**: `boolean`
+
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:24](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L24)
 
 ***
 
@@ -70,27 +58,23 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:23](htt
 
 > `optional` **streamInfo**: `object`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:25](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L25)
-
-#### formatInitMetadata?
-
-> `optional` **formatInitMetadata**: [`FormatInitializationMetadata`](../../protos/interfaces/FormatInitializationMetadata.md)[]
-
-#### mediaHeader?
-
-> `optional` **mediaHeader**: [`MediaHeader`](../../protos/interfaces/MediaHeader.md)
-
-#### nextRequestPolicy?
-
-> `optional` **nextRequestPolicy**: [`NextRequestPolicy`](../../protos/interfaces/NextRequestPolicy.md)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:25](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L25)
 
 #### playbackCookie?
 
 > `optional` **playbackCookie**: [`PlaybackCookie`](../../protos/interfaces/PlaybackCookie.md)
 
-#### redirect?
+#### nextRequestPolicy?
 
-> `optional` **redirect**: [`SabrRedirect`](../../protos/interfaces/SabrRedirect.md)
+> `optional` **nextRequestPolicy**: [`NextRequestPolicy`](../../protos/interfaces/NextRequestPolicy.md)
+
+#### formatInitMetadata?
+
+> `optional` **formatInitMetadata**: [`FormatInitializationMetadata`](../../protos/interfaces/FormatInitializationMetadata.md)[]
+
+#### streamProtectionStatus?
+
+> `optional` **streamProtectionStatus**: [`StreamProtectionStatus`](../../protos/interfaces/StreamProtectionStatus.md)
 
 #### reloadPlaybackContext?
 
@@ -108,9 +92,25 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:25](htt
 
 > `optional` **snackbarMessage**: [`SnackbarMessage`](../../protos/interfaces/SnackbarMessage.md)
 
-#### streamProtectionStatus?
+#### mediaHeader?
 
-> `optional` **streamProtectionStatus**: [`StreamProtectionStatus`](../../protos/interfaces/StreamProtectionStatus.md)
+> `optional` **mediaHeader**: [`MediaHeader`](../../protos/interfaces/MediaHeader.md)
+
+#### redirect?
+
+> `optional` **redirect**: [`SabrRedirect`](../../protos/interfaces/SabrRedirect.md)
+
+***
+
+### error?
+
+> `optional` **error**: `object`
+
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:37](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L37)
+
+#### sabrError?
+
+> `optional` **sabrError**: [`SabrError`](../../protos/interfaces/SabrError.md)
 
 ***
 
@@ -118,4 +118,4 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:25](htt
 
 > **timestamp**: `number`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:40](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L40)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:40](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L40)

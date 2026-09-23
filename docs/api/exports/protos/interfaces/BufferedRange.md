@@ -2,55 +2,31 @@
 
 # Interface: BufferedRange
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/buffered\_range.ts:14](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/buffered_range.ts#L14)
+Defined in: [protos/generated/video\_streaming/buffered\_range.ts:14](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/buffered_range.ts#L14)
 
 ## Properties
 
-### durationMs
-
-> **durationMs**: `number`
-
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/buffered\_range.ts:17](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/buffered_range.ts#L17)
-
-***
-
-### endSegmentIndex
-
-> **endSegmentIndex**: `number`
-
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/buffered\_range.ts:19](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/buffered_range.ts#L19)
-
-***
-
-### field11?
-
-> `optional` **field11**: `BufferedRange_UnknownMessage2`
-
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/buffered\_range.ts:22](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/buffered_range.ts#L22)
-
-***
-
-### field12?
-
-> `optional` **field12**: `BufferedRange_UnknownMessage2`
-
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/buffered\_range.ts:23](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/buffered_range.ts#L23)
-
-***
-
-### field9?
-
-> `optional` **field9**: `BufferedRange_UnknownMessage1`
-
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/buffered\_range.ts:21](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/buffered_range.ts#L21)
-
-***
-
 ### formatId
 
-> **formatId**: `undefined` \| [`FormatId`](FormatId.md)
+> **formatId**: [`FormatId`](FormatId.md) \| `undefined`
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/buffered\_range.ts:15](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/buffered_range.ts#L15)
+Defined in: [protos/generated/video\_streaming/buffered\_range.ts:15](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/buffered_range.ts#L15)
+
+***
+
+### startTimeMs
+
+> **startTimeMs**: `string`
+
+Defined in: [protos/generated/video\_streaming/buffered\_range.ts:16](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/buffered_range.ts#L16)
+
+***
+
+### durationMs
+
+> **durationMs**: `string`
+
+Defined in: [protos/generated/video\_streaming/buffered\_range.ts:17](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/buffered_range.ts#L17)
 
 ***
 
@@ -58,20 +34,44 @@ Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/buffered\_ra
 
 > **startSegmentIndex**: `number`
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/buffered\_range.ts:18](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/buffered_range.ts#L18)
+Defined in: [protos/generated/video\_streaming/buffered\_range.ts:18](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/buffered_range.ts#L18)
 
 ***
 
-### startTimeMs
+### endSegmentIndex
 
-> **startTimeMs**: `number`
+> **endSegmentIndex**: `number`
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/buffered\_range.ts:16](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/buffered_range.ts#L16)
+Defined in: [protos/generated/video\_streaming/buffered\_range.ts:19](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/buffered_range.ts#L19)
 
 ***
 
 ### timeRange?
 
-> `optional` **timeRange**: `TimeRange`
+> `optional` **timeRange**: [`TimeRange`](TimeRange.md)
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/buffered\_range.ts:20](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/buffered_range.ts#L20)
+Defined in: [protos/generated/video\_streaming/buffered\_range.ts:20](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/buffered_range.ts#L20)
+
+***
+
+### field9?
+
+> `optional` **field9**: `BufferedRange_UnknownMessage1`
+
+Defined in: [protos/generated/video\_streaming/buffered\_range.ts:21](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/buffered_range.ts#L21)
+
+***
+
+### field11?
+
+> `optional` **field11**: `BufferedRange_UnknownMessage2`
+
+Defined in: [protos/generated/video\_streaming/buffered\_range.ts:22](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/buffered_range.ts#L22)
+
+***
+
+### field12?
+
+> `optional` **field12**: `BufferedRange_UnknownMessage2`
+
+Defined in: [protos/generated/video\_streaming/buffered\_range.ts:23](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/buffered_range.ts#L23)

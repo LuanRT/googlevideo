@@ -1,0 +1,8 @@
+syntax = "proto2";
+package video_streaming;
+
+import "misc/common.proto";
+
+message AllowedCachedFormats {
+  repeated .misc.FormatId formats = 1;
+}

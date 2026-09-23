@@ -2,31 +2,15 @@
 
 # Enumeration: AudioQuality
 
-Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:19](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L19)
+Defined in: [protos/generated/misc/common.ts:19](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L19)
 
 ## Enumeration Members
 
-### HIGH
+### UNKNOWN
 
-> **HIGH**: `30`
+> **UNKNOWN**: `0`
 
-Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:24](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L24)
-
-***
-
-### LOW
-
-> **LOW**: `10`
-
-Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:22](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L22)
-
-***
-
-### MEDIUM
-
-> **MEDIUM**: `20`
-
-Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:23](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L23)
+Defined in: [protos/generated/misc/common.ts:20](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L20)
 
 ***
 
@@ -34,15 +18,31 @@ Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:23](https://gi
 
 > **ULTRALOW**: `5`
 
-Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:21](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L21)
+Defined in: [protos/generated/misc/common.ts:21](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L21)
 
 ***
 
-### UNKNOWN
+### LOW
 
-> **UNKNOWN**: `0`
+> **LOW**: `10`
 
-Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:20](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L20)
+Defined in: [protos/generated/misc/common.ts:22](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L22)
+
+***
+
+### MEDIUM
+
+> **MEDIUM**: `20`
+
+Defined in: [protos/generated/misc/common.ts:23](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L23)
+
+***
+
+### HIGH
+
+> **HIGH**: `30`
+
+Defined in: [protos/generated/misc/common.ts:24](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L24)
 
 ***
 
@@ -50,4 +50,4 @@ Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:20](https://gi
 
 > **UNRECOGNIZED**: `-1`
 
-Defined in: [codeberg/googlevideo/protos/generated/misc/common.ts:25](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/misc/common.ts#L25)
+Defined in: [protos/generated/misc/common.ts:25](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/misc/common.ts#L25)

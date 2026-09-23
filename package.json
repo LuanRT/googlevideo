@@ -1,7 +1,7 @@
 {
   "name": "googlevideo",
   "version": "4.1.1",
-  "description": "A collection of modules for working with YouTube's proprietary video streaming protocols (UMP/SABR).",
+  "description": "A collection of modules for handling YouTube's custom UMP format and SABR streaming protocol.",
   "type": "module",
   "scripts": {
     "watch": "npx tspc --watch",
@@ -22,6 +22,7 @@
   ],
   "keywords": [
     "UMP",
+    "Ustreamer",
     "SABR",
     "Google",
     "YouTube"
@@ -62,14 +63,13 @@
     "@stylistic/eslint-plugin": "^2.6.4",
     "@types/eslint__js": "^8.42.3",
     "eslint": "^9.9.0",
-    "globals": "^15.9.0",
     "ts-patch": "^3.3.0",
     "ts-proto": "^2.2.0",
-    "typedoc": "^0.28.7",
+    "typedoc": "^0.28.20",
     "typedoc-plugin-markdown": "^4.7.1",
-    "typescript": "^5.5.4",
+    "typescript": "^5.8.3",
     "typescript-eslint": "^8.2.0",
-    "vitest": "^3.2.4"
+    "vitest": "^4.1.11"
   },
   "dependencies": {
     "@bufbuild/protobuf": "^2.0.0"

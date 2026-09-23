@@ -1,0 +1,53 @@
+[googlevideo](../../../README.md) / [exports/protos](../README.md) / VideoFormatCapability
+
+# Interface: VideoFormatCapability
+
+Defined in: [protos/generated/video\_streaming/media\_capabilities.ts:18](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/media_capabilities.ts#L18)
+
+## Properties
+
+### videoCodec?
+
+> `optional` **videoCodec**: `number`
+
+Defined in: [protos/generated/video\_streaming/media\_capabilities.ts:19](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/media_capabilities.ts#L19)
+
+***
+
+### maxHeight?
+
+> `optional` **maxHeight**: `number`
+
+Defined in: [protos/generated/video\_streaming/media\_capabilities.ts:20](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/media_capabilities.ts#L20)
+
+***
+
+### maxWidth?
+
+> `optional` **maxWidth**: `number`
+
+Defined in: [protos/generated/video\_streaming/media\_capabilities.ts:21](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/media_capabilities.ts#L21)
+
+***
+
+### maxFramerate?
+
+> `optional` **maxFramerate**: `number`
+
+Defined in: [protos/generated/video\_streaming/media\_capabilities.ts:22](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/media_capabilities.ts#L22)
+
+***
+
+### maxBitrateBps?
+
+> `optional` **maxBitrateBps**: `number`
+
+Defined in: [protos/generated/video\_streaming/media\_capabilities.ts:23](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/media_capabilities.ts#L23)
+
+***
+
+### is10BitSupported?
+
+> `optional` **is10BitSupported**: `boolean`
+
+Defined in: [protos/generated/video\_streaming/media\_capabilities.ts:24](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/media_capabilities.ts#L24)

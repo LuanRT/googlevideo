@@ -9,3 +9,7 @@ This module contains utilities for writing and reading UMP data.
 - [CompositeBuffer](classes/CompositeBuffer.md)
 - [UmpReader](classes/UmpReader.md)
 - [UmpWriter](classes/UmpWriter.md)
+
+## Interfaces
+
+- [UmpReaderCallbacks](interfaces/UmpReaderCallbacks.md)

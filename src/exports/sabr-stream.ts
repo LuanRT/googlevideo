@@ -1,5 +1,5 @@
 /**
- * This module contains a SABR client for downloading videos.
+ * This module contains a SABR stream implementation for downloading VODs and live streams.
  * @module
  */
 

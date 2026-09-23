@@ -4,34 +4,16 @@
 
 > `const` **SABR\_CONSTANTS**: `object`
 
-Defined in: [codeberg/googlevideo/src/core/SabrStreamingAdapter.ts:49](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/core/SabrStreamingAdapter.ts#L49)
+Defined in: [src/core/SabrStreamingAdapter.ts:55](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStreamingAdapter.ts#L55)
 
-## Type declaration
+## Type Declaration
 
-### DEFAULT\_OPTIONS
-
-> `readonly` **DEFAULT\_OPTIONS**: `object`
-
-#### DEFAULT\_OPTIONS.enableCaching
-
-> `readonly` **enableCaching**: `true` = `true`
-
-#### DEFAULT\_OPTIONS.enableVerboseRequestLogging
-
-> `readonly` **enableVerboseRequestLogging**: `false` = `false`
-
-#### DEFAULT\_OPTIONS.maxCacheAgeSeconds
-
-> `readonly` **maxCacheAgeSeconds**: `300` = `300`
-
-#### DEFAULT\_OPTIONS.maxCacheSizeMB
-
-> `readonly` **maxCacheSizeMB**: `3` = `3`
-
-### KEY\_PARAM
-
-> `readonly` **KEY\_PARAM**: `"key"` = `'key'`
-
-### PROTOCOL
-
-> `readonly` **PROTOCOL**: `"sabr:"` = `'sabr:'`
+| Name | Type | Default value | Defined in |
+| ------ | ------ | ------ | ------ |
+| <a id="protocol"></a> `PROTOCOL` | `"sabr:"` | `'sabr:'` | [src/core/SabrStreamingAdapter.ts:56](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStreamingAdapter.ts#L56) |
+| <a id="key_param"></a> `KEY_PARAM` | `"key"` | `'key'` | [src/core/SabrStreamingAdapter.ts:57](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStreamingAdapter.ts#L57) |
+| <a id="default_options"></a> `DEFAULT_OPTIONS` | `object` | - | [src/core/SabrStreamingAdapter.ts:58](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStreamingAdapter.ts#L58) |
+| `DEFAULT_OPTIONS.enableCaching` | `true` | `true` | [src/core/SabrStreamingAdapter.ts:59](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStreamingAdapter.ts#L59) |
+| `DEFAULT_OPTIONS.enableVerboseRequestLogging` | `false` | `false` | [src/core/SabrStreamingAdapter.ts:60](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStreamingAdapter.ts#L60) |
+| `DEFAULT_OPTIONS.maxCacheSizeMB` | `3` | `3` | [src/core/SabrStreamingAdapter.ts:61](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStreamingAdapter.ts#L61) |
+| `DEFAULT_OPTIONS.maxCacheAgeSeconds` | `300` | `300` | [src/core/SabrStreamingAdapter.ts:62](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/core/SabrStreamingAdapter.ts#L62) |

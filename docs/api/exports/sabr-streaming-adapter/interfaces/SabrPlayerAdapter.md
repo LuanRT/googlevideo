@@ -2,15 +2,29 @@
 
 # Interface: SabrPlayerAdapter
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:99](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L99)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:103](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L103)
 
 ## Methods
 
-### dispose()
+### initialize()
 
-> **dispose**(): `void`
+> **initialize**(`player`, `requestMetadataManager`, `cache`): `void`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:114](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L114)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:104](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L104)
+
+#### Parameters
+
+##### player
+
+`any`
+
+##### requestMetadataManager
+
+[`RequestMetadataManager`](../../utils/classes/RequestMetadataManager.md)
+
+##### cache
+
+[`CacheManager`](../../utils/classes/CacheManager.md) | `null`
 
 #### Returns
 
@@ -18,11 +32,47 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:114](ht
 
 ***
 
+### getPlayerTime()
+
+> **getPlayerTime**(): `number`
+
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:109](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L109)
+
+#### Returns
+
+`number`
+
+***
+
+### getPlaybackRate()
+
+> **getPlaybackRate**(): `number`
+
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:110](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L110)
+
+#### Returns
+
+`number`
+
+***
+
+### getBandwidthEstimate()
+
+> **getBandwidthEstimate**(): `number`
+
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:111](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L111)
+
+#### Returns
+
+`number`
+
+***
+
 ### getActiveTrackFormats()
 
 > **getActiveTrackFormats**(`activeFormat`, `sabrFormats`): `object`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:108](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L108)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:112](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L112)
 
 #### Parameters
 
@@ -38,75 +88,10 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:108](ht
 
 `object`
 
-##### audioFormat?
-
-> `optional` **audioFormat**: [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)
-
-##### videoFormat?
-
-> `optional` **videoFormat**: [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)
-
-***
-
-### getBandwidthEstimate()
-
-> **getBandwidthEstimate**(): `number`
-
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:107](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L107)
-
-#### Returns
-
-`number`
-
-***
-
-### getPlaybackRate()
-
-> **getPlaybackRate**(): `number`
-
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:106](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L106)
-
-#### Returns
-
-`number`
-
-***
-
-### getPlayerTime()
-
-> **getPlayerTime**(): `number`
-
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:105](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L105)
-
-#### Returns
-
-`number`
-
-***
-
-### initialize()
-
-> **initialize**(`player`, `requestMetadataManager`, `cache`): `void`
-
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:100](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L100)
-
-#### Parameters
-
-##### player
-
-`any`
-
-##### requestMetadataManager
-
-[`RequestMetadataManager`](../../utils/classes/RequestMetadataManager.md)
-
-##### cache
-
-`null` | [`CacheManager`](../../utils/classes/CacheManager.md)
-
-#### Returns
-
-`void`
+| Name | Type | Defined in |
+| ------ | ------ | ------ |
+| `audioFormat?` | [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md) | [src/types/sabrStreamingAdapterTypes.ts:113](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L113) |
+| `videoFormat?` | [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md) | [src/types/sabrStreamingAdapterTypes.ts:114](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L114) |
 
 ***
 
@@ -114,7 +99,7 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:100](ht
 
 > **registerRequestInterceptor**(`interceptor`): `void`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:112](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L112)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:116](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L116)
 
 #### Parameters
 
@@ -132,13 +117,25 @@ Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:112](ht
 
 > **registerResponseInterceptor**(`interceptor`): `void`
 
-Defined in: [codeberg/googlevideo/src/types/sabrStreamingAdapterTypes.ts:113](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/src/types/sabrStreamingAdapterTypes.ts#L113)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:117](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L117)
 
 #### Parameters
 
 ##### interceptor
 
 [`ResponseFilter`](../type-aliases/ResponseFilter.md)
+
+#### Returns
+
+`void`
+
+***
+
+### dispose()
+
+> **dispose**(): `void`
+
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:118](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/src/types/sabrStreamingAdapterTypes.ts#L118)
 
 #### Returns
 

@@ -2,15 +2,15 @@
 
 # Interface: OnesieInnertubeRequest
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_innertube\_request.ts:13](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_innertube_request.ts#L13)
+Defined in: [protos/generated/video\_streaming/onesie\_innertube\_request.ts:13](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_innertube_request.ts#L13)
 
 ## Properties
 
-### body?
+### url?
 
-> `optional` **body**: `string`
+> `optional` **url**: `string`
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_innertube\_request.ts:16](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_innertube_request.ts#L16)
+Defined in: [protos/generated/video\_streaming/onesie\_innertube\_request.ts:14](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_innertube_request.ts#L14)
 
 ***
 
@@ -18,7 +18,15 @@ Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_inne
 
 > **headers**: [`HttpHeader`](HttpHeader.md)[]
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_innertube\_request.ts:15](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_innertube_request.ts#L15)
+Defined in: [protos/generated/video\_streaming/onesie\_innertube\_request.ts:15](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_innertube_request.ts#L15)
+
+***
+
+### body?
+
+> `optional` **body**: `string`
+
+Defined in: [protos/generated/video\_streaming/onesie\_innertube\_request.ts:16](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_innertube_request.ts#L16)
 
 ***
 
@@ -26,7 +34,7 @@ Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_inne
 
 > `optional` **proxiedByTrustedBandaid**: `boolean`
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_innertube\_request.ts:17](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_innertube_request.ts#L17)
+Defined in: [protos/generated/video\_streaming/onesie\_innertube\_request.ts:17](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_innertube_request.ts#L17)
 
 ***
 
@@ -34,12 +42,4 @@ Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_inne
 
 > `optional` **skipResponseEncryption**: `boolean`
 
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_innertube\_request.ts:18](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_innertube_request.ts#L18)
-
-***
-
-### url?
-
-> `optional` **url**: `string`
-
-Defined in: [codeberg/googlevideo/protos/generated/video\_streaming/onesie\_innertube\_request.ts:14](https://github.com/LuanRT/googlevideo/blob/19854137cadaf49fd755394883dfd7fe5fdaba20/protos/generated/video_streaming/onesie_innertube_request.ts#L14)
+Defined in: [protos/generated/video\_streaming/onesie\_innertube\_request.ts:18](https://github.com/LuanRT/googlevideo/blob/475f6c24e5c811c3ea09ef0888fab75cdca6db7b/protos/generated/video_streaming/onesie_innertube_request.ts#L18)

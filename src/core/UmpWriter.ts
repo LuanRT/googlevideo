@@ -1,29 +1,20 @@
 import type { CompositeBuffer } from './CompositeBuffer.js';
 
 /**
- * A serialization module that encodes data into the UMP binary format with proper type and size encoding.
+ * A utility class for writing data in the UMP format.
  */
 export class UmpWriter {
   constructor(
     private compositeBuffer: CompositeBuffer
   ) { }
 
-  /**
-   * Writes a part to the buffer.
-   * @param partType - The type of the part.
-   * @param partData - The data of the part.
-   */
-  public write(partType: number, partData: Uint8Array): void {
-    const partSize = partData.length;
-    this.writeVarInt(partType);
+  public write(type: number, data: Uint8Array): void {
+    const partSize = data.length;
+    this.writeVarInt(type);
     this.writeVarInt(partSize);
-    this.compositeBuffer.append(partData);
+    this.compositeBuffer.append(data);
   }
 
-  /**
-   * Writes a variable-length integer to the buffer.
-   * @param value - The integer to write.
-   */
   private writeVarInt(value: number): void {
     if (value < 0)
       throw new Error('VarInt value cannot be negative.');
@@ -32,26 +23,26 @@ export class UmpWriter {
       this.compositeBuffer.append(new Uint8Array([ value ]));
     } else if (value < 16384) {
       this.compositeBuffer.append(new Uint8Array([
-        (value & 0x3F) | 0x80,
+        (value & 0x3f) | 0x80,
         value >> 6
       ]));
     } else if (value < 2097152) {
       this.compositeBuffer.append(new Uint8Array([
-        (value & 0x1F) | 0xC0,
-        (value >> 5) & 0xFF,
+        (value & 0x1f) | 0xc0,
+        (value >> 5) & 0xff,
         value >> 13
       ]));
     } else if (value < 268435456) {
       this.compositeBuffer.append(new Uint8Array([
-        (value & 0x0F) | 0xE0,
-        (value >> 4) & 0xFF,
-        (value >> 12) & 0xFF,
+        (value & 0x0f) | 0xe0,
+        (value >> 4) & 0xff,
+        (value >> 12) & 0xff,
         value >> 20
       ]));
     } else {
       const data = new Uint8Array(5);
       const view = new DataView(data.buffer);
-      data[0] = 0xF0;
+      data[0] = 0xf0;
       view.setUint32(1, value, true);
       this.compositeBuffer.append(data);
     }

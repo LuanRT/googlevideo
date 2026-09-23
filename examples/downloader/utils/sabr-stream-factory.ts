@@ -1,70 +1,61 @@
+import sanitize from 'sanitize-filename';
 import { createWriteStream, type WriteStream } from 'node:fs';
-import cliProgress from 'cli-progress';
-import { Constants, Innertube, type IPlayerResponse, Platform, UniversalCache, YTNodes } from 'youtubei.js';
-import type { Types } from 'youtubei.js';
-
-import { generateWebPoToken } from './webpo-helper.js';
-import type { SabrFormat } from 'googlevideo/shared-types';
-import type { ReloadPlaybackContext } from 'googlevideo/protos';
-import { SabrStream, type SabrPlaybackOptions } from 'googlevideo/sabr-stream';
+import { Constants, type IPlayerResponse, Platform, YTNodes } from 'youtubei.js';
 import { buildSabrFormat } from 'googlevideo/utils';
+import { SabrStream, type SabrPlaybackOptions } from 'googlevideo/sabr-stream';
+
+import type { Innertube, Types } from 'youtubei.js';
+import type { PlayabilityStatus } from 'googlevideo/sabr-stream';
+import type { ReloadPlaybackContext } from 'googlevideo/protos';
+import type { SabrFormat } from 'googlevideo/shared-types';
+
+import { ProgressDisplay, formatDuration, type ProgressLine } from './progress-reporter.js';
+import { getWebPoMinter } from './webpo-helper.js';
 
 export interface DownloadOutput {
   stream: WriteStream;
   filePath: string;
 }
 
-export interface StreamResults {
+export interface SabrStreamResults {
   videoStream: ReadableStream;
   audioStream: ReadableStream;
   selectedFormats: {
     videoFormat: SabrFormat;
     audioFormat: SabrFormat;
   };
+  sabrStreamInstance: SabrStream;
   videoTitle: string;
+  duration: string;
+  views: string;
+  author: string;
 }
 
-Platform.shim.eval = async (data: Types.BuildScriptResult, env: Record<string, Types.VMPrimative>) => {
-  const properties = [];
-
-  if (env.n) {
-    properties.push(`n: exportedVars.nFunction("${env.n}")`);
-  }
-
-  if (env.sig) {
-    properties.push(`sig: exportedVars.sigFunction("${env.sig}")`);
-  }
-
-  const code = `${data.output}\nreturn { ${properties.join(', ')} }`;
-
-  return new Function(code)();
+Platform.shim.eval = async (data: Types.BuildScriptResult) => {
+  return new Function(data.output)();
 };
 
-/**
- * Fetches video details and streaming information from YouTube.
- */
-export async function makePlayerRequest(innertube: Innertube, videoId: string, reloadPlaybackContext?: ReloadPlaybackContext): Promise<IPlayerResponse> {
-  const watchEndpoint = new YTNodes.NavigationEndpoint({ watchEndpoint: { videoId } });
+export async function makePlayerRequest(innertube: Innertube, input: string | YTNodes.NavigationEndpoint, reloadPlaybackContext?: ReloadPlaybackContext) {
+  const watchEndpoint = typeof input === 'string' ? new YTNodes.NavigationEndpoint({ watchEndpoint: { videoId: input } }) : input;
 
   const extraArgs: Record<string, any> = {
     playbackContext: {
-      adPlaybackContext: { pyv: true },
       contentPlaybackContext: {
         vis: 0,
         splay: false,
-        lactMilliseconds: '-1',
         signatureTimestamp: innertube.session.player?.signature_timestamp
       }
     },
     contentCheckOk: true,
-    racyCheckOk: true
+    racyCheckOk: true,
+    client: 'WEB'
   };
 
   if (reloadPlaybackContext) {
     extraArgs.playbackContext.reloadPlaybackContext = reloadPlaybackContext;
   }
 
-  return await watchEndpoint.call<IPlayerResponse>(innertube.actions, { ...extraArgs, parse: true });
+  return await watchEndpoint.call(innertube.actions, { ...extraArgs, parse: true });
 }
 
 export function determineFileExtension(mimeType: string): string {
@@ -76,73 +67,30 @@ export function determineFileExtension(mimeType: string): string {
   return 'bin';
 }
 
-export function createOutputStream(title: string, mimeType: string): DownloadOutput {
+export function createOutputStream(title: string, mimeType: string, append: boolean = false): DownloadOutput {
   const type = mimeType.includes('video') ? 'video' : 'audio';
-  const sanitizedTitle = title?.replace(/[^a-z0-9]/gi, '_') || 'unknown';
   const extension = determineFileExtension(mimeType);
-  const fileName = `${sanitizedTitle}.${type}.${extension}`;
+  const fileName = `${sanitize(title)}.${type}.${extension}`;
 
   return {
-    stream: createWriteStream(fileName, { flags: 'w', encoding: 'binary' }),
+    stream: createWriteStream(fileName, { flags: append ? 'a' : 'w', encoding: 'binary' }),
     filePath: fileName
   };
 }
 
-export function bytesToMB(bytes: number): string {
-  return (bytes / (1024 * 1024)).toFixed(2);
+export function createProgressDisplay(): ProgressDisplay {
+  return new ProgressDisplay();
 }
 
-export function createMultiProgressBar(): cliProgress.MultiBar {
-  return new cliProgress.MultiBar({
-    stopOnComplete: true,
-    hideCursor: true
-  }, cliProgress.Presets.rect);
-}
-
-/**
- * Creates and configures a progress bar.
- */
-export function setupProgressBar(
-  multiBar: cliProgress.MultiBar,
-  type: 'audio' | 'video' | 'merge',
-  totalSizeBytes?: number
-): cliProgress.SingleBar {
-  if (type === 'merge') {
-    const bar = multiBar.create(100, 0, undefined, {
-      format: `${type} [{bar}] {percentage}%`
-    });
-    bar.update(0);
-    return bar;
-  }
-
-  const totalSizeMB = totalSizeBytes ? bytesToMB(totalSizeBytes) : '0.00';
-  const bar = multiBar.create(100, 0, undefined, {
-    format: `${type} [{bar}] {percentage}% | {currentSizeMB}/{totalSizeMB} MB`
-  });
-
-  bar.update(0, { currentSizeMB: '0.00', totalSizeMB });
-  return bar;
-}
-
-/**
- * Creates a WritableStream that tracks download progress.
- */
-export function createStreamSink(format: SabrFormat, outputStream: WriteStream, progressBar?: cliProgress.SingleBar) {
+export function createStreamSink(outputStream: WriteStream, progressLine?: ProgressLine) {
   let size = 0;
-  const totalSize = Number(format.contentLength || 0);
 
   return new WritableStream({
     write(chunk) {
       return new Promise((resolve, reject) => {
         size += chunk.length;
 
-        if (totalSize > 0 && progressBar) {
-          const percentage = (size / totalSize) * 100;
-          progressBar.update(percentage, {
-            currentSizeMB: bytesToMB(size),
-            totalSizeMB: bytesToMB(totalSize)
-          });
-        }
+        progressLine?.update(size);
 
         outputStream.write(chunk, (err) => {
           if (err) reject(err);
@@ -151,78 +99,106 @@ export function createStreamSink(format: SabrFormat, outputStream: WriteStream, 
       });
     },
     close() {
+      progressLine?.done();
       outputStream.end();
     }
   });
 }
 
-/**
- * Initializes Innertube client and sets up SABR streaming for a YouTube video.
- */
 export async function createSabrStream(
-  videoId: string,
-  options: SabrPlaybackOptions
+  options: SabrPlaybackOptions,
+  playerResponse: IPlayerResponse,
+  innertube: Innertube
 ): Promise<{
   innertube: Innertube;
-  streamResults: StreamResults;
+  results: SabrStreamResults;
 }> {
-  const innertube = await Innertube.create({ cache: new UniversalCache(true) });
-  const webPoTokenResult = await generateWebPoToken(videoId);
+  const webpoMinter = await getWebPoMinter();
 
-  // Get video metadata.
-  const playerResponse = await makePlayerRequest(innertube, videoId);
-  const videoTitle = playerResponse.video_details?.title || 'Unknown Video';
-
-  console.info(`
-    Title: ${videoTitle}
-    Duration: ${playerResponse.video_details?.duration}
-    Views: ${playerResponse.video_details?.view_count}
-    Author: ${playerResponse.video_details?.author}
-    Video ID: ${playerResponse.video_details?.id}
-  `);
-
-  // Now get the streaming information.
+  const videoId = playerResponse.video_details?.id;
   const serverAbrStreamingUrl = await innertube.session.player?.decipher(playerResponse.streaming_data?.server_abr_streaming_url);
   const videoPlaybackUstreamerConfig = playerResponse.player_config?.media_common_config.media_ustreamer_request_config?.video_playback_ustreamer_config;
-
-  if (!videoPlaybackUstreamerConfig) throw new Error('ustreamerConfig not found');
-  if (!serverAbrStreamingUrl) throw new Error('serverAbrStreamingUrl not found');
-
   const sabrFormats = playerResponse.streaming_data?.adaptive_formats.map(buildSabrFormat) || [];
+  const heartbeatParams = playerResponse.heartbeat_params;
 
-  const serverAbrStream = new SabrStream({
+  const clientName = parseInt(Constants.CLIENT_NAME_IDS[innertube.session.context.client.clientName as keyof typeof Constants.CLIENT_NAME_IDS]);
+  const clientVersion = innertube.session.context.client.clientVersion;
+
+  if (!serverAbrStreamingUrl || !videoPlaybackUstreamerConfig || !videoId)
+    throw new Error('Streaming info missing');
+
+  const sabrStream = new SabrStream({
+    videoId: videoId,
     formats: sabrFormats,
     serverAbrStreamingUrl,
     videoPlaybackUstreamerConfig,
-    poToken: webPoTokenResult.poToken,
+    heartbeatParams: {
+      heartbeatToken: heartbeatParams?.heartbeat_token,
+      heartbeatServerData: heartbeatParams?.heartbeat_server_data,
+      intervalMilliseconds: heartbeatParams?.interval_milliseconds
+    },
     clientInfo: {
-      clientName: parseInt(Constants.CLIENT_NAME_IDS[innertube.session.context.client.clientName as keyof typeof Constants.CLIENT_NAME_IDS]),
-      clientVersion: innertube.session.context.client.clientVersion
+      clientName,
+      clientVersion
+    },
+    callbacks: {
+      onMintPoToken: () => webpoMinter.mint(videoId),
+      onReloadPlayerResponse: async (playbackContext) => {
+        const playerResponse = await makePlayerRequest(innertube, videoId, playbackContext);
+        const serverAbrStreamingUrl = await innertube.session.player?.decipher(playerResponse.streaming_data?.server_abr_streaming_url);
+        const videoPlaybackUstreamerConfig = playerResponse.player_config?.media_common_config.media_ustreamer_request_config?.video_playback_ustreamer_config;
+
+        if (!serverAbrStreamingUrl || !videoPlaybackUstreamerConfig) {
+          throw new Error('Missing serverAbrStreamingUrl or videoPlaybackUstreamerConfig in reloaded player response');
+        }
+
+        return {
+          videoPlaybackUstreamerConfig,
+          serverAbrStreamingUrl
+        };
+      },
+      onCheckHeartbeat: async (innertubeRequestBody) => {
+        const heartbeatResponse = await innertube.actions.execute('/player/heartbeat', {
+          ...innertubeRequestBody,
+          parse: true
+        });
+
+        if (!heartbeatResponse.playability_status || !heartbeatResponse.playability_status_memo) {
+          throw new Error('Invalid heartbeat response: missing playability_status');
+        }
+
+        const status = heartbeatResponse.playability_status.status as PlayabilityStatus;
+        const pollDelayMs = heartbeatResponse.poll_delay_ms;
+        const liveStreamability = heartbeatResponse.playability_status_memo?.getType(YTNodes.LiveStreamability).first();
+        const displayEndscreen = !!liveStreamability.display_endscreen;
+        const offlineSlate = liveStreamability.offline_slate;
+        const broadcastId = liveStreamability.broadcast_id;
+
+        return {
+          status,
+          displayEndscreen,
+          offlineSlatePresent: !!offlineSlate,
+          offlineSlateButtonsPresent: !!offlineSlate?.action_buttons.length,
+          broadcastId,
+          pollDelayMs
+        };
+      }
     }
   });
 
-  // Handle player response reload events (e.g, when IP changes, or formats expire).
-  serverAbrStream.on('reloadPlayerResponse', async (reloadPlaybackContext) => {
-    const playerResponse = await makePlayerRequest(innertube, videoId, reloadPlaybackContext);
-
-    const serverAbrStreamingUrl = await innertube.session.player?.decipher(playerResponse.streaming_data?.server_abr_streaming_url);
-    const videoPlaybackUstreamerConfig = playerResponse.player_config?.media_common_config.media_ustreamer_request_config?.video_playback_ustreamer_config;
-
-    if (serverAbrStreamingUrl && videoPlaybackUstreamerConfig) {
-      serverAbrStream.setStreamingURL(serverAbrStreamingUrl);
-      serverAbrStream.setUstreamerConfig(videoPlaybackUstreamerConfig);
-    }
-  });
-
-  const { videoStream, audioStream, selectedFormats } = await serverAbrStream.start(options);
+  const { videoStream, audioStream, selectedFormats } = sabrStream.start(options);
 
   return {
     innertube,
-    streamResults: {
-      videoStream,
+    results: {
       audioStream,
+      videoStream,
       selectedFormats,
-      videoTitle
+      author: playerResponse.video_details?.author || 'N/A',
+      duration: playerResponse.video_details?.is_live ? 'LIVE' : formatDuration(playerResponse.video_details?.duration ?? NaN),
+      videoTitle: playerResponse.video_details?.title || '',
+      views: playerResponse.video_details?.view_count !== undefined ? playerResponse.video_details.view_count.toLocaleString() : 'N/A',
+      sabrStreamInstance: sabrStream
     }
   };
 }

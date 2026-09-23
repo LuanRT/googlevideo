@@ -1,5 +1,6 @@
 {
   "readme": "none",
+  "sort": ["source-order"],
   "entryPoints": [
     "src/exports/ump.ts",
     "src/exports/sabr-streaming-adapter.ts",
@@ -9,6 +10,7 @@
     "src/types/shared.ts"
   ],
   "out": "docs/api",
+  "typeDeclarationFormat": "table",
   "plugin": [
     "typedoc-plugin-markdown"
   ],

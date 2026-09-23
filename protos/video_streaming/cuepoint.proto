@@ -1,0 +1,24 @@
+syntax = "proto2";
+package video_streaming;
+
+message Cuepoint {
+  enum CuepointEvent {
+    CUEPOINT_EVENT_UNKNOWN = 0;
+    START = 1;
+    CONTINUE = 2;
+    STOP = 3;
+    INSERTION = 4;
+    PREDICT_START = 5;
+    PREFETCH = 6; // @NOTE: A request to https://www.youtube.com/youtubei/v1/player/ad_break?prettyPrint=false is made to get the ads_config bytes
+  }
+
+  optional int32 type = 1; // @NOTE: 1 = ad
+  optional CuepointEvent event = 2;
+  optional double total_duration_sec = 3;
+  optional double playhead_time_sec = 4;
+  optional string context = 5;
+  optional string identifier = 6;
+  optional double playhead_time_at_start_sec = 7;
+  optional double media_time_since_start_sec = 8;
+  optional int32 start_sequence_number = 9;
+}

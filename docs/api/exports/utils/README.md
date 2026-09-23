@@ -4,14 +4,10 @@
 
 This module contains general utilities.
 
-## Namespaces
-
-- [FormatKeyUtils](namespaces/FormatKeyUtils/README.md)
-
 ## Enumerations
 
-- [EnabledTrackTypes](enumerations/EnabledTrackTypes.md)
 - [LogLevel](enumerations/LogLevel.md)
+- [EnabledTrackTypes](enumerations/EnabledTrackTypes.md)
 
 ## Classes
 
@@ -19,7 +15,6 @@ This module contains general utilities.
 - [EventEmitterLike](classes/EventEmitterLike.md)
 - [Logger](classes/Logger.md)
 - [RequestMetadataManager](classes/RequestMetadataManager.md)
-- [SabrAdapterError](classes/SabrAdapterError.md)
 
 ## Interfaces
 
@@ -31,10 +26,22 @@ This module contains general utilities.
 
 ## Functions
 
-- [base64ToU8](functions/base64ToU8.md)
+- [describeMissingFormat](functions/describeMissingFormat.md)
+- [chooseFormat](functions/chooseFormat.md)
 - [buildSabrFormat](functions/buildSabrFormat.md)
-- [concatenateChunks](functions/concatenateChunks.md)
-- [isGoogleVideoURL](functions/isGoogleVideoURL.md)
-- [parseRangeHeader](functions/parseRangeHeader.md)
+- [createFormatKey](functions/createFormatKey.md)
+- [createSegmentCacheKey](functions/createSegmentCacheKey.md)
+- [createSegmentCacheKeyFromMetadata](functions/createSegmentCacheKeyFromMetadata.md)
+- [getUniqueFormatId](functions/getUniqueFormatId.md)
+- [stripMp4Init](functions/stripMp4Init.md)
+- [stripWebmInit](functions/stripWebmInit.md)
+- [parseEmsgSegmentMetadata](functions/parseEmsgSegmentMetadata.md)
+- [ticksToMs](functions/ticksToMs.md)
+- [getDurationMs](functions/getDurationMs.md)
+- [getStartMs](functions/getStartMs.md)
 - [u8ToBase64](functions/u8ToBase64.md)
-- [wait](functions/wait.md)
+- [base64ToU8](functions/base64ToU8.md)
+- [concatenateChunks](functions/concatenateChunks.md)
+- [decodePart](functions/decodePart.md)
+- [parseRangeHeader](functions/parseRangeHeader.md)
+- [getBroadcastId](functions/getBroadcastId.md)
