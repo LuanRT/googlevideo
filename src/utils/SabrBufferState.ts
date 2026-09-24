@@ -141,7 +141,7 @@ export class SabrBufferState {
       return false;
     }
 
-    const trackController = this.trackOutputs[getMediaType(track)].controller;
+    const trackOutput = this.trackOutputs[getMediaType(track)];
     const loadedBytes = pendingSegment.bufferedChunks.reduce((sum, chunk) => sum + chunk.length, 0);
     const expectedBytes = parseInt(pendingSegment.mediaHeader.segmentLengthBytes || '0');
 
@@ -163,7 +163,11 @@ export class SabrBufferState {
     if (this.isLive && this.stripDuplicateInit && track.trackedSegments.size !== 0)
       segment = track.mimeType?.includes('webm') ? stripWebmInit(segment) : stripMp4Init(segment);
 
-    trackController?.enqueue(segment);
+    const locked = trackOutput.stream.locked;
+    const desiredSize = trackOutput.controller.desiredSize ?? 0;
+
+    if (locked || desiredSize > 0)
+      trackOutput.controller.enqueue(segment);
 
     let durationMs: number | undefined = pendingSegment.durationMs;
 

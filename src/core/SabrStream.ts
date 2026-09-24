@@ -221,8 +221,8 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     this.abortController?.abort();
 
     const errorInstance = new Error('Stream aborted');
-    this.trackOutputs.video.controller?.error(errorInstance);
-    this.trackOutputs.audio.controller?.error(errorInstance);
+    this.trackOutputs.video.controller.error(errorInstance);
+    this.trackOutputs.audio.controller.error(errorInstance);
 
     this.drainResolver?.();
     this.drainResolver = undefined;
@@ -272,8 +272,8 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   }
 
   private needsDrain(): boolean {
-    const videoFull = (this.trackOutputs.video.controller?.desiredSize ?? 0) <= 0;
-    const audioFull = (this.trackOutputs.audio.controller?.desiredSize ?? 0) <= 0;
+    const videoFull = this.trackOutputs.video.stream.locked && (this.trackOutputs.video.controller.desiredSize ?? 0) <= 0;
+    const audioFull = this.trackOutputs.audio.stream.locked && (this.trackOutputs.audio.controller.desiredSize ?? 0) <= 0;
     return videoFull || audioFull;
   }
 
@@ -412,8 +412,8 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
         this.errorHandler(error as Error);
     } finally {
       if (!this._aborted && !this._errored) {
-        this.trackOutputs.video.controller?.close();
-        this.trackOutputs.audio.controller?.close();
+        this.trackOutputs.video.controller.close();
+        this.trackOutputs.audio.controller.close();
         this.emit('finish');
       }
 
@@ -594,8 +594,8 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
 
   private errorHandler(error: Error): void {
     this._errored = true;
-    this.trackOutputs.video.controller?.error(error);
-    this.trackOutputs.audio.controller?.error(error);
+    this.trackOutputs.video.controller.error(error);
+    this.trackOutputs.audio.controller.error(error);
     this.emit('error', error);
   }
 
