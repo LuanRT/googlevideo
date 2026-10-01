@@ -68,15 +68,15 @@ export class TrackCollection {
 
     return Math.max(videoLatency, audioLatency);
   }
-
-  public getInitializedTrack(formatKey: string): Track | undefined {
-    return this.initializedTracksMap.get(formatKey);
-  }
-
-  public initializeTrack(type: 'video' | 'audio', metadata: TrackState): void {
+  
+  public initialize(type: 'video' | 'audio', metadata: TrackState): void {
     this[type].update(metadata);
     if ('formatId' in metadata && metadata.formatId !== undefined)
       this.initializedTracksMap.set(createFormatKey(metadata.formatId), this[type]);
+  }
+
+  public getInitializedTrack(formatKey: string): Track | undefined {
+    return this.initializedTracksMap.get(formatKey);
   }
 
   public endOfStreamReached(enabledTrackTypes: EnabledTrackTypes) {

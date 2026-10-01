@@ -157,7 +157,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     return this._aborted;
   }
 
-  public get hasErrored(): boolean {
+  public get isErrored(): boolean {
     return this._errored;
   }
 
@@ -326,7 +326,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
           'The selected audio format does not match any format in the provided snapshot');
 
         for (const state of snapshot.tracks)
-          this.trackCollection.initializeTrack(getMediaType(state), state);
+          this.trackCollection.initialize(getMediaType(state), state);
 
         this.seekTo(snapshot.playerTimeMs, 'client');
       } else this.seekTo(options.startTimeMs ?? (this._isLive && !options.isPostLiveDvr ? LIVE_EDGE_SENTINEL_MS : 0), 'client');
@@ -624,7 +624,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
               const formatType = getMediaType(formatInitializationMetadata);
               const selectedFormat = formatType === 'video' ? selectedVideoFormat : selectedAudioFormat;
 
-              this.trackCollection.initializeTrack(formatType, {
+              this.trackCollection.initialize(formatType, {
                 formatId: formatInitializationMetadata.formatId,
                 mimeType: formatInitializationMetadata.mimeType,
                 endTimeTicks: parseInt(formatInitializationMetadata.endTimeTicks || '0'),
