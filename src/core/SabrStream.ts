@@ -24,8 +24,6 @@ import { assert, assertIsDefined, getMediaType, wait } from '../utils/misc.js';
 
 import {
   AdState,
-  type ClientAbrState,
-  type ClientInfo,
   CuepointEvent,
   CuepointList,
   FormatInitializationMetadata,
@@ -41,10 +39,12 @@ import {
   SabrRedirect,
   SabrSeek,
   SeekSource,
-  type SsapPlaybackInfo,
   StreamProtectionStatus,
   UMPPartId,
-  VideoPlaybackAbrRequest
+  VideoPlaybackAbrRequest,
+  type ClientInfo,
+  type ClientAbrState,
+  type SsapPlaybackInfo
 } from '../utils/Protos.js';
 
 import { ticksToMs } from '../utils/mediaTimeUtils.js';
@@ -189,7 +189,6 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
 
   public async snapshot(): Promise<SabrSnapshot> {
     await this.waitForIdle();
-
     return {
       playerTimeMs: this.playerTimeMs,
       tracks: this.trackCollection.snapshot()
@@ -332,18 +331,18 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
       } else this.seekTo(options.startTimeMs ?? (this._isLive && !options.isPostLiveDvr ? LIVE_EDGE_SENTINEL_MS : 0), 'client');
 
       const abrState: ClientAbrState = {
+        playerTimeMs: this.playerTimeMs.toString(),
         audioTrackId: audioFormat?.audioTrackId,
         clientViewportIsFlexible: false,
         drcEnabled: audioFormat?.isVb ? false : audioFormat?.isDrc ?? false,
-        elapsedWallTimeMs: '0',
         enableVoiceBoost: audioFormat?.isVb,
-        enabledTrackTypesBitfield,
-        playbackRate: 1,
-        playerTimeMs: this.playerTimeMs.toString(),
         stickyResolution: videoFormat?.height,
+        elapsedWallTimeMs: '0',
         timeSinceLastActionMs: '0',
         timeSinceLastSeek: '0',
-        visibility: 1
+        playbackRate: 1,
+        visibility: 1,
+        enabledTrackTypesBitfield
       };
 
       this.playbackSessionStartMs = Date.now();
