@@ -21,8 +21,8 @@ export interface SabrStreamResults {
   videoStream: ReadableStream;
   audioStream: ReadableStream;
   selectedFormats: {
-    videoFormat: SabrFormat;
     audioFormat: SabrFormat;
+    videoFormat?: SabrFormat;
   };
   sabrStreamInstance: SabrStream;
   videoTitle: string;

@@ -20,9 +20,9 @@ Log.setLevel(Log.Level.NONE);
 
 /**
  * A basic example of streaming to mpv.
- * 
- * NOTE: 
- * VOD playback is also supported, but seeking is restricted 
+ *
+ * NOTE:
+ * VOD playback is also supported, but seeking is restricted
  * to already buffered segments of the stream...
  */
 
@@ -33,7 +33,7 @@ async function main() {
     const innertube = await Innertube.create({ cache: new UniversalCache(true) });
     const searchResults = await innertube.search('lofi & chill beats | Radio Cutman');
     const liveVideo = searchResults.videos.filterType(YTNodes.Video).find((video) => video.is_live);
-    const videoId = liveVideo?.video_id;
+    const videoId = 'CaXqUIZTbuw';
 
     if (!videoId) {
       console.error('[error]', 'No live video found in search results.');
