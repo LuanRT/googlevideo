@@ -316,10 +316,9 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
       if (options.snapshot && options.snapshot.tracks.length > 0) {
         const snapshot = options.snapshot;
 
-        if (videoFormat) { // missing when downloading only audio.
+        if (videoFormat) // missing when downloading only audio.
           assert(snapshot.tracks.some((track) => createFormatKey(track) === createFormatKey(videoFormat)),
             'The selected video format does not match any format in the provided snapshot');
-        }
 
         assertIsDefined(snapshot.tracks.some((track) => createFormatKey(track) === createFormatKey(audioFormat)),
           'The selected audio format does not match any format in the provided snapshot');
