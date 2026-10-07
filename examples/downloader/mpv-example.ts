@@ -33,7 +33,7 @@ async function main() {
     const innertube = await Innertube.create({ cache: new UniversalCache(true) });
     const searchResults = await innertube.search('lofi & chill beats | Radio Cutman');
     const liveVideo = searchResults.videos.filterType(YTNodes.Video).find((video) => video.is_live);
-    const videoId = 'CaXqUIZTbuw';
+    const videoId = liveVideo?.video_id;
 
     if (!videoId) {
       console.error('[error]', 'No live video found in search results.');
