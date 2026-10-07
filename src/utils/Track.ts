@@ -142,10 +142,6 @@ export class Track {
     this.refreshBufferedRanges();
   }
 
-  public error(message?: string): void {
-    this.output.controller.error(message);
-  }
-
   private refreshBufferedRanges(): void {
     let first: CompletedSegment | undefined;
     let last: CompletedSegment | undefined;

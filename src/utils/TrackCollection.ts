@@ -68,7 +68,7 @@ export class TrackCollection {
 
     return Math.max(videoLatency, audioLatency);
   }
-  
+
   public initialize(type: 'video' | 'audio', metadata: TrackState): void {
     this[type].update(metadata);
     if ('formatId' in metadata && metadata.formatId !== undefined)
@@ -100,12 +100,12 @@ export class TrackCollection {
   public error(err?: string | Error): void {
     const errorInstance =
       typeof err === 'string' ? new Error(err) : err;
-    this.video.output.controller.error(errorInstance);
-    this.audio.output.controller.error(errorInstance);
+    for (const track of this.initializedTracks)
+      track.streamController.error(errorInstance);
   }
 
   public close(): void {
-    this.video.output.controller.close();
-    this.audio.output.controller.close();
+    this.video.streamController.close();
+    this.audio.streamController.close();
   }
 }
