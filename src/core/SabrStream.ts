@@ -402,7 +402,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
         this.emit('finish');
       }
 
-      this.reset();
+      this.dispose();
     }
   }
 
@@ -469,7 +469,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     }
   }
 
-  private reset(): void {
+  private dispose(): void {
     this.sabrContextUpdates.clear();
     this.ssapPlaybackInfos.clear();
     this.activeSabrContextTypes.clear();
