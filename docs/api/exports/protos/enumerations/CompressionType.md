@@ -2,7 +2,7 @@
 
 # Enumeration: CompressionType
 
-Defined in: [protos/generated/misc/common.ts:12](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/protos/generated/misc/common.ts#L12)
+Defined in: [protos/generated/misc/common.ts:12](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L12)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/misc/common.ts:12](https://github.com/LuanRT/googl
 
 > **UNKNOWN**: `0`
 
-Defined in: [protos/generated/misc/common.ts:13](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/protos/generated/misc/common.ts#L13)
+Defined in: [protos/generated/misc/common.ts:13](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L13)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/misc/common.ts:13](https://github.com/LuanRT/googl
 
 > **GZIP**: `1`
 
-Defined in: [protos/generated/misc/common.ts:14](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/protos/generated/misc/common.ts#L14)
+Defined in: [protos/generated/misc/common.ts:14](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L14)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/misc/common.ts:14](https://github.com/LuanRT/googl
 
 > **BROTLI**: `2`
 
-Defined in: [protos/generated/misc/common.ts:15](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/protos/generated/misc/common.ts#L15)
+Defined in: [protos/generated/misc/common.ts:15](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L15)
 
 ***
 
@@ -34,4 +34,4 @@ Defined in: [protos/generated/misc/common.ts:15](https://github.com/LuanRT/googl
 
 > **UNRECOGNIZED**: `-1`
 
-Defined in: [protos/generated/misc/common.ts:16](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/protos/generated/misc/common.ts#L16)
+Defined in: [protos/generated/misc/common.ts:16](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L16)

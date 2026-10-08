@@ -2,7 +2,7 @@
 
 # Class: SabrUmpProcessor
 
-Defined in: [src/core/SabrUmpProcessor.ts:48](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/core/SabrUmpProcessor.ts#L48)
+Defined in: [src/core/SabrUmpProcessor.ts:48](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/core/SabrUmpProcessor.ts#L48)
 
 This class is responsible for reading a UMP stream and populating a metadata object
 with the extracted information. It is supposed to be used in conjunction with a 
@@ -14,7 +14,7 @@ with the extracted information. It is supposed to be used in conjunction with a
 
 > **new SabrUmpProcessor**(`requestMetadata`, `cacheManager?`): `SabrUmpProcessor`
 
-Defined in: [src/core/SabrUmpProcessor.ts:75](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/core/SabrUmpProcessor.ts#L75)
+Defined in: [src/core/SabrUmpProcessor.ts:75](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/core/SabrUmpProcessor.ts#L75)
 
 #### Parameters
 
@@ -36,7 +36,7 @@ Defined in: [src/core/SabrUmpProcessor.ts:75](https://github.com/LuanRT/googlevi
 
 > **processChunk**(`value`): `Promise`\<[`UmpProcessingResult`](../interfaces/UmpProcessingResult.md) \| `undefined`\>
 
-Defined in: [src/core/SabrUmpProcessor.ts:98](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/core/SabrUmpProcessor.ts#L98)
+Defined in: [src/core/SabrUmpProcessor.ts:98](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/core/SabrUmpProcessor.ts#L98)
 
 Processes a chunk of data from a UMP stream and updates the request context.
 
@@ -58,7 +58,7 @@ A promise that resolves with a processing result if a terminal part is found (e.
 
 > **getSegmentInfo**(): `Segment` \| `undefined`
 
-Defined in: [src/core/SabrUmpProcessor.ts:104](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/core/SabrUmpProcessor.ts#L104)
+Defined in: [src/core/SabrUmpProcessor.ts:104](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/core/SabrUmpProcessor.ts#L104)
 
 #### Returns
 
@@ -70,7 +70,7 @@ Defined in: [src/core/SabrUmpProcessor.ts:104](https://github.com/LuanRT/googlev
 
 > **dispose**(): `void`
 
-Defined in: [src/core/SabrUmpProcessor.ts:318](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/core/SabrUmpProcessor.ts#L318)
+Defined in: [src/core/SabrUmpProcessor.ts:318](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/core/SabrUmpProcessor.ts#L318)
 
 #### Returns
 

@@ -2,7 +2,7 @@
 
 # Interface: BufferedRangeSummary
 
-Defined in: [src/types/sabrStreamTypes.ts:251](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/types/sabrStreamTypes.ts#L251)
+Defined in: [src/types/sabrStreamTypes.ts:251](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L251)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:251](https://github.com/LuanRT/googlev
 
 > **startTimeMs**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:252](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/types/sabrStreamTypes.ts#L252)
+Defined in: [src/types/sabrStreamTypes.ts:252](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L252)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/types/sabrStreamTypes.ts:252](https://github.com/LuanRT/googlev
 
 > **durationMs**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:253](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/types/sabrStreamTypes.ts#L253)
+Defined in: [src/types/sabrStreamTypes.ts:253](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L253)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/types/sabrStreamTypes.ts:253](https://github.com/LuanRT/googlev
 
 > **startSegmentIndex**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:254](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/types/sabrStreamTypes.ts#L254)
+Defined in: [src/types/sabrStreamTypes.ts:254](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L254)
 
 ***
 
@@ -34,4 +34,4 @@ Defined in: [src/types/sabrStreamTypes.ts:254](https://github.com/LuanRT/googlev
 
 > **endSegmentIndex**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:255](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/types/sabrStreamTypes.ts#L255)
+Defined in: [src/types/sabrStreamTypes.ts:255](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L255)

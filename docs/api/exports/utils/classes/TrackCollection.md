@@ -2,7 +2,7 @@
 
 # Class: TrackCollection
 
-Defined in: [src/utils/TrackCollection.ts:6](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L6)
+Defined in: [src/utils/TrackCollection.ts:6](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L6)
 
 ## Constructors
 
@@ -20,7 +20,7 @@ Defined in: [src/utils/TrackCollection.ts:6](https://github.com/LuanRT/googlevid
 
 > `readonly` **video**: [`Track`](Track.md)
 
-Defined in: [src/utils/TrackCollection.ts:7](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L7)
+Defined in: [src/utils/TrackCollection.ts:7](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L7)
 
 ***
 
@@ -28,7 +28,7 @@ Defined in: [src/utils/TrackCollection.ts:7](https://github.com/LuanRT/googlevid
 
 > `readonly` **audio**: [`Track`](Track.md)
 
-Defined in: [src/utils/TrackCollection.ts:8](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L8)
+Defined in: [src/utils/TrackCollection.ts:8](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L8)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/utils/TrackCollection.ts:8](https://github.com/LuanRT/googlevid
 
 > `readonly` **initializedTracksMap**: `Map`\<`string`, [`Track`](Track.md)\>
 
-Defined in: [src/utils/TrackCollection.ts:9](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L9)
+Defined in: [src/utils/TrackCollection.ts:9](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L9)
 
 ## Accessors
 
@@ -46,7 +46,7 @@ Defined in: [src/utils/TrackCollection.ts:9](https://github.com/LuanRT/googlevid
 
 > **get** **needsDrain**(): `boolean`
 
-Defined in: [src/utils/TrackCollection.ts:11](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L11)
+Defined in: [src/utils/TrackCollection.ts:11](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L11)
 
 ##### Returns
 
@@ -60,7 +60,7 @@ Defined in: [src/utils/TrackCollection.ts:11](https://github.com/LuanRT/googlevi
 
 > **get** **buffered**(): `number`
 
-Defined in: [src/utils/TrackCollection.ts:15](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L15)
+Defined in: [src/utils/TrackCollection.ts:15](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L15)
 
 ##### Returns
 
@@ -74,7 +74,7 @@ Defined in: [src/utils/TrackCollection.ts:15](https://github.com/LuanRT/googlevi
 
 > **get** **bufferedRanges**(): [`BufferedRange`](../../protos/interfaces/BufferedRange.md)[]
 
-Defined in: [src/utils/TrackCollection.ts:27](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L27)
+Defined in: [src/utils/TrackCollection.ts:27](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L27)
 
 ##### Returns
 
@@ -88,7 +88,7 @@ Defined in: [src/utils/TrackCollection.ts:27](https://github.com/LuanRT/googlevi
 
 > **get** **initializedTracks**(): `MapIterator`\<[`Track`](Track.md)\>
 
-Defined in: [src/utils/TrackCollection.ts:51](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L51)
+Defined in: [src/utils/TrackCollection.ts:51](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L51)
 
 ##### Returns
 
@@ -102,7 +102,7 @@ Defined in: [src/utils/TrackCollection.ts:51](https://github.com/LuanRT/googlevi
 
 > **get** **initializationFormatIds**(): [`FormatId`](../../protos/interfaces/FormatId.md)[]
 
-Defined in: [src/utils/TrackCollection.ts:55](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L55)
+Defined in: [src/utils/TrackCollection.ts:55](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L55)
 
 ##### Returns
 
@@ -116,7 +116,7 @@ Defined in: [src/utils/TrackCollection.ts:55](https://github.com/LuanRT/googlevi
 
 > **get** **livePlaybackLatencyMs**(): `number` \| `undefined`
 
-Defined in: [src/utils/TrackCollection.ts:62](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L62)
+Defined in: [src/utils/TrackCollection.ts:62](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L62)
 
 ##### Returns
 
@@ -128,7 +128,7 @@ Defined in: [src/utils/TrackCollection.ts:62](https://github.com/LuanRT/googlevi
 
 > **initialize**(`type`, `metadata`): `void`
 
-Defined in: [src/utils/TrackCollection.ts:72](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L72)
+Defined in: [src/utils/TrackCollection.ts:72](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L72)
 
 #### Parameters
 
@@ -150,7 +150,7 @@ Defined in: [src/utils/TrackCollection.ts:72](https://github.com/LuanRT/googlevi
 
 > **getInitializedTrack**(`formatKey`): [`Track`](Track.md) \| `undefined`
 
-Defined in: [src/utils/TrackCollection.ts:78](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L78)
+Defined in: [src/utils/TrackCollection.ts:78](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L78)
 
 #### Parameters
 
@@ -168,7 +168,7 @@ Defined in: [src/utils/TrackCollection.ts:78](https://github.com/LuanRT/googlevi
 
 > **endOfStreamReached**(`enabledTrackTypes`): `boolean`
 
-Defined in: [src/utils/TrackCollection.ts:82](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L82)
+Defined in: [src/utils/TrackCollection.ts:82](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L82)
 
 #### Parameters
 
@@ -186,7 +186,7 @@ Defined in: [src/utils/TrackCollection.ts:82](https://github.com/LuanRT/googlevi
 
 > **snapshot**(): [`TrackState`](../../sabr-stream/interfaces/TrackState.md)[]
 
-Defined in: [src/utils/TrackCollection.ts:91](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L91)
+Defined in: [src/utils/TrackCollection.ts:91](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L91)
 
 #### Returns
 
@@ -198,7 +198,7 @@ Defined in: [src/utils/TrackCollection.ts:91](https://github.com/LuanRT/googlevi
 
 > **error**(`err?`): `void`
 
-Defined in: [src/utils/TrackCollection.ts:100](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L100)
+Defined in: [src/utils/TrackCollection.ts:100](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L100)
 
 #### Parameters
 
@@ -216,7 +216,7 @@ Defined in: [src/utils/TrackCollection.ts:100](https://github.com/LuanRT/googlev
 
 > **close**(): `void`
 
-Defined in: [src/utils/TrackCollection.ts:107](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/TrackCollection.ts#L107)
+Defined in: [src/utils/TrackCollection.ts:107](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/TrackCollection.ts#L107)
 
 #### Returns
 

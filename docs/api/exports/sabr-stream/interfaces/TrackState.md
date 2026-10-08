@@ -2,7 +2,7 @@
 
 # Interface: TrackState
 
-Defined in: [src/types/sabrStreamTypes.ts:231](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/types/sabrStreamTypes.ts#L231)
+Defined in: [src/types/sabrStreamTypes.ts:231](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L231)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [src/types/sabrStreamTypes.ts:231](https://github.com/LuanRT/googlev
 
 > `optional` **trackedSegments**: \[`number`, [`CompletedSegment`](CompletedSegment.md)\][]
 
-Defined in: [src/types/sabrStreamTypes.ts:232](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/types/sabrStreamTypes.ts#L232)
+Defined in: [src/types/sabrStreamTypes.ts:232](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L232)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [src/types/sabrStreamTypes.ts:232](https://github.com/LuanRT/googlev
 
 > `optional` **formatId**: [`FormatId`](../../protos/interfaces/FormatId.md)
 
-Defined in: [src/utils/Track.ts:18](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/Track.ts#L18)
+Defined in: [src/utils/Track.ts:18](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L18)
 
 #### Inherited from
 
@@ -34,7 +34,7 @@ Defined in: [src/utils/Track.ts:18](https://github.com/LuanRT/googlevideo/blob/c
 
 > `optional` **mimeType**: `string`
 
-Defined in: [src/utils/Track.ts:19](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/Track.ts#L19)
+Defined in: [src/utils/Track.ts:19](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L19)
 
 #### Inherited from
 
@@ -46,7 +46,7 @@ Defined in: [src/utils/Track.ts:19](https://github.com/LuanRT/googlevideo/blob/c
 
 > `optional` **endSegmentNum**: `number`
 
-Defined in: [src/utils/Track.ts:20](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/Track.ts#L20)
+Defined in: [src/utils/Track.ts:20](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L20)
 
 #### Inherited from
 
@@ -58,7 +58,7 @@ Defined in: [src/utils/Track.ts:20](https://github.com/LuanRT/googlevideo/blob/c
 
 > `optional` **endTimeTicks**: `number`
 
-Defined in: [src/utils/Track.ts:21](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/Track.ts#L21)
+Defined in: [src/utils/Track.ts:21](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L21)
 
 #### Inherited from
 
@@ -70,7 +70,7 @@ Defined in: [src/utils/Track.ts:21](https://github.com/LuanRT/googlevideo/blob/c
 
 > `optional` **endTimescale**: `number`
 
-Defined in: [src/utils/Track.ts:22](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/Track.ts#L22)
+Defined in: [src/utils/Track.ts:22](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L22)
 
 #### Inherited from
 
@@ -82,7 +82,7 @@ Defined in: [src/utils/Track.ts:22](https://github.com/LuanRT/googlevideo/blob/c
 
 > `optional` **targetDurationSec**: `number`
 
-Defined in: [src/utils/Track.ts:23](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/Track.ts#L23)
+Defined in: [src/utils/Track.ts:23](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L23)
 
 #### Inherited from
 
@@ -94,7 +94,7 @@ Defined in: [src/utils/Track.ts:23](https://github.com/LuanRT/googlevideo/blob/c
 
 > `optional` **bufferedRangeSummary**: [`BufferedRangeSummary`](BufferedRangeSummary.md)
 
-Defined in: [src/utils/Track.ts:25](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/Track.ts#L25)
+Defined in: [src/utils/Track.ts:25](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L25)
 
 #### Inherited from
 

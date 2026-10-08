@@ -2,7 +2,7 @@
 
 # Enumeration: AudioQuality
 
-Defined in: [protos/generated/misc/common.ts:19](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/protos/generated/misc/common.ts#L19)
+Defined in: [protos/generated/misc/common.ts:19](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L19)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/misc/common.ts:19](https://github.com/LuanRT/googl
 
 > **UNKNOWN**: `0`
 
-Defined in: [protos/generated/misc/common.ts:20](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/protos/generated/misc/common.ts#L20)
+Defined in: [protos/generated/misc/common.ts:20](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L20)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/misc/common.ts:20](https://github.com/LuanRT/googl
 
 > **ULTRALOW**: `5`
 
-Defined in: [protos/generated/misc/common.ts:21](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/protos/generated/misc/common.ts#L21)
+Defined in: [protos/generated/misc/common.ts:21](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L21)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/misc/common.ts:21](https://github.com/LuanRT/googl
 
 > **LOW**: `10`
 
-Defined in: [protos/generated/misc/common.ts:22](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/protos/generated/misc/common.ts#L22)
+Defined in: [protos/generated/misc/common.ts:22](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L22)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [protos/generated/misc/common.ts:22](https://github.com/LuanRT/googl
 
 > **MEDIUM**: `20`
 
-Defined in: [protos/generated/misc/common.ts:23](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/protos/generated/misc/common.ts#L23)
+Defined in: [protos/generated/misc/common.ts:23](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L23)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [protos/generated/misc/common.ts:23](https://github.com/LuanRT/googl
 
 > **HIGH**: `30`
 
-Defined in: [protos/generated/misc/common.ts:24](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/protos/generated/misc/common.ts#L24)
+Defined in: [protos/generated/misc/common.ts:24](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L24)
 
 ***
 
@@ -50,4 +50,4 @@ Defined in: [protos/generated/misc/common.ts:24](https://github.com/LuanRT/googl
 
 > **UNRECOGNIZED**: `-1`
 
-Defined in: [protos/generated/misc/common.ts:25](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/protos/generated/misc/common.ts#L25)
+Defined in: [protos/generated/misc/common.ts:25](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L25)
