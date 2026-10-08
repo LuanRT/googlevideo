@@ -1,4 +1,6 @@
 export * from './Logger.js';
+export * from './Track.js';
+export * from './TrackCollection.js';
 export * from './CacheManager.js';
 export * from './EventEmitterLike.js';
 export * from './RequestMetadataManager.js';
