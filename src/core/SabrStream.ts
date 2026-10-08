@@ -595,6 +595,9 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     const response = await this.makeStreamingRequest(requestBody);
     const contentType = response.headers.get('content-type');
 
+    if (response.status === 403 && this.hasExpired())
+      await this.tryReloadStreamingData();
+
     assert(response.ok, `Server returned ${response.status} ${response.statusText}`);
     assert(contentType === 'application/vnd.yt-ump', `Unexpected content type from server: ${contentType}`);
     assertIsDefined(response.body, 'Response body is null');
@@ -836,24 +839,8 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
           case UMPPartId.RELOAD_PLAYER_RESPONSE: {
             const reloadPlaybackContext = decodePart(data.chunks, ReloadPlaybackContext);
             if (!reloadPlaybackContext) break;
-
             this.logger.debug(TAG, `Reload requested: reloadPlaybackParams=${reloadPlaybackContext.reloadPlaybackParams}`);
-
-            const onReloadPlayerResponseCb = this.callbacks.onReloadPlayerResponse;
-
-            if (onReloadPlayerResponseCb) {
-              try {
-                const response = await onReloadPlayerResponseCb(reloadPlaybackContext);
-                this.setStreamingURL(response.serverAbrStreamingUrl);
-                this.setUstreamerConfig(response.videoPlaybackUstreamerConfig);
-
-                this.sabrContextUpdates.clear();
-                this.activeSabrContextTypes.clear();
-                this.ssapPlaybackInfos.clear();
-              } catch (err: unknown) {
-                throw new Error(`An error occurred while reloading streaming data: ${(err as Error)?.message}`);
-              }
-            } else throw new Error('Streaming data reload requested by server but no handler was found');
+            await this.tryReloadStreamingData(reloadPlaybackContext);
             break;
           }
         }
@@ -907,6 +894,16 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     }
   }
 
+  private hasExpired(): boolean {
+    const expireRawValue = this.streamingURL.searchParams.get('expire');
+    if (!expireRawValue) return false;
+
+    const expireTimestampMs = parseInt(expireRawValue, 10) * 1000;
+    const msRemaining = expireTimestampMs - Date.now();
+
+    return msRemaining <= 0;
+  }
+
   private tryMintPoToken(): void {
     const onMintPoToken = this.callbacks.onMintPoToken;
 
@@ -924,6 +921,23 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
         }
       })();
     }
+  }
+
+  private async tryReloadStreamingData(reloadPlaybackContext?: ReloadPlaybackContext): Promise<void> {
+    const onReloadPlayerResponseCb = this.callbacks.onReloadPlayerResponse;
+    if (onReloadPlayerResponseCb) {
+      try {
+        const response = await onReloadPlayerResponseCb(reloadPlaybackContext);
+        this.setStreamingURL(response.serverAbrStreamingUrl);
+        this.setUstreamerConfig(response.videoPlaybackUstreamerConfig);
+
+        this.sabrContextUpdates.clear();
+        this.activeSabrContextTypes.clear();
+        this.ssapPlaybackInfos.clear();
+      } catch (err: unknown) {
+        throw new Error(`An error occurred while reloading streaming data: ${(err as Error)?.message}`);
+      }
+    } else throw new Error('Streaming data reload requested but no handler was found');
   }
 
   private buildRequestBody(

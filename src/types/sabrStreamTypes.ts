@@ -49,7 +49,7 @@ export interface SabrStreamConfig {
 
 export interface SabrStreamCallbacks {
   onCheckHeartbeat?: (innertubeRequestBody: HeartbeatRequest) => Promise<HeartbeatResponse>;
-  onReloadPlayerResponse?: (context: ReloadPlaybackContext) => Promise<ReloadResponse>;
+  onReloadPlayerResponse?: (context?: ReloadPlaybackContext) => Promise<ReloadResponse>;
   onMintPoToken?: () => Promise<Uint8Array>;
 }
 
