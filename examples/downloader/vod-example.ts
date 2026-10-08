@@ -12,7 +12,7 @@ import type { SabrPlaybackOptions, SabrStream } from 'googlevideo/sabr-stream';
 import Innertube, { UniversalCache } from 'youtubei.js';
 
 const VIDEO_ID = 'SHxtKriIRYI';
-const ENABLED_TRACK_TYPES: number = EnabledTrackTypes.AUDIO_ONLY;
+const ENABLED_TRACK_TYPES: number = EnabledTrackTypes.VIDEO_AND_AUDIO;
 
 async function main() {
   let audioOutputStream: DownloadOutput | undefined;

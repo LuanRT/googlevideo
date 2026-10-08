@@ -48,8 +48,8 @@ import {
 } from '../utils/Protos.js';
 
 import { ticksToMs } from '../utils/mediaTimeUtils.js';
-import { getBroadcastId } from '../utils/urlUtils.js';
 import { base64ToU8, decodePart } from '../utils/uint8arrayUtils.js';
+import { getBroadcastId, getNextFallbackUrl } from '../utils/urlUtils.js';
 import { TrackCollection } from '../utils/TrackCollection.js';
 
 const TAG = 'SabrStream';
@@ -80,7 +80,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   private abortController?: AbortController;
   private requestTimeoutId?: ReturnType<typeof setTimeout>;
 
-  private serverAbrStreamingUrl: URL;
+  private serverAbrStreamingUrl?: URL;
   private videoPlaybackUstreamerConfig: string;
   private clientInfo: ClientInfo;
   private proofOfOriginToken?: Uint8Array;
@@ -128,15 +128,16 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     this.videoId = config.videoId;
     this.formatIds = config.formats || [];
     this.clientInfo = config.clientInfo;
-    this.serverAbrStreamingUrl = new URL(config.serverAbrStreamingUrl);
     this.videoPlaybackUstreamerConfig = config.videoPlaybackUstreamerConfig;
     this.proofOfOriginToken = config.poToken ? base64ToU8(config.poToken) : undefined;
     this.heartbeatParams = config.heartbeatParams || {};
     this.callbacks = config.callbacks || {};
 
-    this._isLive = [ 'yt_premiere_broadcast', 'yt_live_broadcast' ].includes(this.serverAbrStreamingUrl.searchParams.get('source') || '');
+    this.setStreamingURL(config.serverAbrStreamingUrl);
 
-    this.broadcastId = this._isLive ? getBroadcastId(this.serverAbrStreamingUrl) : undefined;
+    this._isLive = [ 'yt_premiere_broadcast', 'yt_live_broadcast' ].includes(this.streamingURL.searchParams.get('source') || '');
+
+    this.broadcastId = this._isLive ? getBroadcastId(this.streamingURL) : undefined;
 
     this.trackCollection.video.output = this.createTrackStream(config.videoHighWaterMark ?? DEFAULT_VIDEO_HWM);
     this.trackCollection.audio.output = this.createTrackStream(config.audioHighWaterMark ?? DEFAULT_AUDIO_HWM);
@@ -174,8 +175,14 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     return this.trackCollection.livePlaybackLatencyMs;
   }
 
-  public setStreamingURL(url: string): void {
-    this.serverAbrStreamingUrl = new URL(url);
+  public get streamingURL(): URL {
+    assertIsDefined(this.serverAbrStreamingUrl, 'Streaming URL is not set');
+    return this.serverAbrStreamingUrl;
+  }
+
+  public setStreamingURL(url: string | URL): void {
+    this.serverAbrStreamingUrl = url instanceof URL ? url : new URL(url);
+    this.serverAbrStreamingUrl.searchParams.set('alr', 'no');
     this.validateStreamingUrl(this.serverAbrStreamingUrl);
   }
 
@@ -260,7 +267,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   }
 
   private validateBroadcastId(bid: string): void {
-    if (this._isLive && this.broadcastId !== bid) {
+    if (this._isLive && (!!this.broadcastId && this.broadcastId !== bid)) {
       this.logger.warn(TAG, `Broadcast ID changed from ${this.broadcastId} to ${bid}. Stopping.`);
       this.shouldStop = true;
     }
@@ -588,6 +595,9 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     const response = await this.makeStreamingRequest(requestBody);
     const contentType = response.headers.get('content-type');
 
+    if (response.status === 403 && this.hasExpired())
+      await this.tryReloadStreamingData();
+
     assert(response.ok, `Server returned ${response.status} ${response.statusText}`);
     assert(contentType === 'application/vnd.yt-ump', `Unexpected content type from server: ${contentType}`);
     assertIsDefined(response.body, 'Response body is null');
@@ -821,10 +831,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
           case UMPPartId.SABR_REDIRECT: {
             const sabrRedirect = decodePart(data.chunks, SabrRedirect);
             if (!sabrRedirect || !sabrRedirect.url) break;
-
-            this.serverAbrStreamingUrl = new URL(sabrRedirect.url);
-            this.validateStreamingUrl(this.serverAbrStreamingUrl);
-
+            this.setStreamingURL(sabrRedirect.url);
             this.logger.debug(TAG, `Received SABR redirect: newUrl=${sabrRedirect.url}`);
             break;
           }
@@ -832,24 +839,8 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
           case UMPPartId.RELOAD_PLAYER_RESPONSE: {
             const reloadPlaybackContext = decodePart(data.chunks, ReloadPlaybackContext);
             if (!reloadPlaybackContext) break;
-
             this.logger.debug(TAG, `Reload requested: reloadPlaybackParams=${reloadPlaybackContext.reloadPlaybackParams}`);
-
-            const onReloadPlayerResponseCb = this.callbacks.onReloadPlayerResponse;
-
-            if (onReloadPlayerResponseCb) {
-              try {
-                const response = await onReloadPlayerResponseCb(reloadPlaybackContext);
-                this.setStreamingURL(response.serverAbrStreamingUrl);
-                this.setUstreamerConfig(response.videoPlaybackUstreamerConfig);
-
-                this.sabrContextUpdates.clear();
-                this.activeSabrContextTypes.clear();
-                this.ssapPlaybackInfos.clear();
-              } catch (err: unknown) {
-                throw new Error(`An error occurred while reloading streaming data: ${(err as Error)?.message}`);
-              }
-            } else throw new Error('Streaming data reload requested by server but no handler was found');
+            await this.tryReloadStreamingData(reloadPlaybackContext);
             break;
           }
         }
@@ -903,6 +894,16 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     }
   }
 
+  private hasExpired(): boolean {
+    const expireRawValue = this.streamingURL.searchParams.get('expire');
+    if (!expireRawValue) return false;
+
+    const expireTimestampMs = parseInt(expireRawValue, 10) * 1000;
+    const msRemaining = expireTimestampMs - Date.now();
+
+    return msRemaining <= 0;
+  }
+
   private tryMintPoToken(): void {
     const onMintPoToken = this.callbacks.onMintPoToken;
 
@@ -920,6 +921,23 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
         }
       })();
     }
+  }
+
+  private async tryReloadStreamingData(reloadPlaybackContext?: ReloadPlaybackContext): Promise<void> {
+    const onReloadPlayerResponseCb = this.callbacks.onReloadPlayerResponse;
+    if (onReloadPlayerResponseCb) {
+      try {
+        const response = await onReloadPlayerResponseCb(reloadPlaybackContext);
+        this.setStreamingURL(response.serverAbrStreamingUrl);
+        this.setUstreamerConfig(response.videoPlaybackUstreamerConfig);
+
+        this.sabrContextUpdates.clear();
+        this.activeSabrContextTypes.clear();
+        this.ssapPlaybackInfos.clear();
+      } catch (err: unknown) {
+        throw new Error(`An error occurred while reloading streaming data: ${(err as Error)?.message}`);
+      }
+    } else throw new Error('Streaming data reload requested but no handler was found');
   }
 
   private buildRequestBody(
@@ -974,13 +992,12 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   }
 
   private async makeStreamingRequest(body: Uint8Array<ArrayBuffer>): Promise<Response> {
-    this.serverAbrStreamingUrl.searchParams.set('rn', this.requestNumber.toString());
-
+    this.streamingURL.searchParams.set('rn', this.requestNumber.toString());
     this.abortController = new AbortController();
     this.resetRequestTimeout();
 
     try {
-      return await this.fetchFunction(this.serverAbrStreamingUrl, {
+      return this.fetchFunction(this.streamingURL, {
         body,
         method: 'POST',
         headers: {
@@ -988,10 +1005,18 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
           'accept-encoding': 'identity',
           'accept': 'application/vnd.yt-ump'
         },
+        redirect: 'follow',
         signal: this.abortController.signal
       });
     } catch (error) {
       this.clearRequestTimeout();
+
+      const nextFallbackUrl = getNextFallbackUrl(this.streamingURL);
+      if (nextFallbackUrl) {
+        this.logger.warn(TAG, `Switching to fallback URL: ${nextFallbackUrl.hostname}`);
+        this.setStreamingURL(nextFallbackUrl);
+      }
+
       throw error;
     } finally {
       this.requestNumber += 1;
