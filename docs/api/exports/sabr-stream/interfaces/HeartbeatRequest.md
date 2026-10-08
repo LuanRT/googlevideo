@@ -2,7 +2,7 @@
 
 # Interface: HeartbeatRequest
 
-Defined in: [src/types/sabrStreamTypes.ts:69](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L69)
+Defined in: [src/types/sabrStreamTypes.ts:77](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L77)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:69](https://github.com/LuanRT/googlevi
 
 > `optional` **heartbeatRequestParams**: `object`
 
-Defined in: [src/types/sabrStreamTypes.ts:70](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L70)
+Defined in: [src/types/sabrStreamTypes.ts:78](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L78)
 
 #### heartbeatChecks?
 
@@ -22,7 +22,7 @@ Defined in: [src/types/sabrStreamTypes.ts:70](https://github.com/LuanRT/googlevi
 
 > `optional` **heartbeatServerData**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:78](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L78)
+Defined in: [src/types/sabrStreamTypes.ts:86](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L86)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [src/types/sabrStreamTypes.ts:78](https://github.com/LuanRT/googlevi
 
 > `optional` **heartbeatToken**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:79](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L79)
+Defined in: [src/types/sabrStreamTypes.ts:87](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L87)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [src/types/sabrStreamTypes.ts:79](https://github.com/LuanRT/googlevi
 
 > `optional` **videoId**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:80](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L80)
+Defined in: [src/types/sabrStreamTypes.ts:88](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L88)

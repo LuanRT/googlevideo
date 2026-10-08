@@ -2,7 +2,7 @@
 
 # Interface: TrackOutput
 
-Defined in: [src/types/sabrStreamTypes.ts:202](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L202)
+Defined in: [src/types/sabrStreamTypes.ts:210](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L210)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:202](https://github.com/LuanRT/googlev
 
 > **stream**: `ReadableStream`\<`ArrayBufferView`\<`ArrayBufferLike`\>\>
 
-Defined in: [src/types/sabrStreamTypes.ts:203](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L203)
+Defined in: [src/types/sabrStreamTypes.ts:211](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L211)
 
 ***
 
@@ -18,4 +18,4 @@ Defined in: [src/types/sabrStreamTypes.ts:203](https://github.com/LuanRT/googlev
 
 > **controller**: `ReadableStreamDefaultController`\<`Uint8Array`\<`ArrayBufferLike`\>\>
 
-Defined in: [src/types/sabrStreamTypes.ts:204](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L204)
+Defined in: [src/types/sabrStreamTypes.ts:212](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L212)

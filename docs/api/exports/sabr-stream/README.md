@@ -23,11 +23,11 @@ This module contains a SABR stream implementation for downloading VODs and live 
 - [AudioFormatPreferences](interfaces/AudioFormatPreferences.md)
 - [AbortOptions](interfaces/AbortOptions.md)
 - [TrackOutput](interfaces/TrackOutput.md)
-- [TrackOutputs](interfaces/TrackOutputs.md)
-- [TrackSegmentInfo](interfaces/TrackSegmentInfo.md)
 - [SabrSnapshot](interfaces/SabrSnapshot.md)
 - [TrackState](interfaces/TrackState.md)
-- [TrackMetadata](interfaces/TrackMetadata.md)
+- [CompletedSegment](interfaces/CompletedSegment.md)
+- [SegmentInfo](interfaces/SegmentInfo.md)
+- [BufferedRangeSummary](interfaces/BufferedRangeSummary.md)
 
 ## Type Aliases
 

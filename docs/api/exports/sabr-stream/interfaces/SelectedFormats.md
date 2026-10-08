@@ -2,15 +2,15 @@
 
 # Interface: SelectedFormats
 
-Defined in: [src/types/sabrStreamTypes.ts:48](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L48)
+Defined in: [src/types/sabrStreamTypes.ts:56](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L56)
 
 ## Properties
 
-### videoFormat
+### videoFormat?
 
-> **videoFormat**: [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)
+> `optional` **videoFormat**: [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:49](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L49)
+Defined in: [src/types/sabrStreamTypes.ts:57](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L57)
 
 ***
 
@@ -18,4 +18,4 @@ Defined in: [src/types/sabrStreamTypes.ts:49](https://github.com/LuanRT/googlevi
 
 > **audioFormat**: [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:50](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L50)
+Defined in: [src/types/sabrStreamTypes.ts:58](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L58)

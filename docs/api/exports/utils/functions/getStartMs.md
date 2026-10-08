@@ -4,7 +4,7 @@
 
 > **getStartMs**(`mediaHeader`): `number`
 
-Defined in: [src/utils/mediaTimeUtils.ts:22](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/utils/mediaTimeUtils.ts#L22)
+Defined in: [src/utils/mediaTimeUtils.ts:22](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/utils/mediaTimeUtils.ts#L22)
 
 ## Parameters
 

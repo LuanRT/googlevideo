@@ -4,7 +4,7 @@
 
 > **base64ToU8**(`base64`): `Uint8Array`
 
-Defined in: [src/utils/uint8arrayUtils.ts:5](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/utils/uint8arrayUtils.ts#L5)
+Defined in: [src/utils/uint8arrayUtils.ts:5](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/utils/uint8arrayUtils.ts#L5)
 
 ## Parameters
 

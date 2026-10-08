@@ -4,21 +4,21 @@
 
 > **SabrStreamEvents** = `object`
 
-Defined in: [src/types/sabrStreamTypes.ts:59](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L59)
+Defined in: [src/types/sabrStreamTypes.ts:67](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L67)
 
 ## Properties
 
-### trackMetadataUpdate()
+### trackStateUpdate()
 
-> **trackMetadataUpdate**: (`trackMetadata`) => `void`
+> **trackStateUpdate**: (`trackCollection`) => `void`
 
-Defined in: [src/types/sabrStreamTypes.ts:60](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L60)
+Defined in: [src/types/sabrStreamTypes.ts:68](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L68)
 
 #### Parameters
 
-##### trackMetadata
+##### trackCollection
 
-[`TrackMetadata`](../interfaces/TrackMetadata.md)
+`TrackCollection`
 
 #### Returns
 
@@ -30,13 +30,13 @@ Defined in: [src/types/sabrStreamTypes.ts:60](https://github.com/LuanRT/googlevi
 
 > **formatInitialization**: (`track`) => `void`
 
-Defined in: [src/types/sabrStreamTypes.ts:61](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L61)
+Defined in: [src/types/sabrStreamTypes.ts:69](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L69)
 
 #### Parameters
 
 ##### track
 
-[`TrackSegmentInfo`](../interfaces/TrackSegmentInfo.md)
+`Track`
 
 #### Returns
 
@@ -48,7 +48,7 @@ Defined in: [src/types/sabrStreamTypes.ts:61](https://github.com/LuanRT/googlevi
 
 > **streamProtectionStatusUpdate**: (`sps`) => `void`
 
-Defined in: [src/types/sabrStreamTypes.ts:62](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L62)
+Defined in: [src/types/sabrStreamTypes.ts:70](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L70)
 
 #### Parameters
 
@@ -66,7 +66,7 @@ Defined in: [src/types/sabrStreamTypes.ts:62](https://github.com/LuanRT/googlevi
 
 > **liveMetadataUpdate**: (`liveMetadata`) => `void`
 
-Defined in: [src/types/sabrStreamTypes.ts:63](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L63)
+Defined in: [src/types/sabrStreamTypes.ts:71](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L71)
 
 #### Parameters
 
@@ -84,7 +84,7 @@ Defined in: [src/types/sabrStreamTypes.ts:63](https://github.com/LuanRT/googlevi
 
 > **finish**: () => `void`
 
-Defined in: [src/types/sabrStreamTypes.ts:64](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L64)
+Defined in: [src/types/sabrStreamTypes.ts:72](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L72)
 
 #### Returns
 
@@ -96,7 +96,7 @@ Defined in: [src/types/sabrStreamTypes.ts:64](https://github.com/LuanRT/googlevi
 
 > **abort**: () => `void`
 
-Defined in: [src/types/sabrStreamTypes.ts:65](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L65)
+Defined in: [src/types/sabrStreamTypes.ts:73](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L73)
 
 #### Returns
 
@@ -108,7 +108,7 @@ Defined in: [src/types/sabrStreamTypes.ts:65](https://github.com/LuanRT/googlevi
 
 > **error**: (`e`) => `void`
 
-Defined in: [src/types/sabrStreamTypes.ts:66](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L66)
+Defined in: [src/types/sabrStreamTypes.ts:74](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L74)
 
 #### Parameters
 

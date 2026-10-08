@@ -2,7 +2,7 @@
 
 # Interface: AbortOptions
 
-Defined in: [src/types/sabrStreamTypes.ts:193](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L193)
+Defined in: [src/types/sabrStreamTypes.ts:201](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L201)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:193](https://github.com/LuanRT/googlev
 
 > `optional` **snapshot**: `boolean`
 
-Defined in: [src/types/sabrStreamTypes.ts:199](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L199)
+Defined in: [src/types/sabrStreamTypes.ts:207](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L207)
 
 If true, a snapshot will be created before aborting the stream.
 

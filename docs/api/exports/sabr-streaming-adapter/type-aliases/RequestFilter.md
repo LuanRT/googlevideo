@@ -4,7 +4,7 @@
 
 > **RequestFilter** = (`request`) => `Promise`\<[`PlayerHttpRequest`](../interfaces/PlayerHttpRequest.md) \| `undefined`\> \| [`PlayerHttpRequest`](../interfaces/PlayerHttpRequest.md) \| `undefined`
 
-Defined in: [src/types/sabrStreamingAdapterTypes.ts:100](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamingAdapterTypes.ts#L100)
+Defined in: [src/types/sabrStreamingAdapterTypes.ts:100](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamingAdapterTypes.ts#L100)
 
 ## Parameters
 

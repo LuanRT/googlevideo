@@ -2,23 +2,31 @@
 
 # Interface: TrackState
 
-Defined in: [src/types/sabrStreamTypes.ts:228](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L228)
+Defined in: [src/types/sabrStreamTypes.ts:231](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L231)
 
 ## Extends
 
-- `Omit`\<[`TrackSegmentInfo`](TrackSegmentInfo.md), `"trackedSegments"`\>
+- `TrackStateFields`
 
 ## Properties
+
+### trackedSegments?
+
+> `optional` **trackedSegments**: \[`number`, [`CompletedSegment`](CompletedSegment.md)\][]
+
+Defined in: [src/types/sabrStreamTypes.ts:232](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L232)
+
+***
 
 ### formatId?
 
 > `optional` **formatId**: [`FormatId`](../../protos/interfaces/FormatId.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:213](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L213)
+Defined in: [src/utils/Track.ts:18](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/utils/Track.ts#L18)
 
 #### Inherited from
 
-[`TrackSegmentInfo`](TrackSegmentInfo.md).[`formatId`](TrackSegmentInfo.md#formatid)
+`TrackStateFields.formatId`
 
 ***
 
@@ -26,11 +34,11 @@ Defined in: [src/types/sabrStreamTypes.ts:213](https://github.com/LuanRT/googlev
 
 > `optional` **mimeType**: `string`
 
-Defined in: [src/types/sabrStreamTypes.ts:214](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L214)
+Defined in: [src/utils/Track.ts:19](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/utils/Track.ts#L19)
 
 #### Inherited from
 
-[`TrackSegmentInfo`](TrackSegmentInfo.md).[`mimeType`](TrackSegmentInfo.md#mimetype)
+`TrackStateFields.mimeType`
 
 ***
 
@@ -38,11 +46,11 @@ Defined in: [src/types/sabrStreamTypes.ts:214](https://github.com/LuanRT/googlev
 
 > `optional` **endSegmentNum**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:215](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L215)
+Defined in: [src/utils/Track.ts:20](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/utils/Track.ts#L20)
 
 #### Inherited from
 
-[`TrackSegmentInfo`](TrackSegmentInfo.md).[`endSegmentNum`](TrackSegmentInfo.md#endsegmentnum)
+`TrackStateFields.endSegmentNum`
 
 ***
 
@@ -50,11 +58,11 @@ Defined in: [src/types/sabrStreamTypes.ts:215](https://github.com/LuanRT/googlev
 
 > `optional` **endTimeTicks**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:216](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L216)
+Defined in: [src/utils/Track.ts:21](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/utils/Track.ts#L21)
 
 #### Inherited from
 
-[`TrackSegmentInfo`](TrackSegmentInfo.md).[`endTimeTicks`](TrackSegmentInfo.md#endtimeticks)
+`TrackStateFields.endTimeTicks`
 
 ***
 
@@ -62,11 +70,11 @@ Defined in: [src/types/sabrStreamTypes.ts:216](https://github.com/LuanRT/googlev
 
 > `optional` **endTimescale**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:217](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L217)
+Defined in: [src/utils/Track.ts:22](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/utils/Track.ts#L22)
 
 #### Inherited from
 
-[`TrackSegmentInfo`](TrackSegmentInfo.md).[`endTimescale`](TrackSegmentInfo.md#endtimescale)
+`TrackStateFields.endTimescale`
 
 ***
 
@@ -74,40 +82,20 @@ Defined in: [src/types/sabrStreamTypes.ts:217](https://github.com/LuanRT/googlev
 
 > `optional` **targetDurationSec**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:218](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L218)
+Defined in: [src/utils/Track.ts:23](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/utils/Track.ts#L23)
 
 #### Inherited from
 
-[`TrackSegmentInfo`](TrackSegmentInfo.md).[`targetDurationSec`](TrackSegmentInfo.md#targetdurationsec)
+`TrackStateFields.targetDurationSec`
 
 ***
 
 ### bufferedRangeSummary?
 
-> `optional` **bufferedRangeSummary**: `BufferedRangeSummary`
+> `optional` **bufferedRangeSummary**: [`BufferedRangeSummary`](BufferedRangeSummary.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:220](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L220)
-
-#### Inherited from
-
-[`TrackSegmentInfo`](TrackSegmentInfo.md).[`bufferedRangeSummary`](TrackSegmentInfo.md#bufferedrangesummary)
-
-***
-
-### emsgSegmentMetadata?
-
-> `optional` **emsgSegmentMetadata**: `EmsgSegmentMetadata`
-
-Defined in: [src/types/sabrStreamTypes.ts:221](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L221)
+Defined in: [src/utils/Track.ts:25](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/utils/Track.ts#L25)
 
 #### Inherited from
 
-[`TrackSegmentInfo`](TrackSegmentInfo.md).[`emsgSegmentMetadata`](TrackSegmentInfo.md#emsgsegmentmetadata)
-
-***
-
-### trackedSegments
-
-> **trackedSegments**: \[`number`, `CompletedSegment`\][]
-
-Defined in: [src/types/sabrStreamTypes.ts:229](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L229)
+`TrackStateFields.bufferedRangeSummary`

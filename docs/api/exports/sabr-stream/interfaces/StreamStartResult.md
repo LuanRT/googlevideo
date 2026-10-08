@@ -2,7 +2,7 @@
 
 # Interface: StreamStartResult
 
-Defined in: [src/types/sabrStreamTypes.ts:53](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L53)
+Defined in: [src/types/sabrStreamTypes.ts:61](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L61)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:53](https://github.com/LuanRT/googlevi
 
 > **videoStream**: `ReadableStream`\<`ArrayBufferView`\<`ArrayBufferLike`\>\>
 
-Defined in: [src/types/sabrStreamTypes.ts:54](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L54)
+Defined in: [src/types/sabrStreamTypes.ts:62](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L62)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/types/sabrStreamTypes.ts:54](https://github.com/LuanRT/googlevi
 
 > **audioStream**: `ReadableStream`\<`ArrayBufferView`\<`ArrayBufferLike`\>\>
 
-Defined in: [src/types/sabrStreamTypes.ts:55](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L55)
+Defined in: [src/types/sabrStreamTypes.ts:63](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L63)
 
 ***
 
@@ -26,4 +26,4 @@ Defined in: [src/types/sabrStreamTypes.ts:55](https://github.com/LuanRT/googlevi
 
 > **selectedFormats**: [`SelectedFormats`](SelectedFormats.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:56](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/src/types/sabrStreamTypes.ts#L56)
+Defined in: [src/types/sabrStreamTypes.ts:64](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/types/sabrStreamTypes.ts#L64)

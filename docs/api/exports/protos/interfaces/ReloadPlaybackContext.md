@@ -2,7 +2,7 @@
 
 # Interface: ReloadPlaybackContext
 
-Defined in: [protos/generated/video\_streaming/reload\_player\_response.ts:16](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/reload_player_response.ts#L16)
+Defined in: [protos/generated/video\_streaming/reload\_player\_response.ts:16](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/protos/generated/video_streaming/reload_player_response.ts#L16)
 
 ## Properties
 
@@ -10,4 +10,4 @@ Defined in: [protos/generated/video\_streaming/reload\_player\_response.ts:16](h
 
 > `optional` **reloadPlaybackParams**: [`ReloadPlaybackParams`](ReloadPlaybackParams.md)
 
-Defined in: [protos/generated/video\_streaming/reload\_player\_response.ts:17](https://github.com/LuanRT/googlevideo/blob/3cfeff043facb734c178a5b2ef1d8152ffb46bb4/protos/generated/video_streaming/reload_player_response.ts#L17)
+Defined in: [protos/generated/video\_streaming/reload\_player\_response.ts:17](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/protos/generated/video_streaming/reload_player_response.ts#L17)
