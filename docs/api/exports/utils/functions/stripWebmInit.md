@@ -4,7 +4,7 @@
 
 > **stripWebmInit**(`segment`): `Uint8Array`
 
-Defined in: [src/utils/mediaSegmentUtils.ts:32](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/utils/mediaSegmentUtils.ts#L32)
+Defined in: [src/utils/mediaSegmentUtils.ts:32](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/utils/mediaSegmentUtils.ts#L32)
 
 ## Parameters
 

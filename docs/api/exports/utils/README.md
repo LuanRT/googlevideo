@@ -15,6 +15,8 @@ This module contains general utilities.
 - [EventEmitterLike](classes/EventEmitterLike.md)
 - [Logger](classes/Logger.md)
 - [RequestMetadataManager](classes/RequestMetadataManager.md)
+- [Track](classes/Track.md)
+- [TrackCollection](classes/TrackCollection.md)
 
 ## Interfaces
 

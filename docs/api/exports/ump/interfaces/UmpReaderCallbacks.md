@@ -2,7 +2,7 @@
 
 # Interface: UmpReaderCallbacks
 
-Defined in: [src/core/UmpReader.ts:4](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/core/UmpReader.ts#L4)
+Defined in: [src/core/UmpReader.ts:4](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/core/UmpReader.ts#L4)
 
 ## Methods
 
@@ -10,7 +10,7 @@ Defined in: [src/core/UmpReader.ts:4](https://github.com/LuanRT/googlevideo/blob
 
 > **onPart**(`type`, `data`): `void` \| `Promise`\<`void`\>
 
-Defined in: [src/core/UmpReader.ts:8](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/core/UmpReader.ts#L8)
+Defined in: [src/core/UmpReader.ts:8](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/core/UmpReader.ts#L8)
 
 Called when a complete UMP part is available.
 
@@ -34,7 +34,7 @@ Called when a complete UMP part is available.
 
 > `optional` **onPartialPart**(`type`, `chunk`, `offset`, `totalSize`): `boolean`
 
-Defined in: [src/core/UmpReader.ts:12](https://github.com/LuanRT/googlevideo/blob/ff7eba6766cd0262c5179da378beb8f2c9e2fccd/src/core/UmpReader.ts#L12)
+Defined in: [src/core/UmpReader.ts:12](https://github.com/LuanRT/googlevideo/blob/ce631b320a9c7ebeea096c18def2635a02e80b3c/src/core/UmpReader.ts#L12)
 
 Only use this if you wish to handle partial UMP parts yourself.
 
