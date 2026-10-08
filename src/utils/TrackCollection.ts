@@ -100,8 +100,8 @@ export class TrackCollection {
   public error(err?: string | Error): void {
     const errorInstance =
       typeof err === 'string' ? new Error(err) : err;
-    for (const track of this.initializedTracks)
-      track.streamController.error(errorInstance);
+    this.video.streamController.error(errorInstance);
+    this.audio.streamController.error(errorInstance);
   }
 
   public close(): void {
