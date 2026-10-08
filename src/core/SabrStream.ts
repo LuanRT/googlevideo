@@ -894,16 +894,6 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     }
   }
 
-  private hasExpired(): boolean {
-    const expireRawValue = this.streamingURL.searchParams.get('expire');
-    if (!expireRawValue) return false;
-
-    const expireTimestampMs = parseInt(expireRawValue, 10) * 1000;
-    const msRemaining = expireTimestampMs - Date.now();
-
-    return msRemaining <= 0;
-  }
-
   private tryMintPoToken(): void {
     const onMintPoToken = this.callbacks.onMintPoToken;
 
@@ -921,23 +911,6 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
         }
       })();
     }
-  }
-
-  private async tryReloadStreamingData(reloadPlaybackContext?: ReloadPlaybackContext): Promise<void> {
-    const onReloadPlayerResponseCb = this.callbacks.onReloadPlayerResponse;
-    if (onReloadPlayerResponseCb) {
-      try {
-        const response = await onReloadPlayerResponseCb(reloadPlaybackContext);
-        this.setStreamingURL(response.serverAbrStreamingUrl);
-        this.setUstreamerConfig(response.videoPlaybackUstreamerConfig);
-
-        this.sabrContextUpdates.clear();
-        this.activeSabrContextTypes.clear();
-        this.ssapPlaybackInfos.clear();
-      } catch (err: unknown) {
-        throw new Error(`An error occurred while reloading streaming data: ${(err as Error)?.message}`);
-      }
-    } else throw new Error('Streaming data reload requested but no handler was found');
   }
 
   private buildRequestBody(
@@ -997,7 +970,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     this.resetRequestTimeout();
 
     try {
-      return this.fetchFunction(this.streamingURL, {
+      return await this.fetchFunction(this.streamingURL, {
         body,
         method: 'POST',
         headers: {
@@ -1021,6 +994,33 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     } finally {
       this.requestNumber += 1;
     }
+  }
+
+  private hasExpired(): boolean {
+    const expireRawValue = this.streamingURL.searchParams.get('expire');
+    if (!expireRawValue) return false;
+
+    const expireTimestampMs = parseInt(expireRawValue, 10) * 1000;
+    const msRemaining = expireTimestampMs - Date.now();
+
+    return msRemaining <= 0;
+  }
+
+  private async tryReloadStreamingData(reloadPlaybackContext?: ReloadPlaybackContext): Promise<void> {
+    const onReloadPlayerResponseCb = this.callbacks.onReloadPlayerResponse;
+    if (onReloadPlayerResponseCb) {
+      try {
+        const response = await onReloadPlayerResponseCb(reloadPlaybackContext);
+        this.setStreamingURL(response.serverAbrStreamingUrl);
+        this.setUstreamerConfig(response.videoPlaybackUstreamerConfig);
+
+        this.sabrContextUpdates.clear();
+        this.activeSabrContextTypes.clear();
+        this.ssapPlaybackInfos.clear();
+      } catch (err: unknown) {
+        throw new Error(`An error occurred while reloading streaming data: ${(err as Error)?.message}`);
+      }
+    } else throw new Error('Streaming data reload requested but no handler was found');
   }
 
   private resetRequestTimeout(): void {
