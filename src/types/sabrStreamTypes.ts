@@ -217,8 +217,19 @@ export interface SabrSnapshot {
   tracks: TrackState[];
 }
 
-export interface TrackState extends Omit<Track, 'trackedSegments' | 'emsgSegmentMetadata' | 'recordCompletedSegment' | 'type' | 'update' | 'error' | 'endOfStreamReached' | 'latencyMs' | 'snapshot' | 'output' | 'endTimeMs' | 'streamLocked' | 'streamDesiredSize' | 'streamController' | 'streamFull'> {
-  trackedSegments?: [ number, CompletedSegment ][];
+type TrackStateFields = Pick<
+  Track,
+  | 'formatId'
+  | 'mimeType'
+  | 'endSegmentNum'
+  | 'endTimeTicks'
+  | 'endTimescale'
+  | 'targetDurationSec'
+  | 'bufferedRangeSummary'
+>;
+
+export interface TrackState extends TrackStateFields {
+  trackedSegments?: [number, CompletedSegment][];
 }
 
 export interface CompletedSegment {
