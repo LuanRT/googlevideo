@@ -70,7 +70,7 @@ export class Track {
     return this.emsgSegmentMetadata?.latencyMs ?? 0;
   }
 
-  public update(state: TrackState): this {
+  public update(state: TrackState): void {
     if ('formatId' in state)
       this.formatId = state.formatId;
 
@@ -94,8 +94,6 @@ export class Track {
 
     if ('bufferedRangeSummary' in state)
       this.bufferedRangeSummary = state.bufferedRangeSummary;
-
-    return this;
   }
 
   public snapshot(): TrackState {
