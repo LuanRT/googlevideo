@@ -1,5 +1,23 @@
 # Changelog
 
+## [5.0.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v4.1.1...googlevideo-v5.0.0) (2026-10-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **SabrStream:** Please see https://github.com/LuanRT/googlevideo/pull/54 for more info on what's changed.
+
+### Bug Fixes
+
+* **EmsgSegmentMetadata:** Correct live latency calculation ([b6f4877](https://github.com/LuanRT/googlevideo/commit/b6f48772b2255d16f2205bd8da02cb79c6f8d4b8))
+* **SabrStream:** Ignore unused streams ([#56](https://github.com/LuanRT/googlevideo/issues/56)) ([44e360a](https://github.com/LuanRT/googlevideo/commit/44e360aa1be47298d51535454f899501cf29ce0c))
+* **SabrStream:** Implement fallback URL logic ([#59](https://github.com/LuanRT/googlevideo/issues/59)) ([01d5b09](https://github.com/LuanRT/googlevideo/commit/01d5b091a6ce88ebf6d25a7b1b88914d9e16c294))
+
+
+### Code Refactoring
+
+* **SabrStream:** Rewrite & add livestream support ([de3efde](https://github.com/LuanRT/googlevideo/commit/de3efde38264f40baf0013f7cbc0498d8ad55aa9))
+
 ## [4.1.1](https://github.com/LuanRT/googlevideo/compare/googlevideo-v4.1.0...googlevideo-v4.1.1) (2026-07-13)
 
 
