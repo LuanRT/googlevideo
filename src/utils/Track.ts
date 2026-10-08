@@ -109,7 +109,7 @@ export class Track {
     };
   }
 
-  public recordCompletedSegment(info: SegmentInfo, emsgMetadata?: EmsgSegmentMetadata) {
+  public recordCompletedSegment(info: SegmentInfo, emsgMetadata?: EmsgSegmentMetadata): void {
     let durationMs: number | undefined = info.durationMs;
 
     if (durationMs <= 0 && !info.mediaHeader.isInitializationSegment)

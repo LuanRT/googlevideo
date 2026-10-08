@@ -15,6 +15,6 @@ interface GetMediaTypeInput {
   mimeType?: string;
 }
 
-export function getMediaType(input: GetMediaTypeInput) {
+export function getMediaType(input: GetMediaTypeInput): 'audio' | 'video' {
   return input.mimeType?.includes('audio') ? 'audio' : 'video';
 }

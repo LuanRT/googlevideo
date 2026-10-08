@@ -4,7 +4,7 @@ export class EventEmitterLike<Events extends Record<string, Listener>> {
   private listeners = new Map<keyof Events, Set<Listener>>();
   private onceWrappers = new Map<Listener, Map<keyof Events, Listener>>();
 
-  public emit<K extends keyof Events>(type: K, ...args: Parameters<Events[K]>) {
+  public emit<K extends keyof Events>(type: K, ...args: Parameters<Events[K]>): void {
     const listeners = this.listeners.get(type);
     if (!listeners || listeners.size === 0)
       return;
@@ -14,7 +14,7 @@ export class EventEmitterLike<Events extends Record<string, Listener>> {
       listener(...args);
   }
 
-  public on<K extends keyof Events>(type: K, listener: Events[K]) {
+  public on<K extends keyof Events>(type: K, listener: Events[K]): void {
     let listeners = this.listeners.get(type);
 
     if (!listeners) {
@@ -25,7 +25,7 @@ export class EventEmitterLike<Events extends Record<string, Listener>> {
     listeners.add(listener);
   }
 
-  public once<K extends keyof Events>(type: K, listener: Events[K]) {
+  public once<K extends keyof Events>(type: K, listener: Events[K]): void {
     const wrapper: Listener = (...args: any[]) => {
       this.off(type, listener);
       listener(...args);
@@ -42,7 +42,7 @@ export class EventEmitterLike<Events extends Record<string, Listener>> {
     this.on(type, wrapper as Events[K]);
   }
 
-  public off<K extends keyof Events>(type: K, listener: Events[K]) {
+  public off<K extends keyof Events>(type: K, listener: Events[K]): void {
     const listeners = this.listeners.get(type);
     if (!listeners) return;
 
@@ -67,7 +67,7 @@ export class EventEmitterLike<Events extends Record<string, Listener>> {
       this.listeners.delete(type);
   }
 
-  public removeAllListeners(type?: keyof Events) {
+  public removeAllListeners(type?: keyof Events): void {
     if (!type) {
       this.listeners.clear();
       this.onceWrappers.clear();
