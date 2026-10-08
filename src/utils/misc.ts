@@ -10,3 +10,11 @@ export function assertIsDefined<T>(val: T, msg?: string): asserts val is NonNull
   if (val === undefined || val === null)
     throw new Error(msg ?? `Expected value to be defined, but got ${val}`);
 }
+
+interface GetMediaTypeInput {
+  mimeType?: string;
+}
+
+export function getMediaType(input: GetMediaTypeInput) {
+  return input.mimeType?.includes('audio') ? 'audio' : 'video';
+}

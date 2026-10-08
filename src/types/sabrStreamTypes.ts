@@ -1,8 +1,16 @@
 import type { FetchFunction, SabrFormat } from './shared.js';
-import type { BufferedRangeSummary, CompletedSegment } from '../utils/SabrBufferState.js';
-import type { ClientInfo, FormatId, ReloadPlaybackContext, SabrLiveMetadata, StreamProtectionStatus } from '../utils/Protos.js';
+
+import type {
+  ClientInfo,
+  MediaHeader,
+  ReloadPlaybackContext,
+  SabrLiveMetadata,
+  StreamProtectionStatus
+} from '../utils/Protos.js';
+
+import type { Track } from '../utils/Track.js';
 import type { EnabledTrackTypes } from '../utils/formatUtils.js';
-import type { EmsgSegmentMetadata } from '../utils/EmsgSegmentMetadata.js';
+import type { TrackCollection } from '../utils/TrackCollection.js';
 
 export interface SabrStreamConfig {
   videoId: string;
@@ -46,7 +54,7 @@ export interface SabrStreamCallbacks {
 }
 
 export interface SelectedFormats {
-  videoFormat: SabrFormat;
+  videoFormat?: SabrFormat;
   audioFormat: SabrFormat;
 }
 
@@ -57,8 +65,8 @@ export interface StreamStartResult {
 }
 
 export type SabrStreamEvents = {
-  trackMetadataUpdate: (trackMetadata: TrackMetadata) => void;
-  formatInitialization: (track: TrackSegmentInfo) => void;
+  trackStateUpdate: (trackCollection: TrackCollection) => void;
+  formatInitialization: (track: Track) => void;
   streamProtectionStatusUpdate: (sps: StreamProtectionStatus) => void;
   liveMetadataUpdate: (liveMetadata: SabrLiveMetadata) => void;
   finish: () => void;
@@ -171,10 +179,10 @@ export interface AudioFormatPreferences {
    * @default undefined
    */
   quality?:
-  | 'AUDIO_QUALITY_ULTRALOW'
-  | 'AUDIO_QUALITY_LOW'
-  | 'AUDIO_QUALITY_MEDIUM'
-  | 'AUDIO_QUALITY_HIGH';
+    | 'AUDIO_QUALITY_ULTRALOW'
+    | 'AUDIO_QUALITY_LOW'
+    | 'AUDIO_QUALITY_MEDIUM'
+    | 'AUDIO_QUALITY_HIGH';
   language?: string;
   /**
    * Required container format.
@@ -204,32 +212,45 @@ export interface TrackOutput {
   controller: ReadableStreamDefaultController<Uint8Array>;
 }
 
-export interface TrackOutputs {
-  video: TrackOutput;
-  audio: TrackOutput;
-}
-
-export interface TrackSegmentInfo {
-  formatId?: FormatId;
-  mimeType?: string;
-  endSegmentNum?: number;
-  endTimeTicks?: number;
-  endTimescale?: number;
-  targetDurationSec?: number;
-  trackedSegments: Map<number, CompletedSegment>;
-  bufferedRangeSummary?: BufferedRangeSummary;
-  emsgSegmentMetadata?: EmsgSegmentMetadata;
-}
-
 export interface SabrSnapshot {
   playerTimeMs: number;
   tracks: TrackState[];
 }
-export interface TrackState extends Omit<TrackSegmentInfo, 'trackedSegments'> {
-  trackedSegments: [number, CompletedSegment][];
+
+type TrackStateFields = Pick<
+  Track,
+  | 'formatId'
+  | 'mimeType'
+  | 'endSegmentNum'
+  | 'endTimeTicks'
+  | 'endTimescale'
+  | 'targetDurationSec'
+  | 'bufferedRangeSummary'
+>;
+
+export interface TrackState extends TrackStateFields {
+  trackedSegments?: [number, CompletedSegment][];
 }
 
-export interface TrackMetadata {
-  video: TrackSegmentInfo;
-  audio: TrackSegmentInfo;
+export interface CompletedSegment {
+  segmentNumber: number;
+  durationMs: number;
+  startTimeMs: number;
+  endTimeMs: number;
+  mediaHeader: MediaHeader;
+}
+
+export interface SegmentInfo {
+  formatKey: string;
+  segmentNumber: number;
+  mediaHeader: MediaHeader;
+  startTimeMs: number;
+  durationMs: number;
+}
+
+export interface BufferedRangeSummary {
+  startTimeMs: number;
+  durationMs: number;
+  startSegmentIndex: number;
+  endSegmentIndex: number;
 }

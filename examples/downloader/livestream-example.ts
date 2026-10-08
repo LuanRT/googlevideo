@@ -40,7 +40,12 @@ async function main() {
 
     const options: SabrPlaybackOptions = {
       videoPreferences: { container: 'webm', quality: '720p', preferredVideoCodec: 'vp9' },
-      audioPreferences: { container: 'mp4', preferredAudioCodec: 'aac', dynamicRangeCompression: false, voiceBoost: false },
+      audioPreferences: {
+        container: 'mp4',
+        preferredAudioCodec: 'aac',
+        dynamicRangeCompression: false,
+        voiceBoost: false
+      },
       isPostLiveDvr: !!playerResponse.video_details?.is_post_live_dvr
     };
 
@@ -48,6 +53,12 @@ async function main() {
 
     const { results } = await createSabrStream(options, playerResponse, innertube);
     const { videoStream, audioStream, selectedFormats, videoTitle, author, views, duration } = results;
+
+    // Needed because we try merging them with ffmpeg.
+    if (!selectedFormats.videoFormat) {
+      console.error('[error]', 'Please set enabledTrackTypes to "VIDEO_AND_AUDIO"');
+      process.exit(1);
+    }
 
     title = videoTitle;
     sabrStreamInstance = results.sabrStreamInstance;

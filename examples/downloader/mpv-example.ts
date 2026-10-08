@@ -20,9 +20,9 @@ Log.setLevel(Log.Level.NONE);
 
 /**
  * A basic example of streaming to mpv.
- * 
- * NOTE: 
- * VOD playback is also supported, but seeking is restricted 
+ *
+ * NOTE:
+ * VOD playback is also supported, but seeking is restricted
  * to already buffered segments of the stream...
  */
 

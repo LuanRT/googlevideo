@@ -9,10 +9,10 @@ export function base64ToU8(base64: string): Uint8Array {
 }
 
 export function concatenateChunks(chunks: Uint8Array[]): Uint8Array {
-  let totalLength = 0;
-
   const chunkCount = chunks.length;
 
+  let totalLength = 0;
+  
   for (let i = 0; i < chunkCount; i++)
     totalLength += chunks[i].length;
 
