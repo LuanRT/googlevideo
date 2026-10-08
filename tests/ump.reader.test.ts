@@ -112,14 +112,10 @@ describe('UmpReader', () => {
   });
 
   it('should handle reading from multiple chunks', async () => {
-    const buffer = new CompositeBuffer();
-    const writer = new UmpWriter(buffer);
-
     const partType = 1;
     const partData = new Uint8Array([ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]);
-    writer.write(partType, partData);
 
-    // Re-create the buffer from multiple smaller chunks.
+    // Create the buffer from multiple smaller chunks.
     const chunk1 = new Uint8Array([ 1, 10, 1, 2, 3 ]); // type, size, data...
     const chunk2 = new Uint8Array([ 4, 5, 6 ]); // ...data...
     const chunk3 = new Uint8Array([ 7, 8, 9, 10 ]); // ...data
