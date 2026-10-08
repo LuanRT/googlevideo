@@ -157,7 +157,7 @@ export class EmsgSegmentMetadata {
   public get latencyMs(): number {
     const ingestionTimeMs = this.ingestionTimeSec * 1e3;
     const uncertaintyMs = this.ingestionUncertaintySec * 1e3;
-    return Math.max(0, this.receivedAtMs - ingestionTimeMs - uncertaintyMs);
+    return Math.max(0, (this.receivedAtMs - ingestionTimeMs) + uncertaintyMs);
   }
 
   public getStitchedCPNs(): string[] {
