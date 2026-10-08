@@ -22,6 +22,7 @@ async function main() {
   let audioOutputStream: DownloadOutput | undefined;
   let videoOutputStream: DownloadOutput | undefined;
   let sabrStreamInstance: SabrStream | undefined;
+  let downloadTimer: NodeJS.Timeout | undefined;
 
   const EXAMPLE_DURATION_MIN = 10;
 
@@ -71,7 +72,7 @@ async function main() {
       Video ID: ${videoId}\n
     `);
 
-    setTimeout(() => {
+    downloadTimer = setTimeout(() => {
       sabrStreamInstance?.abort();
     }, EXAMPLE_DURATION_MIN * 60 * 1000);
 
@@ -93,6 +94,9 @@ async function main() {
       process.exitCode = 1;
     }
   } finally {
+    if (downloadTimer)
+      clearTimeout(downloadTimer);
+    
     if (!audioOutputStream || !videoOutputStream || !title) {
       process.exitCode = 1;
     } else {
