@@ -177,9 +177,6 @@ async function loadVideo(videoId: string) {
         contentCheckOk: true,
         racyCheckOk: true,
         playbackContext: {
-          adPlaybackContext: {
-            pyv: true
-          },
           contentPlaybackContext: {
             signatureTimestamp: innertube.session.player?.signature_timestamp
           },
