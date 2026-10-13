@@ -63,10 +63,10 @@ export class TrackCollection {
     const videoLatency = this.video.latencyMs;
     const audioLatency = this.audio.latencyMs;
 
-    if (!videoLatency && !audioLatency)
-      return;
+    if (videoLatency === undefined && audioLatency === undefined)
+      return undefined;
 
-    return Math.max(videoLatency, audioLatency);
+    return Math.max(videoLatency ?? 0, audioLatency ?? 0);
   }
 
   public initialize(type: 'video' | 'audio', metadata: TrackState): void {

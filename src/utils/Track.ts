@@ -66,8 +66,10 @@ export class Track {
     );
   }
 
-  public get latencyMs(): number {
-    return this.emsgSegmentMetadata?.latencyMs ?? 0;
+  public get latencyMs(): number | undefined {
+    if (!this.emsgSegmentMetadata)
+      return undefined;
+    return this.emsgSegmentMetadata.latencyMs;
   }
 
   public update(state: TrackState): void {
@@ -104,7 +106,7 @@ export class Track {
       endTimeTicks: this.endTimeTicks,
       endTimescale: this.endTimescale,
       targetDurationSec: this.targetDurationSec,
-      trackedSegments: Array.from(this.trackedSegments.entries() || []),
+      trackedSegments: Array.from(this.trackedSegments.entries()),
       bufferedRangeSummary: this.bufferedRangeSummary
     };
   }

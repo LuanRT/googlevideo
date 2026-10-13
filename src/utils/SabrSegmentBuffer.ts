@@ -7,9 +7,11 @@ import { concatenateChunks } from './uint8arrayUtils.js';
 import type { MediaHeader } from './Protos.js';
 import type { SegmentInfo } from '../types/sabrStreamTypes.js';
 import type { TrackCollection } from './TrackCollection.js';
+import type { CompositeBuffer } from '../core/CompositeBuffer.js';
 
 interface PendingSegment extends SegmentInfo {
   bufferedChunks: Uint8Array[];
+  loadedLengthBytes: number;
   type: 'audio' | 'video';
 }
 
@@ -21,7 +23,7 @@ export class SabrSegmentBuffer {
 
   constructor(
     private readonly trackMetadata: TrackCollection,
-    private readonly isLive: boolean,
+    private readonly isBroadcast: boolean = false,
     private readonly stripDuplicateInit: boolean = true
   ) { }
 
@@ -55,18 +57,20 @@ export class SabrSegmentBuffer {
       startTimeMs: getStartMs(mediaHeader),
       durationMs: getDurationMs(mediaHeader),
       bufferedChunks: [],
+      loadedLengthBytes: 0,
       type: track.type
     });
   }
 
-  public appendMediaData(headerId: number, chunks: Uint8Array[]): void {
+  public appendMediaData(headerId: number, buffer: CompositeBuffer): void {
     const pendingSegment = this.pendingSegments.get(headerId);
     if (!pendingSegment) {
       this.logger.debug(TAG, `Received MEDIA for unknown header id ${headerId}`);
       return;
     }
 
-    pendingSegment.bufferedChunks.push(...chunks);
+    pendingSegment.bufferedChunks.push(...buffer.chunks);
+    pendingSegment.loadedLengthBytes += buffer.getLength();
   }
 
   public finalizeSegment(headerId: number): boolean {
@@ -83,33 +87,29 @@ export class SabrSegmentBuffer {
       return false;
     }
 
-    const bufferedChunks = pendingSegment.bufferedChunks;
-
-    let loadedBytes = 0;
-
-    for (let i = 0; i < bufferedChunks.length; i++)
-      loadedBytes += bufferedChunks[i].length;
-
     const expectedLengthBytes = parseInt(pendingSegment.mediaHeader.segmentLengthBytes || '0');
+    const loadedLengthBytes = pendingSegment.loadedLengthBytes;
 
     // Should never happen.
-    if (expectedLengthBytes > 0 && loadedBytes !== expectedLengthBytes) {
+    if (expectedLengthBytes > 0 && loadedLengthBytes !== expectedLengthBytes) {
       this.logger.warn(
         TAG,
         `Ignoring partial segment ${pendingSegment.segmentNumber} for ${pendingSegment.formatKey}.\n` +
-        `expected=${expectedLengthBytes}, received=${loadedBytes}`
+        `expected=${expectedLengthBytes}, received=${loadedLengthBytes}`
       );
       this.pendingSegments.delete(headerId);
       return false;
     }
 
-    let segment = concatenateChunks(bufferedChunks);
+    let segment = concatenateChunks(pendingSegment.bufferedChunks);
 
     const emsgMetadata = parseEmsgSegmentMetadata(segment);
 
-    if (this.isLive && this.stripDuplicateInit && track.trackedSegments.size !== 0)
+    if (this.isBroadcast && this.stripDuplicateInit && track.trackedSegments.size !== 0)
       segment = track.mimeType?.includes('webm') ? stripWebmInit(segment) : stripMp4Init(segment);
 
+    // If the stream is not locked, keep enqueueing until it's over capacity.
+    // Once it is, assume nobody cares about the track and stop enqueueing.
     if (track.streamLocked || track.streamDesiredSize > 0)
       track.streamController.enqueue(segment);
 
