@@ -1,3 +1,4 @@
+import { CODEC_CODES } from './mediaCapabilityUtils.js';
 import type { MediaHeader } from './Protos.js';
 import type { CreateFormatKeyInput, FormatStream, SabrFormat } from '../types/shared.js';
 import type { SabrRequestMetadata } from '../types/sabrStreamingAdapterTypes.js';
@@ -37,6 +38,7 @@ export function chooseFormat(
     voiceBoost?: boolean;
     dynamicRangeCompression?: boolean;
     superResolution?: boolean;
+    hdr?: boolean;
     isAudio: boolean;
   }
 ): SabrFormat | undefined {
@@ -61,13 +63,12 @@ export function chooseFormat(
     filteredFormats = filteredFormats.filter((format) => format.language === language);
 
   const quality = preferences.quality;
-  if (quality !== undefined) {
+  if (quality !== undefined)
     filteredFormats = filteredFormats.filter((format) =>
       preferences.isAudio
         ? !!format.audioQuality?.toLowerCase().includes(quality?.toLowerCase() || '')
         : !!format.qualityLabel?.toLowerCase().includes(quality?.toLowerCase() || '')
     );
-  }
 
   const container = preferences.container;
   if (container !== undefined)
@@ -84,6 +85,10 @@ export function chooseFormat(
   const superResolution = preferences.superResolution;
   if (superResolution !== undefined)
     filteredFormats = filteredFormats.filter((format) => format.isSr === superResolution);
+  
+  const hdr = preferences.hdr;
+  if (hdr !== undefined)
+    filteredFormats = filteredFormats.filter((format) => format.isHdr === hdr);
 
   return filteredFormats.sort((a, b) => {
     const preferredCodec = preferences.isAudio ? preferences.preferredAudioCodec : preferences.preferredVideoCodec;
@@ -120,14 +125,18 @@ function filterFormatsByType(formats: SabrFormat[], isAudio: boolean): SabrForma
 }
 
 export function buildSabrFormat(formatStream: FormatStream): SabrFormat {
+  const transferCharacteristics = formatStream.color_info?.transfer_characteristics || formatStream.colorInfo?.transferCharacteristics || '';
+  
   return {
     itag: formatStream.itag,
     lastModified: formatStream.last_modified_ms || formatStream.lastModified || '0',
     xtags: formatStream.xtags,
     width: formatStream.width,
     height: formatStream.height,
+    fps: formatStream.fps,
     mimeType: formatStream.mime_type || formatStream.mimeType,
     audioQuality: formatStream.audio_quality || formatStream.audioQuality,
+    numChannels: formatStream.audio_channels || formatStream.audioChannels,
     bitrate: formatStream.bitrate,
     averageBitrate: formatStream.average_bitrate || formatStream.averageBitrate,
     quality: formatStream.quality,
@@ -136,8 +145,14 @@ export function buildSabrFormat(formatStream: FormatStream): SabrFormat {
     approxDurationMs: formatStream.approx_duration_ms || parseInt(formatStream.approxDurationMs || '0'),
     contentLength: parseInt(formatStream.contentLength || '0') || formatStream.content_length,
     targetDurationSec: formatStream.targetDurationSec || formatStream.target_duration_sec || formatStream.target_duration_dec,
+    hasAudio: !!(formatStream.audioQuality || formatStream.audio_quality),
+    hasVideo: !!(formatStream.qualityLabel && !formatStream.quality_label),
+    hasText: !!(formatStream.captionTrack || formatStream.caption_track),
     isVb: formatStream.isVb || formatStream.is_vb,
     isSr: formatStream.isSr || formatStream.is_sr,
+    isHdr:
+      transferCharacteristics.includes('SMPTEST2084') ||
+      transferCharacteristics.includes('ARIB_STD_B67'),
     // YouTube.js-specific properties.
     isDrc: formatStream.is_drc,
     isAutoDubbed: formatStream.is_auto_dubbed,
@@ -145,7 +160,8 @@ export function buildSabrFormat(formatStream: FormatStream): SabrFormat {
     isDubbed: formatStream.is_dubbed,
     language: formatStream.language,
     isOriginal: formatStream.is_original,
-    isSecondary: formatStream.is_secondary
+    isSecondary: formatStream.is_secondary,
+    codecCode: CODEC_CODES[formatStream.itag as keyof typeof CODEC_CODES]
   };
 }
 

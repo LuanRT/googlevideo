@@ -50,6 +50,7 @@ import {
 import { ticksToMs } from '../utils/mediaTimeUtils.js';
 import { base64ToU8, decodePart } from '../utils/uint8arrayUtils.js';
 import { getBroadcastId, getNextFallbackUrl } from '../utils/urlUtils.js';
+import { buildMediaCapabilities } from '../utils/mediaCapabilityUtils.js';
 import { TrackCollection } from '../utils/TrackCollection.js';
 
 const TAG = 'SabrStream';
@@ -348,6 +349,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
         audioTrackId: audioFormat?.audioTrackId,
         clientViewportIsFlexible: false,
         drcEnabled: audioFormat?.isVb ? false : audioFormat?.isDrc ?? false,
+        mediaCapabilities: buildMediaCapabilities(videoFormat, audioFormat),
         enableVoiceBoost: audioFormat?.isVb,
         stickyResolution: videoFormat?.height,
         elapsedWallTimeMs: '0',

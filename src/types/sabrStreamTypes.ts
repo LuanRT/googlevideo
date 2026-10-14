@@ -170,6 +170,7 @@ export interface VideoFormatPreferences {
    */
   preferredVideoCodec?: 'h264' | 'vp9' | 'av1';
   superResolution?: boolean;
+  hdr?: boolean;
 }
 
 export interface AudioFormatPreferences {

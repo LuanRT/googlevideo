@@ -12,11 +12,17 @@ export const protobufPackage = "video_streaming";
 export interface MediaCapabilities {
   videoFormatCapabilities: MediaCapabilities_VideoFormatCapability[];
   audioFormatCapabilities: MediaCapabilities_AudioFormatCapability[];
+  perPlaybackAttributes?: MediaCapabilities_PerPlaybackAttributes | undefined;
   hdrModeBitmask?: number | undefined;
+}
+
+export interface MediaCapabilities_PerPlaybackAttributes {
+  itagDenylist: number[];
 }
 
 export interface MediaCapabilities_VideoFormatCapability {
   videoCodec?: number | undefined;
+  efficient?: boolean | undefined;
   maxHeight?: number | undefined;
   maxWidth?: number | undefined;
   maxFramerate?: number | undefined;
@@ -32,7 +38,12 @@ export interface MediaCapabilities_AudioFormatCapability {
 }
 
 function createBaseMediaCapabilities(): MediaCapabilities {
-  return { videoFormatCapabilities: [], audioFormatCapabilities: [], hdrModeBitmask: 0 };
+  return {
+    videoFormatCapabilities: [],
+    audioFormatCapabilities: [],
+    perPlaybackAttributes: undefined,
+    hdrModeBitmask: 0,
+  };
 }
 
 export const MediaCapabilities: MessageFns<MediaCapabilities> = {
@@ -42,6 +53,9 @@ export const MediaCapabilities: MessageFns<MediaCapabilities> = {
     }
     for (const v of message.audioFormatCapabilities) {
       MediaCapabilities_AudioFormatCapability.encode(v!, writer.uint32(18).fork()).join();
+    }
+    if (message.perPlaybackAttributes !== undefined) {
+      MediaCapabilities_PerPlaybackAttributes.encode(message.perPlaybackAttributes, writer.uint32(34).fork()).join();
     }
     if (message.hdrModeBitmask !== undefined && message.hdrModeBitmask !== 0) {
       writer.uint32(40).int32(message.hdrModeBitmask);
@@ -72,6 +86,14 @@ export const MediaCapabilities: MessageFns<MediaCapabilities> = {
           message.audioFormatCapabilities.push(MediaCapabilities_AudioFormatCapability.decode(reader, reader.uint32()));
           continue;
         }
+        case 4: {
+          if (tag !== 34) {
+            break;
+          }
+
+          message.perPlaybackAttributes = MediaCapabilities_PerPlaybackAttributes.decode(reader, reader.uint32());
+          continue;
+        }
         case 5: {
           if (tag !== 40) {
             break;
@@ -90,14 +112,74 @@ export const MediaCapabilities: MessageFns<MediaCapabilities> = {
   },
 };
 
+function createBaseMediaCapabilities_PerPlaybackAttributes(): MediaCapabilities_PerPlaybackAttributes {
+  return { itagDenylist: [] };
+}
+
+export const MediaCapabilities_PerPlaybackAttributes: MessageFns<MediaCapabilities_PerPlaybackAttributes> = {
+  encode(message: MediaCapabilities_PerPlaybackAttributes, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+    writer.uint32(10).fork();
+    for (const v of message.itagDenylist) {
+      writer.int32(v);
+    }
+    writer.join();
+    return writer;
+  },
+
+  decode(input: BinaryReader | Uint8Array, length?: number): MediaCapabilities_PerPlaybackAttributes {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    const end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMediaCapabilities_PerPlaybackAttributes();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1: {
+          if (tag === 8) {
+            message.itagDenylist.push(reader.int32());
+
+            continue;
+          }
+
+          if (tag === 10) {
+            const end2 = reader.uint32() + reader.pos;
+            while (reader.pos < end2) {
+              message.itagDenylist.push(reader.int32());
+            }
+
+            continue;
+          }
+
+          break;
+        }
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skip(tag & 7);
+    }
+    return message;
+  },
+};
+
 function createBaseMediaCapabilities_VideoFormatCapability(): MediaCapabilities_VideoFormatCapability {
-  return { videoCodec: 0, maxHeight: 0, maxWidth: 0, maxFramerate: 0, maxBitrateBps: 0, is10BitSupported: false };
+  return {
+    videoCodec: 0,
+    efficient: false,
+    maxHeight: 0,
+    maxWidth: 0,
+    maxFramerate: 0,
+    maxBitrateBps: 0,
+    is10BitSupported: false,
+  };
 }
 
 export const MediaCapabilities_VideoFormatCapability: MessageFns<MediaCapabilities_VideoFormatCapability> = {
   encode(message: MediaCapabilities_VideoFormatCapability, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
     if (message.videoCodec !== undefined && message.videoCodec !== 0) {
       writer.uint32(8).int32(message.videoCodec);
+    }
+    if (message.efficient !== undefined && message.efficient !== false) {
+      writer.uint32(16).bool(message.efficient);
     }
     if (message.maxHeight !== undefined && message.maxHeight !== 0) {
       writer.uint32(24).int32(message.maxHeight);
@@ -130,6 +212,14 @@ export const MediaCapabilities_VideoFormatCapability: MessageFns<MediaCapabiliti
           }
 
           message.videoCodec = reader.int32();
+          continue;
+        }
+        case 2: {
+          if (tag !== 16) {
+            break;
+          }
+
+          message.efficient = reader.bool();
           continue;
         }
         case 3: {

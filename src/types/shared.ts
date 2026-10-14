@@ -16,6 +16,7 @@ export interface SabrFormat {
   itag: number;
   lastModified: string;
   xtags?: string;
+  fps?: number;
   width?: number;
   height?: number;
   contentLength?: number;
@@ -29,20 +30,27 @@ export interface SabrFormat {
   averageBitrate?: number;
   bitrate: number;
   audioQuality?: string;
+  numChannels?: number;
   approxDurationMs: number;
   language?: string | null;
+  isHdr: boolean;
   isDubbed?: boolean;
   isAutoDubbed?: boolean;
   isDescriptive?: boolean;
   isSecondary?: boolean;
   isOriginal?: boolean;
+  hasAudio: boolean;
+  hasVideo: boolean;
+  hasText: boolean;
   targetDurationSec?: number;
+  codecCode: string
 }
 
 export interface FormatStream {
   itag: number;
   last_modified_ms?: string;
   lastModified?: string;
+  fps?: number;
   xtags?: string;
   width?: number;
   height?: number;
@@ -58,6 +66,12 @@ export interface FormatStream {
   qualityLabel?: string;
   audio_track?: { id: string };
   audioTrackId?: string;
+  audioChannels?: number;
+  audio_channels?: number;
+  caption_track?: Record<string, any>;
+  captionTrack?: Record<string, any>;
+  color_info?: { transfer_characteristics: string };
+  colorInfo?: { transferCharacteristics: string };
   is_drc?: boolean;
   isDrc?: boolean;
   isVb?: boolean;
