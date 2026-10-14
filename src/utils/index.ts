@@ -9,3 +9,4 @@ export * from './mediaSegmentUtils.js';
 export * from './mediaTimeUtils.js';
 export * from './uint8arrayUtils.js';
 export * from './urlUtils.js';
+export * from './mediaCapabilityUtils.js';
