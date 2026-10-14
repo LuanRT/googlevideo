@@ -65,8 +65,15 @@ export interface ClientAbrState {
   field67?: number | undefined;
   sabrForceMaxNetworkInterruptionDurationMs?: string | undefined;
   audioTrackId?: string | undefined;
+  enableSabrHostFallback?: boolean | undefined;
   enableVoiceBoost?: boolean | undefined;
   playbackAuthorization?: PlaybackAuthorization | undefined;
+  unknownField80?:
+    | number
+    | undefined;
+  /** SourceBuffer#changeType */
+  supportsChangeType?: boolean | undefined;
+  unknownField86?: boolean | undefined;
 }
 
 function createBaseClientAbrState(): ClientAbrState {
@@ -115,8 +122,12 @@ function createBaseClientAbrState(): ClientAbrState {
     field67: 0,
     sabrForceMaxNetworkInterruptionDurationMs: "0",
     audioTrackId: "",
+    enableSabrHostFallback: false,
     enableVoiceBoost: false,
     playbackAuthorization: undefined,
+    unknownField80: 0,
+    supportsChangeType: false,
+    unknownField86: false,
   };
 }
 
@@ -259,11 +270,23 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
     if (message.audioTrackId !== undefined && message.audioTrackId !== "") {
       writer.uint32(554).string(message.audioTrackId);
     }
+    if (message.enableSabrHostFallback !== undefined && message.enableSabrHostFallback !== false) {
+      writer.uint32(568).bool(message.enableSabrHostFallback);
+    }
     if (message.enableVoiceBoost !== undefined && message.enableVoiceBoost !== false) {
       writer.uint32(608).bool(message.enableVoiceBoost);
     }
     if (message.playbackAuthorization !== undefined) {
       PlaybackAuthorization.encode(message.playbackAuthorization, writer.uint32(634).fork()).join();
+    }
+    if (message.unknownField80 !== undefined && message.unknownField80 !== 0) {
+      writer.uint32(640).int32(message.unknownField80);
+    }
+    if (message.supportsChangeType !== undefined && message.supportsChangeType !== false) {
+      writer.uint32(680).bool(message.supportsChangeType);
+    }
+    if (message.unknownField86 !== undefined && message.unknownField86 !== false) {
+      writer.uint32(688).bool(message.unknownField86);
     }
     return writer;
   },
@@ -627,6 +650,14 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
           message.audioTrackId = reader.string();
           continue;
         }
+        case 71: {
+          if (tag !== 568) {
+            break;
+          }
+
+          message.enableSabrHostFallback = reader.bool();
+          continue;
+        }
         case 76: {
           if (tag !== 608) {
             break;
@@ -641,6 +672,30 @@ export const ClientAbrState: MessageFns<ClientAbrState> = {
           }
 
           message.playbackAuthorization = PlaybackAuthorization.decode(reader, reader.uint32());
+          continue;
+        }
+        case 80: {
+          if (tag !== 640) {
+            break;
+          }
+
+          message.unknownField80 = reader.int32();
+          continue;
+        }
+        case 85: {
+          if (tag !== 680) {
+            break;
+          }
+
+          message.supportsChangeType = reader.bool();
+          continue;
+        }
+        case 86: {
+          if (tag !== 688) {
+            break;
+          }
+
+          message.unknownField86 = reader.bool();
           continue;
         }
       }
