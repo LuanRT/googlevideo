@@ -70,8 +70,8 @@ export interface FormatStream {
   audio_channels?: number;
   caption_track?: Record<string, any>;
   captionTrack?: Record<string, any>;
-  color_info?: { transfer_characteristics: string };
-  colorInfo?: { transferCharacteristics: string };
+  color_info?: Record<string, any>;
+  colorInfo?: Record<string, any>;
   is_drc?: boolean;
   isDrc?: boolean;
   isVb?: boolean;
