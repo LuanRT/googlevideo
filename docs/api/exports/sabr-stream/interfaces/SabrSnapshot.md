@@ -2,7 +2,7 @@
 
 # Interface: SabrSnapshot
 
-Defined in: [src/types/sabrStreamTypes.ts:215](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L215)
+Defined in: [src/types/sabrStreamTypes.ts:216](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/types/sabrStreamTypes.ts#L216)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:215](https://github.com/LuanRT/googlev
 
 > **playerTimeMs**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:216](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L216)
+Defined in: [src/types/sabrStreamTypes.ts:217](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/types/sabrStreamTypes.ts#L217)
 
 ***
 
@@ -18,4 +18,4 @@ Defined in: [src/types/sabrStreamTypes.ts:216](https://github.com/LuanRT/googlev
 
 > **tracks**: [`TrackState`](TrackState.md)[]
 
-Defined in: [src/types/sabrStreamTypes.ts:217](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L217)
+Defined in: [src/types/sabrStreamTypes.ts:218](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/types/sabrStreamTypes.ts#L218)

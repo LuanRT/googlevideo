@@ -2,7 +2,7 @@
 
 # Interface: CompletedSegment
 
-Defined in: [src/types/sabrStreamTypes.ts:235](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L235)
+Defined in: [src/types/sabrStreamTypes.ts:236](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/types/sabrStreamTypes.ts#L236)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/types/sabrStreamTypes.ts:235](https://github.com/LuanRT/googlev
 
 > **segmentNumber**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:236](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L236)
+Defined in: [src/types/sabrStreamTypes.ts:237](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/types/sabrStreamTypes.ts#L237)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/types/sabrStreamTypes.ts:236](https://github.com/LuanRT/googlev
 
 > **durationMs**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:237](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L237)
+Defined in: [src/types/sabrStreamTypes.ts:238](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/types/sabrStreamTypes.ts#L238)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/types/sabrStreamTypes.ts:237](https://github.com/LuanRT/googlev
 
 > **startTimeMs**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:238](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L238)
+Defined in: [src/types/sabrStreamTypes.ts:239](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/types/sabrStreamTypes.ts#L239)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/types/sabrStreamTypes.ts:238](https://github.com/LuanRT/googlev
 
 > **endTimeMs**: `number`
 
-Defined in: [src/types/sabrStreamTypes.ts:239](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L239)
+Defined in: [src/types/sabrStreamTypes.ts:240](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/types/sabrStreamTypes.ts#L240)
 
 ***
 
@@ -42,4 +42,4 @@ Defined in: [src/types/sabrStreamTypes.ts:239](https://github.com/LuanRT/googlev
 
 > **mediaHeader**: [`MediaHeader`](../../protos/interfaces/MediaHeader.md)
 
-Defined in: [src/types/sabrStreamTypes.ts:240](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/sabrStreamTypes.ts#L240)
+Defined in: [src/types/sabrStreamTypes.ts:241](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/types/sabrStreamTypes.ts#L241)

@@ -25,6 +25,11 @@ This module contains general utilities.
 ## Variables
 
 - [MAX\_INT32\_VALUE](variables/MAX_INT32_VALUE.md)
+- [CODEC\_CODES](variables/CODEC_CODES.md)
+- [AUDIO\_CODECS](variables/AUDIO_CODECS.md)
+- [SPATIAL\_AUDIO\_CODECS](variables/SPATIAL_AUDIO_CODECS.md)
+- [VIDEO\_CODECS](variables/VIDEO_CODECS.md)
+- [surroundAudioCodes](variables/surroundAudioCodes.md)
 
 ## Functions
 
@@ -35,6 +40,9 @@ This module contains general utilities.
 - [createSegmentCacheKey](functions/createSegmentCacheKey.md)
 - [createSegmentCacheKeyFromMetadata](functions/createSegmentCacheKeyFromMetadata.md)
 - [getUniqueFormatId](functions/getUniqueFormatId.md)
+- [buildAudioCapability](functions/buildAudioCapability.md)
+- [buildVideoCapability](functions/buildVideoCapability.md)
+- [buildMediaCapabilities](functions/buildMediaCapabilities.md)
 - [stripMp4Init](functions/stripMp4Init.md)
 - [stripWebmInit](functions/stripWebmInit.md)
 - [parseEmsgSegmentMetadata](functions/parseEmsgSegmentMetadata.md)
@@ -47,3 +55,4 @@ This module contains general utilities.
 - [decodePart](functions/decodePart.md)
 - [parseRangeHeader](functions/parseRangeHeader.md)
 - [getBroadcastId](functions/getBroadcastId.md)
+- [getNextFallbackUrl](functions/getNextFallbackUrl.md)

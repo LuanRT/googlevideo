@@ -4,7 +4,7 @@
 
 > **buildSabrFormat**(`formatStream`): [`SabrFormat`](../../../types/shared/interfaces/SabrFormat.md)
 
-Defined in: [src/utils/formatUtils.ts:122](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/formatUtils.ts#L122)
+Defined in: [src/utils/formatUtils.ts:127](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/formatUtils.ts#L127)
 
 ## Parameters
 

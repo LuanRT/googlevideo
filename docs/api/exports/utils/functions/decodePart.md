@@ -4,7 +4,7 @@
 
 > **decodePart**\<`T`\>(`chunks`, `decoder`): `T` \| `undefined`
 
-Defined in: [src/utils/uint8arrayUtils.ts:32](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/uint8arrayUtils.ts#L32)
+Defined in: [src/utils/uint8arrayUtils.ts:32](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/uint8arrayUtils.ts#L32)
 
 ## Type Parameters
 

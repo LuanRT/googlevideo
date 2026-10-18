@@ -2,7 +2,7 @@
 
 # Interface: Range
 
-Defined in: [protos/generated/misc/common.ts:192](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L192)
+Defined in: [protos/generated/misc/common.ts:192](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/protos/generated/misc/common.ts#L192)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [protos/generated/misc/common.ts:192](https://github.com/LuanRT/goog
 
 > `optional` **legacyStart**: `number`
 
-Defined in: [protos/generated/misc/common.ts:193](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L193)
+Defined in: [protos/generated/misc/common.ts:193](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/protos/generated/misc/common.ts#L193)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [protos/generated/misc/common.ts:193](https://github.com/LuanRT/goog
 
 > `optional` **legacyEnd**: `number`
 
-Defined in: [protos/generated/misc/common.ts:194](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L194)
+Defined in: [protos/generated/misc/common.ts:194](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/protos/generated/misc/common.ts#L194)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [protos/generated/misc/common.ts:194](https://github.com/LuanRT/goog
 
 > `optional` **start**: `number`
 
-Defined in: [protos/generated/misc/common.ts:195](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L195)
+Defined in: [protos/generated/misc/common.ts:195](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/protos/generated/misc/common.ts#L195)
 
 ***
 
@@ -34,4 +34,4 @@ Defined in: [protos/generated/misc/common.ts:195](https://github.com/LuanRT/goog
 
 > `optional` **end**: `number`
 
-Defined in: [protos/generated/misc/common.ts:196](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/protos/generated/misc/common.ts#L196)
+Defined in: [protos/generated/misc/common.ts:196](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/protos/generated/misc/common.ts#L196)

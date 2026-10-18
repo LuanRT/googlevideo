@@ -2,7 +2,7 @@
 
 # Class: Track
 
-Defined in: [src/utils/Track.ts:17](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L17)
+Defined in: [src/utils/Track.ts:17](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L17)
 
 ## Constructors
 
@@ -10,7 +10,7 @@ Defined in: [src/utils/Track.ts:17](https://github.com/LuanRT/googlevideo/blob/0
 
 > **new Track**(`type`): `Track`
 
-Defined in: [src/utils/Track.ts:30](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L30)
+Defined in: [src/utils/Track.ts:30](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L30)
 
 #### Parameters
 
@@ -28,7 +28,7 @@ Defined in: [src/utils/Track.ts:30](https://github.com/LuanRT/googlevideo/blob/0
 
 > `optional` **formatId**: [`FormatId`](../../protos/interfaces/FormatId.md)
 
-Defined in: [src/utils/Track.ts:18](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L18)
+Defined in: [src/utils/Track.ts:18](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L18)
 
 ***
 
@@ -36,7 +36,7 @@ Defined in: [src/utils/Track.ts:18](https://github.com/LuanRT/googlevideo/blob/0
 
 > `optional` **mimeType**: `string`
 
-Defined in: [src/utils/Track.ts:19](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L19)
+Defined in: [src/utils/Track.ts:19](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L19)
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: [src/utils/Track.ts:19](https://github.com/LuanRT/googlevideo/blob/0
 
 > `optional` **endSegmentNum**: `number`
 
-Defined in: [src/utils/Track.ts:20](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L20)
+Defined in: [src/utils/Track.ts:20](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L20)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [src/utils/Track.ts:20](https://github.com/LuanRT/googlevideo/blob/0
 
 > `optional` **endTimeTicks**: `number`
 
-Defined in: [src/utils/Track.ts:21](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L21)
+Defined in: [src/utils/Track.ts:21](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L21)
 
 ***
 
@@ -60,7 +60,7 @@ Defined in: [src/utils/Track.ts:21](https://github.com/LuanRT/googlevideo/blob/0
 
 > `optional` **endTimescale**: `number`
 
-Defined in: [src/utils/Track.ts:22](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L22)
+Defined in: [src/utils/Track.ts:22](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L22)
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: [src/utils/Track.ts:22](https://github.com/LuanRT/googlevideo/blob/0
 
 > `optional` **targetDurationSec**: `number`
 
-Defined in: [src/utils/Track.ts:23](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L23)
+Defined in: [src/utils/Track.ts:23](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L23)
 
 ***
 
@@ -76,7 +76,7 @@ Defined in: [src/utils/Track.ts:23](https://github.com/LuanRT/googlevideo/blob/0
 
 > **trackedSegments**: `Map`\<`number`, [`CompletedSegment`](../../sabr-stream/interfaces/CompletedSegment.md)\>
 
-Defined in: [src/utils/Track.ts:24](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L24)
+Defined in: [src/utils/Track.ts:24](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L24)
 
 ***
 
@@ -84,7 +84,7 @@ Defined in: [src/utils/Track.ts:24](https://github.com/LuanRT/googlevideo/blob/0
 
 > `optional` **bufferedRangeSummary**: [`BufferedRangeSummary`](../../sabr-stream/interfaces/BufferedRangeSummary.md)
 
-Defined in: [src/utils/Track.ts:25](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L25)
+Defined in: [src/utils/Track.ts:25](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L25)
 
 ***
 
@@ -92,7 +92,7 @@ Defined in: [src/utils/Track.ts:25](https://github.com/LuanRT/googlevideo/blob/0
 
 > `optional` **emsgSegmentMetadata**: `EmsgSegmentMetadata`
 
-Defined in: [src/utils/Track.ts:26](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L26)
+Defined in: [src/utils/Track.ts:26](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L26)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [src/utils/Track.ts:26](https://github.com/LuanRT/googlevideo/blob/0
 
 > `readonly` **type**: `"audio"` \| `"video"`
 
-Defined in: [src/utils/Track.ts:30](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L30)
+Defined in: [src/utils/Track.ts:30](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L30)
 
 ## Accessors
 
@@ -110,7 +110,7 @@ Defined in: [src/utils/Track.ts:30](https://github.com/LuanRT/googlevideo/blob/0
 
 > **get** **output**(): [`TrackOutput`](../../sabr-stream/interfaces/TrackOutput.md)
 
-Defined in: [src/utils/Track.ts:36](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L36)
+Defined in: [src/utils/Track.ts:36](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L36)
 
 ##### Returns
 
@@ -120,7 +120,7 @@ Defined in: [src/utils/Track.ts:36](https://github.com/LuanRT/googlevideo/blob/0
 
 > **set** **output**(`value`): `void`
 
-Defined in: [src/utils/Track.ts:32](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L32)
+Defined in: [src/utils/Track.ts:32](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L32)
 
 ##### Parameters
 
@@ -140,7 +140,7 @@ Defined in: [src/utils/Track.ts:32](https://github.com/LuanRT/googlevideo/blob/0
 
 > **get** **streamLocked**(): `boolean`
 
-Defined in: [src/utils/Track.ts:40](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L40)
+Defined in: [src/utils/Track.ts:40](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L40)
 
 ##### Returns
 
@@ -154,7 +154,7 @@ Defined in: [src/utils/Track.ts:40](https://github.com/LuanRT/googlevideo/blob/0
 
 > **get** **streamDesiredSize**(): `number`
 
-Defined in: [src/utils/Track.ts:44](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L44)
+Defined in: [src/utils/Track.ts:44](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L44)
 
 ##### Returns
 
@@ -168,7 +168,7 @@ Defined in: [src/utils/Track.ts:44](https://github.com/LuanRT/googlevideo/blob/0
 
 > **get** **streamController**(): `ReadableStreamDefaultController`\<`Uint8Array`\<`ArrayBufferLike`\>\>
 
-Defined in: [src/utils/Track.ts:48](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L48)
+Defined in: [src/utils/Track.ts:48](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L48)
 
 ##### Returns
 
@@ -182,7 +182,7 @@ Defined in: [src/utils/Track.ts:48](https://github.com/LuanRT/googlevideo/blob/0
 
 > **get** **streamFull**(): `boolean`
 
-Defined in: [src/utils/Track.ts:52](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L52)
+Defined in: [src/utils/Track.ts:52](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L52)
 
 ##### Returns
 
@@ -196,7 +196,7 @@ Defined in: [src/utils/Track.ts:52](https://github.com/LuanRT/googlevideo/blob/0
 
 > **get** **endTimeMs**(): `number`
 
-Defined in: [src/utils/Track.ts:56](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L56)
+Defined in: [src/utils/Track.ts:56](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L56)
 
 ##### Returns
 
@@ -210,7 +210,7 @@ Defined in: [src/utils/Track.ts:56](https://github.com/LuanRT/googlevideo/blob/0
 
 > **get** **endOfStreamReached**(): `boolean`
 
-Defined in: [src/utils/Track.ts:61](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L61)
+Defined in: [src/utils/Track.ts:61](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L61)
 
 ##### Returns
 
@@ -222,13 +222,13 @@ Defined in: [src/utils/Track.ts:61](https://github.com/LuanRT/googlevideo/blob/0
 
 #### Get Signature
 
-> **get** **latencyMs**(): `number`
+> **get** **latencyMs**(): `number` \| `undefined`
 
-Defined in: [src/utils/Track.ts:69](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L69)
+Defined in: [src/utils/Track.ts:69](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L69)
 
 ##### Returns
 
-`number`
+`number` \| `undefined`
 
 ## Methods
 
@@ -236,7 +236,7 @@ Defined in: [src/utils/Track.ts:69](https://github.com/LuanRT/googlevideo/blob/0
 
 > **update**(`state`): `void`
 
-Defined in: [src/utils/Track.ts:73](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L73)
+Defined in: [src/utils/Track.ts:75](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L75)
 
 #### Parameters
 
@@ -254,7 +254,7 @@ Defined in: [src/utils/Track.ts:73](https://github.com/LuanRT/googlevideo/blob/0
 
 > **snapshot**(): [`TrackState`](../../sabr-stream/interfaces/TrackState.md)
 
-Defined in: [src/utils/Track.ts:99](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L99)
+Defined in: [src/utils/Track.ts:101](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L101)
 
 #### Returns
 
@@ -266,7 +266,7 @@ Defined in: [src/utils/Track.ts:99](https://github.com/LuanRT/googlevideo/blob/0
 
 > **recordCompletedSegment**(`info`, `emsgMetadata?`): `void`
 
-Defined in: [src/utils/Track.ts:112](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/utils/Track.ts#L112)
+Defined in: [src/utils/Track.ts:114](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/utils/Track.ts#L114)
 
 #### Parameters
 

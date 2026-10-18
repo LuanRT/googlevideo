@@ -4,4 +4,4 @@
 
 > **FetchFunction** = *typeof* `fetch`
 
-Defined in: [src/types/shared.ts:83](https://github.com/LuanRT/googlevideo/blob/0f94d39365204d13c853e2b8137b0a320832a4d2/src/types/shared.ts#L83)
+Defined in: [src/types/shared.ts:97](https://github.com/LuanRT/googlevideo/blob/96d1418984d00ac2797a1dafe4625d1368b5b9aa/src/types/shared.ts#L97)
