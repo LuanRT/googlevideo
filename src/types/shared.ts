@@ -3,14 +3,7 @@
  * @module
  */
 
-import type { CompositeBuffer } from '../core/CompositeBuffer.js';
 import type { FormatInitializationMetadata, MediaHeader } from '../utils/Protos.js';
-
-export type Part = {
-  type: number;
-  size: number;
-  data: CompositeBuffer;
-};
 
 export interface SabrFormat {
   itag: number;
