@@ -17,18 +17,18 @@ export interface CryptoParams {
 }
 
 function createBaseCryptoParams(): CryptoParams {
-  return { hmac: new Uint8Array(0), iv: new Uint8Array(0), compressionType: 0 };
+  return { hmac: undefined, iv: undefined, compressionType: undefined };
 }
 
 export const CryptoParams: MessageFns<CryptoParams> = {
   encode(message: CryptoParams, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.hmac !== undefined && message.hmac.length !== 0) {
+    if (message.hmac !== undefined) {
       writer.uint32(34).bytes(message.hmac);
     }
-    if (message.iv !== undefined && message.iv.length !== 0) {
+    if (message.iv !== undefined) {
       writer.uint32(42).bytes(message.iv);
     }
-    if (message.compressionType !== undefined && message.compressionType !== 0) {
+    if (message.compressionType !== undefined) {
       writer.uint32(48).int32(message.compressionType);
     }
     return writer;

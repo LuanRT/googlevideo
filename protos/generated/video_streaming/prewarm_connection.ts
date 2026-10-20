@@ -14,12 +14,12 @@ export interface PrewarmConnection {
 }
 
 function createBasePrewarmConnection(): PrewarmConnection {
-  return { url: "" };
+  return { url: undefined };
 }
 
 export const PrewarmConnection: MessageFns<PrewarmConnection> = {
   encode(message: PrewarmConnection, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.url !== undefined && message.url !== "") {
+    if (message.url !== undefined) {
       writer.uint32(10).string(message.url);
     }
     return writer;

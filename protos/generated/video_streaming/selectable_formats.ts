@@ -31,7 +31,7 @@ function createBaseSelectableFormats(): SelectableFormats {
   return {
     selectableVideoFormatIds: [],
     selectableAudioFormatIds: [],
-    videoId: "",
+    videoId: undefined,
     selectableVideoFormats: [],
     selectableAudioFormats: [],
     selectableCaptionFormats: [],
@@ -47,7 +47,7 @@ export const SelectableFormats: MessageFns<SelectableFormats> = {
     for (const v of message.selectableAudioFormatIds) {
       FormatId.encode(v!, writer.uint32(18).fork()).join();
     }
-    if (message.videoId !== undefined && message.videoId !== "") {
+    if (message.videoId !== undefined) {
       writer.uint32(26).string(message.videoId);
     }
     for (const v of message.selectableVideoFormats) {

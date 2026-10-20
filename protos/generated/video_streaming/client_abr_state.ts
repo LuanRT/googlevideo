@@ -78,214 +78,209 @@ export interface ClientAbrState {
 
 function createBaseClientAbrState(): ClientAbrState {
   return {
-    timeSinceLastManualFormatSelectionMs: "0",
-    lastManualDirection: 0,
-    lastManualSelectedResolution: 0,
-    detailedNetworkType: 0,
-    clientViewportWidth: 0,
-    clientViewportHeight: 0,
-    clientBitrateCapBytesPerSec: "0",
-    stickyResolution: 0,
-    clientViewportIsFlexible: false,
-    bandwidthEstimate: "0",
-    minAudioQuality: 0,
-    maxAudioQuality: 0,
-    videoQualitySetting: 0,
-    audioRoute: 0,
-    playerTimeMs: "0",
-    timeSinceLastSeek: "0",
-    dataSaverMode: false,
-    networkMeteredState: 0,
-    visibility: 0,
-    playbackRate: 0,
-    elapsedWallTimeMs: "0",
+    timeSinceLastManualFormatSelectionMs: undefined,
+    lastManualDirection: undefined,
+    lastManualSelectedResolution: undefined,
+    detailedNetworkType: undefined,
+    clientViewportWidth: undefined,
+    clientViewportHeight: undefined,
+    clientBitrateCapBytesPerSec: undefined,
+    stickyResolution: undefined,
+    clientViewportIsFlexible: undefined,
+    bandwidthEstimate: undefined,
+    minAudioQuality: undefined,
+    maxAudioQuality: undefined,
+    videoQualitySetting: undefined,
+    audioRoute: undefined,
+    playerTimeMs: undefined,
+    timeSinceLastSeek: undefined,
+    dataSaverMode: undefined,
+    networkMeteredState: undefined,
+    visibility: undefined,
+    playbackRate: undefined,
+    elapsedWallTimeMs: undefined,
     mediaCapabilities: undefined,
-    timeSinceLastActionMs: "0",
-    enabledTrackTypesBitfield: 0,
-    maxPacingRate: 0,
-    playerState: "0",
-    drcEnabled: false,
-    field48: 0,
-    field50: 0,
-    field51: 0,
-    sabrReportRequestCancellationInfo: 0,
-    disableStreamingXhr: false,
-    field57: "0",
-    preferVp9: false,
-    av1QualityThreshold: 0,
-    field60: 0,
-    isPrefetch: false,
-    sabrSupportQualityConstraints: false,
-    sabrLicenseConstraint: new Uint8Array(0),
-    allowProximaLiveLatency: 0,
-    sabrForceProxima: 0,
-    field67: 0,
-    sabrForceMaxNetworkInterruptionDurationMs: "0",
-    audioTrackId: "",
-    enableSabrHostFallback: false,
-    enableVoiceBoost: false,
+    timeSinceLastActionMs: undefined,
+    enabledTrackTypesBitfield: undefined,
+    maxPacingRate: undefined,
+    playerState: undefined,
+    drcEnabled: undefined,
+    field48: undefined,
+    field50: undefined,
+    field51: undefined,
+    sabrReportRequestCancellationInfo: undefined,
+    disableStreamingXhr: undefined,
+    field57: undefined,
+    preferVp9: undefined,
+    av1QualityThreshold: undefined,
+    field60: undefined,
+    isPrefetch: undefined,
+    sabrSupportQualityConstraints: undefined,
+    sabrLicenseConstraint: undefined,
+    allowProximaLiveLatency: undefined,
+    sabrForceProxima: undefined,
+    field67: undefined,
+    sabrForceMaxNetworkInterruptionDurationMs: undefined,
+    audioTrackId: undefined,
+    enableSabrHostFallback: undefined,
+    enableVoiceBoost: undefined,
     playbackAuthorization: undefined,
-    unknownField80: 0,
-    supportsChangeType: false,
-    unknownField86: false,
+    unknownField80: undefined,
+    supportsChangeType: undefined,
+    unknownField86: undefined,
   };
 }
 
 export const ClientAbrState: MessageFns<ClientAbrState> = {
   encode(message: ClientAbrState, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (
-      message.timeSinceLastManualFormatSelectionMs !== undefined && message.timeSinceLastManualFormatSelectionMs !== "0"
-    ) {
+    if (message.timeSinceLastManualFormatSelectionMs !== undefined) {
       writer.uint32(104).int64(message.timeSinceLastManualFormatSelectionMs);
     }
-    if (message.lastManualDirection !== undefined && message.lastManualDirection !== 0) {
+    if (message.lastManualDirection !== undefined) {
       writer.uint32(112).sint32(message.lastManualDirection);
     }
-    if (message.lastManualSelectedResolution !== undefined && message.lastManualSelectedResolution !== 0) {
+    if (message.lastManualSelectedResolution !== undefined) {
       writer.uint32(128).int32(message.lastManualSelectedResolution);
     }
-    if (message.detailedNetworkType !== undefined && message.detailedNetworkType !== 0) {
+    if (message.detailedNetworkType !== undefined) {
       writer.uint32(136).int32(message.detailedNetworkType);
     }
-    if (message.clientViewportWidth !== undefined && message.clientViewportWidth !== 0) {
+    if (message.clientViewportWidth !== undefined) {
       writer.uint32(144).int32(message.clientViewportWidth);
     }
-    if (message.clientViewportHeight !== undefined && message.clientViewportHeight !== 0) {
+    if (message.clientViewportHeight !== undefined) {
       writer.uint32(152).int32(message.clientViewportHeight);
     }
-    if (message.clientBitrateCapBytesPerSec !== undefined && message.clientBitrateCapBytesPerSec !== "0") {
+    if (message.clientBitrateCapBytesPerSec !== undefined) {
       writer.uint32(160).int64(message.clientBitrateCapBytesPerSec);
     }
-    if (message.stickyResolution !== undefined && message.stickyResolution !== 0) {
+    if (message.stickyResolution !== undefined) {
       writer.uint32(168).int32(message.stickyResolution);
     }
-    if (message.clientViewportIsFlexible !== undefined && message.clientViewportIsFlexible !== false) {
+    if (message.clientViewportIsFlexible !== undefined) {
       writer.uint32(176).bool(message.clientViewportIsFlexible);
     }
-    if (message.bandwidthEstimate !== undefined && message.bandwidthEstimate !== "0") {
+    if (message.bandwidthEstimate !== undefined) {
       writer.uint32(184).int64(message.bandwidthEstimate);
     }
-    if (message.minAudioQuality !== undefined && message.minAudioQuality !== 0) {
+    if (message.minAudioQuality !== undefined) {
       writer.uint32(192).int32(message.minAudioQuality);
     }
-    if (message.maxAudioQuality !== undefined && message.maxAudioQuality !== 0) {
+    if (message.maxAudioQuality !== undefined) {
       writer.uint32(200).int32(message.maxAudioQuality);
     }
-    if (message.videoQualitySetting !== undefined && message.videoQualitySetting !== 0) {
+    if (message.videoQualitySetting !== undefined) {
       writer.uint32(208).int32(message.videoQualitySetting);
     }
-    if (message.audioRoute !== undefined && message.audioRoute !== 0) {
+    if (message.audioRoute !== undefined) {
       writer.uint32(216).int32(message.audioRoute);
     }
-    if (message.playerTimeMs !== undefined && message.playerTimeMs !== "0") {
+    if (message.playerTimeMs !== undefined) {
       writer.uint32(224).int64(message.playerTimeMs);
     }
-    if (message.timeSinceLastSeek !== undefined && message.timeSinceLastSeek !== "0") {
+    if (message.timeSinceLastSeek !== undefined) {
       writer.uint32(232).int64(message.timeSinceLastSeek);
     }
-    if (message.dataSaverMode !== undefined && message.dataSaverMode !== false) {
+    if (message.dataSaverMode !== undefined) {
       writer.uint32(240).bool(message.dataSaverMode);
     }
-    if (message.networkMeteredState !== undefined && message.networkMeteredState !== 0) {
+    if (message.networkMeteredState !== undefined) {
       writer.uint32(256).int32(message.networkMeteredState);
     }
-    if (message.visibility !== undefined && message.visibility !== 0) {
+    if (message.visibility !== undefined) {
       writer.uint32(272).int32(message.visibility);
     }
-    if (message.playbackRate !== undefined && message.playbackRate !== 0) {
+    if (message.playbackRate !== undefined) {
       writer.uint32(285).float(message.playbackRate);
     }
-    if (message.elapsedWallTimeMs !== undefined && message.elapsedWallTimeMs !== "0") {
+    if (message.elapsedWallTimeMs !== undefined) {
       writer.uint32(288).int64(message.elapsedWallTimeMs);
     }
     if (message.mediaCapabilities !== undefined) {
       MediaCapabilities.encode(message.mediaCapabilities, writer.uint32(306).fork()).join();
     }
-    if (message.timeSinceLastActionMs !== undefined && message.timeSinceLastActionMs !== "0") {
+    if (message.timeSinceLastActionMs !== undefined) {
       writer.uint32(312).int64(message.timeSinceLastActionMs);
     }
-    if (message.enabledTrackTypesBitfield !== undefined && message.enabledTrackTypesBitfield !== 0) {
+    if (message.enabledTrackTypesBitfield !== undefined) {
       writer.uint32(320).int32(message.enabledTrackTypesBitfield);
     }
-    if (message.maxPacingRate !== undefined && message.maxPacingRate !== 0) {
+    if (message.maxPacingRate !== undefined) {
       writer.uint32(344).int32(message.maxPacingRate);
     }
-    if (message.playerState !== undefined && message.playerState !== "0") {
+    if (message.playerState !== undefined) {
       writer.uint32(352).int64(message.playerState);
     }
-    if (message.drcEnabled !== undefined && message.drcEnabled !== false) {
+    if (message.drcEnabled !== undefined) {
       writer.uint32(368).bool(message.drcEnabled);
     }
-    if (message.field48 !== undefined && message.field48 !== 0) {
+    if (message.field48 !== undefined) {
       writer.uint32(384).int32(message.field48);
     }
-    if (message.field50 !== undefined && message.field50 !== 0) {
+    if (message.field50 !== undefined) {
       writer.uint32(400).int32(message.field50);
     }
-    if (message.field51 !== undefined && message.field51 !== 0) {
+    if (message.field51 !== undefined) {
       writer.uint32(408).int32(message.field51);
     }
-    if (message.sabrReportRequestCancellationInfo !== undefined && message.sabrReportRequestCancellationInfo !== 0) {
+    if (message.sabrReportRequestCancellationInfo !== undefined) {
       writer.uint32(432).int32(message.sabrReportRequestCancellationInfo);
     }
-    if (message.disableStreamingXhr !== undefined && message.disableStreamingXhr !== false) {
+    if (message.disableStreamingXhr !== undefined) {
       writer.uint32(448).bool(message.disableStreamingXhr);
     }
-    if (message.field57 !== undefined && message.field57 !== "0") {
+    if (message.field57 !== undefined) {
       writer.uint32(456).int64(message.field57);
     }
-    if (message.preferVp9 !== undefined && message.preferVp9 !== false) {
+    if (message.preferVp9 !== undefined) {
       writer.uint32(464).bool(message.preferVp9);
     }
-    if (message.av1QualityThreshold !== undefined && message.av1QualityThreshold !== 0) {
+    if (message.av1QualityThreshold !== undefined) {
       writer.uint32(472).int32(message.av1QualityThreshold);
     }
-    if (message.field60 !== undefined && message.field60 !== 0) {
+    if (message.field60 !== undefined) {
       writer.uint32(480).int32(message.field60);
     }
-    if (message.isPrefetch !== undefined && message.isPrefetch !== false) {
+    if (message.isPrefetch !== undefined) {
       writer.uint32(488).bool(message.isPrefetch);
     }
-    if (message.sabrSupportQualityConstraints !== undefined && message.sabrSupportQualityConstraints !== false) {
+    if (message.sabrSupportQualityConstraints !== undefined) {
       writer.uint32(496).bool(message.sabrSupportQualityConstraints);
     }
-    if (message.sabrLicenseConstraint !== undefined && message.sabrLicenseConstraint.length !== 0) {
+    if (message.sabrLicenseConstraint !== undefined) {
       writer.uint32(506).bytes(message.sabrLicenseConstraint);
     }
-    if (message.allowProximaLiveLatency !== undefined && message.allowProximaLiveLatency !== 0) {
+    if (message.allowProximaLiveLatency !== undefined) {
       writer.uint32(512).int32(message.allowProximaLiveLatency);
     }
-    if (message.sabrForceProxima !== undefined && message.sabrForceProxima !== 0) {
+    if (message.sabrForceProxima !== undefined) {
       writer.uint32(528).int32(message.sabrForceProxima);
     }
-    if (message.field67 !== undefined && message.field67 !== 0) {
+    if (message.field67 !== undefined) {
       writer.uint32(536).int32(message.field67);
     }
-    if (
-      message.sabrForceMaxNetworkInterruptionDurationMs !== undefined &&
-      message.sabrForceMaxNetworkInterruptionDurationMs !== "0"
-    ) {
+    if (message.sabrForceMaxNetworkInterruptionDurationMs !== undefined) {
       writer.uint32(544).int64(message.sabrForceMaxNetworkInterruptionDurationMs);
     }
-    if (message.audioTrackId !== undefined && message.audioTrackId !== "") {
+    if (message.audioTrackId !== undefined) {
       writer.uint32(554).string(message.audioTrackId);
     }
-    if (message.enableSabrHostFallback !== undefined && message.enableSabrHostFallback !== false) {
+    if (message.enableSabrHostFallback !== undefined) {
       writer.uint32(568).bool(message.enableSabrHostFallback);
     }
-    if (message.enableVoiceBoost !== undefined && message.enableVoiceBoost !== false) {
+    if (message.enableVoiceBoost !== undefined) {
       writer.uint32(608).bool(message.enableVoiceBoost);
     }
     if (message.playbackAuthorization !== undefined) {
       PlaybackAuthorization.encode(message.playbackAuthorization, writer.uint32(634).fork()).join();
     }
-    if (message.unknownField80 !== undefined && message.unknownField80 !== 0) {
+    if (message.unknownField80 !== undefined) {
       writer.uint32(640).int32(message.unknownField80);
     }
-    if (message.supportsChangeType !== undefined && message.supportsChangeType !== false) {
+    if (message.supportsChangeType !== undefined) {
       writer.uint32(680).bool(message.supportsChangeType);
     }
-    if (message.unknownField86 !== undefined && message.unknownField86 !== false) {
+    if (message.unknownField86 !== undefined) {
       writer.uint32(688).bool(message.unknownField86);
     }
     return writer;

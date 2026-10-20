@@ -48,12 +48,12 @@ export interface StreamerContext_UnknownMessage1_UnknownInnerMessage1 {
 function createBaseStreamerContext(): StreamerContext {
   return {
     clientInfo: undefined,
-    poToken: new Uint8Array(0),
-    playbackCookie: new Uint8Array(0),
-    field4: new Uint8Array(0),
+    poToken: undefined,
+    playbackCookie: undefined,
+    field4: undefined,
     sabrContexts: [],
     unsentSabrContexts: [],
-    field7: "",
+    field7: undefined,
     field8: undefined,
   };
 }
@@ -63,13 +63,13 @@ export const StreamerContext: MessageFns<StreamerContext> = {
     if (message.clientInfo !== undefined) {
       StreamerContext_ClientInfo.encode(message.clientInfo, writer.uint32(10).fork()).join();
     }
-    if (message.poToken !== undefined && message.poToken.length !== 0) {
+    if (message.poToken !== undefined) {
       writer.uint32(18).bytes(message.poToken);
     }
-    if (message.playbackCookie !== undefined && message.playbackCookie.length !== 0) {
+    if (message.playbackCookie !== undefined) {
       writer.uint32(26).bytes(message.playbackCookie);
     }
-    if (message.field4 !== undefined && message.field4.length !== 0) {
+    if (message.field4 !== undefined) {
       writer.uint32(34).bytes(message.field4);
     }
     for (const v of message.sabrContexts) {
@@ -80,7 +80,7 @@ export const StreamerContext: MessageFns<StreamerContext> = {
       writer.int32(v);
     }
     writer.join();
-    if (message.field7 !== undefined && message.field7 !== "") {
+    if (message.field7 !== undefined) {
       writer.uint32(58).string(message.field7);
     }
     if (message.field8 !== undefined) {
@@ -181,30 +181,38 @@ export const StreamerContext: MessageFns<StreamerContext> = {
 };
 
 function createBaseStreamerContext_ClientInfo(): StreamerContext_ClientInfo {
-  return { hl: "", deviceMake: "", deviceModel: "", clientName: 0, clientVersion: "", osName: "", osVersion: "" };
+  return {
+    hl: undefined,
+    deviceMake: undefined,
+    deviceModel: undefined,
+    clientName: undefined,
+    clientVersion: undefined,
+    osName: undefined,
+    osVersion: undefined,
+  };
 }
 
 export const StreamerContext_ClientInfo: MessageFns<StreamerContext_ClientInfo> = {
   encode(message: StreamerContext_ClientInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.hl !== undefined && message.hl !== "") {
+    if (message.hl !== undefined) {
       writer.uint32(10).string(message.hl);
     }
-    if (message.deviceMake !== undefined && message.deviceMake !== "") {
+    if (message.deviceMake !== undefined) {
       writer.uint32(98).string(message.deviceMake);
     }
-    if (message.deviceModel !== undefined && message.deviceModel !== "") {
+    if (message.deviceModel !== undefined) {
       writer.uint32(106).string(message.deviceModel);
     }
-    if (message.clientName !== undefined && message.clientName !== 0) {
+    if (message.clientName !== undefined) {
       writer.uint32(128).int32(message.clientName);
     }
-    if (message.clientVersion !== undefined && message.clientVersion !== "") {
+    if (message.clientVersion !== undefined) {
       writer.uint32(138).string(message.clientVersion);
     }
-    if (message.osName !== undefined && message.osName !== "") {
+    if (message.osName !== undefined) {
       writer.uint32(146).string(message.osName);
     }
-    if (message.osVersion !== undefined && message.osVersion !== "") {
+    if (message.osVersion !== undefined) {
       writer.uint32(154).string(message.osVersion);
     }
     return writer;
@@ -284,15 +292,15 @@ export const StreamerContext_ClientInfo: MessageFns<StreamerContext_ClientInfo> 
 };
 
 function createBaseStreamerContext_SabrContext(): StreamerContext_SabrContext {
-  return { type: 0, value: new Uint8Array(0) };
+  return { type: undefined, value: undefined };
 }
 
 export const StreamerContext_SabrContext: MessageFns<StreamerContext_SabrContext> = {
   encode(message: StreamerContext_SabrContext, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.type !== undefined && message.type !== 0) {
+    if (message.type !== undefined) {
       writer.uint32(8).int32(message.type);
     }
-    if (message.value !== undefined && message.value.length !== 0) {
+    if (message.value !== undefined) {
       writer.uint32(18).bytes(message.value);
     }
     return writer;
@@ -332,12 +340,12 @@ export const StreamerContext_SabrContext: MessageFns<StreamerContext_SabrContext
 };
 
 function createBaseStreamerContext_UnknownMessage1(): StreamerContext_UnknownMessage1 {
-  return { field1: new Uint8Array(0), field2: undefined };
+  return { field1: undefined, field2: undefined };
 }
 
 export const StreamerContext_UnknownMessage1: MessageFns<StreamerContext_UnknownMessage1> = {
   encode(message: StreamerContext_UnknownMessage1, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.field1 !== undefined && message.field1.length !== 0) {
+    if (message.field1 !== undefined) {
       writer.uint32(10).bytes(message.field1);
     }
     if (message.field2 !== undefined) {
@@ -380,7 +388,7 @@ export const StreamerContext_UnknownMessage1: MessageFns<StreamerContext_Unknown
 };
 
 function createBaseStreamerContext_UnknownMessage1_UnknownInnerMessage1(): StreamerContext_UnknownMessage1_UnknownInnerMessage1 {
-  return { code: 0, message: "" };
+  return { code: undefined, message: undefined };
 }
 
 export const StreamerContext_UnknownMessage1_UnknownInnerMessage1: MessageFns<
@@ -390,10 +398,10 @@ export const StreamerContext_UnknownMessage1_UnknownInnerMessage1: MessageFns<
     message: StreamerContext_UnknownMessage1_UnknownInnerMessage1,
     writer: BinaryWriter = new BinaryWriter(),
   ): BinaryWriter {
-    if (message.code !== undefined && message.code !== 0) {
+    if (message.code !== undefined) {
       writer.uint32(8).int32(message.code);
     }
-    if (message.message !== undefined && message.message !== "") {
+    if (message.message !== undefined) {
       writer.uint32(18).string(message.message);
     }
     return writer;

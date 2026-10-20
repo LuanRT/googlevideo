@@ -56,24 +56,24 @@ export interface SabrContextValue_TimingInfo {
 }
 
 function createBaseSabrContextUpdate(): SabrContextUpdate {
-  return { type: 0, scope: 0, value: new Uint8Array(0), sendByDefault: false, writePolicy: 0 };
+  return { type: undefined, scope: undefined, value: undefined, sendByDefault: undefined, writePolicy: undefined };
 }
 
 export const SabrContextUpdate: MessageFns<SabrContextUpdate> = {
   encode(message: SabrContextUpdate, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.type !== undefined && message.type !== 0) {
+    if (message.type !== undefined) {
       writer.uint32(8).int32(message.type);
     }
-    if (message.scope !== undefined && message.scope !== 0) {
+    if (message.scope !== undefined) {
       writer.uint32(16).int32(message.scope);
     }
-    if (message.value !== undefined && message.value.length !== 0) {
+    if (message.value !== undefined) {
       writer.uint32(26).bytes(message.value);
     }
-    if (message.sendByDefault !== undefined && message.sendByDefault !== false) {
+    if (message.sendByDefault !== undefined) {
       writer.uint32(32).bool(message.sendByDefault);
     }
-    if (message.writePolicy !== undefined && message.writePolicy !== 0) {
+    if (message.writePolicy !== undefined) {
       writer.uint32(40).int32(message.writePolicy);
     }
     return writer;
@@ -137,7 +137,7 @@ export const SabrContextUpdate: MessageFns<SabrContextUpdate> = {
 };
 
 function createBaseSabrContextValue(): SabrContextValue {
-  return { timing: undefined, signature: new Uint8Array(0), field5: 0 };
+  return { timing: undefined, signature: undefined, field5: undefined };
 }
 
 export const SabrContextValue: MessageFns<SabrContextValue> = {
@@ -145,10 +145,10 @@ export const SabrContextValue: MessageFns<SabrContextValue> = {
     if (message.timing !== undefined) {
       SabrContextValue_TimingInfo.encode(message.timing, writer.uint32(10).fork()).join();
     }
-    if (message.signature !== undefined && message.signature.length !== 0) {
+    if (message.signature !== undefined) {
       writer.uint32(18).bytes(message.signature);
     }
-    if (message.field5 !== undefined && message.field5 !== 0) {
+    if (message.field5 !== undefined) {
       writer.uint32(40).int32(message.field5);
     }
     return writer;
@@ -196,15 +196,15 @@ export const SabrContextValue: MessageFns<SabrContextValue> = {
 };
 
 function createBaseSabrContextValue_ContentInfo(): SabrContextValue_ContentInfo {
-  return { contentId: "", contentType: 0 };
+  return { contentId: undefined, contentType: undefined };
 }
 
 export const SabrContextValue_ContentInfo: MessageFns<SabrContextValue_ContentInfo> = {
   encode(message: SabrContextValue_ContentInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.contentId !== undefined && message.contentId !== "") {
+    if (message.contentId !== undefined) {
       writer.uint32(10).string(message.contentId);
     }
-    if (message.contentType !== undefined && message.contentType !== 0) {
+    if (message.contentType !== undefined) {
       writer.uint32(16).int32(message.contentType);
     }
     return writer;
@@ -244,15 +244,15 @@ export const SabrContextValue_ContentInfo: MessageFns<SabrContextValue_ContentIn
 };
 
 function createBaseSabrContextValue_TimingInfo(): SabrContextValue_TimingInfo {
-  return { timestampMs: "0", durationMs: 0, content: undefined };
+  return { timestampMs: undefined, durationMs: undefined, content: undefined };
 }
 
 export const SabrContextValue_TimingInfo: MessageFns<SabrContextValue_TimingInfo> = {
   encode(message: SabrContextValue_TimingInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.timestampMs !== undefined && message.timestampMs !== "0") {
+    if (message.timestampMs !== undefined) {
       writer.uint32(8).int64(message.timestampMs);
     }
-    if (message.durationMs !== undefined && message.durationMs !== 0) {
+    if (message.durationMs !== undefined) {
       writer.uint32(16).int32(message.durationMs);
     }
     if (message.content !== undefined) {

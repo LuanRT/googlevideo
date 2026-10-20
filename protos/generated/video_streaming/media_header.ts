@@ -40,81 +40,81 @@ export interface MediaHeader {
 
 function createBaseMediaHeader(): MediaHeader {
   return {
-    headerId: 0,
-    videoId: "",
-    itag: 0,
-    lmt: "0",
-    xtags: "",
-    segmentByteRangeStart: "0",
-    compressionType: 0,
-    isInitializationSegment: false,
-    segmentNum: 0,
-    bitrateBps: "0",
-    startMs: "0",
-    durationMs: "0",
+    headerId: undefined,
+    videoId: undefined,
+    itag: undefined,
+    lmt: undefined,
+    xtags: undefined,
+    segmentByteRangeStart: undefined,
+    compressionType: undefined,
+    isInitializationSegment: undefined,
+    segmentNum: undefined,
+    bitrateBps: undefined,
+    startMs: undefined,
+    durationMs: undefined,
     formatId: undefined,
-    segmentLengthBytes: "0",
+    segmentLengthBytes: undefined,
     timeRange: undefined,
-    segmentLmt: "0",
-    offsetFromStartOfSegment: "0",
-    partialBytesToReturn: "0",
+    segmentLmt: undefined,
+    offsetFromStartOfSegment: undefined,
+    partialBytesToReturn: undefined,
   };
 }
 
 export const MediaHeader: MessageFns<MediaHeader> = {
   encode(message: MediaHeader, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.headerId !== undefined && message.headerId !== 0) {
+    if (message.headerId !== undefined) {
       writer.uint32(8).uint32(message.headerId);
     }
-    if (message.videoId !== undefined && message.videoId !== "") {
+    if (message.videoId !== undefined) {
       writer.uint32(18).string(message.videoId);
     }
-    if (message.itag !== undefined && message.itag !== 0) {
+    if (message.itag !== undefined) {
       writer.uint32(24).int32(message.itag);
     }
-    if (message.lmt !== undefined && message.lmt !== "0") {
+    if (message.lmt !== undefined) {
       writer.uint32(32).uint64(message.lmt);
     }
-    if (message.xtags !== undefined && message.xtags !== "") {
+    if (message.xtags !== undefined) {
       writer.uint32(42).string(message.xtags);
     }
-    if (message.segmentByteRangeStart !== undefined && message.segmentByteRangeStart !== "0") {
+    if (message.segmentByteRangeStart !== undefined) {
       writer.uint32(48).int64(message.segmentByteRangeStart);
     }
-    if (message.compressionType !== undefined && message.compressionType !== 0) {
+    if (message.compressionType !== undefined) {
       writer.uint32(56).int32(message.compressionType);
     }
-    if (message.isInitializationSegment !== undefined && message.isInitializationSegment !== false) {
+    if (message.isInitializationSegment !== undefined) {
       writer.uint32(64).bool(message.isInitializationSegment);
     }
-    if (message.segmentNum !== undefined && message.segmentNum !== 0) {
+    if (message.segmentNum !== undefined) {
       writer.uint32(72).int32(message.segmentNum);
     }
-    if (message.bitrateBps !== undefined && message.bitrateBps !== "0") {
+    if (message.bitrateBps !== undefined) {
       writer.uint32(80).int64(message.bitrateBps);
     }
-    if (message.startMs !== undefined && message.startMs !== "0") {
+    if (message.startMs !== undefined) {
       writer.uint32(88).int64(message.startMs);
     }
-    if (message.durationMs !== undefined && message.durationMs !== "0") {
+    if (message.durationMs !== undefined) {
       writer.uint32(96).int64(message.durationMs);
     }
     if (message.formatId !== undefined) {
       FormatId.encode(message.formatId, writer.uint32(106).fork()).join();
     }
-    if (message.segmentLengthBytes !== undefined && message.segmentLengthBytes !== "0") {
+    if (message.segmentLengthBytes !== undefined) {
       writer.uint32(112).int64(message.segmentLengthBytes);
     }
     if (message.timeRange !== undefined) {
       TimeRange.encode(message.timeRange, writer.uint32(122).fork()).join();
     }
-    if (message.segmentLmt !== undefined && message.segmentLmt !== "0") {
+    if (message.segmentLmt !== undefined) {
       writer.uint32(128).uint64(message.segmentLmt);
     }
-    if (message.offsetFromStartOfSegment !== undefined && message.offsetFromStartOfSegment !== "0") {
+    if (message.offsetFromStartOfSegment !== undefined) {
       writer.uint32(136).int64(message.offsetFromStartOfSegment);
     }
-    if (message.partialBytesToReturn !== undefined && message.partialBytesToReturn !== "0") {
+    if (message.partialBytesToReturn !== undefined) {
       writer.uint32(144).int64(message.partialBytesToReturn);
     }
     return writer;

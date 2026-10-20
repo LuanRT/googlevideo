@@ -17,18 +17,18 @@ export interface SabrSeek {
 }
 
 function createBaseSabrSeek(): SabrSeek {
-  return { seekMediaTime: "0", seekMediaTimescale: 0, seekSource: 0 };
+  return { seekMediaTime: undefined, seekMediaTimescale: undefined, seekSource: undefined };
 }
 
 export const SabrSeek: MessageFns<SabrSeek> = {
   encode(message: SabrSeek, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.seekMediaTime !== undefined && message.seekMediaTime !== "0") {
+    if (message.seekMediaTime !== undefined) {
       writer.uint32(8).int64(message.seekMediaTime);
     }
-    if (message.seekMediaTimescale !== undefined && message.seekMediaTimescale !== 0) {
+    if (message.seekMediaTimescale !== undefined) {
       writer.uint32(16).int32(message.seekMediaTimescale);
     }
-    if (message.seekSource !== undefined && message.seekSource !== 0) {
+    if (message.seekSource !== undefined) {
       writer.uint32(24).int32(message.seekSource);
     }
     return writer;

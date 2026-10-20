@@ -30,62 +30,57 @@ export interface UstreamerFlags {
 
 function createBaseInnertubeRequest(): InnertubeRequest {
   return {
-    context: new Uint8Array(0),
-    encryptedOnesieInnertubeRequest: new Uint8Array(0),
-    encryptedClientKey: new Uint8Array(0),
-    iv: new Uint8Array(0),
-    hmac: new Uint8Array(0),
-    reverseProxyConfig: "",
-    serializeResponseAsJson: false,
-    enableAdPlacementsPreroll: false,
-    enableCompression: false,
+    context: undefined,
+    encryptedOnesieInnertubeRequest: undefined,
+    encryptedClientKey: undefined,
+    iv: undefined,
+    hmac: undefined,
+    reverseProxyConfig: undefined,
+    serializeResponseAsJson: undefined,
+    enableAdPlacementsPreroll: undefined,
+    enableCompression: undefined,
     ustreamerFlags: undefined,
-    unencryptedOnesieInnertubeRequest: new Uint8Array(0),
-    useJsonformatterToParsePlayerResponse: false,
+    unencryptedOnesieInnertubeRequest: undefined,
+    useJsonformatterToParsePlayerResponse: undefined,
   };
 }
 
 export const InnertubeRequest: MessageFns<InnertubeRequest> = {
   encode(message: InnertubeRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.context !== undefined && message.context.length !== 0) {
+    if (message.context !== undefined) {
       writer.uint32(10).bytes(message.context);
     }
-    if (message.encryptedOnesieInnertubeRequest !== undefined && message.encryptedOnesieInnertubeRequest.length !== 0) {
+    if (message.encryptedOnesieInnertubeRequest !== undefined) {
       writer.uint32(18).bytes(message.encryptedOnesieInnertubeRequest);
     }
-    if (message.encryptedClientKey !== undefined && message.encryptedClientKey.length !== 0) {
+    if (message.encryptedClientKey !== undefined) {
       writer.uint32(42).bytes(message.encryptedClientKey);
     }
-    if (message.iv !== undefined && message.iv.length !== 0) {
+    if (message.iv !== undefined) {
       writer.uint32(50).bytes(message.iv);
     }
-    if (message.hmac !== undefined && message.hmac.length !== 0) {
+    if (message.hmac !== undefined) {
       writer.uint32(58).bytes(message.hmac);
     }
-    if (message.reverseProxyConfig !== undefined && message.reverseProxyConfig !== "") {
+    if (message.reverseProxyConfig !== undefined) {
       writer.uint32(74).string(message.reverseProxyConfig);
     }
-    if (message.serializeResponseAsJson !== undefined && message.serializeResponseAsJson !== false) {
+    if (message.serializeResponseAsJson !== undefined) {
       writer.uint32(80).bool(message.serializeResponseAsJson);
     }
-    if (message.enableAdPlacementsPreroll !== undefined && message.enableAdPlacementsPreroll !== false) {
+    if (message.enableAdPlacementsPreroll !== undefined) {
       writer.uint32(104).bool(message.enableAdPlacementsPreroll);
     }
-    if (message.enableCompression !== undefined && message.enableCompression !== false) {
+    if (message.enableCompression !== undefined) {
       writer.uint32(112).bool(message.enableCompression);
     }
     if (message.ustreamerFlags !== undefined) {
       UstreamerFlags.encode(message.ustreamerFlags, writer.uint32(122).fork()).join();
     }
-    if (
-      message.unencryptedOnesieInnertubeRequest !== undefined && message.unencryptedOnesieInnertubeRequest.length !== 0
-    ) {
+    if (message.unencryptedOnesieInnertubeRequest !== undefined) {
       writer.uint32(130).bytes(message.unencryptedOnesieInnertubeRequest);
     }
-    if (
-      message.useJsonformatterToParsePlayerResponse !== undefined &&
-      message.useJsonformatterToParsePlayerResponse !== false
-    ) {
+    if (message.useJsonformatterToParsePlayerResponse !== undefined) {
       writer.uint32(136).bool(message.useJsonformatterToParsePlayerResponse);
     }
     return writer;
@@ -205,12 +200,12 @@ export const InnertubeRequest: MessageFns<InnertubeRequest> = {
 };
 
 function createBaseUstreamerFlags(): UstreamerFlags {
-  return { sendVideoPlaybackConfig: false };
+  return { sendVideoPlaybackConfig: undefined };
 }
 
 export const UstreamerFlags: MessageFns<UstreamerFlags> = {
   encode(message: UstreamerFlags, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.sendVideoPlaybackConfig !== undefined && message.sendVideoPlaybackConfig !== false) {
+    if (message.sendVideoPlaybackConfig !== undefined) {
       writer.uint32(16).bool(message.sendVideoPlaybackConfig);
     }
     return writer;

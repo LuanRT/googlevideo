@@ -15,15 +15,15 @@ export interface SabrError {
 }
 
 function createBaseSabrError(): SabrError {
-  return { type: "", code: 0 };
+  return { type: undefined, code: undefined };
 }
 
 export const SabrError: MessageFns<SabrError> = {
   encode(message: SabrError, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.type !== undefined && message.type !== "") {
+    if (message.type !== undefined) {
       writer.uint32(10).string(message.type);
     }
-    if (message.code !== undefined && message.code !== 0) {
+    if (message.code !== undefined) {
       writer.uint32(16).int32(message.code);
     }
     return writer;

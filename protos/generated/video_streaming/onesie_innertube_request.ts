@@ -19,24 +19,30 @@ export interface OnesieInnertubeRequest {
 }
 
 function createBaseOnesieInnertubeRequest(): OnesieInnertubeRequest {
-  return { url: "", headers: [], body: "", proxiedByTrustedBandaid: false, skipResponseEncryption: false };
+  return {
+    url: undefined,
+    headers: [],
+    body: undefined,
+    proxiedByTrustedBandaid: undefined,
+    skipResponseEncryption: undefined,
+  };
 }
 
 export const OnesieInnertubeRequest: MessageFns<OnesieInnertubeRequest> = {
   encode(message: OnesieInnertubeRequest, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.url !== undefined && message.url !== "") {
+    if (message.url !== undefined) {
       writer.uint32(10).string(message.url);
     }
     for (const v of message.headers) {
       HttpHeader.encode(v!, writer.uint32(18).fork()).join();
     }
-    if (message.body !== undefined && message.body !== "") {
+    if (message.body !== undefined) {
       writer.uint32(26).string(message.body);
     }
-    if (message.proxiedByTrustedBandaid !== undefined && message.proxiedByTrustedBandaid !== false) {
+    if (message.proxiedByTrustedBandaid !== undefined) {
       writer.uint32(32).bool(message.proxiedByTrustedBandaid);
     }
-    if (message.skipResponseEncryption !== undefined && message.skipResponseEncryption !== false) {
+    if (message.skipResponseEncryption !== undefined) {
       writer.uint32(48).bool(message.skipResponseEncryption);
     }
     return writer;

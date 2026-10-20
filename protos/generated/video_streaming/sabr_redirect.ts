@@ -14,12 +14,12 @@ export interface SabrRedirect {
 }
 
 function createBaseSabrRedirect(): SabrRedirect {
-  return { url: "" };
+  return { url: undefined };
 }
 
 export const SabrRedirect: MessageFns<SabrRedirect> = {
   encode(message: SabrRedirect, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.url !== undefined && message.url !== "") {
+    if (message.url !== undefined) {
       writer.uint32(10).string(message.url);
     }
     return writer;

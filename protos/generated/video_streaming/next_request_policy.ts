@@ -23,41 +23,41 @@ export interface NextRequestPolicy {
 
 function createBaseNextRequestPolicy(): NextRequestPolicy {
   return {
-    targetAudioReadaheadMs: 0,
-    targetVideoReadaheadMs: 0,
-    maxTimeSinceLastRequestMs: 0,
-    backoffTimeMs: 0,
-    minAudioReadaheadMs: 0,
-    minVideoReadaheadMs: 0,
+    targetAudioReadaheadMs: undefined,
+    targetVideoReadaheadMs: undefined,
+    maxTimeSinceLastRequestMs: undefined,
+    backoffTimeMs: undefined,
+    minAudioReadaheadMs: undefined,
+    minVideoReadaheadMs: undefined,
     playbackCookie: undefined,
-    videoId: "",
+    videoId: undefined,
   };
 }
 
 export const NextRequestPolicy: MessageFns<NextRequestPolicy> = {
   encode(message: NextRequestPolicy, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.targetAudioReadaheadMs !== undefined && message.targetAudioReadaheadMs !== 0) {
+    if (message.targetAudioReadaheadMs !== undefined) {
       writer.uint32(8).int32(message.targetAudioReadaheadMs);
     }
-    if (message.targetVideoReadaheadMs !== undefined && message.targetVideoReadaheadMs !== 0) {
+    if (message.targetVideoReadaheadMs !== undefined) {
       writer.uint32(16).int32(message.targetVideoReadaheadMs);
     }
-    if (message.maxTimeSinceLastRequestMs !== undefined && message.maxTimeSinceLastRequestMs !== 0) {
+    if (message.maxTimeSinceLastRequestMs !== undefined) {
       writer.uint32(24).int32(message.maxTimeSinceLastRequestMs);
     }
-    if (message.backoffTimeMs !== undefined && message.backoffTimeMs !== 0) {
+    if (message.backoffTimeMs !== undefined) {
       writer.uint32(32).int32(message.backoffTimeMs);
     }
-    if (message.minAudioReadaheadMs !== undefined && message.minAudioReadaheadMs !== 0) {
+    if (message.minAudioReadaheadMs !== undefined) {
       writer.uint32(40).int32(message.minAudioReadaheadMs);
     }
-    if (message.minVideoReadaheadMs !== undefined && message.minVideoReadaheadMs !== 0) {
+    if (message.minVideoReadaheadMs !== undefined) {
       writer.uint32(48).int32(message.minVideoReadaheadMs);
     }
     if (message.playbackCookie !== undefined) {
       PlaybackCookie.encode(message.playbackCookie, writer.uint32(58).fork()).join();
     }
-    if (message.videoId !== undefined && message.videoId !== "") {
+    if (message.videoId !== undefined) {
       writer.uint32(66).string(message.videoId);
     }
     return writer;

@@ -15,15 +15,15 @@ export interface StreamProtectionStatus {
 }
 
 function createBaseStreamProtectionStatus(): StreamProtectionStatus {
-  return { status: 0, maxRetries: 0 };
+  return { status: undefined, maxRetries: undefined };
 }
 
 export const StreamProtectionStatus: MessageFns<StreamProtectionStatus> = {
   encode(message: StreamProtectionStatus, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.status !== undefined && message.status !== 0) {
+    if (message.status !== undefined) {
       writer.uint32(8).int32(message.status);
     }
-    if (message.maxRetries !== undefined && message.maxRetries !== 0) {
+    if (message.maxRetries !== undefined) {
       writer.uint32(16).int32(message.maxRetries);
     }
     return writer;

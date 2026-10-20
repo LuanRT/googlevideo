@@ -59,18 +59,18 @@ function createBaseVideoPlaybackAbrRequest(): VideoPlaybackAbrRequest {
     clientAbrState: undefined,
     initializationFormatIds: [],
     bufferedRanges: [],
-    mediaStartTimeMs: "0",
-    videoPlaybackUstreamerConfig: new Uint8Array(0),
+    mediaStartTimeMs: undefined,
+    videoPlaybackUstreamerConfig: undefined,
     field6: undefined,
     selectedAudioFormatIds: [],
     selectedVideoFormatIds: [],
     selectedCaptionFormatIds: [],
     streamerContext: undefined,
     serverStitchedDaiInfo: undefined,
-    lastVideoItag: 0,
-    lastAudioItag: 0,
+    lastVideoItag: undefined,
+    lastAudioItag: undefined,
     ssapPlaybackInfos: [],
-    unusedBloatSizeBytes: new Uint8Array(0),
+    unusedBloatSizeBytes: undefined,
     field1000: [],
   };
 }
@@ -86,10 +86,10 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     for (const v of message.bufferedRanges) {
       BufferedRange.encode(v!, writer.uint32(26).fork()).join();
     }
-    if (message.mediaStartTimeMs !== undefined && message.mediaStartTimeMs !== "0") {
+    if (message.mediaStartTimeMs !== undefined) {
       writer.uint32(32).int64(message.mediaStartTimeMs);
     }
-    if (message.videoPlaybackUstreamerConfig !== undefined && message.videoPlaybackUstreamerConfig.length !== 0) {
+    if (message.videoPlaybackUstreamerConfig !== undefined) {
       writer.uint32(42).bytes(message.videoPlaybackUstreamerConfig);
     }
     if (message.field6 !== undefined) {
@@ -110,16 +110,16 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
     if (message.serverStitchedDaiInfo !== undefined) {
       SsapPlaybackInfo.encode(message.serverStitchedDaiInfo, writer.uint32(170).fork()).join();
     }
-    if (message.lastVideoItag !== undefined && message.lastVideoItag !== 0) {
+    if (message.lastVideoItag !== undefined) {
       writer.uint32(176).int32(message.lastVideoItag);
     }
-    if (message.lastAudioItag !== undefined && message.lastAudioItag !== 0) {
+    if (message.lastAudioItag !== undefined) {
       writer.uint32(184).int32(message.lastAudioItag);
     }
     for (const v of message.ssapPlaybackInfos) {
       SsapPlaybackInfo.encode(v!, writer.uint32(194).fork()).join();
     }
-    if (message.unusedBloatSizeBytes !== undefined && message.unusedBloatSizeBytes.length !== 0) {
+    if (message.unusedBloatSizeBytes !== undefined) {
       writer.uint32(202).bytes(message.unusedBloatSizeBytes);
     }
     for (const v of message.field1000) {
@@ -274,7 +274,7 @@ export const VideoPlaybackAbrRequest: MessageFns<VideoPlaybackAbrRequest> = {
 };
 
 function createBaseUnknownMessage1(): UnknownMessage1 {
-  return { formatId: undefined, lmt: "0", sequenceNumber: 0, timeRange: undefined, field5: 0 };
+  return { formatId: undefined, lmt: undefined, sequenceNumber: undefined, timeRange: undefined, field5: undefined };
 }
 
 export const UnknownMessage1: MessageFns<UnknownMessage1> = {
@@ -282,16 +282,16 @@ export const UnknownMessage1: MessageFns<UnknownMessage1> = {
     if (message.formatId !== undefined) {
       FormatId.encode(message.formatId, writer.uint32(10).fork()).join();
     }
-    if (message.lmt !== undefined && message.lmt !== "0") {
+    if (message.lmt !== undefined) {
       writer.uint32(16).sint64(message.lmt);
     }
-    if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
+    if (message.sequenceNumber !== undefined) {
       writer.uint32(24).int32(message.sequenceNumber);
     }
     if (message.timeRange !== undefined) {
       TimeRange.encode(message.timeRange, writer.uint32(34).fork()).join();
     }
-    if (message.field5 !== undefined && message.field5 !== 0) {
+    if (message.field5 !== undefined) {
       writer.uint32(40).int32(message.field5);
     }
     return writer;
@@ -355,7 +355,7 @@ export const UnknownMessage1: MessageFns<UnknownMessage1> = {
 };
 
 function createBaseUnknownMessage2(): UnknownMessage2 {
-  return { formatIds: [], ud: [], clipId: "" };
+  return { formatIds: [], ud: [], clipId: undefined };
 }
 
 export const UnknownMessage2: MessageFns<UnknownMessage2> = {
@@ -366,7 +366,7 @@ export const UnknownMessage2: MessageFns<UnknownMessage2> = {
     for (const v of message.ud) {
       BufferedRange.encode(v!, writer.uint32(18).fork()).join();
     }
-    if (message.clipId !== undefined && message.clipId !== "") {
+    if (message.clipId !== undefined) {
       writer.uint32(26).string(message.clipId);
     }
     return writer;

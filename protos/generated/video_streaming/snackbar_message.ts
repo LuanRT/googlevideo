@@ -14,12 +14,12 @@ export interface SnackbarMessage {
 }
 
 function createBaseSnackbarMessage(): SnackbarMessage {
-  return { id: 0 };
+  return { id: undefined };
 }
 
 export const SnackbarMessage: MessageFns<SnackbarMessage> = {
   encode(message: SnackbarMessage, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.id !== undefined && message.id !== 0) {
+    if (message.id !== undefined) {
       writer.uint32(8).int32(message.id);
     }
     return writer;

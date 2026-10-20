@@ -22,18 +22,18 @@ export interface RequestCancellationPolicy_RequestCancellationPolicyItem {
 }
 
 function createBaseRequestCancellationPolicy(): RequestCancellationPolicy {
-  return { policyEnforcementIntervalMs: 0, items: [], noDataTimeoutMs: 0 };
+  return { policyEnforcementIntervalMs: undefined, items: [], noDataTimeoutMs: undefined };
 }
 
 export const RequestCancellationPolicy: MessageFns<RequestCancellationPolicy> = {
   encode(message: RequestCancellationPolicy, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.policyEnforcementIntervalMs !== undefined && message.policyEnforcementIntervalMs !== 0) {
+    if (message.policyEnforcementIntervalMs !== undefined) {
       writer.uint32(8).int32(message.policyEnforcementIntervalMs);
     }
     for (const v of message.items) {
       RequestCancellationPolicy_RequestCancellationPolicyItem.encode(v!, writer.uint32(18).fork()).join();
     }
-    if (message.noDataTimeoutMs !== undefined && message.noDataTimeoutMs !== 0) {
+    if (message.noDataTimeoutMs !== undefined) {
       writer.uint32(24).int32(message.noDataTimeoutMs);
     }
     return writer;
@@ -81,7 +81,7 @@ export const RequestCancellationPolicy: MessageFns<RequestCancellationPolicy> = 
 };
 
 function createBaseRequestCancellationPolicy_RequestCancellationPolicyItem(): RequestCancellationPolicy_RequestCancellationPolicyItem {
-  return { unknownField1: 0, unknownField2: 0, minReadaheadMs: 0 };
+  return { unknownField1: undefined, unknownField2: undefined, minReadaheadMs: undefined };
 }
 
 export const RequestCancellationPolicy_RequestCancellationPolicyItem: MessageFns<
@@ -91,13 +91,13 @@ export const RequestCancellationPolicy_RequestCancellationPolicyItem: MessageFns
     message: RequestCancellationPolicy_RequestCancellationPolicyItem,
     writer: BinaryWriter = new BinaryWriter(),
   ): BinaryWriter {
-    if (message.unknownField1 !== undefined && message.unknownField1 !== 0) {
+    if (message.unknownField1 !== undefined) {
       writer.uint32(8).int32(message.unknownField1);
     }
-    if (message.unknownField2 !== undefined && message.unknownField2 !== 0) {
+    if (message.unknownField2 !== undefined) {
       writer.uint32(16).int32(message.unknownField2);
     }
-    if (message.minReadaheadMs !== undefined && message.minReadaheadMs !== 0) {
+    if (message.minReadaheadMs !== undefined) {
       writer.uint32(24).int32(message.minReadaheadMs);
     }
     return writer;

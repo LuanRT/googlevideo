@@ -16,7 +16,7 @@ export interface FormatSelectionConfig {
 }
 
 function createBaseFormatSelectionConfig(): FormatSelectionConfig {
-  return { itags: [], videoId: "", resolution: 0 };
+  return { itags: [], videoId: undefined, resolution: undefined };
 }
 
 export const FormatSelectionConfig: MessageFns<FormatSelectionConfig> = {
@@ -26,10 +26,10 @@ export const FormatSelectionConfig: MessageFns<FormatSelectionConfig> = {
       writer.int32(v);
     }
     writer.join();
-    if (message.videoId !== undefined && message.videoId !== "") {
+    if (message.videoId !== undefined) {
       writer.uint32(26).string(message.videoId);
     }
-    if (message.resolution !== undefined && message.resolution !== 0) {
+    if (message.resolution !== undefined) {
       writer.uint32(32).int32(message.resolution);
     }
     return writer;

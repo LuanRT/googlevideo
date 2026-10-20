@@ -27,36 +27,36 @@ export interface FormatInitializationMetadata {
 
 function createBaseFormatInitializationMetadata(): FormatInitializationMetadata {
   return {
-    videoId: "",
+    videoId: undefined,
     formatId: undefined,
-    endTimeMs: "0",
-    endSegmentNum: "0",
-    mimeType: "",
+    endTimeMs: undefined,
+    endSegmentNum: undefined,
+    mimeType: undefined,
     initSegmentRange: undefined,
     indexRange: undefined,
-    field8: "0",
-    endTimeTicks: "0",
-    endTimeTimescale: "0",
-    clipId: "",
-    formatStream: new Uint8Array(0),
+    field8: undefined,
+    endTimeTicks: undefined,
+    endTimeTimescale: undefined,
+    clipId: undefined,
+    formatStream: undefined,
   };
 }
 
 export const FormatInitializationMetadata: MessageFns<FormatInitializationMetadata> = {
   encode(message: FormatInitializationMetadata, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.videoId !== undefined && message.videoId !== "") {
+    if (message.videoId !== undefined) {
       writer.uint32(10).string(message.videoId);
     }
     if (message.formatId !== undefined) {
       FormatId.encode(message.formatId, writer.uint32(18).fork()).join();
     }
-    if (message.endTimeMs !== undefined && message.endTimeMs !== "0") {
+    if (message.endTimeMs !== undefined) {
       writer.uint32(24).int64(message.endTimeMs);
     }
-    if (message.endSegmentNum !== undefined && message.endSegmentNum !== "0") {
+    if (message.endSegmentNum !== undefined) {
       writer.uint32(32).int64(message.endSegmentNum);
     }
-    if (message.mimeType !== undefined && message.mimeType !== "") {
+    if (message.mimeType !== undefined) {
       writer.uint32(42).string(message.mimeType);
     }
     if (message.initSegmentRange !== undefined) {
@@ -65,19 +65,19 @@ export const FormatInitializationMetadata: MessageFns<FormatInitializationMetada
     if (message.indexRange !== undefined) {
       Range.encode(message.indexRange, writer.uint32(58).fork()).join();
     }
-    if (message.field8 !== undefined && message.field8 !== "0") {
+    if (message.field8 !== undefined) {
       writer.uint32(64).int64(message.field8);
     }
-    if (message.endTimeTicks !== undefined && message.endTimeTicks !== "0") {
+    if (message.endTimeTicks !== undefined) {
       writer.uint32(72).int64(message.endTimeTicks);
     }
-    if (message.endTimeTimescale !== undefined && message.endTimeTimescale !== "0") {
+    if (message.endTimeTimescale !== undefined) {
       writer.uint32(80).int64(message.endTimeTimescale);
     }
-    if (message.clipId !== undefined && message.clipId !== "") {
+    if (message.clipId !== undefined) {
       writer.uint32(90).string(message.clipId);
     }
-    if (message.formatStream !== undefined && message.formatStream.length !== 0) {
+    if (message.formatStream !== undefined) {
       writer.uint32(98).bytes(message.formatStream);
     }
     return writer;

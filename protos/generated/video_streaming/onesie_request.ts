@@ -36,11 +36,11 @@ function createBaseOnesieRequest(): OnesieRequest {
     urls: [],
     clientAbrState: undefined,
     innertubeRequest: undefined,
-    onesieUstreamerConfig: new Uint8Array(0),
-    maxVp9Height: 0,
-    clientDisplayHeight: 0,
+    onesieUstreamerConfig: undefined,
+    maxVp9Height: undefined,
+    clientDisplayHeight: undefined,
     streamerContext: undefined,
-    requestTarget: 0,
+    requestTarget: undefined,
     bufferedRanges: [],
     reloadPlaybackParams: undefined,
   };
@@ -57,19 +57,19 @@ export const OnesieRequest: MessageFns<OnesieRequest> = {
     if (message.innertubeRequest !== undefined) {
       InnertubeRequest.encode(message.innertubeRequest, writer.uint32(26).fork()).join();
     }
-    if (message.onesieUstreamerConfig !== undefined && message.onesieUstreamerConfig.length !== 0) {
+    if (message.onesieUstreamerConfig !== undefined) {
       writer.uint32(34).bytes(message.onesieUstreamerConfig);
     }
-    if (message.maxVp9Height !== undefined && message.maxVp9Height !== 0) {
+    if (message.maxVp9Height !== undefined) {
       writer.uint32(40).int32(message.maxVp9Height);
     }
-    if (message.clientDisplayHeight !== undefined && message.clientDisplayHeight !== 0) {
+    if (message.clientDisplayHeight !== undefined) {
       writer.uint32(48).int32(message.clientDisplayHeight);
     }
     if (message.streamerContext !== undefined) {
       StreamerContext.encode(message.streamerContext, writer.uint32(82).fork()).join();
     }
-    if (message.requestTarget !== undefined && message.requestTarget !== 0) {
+    if (message.requestTarget !== undefined) {
       writer.uint32(104).int32(message.requestTarget);
     }
     for (const v of message.bufferedRanges) {

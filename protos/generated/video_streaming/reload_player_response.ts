@@ -18,12 +18,12 @@ export interface ReloadPlaybackContext {
 }
 
 function createBaseReloadPlaybackParams(): ReloadPlaybackParams {
-  return { token: "" };
+  return { token: undefined };
 }
 
 export const ReloadPlaybackParams: MessageFns<ReloadPlaybackParams> = {
   encode(message: ReloadPlaybackParams, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.token !== undefined && message.token !== "") {
+    if (message.token !== undefined) {
       writer.uint32(10).string(message.token);
     }
     return writer;

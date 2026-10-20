@@ -42,7 +42,7 @@ function createBaseMediaCapabilities(): MediaCapabilities {
     videoFormatCapabilities: [],
     audioFormatCapabilities: [],
     perPlaybackAttributes: undefined,
-    hdrModeBitmask: 0,
+    hdrModeBitmask: undefined,
   };
 }
 
@@ -57,7 +57,7 @@ export const MediaCapabilities: MessageFns<MediaCapabilities> = {
     if (message.perPlaybackAttributes !== undefined) {
       MediaCapabilities_PerPlaybackAttributes.encode(message.perPlaybackAttributes, writer.uint32(34).fork()).join();
     }
-    if (message.hdrModeBitmask !== undefined && message.hdrModeBitmask !== 0) {
+    if (message.hdrModeBitmask !== undefined) {
       writer.uint32(40).int32(message.hdrModeBitmask);
     }
     return writer;
@@ -163,37 +163,37 @@ export const MediaCapabilities_PerPlaybackAttributes: MessageFns<MediaCapabiliti
 
 function createBaseMediaCapabilities_VideoFormatCapability(): MediaCapabilities_VideoFormatCapability {
   return {
-    videoCodec: 0,
-    efficient: false,
-    maxHeight: 0,
-    maxWidth: 0,
-    maxFramerate: 0,
-    maxBitrateBps: 0,
-    is10BitSupported: false,
+    videoCodec: undefined,
+    efficient: undefined,
+    maxHeight: undefined,
+    maxWidth: undefined,
+    maxFramerate: undefined,
+    maxBitrateBps: undefined,
+    is10BitSupported: undefined,
   };
 }
 
 export const MediaCapabilities_VideoFormatCapability: MessageFns<MediaCapabilities_VideoFormatCapability> = {
   encode(message: MediaCapabilities_VideoFormatCapability, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.videoCodec !== undefined && message.videoCodec !== 0) {
+    if (message.videoCodec !== undefined) {
       writer.uint32(8).int32(message.videoCodec);
     }
-    if (message.efficient !== undefined && message.efficient !== false) {
+    if (message.efficient !== undefined) {
       writer.uint32(16).bool(message.efficient);
     }
-    if (message.maxHeight !== undefined && message.maxHeight !== 0) {
+    if (message.maxHeight !== undefined) {
       writer.uint32(24).int32(message.maxHeight);
     }
-    if (message.maxWidth !== undefined && message.maxWidth !== 0) {
+    if (message.maxWidth !== undefined) {
       writer.uint32(32).int32(message.maxWidth);
     }
-    if (message.maxFramerate !== undefined && message.maxFramerate !== 0) {
+    if (message.maxFramerate !== undefined) {
       writer.uint32(88).int32(message.maxFramerate);
     }
-    if (message.maxBitrateBps !== undefined && message.maxBitrateBps !== 0) {
+    if (message.maxBitrateBps !== undefined) {
       writer.uint32(96).int32(message.maxBitrateBps);
     }
-    if (message.is10BitSupported !== undefined && message.is10BitSupported !== false) {
+    if (message.is10BitSupported !== undefined) {
       writer.uint32(120).bool(message.is10BitSupported);
     }
     return writer;
@@ -273,21 +273,26 @@ export const MediaCapabilities_VideoFormatCapability: MessageFns<MediaCapabiliti
 };
 
 function createBaseMediaCapabilities_AudioFormatCapability(): MediaCapabilities_AudioFormatCapability {
-  return { audioCodec: 0, numChannels: 0, maxBitrateBps: 0, spatialCapabilityBitmask: 0 };
+  return {
+    audioCodec: undefined,
+    numChannels: undefined,
+    maxBitrateBps: undefined,
+    spatialCapabilityBitmask: undefined,
+  };
 }
 
 export const MediaCapabilities_AudioFormatCapability: MessageFns<MediaCapabilities_AudioFormatCapability> = {
   encode(message: MediaCapabilities_AudioFormatCapability, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.audioCodec !== undefined && message.audioCodec !== 0) {
+    if (message.audioCodec !== undefined) {
       writer.uint32(8).int32(message.audioCodec);
     }
-    if (message.numChannels !== undefined && message.numChannels !== 0) {
+    if (message.numChannels !== undefined) {
       writer.uint32(16).int32(message.numChannels);
     }
-    if (message.maxBitrateBps !== undefined && message.maxBitrateBps !== 0) {
+    if (message.maxBitrateBps !== undefined) {
       writer.uint32(24).int32(message.maxBitrateBps);
     }
-    if (message.spatialCapabilityBitmask !== undefined && message.spatialCapabilityBitmask !== 0) {
+    if (message.spatialCapabilityBitmask !== undefined) {
       writer.uint32(48).int32(message.spatialCapabilityBitmask);
     }
     return writer;

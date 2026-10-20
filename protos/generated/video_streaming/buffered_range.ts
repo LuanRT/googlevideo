@@ -13,10 +13,10 @@ export const protobufPackage = "video_streaming";
 
 export interface BufferedRange {
   formatId: FormatId | undefined;
-  startTimeMs: string;
-  durationMs: string;
-  startSegmentIndex: number;
-  endSegmentIndex: number;
+  startTimeMs?: string | undefined;
+  durationMs?: string | undefined;
+  startSegmentIndex?: number | undefined;
+  endSegmentIndex?: number | undefined;
   timeRange?: TimeRange | undefined;
   field9?: BufferedRange_UnknownMessage1 | undefined;
   field11?: BufferedRange_UnknownMessage2 | undefined;
@@ -41,10 +41,10 @@ export interface BufferedRange_UnknownMessage2 {
 function createBaseBufferedRange(): BufferedRange {
   return {
     formatId: undefined,
-    startTimeMs: "0",
-    durationMs: "0",
-    startSegmentIndex: 0,
-    endSegmentIndex: 0,
+    startTimeMs: undefined,
+    durationMs: undefined,
+    startSegmentIndex: undefined,
+    endSegmentIndex: undefined,
     timeRange: undefined,
     field9: undefined,
     field11: undefined,
@@ -57,16 +57,16 @@ export const BufferedRange: MessageFns<BufferedRange> = {
     if (message.formatId !== undefined) {
       FormatId.encode(message.formatId, writer.uint32(10).fork()).join();
     }
-    if (message.startTimeMs !== "0") {
+    if (message.startTimeMs !== undefined) {
       writer.uint32(16).int64(message.startTimeMs);
     }
-    if (message.durationMs !== "0") {
+    if (message.durationMs !== undefined) {
       writer.uint32(24).int64(message.durationMs);
     }
-    if (message.startSegmentIndex !== 0) {
+    if (message.startSegmentIndex !== undefined) {
       writer.uint32(32).int32(message.startSegmentIndex);
     }
-    if (message.endSegmentIndex !== 0) {
+    if (message.endSegmentIndex !== undefined) {
       writer.uint32(40).int32(message.endSegmentIndex);
     }
     if (message.timeRange !== undefined) {
@@ -211,7 +211,7 @@ export const BufferedRange_UnknownMessage1: MessageFns<BufferedRange_UnknownMess
 };
 
 function createBaseBufferedRange_UnknownMessage1_UnknownInnerMessage(): BufferedRange_UnknownMessage1_UnknownInnerMessage {
-  return { videoId: "", lmt: "0" };
+  return { videoId: undefined, lmt: undefined };
 }
 
 export const BufferedRange_UnknownMessage1_UnknownInnerMessage: MessageFns<
@@ -221,10 +221,10 @@ export const BufferedRange_UnknownMessage1_UnknownInnerMessage: MessageFns<
     message: BufferedRange_UnknownMessage1_UnknownInnerMessage,
     writer: BinaryWriter = new BinaryWriter(),
   ): BinaryWriter {
-    if (message.videoId !== undefined && message.videoId !== "") {
+    if (message.videoId !== undefined) {
       writer.uint32(10).string(message.videoId);
     }
-    if (message.lmt !== undefined && message.lmt !== "0") {
+    if (message.lmt !== undefined) {
       writer.uint32(16).uint64(message.lmt);
     }
     return writer;
@@ -264,18 +264,18 @@ export const BufferedRange_UnknownMessage1_UnknownInnerMessage: MessageFns<
 };
 
 function createBaseBufferedRange_UnknownMessage2(): BufferedRange_UnknownMessage2 {
-  return { field1: 0, field2: 0, field3: 0 };
+  return { field1: undefined, field2: undefined, field3: undefined };
 }
 
 export const BufferedRange_UnknownMessage2: MessageFns<BufferedRange_UnknownMessage2> = {
   encode(message: BufferedRange_UnknownMessage2, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.field1 !== undefined && message.field1 !== 0) {
+    if (message.field1 !== undefined) {
       writer.uint32(8).int32(message.field1);
     }
-    if (message.field2 !== undefined && message.field2 !== 0) {
+    if (message.field2 !== undefined) {
       writer.uint32(16).int32(message.field2);
     }
-    if (message.field3 !== undefined && message.field3 !== 0) {
+    if (message.field3 !== undefined) {
       writer.uint32(24).int32(message.field3);
     }
     return writer;

@@ -35,15 +35,15 @@ export interface OnesieHeader_UnknownMessage2 {
 
 function createBaseOnesieHeader(): OnesieHeader {
   return {
-    type: 0,
-    videoId: "",
-    itag: "",
+    type: undefined,
+    videoId: undefined,
+    itag: undefined,
     cryptoParams: undefined,
-    lastModified: "0",
-    expectedMediaSizeBytes: "0",
+    lastModified: undefined,
+    expectedMediaSizeBytes: undefined,
     restrictedFormats: [],
-    xtags: "",
-    segmentNum: "0",
+    xtags: undefined,
+    segmentNum: undefined,
     field23: undefined,
     field34: undefined,
   };
@@ -51,31 +51,31 @@ function createBaseOnesieHeader(): OnesieHeader {
 
 export const OnesieHeader: MessageFns<OnesieHeader> = {
   encode(message: OnesieHeader, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.type !== undefined && message.type !== 0) {
+    if (message.type !== undefined) {
       writer.uint32(8).int32(message.type);
     }
-    if (message.videoId !== undefined && message.videoId !== "") {
+    if (message.videoId !== undefined) {
       writer.uint32(18).string(message.videoId);
     }
-    if (message.itag !== undefined && message.itag !== "") {
+    if (message.itag !== undefined) {
       writer.uint32(26).string(message.itag);
     }
     if (message.cryptoParams !== undefined) {
       CryptoParams.encode(message.cryptoParams, writer.uint32(34).fork()).join();
     }
-    if (message.lastModified !== undefined && message.lastModified !== "0") {
+    if (message.lastModified !== undefined) {
       writer.uint32(40).uint64(message.lastModified);
     }
-    if (message.expectedMediaSizeBytes !== undefined && message.expectedMediaSizeBytes !== "0") {
+    if (message.expectedMediaSizeBytes !== undefined) {
       writer.uint32(56).int64(message.expectedMediaSizeBytes);
     }
     for (const v of message.restrictedFormats) {
       writer.uint32(90).string(v!);
     }
-    if (message.xtags !== undefined && message.xtags !== "") {
+    if (message.xtags !== undefined) {
       writer.uint32(122).string(message.xtags);
     }
-    if (message.segmentNum !== undefined && message.segmentNum !== "0") {
+    if (message.segmentNum !== undefined) {
       writer.uint32(144).int64(message.segmentNum);
     }
     if (message.field23 !== undefined) {
@@ -193,12 +193,12 @@ export const OnesieHeader: MessageFns<OnesieHeader> = {
 };
 
 function createBaseOnesieHeader_UnknownMessage1(): OnesieHeader_UnknownMessage1 {
-  return { videoId: "" };
+  return { videoId: undefined };
 }
 
 export const OnesieHeader_UnknownMessage1: MessageFns<OnesieHeader_UnknownMessage1> = {
   encode(message: OnesieHeader_UnknownMessage1, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.videoId !== undefined && message.videoId !== "") {
+    if (message.videoId !== undefined) {
       writer.uint32(18).string(message.videoId);
     }
     return writer;

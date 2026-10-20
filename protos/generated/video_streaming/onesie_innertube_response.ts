@@ -19,21 +19,21 @@ export interface OnesieInnertubeResponse {
 }
 
 function createBaseOnesieInnertubeResponse(): OnesieInnertubeResponse {
-  return { onesieProxyStatus: 0, httpStatus: 0, headers: [], body: new Uint8Array(0) };
+  return { onesieProxyStatus: undefined, httpStatus: undefined, headers: [], body: undefined };
 }
 
 export const OnesieInnertubeResponse: MessageFns<OnesieInnertubeResponse> = {
   encode(message: OnesieInnertubeResponse, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.onesieProxyStatus !== undefined && message.onesieProxyStatus !== 0) {
+    if (message.onesieProxyStatus !== undefined) {
       writer.uint32(8).int32(message.onesieProxyStatus);
     }
-    if (message.httpStatus !== undefined && message.httpStatus !== 0) {
+    if (message.httpStatus !== undefined) {
       writer.uint32(16).int32(message.httpStatus);
     }
     for (const v of message.headers) {
       HttpHeader.encode(v!, writer.uint32(26).fork()).join();
     }
-    if (message.body !== undefined && message.body.length !== 0) {
+    if (message.body !== undefined) {
       writer.uint32(34).bytes(message.body);
     }
     return writer;

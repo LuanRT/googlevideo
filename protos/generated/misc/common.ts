@@ -217,15 +217,15 @@ export interface PlaybackAuthorization {
 }
 
 function createBaseHttpHeader(): HttpHeader {
-  return { name: "", value: "" };
+  return { name: undefined, value: undefined };
 }
 
 export const HttpHeader: MessageFns<HttpHeader> = {
   encode(message: HttpHeader, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.name !== undefined && message.name !== "") {
+    if (message.name !== undefined) {
       writer.uint32(10).string(message.name);
     }
-    if (message.value !== undefined && message.value !== "") {
+    if (message.value !== undefined) {
       writer.uint32(18).string(message.value);
     }
     return writer;
@@ -265,18 +265,18 @@ export const HttpHeader: MessageFns<HttpHeader> = {
 };
 
 function createBaseFormatId(): FormatId {
-  return { itag: 0, lastModified: "0", xtags: "" };
+  return { itag: undefined, lastModified: undefined, xtags: undefined };
 }
 
 export const FormatId: MessageFns<FormatId> = {
   encode(message: FormatId, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.itag !== undefined && message.itag !== 0) {
+    if (message.itag !== undefined) {
       writer.uint32(8).int32(message.itag);
     }
-    if (message.lastModified !== undefined && message.lastModified !== "0") {
+    if (message.lastModified !== undefined) {
       writer.uint32(16).uint64(message.lastModified);
     }
-    if (message.xtags !== undefined && message.xtags !== "") {
+    if (message.xtags !== undefined) {
       writer.uint32(26).string(message.xtags);
     }
     return writer;
@@ -324,21 +324,21 @@ export const FormatId: MessageFns<FormatId> = {
 };
 
 function createBaseRange(): Range {
-  return { legacyStart: 0, legacyEnd: 0, start: 0, end: 0 };
+  return { legacyStart: undefined, legacyEnd: undefined, start: undefined, end: undefined };
 }
 
 export const Range: MessageFns<Range> = {
   encode(message: Range, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.legacyStart !== undefined && message.legacyStart !== 0) {
+    if (message.legacyStart !== undefined) {
       writer.uint32(8).int32(message.legacyStart);
     }
-    if (message.legacyEnd !== undefined && message.legacyEnd !== 0) {
+    if (message.legacyEnd !== undefined) {
       writer.uint32(16).int32(message.legacyEnd);
     }
-    if (message.start !== undefined && message.start !== 0) {
+    if (message.start !== undefined) {
       writer.uint32(24).int32(message.start);
     }
-    if (message.end !== undefined && message.end !== 0) {
+    if (message.end !== undefined) {
       writer.uint32(32).int32(message.end);
     }
     return writer;
@@ -394,15 +394,15 @@ export const Range: MessageFns<Range> = {
 };
 
 function createBaseIdentifierToken(): IdentifierToken {
-  return { requestNumber: 0, field5: 0 };
+  return { requestNumber: undefined, field5: undefined };
 }
 
 export const IdentifierToken: MessageFns<IdentifierToken> = {
   encode(message: IdentifierToken, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.requestNumber !== undefined && message.requestNumber !== 0) {
+    if (message.requestNumber !== undefined) {
       writer.uint32(8).int32(message.requestNumber);
     }
-    if (message.field5 !== undefined && message.field5 !== 0) {
+    if (message.field5 !== undefined) {
       writer.uint32(40).int32(message.field5);
     }
     return writer;
@@ -442,15 +442,15 @@ export const IdentifierToken: MessageFns<IdentifierToken> = {
 };
 
 function createBaseKeyValuePair(): KeyValuePair {
-  return { key: "", value: "" };
+  return { key: undefined, value: undefined };
 }
 
 export const KeyValuePair: MessageFns<KeyValuePair> = {
   encode(message: KeyValuePair, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.key !== undefined && message.key !== "") {
+    if (message.key !== undefined) {
       writer.uint32(10).string(message.key);
     }
-    if (message.value !== undefined && message.value !== "") {
+    if (message.value !== undefined) {
       writer.uint32(18).string(message.value);
     }
     return writer;
@@ -490,15 +490,15 @@ export const KeyValuePair: MessageFns<KeyValuePair> = {
 };
 
 function createBaseAuthorizedFormat(): AuthorizedFormat {
-  return { trackType: 0, isHdr: false };
+  return { trackType: undefined, isHdr: undefined };
 }
 
 export const AuthorizedFormat: MessageFns<AuthorizedFormat> = {
   encode(message: AuthorizedFormat, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.trackType !== undefined && message.trackType !== 0) {
+    if (message.trackType !== undefined) {
       writer.uint32(8).int32(message.trackType);
     }
-    if (message.isHdr !== undefined && message.isHdr !== false) {
+    if (message.isHdr !== undefined) {
       writer.uint32(16).bool(message.isHdr);
     }
     return writer;
@@ -538,7 +538,7 @@ export const AuthorizedFormat: MessageFns<AuthorizedFormat> = {
 };
 
 function createBasePlaybackAuthorization(): PlaybackAuthorization {
-  return { authorizedFormats: [], sabrLicenseConstraint: new Uint8Array(0) };
+  return { authorizedFormats: [], sabrLicenseConstraint: undefined };
 }
 
 export const PlaybackAuthorization: MessageFns<PlaybackAuthorization> = {
@@ -546,7 +546,7 @@ export const PlaybackAuthorization: MessageFns<PlaybackAuthorization> = {
     for (const v of message.authorizedFormats) {
       AuthorizedFormat.encode(v!, writer.uint32(10).fork()).join();
     }
-    if (message.sabrLicenseConstraint !== undefined && message.sabrLicenseConstraint.length !== 0) {
+    if (message.sabrLicenseConstraint !== undefined) {
       writer.uint32(18).bytes(message.sabrLicenseConstraint);
     }
     return writer;

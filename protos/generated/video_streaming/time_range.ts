@@ -16,18 +16,18 @@ export interface TimeRange {
 }
 
 function createBaseTimeRange(): TimeRange {
-  return { startTicks: "0", durationTicks: "0", timescale: 0 };
+  return { startTicks: undefined, durationTicks: undefined, timescale: undefined };
 }
 
 export const TimeRange: MessageFns<TimeRange> = {
   encode(message: TimeRange, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.startTicks !== undefined && message.startTicks !== "0") {
+    if (message.startTicks !== undefined) {
       writer.uint32(8).int64(message.startTicks);
     }
-    if (message.durationTicks !== undefined && message.durationTicks !== "0") {
+    if (message.durationTicks !== undefined) {
       writer.uint32(16).int64(message.durationTicks);
     }
-    if (message.timescale !== undefined && message.timescale !== 0) {
+    if (message.timescale !== undefined) {
       writer.uint32(24).int32(message.timescale);
     }
     return writer;

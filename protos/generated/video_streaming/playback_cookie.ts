@@ -18,15 +18,15 @@ export interface PlaybackCookie {
 }
 
 function createBasePlaybackCookie(): PlaybackCookie {
-  return { resolution: 0, field2: 0, videoFmt: undefined, audioFmt: undefined };
+  return { resolution: undefined, field2: undefined, videoFmt: undefined, audioFmt: undefined };
 }
 
 export const PlaybackCookie: MessageFns<PlaybackCookie> = {
   encode(message: PlaybackCookie, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.resolution !== undefined && message.resolution !== 0) {
+    if (message.resolution !== undefined) {
       writer.uint32(8).int32(message.resolution);
     }
-    if (message.field2 !== undefined && message.field2 !== 0) {
+    if (message.field2 !== undefined) {
       writer.uint32(16).int32(message.field2);
     }
     if (message.videoFmt !== undefined) {

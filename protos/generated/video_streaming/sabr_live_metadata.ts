@@ -25,53 +25,53 @@ export interface SabrLiveMetadata {
 
 function createBaseSabrLiveMetadata(): SabrLiveMetadata {
   return {
-    broadcastId: "",
-    headSequenceNumber: "0",
-    headTimeMs: "0",
-    wallTimeMs: "0",
-    videoId: "",
-    postLiveDvr: false,
-    headm: "0",
-    minSeekableTimeTicks: "0",
-    minSeekableTimescale: 0,
-    maxSeekableTimeTicks: "0",
-    maxSeekableTimescale: 0,
+    broadcastId: undefined,
+    headSequenceNumber: undefined,
+    headTimeMs: undefined,
+    wallTimeMs: undefined,
+    videoId: undefined,
+    postLiveDvr: undefined,
+    headm: undefined,
+    minSeekableTimeTicks: undefined,
+    minSeekableTimescale: undefined,
+    maxSeekableTimeTicks: undefined,
+    maxSeekableTimescale: undefined,
   };
 }
 
 export const SabrLiveMetadata: MessageFns<SabrLiveMetadata> = {
   encode(message: SabrLiveMetadata, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.broadcastId !== undefined && message.broadcastId !== "") {
+    if (message.broadcastId !== undefined) {
       writer.uint32(10).string(message.broadcastId);
     }
-    if (message.headSequenceNumber !== undefined && message.headSequenceNumber !== "0") {
+    if (message.headSequenceNumber !== undefined) {
       writer.uint32(24).int64(message.headSequenceNumber);
     }
-    if (message.headTimeMs !== undefined && message.headTimeMs !== "0") {
+    if (message.headTimeMs !== undefined) {
       writer.uint32(32).int64(message.headTimeMs);
     }
-    if (message.wallTimeMs !== undefined && message.wallTimeMs !== "0") {
+    if (message.wallTimeMs !== undefined) {
       writer.uint32(40).int64(message.wallTimeMs);
     }
-    if (message.videoId !== undefined && message.videoId !== "") {
+    if (message.videoId !== undefined) {
       writer.uint32(50).string(message.videoId);
     }
-    if (message.postLiveDvr !== undefined && message.postLiveDvr !== false) {
+    if (message.postLiveDvr !== undefined) {
       writer.uint32(64).bool(message.postLiveDvr);
     }
-    if (message.headm !== undefined && message.headm !== "0") {
+    if (message.headm !== undefined) {
       writer.uint32(80).int64(message.headm);
     }
-    if (message.minSeekableTimeTicks !== undefined && message.minSeekableTimeTicks !== "0") {
+    if (message.minSeekableTimeTicks !== undefined) {
       writer.uint32(96).int64(message.minSeekableTimeTicks);
     }
-    if (message.minSeekableTimescale !== undefined && message.minSeekableTimescale !== 0) {
+    if (message.minSeekableTimescale !== undefined) {
       writer.uint32(104).int32(message.minSeekableTimescale);
     }
-    if (message.maxSeekableTimeTicks !== undefined && message.maxSeekableTimeTicks !== "0") {
+    if (message.maxSeekableTimeTicks !== undefined) {
       writer.uint32(112).int64(message.maxSeekableTimeTicks);
     }
-    if (message.maxSeekableTimescale !== undefined && message.maxSeekableTimescale !== 0) {
+    if (message.maxSeekableTimescale !== undefined) {
       writer.uint32(120).int32(message.maxSeekableTimescale);
     }
     return writer;

@@ -26,9 +26,9 @@ function createBasePlaybackStartPolicy(): PlaybackStartPolicy {
   return {
     startMinReadaheadPolicy: undefined,
     resumeMinReadaheadPolicy: undefined,
-    videoId: "",
-    startTimeoutMs: 0,
-    resumeTimeoutMs: 0,
+    videoId: undefined,
+    startTimeoutMs: undefined,
+    resumeTimeoutMs: undefined,
   };
 }
 
@@ -40,13 +40,13 @@ export const PlaybackStartPolicy: MessageFns<PlaybackStartPolicy> = {
     if (message.resumeMinReadaheadPolicy !== undefined) {
       PlaybackStartPolicy_MinReadaheadPolicy.encode(message.resumeMinReadaheadPolicy, writer.uint32(18).fork()).join();
     }
-    if (message.videoId !== undefined && message.videoId !== "") {
+    if (message.videoId !== undefined) {
       writer.uint32(26).string(message.videoId);
     }
-    if (message.startTimeoutMs !== undefined && message.startTimeoutMs !== 0) {
+    if (message.startTimeoutMs !== undefined) {
       writer.uint32(32).int32(message.startTimeoutMs);
     }
-    if (message.resumeTimeoutMs !== undefined && message.resumeTimeoutMs !== 0) {
+    if (message.resumeTimeoutMs !== undefined) {
       writer.uint32(40).int32(message.resumeTimeoutMs);
     }
     return writer;
@@ -110,15 +110,15 @@ export const PlaybackStartPolicy: MessageFns<PlaybackStartPolicy> = {
 };
 
 function createBasePlaybackStartPolicy_MinReadaheadPolicy(): PlaybackStartPolicy_MinReadaheadPolicy {
-  return { minReadaheadMs: 0, minBandwidthBytesPerSec: 0 };
+  return { minReadaheadMs: undefined, minBandwidthBytesPerSec: undefined };
 }
 
 export const PlaybackStartPolicy_MinReadaheadPolicy: MessageFns<PlaybackStartPolicy_MinReadaheadPolicy> = {
   encode(message: PlaybackStartPolicy_MinReadaheadPolicy, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.minReadaheadMs !== undefined && message.minReadaheadMs !== 0) {
+    if (message.minReadaheadMs !== undefined) {
       writer.uint32(16).int32(message.minReadaheadMs);
     }
-    if (message.minBandwidthBytesPerSec !== undefined && message.minBandwidthBytesPerSec !== 0) {
+    if (message.minBandwidthBytesPerSec !== undefined) {
       writer.uint32(8).int32(message.minBandwidthBytesPerSec);
     }
     return writer;

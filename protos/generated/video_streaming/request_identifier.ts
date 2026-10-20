@@ -14,12 +14,12 @@ export interface RequestIdentifier {
 }
 
 function createBaseRequestIdentifier(): RequestIdentifier {
-  return { token: "" };
+  return { token: undefined };
 }
 
 export const RequestIdentifier: MessageFns<RequestIdentifier> = {
   encode(message: RequestIdentifier, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.token !== undefined && message.token !== "") {
+    if (message.token !== undefined) {
       writer.uint32(10).string(message.token);
     }
     return writer;

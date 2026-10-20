@@ -32,14 +32,14 @@ export enum CuepointInfo_TrackType {
 function createBaseCuepointInfo(): CuepointInfo {
   return {
     cuepoint: undefined,
-    trackType: 1,
-    sequenceNumber: 0,
+    trackType: undefined,
+    sequenceNumber: undefined,
     timeRange: undefined,
-    tileContext: "",
-    unknownField6: 0,
-    unknownField7: 0,
-    opportunityId: "",
-    serializedPrefetchContext: new Uint8Array(0),
+    tileContext: undefined,
+    unknownField6: undefined,
+    unknownField7: undefined,
+    opportunityId: undefined,
+    serializedPrefetchContext: undefined,
   };
 }
 
@@ -48,28 +48,28 @@ export const CuepointInfo: MessageFns<CuepointInfo> = {
     if (message.cuepoint !== undefined) {
       Cuepoint.encode(message.cuepoint, writer.uint32(10).fork()).join();
     }
-    if (message.trackType !== undefined && message.trackType !== 1) {
+    if (message.trackType !== undefined) {
       writer.uint32(16).int32(message.trackType);
     }
-    if (message.sequenceNumber !== undefined && message.sequenceNumber !== 0) {
+    if (message.sequenceNumber !== undefined) {
       writer.uint32(24).int32(message.sequenceNumber);
     }
     if (message.timeRange !== undefined) {
       TimeRange.encode(message.timeRange, writer.uint32(34).fork()).join();
     }
-    if (message.tileContext !== undefined && message.tileContext !== "") {
+    if (message.tileContext !== undefined) {
       writer.uint32(42).string(message.tileContext);
     }
-    if (message.unknownField6 !== undefined && message.unknownField6 !== 0) {
+    if (message.unknownField6 !== undefined) {
       writer.uint32(48).int32(message.unknownField6);
     }
-    if (message.unknownField7 !== undefined && message.unknownField7 !== 0) {
+    if (message.unknownField7 !== undefined) {
       writer.uint32(56).int32(message.unknownField7);
     }
-    if (message.opportunityId !== undefined && message.opportunityId !== "") {
+    if (message.opportunityId !== undefined) {
       writer.uint32(66).string(message.opportunityId);
     }
-    if (message.serializedPrefetchContext !== undefined && message.serializedPrefetchContext.length !== 0) {
+    if (message.serializedPrefetchContext !== undefined) {
       writer.uint32(74).bytes(message.serializedPrefetchContext);
     }
     return writer;

@@ -36,45 +36,45 @@ export enum Cuepoint_CuepointEvent {
 
 function createBaseCuepoint(): Cuepoint {
   return {
-    type: 0,
-    event: 0,
-    totalDurationSec: 0,
-    playheadTimeSec: 0,
-    context: "",
-    identifier: "",
-    playheadTimeAtStartSec: 0,
-    mediaTimeSinceStartSec: 0,
-    startSequenceNumber: 0,
+    type: undefined,
+    event: undefined,
+    totalDurationSec: undefined,
+    playheadTimeSec: undefined,
+    context: undefined,
+    identifier: undefined,
+    playheadTimeAtStartSec: undefined,
+    mediaTimeSinceStartSec: undefined,
+    startSequenceNumber: undefined,
   };
 }
 
 export const Cuepoint: MessageFns<Cuepoint> = {
   encode(message: Cuepoint, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.type !== undefined && message.type !== 0) {
+    if (message.type !== undefined) {
       writer.uint32(8).int32(message.type);
     }
-    if (message.event !== undefined && message.event !== 0) {
+    if (message.event !== undefined) {
       writer.uint32(16).int32(message.event);
     }
-    if (message.totalDurationSec !== undefined && message.totalDurationSec !== 0) {
+    if (message.totalDurationSec !== undefined) {
       writer.uint32(25).double(message.totalDurationSec);
     }
-    if (message.playheadTimeSec !== undefined && message.playheadTimeSec !== 0) {
+    if (message.playheadTimeSec !== undefined) {
       writer.uint32(33).double(message.playheadTimeSec);
     }
-    if (message.context !== undefined && message.context !== "") {
+    if (message.context !== undefined) {
       writer.uint32(42).string(message.context);
     }
-    if (message.identifier !== undefined && message.identifier !== "") {
+    if (message.identifier !== undefined) {
       writer.uint32(50).string(message.identifier);
     }
-    if (message.playheadTimeAtStartSec !== undefined && message.playheadTimeAtStartSec !== 0) {
+    if (message.playheadTimeAtStartSec !== undefined) {
       writer.uint32(57).double(message.playheadTimeAtStartSec);
     }
-    if (message.mediaTimeSinceStartSec !== undefined && message.mediaTimeSinceStartSec !== 0) {
+    if (message.mediaTimeSinceStartSec !== undefined) {
       writer.uint32(65).double(message.mediaTimeSinceStartSec);
     }
-    if (message.startSequenceNumber !== undefined && message.startSequenceNumber !== 0) {
+    if (message.startSequenceNumber !== undefined) {
       writer.uint32(72).int32(message.startSequenceNumber);
     }
     return writer;

@@ -46,16 +46,16 @@ export enum SsapPlaybackInfo_AdState {
 function createBaseSsapPlaybackInfo(): SsapPlaybackInfo {
   return {
     adCpns: [],
-    adsConfig: new Uint8Array(0),
-    daiState: "",
-    skipSequence: 0,
-    unknownField5: 0,
-    unknownField6: "",
-    cuepointId: "",
-    state: 0,
-    tileContext: "",
-    startTimeMs: "0",
-    durationMs: "0",
+    adsConfig: undefined,
+    daiState: undefined,
+    skipSequence: undefined,
+    unknownField5: undefined,
+    unknownField6: undefined,
+    cuepointId: undefined,
+    state: undefined,
+    tileContext: undefined,
+    startTimeMs: undefined,
+    durationMs: undefined,
   };
 }
 
@@ -64,34 +64,34 @@ export const SsapPlaybackInfo: MessageFns<SsapPlaybackInfo> = {
     for (const v of message.adCpns) {
       writer.uint32(10).string(v!);
     }
-    if (message.adsConfig !== undefined && message.adsConfig.length !== 0) {
+    if (message.adsConfig !== undefined) {
       writer.uint32(18).bytes(message.adsConfig);
     }
-    if (message.daiState !== undefined && message.daiState !== "") {
+    if (message.daiState !== undefined) {
       writer.uint32(26).string(message.daiState);
     }
-    if (message.skipSequence !== undefined && message.skipSequence !== 0) {
+    if (message.skipSequence !== undefined) {
       writer.uint32(32).int32(message.skipSequence);
     }
-    if (message.unknownField5 !== undefined && message.unknownField5 !== 0) {
+    if (message.unknownField5 !== undefined) {
       writer.uint32(40).int32(message.unknownField5);
     }
-    if (message.unknownField6 !== undefined && message.unknownField6 !== "") {
+    if (message.unknownField6 !== undefined) {
       writer.uint32(50).string(message.unknownField6);
     }
-    if (message.cuepointId !== undefined && message.cuepointId !== "") {
+    if (message.cuepointId !== undefined) {
       writer.uint32(58).string(message.cuepointId);
     }
-    if (message.state !== undefined && message.state !== 0) {
+    if (message.state !== undefined) {
       writer.uint32(64).int32(message.state);
     }
-    if (message.tileContext !== undefined && message.tileContext !== "") {
+    if (message.tileContext !== undefined) {
       writer.uint32(74).string(message.tileContext);
     }
-    if (message.startTimeMs !== undefined && message.startTimeMs !== "0") {
+    if (message.startTimeMs !== undefined) {
       writer.uint32(80).int64(message.startTimeMs);
     }
-    if (message.durationMs !== undefined && message.durationMs !== "0") {
+    if (message.durationMs !== undefined) {
       writer.uint32(88).int64(message.durationMs);
     }
     return writer;
