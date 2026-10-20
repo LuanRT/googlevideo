@@ -28,6 +28,7 @@ Platform.shim.eval = async (data: Types.BuildScriptResult) => {
 };
 
 const enableCompression = true;
+const skipResponseEncryption = true;
 
 /**
  * Fetches and parses the YouTube TV client configuration.
@@ -120,7 +121,7 @@ async function prepareOnesieRequest(args: OnesieRequestArgs) {
     headers,
     body: JSON.stringify(playerRequestJson),
     proxiedByTrustedBandaid: true,
-    skipResponseEncryption: true
+    skipResponseEncryption
   }).finish();
 
   const { encrypted, hmac, iv } = await encryptRequest(clientKeyData, onesieInnertubeRequest);
@@ -253,10 +254,10 @@ async function getBasicInfo(innertube: Innertube, videoId: string): Promise<YT.V
   const iv = playerResponseHeader.cryptoParams?.iv;
   const hmac = playerResponseHeader.cryptoParams?.hmac;
 
-  if (!iv || !hmac)
+  if (!skipResponseEncryption && (!iv || !hmac))
     throw new Error('Missing crypto params for Onesie Player Response');
 
-  let decryptedData = hmac.length && iv.length ?
+  let decryptedData = !skipResponseEncryption && (hmac?.length && iv?.length) ?
     await decryptResponse(iv, hmac, playerResponseData, clientConfig.clientKeyData) : playerResponseData;
 
   if (decryptedData && enableCompression && playerResponseHeader.cryptoParams?.compressionType === CompressionType.GZIP) {
