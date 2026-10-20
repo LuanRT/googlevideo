@@ -893,9 +893,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
 
     if (!serverSeek) {
       const buffered = this.trackCollection.buffered;
-      if (buffered !== Infinity) {
-        this.seekTo(buffered, 'client');
-      }
+      if (buffered !== Infinity) this.seekTo(buffered, 'client');
     }
   }
 
