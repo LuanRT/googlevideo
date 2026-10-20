@@ -1,0 +1,17 @@
+[googlevideo](../../../README.md) / [exports/utils](../README.md) / base64ToU8
+
+# Function: base64ToU8()
+
+> **base64ToU8**(`base64`): `Uint8Array`
+
+Defined in: [src/utils/uint8arrayUtils.ts:5](https://github.com/LuanRT/googlevideo/blob/ea3179379410422390a41f237ef950f38869c4cf/src/utils/uint8arrayUtils.ts#L5)
+
+## Parameters
+
+### base64
+
+`string`
+
+## Returns
+
+`Uint8Array`

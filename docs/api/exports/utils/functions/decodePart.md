@@ -1,0 +1,29 @@
+[googlevideo](../../../README.md) / [exports/utils](../README.md) / decodePart
+
+# Function: decodePart()
+
+> **decodePart**\<`T`\>(`chunks`, `decoder`): `T` \| `undefined`
+
+Defined in: [src/utils/uint8arrayUtils.ts:32](https://github.com/LuanRT/googlevideo/blob/ea3179379410422390a41f237ef950f38869c4cf/src/utils/uint8arrayUtils.ts#L32)
+
+## Type Parameters
+
+### T
+
+`T`
+
+## Parameters
+
+### chunks
+
+`Uint8Array`\<`ArrayBufferLike`\>[]
+
+### decoder
+
+#### decode
+
+(`data`) => `T`
+
+## Returns
+
+`T` \| `undefined`
