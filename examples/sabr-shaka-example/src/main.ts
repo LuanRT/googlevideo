@@ -7,7 +7,6 @@ import { ShakaPlayerAdapter } from './ShakaPlayerAdapter.js';
 import { checkExtension, fetchFunction } from './helpers.js';
 import { botguardService } from './BotguardService.js';
 
-// @ts-expect-error - Huh?
 import 'shaka-player/dist/controls.css';
 
 const videoElement = document.getElementById('video') as HTMLVideoElement;
