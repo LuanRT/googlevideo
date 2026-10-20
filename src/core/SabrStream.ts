@@ -52,6 +52,7 @@ import { base64ToU8, decodePart } from '../utils/uint8arrayUtils.js';
 import { getBroadcastId, getNextFallbackUrl } from '../utils/urlUtils.js';
 import { buildMediaCapabilities } from '../utils/mediaCapabilityUtils.js';
 import { TrackCollection } from '../utils/TrackCollection.js';
+import { BandwidthEstimator } from '../utils/BandwidthEstimator.js';
 
 const TAG = 'SabrStream';
 
@@ -67,10 +68,6 @@ const LIVE_EDGE_SENTINEL_MS = Number.MAX_SAFE_INTEGER;
 
 const DEFAULT_VIDEO_HWM = 1024 * 1024 * 16;
 const DEFAULT_AUDIO_HWM = 1024 * 1024 * 3;
-
-const BANDWIDTH_EMA_PREVIOUS_WEIGHT = 0.8;
-const BANDWIDTH_EMA_CURRENT_WEIGHT = 0.2;
-const MIN_FETCH_DURATION_FOR_BW_ESTIMATE_MS = 50;
 
 export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   private readonly logger = Logger.getInstance();
@@ -92,6 +89,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   private sabrContextUpdates = new Map<number, SabrContextUpdate>();
   private activeSabrContextTypes = new Set<number>();
   private trackCollection = new TrackCollection();
+  private bandwidth = new BandwidthEstimator();
 
   private videoId?: string;
   private broadcastId?: string;
@@ -106,7 +104,6 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
   private runtime = {
     playerTimeMs: 0,
     requestNumber: 0,
-    bandwidthEstimateBps: 0,
     lastHeartbeatTimeMs: 0,
     playbackSessionStartMs: undefined as number | undefined,
     poTokenGenerationId: 0,
@@ -375,9 +372,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
         abrState.timeSinceLastSeek = elapsedTimeMs;
         abrState.timeSinceLastActionMs = elapsedTimeMs;
         abrState.elapsedWallTimeMs = elapsedTimeMs;
-
-        if (this.runtime.bandwidthEstimateBps > 0)
-          abrState.bandwidthEstimate = Math.round(this.runtime.bandwidthEstimateBps).toString();
+        abrState.bandwidthEstimate = Math.round(this.bandwidth.get()).toString();
 
         this.logger.debug(TAG, `Starting new segment fetch, playerTimeMs=${abrState.playerTimeMs}, bandwidthEstimate=${abrState.bandwidthEstimate ?? 'n/a'}, elapsedWallTimeMs=${abrState.elapsedWallTimeMs}`);
 
@@ -495,7 +490,8 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     this.runtime.spsRejectCount = 0;
     this.runtime.playerTimeMs = 0;
     this.runtime.requestNumber = 0;
-    this.runtime.bandwidthEstimateBps = 0;
+    this.bandwidth.reset();
+
     this.isMintingPoToken = false;
 
     this.recordActivity(0, true);
@@ -616,12 +612,9 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     assert(contentType === 'application/vnd.yt-ump', `Unexpected content type from server: ${contentType}`);
     assertIsDefined(response.body, 'Response body is null');
 
-    const startTime = performance.now();
-
     const reader = response.body.getReader();
 
     let serverSeek = false;
-    let bytesDownloaded = 0;
 
     //#region UMP Reader
     const umpReader = new UmpReader({
@@ -863,6 +856,8 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
 
     const abortController = this.abortController;
 
+    let isFirstChunk = true;
+
     try {
       while (true) {
         await this.waitForDrain();
@@ -874,13 +869,17 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
         if (this.lifecycle.aborted)
           break;
 
+        const readStart = performance.now();
         const { done, value } = await reader.read();
+        const readSec = (performance.now() - readStart) / 1000;
 
         if (done)
           break;
 
         if (value.length > 0) {
-          bytesDownloaded += value.length;
+          if (!isFirstChunk) // may include TTFB, so don't count it.
+            this.bandwidth.add(value.length, readSec);
+          isFirstChunk = false;
           this.resetRequestTimeout();
           await umpReader.feed(value);
         }
@@ -890,16 +889,6 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
       reader.cancel().catch(() => { /* no-op */ });
       reader.releaseLock();
       umpReader.dispose();
-    }
-
-    const fetchDurationMs = performance.now() - startTime;
-
-    if (fetchDurationMs > MIN_FETCH_DURATION_FOR_BW_ESTIMATE_MS && bytesDownloaded > 0) {
-      const currentBps = (bytesDownloaded * 8) / (fetchDurationMs / 1000);
-      const bandwidthEstimateBps = this.runtime.bandwidthEstimateBps;
-      this.runtime.bandwidthEstimateBps = bandwidthEstimateBps === 0
-        ? currentBps
-        : BANDWIDTH_EMA_PREVIOUS_WEIGHT * bandwidthEstimateBps + BANDWIDTH_EMA_CURRENT_WEIGHT * currentBps;
     }
 
     if (!serverSeek) {

@@ -4,6 +4,7 @@ export * from './TrackCollection.js';
 export * from './CacheManager.js';
 export * from './EventEmitterLike.js';
 export * from './RequestMetadataManager.js';
+export * from './BandwidthEstimator.js';
 export * from './formatUtils.js';
 export * from './mediaSegmentUtils.js';
 export * from './mediaTimeUtils.js';
