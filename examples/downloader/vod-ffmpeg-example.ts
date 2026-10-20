@@ -7,48 +7,50 @@ import {
   createStreamSink,
   createSabrStream,
   createProgressDisplay,
-  makePlayerRequest,
-  type DownloadOutput
+  makePlayerRequest
 } from './utils/sabr-stream-factory.js';
 
+import type { SabrFormat } from 'googlevideo/shared-types';
 import type { SabrPlaybackOptions, SabrStream } from 'googlevideo/sabr-stream';
 import Innertube, { UniversalCache } from 'youtubei.js';
 
-const VIDEO_ID = 'hzGmbwS_Drs';
+const VIDEO_ID = 'yFd-Mlt4Ybc';
 
 async function main() {
-  let title: string | undefined;
-  let audioOutputStream: DownloadOutput | undefined;
-  let videoOutputStream: DownloadOutput | undefined;
+  const tempFiles: string[] = [];
+  
   let sabrStreamInstance: SabrStream | undefined;
 
   try {
     const innertube = await Innertube.create({ cache: new UniversalCache(true) });
-
     const playerResponse = await makePlayerRequest(innertube, VIDEO_ID);
 
-    if (playerResponse.playability_status?.status !== 'OK') {
-      console.error('[error]', 'Video is not playable:', playerResponse.playability_status?.status);
-      process.exit(1);
-    }
+    if (playerResponse.playability_status?.status !== 'OK')
+      throw new Error(`Video is not playable: ${playerResponse.playability_status?.status}`);
 
     const options: SabrPlaybackOptions = {
-      videoPreferences: { container: 'webm', quality: '720p', preferredVideoCodec: 'vp9' },
+      videoPreferences: { container: 'webm', quality: '1080p', preferredVideoCodec: 'vp9' },
       audioPreferences: { container: 'webm', dynamicRangeCompression: false, voiceBoost: false },
       isPostLiveDvr: !!playerResponse.video_details?.is_post_live_dvr
     };
 
     const { results } = await createSabrStream(options, playerResponse, innertube);
-    const { videoStream, audioStream, selectedFormats, videoTitle, author, views, duration } = results;
     
-    // Needed because we try merging them with ffmpeg.
-    if (!selectedFormats.videoFormat) {
-      console.error('[error]', 'Please set enabledTrackTypes to "VIDEO_AND_AUDIO"');
-      process.exit(1);
-    }
-    
-    title = videoTitle;
-    sabrStreamInstance = results.sabrStreamInstance;
+    const {
+      videoStream,
+      audioStream,
+      selectedFormats,
+      videoTitle,
+      author,
+      views,
+      duration,
+      sabrStreamInstance: stream
+    } = results;
+
+    sabrStreamInstance = stream;
+
+    if (!selectedFormats.videoFormat)
+      throw new Error('Please set enabledTrackTypes to "VIDEO_AND_AUDIO"');
 
     console.info(`
       Title: ${videoTitle}
@@ -58,17 +60,32 @@ async function main() {
       Video ID: ${VIDEO_ID}\n
     `);
 
-    audioOutputStream = createOutputStream(videoTitle, selectedFormats.audioFormat.mimeType!);
-    videoOutputStream = createOutputStream(videoTitle, selectedFormats.videoFormat.mimeType!);
-
     const progressDisplay = createProgressDisplay();
-    const videoProgress = progressDisplay.createLine('video', selectedFormats.videoFormat.contentLength, sabrStreamInstance.isLive);
-    const audioProgress = progressDisplay.createLine('audio', selectedFormats.audioFormat.contentLength, sabrStreamInstance.isLive);
+
+    const createTrackOutput = (label: 'audio' | 'video', format: SabrFormat) => {
+      const output = createOutputStream(videoTitle, format.mimeType!);
+      tempFiles.push(output.filePath); // for cleanup
+      return {
+        output,
+        progress: progressDisplay.createLine(label, format.contentLength, stream.isLive)
+      };
+    };
+
+    const audio = createTrackOutput('audio', selectedFormats.audioFormat);
+    const video = createTrackOutput('video', selectedFormats.videoFormat);
 
     await Promise.all([
-      videoStream.pipeTo(createStreamSink(videoOutputStream.stream, videoProgress)),
-      audioStream.pipeTo(createStreamSink(audioOutputStream.stream, audioProgress))
+      videoStream.pipeTo(createStreamSink(video.output.stream, video.progress)),
+      audioStream.pipeTo(createStreamSink(audio.output.stream, audio.progress))
     ]);
+
+    const outputPath = await mergeAudioAndVideo(
+      videoTitle,
+      audio.output.filePath,
+      video.output.filePath
+    );
+
+    console.info('[info]', `Saved as: ${outputPath}`);
   } catch (error) {
     // Aborts are intentional.
     if (!sabrStreamInstance?.isAborted) {
@@ -76,15 +93,7 @@ async function main() {
       process.exitCode = 1;
     }
   } finally {
-    if (!audioOutputStream || !videoOutputStream || !title) {
-      console.error('[error]', 'Missing output streams or video title.');
-      process.exitCode = 1;
-    } else {
-      await mergeAudioAndVideo(title, audioOutputStream.filePath, videoOutputStream.filePath);
-      await cleanupTempFiles([ audioOutputStream.filePath, videoOutputStream.filePath ]);
-
-      console.info('[info]', `Saved as: ${sanitize(title)}.mkv`);
-    }
+    await cleanupTempFiles(tempFiles);
   }
 }
 

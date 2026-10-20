@@ -15,19 +15,14 @@ const VIDEO_ID = 'SHxtKriIRYI';
 const ENABLED_TRACK_TYPES: number = EnabledTrackTypes.VIDEO_AND_AUDIO;
 
 async function main() {
-  let audioOutputStream: DownloadOutput | undefined;
-  let videoOutputStream: DownloadOutput | undefined;
   let sabrStreamInstance: SabrStream | undefined;
 
   try {
     const innertube = await Innertube.create({ cache: new UniversalCache(true) });
-
     const playerResponse = await makePlayerRequest(innertube, VIDEO_ID);
 
-    if (playerResponse.playability_status?.status !== 'OK') {
-      console.error('[error]', 'Video is not playable:', playerResponse.playability_status?.status);
-      process.exit(1);
-    }
+    if (playerResponse.playability_status?.status !== 'OK')
+      throw new Error(`Video is not playable: ${playerResponse.playability_status?.status}`);
 
     const options: SabrPlaybackOptions = {
       videoPreferences: { container: 'webm', quality: '1080p', preferredVideoCodec: 'vp9' },
@@ -37,9 +32,19 @@ async function main() {
     };
 
     const { results } = await createSabrStream(options, playerResponse, innertube);
-    const { videoStream, audioStream, selectedFormats, videoTitle, author, views, duration } = results;
 
-    sabrStreamInstance = results.sabrStreamInstance;
+    const {
+      videoStream,
+      audioStream,
+      selectedFormats,
+      videoTitle,
+      author,
+      views,
+      duration,
+      sabrStreamInstance: stream
+    } = results;
+
+    sabrStreamInstance = stream;
 
     console.info(`
       Title: ${videoTitle}
@@ -49,38 +54,42 @@ async function main() {
       Video ID: ${VIDEO_ID}\n
     `);
 
-    audioOutputStream = createOutputStream(videoTitle, selectedFormats.audioFormat.mimeType!);
-
-    if (selectedFormats.videoFormat)
-      videoOutputStream = createOutputStream(videoTitle, selectedFormats.videoFormat.mimeType!);
-
     const progressDisplay = createProgressDisplay();
-    const audioProgress = progressDisplay.createLine('audio', selectedFormats.audioFormat.contentLength, sabrStreamInstance.isLive);
-    const streamPromises = [ audioStream.pipeTo(createStreamSink(audioOutputStream.stream, audioProgress)) ];
+    const audioOutput = createOutputStream(videoTitle, selectedFormats.audioFormat.mimeType!);
 
-    // Not available when enabled track type is audio-only.
-    if (selectedFormats.videoFormat && videoOutputStream) {
-      const videoProgress = progressDisplay.createLine('video', selectedFormats.videoFormat.contentLength, sabrStreamInstance.isLive);
-      streamPromises.push(videoStream.pipeTo(createStreamSink(videoOutputStream.stream, videoProgress)));
-    }
+    const downloads = [
+      audioStream.pipeTo(
+        createStreamSink(
+          audioOutput.stream,
+          progressDisplay.createLine('audio', selectedFormats.audioFormat.contentLength, stream.isLive)
+        )
+      )
+    ];
 
-    await Promise.all(streamPromises);
+    let videoOutput: DownloadOutput | undefined;
+    if (selectedFormats.videoFormat) {
+      videoOutput = createOutputStream(videoTitle, selectedFormats.videoFormat.mimeType!);
+      downloads.push(
+        videoStream.pipeTo(
+          createStreamSink(
+            videoOutput.stream,
+            progressDisplay.createLine('video', selectedFormats.videoFormat.contentLength, stream.isLive)
+          )
+        )
+      );
+    } else if (ENABLED_TRACK_TYPES !== EnabledTrackTypes.AUDIO_ONLY)
+      throw new Error('Video format was expected but not selected.');
+
+    await Promise.all(downloads);
+
+    console.info('[info]', 'Saved as:');
+    console.log(`  Audio: ${audioOutput.filePath}`);
+    if (videoOutput) console.log(`  Video: ${videoOutput.filePath}`);
   } catch (error) {
     // Aborts are intentional.
     if (!sabrStreamInstance?.isAborted) {
       console.error('[error]', 'Download failed:', error);
       process.exitCode = 1;
-    }
-  } finally {
-    if (ENABLED_TRACK_TYPES !== EnabledTrackTypes.AUDIO_ONLY && (!audioOutputStream || !videoOutputStream)) {
-      console.error('[error]', 'Missing output streams.');
-      process.exitCode = 1;
-    } else {
-      console.info('[info]', 'Saved as:');
-      if (audioOutputStream)
-        console.log(`  Audio: ${audioOutputStream?.filePath || 'N/A'}`);
-      if (videoOutputStream)
-        console.log(`  Video: ${videoOutputStream?.filePath || 'N/A'}`);
     }
   }
 }

@@ -32,13 +32,11 @@ async function main() {
   try {
     const innertube = await Innertube.create({ cache: new UniversalCache(true) });
     const searchResults = await innertube.search('lofi & chill beats | Radio Cutman');
-    const liveVideo = searchResults.videos.filterType(YTNodes.Video).first();
+    const liveVideo = searchResults.videos.filterType(YTNodes.Video).find((video) => video.is_live);
     const videoId = liveVideo?.video_id;
 
-    if (!videoId) {
-      console.error('[error]', 'No live video found in search results.');
-      process.exit(1);
-    }
+    if (!videoId)
+      throw new Error('No live video found in search results.');
 
     const playerResponse = await makePlayerRequest(innertube, videoId);
 
@@ -55,9 +53,18 @@ async function main() {
     };
 
     const { results } = await createSabrStream(options, playerResponse, innertube);
-    const { videoStream, audioStream, videoTitle, author, views, duration } = results;
+    
+    const {
+      videoStream,
+      audioStream,
+      videoTitle,
+      author,
+      views,
+      duration,
+      sabrStreamInstance: stream
+    } = results;
 
-    sabrStreamInstance = results.sabrStreamInstance;
+    sabrStreamInstance = stream;
 
     const totalSeconds = playerResponse.video_details?.duration || 0;
 
@@ -78,11 +85,9 @@ async function main() {
     );
   } catch (error) {
     if (!sabrStreamInstance?.isAborted) {
-      if (error instanceof Error && error.message.includes('ENOENT')) {
+      if (error instanceof Error && error.message.includes('ENOENT'))
         console.error('[error]', 'Please ensure that mpv is installed and available before running this example.');
-      } else {
-        console.error('[error]', error);
-      }
+      else console.error('[error]', error);
       process.exitCode = 1;
     }
   }

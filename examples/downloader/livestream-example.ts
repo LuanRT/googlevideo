@@ -7,35 +7,31 @@ import {
   createStreamSink,
   createSabrStream,
   createProgressDisplay,
-  makePlayerRequest,
-  type DownloadOutput
+  makePlayerRequest
 } from './utils/sabr-stream-factory.js';
 
-import type { SabrPlaybackOptions, SabrStream } from 'googlevideo/sabr-stream';
+import type { SabrFormat } from 'googlevideo/shared-types';
+import type { SabrPlaybackOptions } from 'googlevideo/sabr-stream';
 import Innertube, { UniversalCache, YTNodes, Log } from 'youtubei.js';
 
-// Disable ytjs logs to reduce noise
+// Disable ytjs logs to reduce noise.
 Log.setLevel(Log.Level.NONE);
 
-async function main() {
-  let title: string | undefined;
-  let audioOutputStream: DownloadOutput | undefined;
-  let videoOutputStream: DownloadOutput | undefined;
-  let sabrStreamInstance: SabrStream | undefined;
-  let downloadTimer: NodeJS.Timeout | undefined;
+const EXAMPLE_DURATION_MIN = 10;
 
-  const EXAMPLE_DURATION_MIN = 10;
+async function main() {
+  const tempFiles: string[] = [];
+
+  let downloadTimer: NodeJS.Timeout | undefined;
 
   try {
     const innertube = await Innertube.create({ cache: new UniversalCache(true) });
-    const searchResults = await innertube.search('lofi hip hop radio - beats to relax/study to live stream');
+    const searchResults = await innertube.search('lofi hip hop radio - beats to relax/study to');
     const liveVideo = searchResults.videos.filterType(YTNodes.Video).find((video) => video.is_live);
     const videoId = liveVideo?.video_id;
 
-    if (!videoId) {
-      console.error('[error]', 'No live video found in search results.');
-      process.exit(1);
-    }
+    if (!videoId)
+      throw new Error('No live video found in search results.');
 
     const playerResponse = await makePlayerRequest(innertube, videoId);
 
@@ -53,16 +49,21 @@ async function main() {
     console.info('[info]', `Downloading live stream for ${EXAMPLE_DURATION_MIN} minutes...`);
 
     const { results } = await createSabrStream(options, playerResponse, innertube);
-    const { videoStream, audioStream, selectedFormats, videoTitle, author, views, duration } = results;
+    
+    const {
+      videoStream,
+      audioStream,
+      selectedFormats,
+      videoTitle,
+      author,
+      views,
+      duration,
+      sabrStreamInstance
+    } = results;
 
     // Needed because we try merging them with ffmpeg.
-    if (!selectedFormats.videoFormat) {
-      console.error('[error]', 'Please set enabledTrackTypes to "VIDEO_AND_AUDIO"');
-      process.exit(1);
-    }
-
-    title = videoTitle;
-    sabrStreamInstance = results.sabrStreamInstance;
+    if (!selectedFormats.videoFormat)
+      throw new Error('Please set enabledTrackTypes to "VIDEO_AND_AUDIO"');
 
     console.info(`
       Title: ${videoTitle}
@@ -72,43 +73,47 @@ async function main() {
       Video ID: ${videoId}\n
     `);
 
-    downloadTimer = setTimeout(() => {
-      sabrStreamInstance?.abort();
-    }, EXAMPLE_DURATION_MIN * 60 * 1000);
-
-    audioOutputStream = createOutputStream(videoTitle, selectedFormats.audioFormat.mimeType!);
-    videoOutputStream = createOutputStream(videoTitle, selectedFormats.videoFormat.mimeType!);
+    downloadTimer = setTimeout(() => sabrStreamInstance.abort(), EXAMPLE_DURATION_MIN * 60 * 1000);
 
     const progressDisplay = createProgressDisplay();
-    const videoProgress = progressDisplay.createLine('video', selectedFormats.videoFormat.contentLength, sabrStreamInstance.isLive);
-    const audioProgress = progressDisplay.createLine('audio', selectedFormats.audioFormat.contentLength, sabrStreamInstance.isLive);
 
-    await Promise.all([
-      videoStream.pipeTo(createStreamSink(videoOutputStream.stream, videoProgress)),
-      audioStream.pipeTo(createStreamSink(audioOutputStream.stream, audioProgress))
-    ]);
+    const createTrackOutput = (label: 'audio' | 'video', format: SabrFormat) => {
+      const output = createOutputStream(videoTitle, format.mimeType!);
+      tempFiles.push(output.filePath); // for cleanup
+      return {
+        output,
+        progress: progressDisplay.createLine(label, format.contentLength, sabrStreamInstance.isLive)
+      };
+    };
+
+    const audio = createTrackOutput('audio', selectedFormats.audioFormat);
+    const video = createTrackOutput('video', selectedFormats.videoFormat);
+
+    try {
+      await Promise.all([
+        videoStream.pipeTo(createStreamSink(video.output.stream, video.progress)),
+        audioStream.pipeTo(createStreamSink(audio.output.stream, audio.progress))
+      ]);
+    } catch (error) {
+      if (!sabrStreamInstance.isAborted) throw error;
+    }
+
+    const outputPath = await mergeAudioAndVideo(
+      videoTitle,
+      audio.output.filePath,
+      video.output.filePath
+    );
+    console.info('[info]', `Download complete! Output saved as "${outputPath}"`);
   } catch (error) {
-    // Aborts are intentional.
-    if (!sabrStreamInstance?.isAborted) {
-      console.error('[error]', 'Download failed:', error);
-      process.exitCode = 1;
-    }
+    console.error('[error]', 'Download failed:', error);
+    process.exitCode = 1;
   } finally {
-    if (downloadTimer)
-      clearTimeout(downloadTimer);
-    
-    if (!audioOutputStream || !videoOutputStream || !title) {
-      process.exitCode = 1;
-    } else {
-      await mergeMedia(title, audioOutputStream.filePath, videoOutputStream.filePath);
-      await cleanupTempFiles([ audioOutputStream.filePath, videoOutputStream.filePath ]);
-
-      console.log('[info]', `Download complete! Output saved as "${sanitize(title)}.mkv"`);
-    }
+    if (downloadTimer) clearTimeout(downloadTimer);
+    await cleanupTempFiles(tempFiles);
   }
 }
 
-async function mergeMedia(videoTitle: string, audioPath: string, videoPath: string): Promise<string> {
+async function mergeAudioAndVideo(videoTitle: string, audioPath: string, videoPath: string): Promise<string> {
   const sanitizedTitle = sanitize(videoTitle) || 'output';
   const outputPath = `${sanitizedTitle}.mkv`;
 
@@ -125,9 +130,8 @@ async function mergeMedia(videoTitle: string, audioPath: string, videoPath: stri
         '-map 1:a:0'
       ])
       .on('progress', (progress) => {
-        if (progress.percent) {
+        if (progress.percent)
           process.stdout.write(`\r[merge] ${Math.min(progress.percent, 100).toFixed(1).padStart(5)}%`);
-        }
       })
       .on('end', () => {
         process.stdout.write('\r[merge] 100.0%\n');
