@@ -4,9 +4,9 @@ import { createFormatKey, EnabledTrackTypes } from './formatUtils.js';
 import { Track } from './Track.js';
 
 export class TrackCollection {
-  public readonly video = new Track('video');
-  public readonly audio = new Track('audio');
-  public readonly initializedTracksMap = new Map<string, Track>();
+  public readonly video: Track = new Track('video');
+  public readonly audio: Track = new Track('audio');
+  public readonly initializedTracksMap: Map<string, Track> = new Map<string, Track>();
 
   public get needsDrain(): boolean {
     return this.video.streamFull || this.audio.streamFull;
@@ -79,7 +79,7 @@ export class TrackCollection {
     return this.initializedTracksMap.get(formatKey);
   }
 
-  public endOfStreamReached(enabledTrackTypes: EnabledTrackTypes) {
+  public endOfStreamReached(enabledTrackTypes: EnabledTrackTypes): boolean {
     const videoEndOfStreamReached = this.video.endOfStreamReached;
     const audioEndOfStreamReached = this.audio.endOfStreamReached;
 

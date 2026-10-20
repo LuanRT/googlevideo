@@ -21,7 +21,7 @@ export class Track {
   public endTimeTicks?: number;
   public endTimescale?: number;
   public targetDurationSec?: number;
-  public trackedSegments = new Map<number, CompletedSegment>();
+  public trackedSegments: Map<number, CompletedSegment> = new Map<number, CompletedSegment>();
   public bufferedRangeSummary?: BufferedRangeSummary;
   public emsgSegmentMetadata?: EmsgSegmentMetadata;
 

@@ -361,7 +361,7 @@ export const VIDEO_CODECS = {
   H: 2
 };
 
-export const surroundAudioCodes = new Set([ 'm', 'M', 'mac3', 'MAC3', 'meac3', 'MEAC3', 'i', 'I' ]);
+export const surroundAudioCodes: Set<string> = new Set([ 'm', 'M', 'mac3', 'MAC3', 'meac3', 'MEAC3', 'i', 'I' ]);
 
 export function buildAudioCapability(
   format: SabrFormat,
