@@ -354,7 +354,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
         elapsedWallTimeMs: '0',
         timeSinceLastActionMs: '0',
         timeSinceLastSeek: '0',
-        visibility: 1,
+        visibility: 2 /* means fullscreen */,
         enableSabrHostFallback: true,
         supportsChangeType: false,
         enabledTrackTypesBitfield
