@@ -72,7 +72,7 @@
     "vitest": "^4.1.11"
   },
   "dependencies": {
-    "@bufbuild/protobuf": "^2.0.0"
+    "@bufbuild/protobuf": "^2.16.0"
   },
   "bugs": {
     "url": "https://github.com/LuanRT/GoogleVideo/issues"
