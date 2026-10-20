@@ -59,17 +59,17 @@
     }
   },
   "devDependencies": {
-    "@eslint/js": "^9.9.0",
+    "@eslint/js": "^9.39.5",
     "@stylistic/eslint-plugin": "^2.6.4",
-    "@types/eslint__js": "^8.42.3",
+    "@types/eslint__js": "^9.14.0",
     "eslint": "^10.13.0",
     "ts-patch": "^3.3.0",
     "ts-proto": "^2.15.3",
     "typedoc": "^0.28.20",
     "typedoc-plugin-markdown": "^4.14.0",
-    "typescript": "^5.8.3",
+    "typescript": "^5.9.3",
     "typescript-eslint": "^8.2.0",
-    "vitest": "^4.1.11"
+    "vitest": "^4.1.12"
   },
   "dependencies": {
     "@bufbuild/protobuf": "^2.16.0"
