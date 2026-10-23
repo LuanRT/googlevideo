@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.1](https://github.com/LuanRT/googlevideo/compare/googlevideo-v5.0.0...googlevideo-v5.0.1) (2026-10-23)
+
+
+### Bug Fixes
+
+* **formatUtils#buildSabrFormat:** Add proper support for raw format objects ([9164200](https://github.com/LuanRT/googlevideo/commit/9164200339426995bfa8b1aac901e57d3a1a261b))
+* **Protos:** Don't decode playback cookie ([8203be5](https://github.com/LuanRT/googlevideo/commit/8203be53beaea3f504fdc820fd61253ed6e28176))
+
 ## [5.0.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v4.1.1...googlevideo-v5.0.0) (2026-10-20)
 
 

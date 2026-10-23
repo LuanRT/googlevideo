@@ -1,6 +1,6 @@
 {
   "name": "googlevideo",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "A collection of modules for handling YouTube's custom UMP format and SABR streaming protocol.",
   "type": "module",
   "scripts": {
