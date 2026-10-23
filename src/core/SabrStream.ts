@@ -29,7 +29,6 @@ import {
   FormatInitializationMetadata,
   MediaHeader,
   NextRequestPolicy,
-  PlaybackCookie,
   ReloadPlaybackContext,
   SabrContextSendingPolicy,
   SabrContextUpdate,
@@ -924,7 +923,7 @@ export class SabrStream extends EventEmitterLike<SabrStreamEvents> {
     const ssapPlaybackInfos = Array.from(this.ssapPlaybackInfos.values());
     const videoPlaybackUstreamerConfig = base64ToU8(this.videoPlaybackUstreamerConfig);
     const bufferedRanges = this.trackCollection.bufferedRanges;
-    const playbackCookie = this.nextRequestPolicy?.playbackCookie ? PlaybackCookie.encode(this.nextRequestPolicy.playbackCookie).finish() : undefined;
+    const playbackCookie = this.nextRequestPolicy?.playbackCookie;
     const clientInfo = this.clientInfo;
     const poToken = this.proofOfOriginToken;
 

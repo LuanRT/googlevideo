@@ -6,7 +6,6 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { PlaybackCookie } from "./playback_cookie.js";
 
 export const protobufPackage = "video_streaming";
 
@@ -19,7 +18,7 @@ export interface NextRequestPolicy {
   backoffTimeMs?: number | undefined;
   minAudioReadaheadMs?: number | undefined;
   minVideoReadaheadMs?: number | undefined;
-  playbackCookie?: PlaybackCookie | undefined;
+  playbackCookie?: Uint8Array | undefined;
   videoId?: string | undefined;
 }
 
@@ -57,7 +56,7 @@ export const NextRequestPolicy: MessageFns<NextRequestPolicy> = {
       writer.uint32(48).int32(message.minVideoReadaheadMs);
     }
     if (message.playbackCookie !== undefined) {
-      PlaybackCookie.encode(message.playbackCookie, writer.uint32(58).fork()).join();
+      writer.uint32(58).bytes(message.playbackCookie);
     }
     if (message.videoId !== undefined) {
       writer.uint32(66).string(message.videoId);
@@ -131,7 +130,7 @@ export const NextRequestPolicy: MessageFns<NextRequestPolicy> = {
               break;
             }
 
-            message.playbackCookie = PlaybackCookie.decode(reader, reader.uint32());
+            message.playbackCookie = reader.bytes();
             continue;
           }
           case 8: {

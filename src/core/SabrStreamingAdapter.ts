@@ -11,7 +11,6 @@ import {
 } from '../utils/formatUtils.js';
 
 import {
-  PlaybackCookie,
   SabrContextWritePolicy,
   VideoPlaybackAbrRequest,
   type BufferedRange,
@@ -86,7 +85,7 @@ export class SabrStreamingAdapter {
   private sabrFormats: SabrFormat[] = [];
   private sabrContexts = new Map<number, SabrContextUpdate>();
   private activeSabrContextTypes = new Set<number>();
-  private lastPlaybackCookie?: PlaybackCookie;
+  private lastPlaybackCookie?: Uint8Array;
   private lastPlayerTimeSecs = 0;
   private cacheManager: CacheManager | null = null;
   private requestNumber = 0;
@@ -332,7 +331,7 @@ export class SabrStreamingAdapter {
 
     const streamerContext: StreamerContext = {
       poToken: this.onMintPoTokenCallback ? base64ToU8(await this.onMintPoTokenCallback()) : undefined,
-      playbackCookie: this.lastPlaybackCookie ? PlaybackCookie.encode(this.lastPlaybackCookie).finish() : undefined,
+      playbackCookie: this.lastPlaybackCookie,
       clientInfo: this.options.clientInfo,
       sabrContexts: [],
       unsentSabrContexts: []
