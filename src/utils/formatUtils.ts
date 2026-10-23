@@ -1,5 +1,6 @@
+import { base64ToU8 } from './uint8arrayUtils.js';
 import { CODEC_CODES } from './mediaCapabilityUtils.js';
-import type { MediaHeader } from './Protos.js';
+import { FormatXTags, type MediaHeader } from './Protos.js';
 import type { CreateFormatKeyInput, FormatStream, SabrFormat } from '../types/shared.js';
 import type { SabrRequestMetadata } from '../types/sabrStreamingAdapterTypes.js';
 
@@ -85,7 +86,7 @@ export function chooseFormat(
   const superResolution = preferences.superResolution;
   if (superResolution !== undefined)
     filteredFormats = filteredFormats.filter((format) => format.isSr === superResolution);
-  
+
   const hdr = preferences.hdr;
   if (hdr !== undefined)
     filteredFormats = filteredFormats.filter((format) => format.isHdr === hdr);
@@ -125,9 +126,18 @@ function filterFormatsByType(formats: SabrFormat[], isAudio: boolean): SabrForma
 }
 
 export function buildSabrFormat(formatStream: FormatStream): SabrFormat {
-  const transferCharacteristics = formatStream.color_info?.transfer_characteristics || formatStream.colorInfo?.transferCharacteristics || '';
-  
-  return {
+  const transferCharacteristics: string = formatStream.color_info?.transfer_characteristics || formatStream.colorInfo?.transferCharacteristics || '';
+  const decodedXtags = formatStream.xtags ? FormatXTags.decode(base64ToU8(decodeURIComponent(formatStream.xtags))).xtags : [];
+
+  const hasVideo = !!(formatStream.qualityLabel || formatStream.quality_label);
+  const hasAudio = !!(formatStream.audioQuality || formatStream.audio_quality);
+  const hasText = !!(formatStream.captionTrack || formatStream.caption_track);
+
+  const isHdr =
+    transferCharacteristics.includes('SMPTEST2084') ||
+    transferCharacteristics.includes('ARIB_STD_B67');
+
+  const sabrFormat: SabrFormat = {
     itag: formatStream.itag,
     lastModified: formatStream.last_modified_ms || formatStream.lastModified || '0',
     xtags: formatStream.xtags,
@@ -141,28 +151,45 @@ export function buildSabrFormat(formatStream: FormatStream): SabrFormat {
     averageBitrate: formatStream.average_bitrate || formatStream.averageBitrate,
     quality: formatStream.quality,
     qualityLabel: formatStream.quality_label || formatStream.qualityLabel,
-    audioTrackId: formatStream.audio_track?.id || formatStream.audioTrackId,
+    audioTrackId: formatStream.audio_track?.id || formatStream.audioTrack?.id,
     approxDurationMs: formatStream.approx_duration_ms || parseInt(formatStream.approxDurationMs || '0'),
     contentLength: parseInt(formatStream.contentLength || '0') || formatStream.content_length,
+    // @NOTE: "target_duration_dec" is there because some older versions of YouTube.js had a typo.
     targetDurationSec: formatStream.targetDurationSec || formatStream.target_duration_sec || formatStream.target_duration_dec,
-    hasAudio: !!(formatStream.audioQuality || formatStream.audio_quality),
-    hasVideo: !!(formatStream.qualityLabel && !formatStream.quality_label),
-    hasText: !!(formatStream.captionTrack || formatStream.caption_track),
-    isVb: formatStream.isVb || formatStream.is_vb,
-    isSr: formatStream.isSr || formatStream.is_sr,
-    isHdr:
-      transferCharacteristics.includes('SMPTEST2084') ||
-      transferCharacteristics.includes('ARIB_STD_B67'),
-    // YouTube.js-specific properties.
-    isDrc: formatStream.is_drc,
-    isAutoDubbed: formatStream.is_auto_dubbed,
-    isDescriptive: formatStream.is_descriptive,
-    isDubbed: formatStream.is_dubbed,
-    language: formatStream.language,
-    isOriginal: formatStream.is_original,
-    isSecondary: formatStream.is_secondary,
+    hasAudio: hasAudio,
+    hasVideo: hasVideo,
+    hasText: hasText,
+    isHdr: isHdr,
     codecCode: CODEC_CODES[formatStream.itag as keyof typeof CODEC_CODES]
   };
+
+  if (hasVideo)
+    sabrFormat.isSr = decodedXtags.some((tag) => tag.key === 'sr' && tag.value === '1');
+
+  if (hasAudio || hasText) {
+    sabrFormat.language = formatStream.language ?? decodedXtags.find((tag) => tag.key === 'lang')?.value;
+
+    if (hasAudio) {
+      sabrFormat.isDrc = (!!formatStream.isDrc || !!formatStream.is_drc) || decodedXtags.some((tag) => tag.key === 'drc' && tag.value === '1');
+      sabrFormat.isVb = (!!formatStream.isVb || !!formatStream.is_vb) || decodedXtags.some((tag) => tag.key === 'vb' && tag.value === '1');
+
+      const audioContent = decodedXtags.find((tag) => tag.key === 'acont')?.value;
+      sabrFormat.isDubbed = audioContent === 'dubbed';
+      sabrFormat.isDescriptive = audioContent === 'descriptive';
+      sabrFormat.isSecondary = audioContent === 'secondary';
+      sabrFormat.isAutoDubbed = audioContent === 'dubbed-auto';
+      sabrFormat.isOriginal = audioContent === 'original' || (
+        !sabrFormat.isDubbed && !sabrFormat.isDescriptive &&
+        !sabrFormat.isSecondary && !sabrFormat.isAutoDubbed && !sabrFormat.isDrc
+      );
+    }
+
+    // Some text tracks don't have xtags while others do
+    if (hasText && !sabrFormat.language && (formatStream.captionTrack || formatStream.caption_track))
+      sabrFormat.language = formatStream.caption_track?.language_code || formatStream.captionTrack?.languageCode;
+  }
+
+  return sabrFormat;
 }
 
 export function createFormatKey(input: CreateFormatKeyInput): string {

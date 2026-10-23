@@ -81,5 +81,6 @@ export {
   NetworkMeteredState,
   PlaybackAudioRouteOutputType,
   SeekSource,
-  VideoQualitySetting
+  VideoQualitySetting,
+  FormatXTags
 } from '../../protos/generated/misc/common.js';

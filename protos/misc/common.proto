@@ -35,6 +35,10 @@ message KeyValuePair {
   optional string value = 2;
 }
 
+message FormatXTags {
+  repeated KeyValuePair xtags = 1;
+}
+
 enum AudioQuality {
   AUDIO_QUALITY_UNKNOWN = 0;
   AUDIO_QUALITY_ULTRALOW = 5;

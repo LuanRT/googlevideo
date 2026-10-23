@@ -58,13 +58,13 @@ export interface FormatStream {
   quality_label?: string;
   qualityLabel?: string;
   audio_track?: { id: string };
-  audioTrackId?: string;
   audioChannels?: number;
   audio_channels?: number;
   caption_track?: Record<string, any>;
   captionTrack?: Record<string, any>;
   color_info?: Record<string, any>;
   colorInfo?: Record<string, any>;
+  audioTrack?: Record<string, any>;
   is_drc?: boolean;
   isDrc?: boolean;
   isVb?: boolean;
