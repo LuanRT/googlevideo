@@ -78,6 +78,11 @@ export class SabrUmpProcessor {
   ) {
     this.umpReader = new UmpReader({
       onPart: (type, data) => {
+        // A chunk can contain multiple segments. Keep the first terminal result
+        // and its metadata/cache state until processChunk returns it.
+        if (this.returnData)
+          return;
+
         const part: Part = { type, size: data.getLength(), data };
         const handler = this.umpPartHandlers.get(part.type);
         const result = handler?.(part);
