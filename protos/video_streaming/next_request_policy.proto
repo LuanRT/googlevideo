@@ -10,4 +10,5 @@ message NextRequestPolicy {
   optional int32 min_video_readahead_ms = 6;
   optional bytes playback_cookie = 7;
   optional string video_id = 8;
+  optional bool send_initial_sabr_request = 9;
 }

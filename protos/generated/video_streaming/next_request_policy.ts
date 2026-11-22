@@ -20,6 +20,7 @@ export interface NextRequestPolicy {
   minVideoReadaheadMs?: number | undefined;
   playbackCookie?: Uint8Array | undefined;
   videoId?: string | undefined;
+  sendInitialSabrRequest?: boolean | undefined;
 }
 
 function createBaseNextRequestPolicy(): NextRequestPolicy {
@@ -32,6 +33,7 @@ function createBaseNextRequestPolicy(): NextRequestPolicy {
     minVideoReadaheadMs: undefined,
     playbackCookie: undefined,
     videoId: undefined,
+    sendInitialSabrRequest: undefined,
   };
 }
 
@@ -60,6 +62,9 @@ export const NextRequestPolicy: MessageFns<NextRequestPolicy> = {
     }
     if (message.videoId !== undefined) {
       writer.uint32(66).string(message.videoId);
+    }
+    if (message.sendInitialSabrRequest !== undefined) {
+      writer.uint32(72).bool(message.sendInitialSabrRequest);
     }
     return writer;
   },
@@ -139,6 +144,14 @@ export const NextRequestPolicy: MessageFns<NextRequestPolicy> = {
             }
 
             message.videoId = reader.string();
+            continue;
+          }
+          case 9: {
+            if (tag !== 72) {
+              break;
+            }
+
+            message.sendInitialSabrRequest = reader.bool();
             continue;
           }
         }
