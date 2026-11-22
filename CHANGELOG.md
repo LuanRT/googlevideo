@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/LuanRT/googlevideo/compare/googlevideo-v5.0.1...googlevideo-v5.1.0) (2026-11-22)
+
+
+### Features
+
+* **protos:** Add `sendInitialSabrRequest` field to `NextRequestPolicy` ([0fb5b84](https://github.com/LuanRT/googlevideo/commit/0fb5b840636ff7dbc645624747998ef8eec601a1))
+
 ## [5.0.1](https://github.com/LuanRT/googlevideo/compare/googlevideo-v5.0.0...googlevideo-v5.0.1) (2026-10-23)
 
 
